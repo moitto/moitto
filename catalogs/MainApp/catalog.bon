@@ -1,0 +1,12 @@
+{
+    "database-version":"2.0",
+    "default-layout":"thumbnail",
+    "default-subview":"V_HOME",
+    "privacy-version":"1.0",
+    "related-catalogs":[
+        "Notice"
+    ],
+    "title":"모이또",
+    "uses-database":"yes",
+    "version":"1.0"
+}

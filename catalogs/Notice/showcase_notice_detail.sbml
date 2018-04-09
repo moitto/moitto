@@ -1,0 +1,12 @@
+=begin detail
+
+=object label: alt="등록일", text="${date}", style=label_date
+=begin title
+${title}
+=end title
+
+=begin notice
+${notice}
+=end notice
+
+=end detail

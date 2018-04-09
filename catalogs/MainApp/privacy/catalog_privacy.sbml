@@ -1,0 +1,39 @@
+=begin catalog
+
+=object section: id=section.privacy, section=privacy, style=section_privacy
+=begin privacy: id=privacy
+=begin note
+=begin title
+접근권한 안내
+=[sub|모이또에서는 아래와 같은 권한을 이용합니다.]=
+=end title
+=begin option
+=begin title
+필수 접근권한
+=end title
+없습니다.
+=end option
+=begin option
+=begin title
+선택적 접근권한
+=end title
+=[goB|인앱 구매]= 앱내 컨텐츠 구매 처리를 위해 필요합니다.
+=[goB|마이크 접근]= 앱내 녹음 기능을 지원하기 위해 필요합니다.
+
+=[sub|선택적 접근권한은 해당 기능을 사용할 때 허용이 필요하며, 허용하지 않아도 해당 기능 외 서비스 이용은 가능합니다.]=
+=end option
+
+=object blank: style=blank_line
+
+=begin option
+=begin title
+접근권한 변경 방법
+=end title
+휴대전화 설정 → 스티미
+=end option
+=end note
+
+=object button: action=subview-back, label="확인", style=btn_close
+=end privacy
+
+=end catalog

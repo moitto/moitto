@@ -1,0 +1,6 @@
+import themes.sbss
+
+#showcase_notice: width=1pw, height=1ph, column-count=1, cell-size="1pw, 60dp", \
+        cell-background-1=$PAGE_BG_DARK_COLOR, cell-background-2=$PAGE_BG_COLOR
+
+/catalog: page-background-color=$SUBVIEW_BG_COLOR

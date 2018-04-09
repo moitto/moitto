@@ -1,0 +1,8 @@
+=begin cell
+
+=(object label: alt="공지 제목", text="${title}", style=label_title)=
+=(object label: alt="등록일", text="${date}", style=label_date)=
+
+=object image: style=img_new
+
+=end cell

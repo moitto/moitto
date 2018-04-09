@@ -1,0 +1,9 @@
+=begin catalog
+
+=object showcase: name=notice, id=notice, \
+                sortable=yes, sortkey=id, sortorder=descending, \
+                selectable=yes, action-when-selected=detail, \
+                history-enabled=yes, history=notice, \
+                style=showcase_notice
+
+=end catalog

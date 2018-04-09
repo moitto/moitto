@@ -1,0 +1,42 @@
+import themes.sbss
+
+#label_title: width=0.9pw, height=26dp, \
+        font-family=$SANSSERIF_LIGHT, text-color=$DEFAULT_COLOR, \
+        text-align=left, line-break-mode=tail-truncation
+#label_date: width=0.9pw, height=14dp, align=left, \
+        font-family=$SANSSERIF_MEDIUM, text-color=$DEFAULT_COLOR, \
+        text-align=left, line-break-mode=tail-truncation
+
+#img_new: width=13dp, height=13dp
+#medium: font-family=$SANSSERIF_MEDIUM, text-color=$HIGHLIGHT_COLOR
+#bold: font-family=$SANSSERIF_MEDIUM, text-color=$HIGHLIGHT_COLOR
+
+/cell: text-align=left, margin="10dp 0 0 30dp"
+
+
+if $SCREEN_WIDTH > "5"
+    #label_title: font-size=1.2
+    #label_date: font-size=0.9
+    /cell: font-size=1.2
+else
+    #label_title: font-size=1.1
+    #label_date: font-size=0.8
+    /cell: font-size=1.1
+end
+
+
+-- new image --
+
+if "${new}" == "yes"
+    #img_new: filename=subview_icon_new.png, position=abs, gravity=left, x=10dp
+else
+    #img_new: display=none
+end
+
+if $STATE == "selected"
+    #img_new: display=none
+end
+
+if $STATE == "focused"
+    #img_new: display=none
+end

@@ -1,6 +1,6 @@
 # Moitto
 
-Moitto is the world's first mobile app browser for Steem. With Moitto you can discover useful apps based on Steem and enjoy apps right away without the hassle of installation. Moitto has a Steem wallet built in, so apps can interact with your wallet when they need it.
+Moitto is a decentralized app browser for Steem. With Moitto you can discover useful apps based on Steem and enjoy apps right away without the hassle of installation. Moitto has a Steem wallet built in, so apps can interact with your wallet when they need it.
 
 Moitto is an iOS and Android based mobile app. Moitto was developed with jamkit, an excellent app creation tool. With the cool feature of jamkit, you can run Moitto on your Mac without real devices. Our goal is launching Moitto on the App Store or Google Play in near future. 
 

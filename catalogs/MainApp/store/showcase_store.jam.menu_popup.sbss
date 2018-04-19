@@ -1,0 +1,15 @@
+import ~/themes.sbss
+
+#btn_menu: width=160dp, height=40dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.1, label-align=left, \
+        label-color=$BLACK_COLOR, highlight-label-color=$DEFAULT_COLOR, disable-label-color=$LIGHT_COLOR
+
+#btn_link: label="링크 주소 복사하기", style=btn_menu, \
+        action=copy, media=text, text="${url}", post-action=popup-close
+
+/popup: page-background-color=$BLACK_COLOR_DIM, action-when-touched=popup-close
+/popup/menu: display=block, width=200dp, padding="20dp 20dp 10dp 20dp", \
+        position=abs, gravity=center, background-color=$WHITE_COLOR, border-radius=2dp
+/popup/menu/title: margin-bottom=15dp, \
+        font-family=$SANSSERIF_BOLD, font-size=1.2, \
+        text-align=left, text-color=$DEFAULT_TEXT_COLOR

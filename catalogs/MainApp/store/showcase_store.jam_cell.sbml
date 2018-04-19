@@ -1,0 +1,12 @@
+=begin cell
+
+=object image: style=img_banner
+
+=object label: style=label_title
+=object label: style=label_adcopy
+=object label: style=label_usage
+
+=object button: style=btn_menu
+=object button: style=btn_channel
+
+=end cell

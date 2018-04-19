@@ -5,7 +5,7 @@ import themes.sbss
 #btn_sidebar: width=44dp, height=44dp, position=abs, gravity=left-bottom, \
         image=subview_btn_sidebar.png
 
-#label_title: width=1pw-44dp*2, height=44dp, position=abs, gravity=top, y=20dp, \
+#label_title: width=1pw-44dp*2, height=44dp, position=abs, gravity=top, y=1sbh, \
         font-family=$SANSSERIF_LIGHT, line-break-mode=tail-truncation, \
         text-color=$WHITE_COLOR, text-align=center
 

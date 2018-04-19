@@ -1,0 +1,13 @@
+=begin popup
+
+=begin menu
+
+=begin title
+${title}
+=end title
+
+=object button: style=btn_link
+
+=end menu
+
+=end popup

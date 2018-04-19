@@ -1,1 +1,26 @@
 import ~/themes.sbss
+
+#showcase_feeds: id=showcase.feeds, alternate-name=feeds, \
+        width=1pw, height=1ph, position=abs, gravity=top, \
+        data-script=feed_feeds, loads-more=yes, \
+        has-header=yes, has-footer=yes, hides-navibar=yes, \
+        selectable=yes, script-when-selected=open_discussion, \
+        selected-color=$SUBVIEW_SELECTED_COLOR, \
+        keeps-offscreen-cells=yes
+
+/catalog: page-background-color=$WHITE_COLOR
+
+if $SCREEN_SIZE > 7
+    if $SCREEN_WIDTH > 5
+        if $ORIENTATION == "landscape"
+            #showcase_feeds: column-count=2, cell-size="1pw/2, 120dp"
+        else
+            #showcase_feeds: column-count=1, cell-size="1pw, 120dp"
+        end
+    else
+    #showcase_feeds: column-count=1, cell-size="1pw, 120dp"
+end
+else
+    #showcase_feeds: column-count=1, cell-size="1pw, 120dp"
+end
+

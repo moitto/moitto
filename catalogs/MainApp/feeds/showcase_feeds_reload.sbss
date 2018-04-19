@@ -1,0 +1,5 @@
+import ~/themes.sbss
+
+#label_info: text="다시 검색하시려면 아래로 잡아당기세요.", \
+        margin-top=30dp, margin-bottom=20dp, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$DEFAULT_TEXT_COLOR

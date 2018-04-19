@@ -1,3 +1,6 @@
 =begin catalog
 
+=object showcase: alternate-name=abc, \
+    action-when-selected=popup, params-when-selected="catalog=Default,module=feed,alternate-name=abcd"
+
 =end catalog

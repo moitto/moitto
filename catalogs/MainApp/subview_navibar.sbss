@@ -1,15 +1,13 @@
 import themes.sbss
 
-#btn_back: width=44dp, height=44dp, position=abs, gravity=left-bottom, \
-        image=subview_btn_close.png
-#btn_sidebar: width=44dp, height=44dp, position=abs, gravity=left-bottom, \
-        image=subview_btn_sidebar.png
+#btn_back: image=subview_btn_close.png, width=44dp, height=44dp, \
+            position=absolute, gravity=left-top, y=1sbh
+#img_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, position=absolute, gravity=bottom
+#label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=top, y=1sbh, \
+        font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, text-align=center, \
+        line-break-mode=tail-truncation
 
-#label_title: width=1pw-44dp*2, height=44dp, position=abs, gravity=top, y=1sbh, \
-        font-family=$SANSSERIF_LIGHT, line-break-mode=tail-truncation, \
-        text-color=$WHITE_COLOR, text-align=center
-
-/navibar: page-background-color=$MAIN_COLOR
+/navibar: page-background-color=$THEME_COLOR_00
 
 if $SCREEN_SIZE > 7
     #label_title: font-size=1.4

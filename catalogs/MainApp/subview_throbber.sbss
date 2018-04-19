@@ -1,11 +1,11 @@
 import themes.sbss
 
-#section_content: section=content, position=abs, gravity=center, autoresizing=flexible-margins
+#section_content: section=content, position=absolute, gravity=center, autoresizing=flexible-margins
 
 #img_icon: filename=throbber_icon.png
 #label_message: type=message, font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$WHITE_COLOR
 #progress_main: type=progress
-#btn_cancel: action=cancel, image=throbber_btn_cancel.png, position=abs, gravity=top-right
+#btn_cancel: action=cancel, image=throbber_btn_cancel.png, position=absolute, gravity=top-right
 
 /throbber/content: id=content, display=none
 /throbber/content/box: background-color=$BLACK_COLOR, display=block

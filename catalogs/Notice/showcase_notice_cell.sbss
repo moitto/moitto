@@ -28,7 +28,7 @@ end
 -- new image --
 
 if "${new}" == "yes"
-    #img_new: filename=subview_icon_new.png, position=abs, gravity=left, x=10dp
+    #img_new: filename=subview_icon_new.png, position=absolute, gravity=left, x=10dp
 else
     #img_new: display=none
 end

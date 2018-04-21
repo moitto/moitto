@@ -1,4 +1,4 @@
-module = [{
+__MODULE__ = [{
   "roles": ["posting", "active", "owner"],
   "operation": "vote",
   "params": ["voter", "author", "permlink", "weight"]

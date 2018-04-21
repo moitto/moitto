@@ -47,4 +47,4 @@ SteemBroadcast.__find_operation = function(name) {
     }
 }
 
-module = SteemBroadcast;
+__MODULE__ = SteemBroadcast;

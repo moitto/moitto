@@ -35,4 +35,4 @@ AskSteem.prototype.version = function() {
 	return "1.0";
 }
 
-module = new AskSteem();
+__MODULE__ = new AskSteem();

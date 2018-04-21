@@ -59,7 +59,7 @@ SteemJS.prototype.__query_for_content = function(author, permlink) {
 	params["author"]   = author;
 	params["permlink"] = permlink;
 
-	return __to_query_string(params);
+	return this.__to_query_string(params);
 }
 
 SteemJS.prototype.__to_query_string = function (params) {
@@ -68,4 +68,4 @@ SteemJS.prototype.__to_query_string = function (params) {
     }).join('&')
 }
 
-module = new SteemJS();
+__MODULE__ = new SteemJS();

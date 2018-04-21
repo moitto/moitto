@@ -30,4 +30,4 @@ YouTube.prototype.version = function() {
 	return "1.0";
 }
 
-module = new YouTube();
+__MODULE__ = new YouTube();

@@ -1,14 +1,11 @@
 import ~/themes.sbss
 
-#showcase_feeds: id=showcase.feeds, alternate-name=feeds, \
-        width=1pw, height=1ph, position=abs, gravity=top, \
-        data-script=feed_feeds, loads-more=yes, \
+#showcase_feeds: alternate-name=feeds, \
+        width=1pw, height=1ph, position=absolute, gravity=top, \
         has-header=yes, has-footer=yes, hides-navibar=yes, \
-        selectable=yes, script-when-selected=open_discussion, \
-        selected-color=$SUBVIEW_SELECTED_COLOR, \
         keeps-offscreen-cells=yes
 
-/catalog: page-background-color=$WHITE_COLOR
+/catalog: page-background-color=$THEME_COLOR_00
 
 if $SCREEN_SIZE > 7
     if $SCREEN_WIDTH > 5
@@ -21,6 +18,6 @@ if $SCREEN_SIZE > 7
     #showcase_feeds: column-count=1, cell-size="1pw, 120dp"
 end
 else
-    #showcase_feeds: column-count=1, cell-size="1pw, 120dp"
+    #showcase_feeds: column-count=1, cell-size="1pw, 160dp", cell-spacing=10dp
 end
 

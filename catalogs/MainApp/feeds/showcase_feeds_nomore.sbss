@@ -1,5 +1,1 @@
-import ~/themes.sbss
-
-#label_info: text="더 이상 검색 결과가 없습니다.", \
-        margin-top=20dp, margin-bottom=30dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$DEFAULT_TEXT_COLOR
+import showcase_feeds_loading.sbss

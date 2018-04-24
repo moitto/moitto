@@ -10,7 +10,6 @@ Steem.chain_id = "00000000000000000000000000000000000000000000000000000000000000
 
 Steem.crypto    = require('crypto');
 Steem.struct    = require('struct');
-Steem.types     = include('./types.js');
 Steem.auth      = include('./auth/index.js');
 Steem.broadcast = include('./broadcast/index.js');
 Steem.api       = include('./api/index.js');

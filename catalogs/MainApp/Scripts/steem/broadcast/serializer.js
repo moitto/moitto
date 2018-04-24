@@ -1,6 +1,6 @@
 SteemSerializer = {};
 
-SteemSerializer.operations = include("./operations.js");
+SteemSerializer.operations = include("./operations.js"); 
 SteemSerializer.params     = include("./params.js");
 
 SteemSerializer.serialize_transaction = function(transaction) {
@@ -18,9 +18,9 @@ SteemSerializer.serialize_transaction = function(transaction) {
 	    	SteemSerializer.__pack_buffer(buffer, "B", [ index ]);
 
 	    	operation["params"].forEach(function(param) {
-	    		SteemSerializer.__pack_param(
-	    			buffer, SteemSerializer.params[operation.operation][param], params[param]
-	    		);
+                SteemSerializer.params[operation.operation][param].pack(
+                    buffer, params[param]
+                );
 	    	});
     	});
     });
@@ -43,26 +43,6 @@ SteemSerializer.__find_operation = function(name, handler) {
             break;
         }
     }
-}
-
-SteemSerializer.__pack_param = function(buffer, type, value) {
-	if (type == Steem.types.string) {
-		SteemSerializer.__pack_buffer(buffer, "B" + value.length +"s", [ value.length, value ]);
-
-		return;
-	}
-
-	if (type == Steem.types.uint16 || type == Steem.types.int16) {
-		SteemSerializer.__pack_buffer(buffer, "<H", [ value ]);
-
-		return;
-	}
-
-	if (type == Steem.types.uint32 || type == Steem.types.int32) {
-		SteemSerializer.__pack_buffer(buffer, "<I", [ value ]);
-
-		return;
-	}
 }
 
 SteemSerializer.__pack_buffer = function(buffer, format, values) {

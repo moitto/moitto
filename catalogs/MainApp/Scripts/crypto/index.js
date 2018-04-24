@@ -4,6 +4,8 @@ include("./sjcl/codecString.js");
 include("./sjcl/codecBytes.js");
 include("./sjcl/codecBase58.js");
 include("./sjcl/codecBase58Check.js");
+include("./sjcl/codecBytes.js");
+include("./sjcl/codecHex.js");
 include("./sjcl/sha256.js");
 include("./sjcl/ripemd160.js");
 include("./sjcl/aes.js");
@@ -30,10 +32,21 @@ Crypto.ripemd160 = {
 };
 
 Crypto.ecdsa = {
-	generate_keys : function(curve_name, secret) {
+	generate_keys : function(curve, secret) {
 		return sjcl.ecc.ecdsa.generateKeys(
-			sjcl.ecc.curves[curve_name], 0, secret
+			curve, 0, secret
 		);
+	},
+	secret_key : function(curve, secret) {
+		return new sjcl.ecc.ecdsa.secretKey(
+			curve, sjcl.bn.fromBits(secret)
+		);
+	},
+	sign : function(bits, key) {
+
+	},
+	curve_from_name : function(name) {
+		return sjcl.ecc.curves[name];
 	}
 };
 
@@ -41,10 +54,17 @@ Crypto.base58 = {
 	encode : function(bits) {
 		return sjcl.codec.base58.fromBits(bits);
 	},
-	check : {
-		encode : function(version, bits, checksum_fn) {
-			return sjcl.codec.base58Check.fromBits(version, bits, checksum_fn);
-		}
+	decode : function(string) {
+		return sjcl.codec.base58.toBits(string);
+	}
+};
+
+Crypto.base58.check = {
+	encode : function(version, bits, checksum_fn) {
+		return sjcl.codec.base58Check.fromBits(version, bits, checksum_fn);
+	},
+	decode : function(string, checksum_fn) {
+		return sjcl.codec.base58Check.toBits(string, checksum_fn)
 	}
 };
 
@@ -54,6 +74,14 @@ Crypto.number_from_bits = function(bits) {
 
 Crypto.string_to_bits = function(string) {
 	return sjcl.codec.utf8String.toBits(string);
+};
+
+Crypto.bytes_to_bits = function(bytes) {
+	return sjcl.codec.bytes.toBits(bytes);
+};
+
+Crypto.hex_from_bits = function(bits) {
+	return sjcl.codec.hex.fromBits(bits);
 };
 
 Crypto.bits_slice = function(bits, start, end) {

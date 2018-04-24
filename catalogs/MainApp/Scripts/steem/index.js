@@ -3,11 +3,14 @@ Steem = (function() {
 })();
 
 Steem.__MAINNET__ = { pub_header:0x0, priv_header:0x80, pub_prefix:'STM' }; 
-Steem.__TESTNET__ = { pub_header:0x0, priv_header:0x80, pub_prefix:'TST' }; 
+Steem.__TESTNET__ = { pub_header:0x0, priv_header:0x80, pub_prefix:'TST' };
 
 Steem.net = Steem.__MAINNET__;
+Steem.chain_id = "0000000000000000000000000000000000000000000000000000000000000000";
 
 Steem.crypto    = require('crypto');
+Steem.struct    = require('struct');
+Steem.types     = include('./types.js');
 Steem.auth      = include('./auth/index.js');
 Steem.broadcast = include('./broadcast/index.js');
 Steem.api       = include('./api/index.js');

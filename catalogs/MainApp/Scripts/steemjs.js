@@ -39,6 +39,19 @@ SteemJS.prototype.get_content = function(author, permlink, handler) {
     });
 }
 
+SteemJS.prototype.get_accounts = function(names, handler) {
+    var url = "https://api.steemjs.com/get_accounts";
+    var query = this.__query_for_accounts(names);
+
+    fetch(url + "?" + query).then(function(response){
+        if (response.ok) {
+            response.json().then(function(json) {
+                handler(json);
+            });
+        }
+    });
+}
+
 SteemJS.prototype.__query_for_discussions = function(tag, limit, start_author, start_permlink) {
     var params = {};
 
@@ -60,6 +73,16 @@ SteemJS.prototype.__query_for_content = function(author, permlink) {
 	params["permlink"] = permlink;
 
 	return this.__to_query_string(params);
+}
+
+SteemJS.prototype.__query_for_accounts = function(names) {
+    var params = {};
+
+    names.forEach(function(name) {
+        params["names[]"] = name;
+    });
+
+    return this.__to_query_string(params);
 }
 
 SteemJS.prototype.__to_query_string = function (params) {

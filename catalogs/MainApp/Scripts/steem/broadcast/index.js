@@ -1,29 +1,30 @@
 SteemBroadcast = {};
 
-SteemBroadcast.operations = include("./operations.js");
+SteemBroadcast.serializer = include("./serializer.js");
 
-SteemBroadcast.vote = function(voter, author, permlink, weight, priv_keys) {
+SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = SteemBroadcast.__find_operation("vote");
-        var params = { voter:voter, author:author, permlink:permlink, weight: weight };
-        
-        SteemBroadcast.__send_transaction(operation, params, priv_keys).then(function(transaction) {
-            console.log("@@@@@@@@@@@@");
-            SteemBroadcast.operations.forEach(function(op) {
-                    console.log(op.operation);
+        var operation = [ "vote" , { 
+            voter:voter, author:author, permlink:permlink, weight: weight
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(transaction) {
+            SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
+                resolve(response);
             });
-                                                                        
-            resolve(transaction);
         });
-    })
+    });
 }
 
-SteemBroadcast.__send_transaction = function(operation, params, priv_keys) {
+SteemBroadcast.__send_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};
-                       
+
+        transaction["operations"] = [ operation ];
+        transaction["extensions"] = [];
+
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
-            SteemBroadcast.__sign_transaction(transaction);
+            SteemBroadcast.__sign_transaction(transaction, keys);
 
             resolve(transaction);
         });
@@ -32,19 +33,31 @@ SteemBroadcast.__send_transaction = function(operation, params, priv_keys) {
 
 SteemBroadcast.__prepare_transaction = function(transaction) {
     return new Promise(function(resolve, reject) {
-        resolve(transaction);
+        SteemApi.get_dynamic_global_properties(function(properties) {
+            var ref_block_num = (properties.last_irreversible_block_num - 1) & 0xFFFF;
+            var current_date = new Date(properties.time + 'Z');
+            var expired_date = new Date(current_date.getTime() + 600 * 1000);
+            var expiration = expired_date.toISOString().substring(0, 19);
+
+            SteemApi.get_block(properties.last_irreversible_block_num, function(block) {
+                var head_block_id = decode("hex", block.previous);
+                var ref_block_prefix = Steem.struct.unpack("<I", head_block_id, 4)[0];
+
+                transaction["ref_block_num"]    = ref_block_num;
+                transaction["ref_block_prefix"] = ref_block_prefix;
+                transaction["expiration"]       = expiration;
+
+                resolve(transaction);
+            });
+        });
     });
 }
 
-SteemBroadcast.__sign_transaction = function(transaction) {
-}
+SteemBroadcast.__sign_transaction = function(transaction, keys) {
+    var buffer = SteemBroadcast.serializer.serialize_transaction(transaction);
+    var signatures = SteemAuth.sign_transaction(buffer, keys);
 
-SteemBroadcast.__find_operation = function(name) {
-    for (operation in SteemBroadcast.operations) {
-        if (operation.operation == name) {
-            return operation;
-        }
-    }
+    transaction["signatures"] = signatures;
 }
 
 __MODULE__ = SteemBroadcast;

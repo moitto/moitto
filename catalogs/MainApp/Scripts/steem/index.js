@@ -20,4 +20,4 @@ Steem.version = function() {
 	return "1.0";
 }
 
-module = Steem;
+__MODULE__ = Steem;

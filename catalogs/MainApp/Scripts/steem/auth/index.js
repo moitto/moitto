@@ -48,4 +48,4 @@ SteemAuth.__checksum_for_key = function(bits) {
     );
 }
 
-module = SteemAuth;
+__MODULE__ = SteemAuth;

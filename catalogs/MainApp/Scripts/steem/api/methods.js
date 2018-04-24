@@ -1,4 +1,4 @@
-module = [{
+__MODULE__ = [{
   "api": "database_api",
   "method": "set_subscribe_callback",
   "params": ["callback", "clearFilter"]

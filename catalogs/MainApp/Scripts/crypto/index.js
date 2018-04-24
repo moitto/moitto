@@ -64,4 +64,5 @@ Crypto.version = function() {
 	return "1.0";
 };
 
-module = Crypto;
+__MODULE__ = Crypto;
+

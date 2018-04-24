@@ -2,4 +2,4 @@ SteemApi = {};
 
 SteemApi.methods = include("./methods.js");
 
-module = SteemApi;
+__MODULE__ = SteemApi;

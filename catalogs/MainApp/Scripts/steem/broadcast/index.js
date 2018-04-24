@@ -1,5 +1,6 @@
 SteemBroadcast = {};
 
+SteemBroadcast.operations = include("./operations.js");
 SteemBroadcast.serializer = include("./serializer.js");
 
 SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {

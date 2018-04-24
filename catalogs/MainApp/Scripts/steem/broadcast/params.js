@@ -1,4 +1,4 @@
-var __TYPES__ = include("./types.js");
+var __TYPES__ = SteemSerializer.types;
 
 __MODULE__ = {
 	"vote":{

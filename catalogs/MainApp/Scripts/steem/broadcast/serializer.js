@@ -1,7 +1,7 @@
 SteemSerializer = {};
 
-SteemSerializer.operations = include("./operations.js"); 
-SteemSerializer.params     = include("./params.js");
+SteemSerializer.types  = include("./types.js");
+SteemSerializer.params = include("./params.js");
 
 SteemSerializer.serialize_transaction = function(transaction) {
     var buffer = [];
@@ -34,8 +34,8 @@ SteemSerializer.serialize_transaction = function(transaction) {
 }
 
 SteemSerializer.__find_operation = function(name, handler) {
-    for (var index = 0; index < SteemSerializer.operations.length; index++) {
-        var operation = SteemSerializer.operations[index];
+    for (var index = 0; index < SteemBroadcast.operations.length; index++) {
+        var operation = SteemBroadcast.operations[index];
 
         if (operation.operation === name) {
             handler(index, operation);

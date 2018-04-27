@@ -13,6 +13,4 @@ ${title}
 =object label:text="${author}", style=label_author
 =object label:text="${created-at}", style=label_created.at
 
-=object blank: style=blank_line, display=none
-
 =end cell

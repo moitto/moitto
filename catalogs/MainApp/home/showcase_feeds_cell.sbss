@@ -20,11 +20,8 @@ import ~/themes.sbss
                 position=absolute, gravity=top-left, x=55dp, y=135dp, \
                 font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_108, text-align=left
 
-#blank_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, \
-            position=absolute, gravity=bottom
-
 /cell: display=block, width=1pw, height=1ph, \
-        border-color=$THEME_HIGHLIGHT_COLOR, border-width=1px, page-background-color=$THEME_COLOR_02
+        border-color=$THEME_HIGHLIGHT_COLOR, border-width=2px
 /cell/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
             text-color=$THEME_COLOR_107, text-align=left, line-spacing=0.2em, margin=10dp
 /cell/meta: margin="0 10dp"

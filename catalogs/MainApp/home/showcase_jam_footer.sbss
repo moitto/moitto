@@ -1,5 +1,5 @@
 import ~/themes.sbss
 
 #btn_more: width="1pw-10dp", height=1ph, position=absolute, gravity=top-left, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_108, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_02, content-border-color=$THEME_COLOR_107, content-border-width=1px
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_104, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_04, content-border-color=$THEME_COLOR_03, content-border-width=1dp

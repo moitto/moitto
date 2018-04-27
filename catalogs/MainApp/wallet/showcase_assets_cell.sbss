@@ -1,1 +1,8 @@
 import ~/themes.sbss
+
+#label_title: height=1ph, font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_103, text-align=left, font-size=1.4, \
+            position=absolute, gravity=left, content-padding="0 0 0 10dp"
+#label_value: height=1ph, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, text-align=right, font-size=1.4, \
+            position=absolute, gravity=right, content-padding="0 10dp 0 0 0"
+
+/cell: page-background-color=$THEME_COLOR_04

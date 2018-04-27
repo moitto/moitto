@@ -10,7 +10,7 @@ import ~/themes.sbss
         script-when-reload=reset_jam, \
         keeps-offscreen-cells=yes, scroll-indicator-hidden=yes
 
-/page: page-background-color=#EEEEEE, action-when-touched=popup-close
+/page: page-background-color=$THEME_COLOR_02, action-when-touched=popup-close
 
 if $SCREEN_WIDTH > 5
     if $ORIENTATION == "portrait"

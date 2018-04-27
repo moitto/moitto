@@ -4,8 +4,8 @@ import themes.sbss
             position=absolute, gravity=left-top, y=1sbh
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, position=absolute, gravity=bottom
 #label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=top, y=1sbh, \
-        font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, text-align=center, \
-        line-break-mode=tail-truncation
+            font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, text-align=center, \
+            line-break-mode=tail-truncation
 
 /navibar: page-background-color=$THEME_COLOR_00
 

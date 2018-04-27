@@ -1,5 +1,10 @@
 =begin catalog
 
-=object showcase: style=showcase_assets
+=object showcase: alternate-name=assets, \
+                data-script=feed_assets, \
+                has-header=yes, \
+                has-footer=yes, \
+                selectable=yes, action-when-selected=page, \
+                style=showcase_assets
 
 =end catalog

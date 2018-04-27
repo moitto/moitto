@@ -1,9 +1,7 @@
 import ~/themes.sbss
 
-#showcase_assets: alternate-name=assets, width=1pw, height=1ph, \
-        data-script=feed_assets, \
-        column-count=1, cell-size="1pw, 80dp", \
-        has-header=yes, header-height=80dp, \
-        has-footer=yes, \
-        selectable=yes, action-when-selected=page
+#showcase_assets: width=1pw, height=1ph, \
+        column-count=1, cell-size="(1pw-10dp), 70dp", content-margin="0 5dp 1eb 5dp", cell-spacing=5dp, \
+        header-height=235dp
 
+/catalog: page-background-color=$THEME_COLOR_02

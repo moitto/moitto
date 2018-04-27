@@ -1,6 +1,6 @@
 =begin cell
 
-${title}
+=object label: text="${title}", style=label_title
+=object label: text="57.89", style=label_value
 
 =end cell
-

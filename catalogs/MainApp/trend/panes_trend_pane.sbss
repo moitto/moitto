@@ -2,7 +2,8 @@ import ~/themes.sbss
 
 #showcase_trend: width=1pw, height=1ph, position=absolute, gravity=top, \
                 has-header=yes, has-footer=yes, hides-navibar=yes, \
-                keeps-offscreen-cells=yes, content-margin="0 0 1eb 0"
+                keeps-offscreen-cells=yes, \
+                content-margin="0 0 1eb 0", content-background-color=$THEME_COLOR_00
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "landscape"

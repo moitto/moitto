@@ -1,20 +1,20 @@
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 	var assets = [
 		{
-			"id":"S_STEEM_DOLLAR",
-			"title":"스팀달러",
+			"id":"S_STEEM",
+			"title":"STEEM",
             "has-own-title":"yes",
             "has-own-sbml":"yes"      
 		},
 		{
-			"id":"S_STEEM",
-			"title":"스팀",
+			"id":"S_STEEM_DOLLAR",
+			"title":"STEEM DOLLARS",
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
 		},
 		{
 			"id":"S_STEEM_POWER",
-			"title":"스팀파워",
+			"title":"STEEM POWER",
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
 		}

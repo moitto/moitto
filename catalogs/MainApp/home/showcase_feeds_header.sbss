@@ -1,0 +1,6 @@
+import ~/themes.sbss
+
+#showcase_jam: width=1pw, height=1ph, \
+            row-count=1, cell-size="1pw-80dp, 1ph", \
+            footer-width=140dp, \
+            scroll-indicator-hidden=yes

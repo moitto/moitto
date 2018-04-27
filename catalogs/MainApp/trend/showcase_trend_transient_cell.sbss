@@ -1,0 +1,13 @@
+import ~/themes.sbss
+
+/cell: page-background-color=$THEME_COLOR_02
+/cell/title: display=block, width=0.5pw, height=20dp, align=left, \
+            margin="15dp 15dp 10dp 15dp", background-color=$THEME_HIGHLIGHT_COLOR
+/cell/meta: display=block, width=0.3pw, height=10dp, align=left, \
+            margin="0 15dp", background-color=$THEME_HIGHLIGHT_COLOR
+/cell/userpic: display=block, width=35dp, height=35dp, \
+            position=absolute, gravity=top-left, x=15dp, y=110dp, \
+            border-radius=35dp/2, background-color=$THEME_HIGHLIGHT_COLOR
+/cell/line: display=block, width=1pw, height=1dp, \
+            position=absolute, gravity=bottom, background-color=$THEME_HIGHLIGHT_COLOR
+

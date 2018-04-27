@@ -1,0 +1,13 @@
+import ~/themes.sbss
+
+#youtube: video-id="${video-id}", width=1pw-30dp, height=(1pw-30dp)*9/16, \
+		position=abs, gravity=top, y=20dp+5dp, \
+		autoplay=yes, control-hidden=yes, info-hidden=yes, \
+		action-when-finished=next-page, params-when-finished="target=object,object=showcase.musics", \
+		action-when-not-available@embeded=noop, script-when-not-available@embeded=on_not_available, \
+		action-when-not-available=next-page, params-when-not-available="target=owner"
+
+#web_youtube: id=web.youtube.${id}, group=not.available.${id}, \
+		type=youtube, autoplay=yes, hidden=yes, \
+		width=1pw-30dp, height=1pw-30dp, position=abs, gravity=top, y=25dp, \
+		action-when-finished=next-page, params-when-finished="target=object,object=showcase.musics"

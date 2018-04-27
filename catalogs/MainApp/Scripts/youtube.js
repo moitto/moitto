@@ -3,11 +3,12 @@ function YouTube() {}
 YouTube.prototype.search_music = function(title, artist, handler) {
 	var query = (title + " " + artist).replace(/#/g, "").replace(/ /g, "+");
 	var url = "https://www.youtube.com/results?search_query=" + query;
+    var this_ = this;
 
 	fetch(url).then(function(response) {
 		if (response.ok) {
 			response.text().then(function(text) {
-				handler(this.__search_music_in_html(text));
+				handler(this_.__search_music_in_html(text));
 			});
 		}
 	});

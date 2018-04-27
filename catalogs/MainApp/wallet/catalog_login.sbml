@@ -1,0 +1,8 @@
+=begin catalog
+
+=begin form
+=object textfield: id=username, style=textfield_username
+=object textfield: id=password, style=textfield_password
+=end form
+
+=end catalog

@@ -1,0 +1,10 @@
+=begin cell
+
+=object image: style=img_banner
+=object widget: style=widget
+
+=begin title
+=(object label: style=label_title)=
+=end title
+
+=end cell

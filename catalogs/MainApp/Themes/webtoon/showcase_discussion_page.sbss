@@ -1,0 +1,19 @@
+import ~/themes.sbss
+
+#image: max-width=1pw-20dp
+#image.full: max-width=1pw
+
+#link: action=link, text-color=$MAIN_COLOR
+#bold: font-family=$SANSSERIF_BOLD
+
+#blank_line: color=$LIGHT_LINE_COLOR, width=1pw-20dp, height=1dp
+
+/page: page-background-color=$WHITE_COLOR, padding="5dp 10dp", \
+	font-family=$SANSSERIF_MEDIUM, text-color=$DEFAULT_TEXT_COLOR, \
+	paragraph-spacing=0.9em, empty-line-height=0, line-spacing=0.3em
+
+if $SCREEN_WIDTH > "5"
+    /page: font-size=1.15
+else
+    /page: font-size=1.05
+end

@@ -1,0 +1,29 @@
+import ~/themes.sbss
+
+#label_meta: font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_108, text-align=left
+#label_main.tag: style=label_meta
+#label_votes.count: type=decimal, style=label_meta
+#label_payout.value: style=label_meta
+
+#blank_userpic.mask: width=35dp, height=35dp, \
+            position=absolute, gravity=top-left, x=15dp, y=110dp, \
+            content-border-radius=35dp/2, content-background-color=$THEME_HIGHLIGHT_COLOR
+#img_userpic: default-image=subview_userpic.png, width=33dp, height=33dp, scale-mode=fill, \
+            position=absolute, gravity=top-left, x=16dp, y=111dp, \
+            content-border-radius=33dp/2
+
+#label_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
+                position=absolute, gravity=top-left, x=60dp, y=110dp, \
+                font-family=$SANSSERIF_BOLD, font-size=1, text-color=$THEME_COLOR_107
+#label_created.at: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", \
+                width=200dp, height=12dp, \
+                position=absolute, gravity=top-left, x=60dp, y=130dp, \
+                font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_108, text-align=left
+
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, \
+            position=absolute, gravity=bottom
+
+/cell: page-background-color=$THEME_COLOR_02
+/cell/title: font-family=$SANSSERIF_MEDIUM, font-size=1.3, \
+            text-color=$THEME_COLOR_107, text-align=left, line-spacing=0.2em, margin="15dp 15dp 10dp 15dp"
+/cell/meta: margin="0 15dp"

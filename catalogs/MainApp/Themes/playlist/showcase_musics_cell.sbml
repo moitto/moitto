@@ -1,0 +1,20 @@
+=begin cell
+
+=object showcase: style=showcase_video
+=object section: style=section_info
+
+=begin info
+
+=begin content
+=begin title
+${title}
+=end title
+
+=begin artists
+${artists}
+=end artists
+=end content
+
+=end info
+
+=end cell

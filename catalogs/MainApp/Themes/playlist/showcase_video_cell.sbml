@@ -1,0 +1,6 @@
+=begin cell
+
+=object youtube: style=youtube
+=object web: style=web_youtube
+
+=end cell

@@ -1,0 +1,7 @@
+=begin popup
+
+=object web: style=web_main
+=object blank: style=blank_top.line
+=object progress: style=progress_main
+
+=end popup

@@ -1,0 +1,6 @@
+=begin page
+
+=object image: style=img_bg
+=object showcase: style=showcase_musics
+
+=end page

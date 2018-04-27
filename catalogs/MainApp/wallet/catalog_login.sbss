@@ -1,0 +1,8 @@
+import ~/themes.sbss
+
+#textfield: width=200dp, height=36dp
+#textfield_username: style=textfield, placeholder="스팀잇 계정", next-control=password
+#textfield_password: style=textfield, placeholder="비밀번호", secure=yes, script=login, form=login
+
+/catalog: page-background-color=$THEME_COLOR_04
+/catalog/form: form=login

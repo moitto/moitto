@@ -1,0 +1,11 @@
+import ~/themes.sbss
+
+#label_info: margin="20dp 0", \
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_108
+
+if $SCREEN_WIDTH > 5
+    #label_info: font-size=1.2
+else
+    #label_info: font-size=1.1
+end
+

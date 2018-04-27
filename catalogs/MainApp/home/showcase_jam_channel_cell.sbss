@@ -1,0 +1,26 @@
+import ~/themes.sbss
+
+#img_banner: type=app, subtype=banner, channel="${channel}", default-color=$LIGHT_COLOR_DIM, \
+        width=1pw, height=1pw*(2/3), position=abs, gravity=top, scale-mode=fill
+#widget: channel="${channel}", width=1pw, height=1pw*(2/3), position=abs, gravity=top, \
+        sortkey=running, sortorder=descending, content-background-color=$LIGHT_COLOR_DIM
+
+#label_title: text="${title}", max-width=1pw-25dp, height=20dp, margin-right=5dp, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$DEFAULT_TEXT_COLOR, \
+        line-break-mode=tail-truncation
+#img_more: filename="~/subview_icon_plus.png", scale-mode=fit, width=18dp, height=20dp
+
+#btn_channel: action=submit, form=channel.${channel}, showcase=auxiliary, display-unit=S_CHANNEL, \
+        action-when-done=subview, params-when-done="subview=V_HOME.CHANNEL,target=popup", \
+        width=1pw, height=40dp, position=abs, gravity=bottom, \
+        has-own-title=yes
+
+/cell: page-background-color=$WHITE_COLOR
+/cell/title: display=block, position=abs, gravity=top, y=1pw*(2/3)+3dp, text-align=left
+/cell/form: form=channel.${channel}
+
+if $HAS_OWN_WIDGET == "yes"
+    #img_banner: display=none
+else
+    #widget: display=none
+end

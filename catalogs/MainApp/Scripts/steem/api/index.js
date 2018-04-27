@@ -1,6 +1,5 @@
 SteemApi = {};
-
-SteemApi.tx_number = 1;
+SteemApi._tx_number = 1;
 
 SteemApi.get_dynamic_global_properties = function(handler) {
 	var method = "get_dynamic_global_properties";
@@ -49,9 +48,9 @@ SteemApi.__build_request = function(method, params) {
 	request["jsonrpc"] = "2.0";
 	request["method"]  = method;
 	request["params"]  = params;
-	request["id"]      = SteemApi.tx_number;
+	request["id"]      = SteemApi._tx_number;
 
-	SteemApi.tx_number += 1;
+	SteemApi._tx_number += 1;
 
 	return request;
 }

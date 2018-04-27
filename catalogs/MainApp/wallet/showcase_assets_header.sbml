@@ -1,8 +1,9 @@
 =begin header
 
 =object image: image-url="https://steemitimages.com/u/hanyeol/avatar", image-downloadable=yes, style=img_profile
-=object label: text="hanyeol", style=label_user.id
+=(object blank: style=blank_margin)==(object label: text="hanyeol", style=label_user.id)==(object button: action=page, display-unit=S_USER_INFO, style=btn_user.info)=
 =object label: text="REP. 50.56", style=label_rep
+
 =begin info
 =(object label: text="68", style=label_info)==(object label: text="1265", style=label_info)==(object label: text="346", style=label_info)=
 =(object label: text="게시글", style=label_info.title)==(object label: text="팔로우", style=label_info.title)==(object label: text="팔로워", style=label_info.title)=

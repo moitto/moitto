@@ -5,6 +5,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
        var data = [];
 
         discussions.forEach(function(discussion) {
+            var image_url         = __get_image_url_in_discussion(discussion);
             var userpic_url       = __get_userpic_url_in_discussion(discussion);
             var userpic_large_url = __get_userpic_large_url_in_discussion(discussion);;
             var payout_value      = __get_payout_value_in_discussion(discussion).toFixed(2);
@@ -14,7 +15,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                 "author":discussion["author"],
                 "permlink":discussion["permlink"],
                 "title":discussion["title"], 
-                "image-url":discussion["json_metadata"]["image"],
+                "image-url":image_url,
                 "userpic-url":userpic_url,
                 "userpic-large-url":userpic_large_url,
                 "payout-value":"$" + payout_value.toString(),
@@ -35,6 +36,16 @@ function open_discussion(data) {
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });
+}
+
+function __get_image_url_in_discussion(discussion) {
+    var images = JSON.parse(discussion["json_metadata"])["image"];
+
+    if (images && images.length > 0) {
+        return "https://steemitimages.com/640x480/" + images[0];
+    }
+
+    return "";
 }
 
 function __get_userpic_url_in_discussion(discussion) {

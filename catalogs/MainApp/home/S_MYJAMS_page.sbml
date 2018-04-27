@@ -1,0 +1,11 @@
+=begin page
+
+=object showcase: type=packages, alternate-name=jam.all, \
+                selectable=yes, action-when-selected=app, \
+                action-when-selected@channel=app, params-when-selected@channel="sortkey=running,sortorder=descending", \
+                action-when-long-pressed=popup, params-when-long-pressed="alternate-name=jam.menu,subview=V_JAM", \
+                sortable=yes, sortkey=running, sortorder=descending, \
+                keeps-offscreen-cells=yes, \
+                style=showcase_jam
+
+=end page

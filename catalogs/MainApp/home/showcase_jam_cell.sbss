@@ -1,16 +1,16 @@
 import ~/themes.sbss
 
-#img_banner: type=app, subtype=banner, app="${app}", default-color=$LIGHT_COLOR_DIM, \
-        width=1pw, height=1pw*(2/3), position=abs, gravity=top, scale-mode=fill
-#widget: app="${app}", width=1pw, height=1pw*(2/3), position=abs, gravity=top, \
-        content-background-color=$LIGHT_COLOR_DIM
+#img_banner: default-color=$THEME_HIGHLIGHT_COLOR, \
+        width=1pw, height=160dp, position=absolute, gravity=top, scale-mode=fill
+#widget: width=1pw, height=160dp, position=absolute, gravity=top, \
+        content-background-color=$THEME_HIGHLIGHT_COLOR
 
-#label_title: text="${title}", max-width=1pw, height=20dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$DEFAULT_TEXT_COLOR, \
-        line-break-mode=tail-truncation
+#label_title: max-width=1pw, height=40dp, \
+        position=absolute, gravity=top-left, y=160dp, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.1, text-color=$THEME_COLOR_107, text-align=left, \
+        line-break-mode=tail-truncation, content-padding="0 5dp"
 
-/cell: page-background-color=$WHITE_COLOR
-/cell/title: display=block, position=abs, gravity=top, y=1pw*(2/3)+3dp, text-align=left
+/cell: page-background-color=$THEME_COLOR_02
 
 if $HAS_OWN_WIDGET == "yes"
     #img_banner: display=none

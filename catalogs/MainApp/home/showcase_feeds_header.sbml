@@ -1,5 +1,7 @@
 =begin header
 
+=object label: text="잼", style=label_title
+
 =object showcase: type=packages, alternate-name=jam, \
             has-footer=yes, \
             selectable=yes, action-when-selected=app, \
@@ -8,5 +10,7 @@
             sortable=yes, sortkey=running, sortorder=descending, \
             keeps-offscreen-cells=yes, \
             style=showcase_jam
+
+=object label: text="피드", style=label_title
 
 =end header

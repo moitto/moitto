@@ -1,7 +1,7 @@
 =begin navibar
 
 =object button: type=back, action=detail-back, style=btn_back
-
+=object blank: style=blank_line
 =object label: type=title, text="정보", style=label_title
 
 =end navibar

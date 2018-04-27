@@ -1,5 +1,5 @@
 =begin footer
 
-더보기?
+=object button: action=page, display-unit=S_MYJAMS, label="더 보기", style=btn_more
 
 =end footer

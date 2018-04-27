@@ -1,0 +1,19 @@
+import ~/themes.sbss
+
+#img_banner: default-color=$THEME_HIGHLIGHT_COLOR, \
+        width=1pw, height=1pw*(2/3), position=absolute, gravity=top, scale-mode=fill
+#widget: width=1pw, height=1pw*(2/3), position=absolute, gravity=top, \
+        content-background-color=$THEME_HIGHLIGHT_COLOR
+
+#label_title: max-width=1pw, height=50dp, \
+        position=absolute, gravity=top-left, y=1pw*(2/3), \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.3, text-color=$THEME_COLOR_107, text-align=left, \
+        line-break-mode=tail-truncation, content-padding="0 5dp"
+
+/cell: page-background-color=$THEME_COLOR_02
+
+if $HAS_OWN_WIDGET == "yes"
+    #img_banner: display=none
+else
+    #widget: display=none
+end

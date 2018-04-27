@@ -7,14 +7,14 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
             "has-own-sbml":"yes"      
 		},
 		{
-			"id":"S_STEEM_DOLLAR",
-			"title":"STEEM DOLLARS",
+			"id":"S_STEEM_POWER",
+			"title":"STEEM POWER",
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
 		},
 		{
-			"id":"S_STEEM_POWER",
-			"title":"STEEM POWER",
+			"id":"S_STEEM_DOLLAR",
+			"title":"STEEM DOLLARS",
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
 		}

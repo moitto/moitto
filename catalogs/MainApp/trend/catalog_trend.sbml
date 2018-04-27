@@ -1,8 +1,9 @@
 =begin catalog
 
-=object showcase: id=showcase.trend, \
-                data-script=feed_trend, loads-more=yes, \
-                selectable=yes, script-when-selected=open_discussion, \
-                style=showcase_trend
+=object panes: name=trend, \
+            has-navibar=yes, \
+            style=panes_trend
+
+=object blank: style=blank_line
 
 =end catalog

@@ -1,0 +1,8 @@
+=begin pane
+
+=object showcase: id=showcase.trend, \
+                data-script=feed_trend, loads-more=yes, \
+                selectable=yes, script-when-selected=open_discussion, \
+                style=showcase_trend
+
+=end pane

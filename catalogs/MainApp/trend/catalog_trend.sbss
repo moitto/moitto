@@ -1,11 +1,13 @@
 import ~/themes.sbss
 
-#panes_feeds: width=1pw, height=1ph, navibar-background-color=$THEME_COLOR_00
+#panes_trend: width=1pw, height=1ph, navibar-background-color=$THEME_COLOR_00
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, \
+            position=absolute, gravity=top, y="1sbh+44dp"
 
 /catalog: page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > "5"
-    #panes_feeds: navibar-cell-size="0.2pw, (44dp+1sbh)"
+    #panes_trend: navibar-cell-size="0.2pw, (44dp+1sbh)"
 else
-    #panes_feeds: navibar-cell-size="0.25pw, (44dp+1sbh)"
+    #panes_trend: navibar-cell-size="0.25pw, (44dp+1sbh)"
 end

@@ -2,7 +2,7 @@ import themes.sbss
 
 #btn_back: image=subview_btn_close.png, width=44dp, height=44dp, \
             position=absolute, gravity=left-top, y=1sbh
-#img_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, position=absolute, gravity=bottom
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_HIGHLIGHT_COLOR, position=absolute, gravity=bottom
 #label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=top, y=1sbh, \
         font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, text-align=center, \
         line-break-mode=tail-truncation

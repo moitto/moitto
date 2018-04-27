@@ -14,6 +14,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "author":discussion["author"],
                 "permlink":discussion["permlink"],
                 "title":discussion["title"], 
+                "image-url":discussion["json_metadata"]["image"],
                 "userpic-url":userpic_url,
                 "userpic-large-url":userpic_large_url,
                 "payout-value":"$" + payout_value.toString(),

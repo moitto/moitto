@@ -1,0 +1,8 @@
+=begin pane
+
+=object showcase: id=showcase.feeds, \
+                data-script=feed_feeds, loads-more=yes, \
+                selectable=yes, script-when-selected=open_discussion, \
+                style=showcase_feeds
+
+=end pane

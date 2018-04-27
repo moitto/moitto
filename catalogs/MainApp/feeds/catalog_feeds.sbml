@@ -1,0 +1,7 @@
+=begin catalog
+
+=object panes: name=feeds, \
+            has-navibar=yes, \
+            style=panes_feeds
+
+=end catalog

@@ -1,7 +1,7 @@
 var steemjs = require("steemjs");
 
 function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
-    steemjs.get_discussions_by_trending("kr", 30, null, null, function(discussions) {
+    this.__get_discussions("kr", 30, null, null, function(discussions) {
        var data = [];
 
         discussions.forEach(function(discussion) {
@@ -36,6 +36,32 @@ function open_discussion(data) {
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION", "subview":"V_HOME" });
+}
+
+function __get_discussions(tag, limit, start_author, start_permlink, handler) {
+    if ($data["id"] === "P_TREND.TRENDING") {
+        steemjs.get_discussions_by_trending(tag, limit, start_author, start_permlink, function(discussions) {
+            handler(discussions);
+        });
+
+        return;
+    }
+
+    if ($data["id"] === "P_TREND.HOT") {
+        steemjs.get_discussions_by_hot(tag, limit, start_author, start_permlink, function(discussions) {
+            handler(discussions);
+        });
+
+        return;
+    }
+
+    if ($data["id"] === "P_TREND.NEW") {
+        steemjs.get_discussions_by_created(tag, limit, start_author, start_permlink, function(discussions) {
+            handler(discussions);
+        });
+
+        return;
+    }
 }
 
 function __get_image_url_in_discussion(discussion) {

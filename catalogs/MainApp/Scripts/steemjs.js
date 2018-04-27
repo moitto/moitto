@@ -20,6 +20,15 @@ SteemJS.prototype.get_discussions_by_trending = function(tag, limit, start_autho
     });
 }
 
+SteemJS.prototype.get_discussions_by_hot = function(tag, limit, start_author, start_permlink, handler) {
+    var method = "get_discussions_by_hot";
+    var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];
+
+    this.__request_rpc(method, params, function(response) {
+        handler(response["result"]);
+    });
+}
+
 SteemJS.prototype.get_discussions_by_feed = function(tag, limit, start_author, start_permlink, handler) {
     var method = "get_discussions_by_feed";
     var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];

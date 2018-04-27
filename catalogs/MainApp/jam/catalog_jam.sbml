@@ -1,5 +1,7 @@
 =begin catalog
 
-=object showcase: style=showcase_jam
+=object showcase: name=jam, alternate-name=jam, \
+                data-script=feed_jam, \
+                style=showcase_jam
 
 =end catalog

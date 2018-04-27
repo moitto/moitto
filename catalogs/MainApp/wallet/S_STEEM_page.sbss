@@ -1,4 +1,4 @@
 import ~/themes.sbss
 
-/page: page-background-color=$WHITE_COLOR
+/page: page-background-color=$THEME_COLOR_02
 

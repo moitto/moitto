@@ -1,3 +1,5 @@
 =begin catalog
 
+=object image: filename=, style=img_profile
+
 =end catalog

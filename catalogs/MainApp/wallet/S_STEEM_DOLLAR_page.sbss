@@ -1,4 +1,1 @@
-import ~/themes.sbss
-
-/page: page-background-color=$WHITE_COLOR
-
+import S_STEEM_page.sbss

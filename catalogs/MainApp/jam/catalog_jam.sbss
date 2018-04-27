@@ -1,8 +1,6 @@
 import ~/themes.sbss
 
-#showcase_jam: alternate-name=jam, \
-        name=jam, data-script=feed_jam, \
-        width=1pw, height=1ph, position=abs, gravity=top, \
+#showcase_jam: width=1pw, height=1ph, position=absolute, gravity=top, \
         column-count=1, cell-size="1pw-20dp, (1pw-20dp)*0.5+84dp", \
         content-margin=10dp, cell-spacing=10dp, \
         loads-more=yes, more-count=30, \
@@ -10,7 +8,7 @@ import ~/themes.sbss
         script-when-reload=reset_jam, \
         keeps-offscreen-cells=yes, scroll-indicator-hidden=yes
 
-/page: page-background-color=$THEME_COLOR_02, action-when-touched=popup-close
+/catalog: page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > 5
     if $ORIENTATION == "portrait"

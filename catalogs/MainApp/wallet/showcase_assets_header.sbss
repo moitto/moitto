@@ -1,14 +1,14 @@
 import ~/themes.sbss
 
-#img_profile: width=80dp, height=80dp, default-color=$THEME_HIGHLIGHT_COLOR, margin="25dp 0 5dp 0"
+#img_profile: width=80dp, height=80dp, default-color=$THEME_COLOR_01, margin="25dp 0 5dp 0"
 #label_user.id: width=1pw, height=30dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_107, text-align=center, font-size=1.6, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.6, \
             line-break-mode=tail-truncation, content-padding="0 10dp"
 #label_rep: height=20dp, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_108, text-align=center, font-size=0.9, margin="0 0 10dp 0"
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
 #label_info: width=0.25pw, height=30dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_107, text-align=center, font-size=1.4
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.4
 #label_info.title: width=0.25pw, height=15dp, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_108, text-align=center, font-size=0.9
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9
 
 /header: text-align=center

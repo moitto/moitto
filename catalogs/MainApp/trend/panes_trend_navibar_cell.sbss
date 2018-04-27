@@ -10,7 +10,7 @@ if $STATE == "selected"
     #label_title: text-color=$THEME_COLOR_100
     #blank_line: content_backgound-color=$THEME_COLOR_103
 else
-    #label_title: text-color=$THEME_COLOR_108
+    #label_title: text-color=$THEME_COLOR_101
     #blank_line: display=none
 end
 

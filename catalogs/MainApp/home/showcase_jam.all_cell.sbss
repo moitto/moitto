@@ -1,17 +1,17 @@
 import ~/themes.sbss
 
-#img_banner: default-color=$THEME_HIGHLIGHT_COLOR, \
+#img_banner: default-color=$THEME_COLOR_01, \
         width=1pw, height=1pw*(2/3), position=absolute, gravity=top, scale-mode=fill
 #widget: width=1pw, height=1pw*(2/3), position=absolute, gravity=top, \
-        content-background-color=$THEME_HIGHLIGHT_COLOR
+        content-background-color=$THEME_COLOR_01
 
 #label_title: max-width=1pw, height=50dp, \
         position=absolute, gravity=top-left, y=1pw*(2/3), \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.3, text-color=$THEME_COLOR_107, text-align=left, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.3, text-color=$THEME_COLOR_100, text-align=left, \
         line-break-mode=tail-truncation, content-padding="0 10dp"
 
 /cell: display=block, width=1pw, height=1ph, \
-        border-color=$THEME_HIGHLIGHT_COLOR, border-width=1dp
+        border-color=$THEME_COLOR_01, border-width=1dp
 
 if $HAS_OWN_WIDGET == "yes"
     #img_banner: display=none

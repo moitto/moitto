@@ -1,8 +1,16 @@
 var steemjs = require("steemjs");
+var __last_discussion = null;
 
 function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
-    steemjs.get_discussions_by_feed("hanyeol", 30, null, null, function(discussions) {
-       var data = [];
+    var start_author   = (location > 0) ? __last_discussion["author"]   : null;
+    var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
+
+    steemjs.get_discussions_by_feed("hanyeol", length, start_author, start_permlink, function(discussions) {
+        var data = [];
+
+        if (location > 0) {
+            discussions = discussions.splice(1);
+        }
 
         discussions.forEach(function(discussion) {
             var image_url         = __get_image_url_in_discussion(discussion);
@@ -24,6 +32,10 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                 "created-at":discussion["created"]
             });
         });
+
+        if (discussions.length > 0) {
+            __last_discussion = discussions[discussions.length - 1];
+        }
 
         handler(data);
     });

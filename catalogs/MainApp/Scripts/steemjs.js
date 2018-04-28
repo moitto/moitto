@@ -2,6 +2,15 @@ function SteemJS() {
     this._tx_number = 1;
 }
 
+SteemJS.prototype.get_dynamic_global_properties = function(handler) {
+    var method = "get_dynamic_global_properties";
+    var params = [];
+
+    this.__request_rpc(method, params, function(response) {
+        handler(response["result"]);
+    });
+}
+
 SteemJS.prototype.get_discussions_by_created = function(tag, limit, start_author, start_permlink, handler) {
     var method = "get_discussions_by_created";
     var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];
@@ -49,7 +58,16 @@ SteemJS.prototype.get_content = function(author, permlink, handler) {
 
 SteemJS.prototype.get_accounts = function(names, handler) {
     var method = "get_accounts";
-    var params = [ this.__query_for_accounts(names) ];
+    var params = [ names ];
+
+    this.__request_rpc(method, params, function(response) {
+        handler(response["result"]);
+    });
+}
+
+SteemJS.prototype.get_follow_count = function(name, handler) {
+    var method = "call";
+    var params = [ "follow_api", "get_follow_count", [ name ] ];
 
     this.__request_rpc(method, params, function(response) {
         handler(response["result"]);
@@ -66,18 +84,6 @@ SteemJS.prototype.__query_for_discussions = function(tag, limit, start_author, s
         params["start_author"]   = start_author;
         params["start_permlink"] = start_permlink;
     }
-
-    return params;
-}
-
-SteemJS.prototype.__query_for_accounts = function(names) {
-    var params = {};
-
-    params["names[]"] = [];
-
-    names.forEach(function(name) {
-        params["names[]"].push(name);
-    });
 
     return params;
 }

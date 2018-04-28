@@ -58,9 +58,6 @@ SteemBroadcast.__prepare_transaction = function(transaction) {
                 var head_block_id = decode("hex", block.previous);
                 var ref_block_prefix = Steem.struct.unpack("<I", head_block_id, 4)[0];
 
-                console.log(ref_block_num);
-                console.log(ref_block_prefix);
-                
                 transaction["ref_block_num"]    = ref_block_num;
                 transaction["ref_block_prefix"] = ref_block_prefix;
                 transaction["expiration"]       = expiration;
@@ -73,7 +70,6 @@ SteemBroadcast.__prepare_transaction = function(transaction) {
 
 SteemBroadcast.__sign_transaction = function(transaction, keys) {
     var buffer = SteemBroadcast.serializer.serialize_transaction(transaction);
-    console.log(encode("hex", buffer));
     var signatures = SteemAuth.sign_transaction(buffer, keys);
 
     transaction["signatures"] = signatures;

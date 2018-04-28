@@ -1,8 +1,8 @@
 =begin catalog
 
-=object showcase: alternate-name=assets, \
+=object showcase: id=showcase.assets, alternate-name=assets, \
                 data-script=feed_assets, \
-                has-header=yes, \
+                has-header=yes, header-display-unit=S_WALLET.ACCOUNT, \
                 has-footer=yes, \
                 selectable=yes, action-when-selected=page, \
                 style=showcase_assets

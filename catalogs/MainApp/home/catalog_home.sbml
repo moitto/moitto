@@ -1,7 +1,7 @@
 =begin catalog
 
 =object showcase: alternate-name=feeds, \
-            data-script=feed_feeds, \
+            data-script=feed_feeds, loads-more=yes, more-count=30, \
             has-header=yes, has-footer=yes, \
             selectable=yes, script-when-selected=open_discussion, \
             style=showcase_feeds

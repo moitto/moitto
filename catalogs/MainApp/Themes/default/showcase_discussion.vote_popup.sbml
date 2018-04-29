@@ -3,13 +3,13 @@
 =begin actions: form=form
 
 =object label: text="Voting Weight", style=label_title
-=object label: text="15,896 SP", style=label_volume
+=object label: text="00,000 SP", style=label_volume
 
 =object label: text="Voting Power", style=label_title
-=object label: text="80.48%", style=label_volume
+=object label: text="00.00%", style=label_volume
 
 =object label: text="보팅 후 Voting Power", style=label_title
-=object label: text="60.48%", style=label_volume
+=object label: text="00.00%", style=label_volume
 
 =object slider: style=slider
 =object button: script=vote, form=form, label="보팅하기", style=btn_vote

@@ -1,8 +1,16 @@
 import ~/themes.sbss
 
-#btn_vote: label="보팅", width=100dp, height=44dp, \
-        action=popup, display-unit="S_DISCUSSION", dir-path="${dir-path}", alternate-name="discussion.vote", \
-        content-background-color=#F0F
+#btn_menu: width=200dp, height=60dp, content-background-color=$THEME_COLOR_04, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+            margin="0 0 10dp 0"
+#btn_close: width=50dp, height=50dp, align=right, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=2, \
+            content-background-color=$THEME_COLOR_04, content-border-radius=25dp, margin="20dp 0 0 0"
 
-/popup: action-when-touched=popup-close
-/popup/actions: display=block, position=abs, gravity=center
+/popup: text-align=center
+/popup/actions: display=block, width=200dp, height=410dp, \
+            position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
+
+if $SCREEN_WIDTH > 5
+else
+end

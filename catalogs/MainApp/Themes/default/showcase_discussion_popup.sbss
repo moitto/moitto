@@ -1,0 +1,8 @@
+import ~/themes.sbss
+
+#btn_vote: label="보팅", width=100dp, height=44dp, \
+        action=popup, display-unit="S_DISCUSSION", dir-path="${dir-path}", alternate-name="discussion.vote", \
+        content-background-color=#F0F
+
+/popup: action-when-touched=popup-close
+/popup/actions: display=block, position=abs, gravity=center

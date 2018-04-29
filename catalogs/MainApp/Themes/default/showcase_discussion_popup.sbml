@@ -1,0 +1,7 @@
+=begin popup
+
+=begin actions
+=object button: style=btn_vote
+=end actions
+
+=end popup

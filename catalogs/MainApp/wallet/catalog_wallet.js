@@ -2,14 +2,17 @@ var account = require("account");
 
 function on_loaded() {
 	if (!account.is_logged_in()) {
-
+        __hide_loading_section();
+        __show_login_section();
+        
 		return;
 	}
 
-    account.update_data(function(data, follows, assets) {
+    account.update(function(data, follows, assets) {
         var catalog = controller.catalog();
 
     	catalog.submit("showcase", "auxiliary", "S_WALLET.ACCOUNT", {
+            "username":account.username(),
     		"reputation":__calculate_reputation(data["reputation"]).toFixed(1),
     		"post-count":data["post_count"].toString(),
     		"following-count":follows["following_count"].toString(),
@@ -22,8 +25,11 @@ function on_loaded() {
             "sbd-balance":assets["sbd_balance"].split(" ")[0]
         });
 
-        __reload_assets();
+        __reload_assets_showcase();
     });
+
+    __hide_loading_section();
+    __show_assets_showcase();
 }
 
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
@@ -55,10 +61,28 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     handler(assets);
 }
 
-function __reload_assets() {
+function __reload_assets_showcase() {
     var showcase = view.object("showcase.assets");
 
 	showcase.action("reload");
+}
+
+function __show_assets_showcase() {
+    var showcase = view.object("showcase.assets");
+
+    showcase.action("show");
+}
+
+function __show_login_section() {
+    var section = view.object("section.login");
+
+    section.action("show");
+}
+
+function __hide_loading_section() {
+    var section = view.object("section.loading");
+
+    section.action("hide");
 }
 
 function __calculate_reputation(reputation) {

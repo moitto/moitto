@@ -1,22 +1,32 @@
 var steem = require("steem");
 
 function Account() {
-	this.__props = storage.value("ACCOUNT") || { "username" : "hanyeol" };
+	this.__props = storage.value("ACCOUNT") || {};
 }
 
 Account.prototype.login = function(username, password, handler) {
+	var __props  = this.__props;
+
 	steem.api.get_accounts([ username ], function(response) {
-		var roles = [ "active", "posting", "memo" ];
+		var roles = [ "owner", "active", "posting", "memo" ];
 		var keys = steem.auth.generate_keys(username, password, roles);
+		var owner_key = response[0]["owner"]["key_auths"][0][0];
 
-		this.__props["username"] = username;
+		if (keys["owner"].pub !== owner_key) {
+			handler();
 
-		roles.forEach(function(role) {
-			keychain.value("KEYS_" + role.toUpperCase(), keys[role].priv);
+			return;
+		}
+
+		__props["username"] = username;
+		__props["data"] = response[0];
+		
+		roles.splice(1).forEach(function(role) {
+			keychain.password("KEYS_" + role.toUpperCase(), keys[role].priv);
 		});
 
-		storage.value("ACCOUNT", this.__props);
-		handler(this.__props["data"]);
+		storage.value("ACCOUNT", __props);
+		handler(__props["data"]);
 	});
 }
 
@@ -24,7 +34,7 @@ Account.prototype.logout = function() {
 	var roles = [ "active", "posting", "memo" ];
 	
 	roles.forEach(function(role) {
-		keychain.value("KEYS_" + role.toUpperCase(), "");
+		keychain.password("KEYS_" + role.toUpperCase(), "");
 	});
 
 	this.__props = {};
@@ -39,7 +49,7 @@ Account.prototype.is_logged_in = function() {
 	return false;
 }
 
-Account.prototype.update_data = function(handler) {
+Account.prototype.update = function(handler) {
 	var username = this.__props["username"];
 	var __props  = this.__props;
 
@@ -106,7 +116,7 @@ Account.prototype.__load_keys = function(roles) {
 	var keys = {};
 
 	roles.forEach(function(role) {
-		keys[role] = keychain.value("KEYS_" + role.toUpperCase());
+		keys[role] = keychain.password("KEYS_" + role.toUpperCase());
 	});
 
 	return keys;

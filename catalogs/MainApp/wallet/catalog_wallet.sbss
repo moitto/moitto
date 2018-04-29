@@ -2,6 +2,16 @@ import ~/themes.sbss
 
 #showcase_assets: width=1pw, height=1ph, \
         column-count=1, cell-size="(1pw-10dp), 70dp", content-margin="0 5dp 1eb 5dp", cell-spacing=5dp, \
-        header-height=235dp
+        header-height=235dp, \
+        hidden=yes
+
+#section_login: width=1pw, height=1ph, position=abs, gravity=center, hidden=yes
+#section_loading: width=1pw, height=1ph, position=abs, gravity=center
+
+#btn_login: action=subview, subview=V_LOGIN, target=popup
+
+%content: display=block, position=abs, gravity=center, text-align=center
 
 /catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
+/catalog/login: id=login, display=none
+/catalog/loading: id=loading, display=none

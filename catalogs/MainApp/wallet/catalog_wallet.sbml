@@ -7,4 +7,19 @@
                 selectable=yes, action-when-selected=page, \
                 style=showcase_assets
 
+=object section: id=section.login, section=login, style=section_login
+=object section: id=section.loading, section=loading, style=section_loading
+
+=begin login
+=begin content
+=(object button: label="로그인", style=btn_login)=
+=end content
+=end login
+
+=begin loading
+=begin content
+잠시 기다려 주세요~!
+=end content
+=end loading
+
 =end catalog

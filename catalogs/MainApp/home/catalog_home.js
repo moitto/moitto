@@ -1,11 +1,14 @@
+var account = require("account");
 var steemjs = require("steemjs");
+
 var __last_discussion = null;
 
 function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
+    var username = account.is_logged_in() ? account.username() : "moitto";
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
-    steemjs.get_discussions_by_feed("hanyeol", length, start_author, start_permlink, function(discussions) {
+    steemjs.get_discussions_by_feed(username, length, start_author, start_permlink, function(discussions) {
         var data = [];
 
         if (location > 0) {

@@ -3,7 +3,7 @@ import ~/themes.sbss
 #showcase_jam: width=1pw, height=200dp, \
             row-count=1, max-cell-count=5, \
             cell-size="(160dp*3)/2, 200dp", cell-spacing=10dp, \
-            footer-width=160dp, content-margin="0 10dp", margin="0 0 5dp 0", \
+            footer-width=140dp, content-margin="0 10dp", margin="0 0 5dp 0", \
             scroll-indicator-hidden=yes
 
 #label_title: width=1pw, height=40dp, \

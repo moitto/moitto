@@ -1,6 +1,11 @@
 import ~/themes.sbss
 
-/page: page-background-color=$THEME_COLOR_00
-/page/loading: display=block, position=abs, gravity=center, y=-160dp, \
-		font-family=$SANSSERIF_MEDIUM, font-size=1.0, \
-		text-color=$DEFAULT_TEXT_COLOR, text-align=center
+/page: page-background-color=$THEME_COLOR_02
+/page/loading: display=block, position=absolute, gravity=center, y=-100dp, \
+		font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
+
+if $SCREEN_WIDTH > 5
+    /page: font-size=1.2
+else
+    /page: font-size=1.1
+end

@@ -1,7 +1,8 @@
 =begin page
 
 =object section: section=body, style=section_body
-=object button: style=btn_vote
+=object button: action=popup, display-unit="S_DISCUSSION", dir-path="${dir-path}", alternate-name="discussion.vote", \
+                label="+", style=btn_vote
 
 =begin body: id=body
 ${body}

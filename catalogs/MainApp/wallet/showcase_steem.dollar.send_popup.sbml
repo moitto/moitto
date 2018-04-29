@@ -1,0 +1,10 @@
+=begin popup
+
+=begin form
+=object textfield: id=username, style=textfield_username
+=object textfield: id=amount, style=textfield_amount
+=object textfield: id=memo, style=textfield_memo
+=object button: id=btn.send, style=btn_send
+=end form
+
+=end popup

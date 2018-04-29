@@ -1,5 +1,9 @@
 =begin page
 
-STEEM DOLLAR
+=begin balance
+${amount}
+=end balance
+
+=object button: style=btn_send
 
 =end page

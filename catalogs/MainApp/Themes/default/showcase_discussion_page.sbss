@@ -1,5 +1,10 @@
 import ~/themes.sbss
 
+#section_body: width=1pw, height=1ph
+#btn_vote: width=44dp, height=44dp, position=abs, gravity=right-bottom, x=-20dp, y=-20dp, \
+        action=popup, display-unit="S_DISCUSSION", dir-path="${dir-path}", alternate-name="discussion.vote", \
+        content-background-color=#FF06
+
 #image: max-width=1pw-20dp
 #image.full: max-width=1pw
 
@@ -8,9 +13,10 @@ import ~/themes.sbss
 
 #blank_line: color=$LIGHT_LINE_COLOR, width=1pw-20dp, height=1dp
 
-/page: page-background-color=$WHITE_COLOR, padding="5dp 10dp", \
-	font-family=$SANSSERIF_MEDIUM, text-color=$DEFAULT_TEXT_COLOR, \
-	paragraph-spacing=0.9em, empty-line-height=0, line-spacing=0.3em
+/page: page-background-color=$WHITE_COLOR
+/page/body: display=none, padding="5dp 10dp", \
+        font-family=$SANSSERIF_MEDIUM, text-color=$DEFAULT_TEXT_COLOR, \
+        paragraph-spacing=0.9em, empty-line-height=0, line-spacing=0.3em
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1.15

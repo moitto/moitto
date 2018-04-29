@@ -1,5 +1,9 @@
 =begin page
 
+=object section: style=section_body
+
+=begin body
 ${body}
+=end body
 
 =end page

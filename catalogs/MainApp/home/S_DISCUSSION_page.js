@@ -12,7 +12,7 @@ function on_loaded() {
 			"permlink":discussion["permlink"],
 			"body":impl.build_body(content.body),
 			"theme":theme,
-            "dir-path":"~/Themes/" + theme
+			"dir-path":"~/Themes/" + theme
 		};
 
 		if (impl.hides_navibar) {

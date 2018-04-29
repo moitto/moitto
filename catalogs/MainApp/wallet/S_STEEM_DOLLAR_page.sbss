@@ -1,1 +1,7 @@
 import S_STEEM_page.sbss
+
+#btn_send: label="송금", width=100dp, height=44dp, margin-top=15dp, \
+        action=popup, display-unit="${id}", alternate-name=steem.dollar.send, \
+        content-background-color=#FF06
+
+/page/balance: text-align=center

@@ -78,11 +78,11 @@ Account.prototype.update = function(handler) {
 	});
 }
 
-Account.prototype.vote = function(author, permlink, handler) {
+Account.prototype.vote = function(author, permlink, weight, handler) {
 	var voter = this.__props["username"];
 	var keys  = this.__load_keys([ "posting" ]);
 
-	steem.broadcast.vote(voter, author, permlink, keys, function(response) {
+	steem.broadcast.vote(voter, author, permlink, weight, keys).then(function(response) {
 		handler(response);
 	});
 }
@@ -91,7 +91,7 @@ Account.prototype.transfer = function(to, amount, memo, handler) {
 	var from = this.__props["username"];
 	var keys = this.__load_keys([ "active" ]);
 
-	steem.broadcast.transfer(from, to, amount, memo, keys, function(response) {
+	steem.broadcast.transfer(from, to, amount, memo, keys).then(function(response) {
 		handler(response);
 	});
 }

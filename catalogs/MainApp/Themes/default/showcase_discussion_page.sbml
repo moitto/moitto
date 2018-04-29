@@ -1,5 +1,10 @@
 =begin page
 
+=object section: section=body, style=section_body
+=object button: style=btn_vote
+
+=begin body: id=body
 ${body}
+=end body
 
 =end page

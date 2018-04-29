@@ -1,0 +1,11 @@
+import ~/themes.sbss
+
+#textfield: width=1pw-90dp, height=36dp, content-background-color=$WHITE_COLOR, margin-bottom=10dp
+#textfield_username: style=textfield, placeholder="스팀잇 계정", auto-capitalization-type=none, next-control=amount
+#textfield_amount: style=textfield, placeholder="금액", keyboard-type=decimal, next-control=memo
+#textfield_memo: style=textfield, placeholder="메모", next-control=btn.send
+#btn_send: label="SEND", width=100dp, height=44dp, script=send, form=send, \
+        content-background-color=#FF06
+
+/popup: page-background-color=#0005, action-when-touched=popup-close
+/popup/form: form=send, display=block, position=abs, gravity=top, y=80dp

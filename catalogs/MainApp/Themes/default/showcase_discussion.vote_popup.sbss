@@ -1,0 +1,7 @@
+import ~/themes.sbss
+
+#btn_vote: label="보팅하기", width=100dp, height=44dp, \
+        script=vote, form=form, content-background-color=#FF0
+
+/popup: action-when-touched=popup-close
+/popup/actions: display=block, position=abs, gravity=center

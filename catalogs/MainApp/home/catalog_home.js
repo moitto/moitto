@@ -3,6 +3,17 @@ var steemjs = require("steemjs");
 
 var __last_discussion = null;
 
+function on_loaded() {
+
+    controller.catalog().submit("showcase", "auxiliary", "S_PACKAGES", {
+        "username":account.username(),
+        "reputation":__calculate_reputation(data["reputation"]).toFixed(1),
+        "post-count":data["post_count"].toString(),
+        "following-count":follows["following_count"].toString(),
+        "follower-count":follows["follower_count"].toString()
+    });
+}
+
 function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
     var username = account.is_logged_in() ? account.username() : "moitto";
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;

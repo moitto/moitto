@@ -1,3 +1,5 @@
 import showcase_trend_loading.sbss
 
-#label_info: position=absolute, gravity=top, y=100dp
+if $RELOADING == "yes"
+	#label_info: hidden=yes
+end

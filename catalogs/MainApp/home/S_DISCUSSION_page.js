@@ -6,10 +6,12 @@ function on_loaded() {
     steemjs.get_content(discussion["author"], discussion["permlink"], function(content) {
 		var theme = __fetch_theme_in_content(content);
         var impl = include("~/Themes/" + theme + "/theme.js");
-    
+        var userpic_url = __get_userpic_url_in_discussion(discussion);
+
 		var data = {
 			"author":discussion["author"],
 			"permlink":discussion["permlink"],
+			"userpic-url":userpic_url,
 			"body":impl.build_body(content.body),
 			"theme":theme,
 			"dir-path":"~/Themes/" + theme
@@ -36,4 +38,8 @@ function __fetch_theme_in_content(content) {
 	});
 
 	return theme;
+}
+
+function __get_userpic_url_in_discussion(discussion) {
+    return "https://steemitimages.com/u/" + discussion["author"] + "/avatar/small";
 }

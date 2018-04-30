@@ -87,6 +87,15 @@ Account.prototype.vote = function(author, permlink, weight, handler) {
 	});
 }
 
+Account.prototype.unvote = function(author, permlink, handler) {
+	var voter = this.__props["username"];
+	var keys  = this.__load_keys([ "posting" ]);
+
+	steem.broadcast.vote(voter, author, permlink, 0, keys).then(function(response) {
+		handler(response);
+	});
+}
+
 Account.prototype.transfer = function(to, amount, memo, handler) {
 	var from = this.__props["username"];
 	var keys = this.__load_keys([ "active" ]);

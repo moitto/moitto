@@ -5,10 +5,10 @@ import ~/themes.sbss
 #widget: width=1pw, height=160dp, position=absolute, gravity=top, \
         content-background-color=$THEME_COLOR_01
 
-#label_title: max-width=1pw, height=40dp, \
+#label_title: max-width=1pw, height=45dp, \
         position=absolute, gravity=top-left, y=160dp, \
         font-family=$SANSSERIF_MEDIUM, font-size=1.1, text-color=$THEME_COLOR_100, text-align=left, \
-        line-break-mode=tail-truncation, content-padding="0 5dp"
+        line-break-mode=tail-truncation, content-padding="0 10dp"
 
 /cell: display=block, width=1pw, height=1ph, \
     border-color=$THEME_COLOR_01, border-width=1dp, page-background-color=$THEME_COLOR_00

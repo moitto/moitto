@@ -5,7 +5,7 @@
 =object label: text="REP. ${reputation}", style=label_rep
 
 =begin info
-=(object label: text="${post-count}", style=label_info)==(object label: text="${following-count}", style=label_info)==(object label: text="${follower-count}", style=label_info)=
+=(object button: label="${post-count}", style=btn_info)==(object button: label="${following-count}", style=btn_info)==(object button: label="${follower-count}", style=btn_info)=
 =(object label: text="게시글", style=label_info.title)==(object label: text="팔로우", style=label_info.title)==(object label: text="팔로워", style=label_info.title)=
 =end info
 

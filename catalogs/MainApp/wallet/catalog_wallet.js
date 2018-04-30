@@ -37,21 +37,21 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 	var assets = [
 		{
 			"id":"S_STEEM",
-			"title":"스팀",
+			"title":"STEEM",
             "amount":__safe_value(values, "steem-balance"),
             "has-own-title":"yes",
             "has-own-sbml":"yes"      
 		},
 		{
 			"id":"S_STEEM_POWER",
-			"title":"스팀파워",
+			"title":"STEEM POWER",
             "amount":__safe_value(values, "steem-power"),
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
 		},
 		{
 			"id":"S_STEEM_DOLLAR",
-			"title":"스팀달러",
+			"title":"STEEM DOLLAR",
             "amount":__safe_value(values, "sbd-balance"),
             "has-own-title":"yes",
             "has-own-sbml":"yes" 

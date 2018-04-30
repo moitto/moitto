@@ -8,8 +8,8 @@ import ~/themes.sbss
 #btn_user.info: image="~/subview_btn_info.png", width=30dp, height=30dp
 #label_rep: height=20dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
-#label_info: width=0.25pw, height=30dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.4
+#btn_info: width=0.25pw, height=30dp, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, label-align=center, label-font-size=1.4
 #label_info.title: width=0.25pw, height=15dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9
 

@@ -8,7 +8,7 @@ import ~/themes.sbss
 #blank_userpic.mask: width=35dp, height=35dp, \
             position=absolute, gravity=top-left, x=10dp, y=115dp, \
             content-border-radius=35dp/2, content-background-color=$THEME_COLOR_01
-#img_userpic: default-image=subview_userpic.png, width=33dp, height=33dp, scale-mode=fill, \
+#img_userpic: width=33dp, height=33dp, scale-mode=fill, \
             position=absolute, gravity=top-left, x=11dp, y=116dp, \
             content-border-radius=33dp/2
 

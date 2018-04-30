@@ -5,7 +5,7 @@
 
 
 
-=object section: id=trend.section, section=section.contents, style=section_contents
+=object section: id=contents, section=section.contents, style=section_contents
 
 =begin contents: id=section.contents
 =begin title

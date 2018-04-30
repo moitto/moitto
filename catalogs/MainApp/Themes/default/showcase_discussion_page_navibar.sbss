@@ -1,0 +1,7 @@
+import ~/subview_navibar.sbss
+
+#btn_back: image=~/subview_btn_back.png
+
+#btn_menu: width=40dp, height=40dp, position=absolute, gravity=right-bottom, x=-2dp, y=-2dp
+        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=1.8, \
+        content-background-color=$THEME_COLOR_04, content-border-radius=20dp

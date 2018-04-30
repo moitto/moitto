@@ -1,4 +1,4 @@
-=begin detail
+=begin page
 
 =object label: alt="등록일", text="${date}", style=label_date
 =begin title
@@ -9,4 +9,4 @@ ${title}
 ${notice}
 =end notice
 
-=end detail
+=end page

@@ -1,10 +1,19 @@
 =begin catalog
 
-=begin form
-=object textfield: id=username, style=textfield_username
-=object textfield: id=password, style=textfield_password
-=object button: label="클립보드에서 붙여넣기", style=btn_paste
-=object button: label="로그인", style=btn_login
+=begin form: form=login
+=object textfield: id=username, placeholder="  스팀잇 계정", \
+            return-key-type=next, next-control=password, \
+            auto-capitalization-type=none, \
+            style=textfield_username
+=object textfield: id=password, placeholder="  비밀번호", \
+            secure=yes, script=login, form=login, \
+            return-key-type=go, next-control=login, \
+            style=textfield_password
+=object button: action=paste, source=clipboard, target=object, object=password, \
+            label="비밀번호를 클립보드에서 붙여넣기", \
+            style=btn_paste
+
+=object button: script=login, form=login, label="로그인", style=btn_login
 =end form
 
 =end catalog

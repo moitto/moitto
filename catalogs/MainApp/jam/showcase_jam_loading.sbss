@@ -1,5 +1,11 @@
 import ~/themes.sbss
 
-#label_info: text="잼 목록을 불러오는 중입니다.", \
-        margin-top=30dp, margin-bottom=20dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$DEFAULT_TEXT_COLOR
+#label_info: margin="20dp 0", \
+font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
+
+if $SCREEN_WIDTH > 5
+#label_info: font-size=1.2
+else
+#label_info: font-size=1.1
+end
+

@@ -4,6 +4,8 @@
             has-navibar=yes, \
             style=panes_trend
 
+=object button: style=btn_search
+
 =object blank: style=blank_line
 
 =end catalog

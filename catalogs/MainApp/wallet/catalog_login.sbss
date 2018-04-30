@@ -1,10 +1,17 @@
 import ~/themes.sbss
 
-#textfield: width=1pw-90dp, height=36dp, content-background-color=$WHITE_COLOR, margin-bottom=10dp
-#textfield_username: style=textfield, placeholder="스팀잇 계정", auto-capitalization-type=none, next-control=password
-#textfield_password: style=textfield, placeholder="비밀번호", secure=yes, script=login, form=login
-#btn_paste: action=paste, source=clipboard, target=object, object=password
-#btn_login: script=login, form=login, margin-top=20dp
+#textfield: width=0.8pw, height=50dp, \
+        font-family=$SANSSERIF_BOLD, \
+        content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
+        content-background-color=$THEME_COLOR_00, content-padding="0 10dp", \
+        margin="0 0 10dp 0"
+#textfield_username: style=textfield
+#textfield_password: style=textfield
+#btn_paste: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_04, label-font-size=0.9, \
+        margin="0 0 50dp 0"
+#btn_login: width=0.8pw, height=50dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_04
 
-/catalog: page-background-color=$THEME_COLOR_04
-/catalog/form: form=login, display=block, position=abs, gravity=top, y=80dp
+/catalog: page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
+/catalog/form:

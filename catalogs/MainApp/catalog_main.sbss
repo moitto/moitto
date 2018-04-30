@@ -3,7 +3,7 @@ import themes.sbss
 #blank_container: width=1pw, height="1ph-50dp-1eb", position=absolute, gravity=top
 #tabbar: width=1pw, height="50dp+1eb", position=absolute, gravity=bottom, \
         title-font-family=$SANSERIF_MEDIUM, title-font-size=0.7, \
-        title-color=$THEME_COLO_100, selected-title-color=$THEME_COLOR_100, \
+        title-color=$THEME_COLOR_100, selected-title-color=$THEME_COLOR_100, \
         content-background-color=$THEME_COLOR_00
 
 /catalog: page-background-color=$THEME_COLOR_00

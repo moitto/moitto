@@ -1,5 +1,5 @@
 =begin footer
 
-=object label: style=label_info
+=object label: text="아래로 잡아당기면 잼 목록을 새로 불러옵니다.", style=label_info
 
 =end footer

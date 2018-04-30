@@ -2,7 +2,7 @@
 
 =object showcase: name=notice, id=notice, \
                 sortable=yes, sortkey=id, sortorder=descending, \
-                selectable=yes, action-when-selected=detail, \
+                selectable=yes, action-when-selected=page, \
                 history-enabled=yes, history=notice, \
                 style=showcase_notice
 

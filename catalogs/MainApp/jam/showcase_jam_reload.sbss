@@ -1,5 +1,1 @@
-import ~/themes.sbss
-
-#label_info: text="아래로 잡아당기면 잼 목록을 새로 불러옵니다.", \
-        margin-top=30dp, margin-bottom=20dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$DEFAULT_TEXT_COLOR
+import showcase_jam_loading.sbss

@@ -1,7 +1,10 @@
 import ~/subview_navibar.sbss
 
 #btn_back: image=~/subview_btn_back.png
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
 
-#btn_menu: width=40dp, height=40dp, position=absolute, gravity=right-bottom, x=-2dp, y=-2dp
-        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=1.8, \
-        content-background-color=$THEME_COLOR_04, content-border-radius=20dp
+#btn_menu: width=44dp, height=44dp, image="~/subview_btn_more.png", \
+        position=absolute, gravity=right-bottom
+        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=1.8, \
+        content-background-color=$THEME_COLOR_02, content-border-radius=4dp, \
+        content-border-color=$THEME_COLOR_01, content-border-width=1dp

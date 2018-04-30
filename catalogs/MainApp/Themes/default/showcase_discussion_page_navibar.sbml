@@ -3,7 +3,9 @@
 =object button: type=back, action=page-back, style=btn_back
 =object blank: style=blank_line
 
-=object label: text="${author}", style=label_title
+=begin user
+=(object image: image-url="${userpic-url}", style=img_user)= =(object label: text="${author}", style=label_user)=
+=end user
 
 =object button: action=popup, display-unit="S_DISCUSSION", \
             dir-path="${dir-path}", alternate-name="discussion", \

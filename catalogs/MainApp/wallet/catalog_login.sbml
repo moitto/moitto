@@ -1,11 +1,13 @@
 =begin catalog
 
 =begin form: form=login
-=object textfield: id=username, placeholder="  스팀잇 계정", \
+=object blank: style=blank_frame
+=object textfield: id=username, placeholder="스팀잇 계정", \
             return-key-type=next, next-control=password, \
             auto-capitalization-type=none, \
             style=textfield_username
-=object textfield: id=password, placeholder="  비밀번호", \
+=object blank: style=blank_frame
+=object textfield: id=password, placeholder="비밀번호", \
             secure=yes, script=login, form=login, \
             return-key-type=go, next-control=login, \
             style=textfield_password

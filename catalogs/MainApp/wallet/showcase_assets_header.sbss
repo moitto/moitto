@@ -9,8 +9,10 @@ import ~/themes.sbss
 #label_rep: height=20dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
 #btn_info: width=0.25pw, height=30dp, \
-            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, label-align=center, label-font-size=1.4
-#label_info.title: width=0.25pw, height=15dp, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
+            label-align=center, label-font-size=1.4
+#btn_info.title: width=0.25pw, height=15dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
+            label-align=center, label-font-size=0.9
 
 /header: text-align=center

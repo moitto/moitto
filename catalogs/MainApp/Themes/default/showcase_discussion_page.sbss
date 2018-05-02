@@ -1,7 +1,8 @@
 import ~/themes.sbss
 
 #section_body: width=1pw, height=1ph
-#btn_vote: width=50dp, height=50dp, image="~/subview_btn_vote.png", position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
+#btn_vote: width=50dp, height=50dp, image="~/subview_btn_vote.png", \
+        position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
         label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=2, \
         content-background-color=$THEME_COLOR_04, content-border-radius=25dp
 
@@ -13,7 +14,7 @@ import ~/themes.sbss
 #blank_line: color=$LIGHT_LINE_COLOR, width=1pw-20dp, height=1dp
 
 /page: page-background-color=$THEME_COLOR_02
-/page/body: display=none, padding="20dp 20dp (70dp+1eb) 20dp", \
+/page/body: display=none, padding="0 20dp (70dp+1eb) 20dp", \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
         line-spacing=0.6em, paragraph-spacing=1em, empty-line-height=0
 
@@ -22,3 +23,25 @@ if $SCREEN_WIDTH > "5"
 else
     /page: font-size=1.2
 end
+
+
+-- header --
+
+#img_main: width=1pw, height=0.8pw, position=absolute, loading-duration=0.3, scale-mode=fill
+#blank_dim: width=1pw, height=0.8pw, \
+        position=absolute, gravity=top, content-background-color=$BLACK_COLOR_DIM
+
+#section_header: width=1pw, height="1pw*(2/3)+50dp", margin="0 0 20dp 0"
+#btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
+        content-background-color=$THEME_COLOR_00, content-padding="0 2dp", content-border-radius=2dp
+#label_info: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, font-size=0.9
+#label_author: height=20dp, font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_103, font-size=0.9
+#label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, font-size=0.9, \
+            text-align=right, align=right, margin="-20dp 0 0 0"
+#italic: font-style=italic, font-family="Times New Roman, eOpenBooks, KoPubBatang Medium"
+
+/page/body/header: display=none, padding=20dp
+/page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_103, font-size=1.6, \
+                    text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
+/page/body/header/tags: display=block, position=absolute, gravity=bottom, y=-65dp
+/page/body/header/info: display=block, height=60dp, position=absolute, gravity=bottom, paragraph-spacing=0

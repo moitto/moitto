@@ -4,7 +4,9 @@ function on_loaded() {
 	var discussion = document.value("DISCUSSION");
 
     steemjs.get_content(discussion["author"], discussion["permlink"], function(content) {
+    	var image_url = __get_image_url_in_content(content);
         var userpic_url = __get_userpic_url_in_discussion(discussion);
+        var payout_value = __get_payout_value_in_content(content).toFixed(2);
 		var tags = JSON.parse(content["json_metadata"])["tags"];
  		var theme = __get_theme_in_tags(tags);
         var impl = include("~/Themes/" + theme + "/theme.js");
@@ -17,6 +19,8 @@ function on_loaded() {
 			"body":impl.build_body(content.body),
 			"votes-count":content["net_votes"].toString(),
 			"replies-count":content["replies"].length.toString(),
+            "payout-value":"$" + payout_value.toString(),
+			"image-url":image_url,
 			"main-tag":content["category"],
 			"tag-1":(tags.length > 0) ? tags[0] : "",
 			"tag-2":(tags.length > 1) ? tags[1] : "",
@@ -36,6 +40,26 @@ function on_loaded() {
 		view.data("environment", { "alternate-name":"discussion" });
 		view.action("reload");
 	});
+}
+
+function __get_image_url_in_content(content) {
+    var images = JSON.parse(content["json_metadata"])["image"];
+
+    if (images && images.length > 0) {
+        return "https://steemitimages.com/640x480/" + images[0];
+    }
+
+    return "";
+}
+
+function __get_payout_value_in_content(content) {
+    var total_payout_value = parseFloat(content["total_payout_value"].split(" ")[0]);
+    
+    if (total_payout_value > 0) {
+        return total_payout_value;
+    }
+    
+    return parseFloat(content["pending_payout_value"].split(" ")[0]);
 }
 
 function __get_theme_in_tags(tags) {

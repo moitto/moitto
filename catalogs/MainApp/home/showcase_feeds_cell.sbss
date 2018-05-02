@@ -15,7 +15,7 @@ import ~/themes.sbss
 #label_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
                 position=absolute, gravity=top-left, x=55dp, y=115dp, \
                 font-family=$SANSSERIF_BOLD, font-size=1, text-color=$THEME_COLOR_100
-#label_created.at: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", \
+#label_created.at: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", source-timezone=GMT, \
                 width=200dp, height=12dp, \
                 position=absolute, gravity=top-left, x=55dp, y=135dp, \
                 font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left

@@ -4,7 +4,7 @@ function on_loaded() {
 	var discussion = document.value("DISCUSSION");
 
     steemjs.get_content(discussion["author"], discussion["permlink"], function(content) {
-		var theme = __fetch_theme_in_content(content);
+		var theme = __get_theme_in_content(content);
         var impl = include("~/Themes/" + theme + "/theme.js");
         var userpic_url = __get_userpic_url_in_discussion(discussion);
 
@@ -27,7 +27,7 @@ function on_loaded() {
 	});
 }
 
-function __fetch_theme_in_content(content) {
+function __get_theme_in_content(content) {
 	var meta = JSON.parse(content["json_metadata"]);
 	var theme = "default";
 

@@ -1,6 +1,8 @@
 =begin page
 
-=object image: style=img_bg
-=object showcase: style=showcase_musics
+=object image: id=image.bg, style=img_bg
+=object showcase: id=showcase.musics, name=musics, 
+			data-script=feed_musics, page-enabled=yes, \
+			style=showcase_musics
 
 =end page

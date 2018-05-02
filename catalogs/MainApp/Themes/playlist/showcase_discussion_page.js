@@ -3,9 +3,9 @@ var playlist = null;
 function on_loaded() {
 	playlist = {};
 
-	playlist["musics"]      = __fetch_musics_in_content($data["body"]);
-	playlist["description"] = __fetch_description_in_content($data["body"]);
-	playlist["image-url"]   = __fetch_image_url_in_content($data["body"]);
+	playlist["musics"]      = __get_musics_in_content($data["body"]);
+	playlist["description"] = __get_description_in_content($data["body"]);
+	playlist["image-url"]   = __get_image_url_in_content($data["body"]);
 
 	__reload_musics();
 	__reload_image();
@@ -34,7 +34,7 @@ function __reload_image() {
 	image.property({"image-url":url});
 }
 
-function __fetch_musics_in_content(body) {
+function __get_musics_in_content(body) {
 	var pattern = /\n\*\s+([^\n]+)\(([^\)]+)\)/g;
 	var matched = null;
 	var musics = [];
@@ -49,11 +49,11 @@ function __fetch_musics_in_content(body) {
 	return musics;
 }
 
-function __fetch_description_in_content(body) {
+function __get_description_in_content(body) {
 	return null;
 }
 
-function __fetch_image_url_in_content(body) {
+function __get_image_url_in_content(body) {
 	var url = /!\[[^\]]*\]\(([^\)]+)\)/g.exec(body);
 
 	if (url) {

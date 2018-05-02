@@ -9,3 +9,8 @@ import ~/themes.sbss
 #label_title: width=1pw, height=40dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, font-size=1.5, \
             content-padding="0 10dp"
+
+if "${has-packages}" != "yes"
+    #showcase_jam: display=none
+    #label_title: display=none
+end

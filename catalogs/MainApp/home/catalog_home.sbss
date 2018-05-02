@@ -4,4 +4,4 @@ import ~/themes.sbss
             column-count=1, cell-size="(1pw-20dp), 160dp", \
             content-margin="0 10dp 10dp 10dp", cell-spacing=10dp
 
-/catalog: page-background-color=$THEME_COLOR_02
+/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02

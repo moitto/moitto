@@ -1,10 +1,16 @@
+include("~/Themes/theme.js");
+
 function Theme() {
 	ThemeBase.call();
+
+	this.hides_navibar = true;
 }
 
 Theme.prototype = Object.create(ThemeBase.prototype);
 Theme.prototype.constructor = Theme;
 
 Theme.prototype.build_body = function(body) {
-	return this.build_sbml(body);
+	return body;
 }
+
+__MODULE__ = new Theme();

@@ -2,16 +2,36 @@ var account = require("account");
 var steemjs = require("steemjs");
 
 var __last_discussion = null;
+var __has_packages = true;
 
 function on_loaded() {
+    var packages = controller.module("packages");
+    var has_packages = (packages.count() > 0) ? true : false;
 
     controller.catalog().submit("showcase", "auxiliary", "S_PACKAGES", {
-        "username":account.username(),
-        "reputation":__calculate_reputation(data["reputation"]).toFixed(1),
-        "post-count":data["post_count"].toString(),
-        "following-count":follows["following_count"].toString(),
-        "follower-count":follows["follower_count"].toString()
+        "has-packages":has_packages ? "yes" : "no"
     });
+
+    if (has_packages != __has_packages) {
+        __reload_feeds_header();
+    }
+
+    __has_packages = has_packages;
+}
+
+function on_resume() {
+    var packages = controller.module("packages");
+    var has_packages = (packages.count() > 0) ? true : false;
+
+    controller.catalog().submit("showcase", "auxiliary", "S_PACKAGES", {
+        "has-packages":has_packages ? "yes" : "no"
+    });
+
+    if (has_packages != __has_packages) {
+        __reload_feeds_header();
+    }
+
+    __has_packages = has_packages;
 }
 
 function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
@@ -90,4 +110,10 @@ function __get_payout_value_in_discussion(discussion) {
     }
     
     return parseFloat(discussion["pending_payout_value"].replace("SBD", "").trim());
+}
+
+function __reload_feeds_header() {
+    var showcase = view.object("showcase.feeds");
+
+    showcase.action("reload-header");
 }

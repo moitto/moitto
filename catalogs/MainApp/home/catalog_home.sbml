@@ -1,9 +1,11 @@
 =begin catalog
 
-=object showcase: alternate-name=feeds, \
+=object showcase: id=showcase.feeds, alternate-name=feeds, \
             data-script=feed_feeds, loads-more=yes, more-count=30, \
-            has-header=yes, has-footer=yes, \
+            has-header=yes, header-display-unit=S_PACKAGES, \
+            has-footer=yes, footer-display-unit=S_PACKAGES, \
             selectable=yes, script-when-selected=open_discussion, \
+            script-when-resume=on_resume, \
             style=showcase_feeds
 
 =end catalog

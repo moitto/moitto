@@ -1,9 +1,5 @@
 =begin page
 
-=object section: style=section_body
-
-=begin body
-${body}
-=end body
+=object webtoon: style=webtoon
 
 =end page

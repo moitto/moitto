@@ -4,15 +4,26 @@ function on_loaded() {
 	var discussion = document.value("DISCUSSION");
 
     steemjs.get_content(discussion["author"], discussion["permlink"], function(content) {
-		var theme = __get_theme_in_content(content);
-        var impl = include("~/Themes/" + theme + "/theme.js");
         var userpic_url = __get_userpic_url_in_discussion(discussion);
+		var tags = JSON.parse(content["json_metadata"])["tags"];
+ 		var theme = __get_theme_in_tags(tags);
+        var impl = include("~/Themes/" + theme + "/theme.js");
 
 		var data = {
 			"author":discussion["author"],
 			"permlink":discussion["permlink"],
 			"userpic-url":userpic_url,
+			"title":content["title"],
 			"body":impl.build_body(content.body),
+			"votes-count":content["net_votes"].toString(),
+			"replies-count":content["replies"].length.toString(),
+			"main-tag":content["category"],
+			"tag-1":(tags.length > 0) ? tags[0] : "",
+			"tag-2":(tags.length > 1) ? tags[1] : "",
+			"tag-3":(tags.length > 2) ? tags[2] : "",
+			"tag-4":(tags.length > 3) ? tags[3] : "",
+			"tag-5":(tags.length > 4) ? tags[4] : "",
+			"created-at":content["created"],
 			"theme":theme,
 			"dir-path":"~/Themes/" + theme
 		};
@@ -27,11 +38,10 @@ function on_loaded() {
 	});
 }
 
-function __get_theme_in_content(content) {
-	var meta = JSON.parse(content["json_metadata"]);
+function __get_theme_in_tags(tags) {
 	var theme = "default";
 
-	meta["tags"].forEach(function(tag) {
+	tags.forEach(function(tag) {
 		if (tag.startsWith("moitto-")) {
 			theme = tag.substring("moitto-".length);
 		}

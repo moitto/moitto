@@ -3,6 +3,8 @@
 =object showcase: id=showcase.trend, name="${id}", alternate-name=trend, \
                 data-script=feed_trend, loads-more=yes, more-count=30, \
                 selectable=yes, script-when-selected=open_discussion, \
+                has-header=yes, has-footer=yes, hides-navibar=yes, \
+                keeps-offscreen-cells=yes, \
                 style=showcase_trend
 
 =end pane

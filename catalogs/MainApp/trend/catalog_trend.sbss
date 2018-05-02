@@ -11,5 +11,5 @@ import ~/themes.sbss
 if $SCREEN_WIDTH > "5"
     #panes_trend: navibar-cell-size="0.2pw, (44dp+1sbh)"
 else
-    #panes_trend: navibar-cell-size="0.25pw, (44dp+1sbh)"
+    #panes_trend: navibar-cell-size="0.22pw, (44dp+1sbh)"
 end

@@ -35,10 +35,13 @@ end
 #btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
         content-background-color=$THEME_COLOR_00, content-padding="0 2dp", content-border-radius=2dp
 #label_info: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, font-size=0.9
-#label_author: height=20dp, font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_103, font-size=0.9
+#label_author: height=20dp, text-color=$THEME_COLOR_103, font-size=1, \
+            font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
+#btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=1
 #label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, font-size=0.9, \
             text-align=right, align=right, margin="-20dp 0 0 0"
-#italic: font-style=italic, font-family="Times New Roman, eOpenBooks, KoPubBatang Medium"
+
+#bold: font-family=$SANSSERIF_BOLD
 
 /page/body/header: display=none, padding=20dp
 /page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_103, font-size=1.6, \

@@ -2,13 +2,12 @@ import ~/themes.sbss
 
 #label_title: width=1pw, height=44dp, \
             position=absolute, gravity=bottom, \
-            font-family=$SANSSERIF_LIGHT, text-align=center
-#blank_line: width=1pw, height=1dp, position=absolute, gravity=bottom, \
-            content-background-color=$THEME_COLOR_100
+            font-family=$SANSSERIF_MEDIUM, text-align=center
+#blank_line: width=1pw, height=1dp, position=absolute, gravity=bottom
 
 if $STATE == "selected"
     #label_title: text-color=$THEME_COLOR_100
-    #blank_line: content_backgound-color=$THEME_COLOR_103
+    #blank_line: content-background-color=$THEME_COLOR_100
 else
     #label_title: text-color=$THEME_COLOR_101
     #blank_line: display=none

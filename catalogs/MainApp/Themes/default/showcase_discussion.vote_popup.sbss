@@ -6,8 +6,8 @@ import ~/themes.sbss
 #slider: width=0.9pw, height=20dp, scroll-thumb-image=mediabar_scroll_thumb_white.png, \
         track-color=$THEME_COLOR_02, scroll-color=$THEME_COLOR_04, margin="100dp 0 40dp 0"
 #btn_vote: width=0.9pw, height=50dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_02
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_04
 
 #btn_close: width=50dp, height=50dp, position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb), \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \

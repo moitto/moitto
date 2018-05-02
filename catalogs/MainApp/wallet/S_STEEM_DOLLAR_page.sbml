@@ -1,9 +1,14 @@
 =begin page
 
-=begin balance
-${amount}
-=end balance
+=object label: text=" $${amount} ", style=label_amount
 
-=object button: style=btn_send
+=begin notice
+STEEM DOLLAR는
+STEEM의 1달러 가치가 있는 토큰입니다.
+=end notice
+
+=object button: action=popup, display-unit="${id}", alternate-name=steem.dollar.send, \
+            label="송금하기", \
+            style=btn_send
 
 =end page

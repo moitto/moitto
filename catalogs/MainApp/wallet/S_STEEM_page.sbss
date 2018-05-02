@@ -1,4 +1,1 @@
-import ~/themes.sbss
-
-/page: page-background-color=$THEME_COLOR_02
-
+import S_STEEM_DOLLAR_page.sbss

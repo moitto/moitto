@@ -1,11 +1,24 @@
 import ~/themes.sbss
 
-#textfield: width=1pw-90dp, height=36dp, content-background-color=$WHITE_COLOR, margin-bottom=10dp
-#textfield_username: style=textfield, placeholder="스팀잇 계정", auto-capitalization-type=none, next-control=amount
-#textfield_amount: style=textfield, placeholder="금액", keyboard-type=decimal, next-control=memo
-#textfield_memo: style=textfield, placeholder="메모", next-control=btn.send
-#btn_send: label="SEND", width=100dp, height=44dp, script=send, form=send, \
-        content-background-color=#FF06
+#blank_frame: width=0.8pw, height=50dp, \
+            content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
+            content-background-color=$THEME_COLOR_00
 
-/popup: page-background-color=#0005, action-when-touched=popup-close
-/popup/form: form=send, display=block, position=abs, gravity=top, y=80dp
+#textfield: width="0.8pw-20dp", height=50dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
+            margin="-50dp 0 10dp 0"
+#textfield_username: style=textfield
+#textfield_amount: style=textfield
+#textfield_memo: style=textfield
+
+#blank_gap: width=10dp, height=50dp
+#btn_cancel: width="(0.8pw-10dp)/2", height=50dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_00
+#btn_send: width="(0.8pw-10dp)/2", height=50dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_04
+
+/popup: page-background-color=$BLACK_COLOR_DIM
+/popup/form: form=send, display=block, position=absolute, gravity=top, y="1sbh+44dp", text-align=center
+/popup/form/button: margin="30dp 0 0 0"

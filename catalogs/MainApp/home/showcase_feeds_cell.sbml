@@ -8,8 +8,8 @@ ${title}
 =(object label: text="#${main-tag}", style=label_main.tag)==(object label: text=" • ", style=label_meta)==(object label: type=decimal, text="${votes-count}", style=label_votes.count)==(object label: text="보팅", style=label_meta)==(object label:text=" • ", style=label_meta)==(object label: text=" ${payout-value} ", style=label_payout.value)=
 =end meta
 
-=object image: image-url="${userpic-url}", style=img_userpic
 =object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", style=img_userpic
 =object label:text="${author}", style=label_author
 =object label:text="${created-at}", style=label_created.at
 

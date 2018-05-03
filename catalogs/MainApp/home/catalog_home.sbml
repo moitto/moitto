@@ -8,4 +8,13 @@
             script-when-resume=on_resume, \
             style=showcase_feeds
 
+=object section: id=section.login, section=login, style=section_login
+
+=begin login: id=login
+=begin content
+=object button: action=subview, subview=V_LOGIN, target=popup, label="로그인", style=btn_login
+=object label: text="스팀잇 계정으로 로그인하세요", style=label_notice
+=end content
+=end login
+
 =end catalog

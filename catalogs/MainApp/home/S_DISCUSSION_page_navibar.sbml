@@ -1,0 +1,10 @@
+=begin navibar
+
+=object button: type=back, action=page-back, style=btn_back
+=object blank: style=blank_line
+
+=begin user
+=(object button: image-url="${userpic-url}", style=btn_user.img)= =(object button: label="${author}", style=btn_user)=
+=end user
+
+=end navibar

@@ -73,7 +73,7 @@ function __get_image_url_in_discussion(discussion) {
     var images = JSON.parse(discussion["json_metadata"])["image"];
 
     if (images && images.length > 0) {
-        return "https://steemitimages.com/640x480/" + images[0];
+          return "https://steemitimages.com/640x480/" + images[0];
     }
 
     return "";

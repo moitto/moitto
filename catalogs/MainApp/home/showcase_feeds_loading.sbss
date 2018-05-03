@@ -8,4 +8,3 @@ if $SCREEN_WIDTH > 5
 else
     #label_info: font-size=1.1
 end
-

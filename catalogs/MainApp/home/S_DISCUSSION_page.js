@@ -1,7 +1,7 @@
 var steemjs = require("steemjs");
 
 function on_loaded() {
-	var discussion = document.value("DISCUSSION");
+	var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
 
     steemjs.get_content(discussion["author"], discussion["permlink"], function(content) {
     	var image_url = __get_image_url_in_content(content);

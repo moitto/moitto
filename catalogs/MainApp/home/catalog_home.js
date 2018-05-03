@@ -85,9 +85,10 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function open_discussion(data) {
-    document.value("DISCUSSION", {
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":data["author"],
-        "permlink":data["permlink"]
+        "permlink":data["permlink"],
+        "userpic-url":data["userpic-url"]
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });

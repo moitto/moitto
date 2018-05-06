@@ -4,6 +4,7 @@ var themes   = require("themes");
 
 function on_loaded() {
 	var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
+	var username = storage.value("ACTIVE_USER");
 
     steemjs.get_content(discussion["author"], discussion["permlink"], function(response) {
     	var content = contents.create(response);
@@ -28,12 +29,16 @@ function on_loaded() {
 			"tag-4":(tags.length > 3) ? tags[3] : "",
 			"tag-5":(tags.length > 4) ? tags[4] : "",
 			"created-at":content.data["created"],
-			"theme":impl.theme,
+ 			"theme":impl.theme,
 			"dir-path":impl.dir_path
 		};
 
 		if (impl.hides_navibar) {
 			data["hides-navibar"] = "yes";
+		}
+
+		if (content.is_voted(username)) {
+			data["voted"] = "yes"; 
 		}
 
 		view.data("display-unit", data);

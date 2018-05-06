@@ -6,6 +6,10 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=2, \
         content-background-color=$THEME_COLOR_04, content-border-radius=25dp
 
+if "${voted}" == "yes"
+    #btn_vote: image="~/subview_btn_voted.png"
+end
+
 #image: max-width="1pw-20dp
 #image.full: max-width=1pw
 

@@ -23,8 +23,6 @@ Account.login = function(username, password, handler) {
 		var keys = Account.steem.auth.generate_keys(username, password, roles);
 		var owner_key = response[0]["owner"]["key_auths"][0][0];
 
-		console.log(owner_key);
-
 		if (keys["owner"].pub !== owner_key) {
 			handler();
 

@@ -1,5 +1,8 @@
-SteemApi = {};
-SteemApi._tx_number = 1;
+SteemApi = (function() {
+    return {
+        _tx_number:1
+    };
+})();
 
 SteemApi.get_dynamic_global_properties = function(handler) {
 	var method = "get_dynamic_global_properties";

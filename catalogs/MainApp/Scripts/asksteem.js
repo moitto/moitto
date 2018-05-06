@@ -1,8 +1,10 @@
-function AskSteem() {}
+AskSteem = (function() {
+    return {};
+})();
 
-AskSteem.prototype.search = function(keyword, page, options, handler) {
+AskSteem.search = function(keyword, page, options, handler) {
     var url = "https://api.asksteem.com/search";
-    var query = this.__query_for_searching(keyword, page, options);
+    var query = AskSteem.__query_for_searching(keyword, page, options);
 
     fetch(url + "?" + query).then(function(response){
         if (response.ok) {
@@ -13,7 +15,7 @@ AskSteem.prototype.search = function(keyword, page, options, handler) {
     });
 }
 
-AskSteem.prototype.__query_for_searching = function(keyword, page, options) {
+AskSteem.__query_for_searching = function(keyword, page, options) {
     var params = {};
  
     params["q"]  = keyword;
@@ -22,17 +24,17 @@ AskSteem.prototype.__query_for_searching = function(keyword, page, options) {
         params["pg"] = page;
     }
 
-    return this.__to_query_string(params);
+    return AskSteem.__to_query_string(params);
 }
 
-AskSteem.prototype.__to_query_string = function(params) {
+AskSteem.__to_query_string = function(params) {
     return Object.keys(params).map(function(k) {
         return k + "=" + params[k];
     }).join('&')
 }
 
-AskSteem.prototype.version = function() {
+AskSteem.version = function() {
 	return "1.0";
 }
 
-__MODULE__ = new AskSteem();
+__MODULE__ = AskSteem;

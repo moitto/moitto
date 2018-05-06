@@ -5,8 +5,7 @@ function send(form) {
 
 	controller.action("freeze", { message:"전송 중..." });
 	account.transfer(form["username"], amount + " SBD", form["memo"], function(response) {
-        console.log(JSON.stringify(response));
-		controller.action("popup", { "display-unit":"S_TRANSFER_DONE" });
+   	controller.action("popup", { "display-unit":"S_TRANSFER_DONE" });
 		controller.action("unfreeze");
 	});
 }

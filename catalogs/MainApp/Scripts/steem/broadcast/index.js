@@ -1,7 +1,9 @@
-SteemBroadcast = {};
+SteemBroadcast = (function() {
+    return {};
+})();
 
 SteemBroadcast.operations = include("./operations.js");
-SteemBroadcast.serializer = include("./serializer.js");
+SteemBroadcast.serializer = include("./serializer.js")
 
 SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
     return new Promise(function(resolve, reject) {
@@ -9,7 +11,7 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
             voter:voter, author:author, permlink:permlink, weight: weight
         }];
 
-        SteemBroadcast.__send_transaction(operation, keys).then(function(transaction) {
+        SteemBroadcast.__prepare_transaction(operation, keys).then(function(transaction) {
             SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
                 resolve(response);
             });
@@ -23,7 +25,7 @@ SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
             from:from, to:to, amount:amount, memo: memo
         }];
 
-        SteemBroadcast.__send_transaction(operation, keys).then(function(transaction) {
+        SteemBroadcast.__prepare_transaction(operation, keys).then(function(transaction) {
             SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
                 resolve(response);
             });
@@ -31,7 +33,7 @@ SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
     });
 }
 
-SteemBroadcast.__send_transaction = function(operation, keys) {
+SteemBroadcast.__prepare_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};
 

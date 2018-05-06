@@ -1,4 +1,6 @@
-SteemAuth = {};
+SteemAuth = (function() {
+    return {};
+})();
 
 SteemAuth.signature = include("./signature.js");
 

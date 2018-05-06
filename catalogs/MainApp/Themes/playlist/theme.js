@@ -1,7 +1,5 @@
-include("~/Themes/theme.js");
-
-function Theme() {
-	ThemeBase.call();
+function Theme(theme) {
+	ThemeBase.call(this, theme);
 
 	this.hides_navibar = true;
 }
@@ -9,8 +7,6 @@ function Theme() {
 Theme.prototype = Object.create(ThemeBase.prototype);
 Theme.prototype.constructor = Theme;
 
-Theme.prototype.build_body = function(body) {
+Theme.prototype.build_body = function(body, format) {
 	return body;
 }
-
-__MODULE__ = new Theme();

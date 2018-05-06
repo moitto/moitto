@@ -1,4 +1,6 @@
-SteemSerializer = {};
+SteemSerializer = (function() {
+    return {};
+})();
 
 SteemSerializer.types  = include("./types.js");
 SteemSerializer.params = include("./params.js");

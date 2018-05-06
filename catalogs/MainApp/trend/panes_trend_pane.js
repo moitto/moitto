@@ -1,4 +1,6 @@
-var steemjs = require("steemjs");
+var steemjs  = require("steemjs");
+var contents = require("contents");
+
 var __impl = {
     "P_TREND.TRENDING":{
         "method":function(t, l, a, p, h) { 
@@ -32,23 +34,20 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
         }
 
         discussions.forEach(function(discussion) {
-            var image_url         = __get_image_url_in_discussion(discussion);
-            var userpic_url       = __get_userpic_url_in_discussion(discussion);
-            var userpic_large_url = __get_userpic_large_url_in_discussion(discussion);;
-            var payout_value      = __get_payout_value_in_discussion(discussion).toFixed(2);
-
+            var content = contents.create(discussion);
+                
             data.push({
-                "id":"S_TREND_" + discussion["author"] + "_" + discussion["permlink"],
-                "author":discussion["author"],
-                "permlink":discussion["permlink"],
-                "title":discussion["title"], 
-                "image-url":image_url,
-                "userpic-url":userpic_url,
-                "userpic-large-url":userpic_large_url,
-                "payout-value":"$" + payout_value.toString(),
-                "votes-count":discussion["net_votes"].toString(),
-                "main-tag":discussion["category"],
-                "created-at":discussion["created"]
+                "id":"S_TREND_" + content.data["author"] + "_" + content.data["permlink"],
+                "author":content.data["author"],
+                "permlink":content.data["permlink"],
+                "title":content.data["title"], 
+                "image-url":content.get_title_image_url("320x240"),
+                "userpic-url":content.get_userpic_url("small"),
+                "userpic-large-url":content.get_userpic_url(),
+                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                "votes-count":content.data["net_votes"].toString(),
+                "main-tag":content.data["category"],
+                "created-at":content.data["created"]
             });
         });
 
@@ -68,32 +67,4 @@ function open_discussion(data) {
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION", "subview":"V_HOME" });
-}
-
-function __get_image_url_in_discussion(discussion) {
-    var images = JSON.parse(discussion["json_metadata"])["image"];
-
-    if (images && images.length > 0) {
-          return "https://steemitimages.com/640x480/" + images[0];
-    }
-
-    return "";
-}
-
-function __get_userpic_url_in_discussion(discussion) {
-    return "https://steemitimages.com/u/" + discussion["author"] + "/avatar/small";
-}
-
-function __get_userpic_large_url_in_discussion(discussion) {
-    return "https://steemitimages.com/u/" + discussion["author"] + "/avatar";
-}
-
-function __get_payout_value_in_discussion(discussion) {
-    var total_payout_value = parseFloat(discussion["total_payout_value"].split(" ")[0]);
-    
-    if (total_payout_value > 0) {
-        return total_payout_value;
-    }
-    
-    return parseFloat(discussion["pending_payout_value"].split(" ")[0]);
 }

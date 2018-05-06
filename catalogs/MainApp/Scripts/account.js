@@ -1,16 +1,29 @@
-var steem = require("steem");
+Account = (function() {
+	var username = storage.value("ACTIVE_USER") || "";
+	var values   = storage.value("ACCOUNT@" + username) || {};
 
-function Account() {
-	this.__props = storage.value("ACCOUNT") || {};
-}
+    return {
+    	username : username,
+    	values   : values
+    };
+})();
 
-Account.prototype.login = function(username, password, handler) {
-	var __props  = this.__props;
+[ "data", "follows", "assets" ].forEach(function(property) {
+	Account.__defineGetter__(property, function() {
+		return Account.values[property];
+	});
+});
 
-	steem.api.get_accounts([ username ], function(response) {
+Account.steem  = require("steem");
+Account.global = require("global");
+
+Account.login = function(username, password, handler) {
+	Account.steem.api.get_accounts([ username ], function(response) {
 		var roles = [ "owner", "active", "posting", "memo" ];
-		var keys = steem.auth.generate_keys(username, password, roles);
+		var keys = Account.steem.auth.generate_keys(username, password, roles);
 		var owner_key = response[0]["owner"]["key_auths"][0][0];
+
+		console.log(owner_key);
 
 		if (keys["owner"].pub !== owner_key) {
 			handler();
@@ -18,117 +31,122 @@ Account.prototype.login = function(username, password, handler) {
 			return;
 		}
 
-		__props["username"] = username;
-		__props["data"] = response[0];
+		Account.username = username;
+		Account.values["data"] = response[0];
 		
 		roles.splice(1).forEach(function(role) {
-			keychain.password("KEYS_" + role.toUpperCase(), keys[role].priv);
+			keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
 		});
 
-		storage.value("ACCOUNT", __props);
-		handler(__props["data"]);
+		storage.value("ACCOUNT@" + username, Account.values);
+		storage.value("ACTIVE_USER", username);
+		storage.value("USERS", (storage.value("USERS") || []).concat([ username ]));
+
+		handler(Account.values["data"]);
 	});
 }
 
-Account.prototype.logout = function() {
-	var roles = [ "active", "posting", "memo" ];
+Account.logout = function() {
+	(storage.value("USERS") || []).forEach(function(username) {
+		var roles = [ "active", "posting", "memo" ];
 	
-	roles.forEach(function(role) {
-		keychain.password("KEYS_" + role.toUpperCase(), "");
+		roles.forEach(function(role) {
+			keychain.password("KEYS_" + role.toUpperCase() + "@" + username, "");
+		});
+
+		storage.value("ACCOUNT@" + username, {});
 	});
 
-	this.__props = {};
-	storage.value("ACCOUNT", {});
+	Account.username = "";
+	Account.values   = {};
+
+	storage.value("ACTIVE_USER", "");
+	storage.value("USERS", []);
 }
 
-Account.prototype.is_logged_in = function() {
-	if (this.__props["username"]) {
+Account.is_logged_in = function() {
+	if (Account.username) {
 		return true;
 	}
 
 	return false;
 }
 
-Account.prototype.update = function(handler) {
-	var username = this.__props["username"];
-	var __props  = this.__props;
+Account.switch_user = function(username) {
+	if ((storage.value("USERS") || []).includes(username)) {
+		Account.username = username;
+		Account.values = storage.value("ACCOUNT@" + username) || {};
 
-	steem.api.get_accounts([ username ], function(response) {
-		__props["data"] = response[0];
+		storage.value("ACTIVE_USER", username);
 
-		steem.api.get_follow_count(username, function(response) {
-			__props["follows"] = response;
+		return true;
+	}
 
-			steem.api.get_dynamic_global_properties(function(response) {
-				var total_vesting_fund_steem = response["total_vesting_fund_steem"].split(" ")[0];
-				var total_vesting_shares = response["total_vesting_shares"].split(" ")[0];
-				var steems_per_vest = parseFloat(total_vesting_fund_steem) / parseFloat(total_vesting_shares);
-    		    var vesting_shares = __props["data"]["vesting_shares"].split(" ")[0];
-    		    var steem_power = steems_per_vest * parseFloat(vesting_shares);
+	return false;
+}
 
-				__props["assets"] = {};
-				__props["assets"]["steem_balance"] = __props["data"]["balance"];
-				__props["assets"]["steem_power"]   = steem_power.toFixed(3) + " STEEM";
-				__props["assets"]["sbd_balance"]   = __props["data"]["sbd_balance"];
+Account.update_user = function(handler) {
+	var username = Account.username;
 
-				storage.value("ACCOUNT", __props);
-				handler(__props["data"], __props["follows"], __props["assets"]);
+	Account.steem.api.get_accounts([ username ], function(response) {
+		Account.values["data"] = response[0];
+
+		Account.steem.api.get_follow_count(username, function(response) {
+			Account.values["follows"] = response;
+
+			Account.steem.api.get_dynamic_global_properties(function(response) {
+				var dynprops = Account.global.create_dynprops(response)
+    		    var vesting_shares = Account.values["data"]["vesting_shares"].split(" ")[0];
+    		    var steem_power = dynprops.get_steems_per_vest() * parseFloat(vesting_shares);
+
+				Account.values["assets"] = {
+					"steem_balance" : Account.values["data"]["balance"],
+					"steem_power"   : steem_power.toFixed(3) + " STEEM",
+					"sbd_balance"   : Account.values["data"]["sbd_balance"]
+				};
+
+				storage.value("ACCOUNT@" + username, Account.values);
+				handler(Account.values["data"], Account.values["follows"], Account.values["assets"]);
 			});
 		})
 	});
 }
 
-Account.prototype.vote = function(author, permlink, weight, handler) {
-	var voter = this.__props["username"];
-	var keys  = this.__load_keys([ "posting" ]);
+Account.vote = function(author, permlink, weight, handler) {
+	var voter = Account.username;
+	var keys  = Account.__load_keys(voter, [ "posting" ]);
 
-	steem.broadcast.vote(voter, author, permlink, weight, keys).then(function(response) {
+	Account.steem.broadcast.vote(voter, author, permlink, weight, keys).then(function(response) {
 		handler(response);
 	});
 }
 
-Account.prototype.unvote = function(author, permlink, handler) {
-	var voter = this.__props["username"];
-	var keys  = this.__load_keys([ "posting" ]);
+Account.unvote = function(author, permlink, handler) {
+	var voter = Account.username;
+	var keys  = Account.__load_keys(voter, [ "posting" ]);
 
-	steem.broadcast.vote(voter, author, permlink, 0, keys).then(function(response) {
+	Account.steem.broadcast.vote(voter, author, permlink, 0, keys).then(function(response) {
 		handler(response);
 	});
 }
 
-Account.prototype.transfer = function(to, amount, memo, handler) {
-	var from = this.__props["username"];
-	var keys = this.__load_keys([ "active" ]);
+Account.transfer = function(to, amount, memo, handler) {
+	var from = Account.username;
+	var keys = Account.__load_keys(from, [ "active" ]);
 
-	steem.broadcast.transfer(from, to, amount, memo, keys).then(function(response) {
+	Account.steem.broadcast.transfer(from, to, amount, memo, keys).then(function(response) {
 		handler(response);
 	});
 }
 
-Account.prototype.username = function() {
-	return this.__props["username"];
-}
-
-Account.prototype.data = function() {
-	return this.__props["data"];
-}
-
-Account.prototype.follows = function() {
-	return this.__props["follows"];
-}
-
-Account.prototype.assets = function() {
-	return this.__props["assets"];
-}
-
-Account.prototype.__load_keys = function(roles) {
+Account.__load_keys = function(username, roles) {
 	var keys = {};
 
 	roles.forEach(function(role) {
-		keys[role] = keychain.password("KEYS_" + role.toUpperCase());
+		keys[role] = keychain.password("KEYS_" + role.toUpperCase() + "@" + username);
 	});
 
 	return keys;
 }
 
-__MODULE__ = new Account();
+__MODULE__ = Account;

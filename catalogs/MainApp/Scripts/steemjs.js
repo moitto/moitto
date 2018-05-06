@@ -1,80 +1,82 @@
-function SteemJS() {
-    this._tx_number = 1;
-}
+SteemJS = (function() {
+    return {
+        _tx_number:1
+    };
+})();
 
-SteemJS.prototype.get_dynamic_global_properties = function(handler) {
+SteemJS.get_dynamic_global_properties = function(handler) {
     var method = "get_dynamic_global_properties";
     var params = [];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_discussions_by_created = function(tag, limit, start_author, start_permlink, handler) {
+SteemJS.get_discussions_by_created = function(tag, limit, start_author, start_permlink, handler) {
     var method = "get_discussions_by_created";
-    var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];
+    var params = [ SteemJS.__query_for_discussions(tag, limit, start_author, start_permlink) ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_discussions_by_trending = function(tag, limit, start_author, start_permlink, handler) {
+SteemJS.get_discussions_by_trending = function(tag, limit, start_author, start_permlink, handler) {
     var method = "get_discussions_by_trending";
-    var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];
+    var params = [ SteemJS.__query_for_discussions(tag, limit, start_author, start_permlink) ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_discussions_by_hot = function(tag, limit, start_author, start_permlink, handler) {
+SteemJS.get_discussions_by_hot = function(tag, limit, start_author, start_permlink, handler) {
     var method = "get_discussions_by_hot";
-    var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];
+    var params = [ SteemJS.__query_for_discussions(tag, limit, start_author, start_permlink) ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_discussions_by_feed = function(tag, limit, start_author, start_permlink, handler) {
+SteemJS.get_discussions_by_feed = function(tag, limit, start_author, start_permlink, handler) {
     var method = "get_discussions_by_feed";
-    var params = [ this.__query_for_discussions(tag, limit, start_author, start_permlink) ];
+    var params = [ SteemJS.__query_for_discussions(tag, limit, start_author, start_permlink) ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_content = function(author, permlink, handler) {
+SteemJS.get_content = function(author, permlink, handler) {
     var method = "get_content";
     var params = [ author, permlink ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_accounts = function(names, handler) {
+SteemJS.get_accounts = function(names, handler) {
     var method = "get_accounts";
     var params = [ names ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.get_follow_count = function(name, handler) {
+SteemJS.get_follow_count = function(name, handler) {
     var method = "call";
     var params = [ "follow_api", "get_follow_count", [ name ] ];
 
-    this.__request_rpc(method, params, function(response) {
+    SteemJS.__request_rpc(method, params, function(response) {
         handler(response["result"]);
     });
 }
 
-SteemJS.prototype.__query_for_discussions = function(tag, limit, start_author, start_permlink) {
+SteemJS.__query_for_discussions = function(tag, limit, start_author, start_permlink) {
     var params = {};
 
     params["tag"]   = tag;
@@ -88,10 +90,10 @@ SteemJS.prototype.__query_for_discussions = function(tag, limit, start_author, s
     return params;
 }
 
-SteemJS.prototype.__request_rpc = function(method, params, handler) {
-    var request = this.__build_request(method, params);
+SteemJS.__request_rpc = function(method, params, handler) {
+    var request = SteemJS.__build_request(method, params);
     var url = "https://api.steemit.com";
-    var headers = this.__rpc_headers();
+    var headers = SteemJS.__rpc_headers();
 
     fetch(url, {
         method:"POST", header:headers, body:JSON.stringify(request)
@@ -102,20 +104,20 @@ SteemJS.prototype.__request_rpc = function(method, params, handler) {
     });
 }
 
-SteemJS.prototype.__build_request = function(method, params) {
+SteemJS.__build_request = function(method, params) {
     var request = {};
 
     request["jsonrpc"] = "2.0";
     request["method"]  = method;
     request["params"]  = params;
-    request["id"]      = this._tx_number;
+    request["id"]      = SteemJS._tx_number;
 
-    this._tx_number += 1;
+    SteemJS._tx_number += 1;
 
     return request;
 }
 
-SteemJS.prototype.__rpc_headers = function() {
+SteemJS.__rpc_headers = function() {
     var headers = {};
 
     headers["Content-Type"] = "application/json-rpc";
@@ -123,4 +125,8 @@ SteemJS.prototype.__rpc_headers = function() {
     return headers;
 }
 
-__MODULE__ = new SteemJS();
+SteemJS.version = function() {
+    return "1.0";
+}
+
+__MODULE__ = SteemJS;

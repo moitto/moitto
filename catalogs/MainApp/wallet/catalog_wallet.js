@@ -8,11 +8,11 @@ function on_loaded() {
 		return;
 	}
 
-    account.update(function(data, follows, assets) {
+    account.update_user(function(data, follows, assets) {
         var catalog = controller.catalog();
 
     	catalog.submit("showcase", "auxiliary", "S_WALLET.ACCOUNT", {
-            "username":account.username(),
+            "username":account.username,
     		"reputation":__calculate_reputation(data["reputation"]).toFixed(1),
     		"post-count":data["post_count"].toString(),
     		"following-count":follows["following_count"].toString(),

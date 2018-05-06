@@ -1,14 +1,14 @@
-include("~/Themes/theme.js");
-
-function Theme() {
-	ThemeBase.call();
+function Theme(theme) {
+	ThemeBase.call(this, theme);
 }
 
 Theme.prototype = Object.create(ThemeBase.prototype);
 Theme.prototype.constructor = Theme;
 
-Theme.prototype.build_body = function(body) {
-	return this.build_sbml(body);
-}
+Theme.prototype.build_body = function(body, format) {
+	if (format === "markdown") {
+		return this.markdown_to_sbml(this.parse_markdown(body));
+	}
 
-__MODULE__ = new Theme();
+	return body;
+}

@@ -12,7 +12,7 @@
 =object label: text="00.00%", style=label_volume
 
 =object slider: style=slider
-=object button: script=vote, form=form, label="보팅하기", style=btn_vote
+=object button: id=btn.vote, script=vote, form=form, label="보팅하기", style=btn_vote
 
 =end actions
 

@@ -11,7 +11,7 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
             voter:voter, author:author, permlink:permlink, weight: weight
         }];
 
-        SteemBroadcast.__prepare_transaction(operation, keys).then(function(transaction) {
+        SteemBroadcast.__build_transaction(operation, keys).then(function(transaction) {
             SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
                 resolve(response);
             });
@@ -25,7 +25,7 @@ SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
             from:from, to:to, amount:amount, memo: memo
         }];
 
-        SteemBroadcast.__prepare_transaction(operation, keys).then(function(transaction) {
+        SteemBroadcast.__build_transaction(operation, keys).then(function(transaction) {
             SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
                 resolve(response);
             });
@@ -33,7 +33,7 @@ SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
     });
 }
 
-SteemBroadcast.__prepare_transaction = function(operation, keys) {
+SteemBroadcast.__build_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};
 

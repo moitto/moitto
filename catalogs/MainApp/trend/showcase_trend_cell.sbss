@@ -2,7 +2,7 @@ import ~/themes.sbss
 
 #img_main: width=1pw, height=205dp, scale-mode=fill, \
             position=absolute, gravity=top, \
-            scales-in-background=no, loading-duration=0.3
+            scales-in-background=yes, loading-duration=0.3
 #blank_dim: width=1pw, height=205dp, \
             position=absolute, gravity=top, content-background-color=$BLACK_COLOR_DIM
 #section_contents: width=1pw, height=195dp, postion=absolute, gravity=top

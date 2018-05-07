@@ -1,4 +1,5 @@
 var account = require("account");
+var global  = require("global");
 
 function on_loaded() {
 	if (!account.is_logged_in()) {
@@ -8,21 +9,21 @@ function on_loaded() {
 		return;
 	}
 
-    account.update_user(function(data, follows, assets) {
+    global.get_user(account.username, function(user) {
         var catalog = controller.catalog();
 
-    	catalog.submit("showcase", "auxiliary", "S_WALLET.ACCOUNT", {
-            "username":account.username,
-    		"reputation":__calculate_reputation(data["reputation"]).toFixed(1),
-    		"post-count":data["post_count"].toString(),
-    		"following-count":follows["following_count"].toString(),
-    		"follower-count":follows["follower_count"].toString()
-    	});
+        catalog.submit("showcase", "auxiliary", "S_WALLET.ACCOUNT", {
+            "username":user.name,
+            "reputation":user.get_reputation().toFixed(1).toString(),
+            "post-count":user.get_post_count().toString(),
+            "following-count":user.get_following_count().toString(),
+            "follower-count":user.get_follower_count().toString()
+        });
 
         catalog.submit("showcase", "auxiliary", "S_WALLET.ASSETS", {
-            "steem-balance":assets["steem_balance"].split(" ")[0],
-            "steem-power":assets["steem_power"].split(" ")[0],
-            "sbd-balance":assets["sbd_balance"].split(" ")[0]
+            "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+            "steem-power":user.get_steem_power().toFixed(3).toString(),
+            "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
         });
 
         __reload_assets_showcase();

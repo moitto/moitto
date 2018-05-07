@@ -1,21 +1,12 @@
 Account = (function() {
-	var username = storage.value("ACTIVE_USER") || "";
-	var values   = storage.value("ACCOUNT@" + username) || {};
-
     return {
-    	username : username,
-    	values   : values
+    	username : storage.value("ACTIVE_USER") || ""
     };
 })();
 
-[ "data", "follows", "assets" ].forEach(function(property) {
-	Account.__defineGetter__(property, function() {
-		return Account.values[property];
-	});
-});
-
 Account.steem  = require("steem");
 Account.global = require("global");
+Account.users  = require("users");
 
 Account.login = function(username, password, handler) {
 	Account.steem.api.get_accounts([ username ], function(response) {
@@ -30,17 +21,15 @@ Account.login = function(username, password, handler) {
 		}
 
 		Account.username = username;
-		Account.values["data"] = response[0];
 		
 		roles.splice(1).forEach(function(role) {
 			keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
 		});
 
-		storage.value("ACCOUNT@" + username, Account.values);
 		storage.value("ACTIVE_USER", username);
 		storage.value("USERS", (storage.value("USERS") || []).concat([ username ]));
 
-		handler(Account.values["data"]);
+		handler(response[0]);
 	});
 }
 
@@ -51,12 +40,9 @@ Account.logout = function() {
 		roles.forEach(function(role) {
 			keychain.password("KEYS_" + role.toUpperCase() + "@" + username, "");
 		});
-
-		storage.value("ACCOUNT@" + username, {});
 	});
 
 	Account.username = "";
-	Account.values   = {};
 
 	storage.value("ACTIVE_USER", "");
 	storage.value("USERS", []);
@@ -73,7 +59,6 @@ Account.is_logged_in = function() {
 Account.switch_user = function(username) {
 	if ((storage.value("USERS") || []).includes(username)) {
 		Account.username = username;
-		Account.values = storage.value("ACCOUNT@" + username) || {};
 
 		storage.value("ACTIVE_USER", username);
 
@@ -81,33 +66,6 @@ Account.switch_user = function(username) {
 	}
 
 	return false;
-}
-
-Account.update_user = function(handler) {
-	var username = Account.username;
-
-	Account.steem.api.get_accounts([ username ], function(response) {
-		Account.values["data"] = response[0];
-
-		Account.steem.api.get_follow_count(username, function(response) {
-			Account.values["follows"] = response;
-
-			Account.steem.api.get_dynamic_global_properties(function(response) {
-				var dynprops = Account.global.create_dynprops(response)
-    		    var vesting_shares = Account.values["data"]["vesting_shares"].split(" ")[0];
-    		    var steem_power = dynprops.get_steems_per_vest() * parseFloat(vesting_shares);
-
-				Account.values["assets"] = {
-					"steem_balance" : Account.values["data"]["balance"],
-					"steem_power"   : steem_power.toFixed(3) + " STEEM",
-					"sbd_balance"   : Account.values["data"]["sbd_balance"]
-				};
-
-				storage.value("ACCOUNT@" + username, Account.values);
-				handler(Account.values["data"], Account.values["follows"], Account.values["assets"]);
-			});
-		})
-	});
 }
 
 Account.vote = function(author, permlink, weight, handler) {

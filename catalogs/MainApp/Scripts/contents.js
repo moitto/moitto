@@ -58,7 +58,7 @@ Content.prototype.is_voted = function(username) {
 // instance factory
 
 Contents.create = function(data) {
-	return new Content(data);
+    return new Content(data);
 }
 
 __MODULE__ = Contents;

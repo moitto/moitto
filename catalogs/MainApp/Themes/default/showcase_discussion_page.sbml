@@ -25,8 +25,9 @@ ${body}
 =end body
 
 
-=object button: action=popup, display-unit="S_DISCUSSION", \
+=object button: id=btn.vote, action=popup, display-unit="S_DISCUSSION", \
             dir-path="${dir-path}", alternate-name="discussion.vote", \
+            script-when-resume=update_vote, \
             style=btn_vote
 
 =end page

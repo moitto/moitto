@@ -232,17 +232,17 @@ sjcl.hash.sha512.prototype = {
         h6h = h[12], h6l = h[13], h7h = h[14], h7l = h[15];
     var w;
     if (typeof Uint32Array !== 'undefined') {
-	// When words is passed to _block, it has 32 elements. SHA512 _block
-	// function extends words with new elements (at the end there are 160 elements). 
-	// The problem is that if we use Uint32Array instead of Array, 
-	// the length of Uint32Array cannot be changed. Thus, we replace words with a 
-	// normal Array here.
+    // When words is passed to _block, it has 32 elements. SHA512 _block
+    // function extends words with new elements (at the end there are 160 elements). 
+    // The problem is that if we use Uint32Array instead of Array, 
+    // the length of Uint32Array cannot be changed. Thus, we replace words with a 
+    // normal Array here.
         w = Array(160); // do not use Uint32Array here as the instantiation is slower
         for (var j=0; j<32; j++){
-    	    w[j] = words[j]; 
+            w[j] = words[j]; 
         }
     } else {
-	w = words;
+    w = words;
     } 
 
     // Working variables

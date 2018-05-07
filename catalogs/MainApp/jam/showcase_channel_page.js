@@ -12,16 +12,16 @@ function feed_jam(keyword, location, length, sortkey, sortorder, handler) {
             } else {
                 handler([]);
             }
-        });	
+        });    
     } else {
         handler([]);
     }
 }
 
 function select_jam(data) {
-	controller.action("app", {
-		"app":data["app"],
-		"version":data["version"],
-		"url":data["file"]
-	});
+    controller.action("app", {
+        "app":data["app"],
+        "version":data["version"],
+        "url":data["file"]
+    });
 }

@@ -1,64 +1,64 @@
 var playlist = null;
 
 function on_loaded() {
-	playlist = {};
+    playlist = {};
 
-	playlist["musics"]      = __get_musics_in_content($data["body"]);
-	playlist["description"] = __get_description_in_content($data["body"]);
-	playlist["image-url"]   = __get_image_url_in_content($data["body"]);
+    playlist["musics"]      = __get_musics_in_content($data["body"]);
+    playlist["description"] = __get_description_in_content($data["body"]);
+    playlist["image-url"]   = __get_image_url_in_content($data["body"]);
 
-	__reload_musics();
-	__reload_image();
+    __reload_musics();
+    __reload_image();
 }
 
 function feed_musics(keyword, location, length, sortkey, sortorder, handler) {
-	var musics = [];
+    var musics = [];
 
-	if (playlist) {
-		musics = playlist["musics"];
-	}
+    if (playlist) {
+        musics = playlist["musics"];
+    }
 
-	handler(musics);
+    handler(musics);
 }
 
 function __reload_musics() {
-	var showcase = view.object("showcase.musics");
+    var showcase = view.object("showcase.musics");
 
-	showcase.action("reload");
+    showcase.action("reload");
 }
 
 function __reload_image() {
-	var image = view.object("image.bg");
-	var url = playlist["image-url"];
+    var image = view.object("image.bg");
+    var url = playlist["image-url"];
 
-	image.property({"image-url":url});
+    image.property({"image-url":url});
 }
 
 function __get_musics_in_content(body) {
-	var pattern = /\n\*\s+([^\n]+)\(([^\)]+)\)/g;
-	var matched = null;
-	var musics = [];
+    var pattern = /\n\*\s+([^\n]+)\(([^\)]+)\)/g;
+    var matched = null;
+    var musics = [];
 
-	while (matched = pattern.exec(body)) {
-		musics.push({
-			"title":matched[1],
-			"artists":matched[2]
-		});
-	}
+    while (matched = pattern.exec(body)) {
+        musics.push({
+            "title":matched[1],
+            "artists":matched[2]
+        });
+    }
 
-	return musics;
+    return musics;
 }
 
 function __get_description_in_content(body) {
-	return null;
+    return null;
 }
 
 function __get_image_url_in_content(body) {
-	var url = /!\[[^\]]*\]\(([^\)]+)\)/g.exec(body);
+    var url = /!\[[^\]]*\]\(([^\)]+)\)/g.exec(body);
 
-	if (url) {
-		return url[1];
-	}
+    if (url) {
+        return url[1];
+    }
 
-	return null;
+    return null;
 }

@@ -2,7 +2,7 @@ import ~/themes.sbss
 
 /page: page-background-color=$THEME_COLOR_02
 /page/loading: display=block, position=absolute, gravity=center, y=-100dp, \
-		font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
 
 if $SCREEN_WIDTH > 5
     /page: font-size=1.2

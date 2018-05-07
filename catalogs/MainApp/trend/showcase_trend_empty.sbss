@@ -10,5 +10,5 @@ else
 end
 
 if $LOADING == "yes"
-	#label_loading: display=object
+    #label_loading: display=object
 end

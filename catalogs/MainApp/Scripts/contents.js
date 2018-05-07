@@ -5,26 +5,26 @@ Contents = (function() {
 // class Content
 
 function Content(data) {
-	this.data = data;
-	this.meta = JSON.parse(data["json_metadata"]);
+    this.data = data;
+    this.meta = JSON.parse(data["json_metadata"]);
 }
 
 Content.prototype.get_title_image_url = function(size) {
-	var images = this.meta["image"];
+    var images = this.meta["image"];
 
     if (images && images.length > 0) {
-    	if (size) {
-        	return "https://steemitimages.com/" + size +"/" + images[0];
-    	}
+        if (size) {
+            return "https://steemitimages.com/" + size +"/" + images[0];
+        }
 
-    	return images[0];
+        return images[0];
     }
 
     return "";
 }
 
 Content.prototype.get_payout_value = function() {
-	var total_payout_value = parseFloat(this.data["total_payout_value"].split(" ")[0]);
+    var total_payout_value = parseFloat(this.data["total_payout_value"].split(" ")[0]);
     
     if (total_payout_value > 0) {
         return total_payout_value;
@@ -34,11 +34,11 @@ Content.prototype.get_payout_value = function() {
 }
 
 Content.prototype.get_userpic_url = function(size) {
-	var userpic_url = "https://steemitimages.com/u/" + this.data["author"] + "/avatar";
+    var userpic_url = "https://steemitimages.com/u/" + this.data["author"] + "/avatar";
 
-	if (size) {
-		userpic_url = userpic_url + "/" + size;
-	}
+    if (size) {
+        userpic_url = userpic_url + "/" + size;
+    }
 
     return userpic_url;
 }

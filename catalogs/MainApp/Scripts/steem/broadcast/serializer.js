@@ -14,22 +14,22 @@ SteemSerializer.serialize_transaction = function(transaction) {
 
     SteemSerializer.__pack_buffer(buffer, "B", [ transaction["operations"].length ]);
     transaction["operations"].forEach(function(operation) {
-    	var params = operation[1];
+        var params = operation[1];
 
-    	SteemSerializer.__find_operation(operation[0], function(index, operation) {
-	    	SteemSerializer.__pack_buffer(buffer, "B", [ index ]);
+        SteemSerializer.__find_operation(operation[0], function(index, operation) {
+            SteemSerializer.__pack_buffer(buffer, "B", [ index ]);
 
-	    	operation["params"].forEach(function(param) {
+            operation["params"].forEach(function(param) {
                 SteemSerializer.params[operation.operation][param].pack(
                     buffer, params[param]
                 );
-	    	});
-    	});
+            });
+        });
     });
 
     SteemSerializer.__pack_buffer(buffer, "B", [ transaction["extensions"].length ]);
     transaction["extensions"].forEach(function(extension) {
-    	// TBD
+        // TBD
     });
 
     return buffer;
@@ -48,9 +48,9 @@ SteemSerializer.__find_operation = function(name, handler) {
 }
 
 SteemSerializer.__pack_buffer = function(buffer, format, values) {
-	Steem.struct.pack(format, values).forEach(function(byte) {
-		buffer.push(byte);
-	});
+    Steem.struct.pack(format, values).forEach(function(byte) {
+        buffer.push(byte);
+    });
 }
 
 __MODULE__ = SteemSerializer;

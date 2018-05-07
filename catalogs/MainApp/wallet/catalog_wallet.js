@@ -2,12 +2,12 @@ var account = require("account");
 var global  = require("global");
 
 function on_loaded() {
-	if (!account.is_logged_in()) {
+    if (!account.is_logged_in()) {
         __hide_loading_section();
         __show_login_section();
         
-		return;
-	}
+        return;
+    }
 
     global.get_user(account.username, function(user) {
         var catalog = controller.catalog();
@@ -35,29 +35,29 @@ function on_loaded() {
 
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     var values = controller.catalog().value("showcase", "auxiliary", "S_WALLET.ASSETS");
-	var assets = [
-		{
-			"id":"S_STEEM",
-			"title":"STEEM",
+    var assets = [
+        {
+            "id":"S_STEEM",
+            "title":"STEEM",
             "amount":__safe_value(values, "steem-balance"),
             "has-own-title":"yes",
             "has-own-sbml":"yes"      
-		},
-		{
-			"id":"S_STEEM_POWER",
-			"title":"STEEM POWER",
+        },
+        {
+            "id":"S_STEEM_POWER",
+            "title":"STEEM POWER",
             "amount":__safe_value(values, "steem-power"),
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
-		},
-		{
-			"id":"S_STEEM_DOLLAR",
-			"title":"STEEM DOLLAR",
+        },
+        {
+            "id":"S_STEEM_DOLLAR",
+            "title":"STEEM DOLLAR",
             "amount":__safe_value(values, "sbd-balance"),
             "has-own-title":"yes",
             "has-own-sbml":"yes" 
-		}
-	];
+        }
+    ];
 
     handler(assets);
 }
@@ -65,7 +65,7 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 function __reload_assets_showcase() {
     var showcase = view.object("showcase.assets");
 
-	showcase.action("reload");
+    showcase.action("reload");
 }
 
 function __show_assets_showcase() {
@@ -87,7 +87,7 @@ function __hide_loading_section() {
 }
 
 function __calculate_reputation(reputation) {
-	return (Math.log10(reputation) - 9) * 9 + 25;
+    return (Math.log10(reputation) - 9) * 9 + 25;
 }
 
 function __safe_value(values, property) {

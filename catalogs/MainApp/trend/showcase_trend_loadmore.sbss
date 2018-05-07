@@ -1,5 +1,5 @@
 import showcase_trend_loading.sbss
 
 if $RELOADING == "yes"
-	#label_info: hidden=yes
+    #label_info: hidden=yes
 end

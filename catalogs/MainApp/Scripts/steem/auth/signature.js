@@ -3,7 +3,7 @@ SteemSignature = (function() {
 })();
 
 SteemSignature.sign_buffer = function(buffer, key) {
-	var digest = Steem.crypto.sha256.hash(Steem.crypto.bytes_to_bits(buffer));
+    var digest = Steem.crypto.sha256.hash(Steem.crypto.bytes_to_bits(buffer));
     var paranoia = 0;
     
     while (true) {

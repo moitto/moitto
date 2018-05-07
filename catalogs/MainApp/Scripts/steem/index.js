@@ -19,7 +19,7 @@ Steem.enable_testnet = function() {
 }
 
 Steem.version = function() {
-	return "1.0";
+    return "1.0";
 }
 
 __MODULE__ = Steem;

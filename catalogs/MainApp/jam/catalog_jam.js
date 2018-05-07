@@ -6,7 +6,7 @@ function feed_jam(keyword, location, length, sortkey, sortorder, handler) {
     var cached = __cached_data();
 
     if (cached.length > location) {
-    	var last = location + Math.min(cached.length - location, length);
+        var last = location + Math.min(cached.length - location, length);
         
         if (last > location) {
             handler(cached.slice(location, last));
@@ -15,16 +15,16 @@ function feed_jam(keyword, location, length, sortkey, sortorder, handler) {
         }
     } else {
         fetch(url, null, true).then(function(response) {
-           	if (response.ok) {
-               	response.json().then(function(data) {
-              		handler(data);
+               if (response.ok) {
+                   response.json().then(function(data) {
+                      handler(data);
                     
-                   	__cache_data(cached.concat(data));
-               	});
-           	} else {
-               	handler([]);
-           	}
-       	});	
+                       __cache_data(cached.concat(data));
+                   });
+               } else {
+                   handler([]);
+               }
+           });    
     }
 }
 

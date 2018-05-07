@@ -1,10 +1,10 @@
 import ~/themes.sbss
 
 #img_bg: scale-mode=fill, width=1pw, height=1ph, \
-		position=abs, gravity=center, loading-duration=0.8
-		
+        position=abs, gravity=center, loading-duration=0.8
+        
 #showcase_musics: width=1pw, height=1ph, position=abs, gravity=center, \
-		column-count=1, cell-size="1pw, 1ph", \
-		content-background-color=$BLACK_COLOR_SWALLOW_DIM
+        column-count=1, cell-size="1pw, 1ph", \
+        content-background-color=$BLACK_COLOR_SWALLOW_DIM
 
 /page: page-background-color=$BLACK_COLOR, script-when-loaded=on_loaded

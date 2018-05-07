@@ -34,7 +34,7 @@ AskSteem.__to_query_string = function(params) {
 }
 
 AskSteem.version = function() {
-	return "1.0";
+    return "1.0";
 }
 
 __MODULE__ = AskSteem;

@@ -8,9 +8,9 @@ SteemAuth.generate_keys = function(name, password, roles) {
     var keys = {};
     
     roles.forEach(function(role) {
-    	var seed = name + role + password;
+        var seed = name + role + password;
         var brain_key = seed.trim().split(/[\t\n\v\f\r ]+/).join(' ');
-		var secret = Steem.crypto.number_from_bits(
+        var secret = Steem.crypto.number_from_bits(
             Steem.crypto.sha256.hash(Steem.crypto.string_to_bits(brain_key))
         );
         var curve = Steem.crypto.ecdsa.curve_from_name("k256");

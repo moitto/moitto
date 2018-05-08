@@ -42,6 +42,16 @@ User.prototype.get_steem_power = function() {
     return steems_per_vest * parseFloat(vesting_shares);
 }
 
+User.prototype.get_userpic_url = function(size) {
+    var userpic_url = "https://steemitimages.com/u/" + this.name + "/avatar";
+
+    if (size) {
+        userpic_url = userpic_url + "/" + size;
+    }
+
+    return userpic_url;
+}
+
 // instance factory
 
 Users.create = function(name, data, follows, dynprops) {

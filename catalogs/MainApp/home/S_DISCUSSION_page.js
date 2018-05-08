@@ -1,15 +1,13 @@
-var steemjs  = require("steemjs");
-var contents = require("contents");
-var themes   = require("themes");
+var global = require("global");
+var themes = require("themes");
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     var username = storage.value("ACTIVE_USER");
 
-    steemjs.get_content(discussion["author"], discussion["permlink"], function(response) {
-        var content = contents.create(response);
+    global.get_content(discussion["author"], discussion["permlink"], function(content) {
         var tags = content.meta["tags"];
-         var theme = __get_theme_in_tags(tags);
+        var theme = __get_theme_in_tags(tags);
         var impl = themes.create(theme);
  
         var data = {

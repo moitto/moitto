@@ -1,3 +1,21 @@
 =begin page
 
+=begin content
+
+=object image: image-url="${userpic-url}", width=44dp, height=44dp
+
+명성: ${reputation}
+포스트 수: ${post-count}
+팔로윙: ${following-count}
+팔로워: ${follower-count}
+스팀: ${steem-balance}
+스팀파워: ${steem-power}
+스팀달러: ${sbd-balance}
+
+=end content
+
+=begin loading
+불러오는 중...
+=end loading
+
 =end page

@@ -66,5 +66,5 @@ function open_discussion(data) {
         "userpic-url":data["userpic-url"]
     });
     
-    controller.action("page", { "display-unit":"S_DISCUSSION", "subview":"V_HOME" });
+    controller.action("page", { "display-unit":"S_DISCUSSION" });
 }

@@ -1,0 +1,5 @@
+import ~/themes.sbss
+
+%message: display=block, position=abs, gravity=center, text-align=center, text-color=$WHITE_COLOR
+
+/popup: script-when-loaded=on_loaded

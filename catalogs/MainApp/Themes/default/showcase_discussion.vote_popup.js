@@ -1,14 +1,17 @@
-var account = require("account");
-
 function on_loaded() {
     
 }
 
 function vote(form) {
-    account.vote($data["author"], $data["permlink"], 10000, function(response) {
-        view.data("display-unit", { "voted":"yes" });
+	document.value("VOTE", {
+		author:$data["author"],
+		permlink:$data["permlink"],
+		weight:10000
+	});
 
-        controller.action("toast", { message:"보팅했습니다." });
-        controller.action("popup-close");
-    });
+	controller.action("popup", { 
+		"display-unit":$data["id"],
+		"alternate-name":"discussion.voting",
+		"dir-path":$data["dir-path"]
+	});
 }

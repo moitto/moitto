@@ -2,13 +2,13 @@ import ~/themes.sbss
 
 #btn_menu: width="1pw-40dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_04, margin="0 0 5dp 0"
+            content-background-color=$THEME_COLOR_04
 #btn_close: width="1pw-40dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_00
-
+#blank_line: width="1pw-40dp", height=1dp
 /popup: page-background-color=$BLACK_COLOR_DIM
-/popup/actions: display=block, width="1pw-40dp", height=380dp, \
+/popup/actions: display=block, width="1pw-40dp", \
                 position=absolute, gravity=bottom, y=-(1eb+20dp)
 
 if $SCREEN_WIDTH > 5

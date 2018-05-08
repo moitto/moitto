@@ -12,7 +12,7 @@
 ${title}
 =end title
 =begin tags
-=(object button: label="${tag-1}", style=btn_tag)= =(object button: label="${tag-2}", style=btn_tag)= =(object button: label="${tag-3}", style=btn_tag)= =(object button: label="${tag-4}", style=btn_tag)= =(object button: label="${tag-5}", style=btn_tag)=
+=(object button: label="${tag-1}", style=btn_tag)=  =(object button: label="${tag-2}", style=btn_tag)=  =(object button: label="${tag-3}", style=btn_tag)=  =(object button: label="${tag-4}", style=btn_tag)=  =(object button: label="${tag-5}", style=btn_tag)=
 =end tags
 =begin info
 =(object label: text="보팅", style=label_info)==(object label: text=" ${votes-count}", style=label_info, style=bold)= =(object label: text="•", style=label_info)==(object label: text=" ${payout-value}", style=label_info, style=bold)= =(object label: text="•", style=label_info)= =(object label: text="댓글", style=label_info)==(object label: text=" ${relies-count}", style=label_info, style=bold)=

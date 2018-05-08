@@ -3,11 +3,17 @@
 =begin actions
 =object button: action=popup, display-unit="S_DISCUSSION", \
             dir-path="${dir-path}", alternate-name="discussion.vote", label="업보팅", style=btn_menu
+=object blank: style=blank_line
 =object button: label="다운보팅", style=btn_menu
+=object blank: style=blank_line
 =object button: label="리스팀", style=btn_menu
+=object blank: style=blank_line
 =object button: label="댓글", style=btn_menu
+=object blank: style=blank_line
 =object button: label="북마크", style=btn_menu
+=object blank: style=blank_line
 =object button: label="공유", style=btn_menu
+=object blank: style=blank_line
 
 =object button: action=popup-close, label="취소", style=btn_close
 =end actions

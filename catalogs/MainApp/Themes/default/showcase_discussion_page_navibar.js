@@ -3,5 +3,5 @@ function show_user() {
         "username":$data["author"]
     });
 
-	controller.action("page", { "display-unit":"S_USER" })
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }

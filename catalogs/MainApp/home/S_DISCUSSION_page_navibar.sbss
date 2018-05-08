@@ -6,7 +6,7 @@ import ~/subview_navibar.sbss
 #btn_user.img: width=26dp, height=26dp, scale-mode=fill, \
             content-border-radius=13dp
 #btn_user: max-width=0.7pw, height=26dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100
 
 /navibar/user: display=block, width=1pw, height=26dp, \
             position=absolute, gravity=bottom, y=-9dp, \

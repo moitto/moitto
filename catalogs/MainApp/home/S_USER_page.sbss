@@ -27,14 +27,14 @@ import ~/themes.sbss
 content-background-color=#f00
 #steem.title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
 
-/page: page-background-color=$THEME_COLOR_02, margin="20dp 20dp (70dp+1eb) 20dp"
+/page: page-background-color=$THEME_COLOR_02, margin="20dp 40dp (70dp+1eb) 40dp"
 /page/content/steem: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
             line-spacing=0.6em, paragraph-spacing=0.6em
 
 if $SCREEN_WIDTH > 5
-    /page: font-size=1.2
+    /page: font-size=1.4
 else
-    /page: font-size=1.1
+    /page: font-size=1.3
 end
 
 

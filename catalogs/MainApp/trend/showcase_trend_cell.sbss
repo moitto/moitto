@@ -14,13 +14,13 @@ import ~/themes.sbss
 #blank_userpic.mask: width=35dp, height=35dp, \
             position=absolute, gravity=top-left, x=15dp, y=210dp, \
             content-border-radius=35dp/2, content-background-color=$THEME_COLOR_01
-#img_userpic: width=33dp, height=33dp, scale-mode=fill, \
+#btn_userpic: width=33dp, height=33dp, scale-mode=fill, \
             position=absolute, gravity=top-left, x=16dp, y=211dp, \
             content-border-radius=33dp/2
 
-#label_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
+#btn_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
                 position=absolute, gravity=top-left, x=60dp, y=210dp, \
-                font-family=$SANSSERIF_BOLD, font-size=1, text-color=$THEME_COLOR_100
+                label-font-family=$SANSSERIF_BOLD, label-font-size=1, label-color=$THEME_COLOR_100, label-align=left
 #label_created.at: width=200dp, height=12dp, \
                 position=absolute, gravity=top-left, x=60dp, y=230dp, \
                 font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left

@@ -4,7 +4,7 @@
 =object blank: style=blank_line
 
 =begin user
-=(object button: image-url="${userpic-url}", style=btn_user.img)= =(object button: label="${author}", style=btn_user)=
+=(object button: script=show_user, image-url="${userpic-url}", style=btn_userpic)= =(object button: script=show_user, label="${author}", style=btn_user)=
 =end user
 
 =object button: action=popup, display-unit="S_DISCUSSION", \

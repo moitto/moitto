@@ -1,4 +1,4 @@
-import showcase_jam_cell.sbss
+import showcase_myjam_cell.sbss
 
 #widget: sortkey=running, sortorder=descending
 

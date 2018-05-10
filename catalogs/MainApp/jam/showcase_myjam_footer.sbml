@@ -1,0 +1,5 @@
+=begin footer
+
+=object button: action=page, display-unit=S_JAMS, label="잼 보러 보기", style=btn_store
+
+=end footer

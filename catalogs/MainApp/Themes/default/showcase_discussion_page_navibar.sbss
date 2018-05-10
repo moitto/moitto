@@ -7,12 +7,8 @@ import ~/subview_navibar.sbss
             content-border-radius=13dp
 #btn_user: script=show_user, max-width=0.7pw, height=26dp, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100
-
 #btn_menu: width=44dp, height=44dp, image="~/subview_btn_more.png", \
         position=absolute, gravity=right-bottom
-        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=1.8, \
-        content-background-color=$THEME_COLOR_02, content-border-radius=4dp, \
-        content-border-color=$THEME_COLOR_01, content-border-width=1dp
 
 /navibar/user: display=block, width=1pw, height=26dp, \
             position=absolute, gravity=bottom, y=-9dp, \

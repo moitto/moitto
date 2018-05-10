@@ -5,12 +5,3 @@ import ~/themes.sbss
             cell-size="(160dp*3)/2, 205dp", cell-spacing=10dp, \
             footer-width=140dp, content-margin="0 10dp", margin="0 0 5dp 0", \
             scroll-indicator-hidden=yes
-
-#label_title: width=1pw, height=40dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, font-size=1.5, \
-            content-padding="0 10dp"
-
-if "${has-packages}" != "yes"
-    #showcase_jam: display=none
-    #label_title: display=none
-end

@@ -1,0 +1,19 @@
+import ~/themes.sbss
+
+#showcase_jam: width=1pw, height=1ph, position=absolute, gravity=top, \
+        column-count=1, cell-size="1pw-20dp, (1pw-20dp)*0.5+84dp", \
+        content-margin=10dp, cell-spacing=10dp, \
+        loads-more=yes, more-count=30, \
+        selectable=yes, script-when-selected=select_jam, \
+        script-when-reload=reset_jam, \
+        keeps-offscreen-cells=yes, scroll-indicator-hidden=yes
+
+/page: page-background-color=$THEME_COLOR_02
+
+if $SCREEN_WIDTH > 5
+    if $ORIENTATION == "portrait"
+        #showcase_jam: column-count=2, cell-size="(1pw-20dp-10dp*(2-1))/2, (1pw-20dp-10dp*(2-1))/2*0.5+84dp"
+    else
+        #showcase_jam: column-count=3, cell-size="(1pw-20dp-10dp*(3-1))/3, (1pw-20dp-10dp*(3-1))/3*0.5+84dp"
+    end
+end

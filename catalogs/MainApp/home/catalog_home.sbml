@@ -2,7 +2,6 @@
 
 =object showcase: id=showcase.feeds, alternate-name=feeds, \
             data-script=feed_feeds, loads-more=yes, more-count=30, \
-            has-header=yes, header-display-unit=S_PACKAGES, \
             has-footer=yes, footer-display-unit=S_PACKAGES, \
             selectable=yes, script-when-selected=open_discussion, \
             script-when-resume=on_resume, \

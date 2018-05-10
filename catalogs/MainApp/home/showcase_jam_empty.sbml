@@ -1,5 +1,0 @@
-=begin cell
-
-=object button: action=subview, subview=V_JAM, label="잼 보러 가기", style=btn_jam
-
-=end cell

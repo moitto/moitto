@@ -1,7 +1,0 @@
-import showcase_jam.all_cell.sbss
-
-#widget: sortkey=running, sortorder=descending
-
-#img_more: filename="~/subview_icon_plus.png", scale-mode=fit, width=18dp, height=20dp
-
-#btn_channel: width=1pw, height=50dp, position=absolute, gravity=bottom

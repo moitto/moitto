@@ -2,6 +2,8 @@ import showcase_myjam_cell.sbss
 
 #widget: sortkey=running, sortorder=descending
 
-#img_more: filename="~/subview_icon_plus.png", scale-mode=fit, width=18dp, height=20dp
+#img_channel: width=44dp, height=44dp, filename="~/subview_btn_jamchannel.png", \
+            position=absolute, gravity=right-bottom, x=-3dp, y=-3dp
 
-#btn_channel: width=1pw, height=40dp, position=absolute, gravity=bottom
+#btn_channel: width=1pw, height=50dp, position=absolute, gravity=bottom, \
+content-background-color=#f00

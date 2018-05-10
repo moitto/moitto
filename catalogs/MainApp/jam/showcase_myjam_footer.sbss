@@ -2,4 +2,5 @@ import ~/themes.sbss
 
 #btn_store: width="1pw-20dp", height=50dp, position=absolute, gravity=top, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_104, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_04
+            content-background-color=$THEME_COLOR_04, \
+content-background-color=#F00

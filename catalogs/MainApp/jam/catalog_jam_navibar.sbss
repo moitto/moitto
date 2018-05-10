@@ -7,7 +7,7 @@ import ~/themes.sbss
 #btn_store: width=44dp, height=44dp, image="~/subview_btn_more.png", \
             position=absolute, gravity=right-bottom
 
-/navibar: page-background-color=$THEME_COLOR_00
+/navibar: page-background-color=$THEME_COLOR_00, page-background-color=#F00
 
 if $SCREEN_SIZE > 5
     #label_title: font-size=1.4

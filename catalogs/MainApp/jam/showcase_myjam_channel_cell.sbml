@@ -5,6 +5,8 @@
 
 =object label: text="${title}", style=label_title
 
+=object image: style=img_channel
+
 =object button: action=submit, form=channel.${channel}, showcase=auxiliary, display-unit=S_CHANNEL, \
                 action-when-done=subview, params-when-done="subview=V_HOME.CHANNEL,target=popup", \
                 has-own-title=yes, \

@@ -2,7 +2,8 @@
 
 =begin content
 
-=object image: image-url="${userpic-url}", width=44dp, height=44dp
+=object image: image-url="${userpic-url}", style=img_userpic, content-background-color=#F00
+=object label: text="사용자 이름", style=label_user
 
 명성: ${reputation}
 포스트 수: ${post-count}
@@ -13,6 +14,8 @@
 스팀달러: ${sbd-balance}
 
 =end content
+
+
 
 =begin loading
 불러오는 중...

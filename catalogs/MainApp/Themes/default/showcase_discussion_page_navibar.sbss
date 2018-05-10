@@ -10,6 +10,7 @@ import ~/subview_navibar.sbss
 #btn_menu: width=44dp, height=44dp, image="~/subview_btn_more.png", \
         position=absolute, gravity=right-bottom
 
+/navibar: page-background-color=#F00
 /navibar/user: display=block, width=1pw, height=26dp, \
             position=absolute, gravity=bottom, y=-9dp, \
             text-align=center

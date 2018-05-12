@@ -39,7 +39,7 @@ else
                 position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
                 content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
     #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
-    #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-21dp, \
+    #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
                 label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
     #label_created.at: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
                 font-size=0.7, text-color=$THEME_COLOR_101

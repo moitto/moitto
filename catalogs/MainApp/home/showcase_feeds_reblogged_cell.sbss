@@ -1,12 +1,19 @@
 import showcase_feeds_cell.sbss
 
+#reblogged: font-family=$SANSSERIF_BOLD, font-size=0.7, text-color=$THEME_COLOR_101, \
+            background-color=$THEME_COLOR_102, padding="0 1dp", border-radius=1dp
+ 
 
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
+    #img_reblogged: display=none
     /cell/contents/reblogged: display=block, position=absolute, gravity=bottom-right, x=20dp, y=-40dp, \
                 font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
 else
+    #img_reblogged: filename="~/subview_btn_reblogged.png", width=25dp, height=25dp, \
+                position=absolute, gravity=bottom-right, x=-5pd, y=-5dp
+    /cell/contents/reblogged: display=none
 end
 
 

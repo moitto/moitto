@@ -26,12 +26,13 @@ ${title}
 
 =begin reblogged: alt="리블로그"
 =begin multiple
-=[goL|리블로그]= ${reblogged-by} 외 ${reblogged-count-1}명
+=[reblogged|RE]= ${reblogged-by} 외 ${reblogged-count-1}명
 =end multiple
 =begin single
-=[goL|리블로그]= ${reblogged-by}
+=[reblogged|RE]= ${reblogged-by}
 =end single
 =end reblogged
+=object image: style=img_reblogged
 
 =end contents
 

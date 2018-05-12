@@ -26,10 +26,10 @@ ${title}
 
 =begin reblogged: alt="리블로그"
 =begin multiple
-=[reblogged|Re]= ${reblogged-by} 외 ${reblogged-count-1}명
+=(object image: style=img_reblogged)= =(object label: text="${reblogged-by} 외 ${reblogged-count-1}명", style=label_reblogged)=
 =end multiple
 =begin single
-=[reblogged|Re]= ${reblogged-by}
+=(object image: style=img_reblogged.thumb)= =(object label: text="${reblogged-by}", style=label_reblogged)=
 =end single
 =end reblogged
 =object image: style=img_reblogged

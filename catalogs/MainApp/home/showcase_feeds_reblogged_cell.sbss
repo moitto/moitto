@@ -7,12 +7,14 @@ import showcase_feeds_cell.sbss
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
+    #img_reblogged.thumb: filename="~/subview_icon_reblogged.white.png", width=16dp, height=16dp
     #img_reblogged: display=none
-    /cell/contents/reblogged: display=block, position=absolute, gravity=bottom-left, x=20dp, y=-40dp, \
-                font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
+    #label_reblogged: height=16dp, font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
+    /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=20dp, y=-40dp
 else
-    #img_reblogged: filename="~/subview_btn_reblogged.png", width=25dp, height=25dp, \
-                position=absolute, gravity=bottom-right, x=-5dp, y=-5dp
+    #img_reblogged.thumb: display=none
+    #img_reblogged: filename="~/subview_icon_reblogged.png", width=18dp, height=18dp, \
+                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
     /cell/contents/reblogged: display=none
 end
 

@@ -1,0 +1,21 @@
+import showcase_feeds_cell.sbss
+
+
+-- 레이아웃 분기 --
+
+if $LAYOUT == "thumbnail"
+    /cell/contents/reblogged: display=block, position=absolute, gravity=bottom-right, x=20dp, y=-40dp, \
+                font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
+else
+end
+
+
+if "${reblogged}" == "yes"
+    if "${reblogged-count-1}" == 0
+        /cell/contents/reblogged/multiple: display=none
+    else
+        /cell/contents/reblogged/single: display=none
+    end
+else
+    /cell/contents/reblogged: display=none
+end

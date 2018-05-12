@@ -2,8 +2,8 @@
 
 =begin content
 =object showcase: alternate-name=user.blog, data-script=feed_blog, \
-            width=1pw, height=1ph, column-count=1, cell-size="1pw, 100dp", \
-            has-header=yes, header-display-unit=S_USER
+            has-header=yes, header-display-unit=S_USER, \
+            style=showcase_user
 =end content
 
 =begin loading

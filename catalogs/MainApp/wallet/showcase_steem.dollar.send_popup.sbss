@@ -16,7 +16,7 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_00
 #btn_send: width="(0.8pw-10dp)/2", height=50dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_04
 
 /popup: page-background-color=$BLACK_COLOR_DIM

@@ -1,38 +1,37 @@
 import ~/themes.sbss
 
--- header --
-
 #img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
-            content-border-radius=40dp, margin="25dp 0 5dp 0"
+            content-border-radius=40dp, margin="20dp 0 5dp 0"
 #label_user: height=30dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.6, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
             line-break-mode=tail-truncation, content-padding="0 10dp"
+#btn_user: image="~/subview_btn_info.png", width=30dp, height=30dp, \
+content-background-color=#f00
+#blank_margin: width=30dp, height=30dp
+
 #label_rep: height=20dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
+
+#btn_follow: width=70dp, height=26dp, \
+            position=absolute, gravity=top-left, x="0.5pw+60dp", y=47dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=0.9, \
+            content-background-color=$THEME_COLOR_04, \
+content-background-color=#f00
+
 #btn_info: width=0.25pw, height=30dp, \
-            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
-            label-align=center, label-font-size=1.4
+        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
+        label-align=center, label-font-size=1.4, \
+        content-background-color=#f00
 #btn_info.title: width=0.25pw, height=15dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
-            label-align=center, label-font-size=0.9
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
+        label-align=center, label-font-size=0.9, \
+        content-background-color=#f00
 
-/header/content/header: text-align=center, margin="0 0 20dp 0"
+/header: text-align=center
 
 
--- global --
 
-#btn_follow: width=0.8pw, height=50dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_04, margin="0 0 40dp 0", \
-            content-background-color=#f00
-#steem.title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
 
-/header: page-background-color=$THEME_COLOR_02, margin="20dp 40dp (70dp+1eb) 40dp"
-/header/content/steem: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
-            line-spacing=0.6em, paragraph-spacing=0.6em
-
-if $SCREEN_WIDTH > 5
-    /header: font-size=1.4
-else
-    /header: font-size=1.3
-end
+=[steem.title|스팀]= ${steem-balance}
+=[steem.title|스팀파워]= ${steem-power}
+=[steem.title|스팀달러]= $${sbd-balance}

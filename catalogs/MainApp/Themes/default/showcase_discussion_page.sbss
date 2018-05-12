@@ -4,7 +4,7 @@ import ~/themes.sbss
 #btn_vote: width=50dp, height=50dp, \
         image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
         position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
-        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=2, \
+        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=2, \
         content-background-color=$THEME_COLOR_04, content-border-radius=25dp
 
 if "${voted}" == "yes"
@@ -32,26 +32,29 @@ end
 
 -- header --
 
-#img_main: width=1pw, height=0.8pw, position=absolute, loading-duration=0.3, scale-mode=fill
-#blank_dim: width=1pw, height=0.8pw, \
-        position=absolute, gravity=top, content-background-color=$BLACK_COLOR_DIM
+#img_main: width=1pw, height=0.8pw, position=absolute, gravity=top, loading-duration=0.3, scale-mode=fill, \
+        visual-effect=blur-dark, effect-alpha=0.9
+#blank_dim: width=1pw, height=0.8pw, position=absolute
 
 #section_header: width=1pw, height="1pw*(2/3)+50dp", margin="0 0 20dp 0"
 #btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
         content-background-color=$THEME_COLOR_00, content-padding="0 3dp", content-border-radius=2dp, \
 content-background-color=#F00
-#label_info: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, font-size=0.9
-#label_author: height=20dp, text-color=$THEME_COLOR_103, font-size=1, \
+
+#label_info: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9
+#label_author: height=20dp, text-color=$THEME_COLOR_102, font-size=1, \
             font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
-#btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_103, label-font-size=1, \
+#btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=1, \
 content-background-color=#F00
-#label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_103, font-size=0.9, \
+
+#label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9, \
             text-align=right, align=right, margin="-20dp 0 0 0"
 
 #bold: font-family=$SANSSERIF_BOLD
 
 /page/body/header: display=none, padding=20dp
-/page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_103, font-size=1.6, \
+/page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, \
                     text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
-/page/body/header/tags: display=block, position=absolute, gravity=bottom, y=-65dp, text-align=left
+/page/body/header/tags: display=block, position=absolute, gravity=bottom, y=-65dp, text-align=left, \
+                    line-spacing=0.1em, paragraph-spacing=0.1em
 /page/body/header/info: display=block, height=60dp, position=absolute, gravity=bottom, paragraph-spacing=0

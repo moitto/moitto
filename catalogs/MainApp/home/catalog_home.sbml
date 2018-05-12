@@ -1,4 +1,4 @@
-=begin catalog
+=begin catalog: script-when-loaded=on_loaded
 
 =object showcase: id=showcase.feeds, alternate-name=feeds, \
             data-script=feed_feeds, loads-more=yes, more-count=30, \
@@ -7,7 +7,8 @@
             script-when-resume=on_resume, \
             style=showcase_feeds
 
-=object section: id=section.login, section=login, style=section_login
+
+=object section: id=section.login, section=login, style=section_login, alt="로그인 전"
 
 =begin login: id=login
 =begin content

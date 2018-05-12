@@ -1,38 +1,56 @@
 import ~/themes.sbss
 
-#label_meta: font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_101, text-align=left
+#section_contents: width=1pw, height=1ph, position=absolute
+#goL: font-family=$SANSSERIF_LIGHT
+
+#img_main: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
+#label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
+#btn_userpic: scale-mode=fill, position=absolute, \
+content-background-color=#F00
+#btn_author: width="1pw-66dp", position=absolute, \
+            label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation
+#label_created.at: width=200dp, position=absolute, \
+            font-family=$SANSSERIF_MEDIUM, text-align=left
+
+/cell/contents: display=none
+/cell/contents/title: text-align=left, \
+                line-break-mode=word-wrap, line-spacing=0.4em, margin="60dp 20dp 10dp 20dp"
+
+
+-- 레이아웃 분기 --
+
+if $LAYOUT == "thumbnail"
+    #img_main: width=1pw, height=1ph, visual-effect=blur-dark, effect-alpha=0.9
+    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
+    #blank_userpic.mask: display=none
+    #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
+    #btn_author: height=30dp, gravity=bottom, y=-70dp, \
+                label-color=$THEME_COLOR_102, label-align=center, label-font-size=1.1, \
+content-background-color=#F00
+    #label_created.at: height=20dp, gravity=bottom-left, x=20dp, y=-20dp, \
+                font-size=0.8, text-color=$THEME_COLOR_102
+    /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.6, text-color=$THEME_COLOR_102, \
+                line-break-mode=word-wrap, line-spacing=0.4em, margin="60dp 20dp 10dp 20dp"
+    /cell/contents/meta: margin="0 20dp"
+else
+    #img_main: width=0.4ph, height=0.4ph, \
+                position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
+    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
+    #blank_userpic.mask: width=30dp, height=30dp, \
+                position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
+                content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
+    #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
+    #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-20dp, \
+                label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
+    #label_created.at: height=10dp, gravity=bottom-left, x=48dp, y=-10dp, \
+                font-size=0.7, text-color=$THEME_COLOR_101
+    /cell: display=block, width=1pw, height=1ph, \
+            border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
+    /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \
+            line-spacing=0.2em, margin="10dp (0.4ph+20dp) 10dp 10dp"
+    /cell/contents/meta: margin="0 10dp"
+end
+
 #label_main.tag: style=label_meta
 #label_votes.count: style=label_meta
 #label_payout.value: style=label_meta
-
-#blank_userpic.mask: width=35dp, height=35dp, \
-            position=absolute, gravity=top-left, x=10dp, y=115dp, \
-            content-border-radius=35dp/2, content-background-color=$THEME_COLOR_01
-#img_userpic: width=33dp, height=33dp, scale-mode=fill, \
-            position=absolute, gravity=top-left, x=11dp, y=116dp, \
-            content-border-radius=33dp/2
-
-#label_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
-                position=absolute, gravity=top-left, x=55dp, y=115dp, \
-                font-family=$SANSSERIF_BOLD, font-size=1, text-color=$THEME_COLOR_100
-#label_created.at: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", source-timezone=GMT, \
-                width=200dp, height=12dp, \
-                position=absolute, gravity=top-left, x=55dp, y=135dp, \
-                font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left
-
-/cell: display=block, width=1pw, height=1ph, \
-        border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
-/cell/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
-            text-color=$THEME_COLOR_100, text-align=left, line-spacing=0.2em, margin=10dp
-/cell/meta: margin="0 10dp"
-
-
-if "${reblogged}" == "yes"
-    if "${reblogged-count-1}" == 0
-        /cell/reblogged/multiple: display=none
-    else
-        /cell/reblogged/single: display=none
-    end
-else
-    /cell/reblogged: display=none
-end

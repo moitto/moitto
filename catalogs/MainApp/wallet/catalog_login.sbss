@@ -14,7 +14,7 @@ import ~/themes.sbss
         margin="0 0 50dp 0"
 
 #btn_login: width=0.8pw, height=50dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_04
 
 /catalog: page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"

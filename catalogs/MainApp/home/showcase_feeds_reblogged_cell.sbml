@@ -24,6 +24,15 @@ ${title}
 =end user
 
 
+=begin reblogged: alt="리블로그"
+=begin multiple
+=[goL|리블로그]= ${reblogged-by} 외 ${reblogged-count-1}명
+=end multiple
+=begin single
+=[goL|리블로그]= ${reblogged-by}
+=end single
+=end reblogged
+
 =end contents
 
 =end cell

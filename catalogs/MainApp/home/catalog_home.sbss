@@ -5,7 +5,7 @@ import ~/themes.sbss
 /catalog: page-background-color=$THEME_COLOR_02
 
 if $LAYOUT == "thumbnail"
-    #showcase_feeds: page-enabled=yes, \
+    #showcase_feeds: page-enabled=yes, lazy-loading=no, \
                     column-count=1, cell-size="1pw, 1ph"
 else
     #showcase_feeds: column-count=1, cell-size="(1pw-20dp), 160dp", \

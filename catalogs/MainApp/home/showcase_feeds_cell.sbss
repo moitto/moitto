@@ -13,14 +13,13 @@ content-background-color=#F00
             font-family=$SANSSERIF_MEDIUM, text-align=left
 
 /cell/contents: display=none
-/cell/contents/title: text-align=left, \
-                line-break-mode=word-wrap, line-spacing=0.4em, margin="60dp 20dp 10dp 20dp"
+/cell/contents/title: text-align=left, line-break-mode=word-wrap
 
 
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #img_main: width=1pw, height=1ph, visual-effect=blur-dark, effect-alpha=1
+    #img_main: width=1pw, height=1ph, visual-effect=blur-dark
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
     #blank_userpic.mask: display=none
     #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
@@ -30,8 +29,8 @@ content-background-color=#F00
     #label_created.at: height=20dp, gravity=bottom-left, x=20dp, y=-20dp, \
                 font-size=0.8, text-color=$THEME_COLOR_102
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.6, text-color=$THEME_COLOR_102, \
-                line-break-mode=word-wrap, line-spacing=0.4em, margin="60dp 20dp 10dp 20dp"
-    /cell/contents/meta: margin="0 20dp"
+                line-spacing=0.4em, padding="60dp 20dp 10dp 20dp"
+    /cell/contents/meta: padding="0 20dp"
 else
     #img_main: width=0.4ph, height=0.4ph, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
@@ -47,7 +46,7 @@ else
     /cell: display=block, width=1pw, height=1ph, \
             border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
     /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \
-            line-spacing=0.2em, margin="10dp (0.4ph+20dp) 10dp 10dp"
+            line-spacing=0.2em, padding="10dp (0.4ph+20dp) 10dp 10dp"
     /cell/contents/meta: margin="0 10dp"
 end
 

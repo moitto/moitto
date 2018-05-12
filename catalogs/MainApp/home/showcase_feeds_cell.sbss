@@ -30,7 +30,7 @@ content-background-color=#F00
                 font-size=0.9, text-color=$THEME_COLOR_102
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.6, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em, padding="60dp 20dp 10dp 20dp"
-    /cell/contents/meta: display=block, width="1pw-40dp", padding="0 20dp"
+    /cell/contents/meta: padding="0 20dp"
 else
     #img_main: width=0.3ph, height=0.3ph, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01

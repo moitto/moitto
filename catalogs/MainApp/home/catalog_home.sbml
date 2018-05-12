@@ -8,6 +8,13 @@
             style=showcase_feeds
 
 
+=begin navibar
+=object label: text="홈", style=label_title
+=object button: style=btn_layout
+=object blank: style=blank_line
+=end navibar
+
+
 =object section: id=section.login, section=login, style=section_login, alt="로그인 전"
 
 =begin login: id=login

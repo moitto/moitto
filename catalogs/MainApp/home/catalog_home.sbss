@@ -1,15 +1,40 @@
 import ~/themes.sbss
 
-#showcase_feeds: width=1pw, height=1ph
+#showcase_feeds: width=1pw, column-count=1
 
 /catalog: page-background-color=$THEME_COLOR_02
 
 if $LAYOUT == "thumbnail"
-    #showcase_feeds: page-enabled=yes, lazy-loading=no, \
-                    column-count=1, cell-size="1pw, 1ph"
+    #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph"
 else
-    #showcase_feeds: column-count=1, cell-size="(1pw-20dp), 180dp", \
-                    content-margin=10dp, cell-spacing=10dp
+    #showcase_feeds: height="1ph-1sbh-44dp", cell-size="(1pw-20dp), 180dp", \
+                    content-margin=10dp, cell-spacing=10dp, margin="(1sbh+44dp) 0 0 0"
+end
+
+
+-- 내비바 --
+
+#label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=top, y=1sbh, \
+            font-family=$SANSSERIF_MEDIUM, text-align=center, line-break-mode=tail-truncation
+#btn_layout: width=44dp, height=44dp, position=absolute, gravity=right-top, y=1sbh
+
+/navibar: page-background-color=$THEME_COLOR_00
+
+if $SCREEN_SIZE > 5
+    #label_title: font-size=1.4
+else
+    #label_title: font-size=1.3
+end
+
+if $LAYOUT == "thumbnail"
+    #label_title: text-color=$THEME_COLOR_102
+    #btn_layout: image="~/subview_btn_more.white.png", action=layout, layout=list, target=object, object=showcase.feeds
+    #blank_line: display=none
+else
+    #label_title: text-color=$THEME_COLOR_100
+    #btn_layout: image="~/subview_btn_more.png", action=layout, layout=thumbnail, target=object, object=showcase.feeds
+    #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
+            position=absolute, gravity=top, y="1sbh+44dp"
 end
 
 

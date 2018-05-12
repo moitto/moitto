@@ -3,20 +3,20 @@ var contents = require("contents");
 
 var __impl = {
     "P_TREND.TRENDING":{
-        "method":function(t, l, a, p, h) { 
-            steemjs.get_discussions_by_trending(t, l, a, p, h);
+        "method":function(t, a, p, l) { 
+            return steemjs.get_discussions_by_trending(t, a, p, l);
         },
         "last_discussion":null
     },
     "P_TREND.HOT":{
-        "method":function(t, l, a, p, h) { 
-            steemjs.get_discussions_by_hot(t, l, a, p, h);
+        "method":function(t, a, p, l) { 
+            return steemjs.get_discussions_by_hot(t, a, p, l);
         },
         "last_discussion":null
     },
     "P_TREND.NEW":{
-        "method":function(t, l, a, p, h) { 
-            steemjs.get_discussions_by_created(t, l, a, p, h);
+        "method":function(t, a, p, l) { 
+            return steemjs.get_discussions_by_created(t, a, p, l);
         },
         "last_discussion":null
     }
@@ -26,7 +26,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __impl[$data["id"]]["last_discussion"]["author"]   : null;
     var start_permlink = (location > 0) ? __impl[$data["id"]]["last_discussion"]["permlink"] : null;
 
-    __impl[$data["id"]].method("kr", length, start_author, start_permlink, function(discussions) {
+    __impl[$data["id"]].method("kr", start_author, start_permlink, length).then(function(discussions) {
         var data = [];
 
         if (location > 0) {
@@ -35,7 +35,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
 
         discussions.forEach(function(discussion) {
             var content = contents.create(discussion);
-                
+
             data.push({
                 "id":"S_TREND_" + content.data["author"] + "_" + content.data["permlink"],
                 "author":content.data["author"],
@@ -44,6 +44,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "image-url":content.get_title_image_url("320x240"),
                 "userpic-url":content.get_userpic_url("small"),
                 "userpic-large-url":content.get_userpic_url(),
+                "author-reputation":content.get_author_reputation().toFixed(0).toString(),
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                 "votes-count":content.data["net_votes"].toString(),
                 "main-tag":content.data["category"],

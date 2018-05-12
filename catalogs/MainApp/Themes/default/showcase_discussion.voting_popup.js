@@ -7,9 +7,9 @@ function on_loaded() {
         view.data("display-unit", { "voted":"yes" });
 
        	controller.action("popup", { 
-			"display-unit":$data["id"],
-			"alternate-name":"discussion.vote.done",
-			"dir-path":$data["dir-path"]
+       	    "display-unit":$data["id"],
+       	    "alternate-name":"discussion.vote.done",
+            "dir-path":$data["dir-path"]
 		});
     });	
 }

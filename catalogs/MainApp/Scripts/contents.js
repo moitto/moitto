@@ -23,6 +23,10 @@ Content.prototype.get_title_image_url = function(size) {
     return "";
 }
 
+Content.prototype.get_author_reputation = function() {
+    return (Math.log10(this.data["author_reputation"]) - 9) * 9 + 25;
+}
+
 Content.prototype.get_payout_value = function() {
     var total_payout_value = parseFloat(this.data["total_payout_value"].split(" ")[0]);
     

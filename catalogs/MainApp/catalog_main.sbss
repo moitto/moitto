@@ -6,4 +6,5 @@ import themes.sbss
         title-color=$THEME_COLOR_100, selected-title-color=$THEME_COLOR_100, \
         content-background-color=$THEME_COLOR_00
 
-/catalog: page-background-color=$THEME_COLOR_00
+/catalog: page-background-color=$THEME_COLOR_00, \
+		script-when-loaded=on_loaded, script-when-foreground=on_foreground

@@ -62,6 +62,25 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     handler(assets);
 }
 
+function request_to_transfer(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
+        "receiver":params["receiver"],
+        "amount":params["amount"],
+        "hidden":params["hidden"]
+    });
+
+    controller.action("subview", { "subview":"V_TRANSFER", "target":"popup" });
+}
+
+function request_to_pay(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PAY", {
+        "receiver":params["receiver"],
+        "amount":params["amount"]
+    });
+
+    controller.action("subview", { "subview":"V_PAY", "target":"popup" });
+}
+
 function __reload_assets_showcase() {
     var showcase = view.object("showcase.assets");
 

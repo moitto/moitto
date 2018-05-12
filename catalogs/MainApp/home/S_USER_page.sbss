@@ -38,7 +38,7 @@ else
 end
 
 
--- laoding 분기 --
+-- loading 분기 --
 
 /page/loading: display=block, position=absolute, gravity=center, y=-100dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center

@@ -1,0 +1,9 @@
+import ~/themes.sbss
+
+#img_userpic: width=100dp, height=100dp
+
+#btn_send: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_103, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_04
+
+/popup: page-background-color=$BLACK_COLOR, action-when-touched=popup-close

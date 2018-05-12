@@ -11,10 +11,10 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
             voter:voter, author:author, permlink:permlink, weight: weight
         }];
 
-        SteemBroadcast.__build_transaction(operation, keys).then(function(transaction) {
-            SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
-                resolve(response);
-            });
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
         });
     });
 }
@@ -25,15 +25,29 @@ SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
             from:from, to:to, amount:amount, memo: memo
         }];
 
-        SteemBroadcast.__build_transaction(operation, keys).then(function(transaction) {
-            SteemApi.broadcast_transaction_synchronous(transaction, function(response) {
-                resolve(response);
-            });
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
         });
     });
 }
 
-SteemBroadcast.__build_transaction = function(operation, keys) {
+SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd, reward_vests, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "claim_reward_balance" , { 
+            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests: reward_vests
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.__send_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};
 
@@ -41,22 +55,30 @@ SteemBroadcast.__build_transaction = function(operation, keys) {
         transaction["extensions"] = [];
 
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
-            SteemBroadcast.__sign_transaction(transaction, keys);
+            SteemBroadcast.__sign_transaction(transaction, keys, function(signatures) {
+                transaction["signatures"] = signatures;
 
-            resolve(transaction);
+                SteemApi.broadcast_transaction_synchronous(transaction).then(function(response) {
+                    resolve(transaction);
+                }, function(reason) {
+                    reject(reason);
+                });
+            });
+        }, function(reason) {
+            reject(reason);
         });
     });
 }
 
 SteemBroadcast.__prepare_transaction = function(transaction) {
     return new Promise(function(resolve, reject) {
-        SteemApi.get_dynamic_global_properties(function(properties) {
+        SteemApi.get_dynamic_global_properties().then(function(properties) {
             var ref_block_num = (properties.last_irreversible_block_num - 1) & 0xFFFF;
             var current_date = new Date(properties.time + 'Z');
             var expired_date = new Date(current_date.getTime() + 600 * 1000);
             var expiration = expired_date.toISOString().substring(0, 19);
 
-            SteemApi.get_block(properties.last_irreversible_block_num, function(block) {
+            SteemApi.get_block(properties.last_irreversible_block_num).then(function(block) {
                 var head_block_id = decode("hex", block.previous);
                 var ref_block_prefix = Steem.struct.unpack("<I", head_block_id, 4)[0];
 
@@ -65,16 +87,20 @@ SteemBroadcast.__prepare_transaction = function(transaction) {
                 transaction["expiration"]       = expiration;
 
                 resolve(transaction);
+            }, function(reason) {
+                reject(reason);
             });
+        }, function(reason) {
+            reject(reason);
         });
     });
 }
 
-SteemBroadcast.__sign_transaction = function(transaction, keys) {
+SteemBroadcast.__sign_transaction = function(transaction, keys, handler) {
     var buffer = SteemBroadcast.serializer.serialize_transaction(transaction);
     var signatures = SteemAuth.sign_transaction(buffer, keys);
 
-    transaction["signatures"] = signatures;
+    handler(signatures);
 }
 
 __MODULE__ = SteemBroadcast;

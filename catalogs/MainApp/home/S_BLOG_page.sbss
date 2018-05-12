@@ -1,0 +1,15 @@
+import ~/themes.sbss
+
+/page: page-background-color=$THEME_COLOR_02
+
+-- loading 분기 --
+
+/page/loading: display=block, position=absolute, gravity=center, y=-100dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
+
+if "${fetched}" != "yes"
+    /page: script-when-loaded=on_loaded 
+    /page/content: display=none
+else
+    /page/loading: display=none
+end

@@ -10,7 +10,7 @@ ${title}
 
 =object blank: style=blank_userpic.mask
 =object image: image-url="${userpic-url}", style=img_userpic
-=object label:text="${author}", style=label_author
+=object label:text="${author}(${author-reputation})", style=label_author
 =object label:text="${created-at}", style=label_created.at
 
 =end cell

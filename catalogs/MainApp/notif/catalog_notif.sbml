@@ -1,5 +1,5 @@
 =begin catalog
 
-=object image: filename=, style=img_profile
+=object showcase: style=showcase_notif
 
 =end catalog

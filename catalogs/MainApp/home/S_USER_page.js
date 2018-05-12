@@ -1,9 +1,9 @@
 var global = require("global");
 
 function on_loaded() {
-    var user = controller.catalog().value("showcase", "auxiliary", "S_USER");
+    var value = controller.catalog().value("showcase", "auxiliary", "S_USER");
 
-    global.get_user(user["username"], function(user) {
+    global.get_user(value["username"]).then(function(user) {
         var data = {
         	"userpic-url":user.get_userpic_url(),
             "reputation":user.get_reputation().toFixed(1).toString(),

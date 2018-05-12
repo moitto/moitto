@@ -21,30 +21,28 @@ DynProps.prototype.get_steems_per_vest = function() {
 
 // methods
 
-Global.get_user = function(username, handler) {
-    Global.steemjs.get_accounts([ username ], function(response) {
-        var data = response[0];
-
-        Global.steemjs.get_follow_count(username, function(response) {
-            var follows = response;
-
-            Global.get_dynprops(function(dynprops) {
-                handler(Global.users.create(username, data, follows, dynprops));
-            });
+Global.get_user = function(username) {
+    return new Promise(function(resolve, reject) {
+        Promise.all([
+            Global.steemjs.get_accounts([ username ]),
+            Global.steemjs.get_follow_count(username),
+            Global.steemjs.get_dynamic_global_properties()
+        ]).then(function(response) {
+            resolve(Global.users.create(username, response[0][0], response[1], new DynProps(response[2])));
+        }, function(reason) {
+            reject(reason);
         });
-    });    
-}
-
-Global.get_content = function(author, permlink, handler) {
-    Global.steemjs.get_content(author, permlink, function(response) {
-        handler(Global.contents.create(response));
-    });    
-}
-
-Global.get_dynprops = function(handler) {
-    Global.steemjs.get_dynamic_global_properties(function(response) {
-        handler(new DynProps(response));
     });
+}
+
+Global.get_content = function(author, permlink) {
+    return new Promise(function(resolve, reject) {
+        Global.steemjs.get_content(author, permlink).then(function(response) {
+            resolve(Global.contents.create(response));
+        }, function(reason) {
+            reject(reason);
+        }); 
+    });   
 }
 
 __MODULE__ = Global;

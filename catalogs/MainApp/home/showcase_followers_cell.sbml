@@ -1,0 +1,13 @@
+=begin cell
+
+${username}
+
+=object button: label="팔로우", script=follow
+=object button: label="뮤트", script=mute
+
+=begin form: form="form.${username}"
+=object input: id="id", value="${id}" 
+=object input: id="username", value="${username}" 
+=end form
+
+=end cell

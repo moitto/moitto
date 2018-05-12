@@ -1,0 +1,3 @@
+import ~/themes.sbss
+
+/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02

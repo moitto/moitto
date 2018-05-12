@@ -8,11 +8,11 @@ import showcase_feeds_cell.sbss
 
 if $LAYOUT == "thumbnail"
     #img_reblogged: display=none
-    /cell/contents/reblogged: display=block, position=absolute, gravity=bottom-right, x=20dp, y=-40dp, \
+    /cell/contents/reblogged: display=block, position=absolute, gravity=bottom-left, x=20dp, y=-40dp, \
                 font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
 else
     #img_reblogged: filename="~/subview_btn_reblogged.png", width=25dp, height=25dp, \
-                position=absolute, gravity=bottom-right, x=-5pd, y=-5dp
+                position=absolute, gravity=bottom-right, x=-5dp, y=-5dp
     /cell/contents/reblogged: display=none
 end
 

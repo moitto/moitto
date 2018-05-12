@@ -8,7 +8,7 @@ if $LAYOUT == "thumbnail"
     #showcase_feeds: page-enabled=yes, lazy-loading=no, \
                     column-count=1, cell-size="1pw, 1ph"
 else
-    #showcase_feeds: column-count=1, cell-size="(1pw-20dp), 160dp", \
+    #showcase_feeds: column-count=1, cell-size="(1pw-20dp), 180dp", \
                     content-margin=10dp, cell-spacing=10dp
 end
 

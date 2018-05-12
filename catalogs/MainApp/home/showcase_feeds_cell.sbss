@@ -13,7 +13,7 @@ content-background-color=#F00
             font-family=$SANSSERIF_MEDIUM, text-align=left
 
 /cell/contents: display=none
-/cell/contents/title: text-align=left, line-break-mode=word-wrap
+/cell/contents/title: text-align=left
 
 
 -- 레이아웃 분기 --
@@ -29,25 +29,25 @@ content-background-color=#F00
     #label_created.at: height=20dp, gravity=bottom-left, x=20dp, y=-20dp, \
                 font-size=0.8, text-color=$THEME_COLOR_102
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.6, text-color=$THEME_COLOR_102, \
-                line-spacing=0.4em, padding="60dp 20dp 10dp 20dp"
+                line-break-mode=word-wrap, line-spacing=0.3em, padding="60dp 20dp 10dp 20dp"
     /cell/contents/meta: padding="0 20dp"
 else
-    #img_main: width=0.4ph, height=0.4ph, \
+    #img_main: width=0.3ph, height=0.3ph, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
     #blank_userpic.mask: width=30dp, height=30dp, \
                 position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
                 content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
     #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
-    #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-20dp, \
+    #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-21dp, \
                 label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
-    #label_created.at: height=10dp, gravity=bottom-left, x=48dp, y=-10dp, \
+    #label_created.at: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
                 font-size=0.7, text-color=$THEME_COLOR_101
     /cell: display=block, width=1pw, height=1ph, \
             border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
     /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \
-            line-spacing=0.2em, padding="10dp (0.4ph+20dp) 10dp 10dp"
-    /cell/contents/meta: margin="0 10dp"
+            line-spacing=0.2em, padding="10dp (0.3ph+20dp) 10dp 10dp"
+    /cell/contents/meta: display=block, position=absolute, gravity=bottom-left, x=10dp, y=-45dp
 end
 
 #label_main.tag: style=label_meta

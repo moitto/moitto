@@ -54,7 +54,8 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
             }
 
             discussions.forEach(function(discussion) {
-                var content = contents.create(discussion);
+                var content   = contents.create(discussion);
+                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
 
                 data.push({
                     "id":"S_FEEDS_" + content.data["author"] + "_" + content.data["permlink"],
@@ -68,6 +69,11 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                     "votes-count":content.data["net_votes"].toString(),
                     "main-tag":content.data["category"],
+                    "reblogged":reblogged ? "yes" : "no",
+                    "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
+                    "reblogged-count":content.data["reblogged_by"].length.toString(),
+                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
+                    "template":reblogged ? "reblogged" : "",
                     "created-at":content.data["created"]
                 });
             });

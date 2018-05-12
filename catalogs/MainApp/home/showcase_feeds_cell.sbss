@@ -25,3 +25,14 @@ import ~/themes.sbss
 /cell/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
             text-color=$THEME_COLOR_100, text-align=left, line-spacing=0.2em, margin=10dp
 /cell/meta: margin="0 10dp"
+
+
+if "${reblogged}" == "yes"
+    if "${reblogged-count-1}" == 0
+        /cell/reblogged/multiple: display=none
+    else
+        /cell/reblogged/single: display=none
+    end
+else
+    /cell/reblogged: display=none
+end

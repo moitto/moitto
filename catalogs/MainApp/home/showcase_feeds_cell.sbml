@@ -1,5 +1,14 @@
 =begin cell
 
+=begin reblogged
+=begin multiple
+${reblogged-by} 외 ${reblogged-count-1}명
+=end multiple
+=begin single
+${reblogged-by}
+=end single
+=end reblogged
+
 =begin title
 ${title}
 =end title

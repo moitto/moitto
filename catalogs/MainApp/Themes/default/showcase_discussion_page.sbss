@@ -33,7 +33,7 @@ end
 -- header --
 
 #img_main: width=1pw, height=0.8pw, position=absolute, gravity=top, loading-duration=0.3, scale-mode=fill, \
-        visual-effect=blur-dark, effect-alpha=0.9
+        visual-effect=blur-dark, effect-alpha=1
 #blank_dim: width=1pw, height=0.8pw, position=absolute
 
 #section_header: width=1pw, height="1pw*(2/3)+50dp", margin="0 0 20dp 0"

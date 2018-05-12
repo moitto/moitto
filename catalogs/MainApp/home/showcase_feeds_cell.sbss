@@ -20,7 +20,7 @@ content-background-color=#F00
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #img_main: width=1pw, height=1ph, visual-effect=blur-dark, effect-alpha=0.9
+    #img_main: width=1pw, height=1ph, visual-effect=blur-dark, effect-alpha=1
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
     #blank_userpic.mask: display=none
     #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2

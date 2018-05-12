@@ -1,31 +1,10 @@
 =begin page
 
 =begin content
-
-=begin header
-=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
-=object label: text="${username}", style=label_user
-=object label: text="REP. ${reputation}", style=label_rep
-
-=begin info
-=(object button: label="${post-count}", style=btn_info)==(object button: label="${following-count}", style=btn_info)==(object button: label="${follower-count}", style=btn_info)=
-=(object button: label="게시글", script=show_blog, style=btn_info.title)==(object button: label="팔로우", script=show_following, style=btn_info.title)==(object button: label="팔로워", script=show_follower, style=btn_info.title)=
-=end info
-=end header
-
-
-=object button: label="팔로우", style=btn_follow
-
-
-=begin steem
-=[steem.title|스팀]= ${steem-balance}
-=[steem.title|스팀파워]= ${steem-power}
-=[steem.title|스팀달러]= $${sbd-balance}
-=end steem
-
+=object showcase: alternate-name=user.blog, data-script=feed_blog, \
+            width=1pw, height=1ph, column-count=1, cell-size="1pw, 100dp", \
+            has-header=yes, header-display-unit=S_USER
 =end content
-
-
 
 =begin loading
 불러오는 중입니다.

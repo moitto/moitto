@@ -69,6 +69,19 @@ SteemJS.get_discussions_by_feed = function(tag, start_author, start_permlink, li
     });
 }
 
+SteemJS.get_discussions_by_blog = function(tag, start_author, start_permlink, limit) {
+    return new Promise(function(resolve, reject) {
+        var method = "get_discussions_by_blog";
+        var params = [ { tag:tag, start_author:start_author, start_permlink:start_permlink, limit:limit } ];
+
+        SteemJS.__request_rpc(method, params).then(function(response) {
+            resolve(response["result"]);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
 SteemJS.get_discussions_by_comments = function(tag, start_author, start_permlink, limit) {
     return new Promise(function(resolve, reject) {
         var method = "get_discussions_by_comments";

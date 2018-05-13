@@ -10,5 +10,5 @@ if $SCREEN_WIDTH > "5"
         #showcase_trend: column-count=1, cell-size="1pw, 120dp"
     end
 else
-    #showcase_trend: column-count=1, cell-size="1pw, 250dp", cell-spacing=15dp
+    #showcase_trend: column-count=1, cell-size="1pw, 300dp", cell-spacing=15dp
 end

@@ -5,5 +5,4 @@ import showcase_myjam_cell.sbss
 #img_channel: width=44dp, height=44dp, filename="~/subview_btn_jamchannel.png", \
             position=absolute, gravity=right-bottom, x=-3dp, y=-3dp
 
-#btn_channel: width=1pw, height=50dp, position=absolute, gravity=bottom, \
-content-background-color=#f00
+#btn_channel: width=1pw, height=50dp, position=absolute, gravity=bottom

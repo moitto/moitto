@@ -1,39 +1,36 @@
 import ~/themes.sbss
 
-#img_main: width=1pw, height=205dp, scale-mode=fill, \
+#img_main: width=1pw, height="1ph-55dp", scale-mode=fill, \
             position=absolute, gravity=top, \
             scales-in-background=yes, loading-duration=0.3
-#blank_dim: width=1pw, height=205dp, \
+#blank_dim: width=1pw, height="1ph-55dp", \
             position=absolute, gravity=top, content-background-color=$BLACK_COLOR_DIM
-#section_contents: width=1pw, height=195dp, postion=absolute, gravity=top
+#section_contents: width=1pw, height="1ph-55dp", postion=absolute, gravity=top
 #label_meta: font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$WHITE_COLOR, text-align=left
 #label_main.tag: style=label_meta
 #label_votes.count: style=label_meta
 #label_payout.value: style=label_meta
 
 #blank_userpic.mask: width=35dp, height=35dp, \
-            position=absolute, gravity=top-left, x=15dp, y=210dp, \
-            content-border-radius=35dp/2, content-background-color=$THEME_COLOR_01, \
-content-background-color=#F00
+            position=absolute, gravity=bottom-left, x=15dp, y=-10dp, \
+            content-border-radius=35dp/2, content-background-color=$THEME_COLOR_01
 #btn_userpic: width=33dp, height=33dp, scale-mode=fill, \
-            position=absolute, gravity=top-left, x=16dp, y=211dp, \
-            content-border-radius=33dp/2, \
-content-background-color=#F00
+            position=absolute, gravity=bottom-left, x=16dp, y=-11dp, \
+            content-border-radius=33dp/2
 
 #btn_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
-                position=absolute, gravity=top-left, x=60dp, y=210dp, \
-                label-font-family=$SANSSERIF_BOLD, label-font-size=1, label-color=$THEME_COLOR_100, label-align=left
+            position=absolute, gravity=bottom-left, x=60dp, y=-25dp, \
+            label-font-family=$SANSSERIF_BOLD, label-font-size=1, label-color=$THEME_COLOR_100, label-align=left
 #label_created.at: width=200dp, height=12dp, \
-                position=absolute, gravity=top-left, x=60dp, y=230dp, \
-                font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left
+            position=absolute, gravity=bottom-left, x=60dp, y=-12dp, \
+            font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left
 
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
             position=absolute, gravity=bottom
 
 /cell: page-background-color=$THEME_COLOR_00
 /cell/contents: display=none
-/cell/contents/title: font-family=$SANSSERIF_BOLD, font-size=1.3, \
+/cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.5, \
                     text-color=$WHITE_COLOR, text-align=left, \
-                    line-break-mode=word-wrap, line-spacing=0.2em, \
-                    margin=15dp
-/cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-10dp, padding="0 15dp"
+                    line-break-mode=word-wrap, line-spacing=0.3em, margin=15dp
+/cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-15dp, padding="0 15dp"

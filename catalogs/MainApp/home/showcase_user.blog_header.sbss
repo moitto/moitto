@@ -5,8 +5,7 @@ import ~/themes.sbss
 #label_user: height=30dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
             line-break-mode=tail-truncation, content-padding="0 10dp"
-#btn_user: image="~/subview_btn_info.png", width=30dp, height=30dp, \
-content-background-color=#f00
+#btn_user: image="~/subview_btn_info.png", width=30dp, height=30dp
 #blank_margin: width=30dp, height=30dp
 
 #label_rep: height=20dp, \
@@ -15,17 +14,14 @@ content-background-color=#f00
 #btn_follow: width=70dp, height=26dp, \
             position=absolute, gravity=top-left, x="0.5pw+60dp", y=47dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=0.9, \
-            content-background-color=$THEME_COLOR_04, \
-content-background-color=#f00
+            content-background-color=$THEME_COLOR_04
 
 #btn_info: width=0.25pw, height=30dp, \
         label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
-        label-align=center, label-font-size=1.4, \
-        content-background-color=#f00
+        label-align=center, label-font-size=1.4
 #btn_info.title: width=0.25pw, height=15dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
-        label-align=center, label-font-size=0.9, \
-        content-background-color=#f00
+        label-align=center, label-font-size=0.9
 
 /header: text-align=center
 

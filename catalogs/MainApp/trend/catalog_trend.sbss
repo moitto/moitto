@@ -4,8 +4,7 @@ import ~/themes.sbss
 #btn_search: width=80dp, height=44dp, \
             position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-align=right, \
-            line-break-mode=tail-truncation, \
-content-background-color=#F00
+            line-break-mode=tail-truncation
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
             position=absolute, gravity=top, y="1sbh+44dp"
 

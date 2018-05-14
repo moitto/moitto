@@ -17,13 +17,13 @@ Notif.update = function() {
                 Notif.__update_notif(controller.catalog(), data["op"]);
             });
 
-            Notif.__updating = false;
-
             resolve(history);
-        }, function(reason) {
-            Notif.__updating = false;
 
+            Notif.__updating = false;
+        }, function(reason) {
             reject(reason);
+
+            Notif.__updating = false;
         });
 
         Notif.__updating = true;

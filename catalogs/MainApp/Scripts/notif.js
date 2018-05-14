@@ -38,7 +38,7 @@ Notif.__get_account_history_for_notif = function(account, last_updated_date) {
     return new Promise(function(resolve, reject) {
         var history = [];
 
-        Notif.steemjs.get_account_history(account, Number.MAX_SAFE_INTEGER, 300).then(function(response) {
+        Notif.steemjs.get_account_history(account, Number.MAX_SAFE_INTEGER, 3000).then(function(response) {
             response = response.reverse();
 
             for (var i = 0; i < response.length; ++i) {

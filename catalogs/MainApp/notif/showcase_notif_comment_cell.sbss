@@ -1,5 +1,15 @@
 import ~/themes.sbss
 
+#img_userpic: width=40dp, height=40dp, position=absolute, gravity=left, x=10dp, y=-(25dp/2), \
+            scale-mode=fill, content-border-radius=20dp, default-color=$THEME_COLOR_01
+#label_notif: height=25dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.1
+#label_highlight: font-family=$SANSSERIF_BOLD
+#label_date: height=25dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
+#blank_line: width=1pw, height=1dp, color=$THEME_COLOR_00, position=absolute, gravity=bottom
+
+/cell: margin="10dp 10dp 10dp 60dp"
+
+
 if "${source}" == "discussion"
     #comment: width=0, height=0, hidden=yes
 end
@@ -14,4 +24,12 @@ end
 
 if "${authors-count-n}" == 0
     #multiple_authors: width=0, height=0, hidden=yes
+end
+
+if "${voter-2}" == ""
+    #not_single_voter: width=0, height=0, hidden=yes
+end
+
+if "${voters-count-n}" == 0
+    #multiple_voters: width=0, height=0, hidden=yes
 end

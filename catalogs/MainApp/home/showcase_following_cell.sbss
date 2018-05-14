@@ -1,1 +1,5 @@
 import ~/themes.sbss
+
+#img_profile: width=30dp, height=30dp, scale-mode=fill, \
+            content-border-radius=15dp, default-color=$THEME_COLOR_01, \
+            position=absolute, gravity=left, x=10dp

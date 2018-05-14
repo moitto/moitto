@@ -1,0 +1,8 @@
+import ~/themes.sbss
+
+/cell/image: display=block, width=40dp, height=40dp, position=absolute, gravity=left, x=10dp, y=-(25dp/2), \
+            border-radius=20dp, background-color=$THEME_COLOR_01
+/cell/notif: display=block, width=40dp, height=40dp, position=absolute, gravity=top-left, x=10dp, y=25dp, \
+            background-color=$THEME_COLOR_01
+/cell/line: display=block, width=1pw, height=1dp, position=absolute, gravity=bottom, \
+            background-color=$THEME_COLOR_01

@@ -1,5 +1,6 @@
 =begin cell
 
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
 ${username}
 
 =object button: label="언팔로우", script=unfollow

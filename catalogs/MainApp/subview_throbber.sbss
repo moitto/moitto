@@ -10,7 +10,7 @@ import themes.sbss
 /throbber/content: id=content, display=none
 /throbber/content/box: background-color=$BLACK_COLOR, display=block
 
-if $SCREEN_WIDTH > 5
+if $SCREEN_WIDTH > "5"
     #section_content: width=169dp+8dp*2, height=143dp+10dp
     #btn_cancel: width=38dp, height=38dp
     #img_icon: width=78dp, height=78dp

@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
 #showcase_notif: width=1pw, height=1ph, \
-		column-count=1, cell-size="1pw, 90dp"
+		column-count=1, cell-size="1pw, 95dp"
 
 /catalog: page-background-color=$THEME_COLOR_02

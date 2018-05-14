@@ -1,5 +1,11 @@
 =begin cell
 
-=(object label:text="${author-1}님")==(object label:text=", ", style=not_single_author)==(object label:text="${author-2}님", style=not_single_author)==(object label:text=" 외 ${authors-count-n}명", style=multiple_authors)=이 회원님의 =(object label:text="글", style=discussion)==(object label:text="댓글", style=comment)=에 댓글을 남겼습니다.
+=object image: image-url="${userpic-url}", style=img_userpic
+
+=(object label:text="${author-1}",style=label_notif,style=label_highlight)==(object label:text="님",style=label_notif)==(object label:text=", ", style=not_single_author,style=label_notif)==(object label:text="${author-2}",style=not_single_author,style=label_notif,style=label_highlight)==(object label:text="님",style=not_single_author,style=label_notif)==(object label:text=" 외 ${authors-count-n}명", style=multiple_authors,style=label_notif,style=label_highlight)==(object label:text="이",style=label_notif)=
+=(object label:text="회원님의 ",style=label_notif)==(object label:text="글", style=discussion,style=label_notif)==(object label:text="댓글",style=comment,style=label_notif)==(object label:text="에 ",style=label_notif)==(object label:text="댓글",style=label_notif,style=label_highlight)==(object label:text="을 남겼습니다.",style=label_notif)=
+=(object label:text="2018.5.20",style=label_date)=
+
+=object blank: style=blank_line
 
 =end cell

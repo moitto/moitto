@@ -6,7 +6,7 @@ import ~/themes.sbss
 
 /page: page-background-color=$THEME_COLOR_02
 
-if $SCREEN_WIDTH > 5
+if $SCREEN_WIDTH > "5"
     /page: font-size=1.2
 else
     /page: font-size=1.1

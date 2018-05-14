@@ -1,8 +1,8 @@
 =begin page
 
 =object showcase: alternate-name=followers, data-script=feed_followers, \
-            width=1pw, height=1ph, column-count=1, cell-size="1pw, 100dp", \
             has-header=yes, header-display-unit=S_USER, \
-            loads-more=yes, more-count=100
+            loads-more=yes, more-count=100, \
+            style=showcase_blog
 
 =end page

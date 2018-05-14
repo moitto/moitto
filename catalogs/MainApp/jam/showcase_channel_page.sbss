@@ -11,7 +11,7 @@ import ~/themes.sbss
 
 /page: page-background-color=#EEEEEE, action-when-touched=popup-close
 
-if $SCREEN_WIDTH > 5
+if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"
         #showcase_jam: column-count=2, cell-size="(1pw-20dp-10dp*(2-1))/2, (1pw-20dp-10dp*(2-1))/2*0.5+84dp"
     else

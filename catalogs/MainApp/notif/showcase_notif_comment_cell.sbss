@@ -1,0 +1,17 @@
+import ~/themes.sbss
+
+if "${source}" == "discussion"
+    #comment: width=0, height=0, hidden=yes
+end
+
+if "${source}" == "comment"
+    #discussion: width=0, height=0, hidden=yes
+end
+
+if "${author-2}" == ""
+    #not_single_author: width=0, height=0, hidden=yes
+end
+
+if "${authors-count-n}" == 0
+    #multiple_authors: width=0, height=0, hidden=yes
+end

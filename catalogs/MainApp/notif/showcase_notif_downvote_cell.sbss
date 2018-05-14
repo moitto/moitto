@@ -1,0 +1,17 @@
+import ~/themes.sbss
+
+if "${source}" == "discussion"
+    #comment: width=0, height=0, hidden=yes
+end
+
+if "${source}" == "comment"
+    #discussion: width=0, height=0, hidden=yes
+end
+
+if "${voter-2}" == ""
+    #not_single_voter: width=0, height=0, hidden=yes
+end
+
+if "${voters-count-n}" == 0
+    #multiple_voters: width=0, height=0, hidden=yes
+end

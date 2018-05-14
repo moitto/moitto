@@ -1,3 +1,6 @@
 =begin navibar
 
+=object button: label="QR", action=popup, display-unit=S_QRCODE, \
+        width=64dp, height=44dp, position=abs, gravity=right-top, y=1sbh
+
 =end navibar

@@ -1,5 +1,27 @@
 =begin catalog
 
-TRANSFER
+=begin receiver
+=(object image: id=img.receiver.userpic, style=img_receiver.userpic)=
+=(object label: text="${subview.receiver}", style=label_receiver.username)=
+=end receiver
+
+=object section: section=amount, style=section_amount
+
+=begin amount: id=amount
+=begin heading
+송금할 금액
+=end heading
+
+=object section: section=amount.box, style=section_amount.box
+
+=begin box: id=amount.box
+=begin content
+=object textfield: id=textfield.amount, text="${subview.amount}", style=textfield_amount
+=end content
+=end box
+
+=end amount
+
+=object button: script=send, label="송금하기", style=btn_send
 
 =end catalog

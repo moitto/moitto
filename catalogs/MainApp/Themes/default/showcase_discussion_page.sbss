@@ -11,6 +11,10 @@ if "${voted}" == "yes"
     #btn_vote: selected=yes
 end
 
+if "${is-payout}" == "yes"
+    #btn_vote: hidden=yes
+end
+
 #image: max-width="1pw-20dp
 #image.full: max-width=1pw
 

@@ -1,0 +1,10 @@
+=begin popup
+
+=object camera: width=1pw, height=1ph, position=abs, gravity=center, \
+            metadata-enabled=yes, qrcode-enabled=yes, \
+            focus-closely=yes, continuous-autofocus=yes, \
+            script-when-output@metadata=on_qrcode
+
+=object image: width=200dp, height=200dp, filename=~/qr_focus.png, position=abs, gravity=center
+
+=end popup

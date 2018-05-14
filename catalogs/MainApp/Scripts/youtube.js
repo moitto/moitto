@@ -3,15 +3,17 @@ YouTube = (function() {
 })();
 
 YouTube.search_musics = function(title, artist, handler) {
-    var query = (title + " " + artist).replace(/#/g, "").replace(/ /g, "+");
-    var url = "https://www.youtube.com/results?search_query=" + query;
+    var url = "https://www.youtube.com/results";
+    var query = "search_query=" + (title + " " + artist).replace(/#/g, "").replace(/ /g, "+");
 
-    fetch(url).then(function(response) {
+    fetch(url + "?" + query).then(function(response) {
         if (response.ok) {
             response.text().then(function(text) {
                 handler(YouTube.__search_musics_in_html(text));
             });
         }
+    }, function(reason) {
+        hanlder();
     });
 }
 

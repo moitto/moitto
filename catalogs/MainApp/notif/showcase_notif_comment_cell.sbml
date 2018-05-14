@@ -1,0 +1,5 @@
+=begin cell
+
+=(object label:text="${author-1}님")==(object label:text=", ", style=not_single_author)==(object label:text="${author-2}님", style=not_single_author)==(object label:text=" 외 ${authors-count-n}명", style=multiple_authors)=이 회원님의 =(object label:text="글", style=discussion)==(object label:text="댓글", style=comment)=에 댓글을 남겼습니다.
+
+=end cell

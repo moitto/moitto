@@ -1,0 +1,5 @@
+=begin cell
+
+=(object label:text="${voter-1}님")==(object label:text=", ", style=not_single_voter)==(object label:text="${voter-2}님", style=not_single_voter)==(object label:text=" 외 ${voters-count-n}명", style=multiple_voters)=이 회원님의 =(object label:text="글", style=discussion)==(object label:text="댓글", style=comment)=에 보팅을 했습니다.
+
+=end cell

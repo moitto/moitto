@@ -9,7 +9,7 @@ Account.global = require("global");
 Account.users  = require("users");
 
 Account.login = function(username, password, handler) {
-    Account.steem.api.get_accounts([ username ], function(response) {
+    Account.steem.api.get_accounts([ username ]).then(function(response) {
         var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
         var owner_key = response[0]["owner"]["key_auths"][0][0];

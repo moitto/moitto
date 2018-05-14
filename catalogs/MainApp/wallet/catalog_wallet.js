@@ -9,7 +9,7 @@ function on_loaded() {
         return;
     }
 
-    global.get_user(account.username, function(user) {
+    global.get_user(account.username).then(function(user) {
         var catalog = controller.catalog();
 
         catalog.submit("showcase", "auxiliary", "S_WALLET.ACCOUNT", {
@@ -63,6 +63,7 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function request_to_transfer(params) {
+    controller.catalog().remove("showcase", "auxiliary", "S_TRANSFER");
     controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
         "receiver":params["receiver"],
         "amount":params["amount"],
@@ -73,6 +74,7 @@ function request_to_transfer(params) {
 }
 
 function request_to_pay(params) {
+    controller.catalog().remove("showcase", "auxiliary", "S_PAY");
     controller.catalog().submit("showcase", "auxiliary", "S_PAY", {
         "receiver":params["receiver"],
         "amount":params["amount"]

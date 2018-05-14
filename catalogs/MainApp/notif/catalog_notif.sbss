@@ -1,7 +1,6 @@
 import ~/themes.sbss
 
 #showcase_notif: width=1pw, height=1ph, \
-		alternate-name=notif, data-script=feed_notif, \
 		column-count=1, cell-size="1pw, 90dp"
 
 /catalog: page-background-color=$THEME_COLOR_02

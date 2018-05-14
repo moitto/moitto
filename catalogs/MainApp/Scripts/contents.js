@@ -59,6 +59,14 @@ Content.prototype.is_voted = function(username) {
     return false;
 }
 
+Content.prototype.is_payout = function() {
+    if (this.data["last_payout"] !== "1970-01-01T00:00:00") {
+        return true;
+    }
+
+    return false;
+}
+
 // instance factory
 
 Contents.create = function(data) {

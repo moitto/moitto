@@ -19,6 +19,7 @@ function on_loaded() {
             "votes-count":content.data["net_votes"].toString(),
             "replies-count":"0",
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+            "is-payout":content.is_payout() ? "yes" : "no",
             "image-url":content.get_title_image_url("640x480"),
             "main-tag":content.data["category"],
             "tag-1":(tags.length > 0) ? tags[0] : "",
@@ -27,7 +28,7 @@ function on_loaded() {
             "tag-4":(tags.length > 3) ? tags[3] : "",
             "tag-5":(tags.length > 4) ? tags[4] : "",
             "created-at":content.data["created"],
-             "theme":impl.theme,
+            "theme":impl.theme,
             "dir-path":impl.dir_path
         };
 

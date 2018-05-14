@@ -1,3 +1,36 @@
 import ~/themes.sbss
 
+#img_receiver.userpic: width=80dp, height=80dp, margin-bottom=5dp, \
+            content-border-radius=3dp
+
+#label_receiver.username: width=1pw-40dp, height=20dp, \
+            font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
+            text-color=$THEME_COLOR_100, text-align=center
+
+#section_amount: width=1pw-60dp, height=140dp, position=abs, gravity=top, y=140dp, \
+            content-border-width=1px, content-border-color=$THEME_COLOR_100
+#section_amount.box: width=1pw-30dp, height=60dp, content-background-color=#ff0
+#textfield_amount: width=1pw-44dp, height=60dp, keyboard-type=number, \
+            font-family=$SANSSERIF_BOLD, font-size=3.5, \
+            text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left
+
+#btn_send: width=0.8pw, height=50dp, position=absolute, gravity=top, y=140dp+140dp+20dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_04
+
 /catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
+/catalog/receiver: display=block, position=abs, gravity=top, y=20dp, text-align=center
+/catalog/amount: display=none
+/catalog/amount/box: display=none
+/catalog/amount/heading: padding="10dp 20dp", \
+            font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
+            text-color=$THEME_COLOR_100
+
+if "${receiver}" != ""
+    /catalog/receivers: display=none
+else
+end
+
+if "${amount}" != ""
+else
+end

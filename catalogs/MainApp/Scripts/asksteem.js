@@ -12,6 +12,8 @@ AskSteem.search = function(keyword, page, options, handler) {
                 handler(json);
             });
         }
+    }, function(reason) {
+        hanlder();
     });
 }
 

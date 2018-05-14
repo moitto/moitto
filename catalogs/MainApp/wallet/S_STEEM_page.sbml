@@ -1,6 +1,6 @@
 =begin page
 
-=object label: text=" STEEM ", style=label_amount
+=object label: text="STEEM", style=label_amount
 
 =begin notice
 STEEM은 교환과 송금이 가능한 토큰입니다.

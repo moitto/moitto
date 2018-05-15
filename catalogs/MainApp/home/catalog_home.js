@@ -93,8 +93,7 @@ function open_discussion(data) {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":data["author"],
         "permlink":data["permlink"],
-        "userpic-url":data["userpic-url"],
-        "voting-power":account.username
+        "userpic-url":data["userpic-url"]
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });

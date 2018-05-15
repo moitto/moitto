@@ -50,6 +50,7 @@ Notif.__get_account_history_for_notif = function(account, last_updated_date) {
                 }
 
                 if (Notif.__is_notify_op_for_account(op, account)) {
+                    console.log(JSON.stringify(response[i][1]));
                     history.push(response[i][1]);
                 }
             }
@@ -65,16 +66,16 @@ Notif.__update_notif = function(catalog, op, timestamp) {
     if (op[0] === "comment") {
         var category = "comment-" + op[1]["permlink"];
         var values = catalog.values("showcase", "notif", category, null, [0, 1]);
-        var authors = [ op[1]["author"] ];
+        var actors = [ op[1]["author"] ];
 
         if (values.length > 0) {
-            var last_authors = values[0]["authors"].split(",");
+            var last_actors = values[0]["actors"].split(",");
 
-            if (last_authors.includes(op[1]["author"])) {
+            if (last_actors.includes(op[1]["author"])) {
                 return;
             }
             
-            authors = authors.concat(last_authors);
+            actors = actors.concat(last_actors);
  
             catalog.categorize("showcase", "notif", values[0]["id"], null, [ category ]);
             catalog.remove("showcase", "notif", values[0]["id"]);
@@ -85,8 +86,9 @@ Notif.__update_notif = function(catalog, op, timestamp) {
         value["id"]   = timestamp + "-comment-" + op[1]["author"] + "-" + op[1]["permlink"];
         value["op"]   = "comment";
         value["date"] = timestamp;
+        value["author"]   = op[1]["parent_author"];
         value["permlink"] = op[1]["permlink"];
-        value["authors"]  = authors.join(",");
+        value["actors"]   = actors.join(",");
 
         catalog.submit("showcase", "notif", value["id"], value);
         catalog.categorize("showcase", "notif", value["id"], [ category ], null);
@@ -98,16 +100,16 @@ Notif.__update_notif = function(catalog, op, timestamp) {
         var prefix = op[1]["weight"] < 0 ? "down" : "up";
         var category = prefix + "vote-" + op[1]["permlink"];
         var values = catalog.values("showcase", "notif", category, null, [0, 1]);
-        var voters = [ op[1]["voter"] ];
+        var actors = [ op[1]["voter"] ];
 
         if (values.length > 0) {
-            var last_voters = values[0]["voters"].split(",");
+            var last_actors = values[0]["actors"].split(",");
 
-            if (last_voters.includes(op[1]["voter"])) {
+            if (last_actors.includes(op[1]["voter"])) {
                 return;
             }
             
-            voters = voters.concat(last_voters);
+            actors = actors.concat(last_actors);
 
             catalog.categorize("showcase", "notif", values[0]["id"], null, [ category ]);
             catalog.remove("showcase", "notif", values[0]["id"]);
@@ -118,8 +120,9 @@ Notif.__update_notif = function(catalog, op, timestamp) {
         value["id"]   = timestamp + "-" + prefix + "vote-" + op[1]["author"] + "-" + op[1]["permlink"];
         value["op"]   = prefix + "vote";
         value["date"] = timestamp;
+        value["author"]   = op[1]["author"];
         value["permlink"] = op[1]["permlink"];
-        value["voters"]   = voters.join(",");
+        value["actors"]   = actors.join(",");
 
         catalog.submit("showcase", "notif", value["id"], value);
         catalog.categorize("showcase", "notif", value["id"], [ category ], null);

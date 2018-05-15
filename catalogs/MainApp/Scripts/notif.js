@@ -12,9 +12,9 @@ Notif.update = function() {
         var earliest_date = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
         var last_updated_date = storage.value("NOTIF_UPDATED_DATE") || earliest_date;
 
-        Notif.__get_account_history_for_notif("clayop", last_updated_date).then(function(history) {
+        Notif.__get_account_history_for_notif("hanyeol", last_updated_date).then(function(history) {
             history.reverse().forEach(function(data) {
-                Notif.__update_notif(controller.catalog(), data["op"]);
+                Notif.__update_notif(controller.catalog(), data["op"], data["timestamp"]);
             });
 
             resolve(history);
@@ -61,7 +61,7 @@ Notif.__get_account_history_for_notif = function(account, last_updated_date) {
     });
 }
 
-Notif.__update_notif = function(catalog, op) {
+Notif.__update_notif = function(catalog, op, timestamp) {
     if (op[0] === "comment") {
         var category = "comment-" + op[1]["permlink"];
         var values = catalog.values("showcase", "notif", category, null, [0, 1]);
@@ -70,18 +70,21 @@ Notif.__update_notif = function(catalog, op) {
         if (values.length > 0) {
             var last_authors = values[0]["authors"].split(",");
 
-            if (!last_authors.includes(op[1]["author"])) {
-                authors = authors.concat(last_authors);
+            if (last_authors.includes(op[1]["author"])) {
+                return;
             }
-
+            
+            authors = authors.concat(last_authors);
+ 
             catalog.categorize("showcase", "notif", values[0]["id"], null, [ category ]);
             catalog.remove("showcase", "notif", values[0]["id"]);
         }
 
         var value = {};
 
-        value["id"] = "comment-" + op[1]["author"] + "-" + op[1]["permlink"];
-        value["op"] = "comment";
+        value["id"]   = timestamp + "-comment-" + op[1]["author"] + "-" + op[1]["permlink"];
+        value["op"]   = "comment";
+        value["date"] = timestamp;
         value["permlink"] = op[1]["permlink"];
         value["authors"]  = authors.join(",");
 
@@ -100,9 +103,11 @@ Notif.__update_notif = function(catalog, op) {
         if (values.length > 0) {
             var last_voters = values[0]["voters"].split(",");
 
-            if (!last_voters.includes(op[1]["voter"])) {
-                voters = voters.concat(last_voters);
+            if (last_voters.includes(op[1]["voter"])) {
+                return;
             }
+            
+            voters = voters.concat(last_voters);
 
             catalog.categorize("showcase", "notif", values[0]["id"], null, [ category ]);
             catalog.remove("showcase", "notif", values[0]["id"]);
@@ -110,8 +115,9 @@ Notif.__update_notif = function(catalog, op) {
 
         var value = {};
 
-        value["id"] = prefix + "vote-" + op[1]["author"] + "-" + op[1]["permlink"];
-        value["op"] = prefix + "vote";
+        value["id"]   = timestamp + "-" + prefix + "vote-" + op[1]["author"] + "-" + op[1]["permlink"];
+        value["op"]   = prefix + "vote";
+        value["date"] = timestamp;
         value["permlink"] = op[1]["permlink"];
         value["voters"]   = voters.join(",");
 

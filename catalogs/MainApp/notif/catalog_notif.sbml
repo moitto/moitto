@@ -1,7 +1,8 @@
 =begin catalog
 
-=object showcase: alternate-name=notif, data-script=feed_notif, \
-            sortable=yes, sortkey=rowid, sortorder=descending, \
+=object showcase: id=showcase.notif, alternate-name=notif, data-script=feed_notif, loads-more=yes, \
+            sortable=yes, sortkey=id, sortorder=descending, \
+            selectable=yes, script-when-selected=open_notif, \
             style=showcase_notif
 
 =end catalog

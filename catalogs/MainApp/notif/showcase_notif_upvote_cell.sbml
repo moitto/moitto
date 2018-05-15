@@ -1,10 +1,10 @@
 =begin cell
 
-=object image: image-url="${userpic-url}", style=img_userpic
+=object image: image-url="${userpic-url-1}", style=img_userpic
 
 =(object label:text="${voter-1}",style=label_notif,style=label_highlight)==(object label:text="님",style=label_notif)==(object label:text=", ", style=not_single_voter,style=label_notif)==(object label:text="${voter-2}",style=not_single_voter,style=label_notif,style=label_highlight)==(object label:text="님",style=not_single_voter,style=label_notif)==(object label:text=" 외 ${voters-count-n}명",style=multiple_voters,style=label_notif,style=label_highlight)==(object label:text="이",style=label_notif)=
 =(object label:text="회원님의 ",style=label_notif)==(object label:text="글",style=discussion,style=label_notif)==(object label:text="댓글",style=comment,style=label_notif)==(object label:text="에 ",style=label_notif)==(object label:text="보팅",style=label_notif,style=label_highlight)==(object label:text="을 했습니다.",style=label_notif)=
-=(object label:text="2018.5.20",style=label_date)=
+=(object label:text="${date}",style=label_date)=
 
 =object blank: style=blank_line
 

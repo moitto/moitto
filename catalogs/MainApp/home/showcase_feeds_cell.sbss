@@ -3,7 +3,7 @@ import ~/themes.sbss
 #section_contents: width=1pw, height=1ph, position=absolute
 #goL: font-family=$SANSSERIF_LIGHT
 
-#img_main: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
+#img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
 #btn_userpic: scale-mode=fill, position=absolute
 #btn_author: width="1pw-66dp", position=absolute, \
@@ -18,7 +18,7 @@ import ~/themes.sbss
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #img_main: width=1pw, height=1ph, visual-effect=blur-dark
+    #img_cover: width=1pw, height=1ph, visual-effect=blur-dark
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
     #blank_userpic.mask: display=none
     #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
@@ -30,7 +30,7 @@ if $LAYOUT == "thumbnail"
                 line-break-mode=word-wrap, line-spacing=0.3em, padding="(1sbh+120dp) 20dp 10dp 20dp"
     /cell/contents/meta: padding="0 20dp"
 else
-    #img_main: width=0.3ph, height=0.3ph, scales-in-background=yes, loading-duration=0.3, \
+    #img_cover: width=0.3ph, height=0.3ph, scales-in-background=yes, loading-duration=0.3, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
     #blank_userpic.mask: width=30dp, height=30dp, \

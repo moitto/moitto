@@ -1,5 +1,5 @@
 import ~/themes.sbss
 
-#showcase_blog: width=1pw, height=1ph, column-count=1, cell-size="1pw, 100dp"
+#showcase_blog: width=1pw, height=1ph, column-count=1, cell-size="1pw, 95dp"
 
 /page: page-background-color=$THEME_COLOR_02

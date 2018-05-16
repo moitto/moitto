@@ -1,14 +1,18 @@
 =begin cell
 
-=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
-${username}
+=object button: image-url="${userpic-url}", image-downloadable=yes, style=btn_userpic
+=object button: label="${username}", style=btn_user
 
-=object button: label="언팔로우", script=unfollow
-=object button: label="뮤트", script=mute
+
+=object button: label="언팔로우", script=unfollow, style=btn_follow
+=object button: label="뮤트", script=mute, style=btn_mute
+
 
 =begin form: form="form.${username}"
 =object input: id="id", value="${id}" 
 =object input: id="username", value="${username}" 
 =end form
+
+=object blank: style=blank_line
 
 =end cell

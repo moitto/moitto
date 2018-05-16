@@ -4,7 +4,7 @@
 
 =(object label:text="${actor-1}",style=label_notif,style=label_highlight)==(object label:text="님",style=label_notif)==(object label:text=", ", style=not_single_actor,style=label_notif)==(object label:text="${actor-2}",style=not_single_actor,style=label_notif,style=label_highlight)==(object label:text="님",style=not_single_actor,style=label_notif)==(object label:text=" 외 ${actors-count-n}명", style=multiple_actors,style=label_notif,style=label_highlight)==(object label:text="이",style=label_notif)=
 =(object label:text="회원님의 ",style=label_notif)==(object label:text="글", style=discussion,style=label_notif)==(object label:text="댓글",style=comment,style=label_notif)==(object label:text="에 ",style=label_notif)==(object label:text="댓글",style=label_notif,style=label_highlight)==(object label:text="을 남겼습니다.",style=label_notif)=
-=(object label:text="${date}",style=label_date)=
+=(object label:type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", source-timezone=GMT,text="${date}",style=label_date)=
 
 =object blank: style=blank_line
 

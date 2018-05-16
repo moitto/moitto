@@ -1,23 +1,21 @@
 import showcase_feeds_cell.sbss
 
-#reblogged: font-family=$SANSSERIF_BOLD, font-size=0.7, text-color=$THEME_COLOR_101, \
-            background-color=$THEME_COLOR_102, padding="0 1dp", border-radius=1dp
- 
-
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #img_reblogged.thumb: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
-    #img_reblogged: display=none
+    #img_reblogged: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
     #label_reblogged: height=15dp, font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
     /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=20dp, y=-40dp
 else
-    #img_reblogged.thumb: display=none
-    #img_reblogged: filename="~/subview_icon_reblogged.png", width=18dp, height=18dp, \
+    #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
                 position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
-    /cell/contents/reblogged: display=none
+    #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_101, text-align=left
+    /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
+                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
 end
 
+
+-- 리블로그 분기 --
 
 if "${reblogged}" == "yes"
     if "${reblogged-count-1}" == 0

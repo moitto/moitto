@@ -1,6 +1,6 @@
 =begin cell
 
-=object image: image-url="${image-url}", style=img_main
+=object image: image-url="${image-url}", style=img_cover
 
 =object section: section=contents, style=section_contents
 
@@ -29,10 +29,10 @@ ${title}
 =(object image: style=img_reblogged)= =(object label: text="${reblogged-by} 외 ${reblogged-count-1}명", style=label_reblogged)=
 =end multiple
 =begin single
-=(object image: style=img_reblogged.thumb)= =(object label: text="${reblogged-by}", style=label_reblogged)=
+=(object image: style=img_reblogged)= =(object label: text="${reblogged-by}", style=label_reblogged)=
 =end single
 =end reblogged
-=object image: style=img_reblogged
+=object image: style=img_reblogged.thumb
 
 =end contents
 

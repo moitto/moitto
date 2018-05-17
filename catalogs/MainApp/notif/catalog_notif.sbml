@@ -3,6 +3,7 @@
 =object showcase: id=showcase.notif, alternate-name=notif, data-script=feed_notif, loads-more=yes, \
             sortable=yes, sortkey=id, sortorder=descending, \
             selectable=yes, script-when-selected=open_notif, \
+            keeps-offscreen-cells=yes, \
             style=showcase_notif
 
 =end catalog

@@ -1,9 +1,18 @@
 =begin catalog
 
-=begin receiver
-=(object image: id=img.receiver.userpic, style=img_receiver.userpic)=
-=(object label: text="${subview.receiver}", style=label_receiver.username)=
-=end receiver
+=begin users
+=object showcase: alternate-name=transfer.users, data-script=feed_users, \
+            has-header=yes, has-footer=yes, \
+            selectable=yes, script-when-selected=choose_user, \
+            style=showcase_users
+=end users
+
+=begin transfer
+
+=begin to
+=(object image: id=img.to.userpic, style=img_to.userpic)=
+=(object label: text="${subview.to}", style=label_to.username)=
+=end to
 
 =object section: section=amount, style=section_amount
 
@@ -23,5 +32,7 @@
 =end amount
 
 =object button: script=send, label="송금하기", style=btn_send
+
+=end transfer
 
 =end catalog

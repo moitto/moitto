@@ -1,4 +1,9 @@
+var connect = require("connect");
+
 function on_qrcode(params) {
-    controller.action("popup-close");
-    controller.action("alert", {message:params["text"]});
+    if (connect.handle_url(params["text"])) {
+        controller.action("popup-close");
+
+        return;
+    }
 }

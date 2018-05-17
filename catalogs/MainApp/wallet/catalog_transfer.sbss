@@ -1,9 +1,12 @@
 import ~/themes.sbss
 
-#img_receiver.userpic: width=80dp, height=80dp, margin-bottom=5dp, \
+#showcase_users: width=1pw, height=1ph, position=abs, gravity=center, \
+            cell-count=1, cell-size="1pw, 60dp"
+
+#img_to.userpic: width=80dp, height=80dp, margin-bottom=5dp, \
             content-border-radius=3dp
 
-#label_receiver.username: width=1pw-40dp, height=20dp, \
+#label_to.username: width=1pw-40dp, height=20dp, \
             font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
             text-color=$THEME_COLOR_100, text-align=center
 
@@ -19,16 +22,17 @@ import ~/themes.sbss
         content-background-color=$THEME_COLOR_04
 
 /catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
-/catalog/receiver: display=block, position=abs, gravity=top, y=20dp, text-align=center
-/catalog/amount: display=none
-/catalog/amount/box: display=none
-/catalog/amount/heading: padding="10dp 20dp", \
+/catalog/transfer/to: display=block, position=abs, gravity=top, y=20dp, text-align=center
+/catalog/transfer/amount: display=none
+/catalog/transfer/amount/box: display=none
+/catalog/transfer/amount/heading: padding="10dp 20dp", \
             font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
             text-color=$THEME_COLOR_100
 
-if "${receiver}" != ""
-    /catalog/receivers: display=none
+if "${to}" != ""
+    /catalog/users: display=none
 else
+    /catalog/transfer: display=none
 end
 
 if "${amount}" != ""

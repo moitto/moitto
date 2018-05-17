@@ -1,6 +1,6 @@
 =begin catalog
 
-=object image: image-url="https://steemitimages.com/u/${receiver}/avatar", style=img_userpic
+=object image: image-url="https://steemitimages.com/u/${to}/avatar", style=img_userpic
 
 ${amount}
 

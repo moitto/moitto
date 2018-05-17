@@ -1,21 +1,24 @@
-var notif = require("notif");
+var notif   = require("notif");
+var connect = require("connect"); 
 
 function on_loaded() {
-	if (!notif.is_updating()) {
-		notif.update().then(function() {
-            __reload_notif();
-        });
-	}
+    update_notif();
 }
 
 function on_foreground() {
-	if (!notif.is_updating()) {
-		notif.update().then(function() {
-            __reload_notif();
-        });
-	}
+    update_notif();
 }
 
-function __reload_notif() {
-    controller.action("reload", { "subview":"V_NOTIF" });
+function on_connect(form) {
+    connect.invoke(form["method"], form);
+}
+
+function update_notif() {
+    if (!notif.is_updating()) {
+       notif.update().then(function(history) {
+            if (history.length > 0) {
+                controller.action("reload", { "subview":"V_NOTIF" });
+            }
+        });
+    }
 }

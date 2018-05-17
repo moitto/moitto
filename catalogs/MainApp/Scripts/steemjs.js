@@ -147,6 +147,19 @@ SteemJS.get_content_replies = function(author, permlink) {
     });
 }
 
+SteemJS.get_active_votes = function(author, permlink) {
+    return new Promise(function(resolve, reject) {
+        var method = "get_active_votes";
+        var params = [ author, permlink ];
+
+        SteemJS.__request_rpc(method, params).then(function(response) {
+            resolve(response["result"]);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
 SteemJS.get_accounts = function(names) {
     return new Promise(function(resolve, reject) {
         var method = "get_accounts";

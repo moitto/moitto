@@ -29,4 +29,9 @@ ${body}
             script-when-resume=update_vote, \
             style=btn_vote
 
+
+=object button: label="S_VOTES", script=show_votes, position=abs, gravity=bottom, y=-30dp, \
+            content-background-color=#ff0
+
 =end page
+

@@ -8,7 +8,6 @@ function feed_followers(keyword, location, length, sortkey, sortorder, handler) 
     var start_follower = (location > 0) ? __last_follower["follower"] : null;
 
     steemjs.get_followers(value["username"], start_follower, "blog", length).then(function(followers) {
-        console.log(JSON.stringify(followers));
         var data = [];
 
         if (location > 0) {

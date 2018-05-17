@@ -54,6 +54,7 @@ end
 
 #bold: font-family=$SANSSERIF_BOLD
 
+/page: script-when-loaded=on_loaded
 /page/body/header: display=none, padding=20dp
 /page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, \
                     text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap

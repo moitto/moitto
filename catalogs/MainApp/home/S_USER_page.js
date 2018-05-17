@@ -1,6 +1,5 @@
 var global = require("global");
 
-
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_USER");
 
@@ -34,7 +33,6 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
         }
 
         discussions.forEach(function(discussion) {
-        console.log(JSON.stringify(discussion));
             var content   = global.contents.create(discussion);
             var reblogged = (content.data["author"] !== $data["username"]) ? true : false;
  
@@ -62,4 +60,14 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
 
         handler(data);
     });        
+}
+
+function open_discussion(data) {
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+        "author":data["author"],
+        "permlink":data["permlink"],
+        "userpic-url":data["userpic-url"]
+    });
+    
+    controller.action("page", { "display-unit":"S_DISCUSSION", target:"popup" });
 }

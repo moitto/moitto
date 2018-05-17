@@ -12,7 +12,7 @@ Notif.update = function() {
         var earliest_date = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
         var last_updated_date = storage.value("NOTIF_UPDATED_DATE") || earliest_date;
 
-        Notif.__get_account_history_for_notif("clayop", last_updated_date).then(function(history) {
+        Notif.__get_account_history_for_notif(username, last_updated_date).then(function(history) {
             history.reverse().forEach(function(data) {
                 Notif.__update_notif(controller.catalog(), data["op"], data["timestamp"]);
             });
@@ -44,13 +44,12 @@ Notif.__get_account_history_for_notif = function(account, last_updated_date) {
             for (var i = 0; i < response.length; ++i) {
                 var timestamp = response[i][1]["timestamp"];
                 var op = response[i][1]["op"];
-
+ 
                 if (last_updated_date > new Date(Date.parse(timestamp))) {
                     break;
                 }
 
                 if (Notif.__is_notify_op_for_account(op, account)) {
-                    console.log(JSON.stringify(response[i][1]));
                     history.push(response[i][1]);
                 }
             }

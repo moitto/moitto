@@ -47,13 +47,15 @@ function on_loaded() {
 }
 
 function __get_theme_in_tags(tags) {
-    var theme = "default";
-
     tags.forEach(function(tag) {
         if (tag.startsWith("moitto-")) {
-            theme = tag.substring("moitto-".length);
+            var theme = tag.substring("moitto-".length);
+
+            if ([ "playlist", "webtoon" ].includes(theme)) {
+                return theme;
+            }
         }
     });
 
-    return theme;
+    return "default";
 }

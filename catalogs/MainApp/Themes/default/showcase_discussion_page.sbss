@@ -45,6 +45,7 @@ end
         content-background-color=$WHITE_COLOR_DIM, content-padding="0 3dp", content-border-radius=2dp
 
 #label_info: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9
+#btn_info: height=20dp, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left, label-font-size=0.9
 #label_author: height=20dp, text-color=$THEME_COLOR_102, font-size=1, \
             font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
 #btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=1

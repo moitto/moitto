@@ -26,6 +26,15 @@ function show_votes() {
     controller.action("page", { "display-unit":"S_VOTES", "target":"popup" })
 }
 
+function show_replies() {
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
+        "author":$data["author"],
+        "permlink":$data["permlink"]
+    });
+
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
+}
+
 function __update_vote_button(voted) {
     var button = view.object("btn.vote");
 

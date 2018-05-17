@@ -1,0 +1,3 @@
+import ~/themes.sbss
+
+/page: page-background-color=$THEME_COLOR_02

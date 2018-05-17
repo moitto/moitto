@@ -1,0 +1,10 @@
+=begin cell
+
+${author}
+${payout-value}
+${userpic-url}
+${created-at}
+
+${body}
+
+=end cell

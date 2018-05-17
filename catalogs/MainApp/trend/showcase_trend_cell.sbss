@@ -21,7 +21,7 @@ import ~/themes.sbss
 #btn_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
             position=absolute, gravity=bottom-left, x=60dp, y=-25dp, \
             label-font-family=$SANSSERIF_BOLD, label-font-size=1, label-color=$THEME_COLOR_100, label-align=left
-#label_created.at: width=200dp, height=12dp, \
+#label_date: width=200dp, height=12dp, \
             position=absolute, gravity=bottom-left, x=60dp, y=-12dp, \
             font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left
 

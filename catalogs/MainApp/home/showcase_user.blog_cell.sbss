@@ -10,7 +10,7 @@ import ~/themes.sbss
 #label_main.tag: style=label_meta
 #label_votes.count: style=label_meta
 #label_payout.value: style=label_meta
-#label_created.at: width=200dp, height=10dp, position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
+#label_date: width=200dp, height=10dp, position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
             font-family=$SANSSERIF_MEDIUM, text-align=left, font-size=0.7, text-color=$THEME_COLOR_101
 
 /cell: display=block, width=1pw, height=1ph, \

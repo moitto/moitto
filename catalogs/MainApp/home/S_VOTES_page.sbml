@@ -1,6 +1,5 @@
 =begin page
 
-=object showcase: alternate-name=votes, data-script=feed_votes, \
-            width=1pw, height=1ph, column-count=1, cell-size="1pw, 120dp"
+=object showcase: alternate-name=votes, data-script=feed_votes, style=showcase_votes
 
 =end page

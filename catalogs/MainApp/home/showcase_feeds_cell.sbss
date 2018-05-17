@@ -8,7 +8,7 @@ import ~/themes.sbss
 #btn_userpic: scale-mode=fill, position=absolute
 #btn_author: width="1pw-66dp", position=absolute, \
             label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation
-#label_created.at: width=200dp, position=absolute, \
+#label_date: width=200dp, position=absolute, \
             font-family=$SANSSERIF_MEDIUM, text-align=left
 
 /cell/contents: display=none
@@ -20,11 +20,12 @@ import ~/themes.sbss
 if $LAYOUT == "thumbnail"
     #img_cover: width=1pw, height=1ph, visual-effect=blur-dark
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
+    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1, label-align=left
     #blank_userpic.mask: display=none
     #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
     #btn_author: height=30dp, gravity=bottom, y=-70dp, \
                 label-color=$THEME_COLOR_102, label-align=center, label-font-size=1.1
-    #label_created.at: height=20dp, gravity=bottom-left, x=20dp, y=-20dp, \
+    #label_date: height=20dp, gravity=bottom-left, x=20dp, y=-20dp, \
                 font-size=0.9, text-color=$THEME_COLOR_102
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.8, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em, padding="(1sbh+120dp) 20dp 10dp 20dp"
@@ -33,13 +34,14 @@ else
     #img_cover: width=0.3ph, height=0.3ph, scales-in-background=yes, loading-duration=0.3, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
+    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.9, label-align=left
     #blank_userpic.mask: width=30dp, height=30dp, \
                 position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
                 content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
     #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
     #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
                 label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
-    #label_created.at: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
+    #label_date: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
                 font-size=0.7, text-color=$THEME_COLOR_101
     /cell: display=block, width=1pw, height=1ph, \
             border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
@@ -48,6 +50,6 @@ else
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
 end
 
-#label_main.tag: style=label_meta
-#label_votes.count: style=label_meta
-#label_payout.value: style=label_meta
+#btn_main.tag: style=btn_meta
+#btn_votes.count: style=btn_meta
+#btn_payout.value: style=btn_meta

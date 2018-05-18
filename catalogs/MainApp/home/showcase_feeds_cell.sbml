@@ -12,7 +12,7 @@ ${title}
 
 
 =begin meta: alt="태그, 보팅"
-=(object button: label="#${main-tag}", style=btn_main.tag)==(object label: text=" • ", style=label_meta)==(object button: type=decimal, label="${votes-count}보팅", style=btn_votes.count)==(object label:text=" •", style=label_meta)==(object button: label=" ${payout-value} ", style=btn_payout.value)=
+=(object button: label="#${main-tag}", style=btn_meta)==(object label: text=" • ", style=label_meta)==(object button: type=decimal, label="${votes-count}보팅", style=btn_meta)==(object label:text=" •", style=label_meta)==(object button: label=" ${payout-value} ", style=btn_meta)=
 =end meta
 
 

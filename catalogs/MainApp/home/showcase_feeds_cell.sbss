@@ -49,7 +49,3 @@ else
             line-spacing=0.2em, padding="10dp (0.3ph+20dp) 10dp 10dp"
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
 end
-
-#btn_main.tag: style=btn_meta
-#btn_votes.count: style=btn_meta
-#btn_payout.value: style=btn_meta

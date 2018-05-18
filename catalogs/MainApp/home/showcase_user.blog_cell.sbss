@@ -7,9 +7,7 @@ import ~/themes.sbss
             position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01, \
             scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left, text-color=$THEME_COLOR_101, font-size=0.9
-#label_main.tag: style=label_meta
-#label_votes.count: style=label_meta
-#label_payout.value: style=label_meta
+#btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-align=left, label-color=$THEME_COLOR_101, label-font-size=0.9
 #label_date: width=200dp, height=10dp, position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
             font-family=$SANSSERIF_MEDIUM, text-align=left, font-size=0.7, text-color=$THEME_COLOR_101
 

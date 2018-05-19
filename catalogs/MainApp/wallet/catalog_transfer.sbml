@@ -1,10 +1,6 @@
 =begin catalog
 
 =begin users
-=object showcase: alternate-name=transfer.users, data-script=feed_users, \
-            has-header=yes, has-footer=yes, \
-            selectable=yes, script-when-selected=choose_user, \
-            style=showcase_users
 =end users
 
 =begin transfer

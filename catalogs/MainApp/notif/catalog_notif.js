@@ -29,7 +29,27 @@ function open_notif(data) {
     if (value["op"] === "upvote" || value["op"] === "downvote") {
         if (data["source"] === "discussion") {
             __open_discussion(value["author"], value["permlink"]);
+
+            return;
         }
+
+        if (data["source"] === "comment") {
+            __show_replies(value["author"], value["permlink"]);
+
+            return;
+        }
+
+        return;
+    }
+
+    if (value["op"] === "comment") {
+        if (data["source"] === "comment") {
+            __show_replies(value["author"], value["permlink"]);
+
+            return;
+        }
+
+        return;
     }
 }
 
@@ -77,12 +97,18 @@ function __open_discussion(author, permlink) {
         "permlink":permlink,
         "userpic-url":user.get_userpic_url("small")
     });
-    console.log(user.get_userpic_url());
+
     controller.action("page", { "display-unit":"S_DISCUSSION" });
 }
 
-function __open_comments(author, permlink) {
+function __show_replies(author, permlink) {
+    console.log(JSON.stringify([author, permlink]));
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
+        "author":author,
+        "permlink":permlink
+    });
 
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
 function ___reload_notif_cell(data) {

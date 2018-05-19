@@ -2,6 +2,7 @@
 
 =object blank: id=container, autoresizing=flexible-size, style=blank_container
 
-=object tabbar: type=subview, style=tabbar
+=object tabbar: type=subview, script-when-selected@V_NOTIF=snooze_notif, style=tabbar
+=object blank: id=blank.notif.badge, hidden=yes, style=blank_notif.badge
 
 =end catalog

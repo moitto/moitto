@@ -30,9 +30,7 @@ import ~/themes.sbss
             text-color=$THEME_COLOR_100
 
 if "${to}" != ""
-    /catalog/users: display=none
 else
-    /catalog/transfer: display=none
 end
 
 if "${amount}" != ""

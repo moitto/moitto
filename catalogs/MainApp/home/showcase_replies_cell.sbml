@@ -10,7 +10,7 @@ ${body}
 
 =object section: section=replies, style=section_replies
 =begin replies: id=replies
-=object label: text=" ${payout-value}", style=label_value
+=object button: label=" ${payout-value}", style=btn_value
 =object button: label="대댓글 28", style=btn_replies
 =end replies
 

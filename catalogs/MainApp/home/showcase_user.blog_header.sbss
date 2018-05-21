@@ -13,8 +13,8 @@ import ~/themes.sbss
 
 #btn_follow: width=70dp, height=26dp, \
             position=absolute, gravity=top-left, x="0.5pw+60dp", y=47dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=0.9, \
-            content-background-color=$THEME_COLOR_04
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9, \
+            content-background-color=$THEME_COLOR_03
 
 #btn_info: width=0.25pw, height=30dp, \
         label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \

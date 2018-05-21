@@ -44,7 +44,7 @@ end
 
 #btn_login: width=0.8pw, height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_04, margin="0 0 20dp 0"
+            content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
 #label_notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
 
 %content: display=block, position=absolute, gravity=center, text-align=center

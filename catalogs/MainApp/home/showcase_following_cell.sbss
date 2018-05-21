@@ -7,12 +7,12 @@ import ~/themes.sbss
             position=absolute, gravity=left, x=60dp
 
 #btn_follow: width=80dp, height=30dp, position=absolute, gravity=top-right, x=-10dp, y=15dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_104, label-font-size=0.8, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
             content-background-color=$THEME_COLOR_02, \
-            content-border-color=$THEME_COLOR_04, content-border-width=1px
+            content-border-color=$THEME_COLOR_03, content-border-width=1px
 #btn_mute: width=80dp, height=30dp, position=absolute, gravity=top-right, x=-10dp, y=50dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_104, label-font-size=0.8, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
             content-background-color=$THEME_COLOR_02, \
-            content-border-color=$THEME_COLOR_04, content-border-width=1px
+            content-border-color=$THEME_COLOR_03, content-border-width=1px
 
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom

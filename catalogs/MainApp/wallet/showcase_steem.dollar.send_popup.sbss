@@ -17,7 +17,7 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00
 #btn_send: width="(0.8pw-10dp)/2", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_04
+            content-background-color=$THEME_COLOR_03
 
 /popup: page-background-color=$BLACK_COLOR_DIM
 /popup/form: form=send, display=block, position=absolute, gravity=top, y="1sbh+44dp", text-align=center

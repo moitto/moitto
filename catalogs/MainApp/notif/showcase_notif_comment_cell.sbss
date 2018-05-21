@@ -10,7 +10,7 @@ import ~/themes.sbss
 /cell: margin="10dp 10dp 10dp 60dp"
 
 if "${checked}" != "yes"
-#blank_dot: width=6dp, height=6dp, color=$THEME_COLOR_04, content-border-radius=3dp, \
+#blank_dot: width=6dp, height=6dp, color=$THEME_COLOR_03, content-border-radius=3dp, \
             position=absolute, gravity=right, x=-10dp
 end
 

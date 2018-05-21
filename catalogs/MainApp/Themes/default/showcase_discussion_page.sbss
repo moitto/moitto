@@ -4,8 +4,6 @@ import ~/themes.sbss
 #btn_vote: width=50dp, height=50dp, \
         image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
         position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
-        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=2, \
-        content-background-color=$THEME_COLOR_04, content-border-radius=25dp
 
 if "${voted}" == "yes"
     #btn_vote: selected=yes

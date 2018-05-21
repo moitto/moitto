@@ -10,12 +10,12 @@ import ~/themes.sbss
 #textfield_username: style=textfield
 #textfield_password: style=textfield
 
-#btn_paste: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_04, label-font-size=0.9, \
+#btn_paste: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_03, label-font-size=0.9, \
         margin="0 0 50dp 0"
 
 #btn_login: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_04
+        content-background-color=$THEME_COLOR_03
 
 /catalog: page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
 /catalog/form:

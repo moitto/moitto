@@ -7,6 +7,9 @@ import ~/themes.sbss
             label-align=left, label-font-size=0.9
 #label_date: height=15dp, position=absolute, gravity=top-left, x=50dp, y=25dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left, font-size=0.7
+#btn_vote: width=24dp, height=24dp, \
+            image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
+            position=absolute, gravity=top-right, x=-10dp, y=13dp
 
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
 
@@ -14,13 +17,14 @@ import ~/themes.sbss
             line-spacing=0.3em, paragraph-spacing=0.3em, margin="50dp 10dp 10dp 10dp"
 
 
--- 대댓글 --
+-- 보팅 & 대댓글 --
 
 #section_replies: width=1pw, height=40dp, position=absolute, gravity=bottom, \
             content-background-color=$THEME_COLOR_00
 #btn_value: position=absolute, gravity=left, x=10dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left, label-font-size=0.9
-#btn_replies: position=absolute, gravity=right, x=-10dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=right, label-font-size=0.9
+#btn_replies.title: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.9
+#btn_replies: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9
 
 /cell/replies: display=none
+/cell/replies/comments: display=block, position=absolute, gravity=right, x=-10dp, text-align=right

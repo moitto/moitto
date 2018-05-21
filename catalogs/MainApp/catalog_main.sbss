@@ -6,8 +6,8 @@ import themes.sbss
         title-color=$THEME_COLOR_100, selected-title-color=$THEME_COLOR_100, \
         content-background-color=$THEME_COLOR_00
 
-#blank_notif.badge: width=6dp, height=6dp, color=$THEME_COLOR_04, content-border-radius=3dp, \
-        position=abs, gravity=bottom, y=-42dp
+#blank_notif.badge: width=6dp, height=6dp, color=$THEME_COLOR_03, content-border-radius=3dp, \
+        position=absolute, gravity=bottom, x=10dp, y=-(35dp+1eb)
 
 /catalog: page-background-color=$THEME_COLOR_00, \
 		script-when-loaded=on_loaded, script-when-foreground=on_foreground

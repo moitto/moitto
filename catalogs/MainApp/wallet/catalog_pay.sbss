@@ -4,6 +4,6 @@ import ~/themes.sbss
 
 #btn_send: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_04
+        content-background-color=$THEME_COLOR_03
 
 /catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02

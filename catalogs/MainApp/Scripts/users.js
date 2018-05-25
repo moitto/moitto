@@ -38,8 +38,39 @@ User.prototype.get_sbd_balance = function() {
 User.prototype.get_steem_power = function() {
     var vesting_shares  = this.data["vesting_shares"].split(" ")[0];
     var steems_per_vest = this.dynprops.get_steems_per_vest();
-                
+
     return steems_per_vest * parseFloat(vesting_shares);
+}
+
+User.prototype.get_reward_steem_balance = function() {
+    return parseFloat(this.data["reward_steem_balance"].split(" ")[0]);
+}
+
+User.prototype.get_reward_sbd_balance = function() {
+    return parseFloat(this.data["reward_sbd_balance"].split(" ")[0]);
+}
+
+User.prototype.get_reward_steem_power = function() {
+    var vesting_shares  = this.data["reward_vesting_balance"].split(" ")[0];
+    var steems_per_vest = this.dynprops.get_steems_per_vest();
+
+    return steems_per_vest * parseFloat(vesting_shares);
+}
+
+User.prototype.has_rewards = function() {
+    if (parseFloat(this.data["reward_steem_balance"].split(" ")[0]) > 0) {
+        return true;
+    }
+
+    if (parseFloat(this.data["reward_sbd_balance"].split(" ")[0]) > 0) {
+        return true;
+    }
+
+    if (parseFloat(this.data["reward_vesting_balance"].split(" ")[0]) > 0) {
+        return true;
+    }
+
+    return false;
 }
 
 User.prototype.get_userpic_url = function(size) {

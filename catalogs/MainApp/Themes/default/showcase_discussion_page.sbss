@@ -1,7 +1,6 @@
 import ~/themes.sbss
 
-#section_body: width=1pw, height=1ph
-#btn_vote: width=50dp, height=50dp, \
+#btn_vote: width=50dp, height=50dp, topmost=yes, \
         image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
         position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
 
@@ -13,15 +12,24 @@ if "${is-payout}" == "yes"
     #btn_vote: hidden=yes
 end
 
-#image: max-width="1pw-20dp
+#image: max-width="1pw-40dp", script-when-download=on_download
 #image.full: max-width=1pw
 
+#heading-1: font-size=1.8
+#heading-2: font-size=1.6
+#heading-3: font-size=1.4
+#heading-4: font-size=1.2
+#heading-5: font-size=1.1
+#heading-6: font-size=1.0
 #link: action=link, text-decoration=underline-#6C6C6C-1
-#bold: font-family=$SANSSERIF_BOLD
+#em: font-family=$SANSSERIF_BOLD
+#italic: font-style=italic
+#em-italic: font-family=$SANSSERIF_BOLD
+#linethrough: text-decoration=line-through
 #blank_line: color=$LIGHT_LINE_COLOR, width=1pw-20dp, height=1dp
 
 /page: page-background-color=$THEME_COLOR_02
-/page/body: display=none, padding="0 20dp (70dp+1eb) 20dp", \
+/page/body: padding="0 20dp (70dp+1eb) 20dp", \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
         line-spacing=0.6em, paragraph-spacing=1em, empty-line-height=0
 

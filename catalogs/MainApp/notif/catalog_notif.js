@@ -108,7 +108,7 @@ function __show_replies(author, permlink) {
         "permlink":permlink
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
+    controller.action("page", { "display-unit":"S_REPLIES" })
 }
 
 function ___reload_notif_cell(data) {

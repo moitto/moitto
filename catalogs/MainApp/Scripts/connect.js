@@ -65,7 +65,7 @@ Connect.__invoke_transfer = function(params) {
         "hidden":params["hidden"] || "no"
     });
 
-    controller.action("subview", { "subview":"V_TRANSFER", "target":"popup" });
+    controller.action("page", { "display-unit":"S_TRANSFER" });
 }
 
 Connect.__invoke_pay = function(params) {
@@ -75,7 +75,7 @@ Connect.__invoke_pay = function(params) {
          "amount":params["amount"]
      });
 
-    controller.action("subview", { "subview":"V_PAY", "target":"popup" });
+    controller.action("page", { "display-unit":"S_PAY" });
 }
 
 Connect.__parse_query = function(query) {

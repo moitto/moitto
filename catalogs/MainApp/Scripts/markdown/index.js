@@ -6,8 +6,8 @@ Markdown.parser = include("./parser.js");
 
 // class MarkdownModel
 
-function MarkdownModel(data) {
-    this.data = data;
+function MarkdownModel(elements) {
+    this.elements = elements;
 }
 
 // instance factory

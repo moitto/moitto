@@ -56,9 +56,9 @@ SteemBroadcast.__send_transaction = function(operation, keys) {
 
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
             SteemBroadcast.__sign_transaction(transaction, keys, function(signatures) {
-                transaction["signatures"] = signatures;
+            transaction["signatures"] = signatures;
 
-                SteemApi.broadcast_transaction_synchronous(transaction).then(function(response) {
+                Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
                     resolve(transaction);
                 }, function(reason) {
                     reject(reason);
@@ -72,13 +72,13 @@ SteemBroadcast.__send_transaction = function(operation, keys) {
 
 SteemBroadcast.__prepare_transaction = function(transaction) {
     return new Promise(function(resolve, reject) {
-        SteemApi.get_dynamic_global_properties().then(function(properties) {
+        Steem.api.get_dynamic_global_properties().then(function(properties) {
             var ref_block_num = (properties.last_irreversible_block_num - 1) & 0xFFFF;
             var current_date = new Date(properties.time + 'Z');
             var expired_date = new Date(current_date.getTime() + 600 * 1000);
             var expiration = expired_date.toISOString().substring(0, 19);
 
-            SteemApi.get_block(properties.last_irreversible_block_num).then(function(block) {
+            Steem.api.get_block(properties.last_irreversible_block_num).then(function(block) {
                 var head_block_id = decode("hex", block.previous);
                 var ref_block_prefix = Steem.struct.unpack("<I", head_block_id, 4)[0];
 

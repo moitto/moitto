@@ -1,8 +1,6 @@
 =begin page
 
-=object section: section=body, style=section_body
-
-=begin body: id=body
+=begin body
 =object image: image-url="${image-url}", style=img_main
 =object blank: style=blank_dim
 

@@ -17,3 +17,7 @@ import ~/themes.sbss
             label-align=center, label-font-size=0.9
 
 /header: text-align=center
+
+if "${has-rewards}" != "yes"
+   /header/rewards: display=none 
+end

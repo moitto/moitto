@@ -17,7 +17,11 @@ function on_loaded() {
             "reputation":user.get_reputation().toFixed(1).toString(),
             "post-count":user.get_post_count().toString(),
             "following-count":user.get_following_count().toString(),
-            "follower-count":user.get_follower_count().toString()
+            "follower-count":user.get_follower_count().toString(),
+            "reward-steem-balance":user.get_reward_steem_balance().toFixed(3).toString(),
+            "reward-steem-power":user.get_reward_steem_power().toFixed(3).toString(),
+            "reward-sbd-balance":user.get_reward_sbd_balance().toFixed(3).toString(),
+            "has-rewards":user.has_rewards() ? "yes" : "no"
         });
 
         catalog.submit("showcase", "auxiliary", "S_WALLET.ASSETS", {
@@ -27,6 +31,10 @@ function on_loaded() {
         });
 
         __reload_assets_showcase();
+
+        if (user.has_rewards()) {
+            __reload_assets_showcase_header();
+        }
     });
 
     __hide_loading_section();
@@ -66,6 +74,12 @@ function __reload_assets_showcase() {
     var showcase = view.object("showcase.assets");
 
     showcase.action("reload");
+}
+
+function __reload_assets_showcase_header() {
+    var showcase = view.object("showcase.assets");
+
+    showcase.action("reload-header");
 }
 
 function __show_assets_showcase() {

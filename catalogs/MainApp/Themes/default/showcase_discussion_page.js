@@ -1,5 +1,7 @@
 var connect = require("connect");
 
+var __schedule_to_reload = false;
+
 function on_loaded() {
     var referrer = [$data["author"], $data["permlink"]];
     var urls = __get_urls_in_content($data["body"]);
@@ -8,7 +10,19 @@ function on_loaded() {
         if (connect.handle_url(url["url"], referrer)) {
             return;
         }
-    })
+    });
+}
+
+function on_download() {
+    if (!__schedule_to_reload) {
+        timeout(0.5, function() {
+            view.action("reload", { "fixes-position":"yes" });
+
+            __schedule_to_reload = false;
+        });
+    }
+
+    __schedule_to_reload = true;
 }
 
 function update_vote() {
@@ -23,7 +37,7 @@ function show_votes() {
         "permlink":$data["permlink"]
     });
 
-    controller.action("page", { "display-unit":"S_VOTES", "target":"popup" })
+    controller.action("page", { "display-unit":"S_VOTES" })
 }
 
 function show_replies() {
@@ -32,7 +46,7 @@ function show_replies() {
         "permlink":$data["permlink"]
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
+    controller.action("page", { "display-unit":"S_REPLIES" })
 }
 
 function __update_vote_button(voted) {

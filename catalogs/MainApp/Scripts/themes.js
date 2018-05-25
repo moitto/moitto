@@ -3,6 +3,7 @@ Themes = (function() {
 })();
 
 Themes.markdown = require("markdown");
+Themes.sbml     = require("sbml");
 
 // class ThemeBase
 
@@ -16,10 +17,8 @@ ThemeBase.prototype.parse_markdown = function(text) {
     return Themes.markdown.parse(text);
 }
 
-ThemeBase.prototype.markdown_to_sbml = function(model) {
-     var sbml = "";
-
-    return sbml;
+ThemeBase.prototype.markdown_to_sbml = function(markdown) {
+    return Themes.sbml.generate_from_markdown(markdown);
 }
 
 // instance factory

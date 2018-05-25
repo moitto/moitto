@@ -4,5 +4,5 @@ function transfer() {
         "currency":"SBD"
     });
 
-    controller.action("subview", { "subview":"V_TRANSFER", "target":"popup" })
+    controller.action("page", { "display-unit":"S_RECEIVERS" });
 }

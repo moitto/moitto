@@ -4,7 +4,7 @@ MarkdownParser = (function() {
 
 MarkdownParser.parse = function(text) {
     console.log(text);
-    var tokenizer = /((?:^|\n+)(?:\n---+|\* \*(?: \*)+)\n)|(?:^```(\w*)\n([\s\S]*?)\n```$)|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>\s+.*)+)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*)+)|(?:\!\[([^\]]*?)\]\(([^\)]+?)\))|(\[)|(\](?:\(([^\)]+?)\))?)|(?:(?:^|\n)(#{1,5})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|(?:`([^`].*?)`)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/gm;
+    var tokenizer = /((?:^|\n+)(?:---+|\* \*(?: \*)+)\n*)|(?:^```(\w*)\n([\s\S]*?)\n```$)|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>\s+.*)+)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*)+)|(?:\!\[([^\]]*?)\]\(([^\)]+?)\))|(\[)|(\](?:\(([^\)]+?)\))?)|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|(?:^|\n)\s*((?:https?:\/\/)((?:[a-z0-9]+\.?)+)(\/|(?:\/[a-zA-Z0-9_@:\/\.\-]+))?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`].*?)`)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/gm;
     var elements = [];
     var token, text_chunk, chunk, element;
     var last_index  = 0;
@@ -13,7 +13,14 @@ MarkdownParser.parse = function(text) {
         text_chunk = text.substring(last_index, token.index);
         chunk = token[0];
 
-        if (token[3] || token[4]) { // code/indent block
+        if (token[1]) { // line
+            element = {
+                type:"line",
+                data:{
+                    /* no data */
+                }
+            }
+        } else if (token[3] || token[4]) { // code/indent block
             element = {
                 type:"code",
                 data:{
@@ -90,41 +97,50 @@ MarkdownParser.parse = function(text) {
             element = {
                 type:"heading",
                 data:{
-                    text:token[13] ? token[14] : "",
+                    text:token[13] ? token[14].replace(/\s+#+$/, "") : "",
                     level:(token[12] || token[13]).length
                 }
             }
-        } else if (token[15]) { // `code`
+        } else if (token[15]) { // url
+            element = {
+                type:"url",
+                data:{
+                    url:token[15],
+                    host:token[16],
+                    path:token[17]
+                }
+            }
+        } else if (token[18]) { // `code`
             element = {
                 type:"code",
                 data:{
-                    text:token[15]
+                    text:token[18]
                 }
             }
-        } else if (token[16] || token[1]) { // inline formatting: *em*, **strong**, ...
-            var symbol = token[16] ? token[16][0] : "";
+        } else if (token[19]) { // inline formatting: *em*, **strong**, ...
+            var symbol = token[19] ? token[19][0] : "";
 
             if (symbol === "*" || symbol === "_" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
 
                 if (formatter_begin) {
-                    var length = Math.min(formatter_begin.data["text"].length, token[16].length);
+                    var length = Math.min(formatter_begin.data["text"].length, token[19].length);
                     var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
 
                     formatter_begin["type"] = type + "-begin";
-                    formatter_begin.data["prior"] = formatter_begin.data["text"].substring(0, token[16].length - length);
+                    formatter_begin.data["prior"] = formatter_begin.data["text"].substring(0, token[19].length - length);
 
                     element = {
                         type:type + "-end",
                         data:{
-                            trailing:token[16].substring(0, formatter_begin.data["text"].length - length)
+                            trailing:token[19].substring(0, formatter_begin.data["text"].length - length)
                         }
                     }
                 } else {
                    element = {
                         type:"formatter-begin",
                         data:{
-                            text:token[16]
+                            text:token[19]
                         }
                     }
                 }
@@ -132,7 +148,7 @@ MarkdownParser.parse = function(text) {
                 element = {
                     type:"break",
                     data:{
-                        text:token[16] || token[1]
+                        text:token[19]
                     }
                 }
 
@@ -148,6 +164,8 @@ MarkdownParser.parse = function(text) {
                 }
             });
         }
+        console.log(JSON.stringify(element));
+        console.log("-------");
 
         elements.push(element);
 
@@ -172,11 +190,13 @@ MarkdownParser.parse = function(text) {
         console.log("<<<<<<<<<");
     });
 
+    console.log("DONE");
+
     return elements;
 }
 
-MarkdownParser.__outdent = function(str) {
-    return str.replace(RegExp('^'+(str.match(/^(\t| )+/) || '')[0], 'gm'), '');
+MarkdownParser.__outdent = function(text) {
+    return str.replace(RegExp('^'+(text.match(/^(\t| )+/) || '')[0], 'gm'), '');
 }
 
 MarkdownParser.__last_link_begin_or_text = function(elements) {

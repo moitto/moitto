@@ -12,7 +12,8 @@ if "${is-payout}" == "yes"
     #btn_vote: hidden=yes
 end
 
-#image: max-width="1pw-40dp", script-when-download=on_download
+#image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
+        scales-in-background=yes, script-when-download=on_download
 #image.full: max-width=1pw
 
 #heading-1: font-size=1.8
@@ -26,7 +27,7 @@ end
 #italic: font-style=italic
 #em-italic: font-family=$SANSSERIF_BOLD
 #linethrough: text-decoration=line-through
-#blank_line: color=$LIGHT_LINE_COLOR, width=1pw-20dp, height=1dp
+#line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
 
 /page: page-background-color=$THEME_COLOR_02
 /page/body: padding="0 20dp (70dp+1eb) 20dp", \

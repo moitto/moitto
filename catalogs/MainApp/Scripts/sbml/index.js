@@ -18,6 +18,14 @@ Sbml.generate_from_markdown = function(markdown) {
             return;
         }
 
+        if (element.type === "line") {
+            sbml += "\n";
+            sbml += "=(object blank: style=line)=";
+            sbml += "\n";
+
+            return;
+        }
+
         if (element.type === "heading") {
             if (sbml.length > 0) {
                 sbml += "\n";
@@ -30,7 +38,7 @@ Sbml.generate_from_markdown = function(markdown) {
         }
 
         if (element.type === "image") {
-            sbml += "=(object image:style=image, image-url=\"" + element.data["url"] + "\")=";
+            sbml += "=(object image: style=image, image-url=\"" + element.data["url"] + "\")=";
 
             return;
         }
@@ -44,6 +52,20 @@ Sbml.generate_from_markdown = function(markdown) {
 
         if (element.type === "link-end") {
             sbml += "]=";
+
+            return;
+        }
+
+        if (element.type === "url") {
+            if (element.data["path"].search(/\.[jpg|jpeg|png|gif](\?|\/|$)/ig) != -1) {
+                sbml += "\n";
+                sbml += "=(object image: style=image, image-url=\"" + element.data["url"] + "\")=";
+
+                return;
+            }
+
+            sbml += "\n";
+            sbml += "=[link:url=\"" + element.data["url"] + "\"|" + element.data["url"] + "]=";
 
             return;
         }

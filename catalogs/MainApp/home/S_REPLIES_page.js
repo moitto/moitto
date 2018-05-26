@@ -10,7 +10,7 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
             var theme = themes.create("default");
             var data = [];
 
-            response.forEach(function(entry) {
+            response.reverse().forEach(function(entry) {
                 var reply = replies.create(entry);
 
                 data.push({

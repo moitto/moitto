@@ -19,29 +19,29 @@ $TRANSPARENT_COLOR = #FFFFFF00
 
 -- 배경색 --
 
-내비바색, 툴바색
+-- 내비바색, 툴바색
 $THEME_COLOR_00 = #FCFCFC
-라인색
+-- 라인색
 $THEME_COLOR_01 = #EBEBEB
-바탕색
+-- 바탕색
 $THEME_COLOR_02 = #FFFFFF
-메인색
+-- 메인색
 $THEME_COLOR_03 = #C7EA46
-서브색
+-- 서브색
 $THEME_COLOR_04 = #4CBB17
-회색
+-- 회색
 $THEME_COLOR_05 = #959595
 
 $THEME_HIGHLIGHT_COLOR = #0000001A
 
 -- 글자색 --
-짙은 색
+-- 짙은 색
 $THEME_COLOR_100 = #383838
-옅은 색
+-- 옅은 색
 $THEME_COLOR_101 = #6C6C6C
-흰색
+-- 흰색
 $THEME_COLOR_102 = #FFFFFF
-메인색
+-- 메인색
 $THEME_COLOR_103 = #C7EA46
-서브색
+-- 서브색
 $THEME_COLOR_104 = #4CBB17

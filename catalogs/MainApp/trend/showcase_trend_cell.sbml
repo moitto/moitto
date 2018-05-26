@@ -13,7 +13,7 @@ ${title}
 =end title
 
 =begin meta
-=(object button: label="#${main-tag}", style=btn_meta)==(object label:text=" • ", style=label_meta)==(object button: type=decimal, label="${votes-count} 보팅", style=btn_meta)==(object label: text=" •", style=label_meta)==(object button: label=" ${payout-value} ", style=btn_meta)=
+=(object button: label="#${main-tag}", style=btn_meta)==(object label:text=" • ", style=label_meta)==(object button: type=decimal, label="${votes-count} 보팅", style=btn_meta)==(object label: text=" •", style=label_meta)==(object button: label=" ${payout-value} ", style=btn_meta)= =(object label: text=" • 댓글: ${replies-count}", style=label_meta)= 
 =end meta
 
 =end contents

@@ -12,8 +12,8 @@ function MarkdownModel(elements) {
 
 // instance factory
 
-Markdown.parse = function(text) {
-    return new MarkdownModel(Markdown.parser.parse(text));
+Markdown.parse = function(text, urls) {
+    return new MarkdownModel(Markdown.parser.parse(text, urls));
 }
 
 __MODULE__ = Markdown;

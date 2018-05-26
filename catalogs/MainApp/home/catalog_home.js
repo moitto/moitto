@@ -68,6 +68,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "author-reputation":content.get_author_reputation().toFixed(0).toString(),
                     "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                     "votes-count":content.data["net_votes"].toString(),
+                    "replies-count":content.data["children"].toString(),
                     "main-tag":content.data["category"],
                     "reblogged":reblogged ? "yes" : "no",
                     "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",

@@ -17,7 +17,7 @@ function on_loaded() {
             "title":content.data["title"],
             "body":impl.build_body(content.data["body"], content.meta["format"]),
             "votes-count":content.data["net_votes"].toString(),
-            "replies-count":"0",
+            "replies-count":content.data["children"].toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
             "is-payout":content.is_payout() ? "yes" : "no",
             "image-url":content.get_title_image_url("640x480"),

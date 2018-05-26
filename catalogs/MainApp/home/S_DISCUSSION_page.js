@@ -36,6 +36,10 @@ function on_loaded() {
             data["hides-navibar"] = "yes";
         }
 
+        Object.keys(impl.auxiliary).forEach(function(key) {
+            data[key] = impl.auxiliary[key];
+        });
+
         if (content.is_voted(username)) {
             data["voted"] = "yes"; 
         }
@@ -47,15 +51,27 @@ function on_loaded() {
 }
 
 function __get_theme_in_tags(tags) {
-    tags.forEach(function(tag) {
-        if (tag.startsWith("moitto-")) {
-            var theme = tag.substring("moitto-".length);
+    for (var i = 0; i < tags.length; ++i) {
+        if (tags[i].startsWith("moitto-")) {
+            var theme = tags[i].substring("moitto-".length);
 
             if ([ "playlist", "webtoon" ].includes(theme)) {
-                return theme;
+                return "moitto/" + theme;
             }
+
+            continue;
         }
-    });
+
+        if (tags[i].startsWith("tuubcast-")) {
+            var theme = tags[i].substring("tuubcast-".length);
+
+            if ([ "fancam" ].includes(theme)) {
+                return "tuubcast/" + theme;
+            }
+
+            continue;
+        }
+    }
 
     return "default";
 }

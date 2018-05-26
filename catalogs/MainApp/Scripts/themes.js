@@ -11,6 +11,7 @@ function ThemeBase(theme) {
     this.theme = theme;
     this.dir_path = "~/Themes/" + theme;
     this.hides_navibar = false;
+    this.auxiliary = {};
 }
 
 ThemeBase.prototype.parse_markdown = function(text) {

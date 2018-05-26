@@ -1,0 +1,9 @@
+=begin popup
+
+=begin message
+보팅 완료!
+=end message
+
+=object button: label="완료", action=popup-close, style=btn_close
+
+=end popup

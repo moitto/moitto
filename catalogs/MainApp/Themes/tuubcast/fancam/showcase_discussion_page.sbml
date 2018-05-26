@@ -1,0 +1,29 @@
+=begin page
+
+=object youtube: video-id="${video-id}", style=youtube
+
+=begin preview
+=object image: image-url="${image-url}", style=img_preview.poster
+=object section: section=preview.container, style=section_preview.container
+
+=begin container
+=begin content
+
+=begin title
+${title}
+=end title
+
+=begin user
+xxx
+=end user
+
+=end content
+=end container
+=end preview
+
+=object button: id=btn.vote, action=popup, display-unit="S_DISCUSSION", \
+            dir-path="${dir-path}", alternate-name="discussion.vote", \
+            script-when-resume=update_vote, \
+            style=btn_vote
+
+=end page

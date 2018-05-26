@@ -49,7 +49,7 @@ Sbml.__elements_to_sbml = function(elements) {
 
 
         if (element.type === "link-begin") {
-            sbml += "=[link:url=\"" + element.data["url"] + "\"|";
+            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|";
 
             return;
         }
@@ -82,7 +82,7 @@ Sbml.__elements_to_sbml = function(elements) {
             }
 
             sbml += "\n";
-            sbml += "=[link:url=\"" + element.data["url"] + "\"|" + element.data["url"] + "]=";
+            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + element.data["url"] + "]=";
 
             return;
         }

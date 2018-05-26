@@ -23,7 +23,7 @@ end
 #heading-4: font-size=1.2
 #heading-5: font-size=1.1
 #heading-6: font-size=1.0
-#link: action=link, text-decoration=underline-#6C6C6C-1
+#link: text-decoration=underline-#6C6C6C-1
 #em: font-family=$SANSSERIF_BOLD
 #italic: font-style=italic
 #em-italic: font-family=$SANSSERIF_BOLD

@@ -57,7 +57,7 @@ Sbml.generate_from_markdown = function(markdown) {
         }
 
         if (element.type === "url") {
-            if (element.data["path"].search(/\.[jpg|jpeg|png|gif](\?|\/|$)/ig) != -1) {
+            if (element.data["path"].search(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig) != -1) {
                 sbml += "\n";
                 sbml += "=(object image: style=image, image-url=\"" + element.data["url"] + "\")=";
 

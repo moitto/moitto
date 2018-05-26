@@ -9,6 +9,7 @@ function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
             var data = [];
 
             response.forEach(function(entry) {
+                console.log(JSON.stringify(entry));
                 var vote = votes.create(entry);
 
                 data.push({

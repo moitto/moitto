@@ -14,7 +14,7 @@ ${body}
 =begin replies: id=replies
 =object button: label=" ${payout-value}", style=btn_value
 =begin comments
-=(object button: label="대댓글 ", style=btn_replies.title)==(object button: label="28", style=btn_replies)=
+=(object button: label="대댓글 ", style=btn_replies.title)==(object button: label="${replies-count}", style=btn_replies)=
 =end comments
 =end replies
 

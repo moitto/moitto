@@ -23,8 +23,8 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00
 #btn_value: position=absolute, gravity=left, x=10dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left, label-font-size=0.9
-#btn_replies.title: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.9
-#btn_replies: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9
+#btn_replies.title: script=show_replies, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.9
+#btn_replies: script=show_replies, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9
 
 /cell/replies: display=none
 /cell/replies/comments: display=block, position=absolute, gravity=right, x=-10dp, text-align=right

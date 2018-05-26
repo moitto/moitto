@@ -5,6 +5,7 @@ Replies = (function() {
 // class User
 
 function Reply(data) {
+    console.log(JSON.stringify(data));
     this.data = data;
 }
 

@@ -3,9 +3,13 @@ Sbml = (function() {
 })();
 
 Sbml.generate_from_markdown = function(markdown) {
+    return Sbml.__elements_to_sbml(markdown.elements);
+}
+
+Sbml.__elements_to_sbml = function(elements) {
     var sbml = "";
 
-    markdown.elements.forEach(function(element) {
+    elements.forEach(function(element) {
         if (element.type === "text") {
             sbml += Sbml.__html_to_sbml(element.data["text"]);
 
@@ -31,7 +35,7 @@ Sbml.generate_from_markdown = function(markdown) {
                 sbml += "\n";
             }
 
-            sbml += "=[heading-" + element.data["level"] + "|" + Sbml.__html_to_sbml(element.data["text"]) + "]=";
+            sbml += "=[heading-" + element.data["level"] + "|" + Sbml.__elements_to_sbml(element.data["elements"]) + "]=";
             sbml += "\n";
 
             return;
@@ -57,7 +61,20 @@ Sbml.generate_from_markdown = function(markdown) {
         }
 
         if (element.type === "url") {
-            if (element.data["path"].search(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig) != -1) {
+            var youtube = /https?:\/\/youtu\.be\/([^?]+)(?:\?.+)?/.exec(element.data["url"]);
+
+            if (!youtube) {
+                youtube = /https?:\/\/.*youtube\.com\/.*\?.*v=([^&]+).*/.exec(element.data["url"]);
+            }
+
+            if (youtube) {
+                sbml += "\n";
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube[1] + "\")=";
+
+                return;
+            }
+
+            if ((element.data["path"] || "").search(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig) != -1) {
                 sbml += "\n";
                 sbml += "=(object image: style=image, image-url=\"" + element.data["url"] + "\")=";
 

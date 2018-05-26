@@ -97,7 +97,7 @@ MarkdownParser.parse = function(text) {
             element = {
                 type:"heading",
                 data:{
-                    text:token[13] ? token[14].replace(/\s+#+$/, "") : "",
+                    elements:MarkdownParser.parse(token[13] ? token[14].replace(/\s+#+$/, "") : ""),
                     level:(token[12] || token[13]).length
                 }
             }
@@ -196,7 +196,13 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__outdent = function(text) {
-    return str.replace(RegExp('^'+(text.match(/^(\t| )+/) || '')[0], 'gm'), '');
+    var leadings = text.match(/^(\t| )+/);
+
+    if (leadings) {
+        return text.replace(new RegExp(leadings[0], 'gm'), '');
+    }
+
+    return text;
 }
 
 MarkdownParser.__last_link_begin_or_text = function(elements) {

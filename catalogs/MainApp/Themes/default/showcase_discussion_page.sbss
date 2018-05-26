@@ -15,6 +15,7 @@ end
 #image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
         scales-in-background=yes, script-when-download=on_download
 #image.full: max-width=1pw
+#youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
 
 #heading-1: font-size=1.8
 #heading-2: font-size=1.6

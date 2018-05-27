@@ -42,7 +42,7 @@ Sbml.__elements_to_sbml = function(elements) {
         }
 
         if (element.type === "image") {
-            sbml += "=(object image: style=image, image-url=\"" + element.data["url"] + "\")=";
+            sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
 
             return;
         }
@@ -76,13 +76,13 @@ Sbml.__elements_to_sbml = function(elements) {
 
             if ((element.data["path"] || "").search(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig) != -1) {
                 sbml += "\n";
-                sbml += "=(object image: style=image, image-url=\"" + element.data["url"] + "\")=";
+                sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
 
                 return;
             }
 
             sbml += "\n";
-            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + element.data["url"] + "]=";
+            sbml += "=[link: script=open_url, url=\"" + Sbml.__url_for_image(element.data["url"]) + "\"|" + element.data["url"] + "]=";
 
             return;
         }
@@ -109,6 +109,10 @@ Sbml.__html_to_sbml = function(text) {
     text = decode("html", text);
 
     return text;
+}
+
+Sbml.__url_for_image = function(url, size) {
+    return "https://cdn.steemitimages.com/" + (size || "640x480") + "/" + url;
 }
 
 __MODULE__ = Sbml;

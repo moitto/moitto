@@ -129,6 +129,7 @@ SteemJS.get_content = function(author, permlink) {
         SteemJS.__request_rpc(method, params).then(function(response) {
             resolve(response["result"]);
         }, function(reason) {
+            console.log("get_content is failed!!!!!! [" + reason.toString() + "]");
             reject(reason);
         });
     });

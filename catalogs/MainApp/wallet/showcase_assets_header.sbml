@@ -13,6 +13,8 @@
 ${reward-steem-balance} STEEM
 ${reward-sbd-balance} SBD
 ${reward-steem-power} SP
+
+=object button: height=44dp, label="내 지갑으로 입금하기", script=redeem_rewards
 =end rewards
 
 =end header

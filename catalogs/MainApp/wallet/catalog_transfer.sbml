@@ -14,20 +14,20 @@
 
 =begin amount: id=amount
 =begin heading
-송금할 금액
+송금할 금액 =(object button: id=amount.type, label="${subview.amount-type}", script=choose_currency)==(object button: label=" ▷", script=choose_currency)=
 =end heading
 
 =object section: section=amount.box, style=section_amount.box
 
-=begin box: id=amount.box
+=begin box: id=amount.box, form=amount.box
 =begin content
-=object textfield: id=textfield.amount, text="${subview.amount}", style=textfield_amount
+=object textfield: id=amount, text="${subview.amount}", style=textfield_amount
 =end content
 =end box
 
 =end amount
 
-=object button: script=send, label="송금하기", style=btn_send
+=object button: script=confirm_transfer, form=amount.box, label="송금하기", style=btn_send
 
 =end transfer
 

@@ -1,0 +1,10 @@
+=begin popup
+
+=begin menu
+
+=(object button: width=100dp, height=44dp, label="${coin}", script=choose_coin)=
+=(object button: width=100dp, height=44dp, label="${currency}", script=choose_currency)=
+
+=end menu
+
+=end popup

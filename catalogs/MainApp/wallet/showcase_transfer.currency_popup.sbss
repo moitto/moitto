@@ -1,0 +1,4 @@
+import ~/themes.sbss
+
+/popup: action-when-touched=popup-close
+/popup/menu: background-color=$WHITE_COLOR, display=block, position=abs, gravity=center, text-align=center

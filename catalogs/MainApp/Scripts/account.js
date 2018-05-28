@@ -74,6 +74,8 @@ Account.vote = function(author, permlink, weight, handler) {
 
     Account.steem.broadcast.vote(voter, author, permlink, weight, keys).then(function(response) {
         handler(response);
+    }, function(reason) {
+        handler();
     });
 }
 
@@ -83,6 +85,44 @@ Account.unvote = function(author, permlink, handler) {
 
     Account.steem.broadcast.vote(voter, author, permlink, 0, keys).then(function(response) {
         handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.follow_user = function(following, handler) {
+    var follower = Account.username;
+    var keys  = Account.__load_keys(follower, [ "posting" ]);
+    var json = JSON.stringify(
+        [ "follow", {
+            "follower":follower,
+            "following":following,
+            "what":["blog"]
+        }]
+    );
+
+    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, keys).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.unfollow_user = function(following, handler) {
+    var follower = Account.username;
+    var keys  = Account.__load_keys(follower, [ "posting" ]);
+    var json = JSON.stringify(
+        [ "follow", {
+            "follower":follower,
+            "following":following,
+            "what":[]
+        }]
+    );
+
+    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, keys).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
     });
 }
 
@@ -92,6 +132,8 @@ Account.transfer = function(to, amount, memo, handler) {
 
     Account.steem.broadcast.transfer(from, to, amount, memo, keys).then(function(response) {
         handler(response);
+    }, function(reason) {
+        handler();
     });
 }
 

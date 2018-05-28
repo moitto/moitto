@@ -12,5 +12,11 @@ __MODULE__ = {
         to: __TYPES__.string,
         amount: __TYPES__.asset,
         memo: __TYPES__.string
+    },
+    "custom_json":{
+        required_auths: __TYPES__.array,
+        required_posting_auths: __TYPES__.array,
+        id: __TYPES__.string,
+        json: __TYPES__.string
     }
 };

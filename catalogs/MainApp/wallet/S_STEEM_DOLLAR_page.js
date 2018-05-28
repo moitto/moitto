@@ -1,8 +1,13 @@
 function transfer() {
-    controller.catalog().remove("showcase", "auxiliary", "S_TRANSFER");
+    var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
-        "currency":"SBD"
+        "amount-type":value["amount-type"] || "SBD",
+        "coin":"SBD",
+        "currency":"KRW"
     });
 
-    controller.action("page", { "display-unit":"S_RECEIVERS" });
+    controller.action("popup", { 
+        "display-unit":"S_TRANSFER", 
+        "alternate-name":"transfer.receivers" 
+    });
 }

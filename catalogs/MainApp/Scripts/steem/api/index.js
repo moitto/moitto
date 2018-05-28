@@ -62,6 +62,7 @@ SteemApi.broadcast_transaction_synchronous = function(transaction) {
         var params = [ transaction ];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
+            console.log(JSON.stringify(response));
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);

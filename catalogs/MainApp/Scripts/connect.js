@@ -58,7 +58,6 @@ Connect.__invoke_book = function(params) {
 }
 
 Connect.__invoke_transfer = function(params) {
-    controller.catalog().remove("showcase", "auxiliary", "S_TRANSFER");
     controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
         "to":params["to"],
         "amount":params["amount"],
@@ -69,7 +68,6 @@ Connect.__invoke_transfer = function(params) {
 }
 
 Connect.__invoke_pay = function(params) {
-    controller.catalog().remove("showcase", "auxiliary", "S_PAY");
     controller.catalog().submit("showcase", "auxiliary", "S_PAY", {
          "to":params["to"],
          "amount":params["amount"]

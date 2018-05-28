@@ -16,7 +16,7 @@ function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function open_notif(data) {
-    var username = storage.value("ACTIVE_USER");
+    var me = storage.value("ACTIVE_USER");
     var catalog = controller.catalog();
     var value = catalog.value("showcase", "notif", data["id"]);
 

@@ -24,3 +24,7 @@ function show_followers() {
 
     controller.action("page", { "display-unit":"S_FOLLOWERS" });
 }
+
+function redeem_rewards() {
+    controller.action("alert", { message:"REDEEEM!!" });
+}

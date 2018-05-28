@@ -1,4 +1,4 @@
-=begin page
+=begin popup
 
 =object textfield: id=username, placeholder="스팀잇 계정", \
             return-key-type=next, \
@@ -6,4 +6,4 @@
             width="0.8pw-20dp", height=50dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100
 
-=end page
+=end popup

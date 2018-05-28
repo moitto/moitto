@@ -57,11 +57,11 @@ __MODULE__ = {
     },
     "asset" : {
         pack : function(buffer, value) {
-              var tokens = value.split(" ");
-              var amount = tokens[0].replace(".", ""); // * 1000
-              var dot = tokens[0].indexOf("."); // 0.000
+            var tokens = value.split(" ");
+            var amount = tokens[0].replace(".", ""); // * 1000
+            var dot = tokens[0].indexOf("."); // 0.000
             var precision = (dot === -1) ? 0 : tokens[0].length - dot - 1;
-              var symbol = tokens[1];
+            var symbol = tokens[1];
 
             SteemSerializer.__pack_buffer(buffer, "<I<I", [ parseInt(amount, 10), 0 ]);
             SteemSerializer.__pack_buffer(buffer, "B", [ precision ]);
@@ -70,6 +70,18 @@ __MODULE__ = {
             for (var i = 0; i < 7 - symbol.length; i++) {
                 SteemSerializer.__pack_buffer(buffer, "B", [ 0 ]);
             }
+        },
+        unpack : function(buffer) {
+
+        }
+    },
+    "array" : {
+        pack : function(buffer, value, serializer) {
+            SteemSerializer.__pack_buffer(buffer, "B", [ value.length ]);
+            value.forEach(function(item) {
+                //serializer.pack(buffer, item);
+                SteemSerializer.__pack_buffer(buffer, "B" + item.length + "s", [ item.length, item ]);
+            });
         },
         unpack : function(buffer) {
 

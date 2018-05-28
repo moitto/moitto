@@ -11,9 +11,12 @@ import ~/themes.sbss
             text-color=$THEME_COLOR_100, text-align=center
 
 #section_amount: width=1pw-60dp, height=140dp, position=abs, gravity=top, y=140dp, \
-            content-border-width=1px, content-border-color=$THEME_COLOR_100
+            content-border-width=1px, content-border-color=$THEME_COLOR_100, \
+            script-when-resume=on_choose_currency
 #section_amount.box: width=1pw-30dp, height=60dp, content-background-color=#ff0
-#textfield_amount: width=1pw-44dp, height=60dp, keyboard-type=number, \
+#textfield_amount: width=1pw-44dp, height=60dp, keyboard-type=decimal, \
+            valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
+            invalid-when-empty=yes, message-when-empty="금액을 입력하세요.", \
             font-family=$SANSSERIF_BOLD, font-size=3.5, \
             text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left
 
@@ -34,5 +37,7 @@ else
 end
 
 if "${amount}" != ""
+    #textfield_amount: editable=no
 else
+    /catalog/transfer/amount/box: first-responder=amount
 end

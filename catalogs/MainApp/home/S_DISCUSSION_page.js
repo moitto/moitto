@@ -3,7 +3,7 @@ var themes = require("themes");
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
-    var username = storage.value("ACTIVE_USER");
+    var me = storage.value("ACTIVE_USER");
 
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
         var tags = content.meta["tags"];
@@ -40,7 +40,7 @@ function on_loaded() {
             data[key] = impl.auxiliary[key];
         });
 
-        if (content.is_voted(username)) {
+        if (content.is_voted(me)) {
             data["voted"] = "yes"; 
         }
 

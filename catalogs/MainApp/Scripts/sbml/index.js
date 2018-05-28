@@ -82,7 +82,7 @@ Sbml.__elements_to_sbml = function(elements) {
             }
 
             sbml += "\n";
-            sbml += "=[link: script=open_url, url=\"" + Sbml.__url_for_image(element.data["url"]) + "\"|" + element.data["url"] + "]=";
+            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + element.data["url"] + "]=";
 
             return;
         }

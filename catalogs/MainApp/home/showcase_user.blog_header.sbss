@@ -11,7 +11,11 @@ import ~/themes.sbss
 #label_rep: height=20dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
 
-#btn_follow: width=70dp, height=26dp, \
+#btn_follow: width=70dp, height=26dp, hidden=yes, \
+            position=absolute, gravity=top-left, x="0.5pw+60dp", y=47dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9, \
+            content-background-color=$THEME_COLOR_03
+#btn_unfollow: width=70dp, height=26dp, hidden=yes, \
             position=absolute, gravity=top-left, x="0.5pw+60dp", y=47dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9, \
             content-background-color=$THEME_COLOR_03
@@ -23,7 +27,7 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 
-/header: text-align=center
+/header: script-when-loaded=on_loaded, text-align=center
 
 
 

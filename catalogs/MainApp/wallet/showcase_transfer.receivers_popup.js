@@ -5,10 +5,9 @@ function on_loaded() {
 }
 
 function __update_receivers() {
-    var username = storage.value("ACTIVE_USER");
+    var me = storage.value("ACTIVE_USER");
 
-    steemjs.get_following(username) {
+    steemjs.get_following(me) {
 
     }
 }
-

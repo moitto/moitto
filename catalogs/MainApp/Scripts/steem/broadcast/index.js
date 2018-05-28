@@ -47,6 +47,20 @@ SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd
     });
 }
 
+SteemBroadcast.custom_json = function(required_auths, required_posting_auths, id, json, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "custom_json" , { 
+            required_auths:required_auths, required_posting_auths:required_posting_auths, id:id, json:json
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
 SteemBroadcast.__send_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};
@@ -56,7 +70,7 @@ SteemBroadcast.__send_transaction = function(operation, keys) {
 
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
             SteemBroadcast.__sign_transaction(transaction, keys, function(signatures) {
-            transaction["signatures"] = signatures;
+                transaction["signatures"] = signatures;
 
                 Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
                     resolve(transaction);

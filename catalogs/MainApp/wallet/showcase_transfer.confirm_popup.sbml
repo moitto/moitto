@@ -1,0 +1,13 @@
+=begin popup
+
+=begin menu
+=begin coin
+${coin-amount} ${coin}
+=end coin
+
+=begin currency
+${currency-amount} ${currency}
+=end currency
+=end menu
+
+=end popup

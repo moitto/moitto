@@ -11,7 +11,7 @@ Sbml.__elements_to_sbml = function(elements) {
 
     elements.forEach(function(element) {
         if (element.type === "text") {
-            sbml += element.data["text"];
+            sbml += decode("html", element.data["text"]);
 
             return;
         }
@@ -22,7 +22,27 @@ Sbml.__elements_to_sbml = function(elements) {
             return;
         }
 
-        if (element.type === "line") {
+        if (element.type === "div-tag-begin") {
+            sbml += "\n";
+            sbml += "=begin div: style=\"" + (element.data["class"] || "") + "\"\n";
+
+            return;
+        }
+
+        if (element.type === "div-tag-end") {
+            sbml += "\n";
+            sbml += "=end div\n";
+
+            return;
+        }
+
+        if (element.type === "br-tag") {
+            sbml += "\n=[br| ]=\n";
+
+            return;
+        }
+
+        if (element.type === "line" || element.type === "hr-tag") {
             sbml += "\n";
             sbml += "=(object blank: style=line)=";
             sbml += "\n";
@@ -105,6 +125,11 @@ Sbml.__elements_to_sbml = function(elements) {
             return;
         }
 
+        if (element.type === "image-tag") {
+            sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
+
+            return;
+        }
 
         if (element.type === "link-begin") {
             sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|";
@@ -114,6 +139,12 @@ Sbml.__elements_to_sbml = function(elements) {
 
         if (element.type === "link-end") {
             sbml += "]=";
+
+            return;
+        }
+
+        if (element.type === "anchor-tag") {
+            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + Sbml.__elements_to_sbml(element.data["elements"]) + "]=";
 
             return;
         }
@@ -145,55 +176,28 @@ Sbml.__elements_to_sbml = function(elements) {
             return;
         }
 
-        if (["italic-begin", "em-begin", "em-italic-begin", "linethrough-begin"].includes(element.type)) {
+        if (["italic", "em", "em-italic", "linethrough"].includes(element.type.replace("-begin", ""))) {
             sbml += "=[" + element.type.replace("-begin", "") + "|";
 
             return;
         }
 
-        if (["italic-end", "em-end", "em-italic-end", "linethrough-end"].includes(element.type)) {
-           sbml += "]=";
+        if (["italic", "em", "em-italic", "linethrough"].includes(element.type.replace("-end", ""))) {
+            sbml += "]=";
+
+            return;
+        }
+
+        if (["strong", "bold", "italic", "code", "sub", "sup"].includes(element.type.replace("-tag", ""))) {
+            sbml += "=[" + element.type.replace("-tag", "") + "|" + Sbml.__elements_to_sbml(element.data["elements"]) + "]=";
 
             return;
         }
     });
 
-    sbml = Sbml.__handle_html_tags(sbml);
-    sbml = decode("html", sbml);
-
     console.log(sbml);
 
     return sbml;
-}
-
-Sbml.__handle_html_tags = function(text) {
-    var tokenizer = /(<\/?br[^>]*>)|(?:<(sub|sup)>)|(?:<\/(sub|sup)>)/ig;
-    var token, handled_text = "";
-    var last_index  = 0;
-
-    while ((token = tokenizer.exec(text))) {
-        handled_text += text.substring(last_index, token.index);
-    
-        if (token[1]) { // br
-            handled_text += "\n=[br| ]=\n";
-        } else if (token[2]) { // start of sub, sup
-            handled_text += "=[" + token[2] + "|";
-        } else if (token[3]) { // end of sub, sup
-            handled_text += "]=";
-        }
-
-        last_index = tokenizer.lastIndex;
-    }
-
-    handled_text += text.substring(last_index, text.length);
-
-    return handled_text;
-}
-
-Sbml.__handle_center_tags = function(text) {
-
-
-    return text;
 }
 
 Sbml.__url_for_image = function(url, size) {

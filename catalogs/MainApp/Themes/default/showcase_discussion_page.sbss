@@ -25,6 +25,8 @@ end
 #heading-6: font-size=1.0
 #link: text-decoration=underline-#6C6C6C-1
 #code: highlight-color=$THEME_COLOR_01
+#strong: font-family=$SANSSERIF_BOLD
+#bold: font-family=$SANSSERIF_BOLD
 #em: font-family=$SANSSERIF_BOLD
 #italic: font-style=italic
 #em-italic: font-family=$SANSSERIF_BOLD
@@ -32,6 +34,9 @@ end
 #sub: vertical-align=bottom, font-size=0.7
 #sup: vertical-align=top, font-size=0.7
 #line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
+
+#text-left: text-align=left
+#text-right: text-align=right
 
 %quote: background-color=$THEME_COLOR_01
 %list: text-indent=1em

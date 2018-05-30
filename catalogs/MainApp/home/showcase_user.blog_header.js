@@ -5,7 +5,7 @@ var __last_label_for_follow_buttons = {};
 
 function on_loaded() {
     steemjs.get_followers($data["username"], account.username, "blog", 1).then(function(response) {
-        if (response.length == 0 || response[0]["follower"] !== me) {
+        if (response.length == 0 || response[0]["follower"] !== account.username) {
             __show_follow_button("follow");
         } else {
             __show_follow_button("unfollow");

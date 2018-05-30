@@ -167,7 +167,7 @@ Sbml.__elements_to_sbml = function(elements) {
 }
 
 Sbml.__handle_html_tags = function(text) {
-    var tokenizer = /(<\/?br[^>]+>)|(?:<(sub|sup)>)|(?:<\/(sub|sup)>)/ig;
+    var tokenizer = /(<\/?br[^>]*>)|(?:<(sub|sup)>)|(?:<\/(sub|sup)>)/ig;
     var token, handled_text = "";
     var last_index  = 0;
 
@@ -190,7 +190,7 @@ Sbml.__handle_html_tags = function(text) {
     return handled_text;
 }
 
-Sbml.__process_center_tags = function(text) {
+Sbml.__handle_center_tags = function(text) {
 
 
     return text;

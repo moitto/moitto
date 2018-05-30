@@ -218,7 +218,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 }
 
 MarkdownParser.__handle_html_tags = function(text) {
-    var tokenizer = /(?:<a[^>]*href=\"([^"]+)\"[^>]*>)|(<\/a>)|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(<\/?(?:strong|b)>)|(<\/?i>)|(<\/?code>)|(<\/?p>)|(<hr>)|(<\/?[a-z][^>]+>)/ig;
+    var tokenizer = /(?:<a[^>]*href=\"([^"]+)\"[^>]*>)|(<\/a>)|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(<\/?(?:strong|b)>)|(<\/?i>)|(<\/?code>)|(<\/?p>)|(<hr>)|(<\/?[a-z][^>]*>)/ig;
     var token, anchor_text, anchor_url = null;
     var handled_text = "";
     var last_index  = 0;

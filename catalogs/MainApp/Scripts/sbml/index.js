@@ -39,13 +39,21 @@ Sbml.__elements_to_sbml = function(elements) {
         }
 
         if (element.type === "quote") {
-            sbml += "\n";
-            sbml += "=begin quote\n";
-            element.data["lines"].forEach(function(elements) {
-                sbml += Sbml.__elements_to_sbml(elements);
+            if (!element.data["inline"]) {
                 sbml += "\n";
-            });
-            sbml += "=end quote\n";
+                sbml += "=begin quote\n";
+                element.data["items"].forEach(function(elements) {
+                    sbml += Sbml.__elements_to_sbml(elements);
+                    sbml += "\n";
+                });
+                sbml += "=end quote\n";
+            } else {
+                element.data["items"].forEach(function(elements) {
+                    sbml += "\n";
+                    sbml += Sbml.__elements_to_sbml(elements);
+                });
+                sbml += "\n";
+            }
 
             return;
         }
@@ -66,11 +74,21 @@ Sbml.__elements_to_sbml = function(elements) {
         }
 
         if (element.type === "list") {
-            element.data["lines"].forEach(function(elements) {
+            if (!element.data["inline"]) {
                 sbml += "\n";
-                sbml += Sbml.__elements_to_sbml(elements);
-            });
-            sbml += "\n";
+                sbml += "=begin list\n";
+                element.data["items"].forEach(function(elements) {
+                    sbml += Sbml.__elements_to_sbml(elements);
+                    sbml += "\n";
+                });
+                sbml += "=end list\n";
+            } else {
+                element.data["items"].forEach(function(elements) {
+                    sbml += "\n";
+                    sbml += Sbml.__elements_to_sbml(elements);
+                });
+                sbml += "\n";
+            }
 
             return;
         }

@@ -4,7 +4,7 @@ var themes = require("themes");
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     var me = storage.value("ACTIVE_USER");
-
+    
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);

@@ -32,6 +32,7 @@ end
 #line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
 
 %quote: background-color=$THEME_COLOR_01
+%list: text-indent=1em
 %code: background-color=$THEME_COLOR_01
 
 /page: page-background-color=$THEME_COLOR_02

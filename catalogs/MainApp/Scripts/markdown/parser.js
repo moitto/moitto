@@ -7,11 +7,11 @@ MarkdownParser.parse = function(text) {
     text = MarkdownParser.__handle_html_tags(text);
     console.log(text);
 
-    return MarkdownParser.__parse_to_markdown(text);
+    return MarkdownParser.__parse_to_markdown(text, false);
 }
 
-MarkdownParser.__parse_to_markdown = function(text) {
-    var tokenizer = /((?:^|\n+)(?:---+|- -(?: -)+|\* \*(?: \*)+)\n*)|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>[^\n]*)(?:\n(?:(?:>[^\n]*)|(?:[^\n]+)))*)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*)+)|(?:\!\[([^\]]*?)\]\(([^\s]+?)\))|(\[)|(\](?:\(([^\s]+?)\))?)|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9_@%:\/\.\-]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/gm;
+MarkdownParser.__parse_to_markdown = function(text, inline) {
+    var tokenizer = /((?:^|\n+)(?:---+|- -(?: -)+|\* \*(?: \*)+)\n*)|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>\s*.*)(?:\n(?:(?:>.*)|(?:.+)))*)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|(?:\!\[([^\]]*?)\]\(([^\s]+?)\))|(\[)|(\](?:\(([^\s]+?)\))?)|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9_@%:\/\.\-]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/gm;
     var elements = [];
     var token, text_chunk, chunk, element;
     var last_index  = 0;
@@ -29,42 +29,47 @@ MarkdownParser.__parse_to_markdown = function(text) {
             }
         } else if (token[3] || token[4]) { // code/indent block
             element = {
-                type:"code",
+                type:inline ? "inline-code" : "code",
                 data:{
                     text:MarkdownParser.__outdent(token[3] || token[4]).replace(/^\n+|\n+$/g, '')
                 }
             }
         } else if (token[5]) { // > quote
-            var lines = [];
-            token[5].trim().split("\n").forEach(function(line) {
-                lines.push(MarkdownParser.parse(line.replace(/^>\s*/gm, "")));
+            var lines = token[5].split(/(?:^|\n)>\s*/g).slice(1);
+            var items = [];
+            lines.forEach(function(line) {
+                items.push(MarkdownParser.__parse_to_markdown(line, false));
             });
             element = {
                 type:"quote",
                 data:{
-                    lines:lines
+                    items:items, 
+                    inline:inline
                 }
             }
 
             MarkdownParser.__clear_unhandled_begins(elements);
         } else if (token[6]) { // -* list
-            var lines = [];
-            token[6].trim().split("\n").forEach(function(line) {
-                var elements = MarkdownParser.parse(line.replace(/^([*+-]|\d+\.)\s+/g, ""));
+            var lines = token[6].split(/(?:^|\n)(?:[*+-]|\d+\.)\s+/g).slice(1);
+            var number = token[6].match(/(?:^|\n)(?:[*+-]|(\d+)\.)/)[1];
+            var items = [];
+            lines.forEach(function(line) {
+                var elements = MarkdownParser.__parse_to_markdown(line.replace(/\n\s+/g, "\n"), false);
 
                 elements.splice(0, 0, {
                     type:"bullet",
                     data:{
-                        symbol:line.match(/^([*+-]|(\d+\.))\s+.*/)[2] || ""
+                        symbol:number ? (items.length + parseInt(number)) + "." : ""
                     }
                 });
 
-                lines.push(elements);
+                items.push(elements);
             });
             element = {
                 type:"list",
                 data:{
-                    lines:lines
+                    items:items, 
+                    inline:inline
                 }
             }
 
@@ -113,7 +118,7 @@ MarkdownParser.__parse_to_markdown = function(text) {
             element = {
                 type:"heading",
                 data:{
-                    elements:MarkdownParser.parse(token[13] ? token[14].replace(/\s+#+$/, "") : ""),
+                    elements:MarkdownParser.__parse_to_markdown(token[13] ? token[14].replace(/\s+#+$/, "") : "", true),
                     level:(token[12] || token[13]).length,
                     leadings:(token.index > 0) ? "\n" : ""
                 }
@@ -131,7 +136,7 @@ MarkdownParser.__parse_to_markdown = function(text) {
             element = {
                 type:"inline-code",
                 data:{
-                    elements:MarkdownParser.parse(token[18])
+                    elements:MarkdownParser.__parse_to_markdown(token[18], true)
                 }
             }
         } else if (token[19]) { // inline formatting: *em*, **strong**, ...

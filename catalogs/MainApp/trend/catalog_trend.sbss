@@ -1,7 +1,7 @@
 import ~/themes.sbss
 
 #panes_trend: width=1pw, height=1ph, navibar-background-color=$THEME_COLOR_00
-#btn_search: width=80dp, height=44dp, \
+#btn_tag: width="1pw-0.66pw-20dp", height=44dp, \
             position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-align=right, \
             line-break-mode=tail-truncation

@@ -4,7 +4,7 @@
             has-navibar=yes, \
             style=panes_trend
 
-=object button: label="#kr", style=btn_search
+=object button: label="#kr", style=btn_tag
 
 =object blank: style=blank_line
 

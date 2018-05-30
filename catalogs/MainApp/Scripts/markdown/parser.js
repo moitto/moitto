@@ -218,7 +218,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 }
 
 MarkdownParser.__handle_html_tags = function(text) {
-    var tokenizer = /(?:<a[^>]*href=\"([^"]+)\"[^>]*>)|(<\/a>)|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(<\/?(?:strong|b)>)|(<\/?i>)|(<\/?code>)|(<\/?p>)|(<hr>)|(<\/?center>)|(<\/?[a-z][^>]+>)/ig;
+    var tokenizer = /(?:<a[^>]*href=\"([^"]+)\"[^>]*>)|(<\/a>)|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(<\/?(?:strong|b)>)|(<\/?i>)|(<\/?code>)|(<\/?p>)|(<hr>)|(<\/?[a-z][^>]+>)/ig;
     var token, anchor_text, anchor_url = null;
     var handled_text = "";
     var last_index  = 0;
@@ -242,8 +242,8 @@ MarkdownParser.__handle_html_tags = function(text) {
                 handled_text += "\n";
             } else if (token[8]) { // hr
                 handled_text += "---";
-            } else if (token[9] || token[10]) { // center
-                handled_text += token[9] || token[10];
+            } else if (token[9]) { // unhandled tags
+                handled_text += token[9]
             }
         } else {
             anchor_text += text.substring(last_index, token.index);

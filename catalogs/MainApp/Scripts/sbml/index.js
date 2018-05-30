@@ -158,18 +158,36 @@ Sbml.__elements_to_sbml = function(elements) {
         }
     });
 
-    sbml = Sbml.__html_to_sbml(sbml);
+    sbml = Sbml.__handle_html_tags(sbml);
+    sbml = decode("html", sbml);
 
     console.log(sbml);
 
     return sbml;
 }
 
-Sbml.__html_to_sbml = function(text) {
-    text = text.replace(/\n*<[\s/]*br[\s/]*>\n*/ig, "\n=[br| ]=\n");
-    text = decode("html", text);
+Sbml.__handle_html_tags = function(text) {
+    var tokenizer = /(<\/?br[^>]+>)|(?:<(sub|sup)>)|(?:<\/(sub|sup)>)/ig;
+    var token, handled_text = "";
+    var last_index  = 0;
 
-    return text;
+    while ((token = tokenizer.exec(text))) {
+        handled_text += text.substring(last_index, token.index);
+    
+        if (token[1]) { // br
+            handled_text += "\n=[br| ]=\n";
+        } else if (token[2]) { // start of sub, sup
+            handled_text += "=[" + token[2] + "|";
+        } else if (token[3]) { // end of sub, sup
+            handled_text += "]=";
+        }
+
+        last_index = tokenizer.lastIndex;
+    }
+
+    handled_text += text.substring(last_index, text.length);
+
+    return handled_text;
 }
 
 Sbml.__process_center_tags = function(text) {

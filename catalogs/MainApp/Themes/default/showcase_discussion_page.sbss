@@ -29,6 +29,8 @@ end
 #italic: font-style=italic
 #em-italic: font-family=$SANSSERIF_BOLD
 #linethrough: text-decoration=line-through
+#sub: vertical-align=bottom, font-size=0.7
+#sup: vertical-align=top, font-size=0.7
 #line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
 
 %quote: background-color=$THEME_COLOR_01

@@ -6,8 +6,9 @@ import ~/themes.sbss
 #blank_dim: width=1pw, height="1ph-55dp", \
             position=absolute, gravity=top, content-background-color=$BLACK_COLOR_DIM
 #section_contents: width=1pw, height="1ph-55dp", postion=absolute, gravity=top
-#label_meta: font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$WHITE_COLOR, text-align=left
+#label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$WHITE_COLOR, text-align=left, font-size=0.9
 #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$WHITE_COLOR, label-align=left, label-font-size=0.9
+#bold: label-font-family=$SANSSERIF_BOLD
 
 #blank_userpic.mask: width=35dp, height=35dp, \
             position=absolute, gravity=bottom-left, x=15dp, y=-10dp, \

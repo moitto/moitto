@@ -1,5 +1,8 @@
 import ~/themes.sbss
 
+#blank_userpic.mask: width=82dp, height=82dp, \
+            position=absolute, gravity=top, y=24dp, \
+            content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
 #img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
             content-border-radius=40dp, margin="25dp 0 5dp 0"
 #label_user: height=30dp, \
@@ -16,7 +19,7 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
             label-align=center, label-font-size=0.9
 
-/header: text-align=center
+/header: text-align=center, margin="0 0 25dp 0"
 
 if "${has-rewards}" != "yes"
    /header/rewards: display=none 

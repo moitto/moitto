@@ -1,6 +1,8 @@
-=begin header
+=begin header: script-when-loaded=on_loaded
 
+=object blank: style=blank_userpic.mask
 =object image: image-url="https://steemitimages.com/u/${username}/avatar", image-downloadable=yes, style=img_profile
+
 =(object blank: style=blank_margin)==(object label: text="${username}", style=label_user)==(object button: action=page, display-unit=S_USER_INFO, style=btn_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 

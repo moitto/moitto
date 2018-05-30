@@ -3,20 +3,20 @@ import ~/themes.sbss
 #section_privacy: position=absolute, gravity=center
 #blank_line: width=0.9pw, height=1dp, color=$DEFAULT_COLOR, margin="0 0 20dp 0"
 #btn_close: width=0.9pw, height=50dp, position=absolute, gravity=bottom, y=-0.05pw, \
-            label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.2, label-color=$WHITE_COLOR, \
-            content-background-color=$MAIN_COLOR
+            label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.2, label-color=$THEME_COLOR_100, \
+            content-background-color=$THEME_COLOR_03
 
 #goB: font-family=$SANSSERIF_BOLD
-#sub: font-size=0.8em, text-color=$DEFAULT_COLOR, text-align=left
+#sub: font-size=0.8em, text-color=$THEME_COLOR_101, text-align=left
 
 /catalog: page-background-color=$BLACK_COLOR_DEEP_DIM
 /catalog/privacy: display=none
-/catalog/privacy/note: display=block, width=1pw, height=1ph, background-color=$WHITE_COLOR, \
-                    font-family=$SANSSERIF_LIGHT, font-color=$DEFAULT_COLOR, \
+/catalog/privacy/note: display=block, width=1pw, height=1ph, background-color=$THEME_COLOR_02, \
+                    font-family=$SANSSERIF_LIGHT, font-color=$THEME_COLOR_101, \
                     line-spacing=0.4em, paragraph-spacing=0.4em, padding=0.05pw
-/catalog/privacy/note/title: font-size=1.2em, text-color=$POINT_COLOR, text-align=center, margin="0 0 30dp 0"
+/catalog/privacy/note/title: font-size=1.2em, text-color=$THEME_COLOR_100, text-align=center, margin="0 0 30dp 0"
 /catalog/privacy/note/option: margin="0 0 20dp 0"
-/catalog/privacy/note/option/title: font-size=1.1em, text-color=$POINT_COLOR
+/catalog/privacy/note/option/title: font-size=1.1em, text-color=$THEME_COLOR_100
 
 if $SCREEN_WIDTH > "5"
     #section_privacy: width=400dp, height=500dp

@@ -1,3 +1,4 @@
+var history = require("history");
 var notif   = require("notif");
 var connect = require("connect"); 
 
@@ -19,7 +20,7 @@ function on_connect(form) {
 
 function update_notif() {
     if (!notif.is_updating()) {
-       notif.update().then(function(history) {
+        notif.update().then(function(history) {
             if (history.length > 0) {
                 controller.action("reload", { "subview":"V_NOTIF" });
                 storage.value("HAS_NEW_NOTIF", true);
@@ -27,7 +28,12 @@ function update_notif() {
                 __show_notif_badge();
             }
         });
+
     }
+
+    history.update(function(history) {
+
+    });
 }
 
 function snooze_notif() {

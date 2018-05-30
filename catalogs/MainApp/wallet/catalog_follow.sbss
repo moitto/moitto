@@ -1,0 +1,20 @@
+import ~/themes.sbss
+
+#img_following.userpic: width=80dp, height=80dp, margin-bottom=5dp, \
+            content-border-radius=3dp
+
+#label_following.username: width=1pw-40dp, height=20dp, \
+            font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
+            text-color=$THEME_COLOR_100, text-align=center
+
+#btn_follow: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03, hidden=yes
+
+#btn_unfollow: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03, hidden=yes
+
+/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
+/catalog/following: display=block, position=abs, gravity=top, y=20dp, text-align=center
+/catalog/loading: display=none

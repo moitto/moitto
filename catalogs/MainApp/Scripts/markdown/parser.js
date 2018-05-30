@@ -4,7 +4,14 @@ MarkdownParser = (function() {
 
 MarkdownParser.parse = function(text) {
     console.log(text);
-    var tokenizer = /((?:^|\n+)(?:---+|\* \*(?: \*)+)\n*)|(?:^```(\w*)\n([\s\S]*?)\n```$)|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>\s+.*)+)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*)+)|(?:\!\[([^\]]*?)\]\(([^\s]+?)\))|(\[)|(\](?:\(([^\s]+?)\))?)|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|(?:^|\n)\s*((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9_@%:\/\.\-]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`].*?)`)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/gm;
+    text = MarkdownParser.__handle_html_tags(text);
+    console.log(text);
+
+    return MarkdownParser.__parse_to_markdown(text);
+}
+
+MarkdownParser.__parse_to_markdown = function(text) {
+    var tokenizer = /((?:^|\n+)(?:---+|- -(?: -)+|\* \*(?: \*)+)\n*)|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>[^\n]*)(?:\n(?:(?:>[^\n]*)|(?:[^\n]+)))*)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*)+)|(?:\!\[([^\]]*?)\]\(([^\s]+?)\))|(\[)|(\](?:\(([^\s]+?)\))?)|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9_@%:\/\.\-]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/gm;
     var elements = [];
     var token, text_chunk, chunk, element;
     var last_index  = 0;
@@ -30,7 +37,7 @@ MarkdownParser.parse = function(text) {
         } else if (token[5]) { // > quote
             var lines = [];
             token[5].trim().split("\n").forEach(function(line) {
-                lines.push(MarkdownParser.parse(line.replace(/^[>]\s+/gm, "")));
+                lines.push(MarkdownParser.parse(line.replace(/^>\s*/gm, "")));
             });
             element = {
                 type:"quote",
@@ -43,7 +50,16 @@ MarkdownParser.parse = function(text) {
         } else if (token[6]) { // -* list
             var lines = [];
             token[6].trim().split("\n").forEach(function(line) {
-                lines.push(MarkdownParser.parse(line.replace(/^([*+-]|\d+\.)\s+/gm, "")));
+                var elements = MarkdownParser.parse(line.replace(/^([*+-]|\d+\.)\s+/g, ""));
+
+                elements.splice(0, 0, {
+                    type:"bullet",
+                    data:{
+                        symbol:line.match(/^([*+-]|(\d+\.))\s+.*/)[2] || ""
+                    }
+                });
+
+                lines.push(elements);
             });
             element = {
                 type:"list",
@@ -98,7 +114,8 @@ MarkdownParser.parse = function(text) {
                 type:"heading",
                 data:{
                     elements:MarkdownParser.parse(token[13] ? token[14].replace(/\s+#+$/, "") : ""),
-                    level:(token[12] || token[13]).length
+                    level:(token[12] || token[13]).length,
+                    leadings:(token.index > 0) ? "\n" : ""
                 }
             }
         } else if (token[15]) { // url
@@ -112,9 +129,9 @@ MarkdownParser.parse = function(text) {
             }
         } else if (token[18]) { // `code`
             element = {
-                type:"code",
+                type:"inline-code",
                 data:{
-                    text:token[18]
+                    elements:MarkdownParser.parse(token[18])
                 }
             }
         } else if (token[19]) { // inline formatting: *em*, **strong**, ...
@@ -193,6 +210,53 @@ MarkdownParser.parse = function(text) {
     console.log("DONE");
 
     return elements;
+}
+
+MarkdownParser.__handle_html_tags = function(text) {
+    var tokenizer = /(?:<a[^>]*href=\"([^"]+)\"[^>]*>)|(<\/a>)|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(<\/?(?:strong|b)>)|(<\/?i>)|(<\/?code>)|(<\/?p>)|(<hr>)|(<\/?center>)|(<\/?[a-z][^>]+>)/ig;
+    var token, anchor_text, anchor_url = null;
+    var handled_text = "";
+    var last_index  = 0;
+
+    while ((token = tokenizer.exec(text))) {
+        if (!anchor_url) {
+            handled_text += text.substring(last_index, token.index);
+    
+            if (token[1]) { // anchor
+                anchor_url = token[1];
+                anchor_text = "";
+            } else if (token[3]) { // image
+                handled_text += "![](" + token[3] + ")";
+            } else if (token[4]) { // strong, b
+                handled_text += "**";
+            } else if (token[5]) { // i
+                handled_text += "*";
+            } else if (token[6]) { // code
+                handled_text += "`";
+            } else if (token[7]) { // p
+                handled_text += "\n";
+            } else if (token[8]) { // hr
+                handled_text += "---";
+            } else if (token[9] || token[10]) { // center
+                handled_text += token[9] || token[10];
+            }
+        } else {
+            anchor_text += text.substring(last_index, token.index);
+
+            if (token[2]) {
+                handled_text += "[" + MarkdownParser.__handle_html_tags(anchor_text) + "](" + anchor_url + ")";
+                anchor_url = null;
+            } else {
+                anchor_text += token[0];
+            }
+        }
+
+        last_index = tokenizer.lastIndex;
+    }
+
+    handled_text += text.substring(last_index, text.length);
+
+    return handled_text;
 }
 
 MarkdownParser.__outdent = function(text) {

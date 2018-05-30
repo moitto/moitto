@@ -47,6 +47,12 @@ Connect.invoke = function(method, params) {
         
         return;
     }
+
+    if (method === "follow") {
+        Connect.__invoke_follow(params);
+        
+        return;
+    }
 }
 
 Connect.__invoke_app = function(params) {
@@ -64,7 +70,7 @@ Connect.__invoke_transfer = function(params) {
         "hidden":params["hidden"] || "no"
     });
 
-    controller.action("page", { "display-unit":"S_TRANSFER" });
+    controller.action("subview", { "subview":"V_TRANSFER", "target":"popup" });
 }
 
 Connect.__invoke_pay = function(params) {
@@ -73,7 +79,15 @@ Connect.__invoke_pay = function(params) {
          "amount":params["amount"]
      });
 
-    controller.action("page", { "display-unit":"S_PAY" });
+    controller.action("subview", { "subview":"V_PAY", "target":"popup" });
+}
+
+Connect.__invoke_follow = function(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_FOLLOW", {
+         "following":params["following"]
+     });
+
+    controller.action("subview", { "subview":"V_FOLLOW", "target":"popup" });
 }
 
 Connect.__parse_query = function(query) {

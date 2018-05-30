@@ -11,7 +11,7 @@ Sbml.__elements_to_sbml = function(elements) {
 
     elements.forEach(function(element) {
         if (element.type === "text") {
-            sbml += Sbml.__html_to_sbml(element.data["text"]);
+            sbml += element.data["text"];
 
             return;
         }
@@ -31,12 +31,52 @@ Sbml.__elements_to_sbml = function(elements) {
         }
 
         if (element.type === "heading") {
-            if (sbml.length > 0) {
-                sbml += "\n";
-            }
-
+            sbml += element.data["leadings"];
             sbml += "=[heading-" + element.data["level"] + "|" + Sbml.__elements_to_sbml(element.data["elements"]) + "]=";
             sbml += "\n";
+
+            return;
+        }
+
+        if (element.type === "quote") {
+            sbml += "\n";
+            sbml += "=begin quote\n";
+            element.data["lines"].forEach(function(elements) {
+                sbml += Sbml.__elements_to_sbml(elements);
+                sbml += "\n";
+            });
+            sbml += "=end quote\n";
+
+            return;
+        }
+
+        if (element.type === "code") {
+            sbml += "\n";
+            sbml += "=begin code\n";
+            sbml += element.data["text"] + "\n";
+            sbml += "=end code\n";
+
+            return;
+        }
+
+        if (element.type === "inline-code") {
+            sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"]) + "]=";
+
+            return;
+        }
+
+        if (element.type === "list") {
+            element.data["lines"].forEach(function(elements) {
+                sbml += "\n";
+                sbml += Sbml.__elements_to_sbml(elements);
+            });
+            sbml += "\n";
+
+            return;
+        }
+
+        if (element.type === "bullet") {
+            sbml += (element.data["symbol"] || "•") + " "
 
             return;
         }
@@ -100,13 +140,22 @@ Sbml.__elements_to_sbml = function(elements) {
         }
     });
 
+    sbml = Sbml.__html_to_sbml(sbml);
+
     console.log(sbml);
 
     return sbml;
 }
 
 Sbml.__html_to_sbml = function(text) {
+    text = text.replace(/\n*<[\s/]*br[\s/]*>\n*/ig, "\n=[br| ]=\n");
     text = decode("html", text);
+
+    return text;
+}
+
+Sbml.__process_center_tags = function(text) {
+
 
     return text;
 }

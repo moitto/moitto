@@ -24,11 +24,15 @@ end
 #heading-5: font-size=1.1
 #heading-6: font-size=1.0
 #link: text-decoration=underline-#6C6C6C-1
+#code: highlight-color=$THEME_COLOR_01
 #em: font-family=$SANSSERIF_BOLD
 #italic: font-style=italic
 #em-italic: font-family=$SANSSERIF_BOLD
 #linethrough: text-decoration=line-through
 #line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
+
+%quote: background-color=$THEME_COLOR_01
+%code: background-color=$THEME_COLOR_01
 
 /page: page-background-color=$THEME_COLOR_02
 /page/body: padding="0 20dp (70dp+1eb) 20dp", \

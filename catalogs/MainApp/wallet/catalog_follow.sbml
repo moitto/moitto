@@ -1,0 +1,17 @@
+=begin catalog
+
+=begin following
+=(object image: id="img.following.userpic", style=img_following.userpic)=
+=(object label: text="${subview.following}", style=label_following.username)=
+=end following
+
+=object button: id="btn.follow", script=follow, label="팔로우", style=btn_follow
+=object button: id="btn.unfollow", script=unfollow, label="언팔로우", style=btn_unfollow
+
+=begin loading: id=loading
+=begin content
+잠시 기다려 주세요~!
+=end content
+=end loading
+
+=end catalog

@@ -10,7 +10,7 @@ Notif.update = function() {
     return new Promise(function(resolve, reject) {
         var username = storage.value("ACTIVE_USER");
         var earliest_date = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
-        var last_updated_date = storage.value("NOTIF_UPDATED_DATE") || earliest_date;
+        var last_updated_date = /*storage.value("NOTIF_UPDATED_DATE") || */earliest_date;
 
         Notif.__get_account_history_for_notif(username, last_updated_date).then(function(history) {
             history.reverse().forEach(function(data) {

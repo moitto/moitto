@@ -5,7 +5,7 @@ function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     var user = users.create(value["to"]);
     
-    __update_userpic(user);
+    __update_to_userpic(user);
 }
 
 function feed_users(keyword, location, length, sortkey, sortorder, handler) {
@@ -63,7 +63,7 @@ function confirm_transfer(form) {
     });
 }
 
-function __update_userpic(user) {
+function __update_to_userpic(user) {
     var image = view.object("img.to.userpic");
     var userpic_url = user.get_userpic_url();
 

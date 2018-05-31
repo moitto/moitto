@@ -1,0 +1,12 @@
+=begin popup
+
+=begin user: margin-top=100dp
+${username}
+${userpic-url}
+=end user
+
+환영합니다.
+
+=object button: script=on_login, label="시작하기", width=100dp, height=44dp
+
+=end popup

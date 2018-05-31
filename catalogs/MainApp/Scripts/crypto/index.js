@@ -1,4 +1,5 @@
 include("./sjcl/sjcl.js");
+include("./sjcl/convenience.js");
 include("./sjcl/bitArray.js");
 include("./sjcl/codecString.js");
 include("./sjcl/codecBytes.js");
@@ -67,6 +68,18 @@ Crypto.base58.check = {
         return sjcl.codec.base58Check.toBits(string, checksum_fn)
     }
 };
+
+Crypto.encrypt = function(password, plaintext) {
+    return sjcl.encrypt(password, plaintext, {
+
+    });
+}
+
+Crypto.decrypt = function(password, ciphertext) {
+    return sjcl.encrypt(password, ciphertext, {
+        
+    });
+}
 
 Crypto.number_from_bits = function(bits) {
     return sjcl.bn.fromBits(bits);

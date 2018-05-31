@@ -7,12 +7,13 @@ Account = (function() {
 Account.steem  = require("steem");
 Account.global = require("global");
 Account.users  = require("users");
+Account.crypto = require("crypto");
 
 Account.login = function(username, password, handler) {
     Account.steem.api.get_accounts([ username ]).then(function(response) {
         var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
-        var owner_key = response[0]["owner"]["key_auths"][0][0];
+        var owner_key = response[0] ? response[0]["owner"]["key_auths"][0][0] : "";
 
         if (keys["owner"].pub !== owner_key) {
             handler();
@@ -22,14 +23,22 @@ Account.login = function(username, password, handler) {
 
         Account.username = username;
         
-        roles.splice(1).forEach(function(role) {
-            keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
-        });
-
         storage.value("ACTIVE_USER", username);
         storage.value("USERS", (storage.value("USERS") || []).concat([ username ]));
 
-        handler(response[0]);
+        handler(response[0], function(pin) {
+            roles.splice(1).forEach(function(role) {
+                var key = keys[role].priv;
+
+                if ([ "active" ].includes(role)) {
+                    //key = Account.crypto.encrypt(pin, key);
+                }
+
+                keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+            });
+
+            keychain.password("KEYS_OWNER.PUB" + "@" + username, owner_key);
+        });
     });
 }
 
@@ -70,9 +79,9 @@ Account.switch_user = function(username) {
 
 Account.vote = function(author, permlink, weight, handler) {
     var voter = Account.username;
-    var keys  = Account.__load_keys(voter, [ "posting" ]);
+    var key = Account.__load_key(voter, "posting");
 
-    Account.steem.broadcast.vote(voter, author, permlink, weight, keys).then(function(response) {
+    Account.steem.broadcast.vote(voter, author, permlink, weight, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -81,9 +90,9 @@ Account.vote = function(author, permlink, weight, handler) {
 
 Account.unvote = function(author, permlink, handler) {
     var voter = Account.username;
-    var keys  = Account.__load_keys(voter, [ "posting" ]);
+    var key = Account.__load_key(voter, "posting");
 
-    Account.steem.broadcast.vote(voter, author, permlink, 0, keys).then(function(response) {
+    Account.steem.broadcast.vote(voter, author, permlink, 0, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -92,7 +101,7 @@ Account.unvote = function(author, permlink, handler) {
 
 Account.follow_user = function(following, handler) {
     var follower = Account.username;
-    var keys  = Account.__load_keys(follower, [ "posting" ]);
+    var key = Account.__load_key(voter, "posting");
     var json = JSON.stringify(
         [ "follow", {
             "follower":follower,
@@ -101,7 +110,7 @@ Account.follow_user = function(following, handler) {
         }]
     );
 
-    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, keys).then(function(response) {
+    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -110,7 +119,7 @@ Account.follow_user = function(following, handler) {
 
 Account.unfollow_user = function(following, handler) {
     var follower = Account.username;
-    var keys  = Account.__load_keys(follower, [ "posting" ]);
+    var key = Account.__load_key(voter, "posting");
     var json = JSON.stringify(
         [ "follow", {
             "follower":follower,
@@ -119,32 +128,42 @@ Account.unfollow_user = function(following, handler) {
         }]
     );
 
-    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, keys).then(function(response) {
+    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
     });
 }
 
-Account.transfer = function(to, amount, memo, handler) {
+Account.transfer = function(to, amount, memo, pin, handler) {
     var from = Account.username;
-    var keys = Account.__load_keys(from, [ "active" ]);
+    var key = Account.__load_key(voter, "active", pin);
 
-    Account.steem.broadcast.transfer(from, to, amount, memo, keys).then(function(response) {
+    Account.steem.broadcast.transfer(from, to, amount, memo, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
     });
 }
 
-Account.__load_keys = function(username, roles) {
-    var keys = {};
+Account.is_owner_pubkey = function(pubkey, pin) {
+    var saved_pubkey = keychain.password("KEYS_OWNER.PUB" + "@" + Account.username);
 
-    roles.forEach(function(role) {
-        keys[role] = keychain.password("KEYS_" + role.toUpperCase() + "@" + username);
-    });
+    if (saved_pubkey === pubkey) {
+        return true;
+    }
 
-    return keys;
+    return false;
+}
+
+Account.__load_key = function(username, role, pin) {
+    var key = keychain.password("KEYS_" + role.toUpperCase() + "@" + username)
+
+    if (pin) {
+
+    }
+
+    return key;
 }
 
 __MODULE__ = Account;

@@ -1,0 +1,54 @@
+=begin popup
+
+=object button: action=popup-close, style=btn_close
+=object label: text="암호 입력", style=label_title
+=object button: script=reset_pin, label="암호 재설정", style=btn_reset
+
+=object section: section=board, style=section_board
+
+=begin board: id=board
+=begin content
+=begin message
+=object label: id=label.message, text="${message}", style=label_message
+=end message
+
+=object section: section=number, style=section_number
+
+=begin number: id=number
+=object label: id=label.number.1, style=label_number.1
+=object blank: style=blank_number.1
+=object label: id=label.number.2, style=label_number.2
+=object blank: style=blank_number.2
+=object label: id=label.number.3, style=label_number.3
+=object blank: style=blank_number.3
+=object label: id=label.number.4, style=label_number.4
+=object blank: style=blank_number.4
+
+=object label: text="+", style=label_plus
+
+=object label: id=label.number.5, style=label_number.5
+=object blank: style=blank_number.5
+=end number
+
+=end content
+=end board
+
+=object section: id=section.numpad, section=numpad, style=section_numpad
+
+=begin numpad: id=numpad
+=(object button: label="1", style=btn_numpad.number)==(object button: label="2", style=btn_numpad.number)==(object button: label="3", style=btn_numpad.number)=
+=(object button: label="4", style=btn_numpad.number)==(object button: label="5", style=btn_numpad.number)==(object button: label="6", style=btn_numpad.number)=
+=(object button: label="7", style=btn_numpad.number)==(object button: label="8", style=btn_numpad.number)==(object button: label="9", style=btn_numpad.number)=
+=(object button: label="",  style=btn_numpad.empty)==(object button: label="0", style=btn_numpad.number)==(object button: label="←", style=btn_numpad.back)=
+=end numpad
+
+=object section: id=section.keypad, section=keypad, style=section_keypad
+
+=begin keypad: id=keypad
+=(object button: label="A", style=btn_keypad.text)==(object button: label="B", style=btn_keypad.text)==(object button: label="C", style=btn_keypad.text)==(object button: label="D", style=btn_keypad.text)==(object button: label="E", style=btn_keypad.text)==(object button: label="F", style=btn_keypad.text)==(object button: label="G", style=btn_keypad.text)=
+=(object button: label="H", style=btn_keypad.text)==(object button: label="I", style=btn_keypad.text)==(object button: label="J", style=btn_keypad.text)==(object button: label="K", style=btn_keypad.text)==(object button: label="L", style=btn_keypad.text)==(object button: label="M", style=btn_keypad.text)==(object button: label="N", style=btn_keypad.text)=
+=(object button: label="O", style=btn_keypad.text)==(object button: label="P", style=btn_keypad.text)==(object button: label="Q", style=btn_keypad.text)==(object button: label="R", style=btn_keypad.text)==(object button: label="S", style=btn_keypad.text)==(object button: label="T", style=btn_keypad.text)==(object button: label="U", style=btn_keypad.text)=
+=(object button: label="V", style=btn_keypad.text)==(object button: label="W", style=btn_keypad.text)==(object button: label="X", style=btn_keypad.text)==(object button: label="Y", style=btn_keypad.text)==(object button: label="Z", style=btn_keypad.text)==(object button: label="←", style=btn_keypad.back)=
+=end keypad
+
+=end popup

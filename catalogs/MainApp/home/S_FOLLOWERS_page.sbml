@@ -3,6 +3,7 @@
 =object showcase: alternate-name=followers, data-script=feed_followers, \
             has-header=yes, header-display-unit=S_USER, \
             loads-more=yes, more-count=100, \
+            selectable=yes, script-when-selected=show_user, \
             style=showcase_blog
 
 =end page

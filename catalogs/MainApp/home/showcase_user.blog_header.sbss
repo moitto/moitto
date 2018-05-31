@@ -30,7 +30,7 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 
-/header: text-align=center, margin="0 0 25dp 0"
+/header: script-when-loaded=on_loaded, text-align=center, margin="0 0 25dp 0"
 
 
 

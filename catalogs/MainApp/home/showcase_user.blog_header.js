@@ -4,6 +4,7 @@ var steemjs = require("steemjs");
 var __last_label_for_follow_buttons = {};
 
 function on_loaded() {
+    console.log("on_loaded!!!");
     steemjs.get_followers($data["username"], account.username, "blog", 1).then(function(response) {
         if (response.length == 0 || response[0]["follower"] !== account.username) {
             __show_follow_button("follow");

@@ -40,3 +40,12 @@ function unfollow(form) {
 function mute(form) {
     controller.action("alert", {message:"mute:" + form["username"]});
 }
+
+function show_user(data) {
+    controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+        "username":data["username"],
+        "fetched":"no"
+    });
+
+    controller.action("page", { "display-unit":"S_USER" })
+}

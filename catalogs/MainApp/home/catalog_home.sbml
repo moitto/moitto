@@ -9,7 +9,7 @@
 
 
 =begin navibar
-=object image: filename="~/subview_img_logo.png", height=44dp, position=absolute, gravity=top, y=1sbh
+=object image: style=img_logo
 =object label: text="홈", style=label_title, display=none
 =object button: style=btn_layout
 =object blank: style=blank_line

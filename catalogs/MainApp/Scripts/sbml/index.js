@@ -11,7 +11,7 @@ Sbml.__elements_to_sbml = function(elements) {
 
     elements.forEach(function(element) {
         if (element.type === "text") {
-            sbml += decode("html", element.data["text"]);
+            sbml += Sbml.__handle_text(element.data["text"]);
 
             return;
         }
@@ -195,9 +195,14 @@ Sbml.__elements_to_sbml = function(elements) {
         }
     });
 
-    console.log(sbml);
-
     return sbml;
+}
+
+Sbml.__handle_text = function(text) {
+    text = text.replace(/@([a-z0-9\-]+)/g, "=[user:username=\"$1\"|@$1]=");
+    text = decode("html", text);
+
+    return text;
 }
 
 Sbml.__url_for_image = function(url, size) {

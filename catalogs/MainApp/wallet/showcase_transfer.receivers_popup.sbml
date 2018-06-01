@@ -1,9 +1,18 @@
 =begin popup
 
-=object textfield: id=username, placeholder="스팀잇 계정", \
+=begin info: margin-top=1sbh+20dp
+송금받을 분의 계정을 입력하세요.
+=end info
+
+=begin receiver: form=receiver
+=(object textfield: id=username, placeholder="스팀잇 계정", \
             return-key-type=next, \
             auto-capitalization-type=none, \
-            width="0.8pw-20dp", height=50dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100
+            width=200dp, height=50dp, \
+            font-family=$SANSSERIF_BOLD, font-size=1.3, text-color=$THEME_COLOR_100, \
+            keyboard-type=alphabet, next-control=transfer, \
+            valid-format="[a-z0-9\\-]*", prevents-invalid-text=yes, \
+            invalid-when-empty=yes, message-when-empty="송금받을 분의 계정을 입력하세요.")= =(object button: id=transfer, label="다음", width=80dp, height=50dp, script=transfer, form=receiver)=
+=end receiver
 
 =end popup

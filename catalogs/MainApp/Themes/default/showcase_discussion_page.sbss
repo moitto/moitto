@@ -24,6 +24,7 @@ end
 #heading-5: font-size=1.1
 #heading-6: font-size=1.0
 #link: text-decoration=underline-#6C6C6C-1
+#user: script=show_user, text-decoration=underline-#6C6C6C-1
 #code: highlight-color=$THEME_COLOR_01
 #strong: font-family=$SANSSERIF_BOLD
 #bold: font-family=$SANSSERIF_BOLD

@@ -6,13 +6,8 @@ function transfer() {
         "currency":"KRW"
     });
 
-    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
-        "message":"암호가 일치하면 0.001 SBD를 송금합니다."
-    });
-
     controller.action("popup", { 
-        "display-unit":"S_PIN", 
-        "-display-unit":"S_TRANSFER", 
-        "-alternate-name":"transfer.receivers" 
+        "display-unit":"S_TRANSFER", 
+        "alternate-name":"transfer.receivers" 
     });
 }

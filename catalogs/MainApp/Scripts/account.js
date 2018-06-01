@@ -101,7 +101,7 @@ Account.unvote = function(author, permlink, handler) {
 
 Account.follow_user = function(following, handler) {
     var follower = Account.username;
-    var key = Account.__load_key(voter, "posting");
+    var key = Account.__load_key(follower, "posting");
     var json = JSON.stringify(
         [ "follow", {
             "follower":follower,
@@ -119,7 +119,7 @@ Account.follow_user = function(following, handler) {
 
 Account.unfollow_user = function(following, handler) {
     var follower = Account.username;
-    var key = Account.__load_key(voter, "posting");
+    var key = Account.__load_key(follower, "posting");
     var json = JSON.stringify(
         [ "follow", {
             "follower":follower,
@@ -137,7 +137,7 @@ Account.unfollow_user = function(following, handler) {
 
 Account.transfer = function(to, amount, memo, pin, handler) {
     var from = Account.username;
-    var key = Account.__load_key(voter, "active", pin);
+    var key = Account.__load_key(from, "active", pin);
 
     Account.steem.broadcast.transfer(from, to, amount, memo, [ key ]).then(function(response) {
         handler(response);
@@ -146,11 +146,11 @@ Account.transfer = function(to, amount, memo, pin, handler) {
     });
 }
 
-Account.is_owner_pubkey = function(pubkey, pin) {
+Account.verify_pubkey = function(pubkey, pin) {
     var saved_pubkey = keychain.password("KEYS_OWNER.PUB" + "@" + Account.username);
 
     if (saved_pubkey === pubkey) {
-        return true;
+        //return true;
     }
 
     return false;

@@ -1,5 +1,12 @@
 =begin page
 
 =object showcase: alternate-name=replies, data-script=feed_replies, style=showcase_replies
+=object section: section=comment, style=section_comment
+
+=begin comment: id=comment
+
+댓글 달기
+
+=end comment
 
 =end page

@@ -2,17 +2,19 @@
 
 =begin actions: form=form
 
-=object label: text="Voting Weight", style=label_title
-=object label: text="00,000 SP", style=label_volume
-
 =object label: text="Voting Power", style=label_title
-=object label: text="00.00%", style=label_volume
+=object label: id=label.power, text=" ", style=label_volume
 
-=object label: text="보팅 후 Voting Power", style=label_title
-=object label: text="00.00%", style=label_volume
+=object label: text="Voting Percent", style=label_title
+=object label: id=label.percent, text="00.00%", style=label_volume
 
-=object slider: style=slider
-=object button: id=btn.vote, script=vote, form=form, label="보팅하기", style=btn_vote
+=object label: text="Voting Amount", style=label_title
+=object label: id=label.amount, text=" ", style=label_volume
+
+=object slider: id=slider.percent, style=slider_percent
+=(object button: label="1%", style=btn_percent.1)==(object button: label="25%", style=btn_percent.25)==(object button: label="50%", style=btn_percent.50)==(object button: label="75%", style=btn_percent.75)==(object button: label="100%", style=btn_percent.100)=
+
+=object button: id=btn.vote, script=vote, label="보팅하기", style=btn_vote
 
 =end actions
 

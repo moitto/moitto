@@ -1,5 +1,7 @@
 import ~/themes.sbss
 
-#showcase_replies: width=1pw, height=1ph, column-count=1, cell-size="1pw, 170dp", content-margin="0 0 1eb 0"
+#showcase_replies: width=1pw, height=1ph-44dp, column-count=1, cell-size="1pw, 170dp", content-margin="0 0 1eb 0"
+#section_comment: width=1pw, height=44dp, position=abs, gravity=bottom, script-when-touched=comment
 
 /page: page-background-color=$THEME_COLOR_02
+/page/comment: display=none

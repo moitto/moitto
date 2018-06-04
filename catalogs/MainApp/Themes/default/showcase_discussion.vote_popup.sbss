@@ -2,9 +2,21 @@ import ~/themes.sbss
 
 #label_title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1.2, \
             margin="0 0 10dp 0"
-#label_volume: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, margin="0 0 30dp 0"
-#slider: width=0.9pw, height=20dp, scroll-thumb-image=mediabar_scroll_thumb_white.png, \
-        track-color=$THEME_COLOR_02, scroll-color=$THEME_COLOR_03, margin="100dp 0 40dp 0"
+#label_volume: width=0.9pw, font-family=$SANSSERIF_BOLD, font-size=1.6, margin="0 0 30dp 0", \
+            text-color=$THEME_COLOR_102, text-align=center
+#slider_percent: width=0.9pw, height=20dp, scroll-thumb-image=mediabar_scroll_thumb_white.png, \
+            track-color=$THEME_COLOR_02, scroll-color=$THEME_COLOR_03, margin="100dp 0 40dp 0", \
+            max-value=100, script-when-changed=on_change_percent
+
+#btn_percent: width=(0.9pw/5), height=44dp, script=select_percent, \
+        label-color=$WHITE_COLOR, label-align=center
+
+#btn_percent.1: value=1, style=btn_percent
+#btn_percent.25: value=25, style=btn_percent
+#btn_percent.50: value=50, style=btn_percent
+#btn_percent.75: value=75, style=btn_percent
+#btn_percent.100: value=100, style=btn_percent
+
 #btn_vote: width=0.9pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
@@ -14,4 +26,4 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00, content-border-radius=25dp
 
 /popup: script-when-loaded=on_loaded, page-background-color=$BLACK_COLOR_DEEP_DIM
-/popup/actions: display=block, position=absolute, gravity=bottom, y=-(110dp+1eb)
+/popup/actions: display=block, position=absolute, gravity=bottom, y=-(110dp+1eb), text-align=center

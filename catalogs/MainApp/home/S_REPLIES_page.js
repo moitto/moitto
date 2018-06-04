@@ -31,3 +31,12 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
         handler();
     }
 }
+
+function comment() {
+    controller.catalog().submit("showcase", "auxiliary", "S_COMMENT", {
+        "author":"",
+        "permlink":""
+    });
+
+    controller.action("popup", { "display-unit":"S_COMMENT" })
+}

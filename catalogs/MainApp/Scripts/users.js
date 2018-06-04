@@ -27,6 +27,16 @@ User.prototype.get_follower_count = function() {
     return this.follows["follower_count"];
 }
 
+User.prototype.get_voting_power = function() {
+    return this.data["voting_power"] / 100.0;
+}
+
+User.prototype.get_voting_amount = function(weight) {
+    var steems_per_vest = this.dynprops.get_steems_per_vest();
+
+    return 0.0126 * (weight / 1000.0);
+}
+
 User.prototype.get_steem_balance = function() {
     return parseFloat(this.data["balance"].split(" ")[0]);
 }

@@ -1,5 +1,12 @@
 =begin popup
 
+=begin navibar
+
+=object button: script=close, label="닫기", style=btn_close
+=object button: script=write, label="완료", style=btn_write
+
+=end navibar
+
 =object editor: style=editor
 
 =end popup

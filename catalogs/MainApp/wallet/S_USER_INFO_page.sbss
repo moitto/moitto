@@ -1,0 +1,21 @@
+import ~/themes.sbss
+
+#blank_userpic.mask: width=82dp, height=82dp, \
+            position=absolute, gravity=top, y=24dp, \
+            content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
+#img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
+            content-border-radius=40dp, margin="25dp 0 5dp 0"
+#label_user: height=30dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
+            line-break-mode=tail-truncation, content-padding="0 10dp"
+#blank_margin: width=30dp, height=30dp
+#label_rep: height=20dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
+#btn_info: width=0.25pw, height=30dp, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
+            label-align=center, label-font-size=1.4
+#btn_info.title: width=0.25pw, height=15dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
+            label-align=center, label-font-size=0.9
+
+/page: text-align=center, margin="0 0 25dp 0", page-background-color=$THEME_COLOR_02

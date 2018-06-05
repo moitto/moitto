@@ -19,6 +19,8 @@ ${title}
 =end meta
 =end header
 ${body}
+
+=object button: script=show_replies, label="댓글 보기", style=btn_replies
 =end body
 
 

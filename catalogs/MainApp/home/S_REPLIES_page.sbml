@@ -1,12 +1,11 @@
 =begin page
 
 =object showcase: alternate-name=replies, data-script=feed_replies, style=showcase_replies
-=object section: section=comment, style=section_comment
 
+=object section: script-when-touched=comment, section=comment, style=section_comment
 =begin comment: id=comment
-
-댓글 달기
-
+=object blank: style=blank_line
+=object label: text="댓글 쓰기", style=label_replies
 =end comment
 
 =end page

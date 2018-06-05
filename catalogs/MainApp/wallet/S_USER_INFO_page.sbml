@@ -1,0 +1,14 @@
+=begin page: script-when-loaded=on_loaded
+
+=object blank: style=blank_userpic.mask
+=object image: image-url="https://steemitimages.com/u/${username}/avatar", image-downloadable=yes, style=img_profile
+
+=(object blank: style=blank_margin)==(object label: text="${username}", style=label_user)=
+=object label: text="REP. ${reputation}", style=label_rep
+
+=begin info
+=(object button: script=show_blog, label="${post-count}", style=btn_info)==(object button: script=show_following, label="${following-count}", style=btn_info)==(object button: script=show_followers, label="${follower-count}", style=btn_info)=
+=(object button: script=show_blog, label="게시글", style=btn_info.title)==(object button: script=show_following, label="팔로우", style=btn_info.title)==(object button: script=show_followers, label="팔로워", style=btn_info.title)=
+=end info
+
+=end page

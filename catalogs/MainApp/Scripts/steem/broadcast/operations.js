@@ -63,6 +63,10 @@ __MODULE__ = [{
   "operation": "custom",
   "params": ["required_auths", "id", "data"]
 }, {
+  "roles": ["active", "owner"],
+  "operation": "report_over_production",
+  "params": ["reporter", "first_block", "second_block"]
+}, {
   "roles": ["posting", "active", "owner"],
   "operation": "delete_comment",
   "params": ["author", "permlink"]

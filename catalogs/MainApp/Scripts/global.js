@@ -21,6 +21,16 @@ DynProps.prototype.get_steems_per_vest = function() {
 
 // methods
 
+Global.get_dynprops = function() {
+    return new Promise(function(resolve, reject) {
+        Global.steemjs.get_dynamic_global_properties().then(function(response) {
+            resolve(new DynProps(response));
+        }, function(reason) {
+            reject(reason);
+        }); 
+    });   
+}
+
 Global.get_user = function(username) {
     return new Promise(function(resolve, reject) {
         Promise.all([

@@ -7,7 +7,7 @@ SteemBroadcast.serializer = include("./serializer.js")
 
 SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "vote" , { 
+        var operation = [ "vote", { 
             voter:voter, author:author, permlink:permlink, weight:weight
         }];
 
@@ -21,7 +21,7 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
 
 SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "transfer" , { 
+        var operation = [ "transfer", { 
             from:from, to:to, amount:amount, memo:memo
         }];
 
@@ -35,7 +35,7 @@ SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
 
 SteemBroadcast.account_create = function(fee, creator, new_account_name, owner, active, posting, memo_key, json_metadata, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "account_create" , { 
+        var operation = [ "account_create", { 
             fee:fee, creator:creator, new_account_name:new_account_name, 
             owner:owner, active:active, posting:posting, memo_key:memo_key, 
             json_metadata:json_metadata
@@ -51,8 +51,8 @@ SteemBroadcast.account_create = function(fee, creator, new_account_name, owner, 
 
 SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd, reward_vests, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "claim_reward_balance" , { 
-            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests: reward_vests
+        var operation = [ "claim_reward_balance", { 
+            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests:reward_vests
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -65,8 +65,22 @@ SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd
 
 SteemBroadcast.custom_json = function(required_auths, required_posting_auths, id, json, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "custom_json" , { 
+        var operation = [ "custom_json", { 
             required_auths:required_auths, required_posting_auths:required_posting_auths, id:id, json:json
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.delegate_vesting_shares = function(delegator, delegatee, vesting_shares, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "delegate_vesting_shares", { 
+            delegator:delegator, delegatee:delegatee, vesting_shares:vesting_shares
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

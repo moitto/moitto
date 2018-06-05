@@ -17,7 +17,7 @@ SteemSerializer.serialize_transaction = function(transaction) {
         var params = operation[1];
 
         SteemSerializer.__find_operation(operation[0], function(index, operation) {
-            SteemSerializer.__pack_buffer(buffer, "B", [ 9 ]);
+            SteemSerializer.__pack_buffer(buffer, "B", [ index ]);
 
             operation["params"].forEach(function(param) {
                 SteemSerializer.params[operation.operation][param].pack(

@@ -164,6 +164,23 @@ Account.transfer = function(to, amount, memo, pin, handler) {
     });
 }
 
+Account.delegate_vesting = function(delegatee, amount, pin, handler) {
+    var delegator = Account.username;
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.global.get_dynprops().then(function(dynprops) {
+        var vesting_shares = parseFloat(amount.split(" ")[0]) / dynprops.get_steems_per_vest().toFixed(3) + " VESTS";
+
+        Account.steem.broadcast.delegate_vesting_shares(delegator, delegatee, vesting_shares, [ key ]).then(function(response) {
+            handler(response);
+        }, function(reason) {
+            handler();
+        });
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.verify_pubkey = function(pubkey, pin) {
     var saved_pubkey = keychain.password("KEYS_OWNER.PUB" + "@" + Account.username);
 

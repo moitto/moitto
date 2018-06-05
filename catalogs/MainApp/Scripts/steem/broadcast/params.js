@@ -28,5 +28,10 @@ __MODULE__ = {
         required_posting_auths: __TYPES__.array,
         id: __TYPES__.string,
         json: __TYPES__.string
+    },
+    "delegate_vesting_shares":{
+        delegator: __TYPES__.string,
+        delegatee: __TYPES__.string,
+        vesting_shares: __TYPES__.asset
     }
 };

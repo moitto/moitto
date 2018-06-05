@@ -199,7 +199,7 @@ Sbml.__elements_to_sbml = function(elements) {
 }
 
 Sbml.__handle_text = function(text) {
-    text = text.replace(/@([a-z0-9\-]+)/g, "=[user:username=\"$1\"|@$1]=");
+    text = text.replace(/@([a-z0-9\-]+(\.[a-z0-9\-]+)*)/g, "=[user:username=\"$1\"|@$1]=");
     text = decode("html", text);
 
     return text;

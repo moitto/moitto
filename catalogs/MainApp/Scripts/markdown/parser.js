@@ -4,11 +4,16 @@ MarkdownParser = (function() {
 
 MarkdownParser.parse = function(text) {
     console.log(text);
-    return MarkdownParser.__parse_to_markdown(text, false);
+    var elements = MarkdownParser.__parse_to_markdown(text, false);
+
+    elements.forEach(function(element) {
+        console.log(JSON.stringify(element));
+        console.log("<<<<<<<<<");
+    });
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+)(?:---+|- -(?: -)+|\*\*\*+|\* \*(?: \*)+)\n+)|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>.*(?:\n.+)*)+)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|(?:\!\[([^\]]*?)\]\(((?:\([^\s\)]\)|[^\s\]]*)*)\))|(\[)|(\](?:\(((?:\([^\s\)]\)|[^\s\]]*)*)\))?)|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9_@%:\/\.\-]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<strong>(.*)<\/strong>)|(?:<b>(.*)<\/b>)|(?:<i>(.*)<\/i>)|(?:<code>(.*)<\/code>)|(?:<sub>(.*)<\/sub>)|(?:<sup>(.*)<\/sup>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<center>)|(<\/center>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/igm;
+    var tokenizer = /((?:^|\n+)(?:---+|- -(?: -)+|___+|_ _(?: _)+|\*\*\*+|\* \*(?: \*)+)\n+)|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n)>.*(?:\n.+)*)+)|((?:(?:^|\n)(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|\!\[([^\]]*)\]\(((?:\([^\)]*\)|[^\)]*)*)\)|(\[)|(\]\(((?:\([^\)]*\)|[^\)]*)*)\))|(?:(?:^|\n)(#{1,6})(?:\n+|$))|(?:(?:^|\n)(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9_@%:\/\.\-\+]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<strong>(.*)<\/strong>)|(?:<b>(.*)<\/b>)|(?:<i>(.*)<\/i>)|(?:<code>(.*)<\/code>)|(?:<sub>(.*)<\/sub>)|(?:<sup>(.*)<\/sup>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<center>)|(<\/center>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|(  \n\n*|\n{2,}|\*{1,3}|_{1,3}|~{2})/igm;
     var elements = [];
     var token, text_chunk, chunk, element;
     var last_index  = 0;
@@ -83,7 +88,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"link-begin-or-text",
                 data:{
-                    text:token[9] // "["
+                    text:token[9] // "[" of "!["
                 }
             }     
         } else if (token[10]) { // end of link
@@ -289,8 +294,10 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             });
         }
+
         console.log(JSON.stringify(element));
         console.log("-------");
+
 
         elements.push(element);
 
@@ -309,13 +316,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
     }
 
     MarkdownParser.__clear_unhandled_begins(elements);
-
-    elements.forEach(function(element) {
-        console.log(JSON.stringify(element));
-        console.log("<<<<<<<<<");
-    });
-
-    console.log("DONE");
 
     return elements;
 }

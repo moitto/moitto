@@ -4,12 +4,7 @@ MarkdownParser = (function() {
 
 MarkdownParser.parse = function(text) {
     console.log(text);
-    var elements = MarkdownParser.__parse_to_markdown(text, false);
-
-    elements.forEach(function(element) {
-        console.log(JSON.stringify(element));
-        console.log("<<<<<<<<<");
-    });
+    return MarkdownParser.__parse_to_markdown(text, false);
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
@@ -294,10 +289,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             });
         }
-
-        console.log(JSON.stringify(element));
-        console.log("-------");
-
 
         elements.push(element);
 

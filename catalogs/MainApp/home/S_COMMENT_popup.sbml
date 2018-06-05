@@ -1,10 +1,11 @@
 =begin popup
 
-=begin navibar
-
-=object button: script=close, label="닫기", style=btn_close
+=object section: section=navibar, style=section_navibar
+=begin navibar: id=navibar
+=object label: text="댓글 쓰는 중", style=label_title
+=object button: script=close, label="취소", style=btn_close
 =object button: script=write, label="완료", style=btn_write
-
+=object blank: style=blank_line
 =end navibar
 
 =object editor: style=editor

@@ -1,7 +1,7 @@
 import ~/themes.sbss
 
 #section_contents: width=1pw, height=1ph, position=absolute
-#goL: font-family=$SANSSERIF_LIGHT
+#goB: label-font-family=$SANSSERIF_BOLD
 
 #img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
@@ -33,8 +33,8 @@ if $LAYOUT == "thumbnail"
 else
     #img_cover: width=0.3ph, height=0.3ph, scales-in-background=yes, loading-duration=0.3, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
-    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.9
-    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.9, label-align=left
+    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.8
+    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.8, label-align=left
     #blank_userpic.mask: width=30dp, height=30dp, \
                 position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
                 content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01

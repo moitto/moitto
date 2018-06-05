@@ -1,14 +1,23 @@
 import ~/themes.sbss
 
-#btn_close: width=50dp, height=50dp, position=absolute, gravity=left-top, x=10dp, \
-        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
-        content-background-color=$THEME_COLOR_00, content-border-radius=25dp
+#section_navibar: width=1pw, height="1sbh+44dp", \
+            position=absolute, gravity=top, content-background-color=$THEME_COLOR_00
 
-#btn_write: width=50dp, height=50dp, position=absolute, gravity=right-top, x=-10dp, \
-        label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
-        content-background-color=$THEME_COLOR_00, content-border-radius=25dp
+#label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=top, y=1sbh, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
+            position=absolute, gravity=bottom
+#btn_close: width=50dp, height=44dp, position=absolute, gravity=left-bottom, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.1
+#btn_write: width=50dp, height=44dp, position=absolute, gravity=right-bottom, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.1
+#editor: width=1pw, height="1ph-(1sbh+44dp)", position=absolute, gravity=top, y="1sbh+44dp"
 
-#editor: width=1pw, height=1ph-(1sbh+50dp), position=abs, gravity=top, y=(1sbh+50dp)
+/popup: page-background-color=$THEME_COLOR_02
+/popup/navibar: display=none
 
-/popup: page-background-color=$WHITE_COLOR
-/popup/navibar: display=block, position=abs, gravity=top, y=1sbh
+if $SCREEN_SIZE > 5
+    #label_title: font-size=1.4
+else
+    #label_title: font-size=1.3
+end

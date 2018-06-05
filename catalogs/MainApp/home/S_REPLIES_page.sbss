@@ -1,7 +1,7 @@
 import ~/themes.sbss
 
-#showcase_replies: width=1pw, height=1ph, column-count=1, cell-size="1pw, 170dp", content-margin="0 0 (1eb+50dp) 0"
-#section_comment: width=1pw, height="1eb+50dp", position=absolute, gravity=bottom, \
+#showcase_replies: width=1pw, height=1ph, column-count=1, cell-size="1pw, 170dp", content-margin="0 0 (1eb+60dp) 0"
+#section_comment: width=1pw, height="1eb+60dp", position=absolute, gravity=bottom, \
             content-background-color=$THEME_COLOR_00, content-border-color=$THEME_COLOR_01, content-border-width="1dp 0 0 0"
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=top
 #label_replies: width="1pw-20dp", height=40dp, position=absolute, gravity=top, y=10dp, \

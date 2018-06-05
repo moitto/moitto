@@ -28,10 +28,6 @@ __MODULE__ = [{
   "params": ["owner", "orderid"]
 }, {
   "roles": ["active", "owner"],
-  "operation": "price",
-  "params": ["base", "quote"]
-}, {
-  "roles": ["active", "owner"],
   "operation": "feed_publish",
   "params": ["publisher", "exchange_rate"]
 }, {

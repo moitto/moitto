@@ -55,6 +55,16 @@ __MODULE__ = {
 
         }
     },
+    "public_key" : {
+        pack : function(buffer, value) {
+            SteemAuth.decode_public_key(value).forEach(function(byte) {
+                SteemSerializer.__pack_buffer(buffer, "B", [ byte ]);
+            });
+        },
+        unpack : function(buffer) {
+
+        }
+    },
     "asset" : {
         pack : function(buffer, value) {
             var tokens = value.split(" ");
@@ -70,6 +80,27 @@ __MODULE__ = {
             for (var i = 0; i < 7 - symbol.length; i++) {
                 SteemSerializer.__pack_buffer(buffer, "B", [ 0 ]);
             }
+        },
+        unpack : function(buffer) {
+
+        }
+    },
+    "authority" : {
+        pack : function(buffer, value) {
+            SteemSerializer.__pack_buffer(buffer, "<I", [ value["weight_threshold"] ]);
+
+            SteemSerializer.__pack_buffer(buffer, "B", [ value["account_auths"].length ]);
+            value["account_auths"].forEach(function(auth) {
+                // TBD
+            });
+
+            SteemSerializer.__pack_buffer(buffer, "B", [ value["key_auths"].length ]);
+            value["key_auths"].forEach(function(auth) {
+                SteemAuth.decode_public_key(auth[0]).forEach(function(byte) {
+                    SteemSerializer.__pack_buffer(buffer, "B", [ byte ]);
+                });
+                SteemSerializer.__pack_buffer(buffer, "<H", [ auth[1] ]);
+            });
         },
         unpack : function(buffer) {
 

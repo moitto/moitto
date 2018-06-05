@@ -41,6 +41,16 @@ SteemAuth.sign_transaction = function(transcation, keys) {
     return signatures;
 }
 
+SteemAuth.decode_public_key = function(key) {
+    var stripped_key = key.replace(new RegExp("^" + Steem.net.pub_prefix), "");
+
+    return Steem.crypto.bytes_from_bits(
+        Steem.crypto.base58.check.decode(
+            stripped_key, SteemAuth.__checksum_for_key
+        )
+    );
+}
+
 SteemAuth.__build_public_key = function(key) {
     var header = Steem.net.pub_header;
     var point = key.get();

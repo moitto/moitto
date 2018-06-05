@@ -13,6 +13,16 @@ __MODULE__ = {
         amount: __TYPES__.asset,
         memo: __TYPES__.string
     },
+    "account_create":{
+        fee: __TYPES__.asset,
+        creator: __TYPES__.string,
+        new_account_name: __TYPES__.string,
+        owner: __TYPES__.authority,
+        active: __TYPES__.authority,
+        posting: __TYPES__.authority,
+        memo_key: __TYPES__.public_key,
+        json_metadata: __TYPES__.string
+    },
     "custom_json":{
         required_auths: __TYPES__.array,
         required_posting_auths: __TYPES__.array,

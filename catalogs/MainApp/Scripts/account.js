@@ -77,6 +77,24 @@ Account.switch_user = function(username) {
     return false;
 }
 
+Account.create_user = function(username, fee, pin, handler) {
+    var creator = Account.username;
+    var password = Account.__generate_password();
+    var roles = [ "owner", "active", "posting", "memo" ];
+    var keys = Account.steem.auth.generate_keys(username, password, roles);
+    var owner    = Account.__authority_for_key(keys["owner"].pub);
+    var active   = Account.__authority_for_key(keys["active"].pub);
+    var posting  = Account.__authority_for_key(keys["posting"].pub);
+    var memo_key = keys["memo"].pub;
+    var key = Account.__load_key(creator, "active", pin);
+
+    Account.steem.broadcast.account_create(fee, creator, username, owner, active, posting, memo_key, "", [ key ]).then(function(response) {
+        handler(response, password);
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.vote = function(author, permlink, weight, handler) {
     var voter = Account.username;
     var key = Account.__load_key(voter, "posting");
@@ -110,7 +128,7 @@ Account.follow_user = function(following, handler) {
         }]
     );
 
-    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, [ key ]).then(function(response) {
+    Account.steem.broadcast.custom_json([], [ follower ], "follow", json, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -128,7 +146,7 @@ Account.unfollow_user = function(following, handler) {
         }]
     );
 
-    Account.steem.broadcast.custom_json([], [ follower ], 'follow', json, [ key ]).then(function(response) {
+    Account.steem.broadcast.custom_json([], [ follower ], "follow", json, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -164,6 +182,18 @@ Account.__load_key = function(username, role, pin) {
     }
 
     return key;
+}
+
+Account.__generate_password = function() {
+    return "P5" + Account.crypto.base58.encode(random(10));
+}
+
+Account.__authority_for_key = function(key) {
+    return {
+        "weight_threshold":1,
+        "account_auths":[],
+        "key_auths":[[ key, 1 ]]
+    }
 }
 
 __MODULE__ = Account;

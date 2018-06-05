@@ -89,6 +89,10 @@ Crypto.string_to_bits = function(string) {
     return sjcl.codec.utf8String.toBits(string);
 };
 
+Crypto.bytes_from_bits = function(bits) {
+    return sjcl.codec.bytes.fromBits(bits);
+};
+
 Crypto.bytes_to_bits = function(bytes) {
     return sjcl.codec.bytes.toBits(bytes);
 };

@@ -1,6 +1,7 @@
 var history = require("history");
 var notif   = require("notif");
-var connect = require("connect"); 
+var connect = require("connect");
+var account = require("account");
 
 function on_loaded() {
     if (storage.value("HAS_NEW_NOTIF")) {
@@ -28,7 +29,6 @@ function update_notif() {
                 __show_notif_badge();
             }
         });
-
     }
 
     history.update(function(history) {

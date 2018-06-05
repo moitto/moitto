@@ -8,7 +8,7 @@ SteemBroadcast.serializer = include("./serializer.js")
 SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
     return new Promise(function(resolve, reject) {
         var operation = [ "vote" , { 
-            voter:voter, author:author, permlink:permlink, weight: weight
+            voter:voter, author:author, permlink:permlink, weight:weight
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -22,7 +22,23 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
 SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
     return new Promise(function(resolve, reject) {
         var operation = [ "transfer" , { 
-            from:from, to:to, amount:amount, memo: memo
+            from:from, to:to, amount:amount, memo:memo
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.account_create = function(fee, creator, new_account_name, owner, active, posting, memo_key, json_metadata, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "account_create" , { 
+            fee:fee, creator:creator, new_account_name:new_account_name, 
+            owner:owner, active:active, posting:posting, memo_key:memo_key, 
+            json_metadata:json_metadata
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

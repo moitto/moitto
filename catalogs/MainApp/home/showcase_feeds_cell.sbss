@@ -27,9 +27,12 @@ if $LAYOUT == "thumbnail"
                 label-color=$THEME_COLOR_102, label-align=center, label-font-size=1.1
     #label_date: height=20dp, gravity=bottom-left, x=20dp, y=-20dp, \
                 font-size=0.9, text-color=$THEME_COLOR_102
+    #img_reblogged: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
+    #label_reblogged: height=15dp, font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.8, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em, padding="(1sbh+120dp) 20dp 10dp 20dp"
     /cell/contents/meta: padding="0 20dp"
+    /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=20dp, y=-40dp
 else
     #img_cover: width=0.3ph, height=0.3ph, scales-in-background=yes, loading-duration=0.3, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
@@ -43,9 +46,26 @@ else
                 label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
     #label_date: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
                 font-size=0.7, text-color=$THEME_COLOR_101
+    #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
+                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+    #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_101, text-align=left
     /cell: display=block, width=1pw, height=1ph, \
             border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
     /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \
             line-spacing=0.2em, padding="10dp (0.3ph+20dp) 10dp 10dp"
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
+    /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
+                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+end
+
+-- 리블로그 분기 --
+
+if "${reblogged}" == "yes"
+    if "${reblogged-count-1}" == 0
+        /cell/contents/reblogged/multiple: display=none
+    else
+        /cell/contents/reblogged/single: display=none
+    end
+else
+    /cell/contents/reblogged: display=none
 end

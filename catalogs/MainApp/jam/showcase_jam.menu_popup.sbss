@@ -7,7 +7,7 @@ import ~/themes.sbss
 #btn_link: label="링크 주소 복사하기", style=btn_menu, \
         action=copy, media=text, text="${url}", post-action=popup-close
 
-/popup: page-background-color=$BLACK_COLOR_DIM, action-when-touched=popup-close
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM, action-when-touched=popup-close
 /popup/menu: display=block, width=200dp, padding="20dp 20dp 10dp 20dp", \
         position=abs, gravity=center, background-color=$WHITE_COLOR, border-radius=2dp
 /popup/menu/title: margin-bottom=15dp, \

@@ -29,7 +29,7 @@ import ~/themes.sbss
 
 /cell: page-background-color=$THEME_COLOR_00
 /cell/contents: display=none
-/cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.5, \
+/cell/contents/title: font-family=$SANSSERIF_BOLD, font-size=1.5, \
                     text-color=$WHITE_COLOR, text-align=left, \
                     line-break-mode=word-wrap, line-spacing=0.3em, margin=15dp
 /cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-15dp, padding="0 15dp"

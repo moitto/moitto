@@ -1,5 +1,7 @@
 =begin navibar
 
+=object label: text="${username}", style=label_title
+
 =object button: action=popup, display-unit="S_USER", \
             alternate-name="user.details", \
             style=btn_menu

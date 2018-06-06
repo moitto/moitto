@@ -1,3 +1,6 @@
 import ~/themes.sbss
 
+#img_preview: width=100dp, height="100dp*0.5625", scale-mode=fill, \
+            position=absolute, gravity=top, default-color=$THEME_COLOR_01
+
 /cell: page-background-color=$WHITE_COLOR

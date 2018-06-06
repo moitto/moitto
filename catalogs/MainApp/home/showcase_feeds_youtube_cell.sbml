@@ -1,6 +1,8 @@
 =begin cell
 
 ${title}
-${video-id}
+
+=object image: type=youtube, video-id="${video-id}", quality=high, style=img_preview
+
 
 =end cell

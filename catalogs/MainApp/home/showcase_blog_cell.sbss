@@ -1,20 +1,50 @@
 import ~/themes.sbss
 
 #section_contents: width=1pw, height=1ph, position=absolute
-#goL: font-family=$SANSSERIF_LIGHT
+#goB: label-font-family=$SANSSERIF_BOLD
 
-#img_cover: width=0.35ph, height=0.35ph, scales-in-background=yes, loading-duration=0.3, \
-            position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01, \
-            scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
-#label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left, text-color=$THEME_COLOR_101, font-size=0.9
-#btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-align=left, label-color=$THEME_COLOR_101, label-font-size=0.9
-#label_date: width=200dp, height=10dp, position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
-            font-family=$SANSSERIF_MEDIUM, text-align=left, font-size=0.7, text-color=$THEME_COLOR_101
+#img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute, \
+        width=0.35ph, height=0.35ph, scales-in-background=yes, loading-duration=0.3, \
+        position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
+#label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left, \
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.8
+#btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.8, label-align=left
+#blank_userpic.mask: width=30dp, height=30dp, \
+        position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
+        content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
+#btn_userpic: scale-mode=fill, position=absolute, \
+        width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
+#btn_author: width="1pw-66dp", position=absolute, \
+label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation, \
+        height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
+        label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
+#label_date: width=200dp, position=absolute, \
+font-family=$SANSSERIF_MEDIUM, text-align=left, \
+        height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
+        font-size=0.7, text-color=$THEME_COLOR_101
+#img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
+        position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+#label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_101, text-align=left
 
 /cell: display=block, width=1pw, height=1ph, \
         border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
 /cell/contents: display=none
-/cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
-            text-color=$THEME_COLOR_100, text-align=left, \
-            line-spacing=0.2em, padding="10dp (0.35ph+20dp) 10dp 10dp"
-/cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-25dp
+/cell/contents/title: text-align=left
+/cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \
+        line-spacing=0.2em, padding="10dp (0.35ph+20dp) 10dp 10dp"
+/cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
+/cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
+        position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+
+
+-- 리블로그 분기 --
+
+if "${reblogged}" == "yes"
+    if "${reblogged-count-1}" == 0
+        /cell/contents/reblogged/multiple: display=none
+    else
+        /cell/contents/reblogged/single: display=none
+    end
+else
+    /cell/contents/reblogged: display=none
+end

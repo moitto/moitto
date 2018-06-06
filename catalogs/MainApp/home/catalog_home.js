@@ -113,7 +113,6 @@ function __show_login_section() {
 }
 
 function __template_data_for_content(content) {
-    console.log(JSON.stringify(content.meta["links"]));
     for (var i = 0; i < (content.meta["links"] || []).length; ++i) {
         var youtube_video_id = media.get_youtube_video_id(content.meta["links"][i]);
 

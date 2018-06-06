@@ -2,41 +2,6 @@ var global  = require("global");
 var replies = require("replies");
 var themes  = require("themes");
 
-function on_loaded() {
-    if ($data["content-type"] === "reply") {
-        var value = controller.catalog().value("showcase", "auxiliary", "S_REPLIES");
-        var me = storage.value("ACTIVE_USER");
-    
-        global.get_content(value["author"], value["permlink"]).then(function(content) {
-            var theme = themes.create("default");
-
-            var data = {
-                "author":content.data["author"],
-                "permlink":content.data["permlink"],
-                "userpic-url":content.get_userpic_url("small"),
-                "title":content.data["title"],
-                "body":theme.build_body(content.data["body"], content.meta["format"]),
-                "votes-count":content.data["net_votes"].toString(),
-                "replies-count":content.data["children"].toString(),
-                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-                "is-payout":content.is_payout() ? "yes" : "no",
-                "created-at":content.data["created"]
-            };
-
-            Object.keys(theme.auxiliary).forEach(function(key) {
-                data[key] = theme.auxiliary[key];
-            });
-
-            if (content.is_voted(me)) {
-                data["voted"] = "yes"; 
-            }
-
-            controller.catalog().submit("showcase", "auxiliary", "S_REPLIES.CONTENT", data);
-            view.object("showcase.replies").action("reload-header");
-        });
-    }
-}
-
 function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_REPLIES");
 
@@ -77,7 +42,7 @@ function comment() {
 }
 
 function show_replies(data) {
-    controller.catalog().remove("showcase", "auxiliary", "S_REPLIES.CONTENT");
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES.CONTENT", data);
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
         "author":data["author"],
         "permlink":data["permlink"],

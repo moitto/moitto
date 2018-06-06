@@ -14,7 +14,7 @@ function on_loaded() {
     });
 }
 
-function on_download() {
+function on_image_download() {
     if (!__schedule_to_reload) {
         timeout(0.5, function() {
             view.action("reload", { "keeps-position":"yes" });

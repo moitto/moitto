@@ -2,7 +2,7 @@ var users = require("users");
 
 var __schedule_to_reload = false;
 
-function on_download() {
+function on_image_download() {
     if (!__schedule_to_reload) {
         timeout(0.5, function() {
             owner.action("reload-header");

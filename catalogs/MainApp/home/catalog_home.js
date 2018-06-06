@@ -74,7 +74,6 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
                     "reblogged-count":content.data["reblogged_by"].length.toString(),
                     "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
-                    "template":reblogged ? "reblogged" : "",
                     "created-at":content.data["created"]
                 });
             });

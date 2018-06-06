@@ -1,5 +1,11 @@
 var __input_numbers = [];
 
+function skip() {
+    document.value("WALLET.PIN", null);
+
+    host.action("script", { "script":$data["script"] });
+}
+
 function press_number(form) {
     if (__input_numbers.length < 4) {
         __input_numbers.push(form["label"]);

@@ -3,6 +3,7 @@
 =object button: action=popup-close, style=btn_close
 =object label: text="암호 입력", style=label_title
 =object button: script=reset_pin, label="암호 재설정", style=btn_reset
+=object button: script=skip, label="다음에 하기", style=btn_skip
 
 =object section: section=board, style=section_board
 

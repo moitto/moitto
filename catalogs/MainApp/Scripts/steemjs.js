@@ -75,6 +75,7 @@ SteemJS.get_discussions_by_blog = function(tag, start_author, start_permlink, li
         var params = [ { tag:tag, start_author:start_author, start_permlink:start_permlink, limit:limit } ];
 
         SteemJS.__request_rpc(method, params).then(function(response) {
+            console.log(JSON.stringify(response));
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);
@@ -129,7 +130,6 @@ SteemJS.get_content = function(author, permlink) {
         SteemJS.__request_rpc(method, params).then(function(response) {
             resolve(response["result"]);
         }, function(reason) {
-            console.log("get_content is failed!!!!!! [" + reason.toString() + "]");
             reject(reason);
         });
     });

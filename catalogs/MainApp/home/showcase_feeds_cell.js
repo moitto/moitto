@@ -9,7 +9,8 @@ function show_user() {
 
 function show_tag() {
     controller.catalog().submit("showcase", "auxiliary", "S_TAG", {
-        "tag":$data["main-tag"]
+        "tag":$data["main-tag"],
+        "navibar-title":"#" + $data["main-tag"]
     });
 
     controller.action("page", { "display-unit":"S_TAG" })

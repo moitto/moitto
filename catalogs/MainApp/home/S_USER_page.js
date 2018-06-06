@@ -38,22 +38,22 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
             var content   = global.contents.create(discussion);
             var reblogged = (content.data["author"] !== $data["username"]) ? true : false;
  
-            data.push({
-                "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
-                "author":content.data["author"],
-                "permlink":content.data["permlink"],
-                "title":content.data["title"], 
-                "image-url":content.get_title_image_url("256x512"),
-                "userpic-url":content.get_userpic_url("small"),
-                "userpic-large-url":content.get_userpic_url(),
-                "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-                "votes-count":content.data["net_votes"].toString(),
-                "main-tag":content.data["category"],
-                "reblogged":reblogged ? "yes" : "no",
-                "template":reblogged ? "reblogged" : "",
-                "created-at":content.data["created"]
-            });
+            if (!reblogged) {
+                data.push({
+                    "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
+                    "author":content.data["author"],
+                    "permlink":content.data["permlink"],
+                    "title":content.data["title"], 
+                    "image-url":content.get_title_image_url("256x512"),
+                    "userpic-url":content.get_userpic_url("small"),
+                    "userpic-large-url":content.get_userpic_url(),
+                    "author-reputation":content.get_author_reputation().toFixed(0).toString(),
+                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                    "votes-count":content.data["net_votes"].toString(),
+                    "main-tag":content.data["category"],
+                    "created-at":content.data["created"]
+                });
+            }
         });
 
         if (discussions.length > 0) {

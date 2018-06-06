@@ -8,11 +8,10 @@ import ~/themes.sbss
 #label_user: height=30dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
             line-break-mode=tail-truncation, content-padding="0 10dp"
-#btn_user: image="~/subview_btn_info.png", width=30dp, height=30dp
-#blank_margin: width=30dp, height=30dp
 
 #label_rep: height=20dp, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, margin="0 0 10dp 0"
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
+            margin="0 0 10dp 0"
 
 #btn_follow: width=70dp, height=26dp, hidden=yes, \
             position=absolute, gravity=top-left, x="0.5pw+60dp", y=52dp, \
@@ -30,11 +29,4 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 
-/header: script-when-loaded=on_loaded, text-align=center, margin="0 0 25dp 0"
-
-
-
-
-=[steem.title|스팀]= ${steem-balance}
-=[steem.title|스팀파워]= ${steem-power}
-=[steem.title|스팀달러]= $${sbd-balance}
+/header: text-align=center, margin="0 0 25dp 0"

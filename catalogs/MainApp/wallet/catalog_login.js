@@ -25,7 +25,7 @@ function login(form) {
 
 function __request_pin() {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
-        "message":"송금 등에 사용할 암호를 입력하세요.", 
+        "message":"송금, 임대 등에 사용할 암호를 입력하세요.",
         "status":"normal",
         "close-disabled":"yes",
         "reset-disabled":"yes",
@@ -70,7 +70,7 @@ function __on_receive_pin_again() {
         controller.action("popup", { "display-unit":"S_WELCOME" });
     } else {
         controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
-            "message":"암호가 일치하지 않습니다.\\n송금 등에 사용할 암호를 입력하세요.", 
+            "message":"암호가 일치하지 않습니다.\\n송금, 임대 등에 사용할 암호를 입력하세요.", 
             "status":"error",
             "close-disabled":"yes",
             "reset-disabled":"yes",

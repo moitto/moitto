@@ -98,6 +98,10 @@ if "${is-payout}" == "yes"
     #btn_vote: hidden=yes
 end
 
+if "${replies-count}" == 0
+    #btn_replies: label="첫 번째 댓글을 남겨보세요"
+end
+
 if "${tag-1}" == ""
     #btn_tag.1: display=none, width=0, height=0
 end

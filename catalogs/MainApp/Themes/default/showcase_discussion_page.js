@@ -41,6 +41,15 @@ function show_user(params) {
     controller.action("page", { "display-unit":"S_USER" })
 }
 
+function show_tag(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_TAG", {
+        "tag":params["label"],
+        "navibar-title":"#" + params["label"]
+    });
+
+    controller.action("page", { "display-unit":"S_TAG" })    
+}
+
 function show_votes() {
     controller.catalog().submit("showcase", "auxiliary", "S_VOTES", {
         "author":$data["author"],

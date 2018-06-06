@@ -8,24 +8,30 @@ visual-effect=blur-dark
 
 #section_header: width=1pw, height="1pw*(2/3)+50dp", padding="0 0 20dp 0"
 #btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
-content-background-color=$WHITE_COLOR_DIM, content-padding="0 3dp", content-border-radius=2dp
+        content-background-color=$WHITE_COLOR_DIM, content-padding="0 3dp", content-border-radius=2dp
+#btn_tag.1: style=btn_tag
+#btn_tag.2: style=btn_tag
+#btn_tag.3: style=btn_tag
+#btn_tag.4: style=btn_tag
+#btn_tag.5: style=btn_tag
+
 #label_meta: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9
 #btn_meta: height=20dp, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left, label-font-size=0.9
 
 #label_author: height=20dp, text-color=$THEME_COLOR_102, font-size=1, \
-font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
+        font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
 #btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=1
 #label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9, \
-text-align=right, align=right, margin="-20dp 0 0 0"
+        text-align=right, align=right, margin="-20dp 0 0 0"
 
 #bold: label-font-family=$SANSSERIF_BOLD
 
 /page: script-when-loaded=on_loaded
 /page/body/header: display=none, padding=20dp
 /page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, \
-text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
+        text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
 /page/body/header/tags: display=block, position=absolute, gravity=bottom, y=-65dp, text-align=left, \
-line-spacing=0.1em, paragraph-spacing=0.1em
+        line-spacing=0.1em, paragraph-spacing=0.1em
 /page/body/header/meta: display=block, height=60dp, position=absolute, gravity=bottom, paragraph-spacing=0
 
 
@@ -90,5 +96,25 @@ end
 
 if "${is-payout}" == "yes"
     #btn_vote: hidden=yes
+end
+
+if "${tag-1}" == ""
+    #btn_tag.1: display=none, width=0, height=0
+end
+
+if "${tag-2}" == ""
+    #btn_tag.2: display=none, width=0, height=0
+end
+
+if "${tag-3}" == ""
+    #btn_tag.3: display=none, width=0, height=0
+end
+
+if "${tag-4}" == ""
+    #btn_tag.4: display=none, width=0, height=0
+end
+
+if "${tag-5}" == ""
+    #btn_tag.5: display=none, width=0, height=0
 end
 

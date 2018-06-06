@@ -27,3 +27,12 @@ function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
         handler();
     }
 }
+
+function show_user(data) {
+    controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+        "username":data["voter"],
+        "fetched":"no"
+    });
+
+    controller.action("page", { "display-unit":"S_USER" })
+}

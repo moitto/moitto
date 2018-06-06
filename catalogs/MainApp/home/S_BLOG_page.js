@@ -6,7 +6,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
-    global.steemjs.get_discussions_by_created($data["tag"], start_author, start_permlink, length).then(function(discussions) {
+    global.steemjs.get_discussions_by_blog($data["username"], start_author, start_permlink, length).then(function(discussions) {
         var data = [];
 
         if (location > 0) {

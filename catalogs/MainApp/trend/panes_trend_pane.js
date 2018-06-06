@@ -1,5 +1,6 @@
 var steemjs  = require("steemjs");
 var contents = require("contents");
+var media    = require("media");
 
 var __impl = {
     "P_TREND.TRENDING":{
@@ -36,7 +37,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
         discussions.forEach(function(discussion) {
             var content = contents.create(discussion);
 
-            data.push({
+            data.push(Object.assign({
                 "id":"S_TREND_" + content.data["author"] + "_" + content.data["permlink"],
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
@@ -50,7 +51,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "replies-count":content.data["children"].toString(),
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
-            });
+            }, __template_data_for_content(content)));
         });
 
         if (discussions.length > 0) {
@@ -69,4 +70,25 @@ function open_discussion(data) {
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });
+}
+
+function __template_data_for_content(content) {
+    for (var i = 0; i < (content.meta["links"] || []).length; ++i) {
+        var youtube_video_id = media.get_youtube_video_id(content.meta["links"]);
+
+        if (youtube_video_id) {
+            return {
+                "template":"youtube",
+                "video-id":youtube_video_id
+            }
+        }
+    }
+
+    if (!content.meta["image"]) {
+        return {
+            "template":"noimage"
+        }
+    }
+
+    return {};
 }

@@ -9,5 +9,9 @@ import ~/themes.sbss
             content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
             content-padding="0 0 0 10dp", content-background-color=$THEME_COLOR_02
 
-/page: page-background-color=$THEME_COLOR_02
+/page: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
 /page/comment: display=none
+
+if "${content-type}" == "reply"
+    #showcase_replies: has-header=yes
+end

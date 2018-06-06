@@ -6,7 +6,7 @@ Contents = (function() {
 
 function Content(data) {
     this.data = data;
-    this.meta = JSON.parse(data["json_metadata"]);
+    this.meta = JSON.parse(data["json_metadata"] || "{}");
 }
 
 Content.prototype.get_title_image_url = function(size) {

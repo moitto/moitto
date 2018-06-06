@@ -1,6 +1,9 @@
 =begin page
 
-=object showcase: alternate-name=replies, data-script=feed_replies, style=showcase_replies
+=object showcase: id=showcase.replies, alternate-name=replies, data-script=feed_replies, \
+            header-display-unit=S_REPLIES.CONTENT, \
+            selectable=yes, script-when-selected=show_replies, \
+            style=showcase_replies
 
 =object section: script-when-touched=comment, section=comment, style=section_comment
 =begin comment: id=comment

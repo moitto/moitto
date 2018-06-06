@@ -49,6 +49,7 @@ Global.get_user = function(username) {
 Global.get_content = function(author, permlink) {
     return new Promise(function(resolve, reject) {
         Global.steemjs.get_content(author, permlink).then(function(response) {
+            console.log(JSON.stringify(response));
             resolve(Global.contents.create(response));
         }, function(reason) {
             reject(reason);

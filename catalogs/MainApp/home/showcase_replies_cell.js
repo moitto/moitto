@@ -1,7 +1,9 @@
 function show_replies() {
+    controller.catalog().remove("showcase", "auxiliary", "S_REPLIES.CONTENT");
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
         "author":$data["author"],
-        "permlink":$data["permlink"]
+        "permlink":$data["permlink"],
+        "content-type":"reply"
     });
 
     controller.action("page", { "display-unit":"S_REPLIES" })

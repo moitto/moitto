@@ -1,9 +1,9 @@
 =begin navibar
 
-=object label: text="${username}", style=label_title
+=begin user
+=(object button: script=show_details, image-url="${userpic-url}", style=btn_userpic)= =(object button: script=show_details, label="${username}", style=btn_user)=
+=end user
 
-=object button: action=popup, display-unit="S_USER", \
-            alternate-name="user.details", \
-            style=btn_menu
+=object button: script=show_details, style=btn_menu
 
 =end navibar

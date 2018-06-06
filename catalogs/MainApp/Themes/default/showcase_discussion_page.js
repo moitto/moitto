@@ -32,9 +32,9 @@ function update_vote() {
     __update_vote_button(voted);
 }
 
-function show_user(params) {
+function show_user() {
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-        "username":params["username"],
+        "username":$data["author"],
         "fetched":"no"
     });
 

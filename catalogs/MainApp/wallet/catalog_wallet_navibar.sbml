@@ -1,5 +1,8 @@
 =begin navibar
 
+=object button: label="설정", action=subview, subview=V_SETTINGS, target=popup, \
+        width=64dp, height=44dp, position=abs, gravity=left-top, y=1sbh
+        
 =object button: label="QR", action=popup, display-unit=S_QRCODE, \
         width=64dp, height=44dp, position=abs, gravity=right-top, y=1sbh
 

@@ -8,15 +8,14 @@ function on_loaded() {
         var me = storage.value("ACTIVE_USER");
     
         global.get_content(value["author"], value["permlink"]).then(function(content) {
-            console.log(content.data["body"]);
-            var impl = themes.create("default");
+            var theme = themes.create("default");
 
             var data = {
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
                 "userpic-url":content.get_userpic_url("small"),
                 "title":content.data["title"],
-                "body":impl.build_body(content.data["body"], content.meta["format"]),
+                "body":theme.build_body(content.data["body"], content.meta["format"]),
                 "votes-count":content.data["net_votes"].toString(),
                 "replies-count":content.data["children"].toString(),
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
@@ -24,8 +23,8 @@ function on_loaded() {
                 "created-at":content.data["created"]
             };
 
-            Object.keys(impl.auxiliary).forEach(function(key) {
-                data[key] = impl.auxiliary[key];
+            Object.keys(theme.auxiliary).forEach(function(key) {
+                data[key] = theme.auxiliary[key];
             });
 
             if (content.is_voted(me)) {

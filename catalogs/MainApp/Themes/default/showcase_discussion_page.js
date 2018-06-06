@@ -33,8 +33,11 @@ function update_vote() {
 }
 
 function show_user(params) {
+    var user = users.create($data["author"]);
+
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-        "username":params["username"],
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
 

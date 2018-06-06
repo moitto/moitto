@@ -1,6 +1,25 @@
+var users = require("users");
+
+var __schedule_to_reload = false;
+
+function on_download() {
+    if (!__schedule_to_reload) {
+        timeout(0.5, function() {
+            owner.action("reload-header");
+
+            __schedule_to_reload = false;
+        });
+    }
+
+    __schedule_to_reload = true;
+}
+
 function show_user(params) {
+    var user = users.create(params["username"]);
+    
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-        "username":params["username"],
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
 

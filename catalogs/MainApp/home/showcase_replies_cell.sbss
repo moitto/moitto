@@ -13,6 +13,39 @@ import ~/themes.sbss
 
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
 
+-- body --
+
+#image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
+        scales-in-background=yes, script-when-download=on_download
+#image.full: max-width=1pw
+#youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
+
+#heading-1: font-size=1.8
+#heading-2: font-size=1.6
+#heading-3: font-size=1.4
+#heading-4: font-size=1.2
+#heading-5: font-size=1.1
+#heading-6: font-size=1.0
+#link: text-decoration=underline-#6C6C6C-1
+#user: script=show_user, text-decoration=underline-#6C6C6C-1
+#code: highlight-color=$THEME_COLOR_01
+#strong: font-family=$SANSSERIF_BOLD
+#bold: font-family=$SANSSERIF_BOLD
+#em: font-family=$SANSSERIF_BOLD
+#italic: font-style=italic
+#em-italic: font-family=$SANSSERIF_BOLD
+#linethrough: text-decoration=line-through
+#sub: vertical-align=bottom, font-size=0.7
+#sup: vertical-align=top, font-size=0.7
+#line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
+
+#text-left: text-align=left
+#text-right: text-align=right
+
+%quote: background-color=$THEME_COLOR_01
+%list: text-indent=1em
+%code: background-color=$THEME_COLOR_01
+
 /cell/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1, \
             line-spacing=0.3em, paragraph-spacing=0.3em, margin="50dp 10dp 10dp 10dp"
 

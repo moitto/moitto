@@ -42,8 +42,11 @@ function mute(form) {
 }
 
 function show_user(data) {
+    var user = users.create(data["username"]);
+
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-        "username":data["username"],
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
 

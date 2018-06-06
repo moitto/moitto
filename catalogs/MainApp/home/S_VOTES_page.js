@@ -1,5 +1,6 @@
 var steemjs = require("steemjs");
 var votes   = require("votes");
+var users   = require("users");
 
 function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_VOTES");
@@ -29,8 +30,11 @@ function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function show_user(data) {
+    var user = users.create(data["voter"]);
+
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-        "username":data["voter"],
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
 

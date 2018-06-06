@@ -1,6 +1,6 @@
 =begin page
 
-=object showcase: alternate-name=user.blog, data-script=feed_blog, loads-more=yes, \
+=object showcase: alternate-name=blog, data-script=feed_blog, loads-more=yes, \
             selectable=yes, script-when-selected=open_discussion, \
             style=showcase_blog
 

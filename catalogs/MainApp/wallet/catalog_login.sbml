@@ -7,7 +7,7 @@
             auto-capitalization-type=none, \
             style=textfield_username
 =object blank: style=blank_frame
-=object textfield: id=password, placeholder="비밀번호", \
+=object textfield: id=password, placeholder="비밀번호", text="P5JTZLhx3Pd6zLmozcFqrZnkQx2rXEkNqzD51SfxSr39ndySMe5g", \
             secure=yes, script=login, form=login, \
             return-key-type=go, next-control=login, \
             style=textfield_password

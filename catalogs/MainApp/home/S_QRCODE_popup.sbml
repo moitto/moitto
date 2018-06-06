@@ -1,6 +1,6 @@
 =begin popup
 
-=object camera: width=1pw, height=1pw, position=abs, gravity=center, \
+=object camera: width=1pw, height=1pw, position=abs, gravity=top, \
             metadata-enabled=yes, qrcode-enabled=yes, \
             focus-closely=yes, continuous-autofocus=yes, \
             script-when-output@metadata=on_qrcode

@@ -35,10 +35,10 @@ function on_loaded() {
         if (user.has_rewards()) {
             __reload_assets_showcase_header();
         }
-    });
 
-    __hide_loading_section();
-    __show_assets_showcase();
+        __hide_loading_section();
+        __show_assets_showcase();
+    });
 }
 
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {

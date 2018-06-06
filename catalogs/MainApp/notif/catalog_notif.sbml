@@ -6,4 +6,20 @@
             keeps-offscreen-cells=yes, \
             style=showcase_notif
 
+=object section: id=section.login, section=login, style=section_login
+=object section: id=section.loading, section=loading, style=section_loading
+
+=begin login: id=login
+=begin content
+=object button: action=subview, subview=V_LOGIN, target=popup, label="로그인", style=btn_login
+=object label: text="스팀잇 계정으로 로그인하세요", style=label_notice
+=end content
+=end login
+
+=begin loading: id=loading
+=begin content
+잠시 기다려 주세요~!
+=end content
+=end loading
+
 =end catalog

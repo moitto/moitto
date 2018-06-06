@@ -1,5 +1,17 @@
 var users = require("users");
 
+var account = require("account");
+var global  = require("global");
+
+function on_loaded() {
+    if (!account.is_logged_in()) {
+        __hide_loading_section();
+        __show_login_section();
+        
+        return;
+    }
+}
+
 function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
     var values = controller.catalog().values("showcase", "notif", null, null, [location, length], [sortkey, sortorder]);
     var data = [];
@@ -116,4 +128,16 @@ function ___reload_notif_cell(data) {
 
     cell.data("display-unit", data);
     cell.action("reload")
+}
+
+function __show_login_section() {
+    var section = view.object("section.login");
+
+    section.action("show");
+}
+
+function __hide_loading_section() {
+    var section = view.object("section.loading");
+
+    section.action("hide");
 }

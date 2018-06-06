@@ -1,0 +1,4 @@
+import ~/themes.sbss
+
+#btn_menu: width=44dp, height=44dp, image="~/subview_btn_more.png", \
+        position=absolute, gravity=right-bottom

@@ -1,0 +1,3 @@
+import ~/themes.sbss
+
+/popup: page-background-color=$WHITE_COLOR, action-when-touched=popup-close

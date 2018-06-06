@@ -1,5 +1,7 @@
 var global = require("global");
 
+var __last_discussion = mull;
+
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_USER");
 

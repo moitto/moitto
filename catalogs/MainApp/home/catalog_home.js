@@ -127,7 +127,7 @@ function __template_data_for_content(content) {
 
     if (!content.meta["image"]) {
         return {
-            "template":"noimage"
+            "template":"text"
         }
     }
 

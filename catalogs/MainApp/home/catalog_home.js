@@ -1,6 +1,7 @@
 var account  = require("account");
 var steemjs  = require("steemjs");
 var contents = require("contents"); 
+var media    = require("media");
 
 var __last_discussion = null;
 var __has_packages = true;
@@ -56,8 +57,8 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
             discussions.forEach(function(discussion) {
                 var content   = contents.create(discussion);
                 var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
-
-                data.push({
+            
+                data.push(Object.assign({
                     "id":"S_FEEDS_" + content.data["author"] + "_" + content.data["permlink"],
                     "author":content.data["author"],
                     "permlink":content.data["permlink"],
@@ -75,7 +76,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "reblogged-count":content.data["reblogged_by"].length.toString(),
                     "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
                     "created-at":content.data["created"]
-                });
+                }, __template_data_for_content(content)));
             });
 
             if (discussions.length > 0) {
@@ -111,3 +112,23 @@ function __show_login_section() {
     section.action("show");
 }
 
+function __template_data_for_content(content) {
+    for (var i = 0; i < (content.meta["links"] || []).length; ++i) {
+        var youtube_video_id = media.get_youtube_video_id(content.meta["links"]);
+
+        if (youtube_video_id) {
+            return {
+                "template":"youtube",
+                "video-id":youtube_video_id
+            }
+        }
+    }
+
+    if (!content.meta["image"]) {
+        return {
+            "template":"noimage"
+        }
+    }
+
+    return {};
+}

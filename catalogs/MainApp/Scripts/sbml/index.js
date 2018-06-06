@@ -2,6 +2,8 @@ Sbml = (function() {
     return {};
 })();
 
+Sbml.media = require("media");
+
 Sbml.generate_from_markdown = function(markdown) {
     return Sbml.__elements_to_sbml(markdown.elements);
 }
@@ -150,15 +152,11 @@ Sbml.__elements_to_sbml = function(elements) {
         }
 
         if (element.type === "url") {
-            var youtube = /https?:\/\/youtu\.be\/([^?]+)(?:\?.+)?/.exec(element.data["url"]);
+            var youtube_video_id = Sbml.media.get_youtube_video_id(element.data["url"]);
 
-            if (!youtube) {
-                youtube = /https?:\/\/.*youtube\.com\/.*\?.*v=([^&]+).*/.exec(element.data["url"]);
-            }
-
-            if (youtube) {
+            if (youtube_video_id) {
                 sbml += "\n";
-                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube[1] + "\")=";
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\")=";
 
                 return;
             }

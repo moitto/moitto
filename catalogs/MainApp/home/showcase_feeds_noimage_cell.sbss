@@ -1,0 +1,3 @@
+import ~/themes.sbss
+
+/cell: page-background-color=$WHITE_COLOR

@@ -1,6 +1,33 @@
 =begin cell
 
+=object image: type=youtube, video-id="${video-id}", quality=high, style=img_main
+=object image: style=img_play
+
+
+
+=object section: id=contents, section=youtube.trend.contents, style=section_contents
+
+=begin contents: id=youtube.trend.contents
+=begin title
 ${title}
-${video-id}
+=end title
+
+=begin meta
+=(object button: script=show_tag, label="#${main-tag}", style=btn_meta, style=bold)==(object label:text=" • ", style=label_meta)==(object button: script=show_votes, type=decimal, label="${votes-count}", style=btn_meta, style=bold)==(object button: script=show_votes, label=" 보팅", style=btn_meta)==(object label: text=" •", style=label_meta)==(object button: script=show_votes, label=" ${payout-value}", style=btn_meta, style=bold)==(object label: text=" • ", style=label_meta)==(object button: script=show_replies, label="댓글 ", style=btn_meta)==(object button: script=show_replies, label="${replies-count}", style=btn_meta, style=bold)=
+=end meta
+
+=end contents
+
+
+
+=object blank: style=blank_user
+=object blank: style=blank_userpic.mask
+=object button: script=show_user, image-url="${userpic-url}", style=btn_userpic
+=object button: script=show_user, label="${author}", style=btn_author
+=object label: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", source-timezone=GMT, \
+text="${created-at}", style=label_date
+
+=object blank: style=blank_line
 
 =end cell
+

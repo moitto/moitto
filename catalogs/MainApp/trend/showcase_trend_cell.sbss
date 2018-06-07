@@ -2,13 +2,13 @@ import ~/themes.sbss
 
 #img_main: width=1pw, height="1ph-55dp", scale-mode=fill, \
             position=absolute, gravity=top, \
-            scales-in-background=yes, loading-duration=0.3
-#blank_dim: width=1pw, height="1ph-55dp", \
-            position=absolute, gravity=top, content-background-color=$BLACK_COLOR_DIM
+            scales-in-background=yes, loading-duration=0.3, alpha=0.7, default-color=$THEME_COLOR_01
 #section_contents: width=1pw, height="1ph-55dp", postion=absolute, gravity=top
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$WHITE_COLOR, text-align=left, font-size=0.9
 #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$WHITE_COLOR, label-align=left, label-font-size=0.9
 #bold: label-font-family=$SANSSERIF_BOLD
+
+#blank_user: width=1pw, height=55dp, position=absolute, gravity=bottom, color=$THEME_COLOR_00
 
 #blank_userpic.mask: width=35dp, height=35dp, \
             position=absolute, gravity=bottom-left, x=15dp, y=-10dp, \
@@ -16,7 +16,6 @@ import ~/themes.sbss
 #btn_userpic: width=33dp, height=33dp, scale-mode=fill, \
             position=absolute, gravity=bottom-left, x=16dp, y=-11dp, \
             content-border-radius=33dp/2
-
 #btn_author: width="1pw-66dp", height=20dp, line-break-mode=tail-truncation, \
             position=absolute, gravity=bottom-left, x=60dp, y=-25dp, \
             label-font-family=$SANSSERIF_BOLD, label-font-size=1, label-color=$THEME_COLOR_100, label-align=left
@@ -27,9 +26,9 @@ import ~/themes.sbss
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
             position=absolute, gravity=bottom
 
-/cell: page-background-color=$THEME_COLOR_00
+/cell: page-background-color=$BLACK_COLOR
 /cell/contents: display=none
 /cell/contents/title: font-family=$SANSSERIF_BOLD, font-size=1.5, \
-                    text-color=$WHITE_COLOR, text-align=left, \
+                    text-color=$THEME_COLOR_102, text-align=left, \
                     line-break-mode=word-wrap, line-spacing=0.3em, margin=15dp
 /cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-15dp, padding="0 15dp"

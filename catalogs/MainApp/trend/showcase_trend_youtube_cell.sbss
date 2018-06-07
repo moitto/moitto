@@ -1,3 +1,7 @@
-import ~/themes.sbss
+import showcase_trend_cell.sbss
 
-/cell: page-background-color=$WHITE_COLOR
+#img_main: width=1.05pw, alpha=0.8
+#img_play: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
+            position=absolute, gravity=bottom-right, x=-10dp, y=-65dp
+
+/cell/contents/title: padding=15dp, margin=0, background-color=$BLACK_COLOR_DIM

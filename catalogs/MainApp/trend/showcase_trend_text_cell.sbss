@@ -1,3 +1,5 @@
-import ~/themes.sbss
+import showcase_trend_cell.sbss
 
-/cell: page-background-color=$WHITE_COLOR
+/cell: page-background-color=$THEME_COLOR_03
+/cell/contents/title: display=block, position=absolute, gravity=center, \
+                    text-align=center, padding="10dp 40dp"

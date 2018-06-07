@@ -1,3 +1,18 @@
 import ~/themes.sbss
 
-/popup: page-background-color=$THEME_COLOR_00
+#blank_userpic.mask: width=82dp, height=82dp, \
+            position=absolute, gravity=top, y=139dp, \
+            content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
+#img_userpic: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
+            content-border-radius=80dp/2, margin="0 0 20dp 0"
+#img_moitto: filename="~/subview_img_logo.black.png", width=80dp, height=44dp
+#label_by: height=44dp, font-style=italic, font-family="Times New Roman, KoPubBatang Medium", text-color=$THEME_COLOR_100, font-size=1.1
+#btn_start: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_03
+#user: text-color=$THEME_COLOR_100
+
+/popup: page-background-color=$THEME_COLOR_02
+/popup/user: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=center, font-size=1.8, margin="140dp 0 50dp 0", \
+            line-spacing=0.4em, paragraph-spacing=0.4em
+/popup/moitto: text-align=center

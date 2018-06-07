@@ -29,12 +29,12 @@ else
 end
 
 if $LAYOUT == "thumbnail"
-    #img_logo: filename="~/subview_img_logo.png"
+    #img_logo: filename="~/subview_img_logo.white.png"
     #label_title: text-color=$THEME_COLOR_102
     #btn_layout: image="~/subview_btn_list.png", action=layout, layout=list, target=object, object=showcase.feeds
     #blank_line: display=none
 else
-    #img_logo: filename="~/subview_img_logo.black.png"
+    #img_logo: filename="~/subview_img_logo.png"
     #label_title: text-color=$THEME_COLOR_100
     #btn_layout: image="~/subview_btn_thumbnail.png", action=layout, layout=thumbnail, target=object, object=showcase.feeds
     #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
@@ -44,7 +44,7 @@ end
 
 -- 로그인 전 --
 
-#section_login: width=1pw, height=1ph, position=absolute, gravity=center, hidden=yes
+#section_login: width=1pw, height=1ph, position=absolute, gravity=center, hidden=yes, y=44dp
 
 #btn_login: width=0.8pw, height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \

@@ -9,7 +9,7 @@
 
 
 
-=object section: section=board, style=section_board
+=object section: section=board, style=section_board, alt="입력창"
 
 =begin board: id=board
 =begin content
@@ -38,7 +38,9 @@
 =end content
 =end board
 
-=object section: id=section.numpad, section=numpad, style=section_numpad
+
+
+=object section: id=section.numpad, section=numpad, style=section_numpad, alt="숫자 키패드"
 
 =begin numpad: id=numpad
 =(object button: label="1", style=btn_numpad.number)==(object button: label="2", style=btn_numpad.number)==(object button: label="3", style=btn_numpad.number)=
@@ -47,7 +49,9 @@
 =(object button: label="",  style=btn_numpad.empty)==(object button: label="0", style=btn_numpad.number)==(object button: label="←", style=btn_numpad.back)=
 =end numpad
 
-=object section: id=section.keypad, section=keypad, style=section_keypad
+
+
+=object section: id=section.keypad, section=keypad, style=section_keypad, alt="알파벳 키패드"
 
 =begin keypad: id=keypad
 =(object button: label="A", style=btn_keypad.text)==(object button: label="B", style=btn_keypad.text)==(object button: label="C", style=btn_keypad.text)==(object button: label="D", style=btn_keypad.text)==(object button: label="E", style=btn_keypad.text)==(object button: label="F", style=btn_keypad.text)==(object button: label="G", style=btn_keypad.text)=

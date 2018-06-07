@@ -1,8 +1,5 @@
 import ~/themes.sbss
 
-#btn_close: image=~/subview_btn_close.png, width=44dp, height=44dp, \
-            position=absolute, gravity=left-top, y=1sbh
-
 #blank_frame: width=0.8pw, height=50dp, \
             content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
             content-background-color=$THEME_COLOR_00

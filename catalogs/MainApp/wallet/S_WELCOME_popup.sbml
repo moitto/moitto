@@ -1,12 +1,16 @@
 =begin popup
 
-=begin user: margin-top=100dp
-${username}
-${userpic-url}
+=begin user
+=object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+=[user|${username}]=님
+환영합니다
 =end user
 
-환영합니다.
+=begin moitto
+=(object label: text="by", style=label_by)==(object image: style=img_moitto)=
+=end moitto
 
-=object button: script=on_login, label="시작하기", width=100dp, height=44dp
+=object button: script=on_login, label="시작하기", style=btn_start
 
 =end popup

@@ -4,12 +4,14 @@
 
 
 =object image: type=youtube, video-id="${video-id}", quality=high, style=img_preview.list
+=object image: style=img_play.list
 
 =object section: section=youtube.contents, style=section_contents
 
 =begin contents: id=youtube.contents
 
 =object image: type=youtube, video-id="${video-id}", quality=high, style=img_preview.thumb
+=object image: style=img_play.thumb
 
 =begin title: alt="글 제목"
 ${title}

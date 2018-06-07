@@ -4,7 +4,7 @@ import ~/themes.sbss
             content-border-radius=13dp
 #btn_user: max-width=0.7pw, height=26dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-align=left
-#btn_menu: width=44dp, height=44dp, image="~/subview_btn_more.png", \
+#btn_menu: width=44dp, height=44dp, image="~/subview_btn_info.png", \
         position=absolute, gravity=right-bottom
 
 /navibar/user: display=block, width=1pw, height=26dp, \

@@ -1,5 +1,6 @@
 =begin cell
 
+=object blank: style=blank_userpic.mask
 =object button: image-url="${userpic-url}", image-downloadable=yes, style=btn_userpic
 =object button: label="${voter}", style=btn_voter
 =object label: text="00.00", style=label_price

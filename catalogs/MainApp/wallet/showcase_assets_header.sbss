@@ -8,7 +8,7 @@ import ~/themes.sbss
 #label_user: height=30dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
             line-break-mode=tail-truncation, content-padding="0 10dp"
-#btn_user: image="~/subview_btn_info.png", width=30dp, height=30dp
+#btn_user: image="~/subview_btn_info.small.png", width=30dp, height=30dp
 #blank_margin: width=30dp, height=30dp
 #label_rep: height=20dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \

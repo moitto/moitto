@@ -45,8 +45,8 @@ if $LAYOUT == "thumbnail"
 else
     #img_cover: display=none
     #img_preview.thumb: display=none
-    #img_preview.list: width=1pw, height="1pw*0.5625", \
-            scale-mode=fill, position=absolute, gravity=top, content-gravity=center, default-color=$THEME_COLOR_01
+    #img_preview.list: width=1pw, height="1pw*0.5625", alpha=0.7, \
+            scale-mode=fill, position=absolute, gravity=top, content-gravity=center
     #img_play.thumb: display=none
     #img_play.list: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
             position=absolute, gravity=center
@@ -64,7 +64,7 @@ else
             position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
     #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_102, text-align=left
     /cell: display=block, width=1pw, height=1ph, \
-            border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
+            border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$BLACK_COLOR
     /cell/contents/title: font-family=$SANSSERIF_BOLD, font-size=1.2, text-color=$THEME_COLOR_102, \
             line-spacing=0.2em, padding=10dp, background-color=$BLACK_COLOR_DIM
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp

@@ -1,7 +1,10 @@
 import ~/themes.sbss
 
-#btn_userpic: width=30dp, height=30dp, position=absolute, gravity=top-left, x=10dp, y=10dp, \
-            scale-mode=fill, content-border-radius=15dp, default-color=$THEME_COLOR_01
+#blank_userpic.mask: width=30dp, height=30dp, \
+            position=absolute, gravity=top-left, x=10dp, y=10dp, \
+            content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
+#btn_userpic: width=28dp, height=28dp, position=absolute, gravity=top-left, x=11dp, y=11dp, \
+            scale-mode=fill, content-border-radius=28dp/2, default-color=$THEME_COLOR_01
 #btn_user: height=15dp, position=absolute, gravity=top-left, x=50dp, y=10dp, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
             label-align=left, label-font-size=0.9

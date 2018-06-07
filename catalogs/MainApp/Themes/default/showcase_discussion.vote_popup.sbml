@@ -1,24 +1,66 @@
-=begin popup
+=begin popup: script-when-loaded=on_loaded
 
 =begin actions: form=form
 
-=object label: text="Voting Power", style=label_title
+=(object blank: style=blank_margin)==(object label: text="Voting Power", style=label_title)==(object button: action=show, target=object, object=power, style=btn_question)=
 =object label: id=label.power, text=" ", style=label_volume
 
-=object label: text="Voting Percent", style=label_title
+=(object blank: style=blank_margin)==(object label: text="Voting Percent", style=label_title)==(object button: action=show, target=object, object=percent, style=btn_question)=
 =object label: id=label.percent, text="00.00%", style=label_volume
 
-=object label: text="Voting Amount", style=label_title
+=(object blank: style=blank_margin)==(object label: text="Voting Amount", style=label_title)==(object button: action=show, target=object, object=amount, style=btn_question)=
 =object label: id=label.amount, text=" ", style=label_volume
 
 =object slider: id=slider.percent, style=slider_percent
-=(object button: label="1%", style=btn_percent.1)==(object button: label="25%", style=btn_percent.25)==(object button: label="50%", style=btn_percent.50)==(object button: label="75%", style=btn_percent.75)==(object button: label="100%", style=btn_percent.100)=
+=object button: label="1%", style=btn_percent.1
+=object button: label="25%", style=btn_percent.25
+=object button: label="50%", style=btn_percent.50
+=object button: label="75%", style=btn_percent.75
+=object button: label="100%", style=btn_percent.100
 
 =object button: id=btn.vote, script=vote, label="보팅하기", style=btn_vote
 
 =end actions
 
-
 =object button: action=popup-close, label="×", style=btn_close
+
+
+
+=object section: id=power, section=section.power, style=section_question
+=begin question: id=section.power
+=begin note
+=begin title
+Voting Power
+=end title
+Voting Power는 이런 겁니다.
+=end note
+=object button: action=hide, target=object, object=power, label="확인", style=btn_hide
+=end question
+
+
+
+=object section: id=percent, section=section.percent, style=section_question
+=begin question: id=section.percent
+=begin note
+=begin title
+Voting Percent
+=end title
+Voting Percent는 이런 겁니다.
+=end note
+=object button: action=hide, target=object, object=percent, label="확인", style=btn_hide
+=end question
+
+
+
+=object section: id=amount, section=section.amount, style=section_question
+=begin question: id=section.amount
+=begin note
+=begin title
+Voting Amount
+=end title
+Voting Amount는 이런 겁니다.
+=end note
+=object button: action=hide, target=object, object=amount, label="확인", style=btn_hide
+=end question
 
 =end popup

@@ -1,8 +1,8 @@
-=begin page
+=begin page: script-when-loaded=on_loaded
 
-=begin body
-=object image: image-url="${image-url}", style=img_main
-=object blank: style=blank_dim
+=object image: image-url="${image-url}", style=img_header
+
+
 
 =object section: section=header, style=section_header
 =begin header: id=header
@@ -13,11 +13,16 @@ ${title}
 =(object button: script=show_tag, label="${tag-1}", style=btn_tag.1)=  =(object button: script=show_tag, label="${tag-2}", style=btn_tag.2)=  =(object button: script=show_tag, label="${tag-3}", style=btn_tag.3)=  =(object button: script=show_tag, label="${tag-4}", style=btn_tag.4)=  =(object button: script=show_tag, label="${tag-5}", style=btn_tag.5)=
 =end tags
 =begin meta
-=(object button: script=show_votes, label="보팅", style=btn_meta)==(object button: script=show_votes, label=" ${votes-count}", style=btn_meta, style=bold)==(object label: text=" •", style=label_meta)==(object button: script=show_votes, label=" ${payout-value}", style=btn_meta, style=bold)==(object label: text=" • ", style=label_meta)==(object button: script=show_replies, label="댓글", style=btn_meta)==(object button: script=show_replies, label=" ${replies-count}", style=btn_meta, style=bold)=
+=(object button: script=show_votes, label="보팅", style=btn_meta)==(object button: script=show_votes, label=" ${votes-count}", style=btn_meta, style=goB)==(object label: text=" •", style=label_meta)==(object button: script=show_votes, label=" ${payout-value}", style=btn_meta, style=goB)==(object label: text=" • ", style=label_meta)==(object button: script=show_replies, label="댓글", style=btn_meta)==(object button: script=show_replies, label=" ${replies-count}", style=btn_meta, style=goB)=
 =(object label: text="by ", style=label_author)==(object button: script=show_user, label="${author}", style=btn_author)=
 =object label: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", source-timezone=GMT, text="${created-at}", style=label_date
 =end meta
 =end header
+
+
+
+=begin body
+
 ${body}
 
 =object button: script=show_replies, label="댓글 보기 (${replies-count})", style=btn_replies

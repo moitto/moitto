@@ -1,12 +1,13 @@
 import ~/themes.sbss
 
+/page: page-background-color=$THEME_COLOR_02
+
+
 -- header --
 
-#img_main: width=1pw, height=0.8pw, position=absolute, gravity=top, loading-duration=0.3, scale-mode=fill, \
-visual-effect=blur-dark
-#blank_dim: width=1pw, height=0.8pw, position=absolute
-
-#section_header: width=1pw, height="1pw*(2/3)+50dp", padding="0 0 20dp 0"
+#img_header: width=1pw, height=0.8pw, position=absolute, gravity=top, \
+            loading-duration=0.3, scale-mode=fill, visual-effect=blur-dark
+#section_header: width=1pw, height=0.8pw
 #btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
         content-background-color=$WHITE_COLOR_DEEP_DIM, content-padding="0 3dp", content-border-radius=2dp
 #btn_tag.1: style=btn_tag
@@ -24,60 +25,60 @@ visual-effect=blur-dark
 #label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9, \
         text-align=right, align=right, margin="-20dp 0 0 0"
 
-#bold: label-font-family=$SANSSERIF_BOLD
+#goB: label-font-family=$SANSSERIF_BOLD
 
-/page: script-when-loaded=on_loaded
-/page/body/header: display=none, padding=20dp
-/page/body/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, \
+/page/header: display=none, padding=20dp
+/page/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, \
         text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
-/page/body/header/tags: display=block, position=absolute, gravity=bottom, y=-65dp, text-align=left, \
+/page/header/tags: display=block, position=absolute, gravity=bottom, y=-66dp, text-align=left, \
         line-spacing=0.1em, paragraph-spacing=0.1em
-/page/body/header/meta: display=block, height=60dp, position=absolute, gravity=bottom, paragraph-spacing=0
+/page/header/meta: display=block, height=60dp, position=absolute, gravity=bottom, paragraph-spacing=0
 
 
 -- body --
 
-#image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
+#image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=$THEME_COLOR_01, \
         scales-in-background=yes, script-when-download=on_image_download
 #image.full: max-width=1pw
-#youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
+#youtube: width="1pw-40dp", height=(1pw-40dp)*9/16
 
-#heading-1: font-size=1.8
-#heading-2: font-size=1.6
-#heading-3: font-size=1.4
-#heading-4: font-size=1.2
-#heading-5: font-size=1.1
-#heading-6: font-size=1.0
+#heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em
+#heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em
+#heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em
+#heading-4: font-size=1.2em
+#heading-5: font-size=1.1em
+#heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101
+
+
 #link: text-decoration=underline-#6C6C6C-1
 #user: script=show_user, text-decoration=underline-#6C6C6C-1
-#code: highlight-color=$THEME_COLOR_01
+#italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
 #strong: font-family=$SANSSERIF_BOLD
 #bold: font-family=$SANSSERIF_BOLD
-#em: font-family=$SANSSERIF_BOLD
-#italic: font-style=italic
-#em-italic: font-family=$SANSSERIF_BOLD
+#sup: vertical-align=top, font-size=0.7
 #linethrough: text-decoration=line-through
 #sub: vertical-align=bottom, font-size=0.7
-#sup: vertical-align=top, font-size=0.7
-#line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
-
+#line: color=$THEME_COLOR_01, width="1pw-40dp", height=1dp
 #text-left: text-align=left
 #text-right: text-align=right
+%list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
+%quote: border-color=$THEME_COLOR_04, border-width=1dp, border-style=dashed, padding=15dp
 
-%quote: background-color=$THEME_COLOR_01
-%list: text-indent=1em
-%code: background-color=$THEME_COLOR_01
-
-/page: page-background-color=$THEME_COLOR_02
-/page/body: padding="0 20dp (90dp+1eb) 20dp", \
-        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
-        line-spacing=0.6em, paragraph-spacing=1em, empty-line-height=0
+/page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
+            line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0, \
+            margin="20dp 20dp (90dp+1eb) 20dp"
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1.3
 else
     /page: font-size=1.2
 end
+
+미완성
+#code: highlight-color=$THEME_COLOR_01
+#em: font-family=$SANSSERIF_BOLD
+#em-italic: font-family=$SANSSERIF_BOLD
+%code: background-color=$THEME_COLOR_01
 
 
 -- 댓글 & 보팅 --
@@ -101,6 +102,9 @@ end
 if "${replies-count}" == 0
     #btn_replies: label="첫 번째 댓글을 남겨보세요"
 end
+
+
+-- 태그 --
 
 if "${tag-1}" == ""
     #btn_tag.1: display=none, width=0, height=0

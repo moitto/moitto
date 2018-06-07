@@ -1,8 +1,10 @@
 =begin catalog
 
+=object button: action=subview-back, style=btn_close
+
 =begin form: form=login
 =object blank: style=blank_frame
-=object textfield: id=username, placeholder="스팀잇 계정", \
+=object textfield: id=username, placeholder="스팀 계정", \
             return-key-type=next, next-control=password, \
             auto-capitalization-type=none, \
             style=textfield_username

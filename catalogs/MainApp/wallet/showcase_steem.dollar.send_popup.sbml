@@ -2,7 +2,7 @@
 
 =begin form
 =object blank: style=blank_frame
-=object textfield: id=username, placeholder="스팀잇 계정", \
+=object textfield: id=username, placeholder="스팀 계정", \
                 next-control=amount, return-key-type=next, auto-capitalization-type=none, \
                 style=textfield_username
 =object blank: style=blank_frame

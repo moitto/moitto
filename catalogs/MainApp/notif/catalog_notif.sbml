@@ -9,12 +9,19 @@
 =object section: id=section.login, section=login, style=section_login
 =object section: id=section.loading, section=loading, style=section_loading
 
+
+
 =begin login: id=login
 =begin content
 =object button: action=subview, subview=V_LOGIN, target=popup, label="로그인", style=btn_login
-=object label: text="스팀잇 계정으로 로그인하세요", style=label_notice
+=begin notice
+로그인하면 =[goB|알림]=을 받아 보실 수 있습니다.
+스팀 계정으로 로그인하세요.
+=end notice
 =end content
 =end login
+
+
 
 =begin loading: id=loading
 =begin content

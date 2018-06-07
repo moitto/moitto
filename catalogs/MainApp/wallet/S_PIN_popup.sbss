@@ -1,16 +1,24 @@
 import ~/themes.sbss
 
-#btn_close: image=~/subview_btn_close.png, width=44dp, height=44dp, \
-            position=absolute, gravity=left-top, y=1sbh
-#btn_reset: height=30dp, \
-            position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
-            label-color=$WHITE_COLOR, label-font-size=0.8
-#btn_skip: display=none, height=30dp, \
-            position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
-            label-color=$WHITE_COLOR, label-font-size=0.8
+-- 내비바 --
 
-#label_title: width=100dp, height=30dp, position=absolute, gravity=top, y=1sbh, \
-            text-color=$WHITE_COLOR, text-align=center
+#btn_close: image=~/subview_btn_close.white.png, width=44dp, height=44dp, \
+            position=absolute, gravity=left-top, y=1sbh
+#btn_reset: height=44dp, \
+            position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
+            label-color=$THEME_COLOR_102, label-font-size=0.8
+#btn_skip: display=none, height=44dp, \
+            position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
+            label-color=$THEME_COLOR_102, label-font-size=0.8
+#label_title: width=120dp, height=44dp, position=absolute, gravity=top, y=1sbh, \
+            text-color=$THEME_COLOR_102, text-align=center
+
+if $SCREEN_SIZE > 5
+    #label_title: font-size=1.4
+else
+    #label_title: font-size=1.3
+end
+
 
 #section_board: width=1pw, height=(1ph-300dp-(44dp+1sbh)), \
             position=absolute, gravity=top, y=(44dp+1sbh)

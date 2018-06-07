@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#btn_close: image=subview_btn_close.png, width=44dp, height=44dp, \
+#btn_close: image=subview_btn_close.white.png, width=44dp, height=44dp, \
             position=absolute, gravity=top-right, y=1sbh
 
 #blank_userpic.mask: width=82dp, height=82dp, \

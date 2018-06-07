@@ -5,7 +5,7 @@
 =end info
 
 =begin receiver: form=receiver
-=(object textfield: id=username, placeholder="스팀잇 계정", \
+=(object textfield: id=username, placeholder="스팀 계정", \
             return-key-type=next, \
             auto-capitalization-type=none, \
             width=200dp, height=50dp, \

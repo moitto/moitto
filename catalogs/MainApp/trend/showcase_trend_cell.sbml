@@ -12,7 +12,7 @@ ${title}
 =end title
 
 =begin meta
-=(object button: script=show_tag, label="#${main-tag}", style=btn_meta, style=bold)==(object label:text=" • ", style=label_meta)==(object button: script=show_votes, type=decimal, label="${votes-count}", style=btn_meta, style=bold)==(object button: script=show_votes, label=" 보팅", style=btn_meta)==(object label: text=" •", style=label_meta)==(object button: script=show_votes, label=" ${payout-value}", style=btn_meta, style=bold)==(object label: text=" • ", style=label_meta)==(object button: script=show_replies, label="댓글 ", style=btn_meta)==(object button: script=show_replies, label="${replies-count}", style=btn_meta, style=bold)=
+=(object button: script=show_tag, label="#${main-tag}", style=btn_meta, style=goB)==(object label:text=" • ", style=label_meta)==(object button: script=show_votes, type=decimal, label="${votes-count}", style=btn_meta, style=goB)==(object button: script=show_votes, label=" 보팅", style=btn_meta)==(object label: text=" •", style=label_meta)==(object button: script=show_votes, label=" ${payout-value}", style=btn_meta, style=goB)==(object label: text=" • ", style=label_meta)==(object button: script=show_replies, label="댓글 ", style=btn_meta)==(object button: script=show_replies, label="${replies-count}", style=btn_meta, style=goB)=
 =end meta
 
 =end contents

@@ -9,5 +9,9 @@
 ${body}
 =end body
 
+=begin meta
+=(object button: script=show_votes, label=" ${payout-value}", style=btn_meta)=
+=end meta
+
 
 =end header

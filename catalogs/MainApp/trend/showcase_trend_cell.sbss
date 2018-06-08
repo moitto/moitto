@@ -4,9 +4,9 @@ import ~/themes.sbss
             position=absolute, gravity=top, \
             scales-in-background=yes, loading-duration=0.3, alpha=0.7, default-color=$THEME_COLOR_01
 #section_contents: width=1pw, height="1ph-55dp", postion=absolute, gravity=top
-#label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$WHITE_COLOR, text-align=left, font-size=0.9
-#btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$WHITE_COLOR, label-align=left, label-font-size=0.9
-#bold: label-font-family=$SANSSERIF_BOLD
+#label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=left, font-size=0.9
+#btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left, label-font-size=0.9
+#goB: label-font-family=$SANSSERIF_BOLD
 
 #blank_user: width=1pw, height=55dp, position=absolute, gravity=bottom, color=$THEME_COLOR_00
 

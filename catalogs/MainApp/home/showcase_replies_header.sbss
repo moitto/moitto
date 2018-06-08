@@ -1,5 +1,24 @@
 import ~/themes.sbss
 
+#blank_userpic.mask: width=30dp, height=30dp, \
+            position=absolute, gravity=top-left, x=10dp, y=10dp, \
+            content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
+#btn_userpic: width=28dp, height=28dp, position=absolute, gravity=top-left, x=11dp, y=11dp, \
+            scale-mode=fill, content-border-radius=28dp/2, default-color=$THEME_COLOR_01
+#btn_user: height=15dp, position=absolute, gravity=top-left, x=50dp, y=10dp, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
+            label-align=left, label-font-size=0.9
+#label_date: height=15dp, position=absolute, gravity=top-left, x=50dp, y=25dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left, font-size=0.7
+
+/header: page-background-color=$THEME_COLOR_02
+/header/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2, \
+            line-spacing=0.3em, paragraph-spacing=1em, empty-line-height=0, \
+            border-bottom-color=$THEME_COLOR_01, border-bottom-width=1dp, \
+            padding="50dp 10dp 30dp 10dp"
+
+
+
 -- body --
 
 #image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
@@ -33,13 +52,3 @@ import ~/themes.sbss
 %list: text-indent=1em
 %code: background-color=$THEME_COLOR_01
 
-/header: page-background-color=$THEME_COLOR_02
-/header/body: padding="0 20dp (90dp+1eb) 20dp", \
-        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
-        line-spacing=0.6em, paragraph-spacing=1em, empty-line-height=0
-
-if $SCREEN_WIDTH > "5"
-    /header: font-size=1.3
-else
-    /header: font-size=1.2
-end

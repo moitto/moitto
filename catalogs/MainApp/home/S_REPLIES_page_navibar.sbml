@@ -4,6 +4,7 @@
 
 =object blank: style=blank_line
 
-=object button: action=popup, style=btn_menu
+=object button: action=popup, display-unit=S_REPLIES.CONTENT, alternate-name="replies.content", \
+        style=btn_menu
 
 =end navibar

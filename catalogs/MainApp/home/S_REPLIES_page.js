@@ -46,7 +46,8 @@ function show_replies(data) {
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
         "author":data["author"],
         "permlink":data["permlink"],
-        "content-type":"reply"
+        "content-type":"reply",
+        "has-own-navibar":"yes"
     });
 
     controller.action("page", { "display-unit":"S_REPLIES" })

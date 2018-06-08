@@ -1,6 +1,6 @@
 =begin navibar
 
-=object label: text="대댓글", style=label_title
+=object label: text="댓글", style=label_title
 
 =object blank: style=blank_line
 

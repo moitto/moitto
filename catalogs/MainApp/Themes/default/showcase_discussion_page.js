@@ -78,13 +78,23 @@ function open_url(params) {
         if (__is_steem_host(matched[1])) {
             var user = users.create(matched[2]);
 
-            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
-                "author":user.name,
-                "permlink":matched[3],
-                "userpic-url":user.get_userpic_url("small")
-            });
+            if (matched[3]) {
+                controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+                    "author":user.name,
+                    "permlink":matched[3],
+                    "userpic-url":user.get_userpic_url("small")
+                });
     
-            controller.action("page", { "display-unit":"S_DISCUSSION" });
+                controller.action("page", { "display-unit":"S_DISCUSSION" });                
+            } else {
+                controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+                    "username":user.name,
+                    "userpic-url":user.get_userpic_url("small"),
+                    "fetched":"no"
+                });
+
+                controller.action("page", { "display-unit":"S_USER" })
+            }
 
             return;
         }

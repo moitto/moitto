@@ -49,6 +49,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
 
     if (account.is_logged_in()) {
         steemjs.get_discussions_by_feed(account.username, start_author, start_permlink, length).then(function(discussions) {
+            var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);
             var data = [];
 
             if (location > 0) {
@@ -58,8 +59,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
             discussions.forEach(function(discussion) {
                 var content   = contents.create(discussion);
                 var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
-
-                data.push(Object.assign({
+                var datum = {
                     "id":"S_FEEDS_" + content.data["author"] + "_" + content.data["permlink"],
                     "author":content.data["author"],
                     "permlink":content.data["permlink"],
@@ -78,7 +78,12 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "reblogged-count":content.data["reblogged_by"].length.toString(),
                     "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
                     "created-at":content.data["created"]
-                }, __template_data_for_content(content)));
+                };
+
+                datum = Object.assign(datum, __template_data_for_content(content));
+                datum = Object.assign(datum, __background_data_for_values(backgrounds));
+
+                data.push(datum);
             });
 
             if (discussions.length > 0) {
@@ -135,11 +140,19 @@ function __template_data_for_content(content) {
     return {};
 }
 
+function __background_data_for_values(values) {
+    var value = values[Math.floor(Math.random()*values.length)];
+    var data = {};
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
+}
+
 function __handle_text(text) {
-//    text = "견생일기 🐩 Dtube: 코비의 산 타는 실력";
-    console.log(text);
     text = texts.replace_emoji_chars(text, "=[emoji|$1]=");
-    console.log(text);
     
     return text;
 }

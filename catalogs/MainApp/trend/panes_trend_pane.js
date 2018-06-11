@@ -28,6 +28,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
     var start_permlink = (location > 0) ? __impl[$data["id"]]["last_discussion"]["permlink"] : null;
 
     __impl[$data["id"]].method("kr", start_author, start_permlink, length).then(function(discussions) {
+        var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
         if (location > 0) {
@@ -36,8 +37,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
 
         discussions.forEach(function(discussion) {
             var content = contents.create(discussion);
-
-            data.push(Object.assign({
+            var datum = {
                 "id":"S_TREND_" + content.data["author"] + "_" + content.data["permlink"],
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
@@ -51,7 +51,12 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "replies-count":content.data["children"].toString(),
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
-            }, __template_data_for_content(content)));
+            };
+
+            datum = Object.assign(datum, __template_data_for_content(content));
+            datum = Object.assign(datum, __background_data_for_values(backgrounds));
+
+            data.push(datum);
         });
 
         if (discussions.length > 0) {
@@ -91,4 +96,15 @@ function __template_data_for_content(content) {
     }
 
     return {};
+}
+
+function __background_data_for_values(values) {
+    var value = values[Math.floor(Math.random()*values.length)];
+    var data = {};
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
 }

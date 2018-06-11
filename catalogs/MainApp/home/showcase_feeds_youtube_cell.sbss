@@ -22,13 +22,13 @@ import ~/themes.sbss
 if $LAYOUT == "thumbnail"
     #img_cover: width=1pw, height=1ph, visual-effect=blur-dark
     #img_preview.thumb: width="1pw-60dp", height="(1pw-60dp)*0.5625", loading-duration=0.3, \
-            scale-mode=fill, content-gravity=center, default-color=$THEME_COLOR_01, \
+            scale-mode=fill, content-gravity=center, default-color=$BLACK_COLOR_DIM, \
             margin="(1sbh+80dp) 0 10dp 0"
     #img_preview.list: display=none
     #img_play.thumb: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
             position=absolute, gravity=top-right, x=-40dp, y="(1sbh+80dp)+(1pw-60dp)*0.5625-40dp"
-    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.8
-    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.8, label-align=left
+    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.8
+    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=0.8, label-align=left
     #blank_userpic.mask: display=none
     #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
     #btn_author: height=30dp, gravity=bottom, y=-70dp, \

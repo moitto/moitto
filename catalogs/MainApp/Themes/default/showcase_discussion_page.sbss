@@ -78,8 +78,8 @@ else
 end
 
 미완성
-#code: highlight-color=$THEME_COLOR_01
-%code: background-color=$THEME_COLOR_01
+#code: highlight-color=$THEME_COLOR_01, padding=0.4em, pack=yes
+%code: background-color=$THEME_COLOR_01, padding=0.4em
 
 
 -- 댓글 & 보팅 --

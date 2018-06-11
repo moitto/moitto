@@ -8,7 +8,7 @@
 =end user
 
 =begin moitto
-=(object label: text="by", style=label_by)==(object image: style=img_moitto)=
+by moitto
 =end moitto
 
 =object button: script=on_login, label="시작하기", style=btn_start

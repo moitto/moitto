@@ -8,7 +8,7 @@ import ~/themes.sbss
 
 %content: display=block, position=absolute, gravity=center, text-align=center
 
-/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
+/catalog: page-background-color=$THEME_COLOR_02
 
 
 -- 로그인 전 --

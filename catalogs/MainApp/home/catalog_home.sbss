@@ -23,7 +23,7 @@ if $LAYOUT == "thumbnail"
     #btn_layout: image="~/subview_btn_list.png", action=layout, layout=list, target=object, object=showcase.feeds
     #blank_line: display=none
 else
-    #img_logo: filename="~/subview_img_logo.png"
+    #img_logo: filename="~/subview_img_logo.black.png"
     #btn_layout: image="~/subview_btn_thumbnail.png", action=layout, layout=thumbnail, target=object, object=showcase.feeds
     #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
             position=absolute, gravity=top, y="1sbh+44dp"

@@ -1,1 +1,4 @@
 import ~/themes.sbss
+
+#btn_settings: image="~/subview_btn_settings.png", width=44dp, height=44dp, position=absolute, gravity=left-bottom
+#btn_qr: image="~/subview_btn_qr.png", width=44dp, height=44dp, position=absolute, gravity=right-bottom

@@ -8,7 +8,7 @@ import ~/themes.sbss
 if $LAYOUT == "thumbnail"
     #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph"
 else
-    #showcase_feeds: height="1ph-1sbh-44dp", cell-size="(1pw-20dp), 200dp", \
+    #showcase_feeds: height="1ph-1sbh-44dp", cell-size="(1pw-20dp), 190dp", \
                     content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp"
 end
 

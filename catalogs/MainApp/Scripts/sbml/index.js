@@ -91,7 +91,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
 
         if (element.type === "center-tag-begin" && !inline) {
             sbml += center_ended ? "\n=end center\n" : "";
-            sbml = sbml.substr(0, center_begin_pos) + "=begin center\n" + sbml.substr(center_begin_pos);
+            sbml = sbml.substr(0, center_begin_pos) + "\n=begin center\n" + sbml.substr(center_begin_pos);
 
             center_begin_pos = sbml.length;
             center_ended = false;
@@ -100,6 +100,9 @@ Sbml.__elements_to_sbml = function(elements, inline) {
         }
  
         if (element.type === "center-tag-end" && !inline) {
+            sbml += center_ended ? "\n=end center\n" : "";
+
+            center_begin_pos = sbml.length;
             center_ended = true;
 
             return;

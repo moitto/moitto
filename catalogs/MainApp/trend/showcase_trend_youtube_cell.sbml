@@ -1,6 +1,7 @@
 =begin cell
 
 =object image: type=youtube, video-id="${video-id}", quality=high, style=img_main
+=object blank: style=blank_dim
 =object image: style=img_play
 
 

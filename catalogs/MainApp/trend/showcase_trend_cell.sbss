@@ -3,6 +3,8 @@ import ~/themes.sbss
 #img_main: width=1pw, height="1ph-55dp", scale-mode=fill, \
             position=absolute, gravity=top, \
             scales-in-background=yes, loading-duration=0.3, default-color=$THEME_COLOR_01
+#blank_dim: width=1pw, height="1ph-55dp", position=absolute, gravity=top, color=$BLACK_COLOR_DIM
+
 #section_contents: width=1pw, height="1ph-55dp", postion=absolute, gravity=top
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=left, font-size=0.9
 #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left, label-font-size=0.9
@@ -26,7 +28,7 @@ import ~/themes.sbss
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
             position=absolute, gravity=bottom
 
-/cell: page-background-color=$BLACK_COLOR
+/cell: page-background-color=$THEME_COLOR_02
 /cell/contents: display=none
 /cell/contents/title: font-family=$SANSSERIF_BOLD, font-size=1.5, \
                     text-color=$THEME_COLOR_102, text-align=left, \

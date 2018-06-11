@@ -1,7 +1,7 @@
 =begin cell
 
 =object image: image-url="${image-url}", style=img_main
-
+=object blank: style=blank_dim
 
 
 =object section: id=contents, section=trend.contents, style=section_contents

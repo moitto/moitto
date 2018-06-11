@@ -1,3 +1,16 @@
 =begin popup
 
+=begin actions
+=object button: label="댓글 달린 글 보기", style=btn_menu
+=object blank: style=blank_line
+=object button: label="댓글 쓰기", style=btn_menu
+=object blank: style=blank_line
+=object button: label="업보팅", style=btn_menu
+=object blank: style=blank_line
+=object button: label="다운보팅", style=btn_menu, style=down
+=object blank: style=blank_line
+
+=object button: action=popup-close, label="취소", style=btn_close
+=end actions
+
 =end popup

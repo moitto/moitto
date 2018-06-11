@@ -11,12 +11,18 @@ import ~/themes.sbss
 #label_date: height=15dp, position=absolute, gravity=top-left, x=50dp, y=25dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left, font-size=0.7
 
-/header: page-background-color=$THEME_COLOR_02
+/header: page-background-color=$THEME_COLOR_00
 /header/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2, \
             line-spacing=0.3em, paragraph-spacing=1em, empty-line-height=0, \
-            border-bottom-color=$THEME_COLOR_01, border-bottom-width=1dp, \
             padding="50dp 10dp 30dp 10dp"
 
+
+-- voting --
+
+#btn_meta: label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-align=left, label-font-size=0.9
+
+/header/meta: border-bottom-color=$THEME_COLOR_01, border-bottom-width=1dp, \
+            padding="0 10dp 10dp 10dp"
 
 
 -- body --

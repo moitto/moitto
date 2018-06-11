@@ -2,6 +2,7 @@ var account  = require("account");
 var steemjs  = require("steemjs");
 var contents = require("contents"); 
 var media    = require("media");
+var texts    = require("texts");
 
 var __last_discussion = null;
 var __has_packages = true;
@@ -57,13 +58,14 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
             discussions.forEach(function(discussion) {
                 var content   = contents.create(discussion);
                 var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
-            
+
                 data.push(Object.assign({
                     "id":"S_FEEDS_" + content.data["author"] + "_" + content.data["permlink"],
                     "author":content.data["author"],
                     "permlink":content.data["permlink"],
-                    "title":content.data["title"], 
+                    "title":__handle_text(content.data["title"]), 
                     "image-url":content.get_title_image_url("256x512"),
+                    "large-image-url":content.get_title_image_url("640x480"),
                     "userpic-url":content.get_userpic_url("small"),
                     "userpic-large-url":content.get_userpic_url(),
                     "author-reputation":content.get_author_reputation().toFixed(0).toString(),
@@ -132,3 +134,13 @@ function __template_data_for_content(content) {
 
     return {};
 }
+
+function __handle_text(text) {
+//    text = "견생일기 🐩 Dtube: 코비의 산 타는 실력";
+    console.log(text);
+    text = texts.replace_emoji_chars(text, "=[emoji|$1]=");
+    console.log(text);
+    
+    return text;
+}
+

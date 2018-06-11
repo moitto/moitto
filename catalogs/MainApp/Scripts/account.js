@@ -153,6 +153,20 @@ Account.unfollow_user = function(following, handler) {
     });
 }
 
+Account.is_following = function(username, handler) {
+    var follower = Account.username;
+
+    Account.global.steemjs.get_followers(username, follower, "blog", 1).then(function(response) {
+        if (response.length == 0 || response[0]["follower"] !== follower) {
+            handler(username, false);
+        } else {
+            handler(username, true);
+        }
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.transfer = function(to, amount, memo, pin, handler) {
     var from = Account.username;
     var key = Account.__load_key(from, "active", pin);

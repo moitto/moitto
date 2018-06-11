@@ -21,8 +21,8 @@ import ~/themes.sbss
 
 -- body --
 
-#image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
-        scales-in-background=yes, script-when-download=on_image_download
+#image: min-width=10dp, min-height=10dp, max-width=100%, default-color=#f00, \
+        scales-in-background=yes, text-decoration="", script-when-download=on_image_download
 #image.full: max-width=1pw
 #youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
 
@@ -51,4 +51,5 @@ import ~/themes.sbss
 %quote: background-color=$THEME_COLOR_01
 %list: text-indent=1em
 %code: background-color=$THEME_COLOR_01
+%center: text-align=center
 

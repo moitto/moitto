@@ -1,5 +1,0 @@
-import ~/themes.sbss
-
-/popup: page-background-color=#0005, action-when-touched=popup-close
-/popup/message: display=block, position=abs, gravity=center, text-align=center
-

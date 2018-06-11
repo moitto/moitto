@@ -42,7 +42,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
                 "title":content.data["title"], 
-                "image-url":content.get_title_image_url("320x240"),
+                "image-url":content.get_title_image_url("640x480"),
                 "userpic-url":content.get_userpic_url("small"),
                 "userpic-large-url":content.get_userpic_url(),
                 "author-reputation":content.get_author_reputation().toFixed(0).toString(),

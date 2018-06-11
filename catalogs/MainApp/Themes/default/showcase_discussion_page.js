@@ -33,7 +33,7 @@ function update_vote() {
 }
 
 function show_user(params) {
-    var user = users.create($data["author"]);
+    var user = users.create(params["username"]);
 
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
         "username":user.name,

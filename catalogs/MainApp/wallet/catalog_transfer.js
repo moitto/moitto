@@ -4,12 +4,19 @@ var account    = require("account");
 var steemjs    = require("steemjs");
 
 var __amount_to_transfer = null;
+var __current_coin_price = null;
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     var user = users.create(value["to"]);
     
     __update_to_userpic(user);
+}
+
+function on_change_amount() {
+    if (__current_coin_price) {
+        __update_coin_amount();
+    }
 }
 
 function feed_users(keyword, location, length, sortkey, sortorder, handler) {
@@ -132,8 +139,12 @@ function __on_reset_pin() {
 
 function __update_to_userpic(user) {
     var image = view.object("img.to.userpic");
-    var userpic_url = user.get_userpic_url();
 
-    image.property({ "image-url":userpic_url });
+    image.property({ 
+        "image-url":user.get_userpic_url() 
+    });
 }
 
+function __update_coin_amount() {
+
+}

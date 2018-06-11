@@ -2,6 +2,7 @@ import ~/themes.sbss
 
 #section_contents: width=1pw, height=1ph, position=absolute
 #goB: label-font-family=$SANSSERIF_BOLD
+#emoji: font-family=$EMOJI
 
 #img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left

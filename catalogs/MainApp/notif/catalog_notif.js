@@ -114,7 +114,6 @@ function __open_discussion(author, permlink) {
 }
 
 function __show_replies(author, permlink) {
-    console.log(JSON.stringify([author, permlink]));
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
         "author":author,
         "permlink":permlink

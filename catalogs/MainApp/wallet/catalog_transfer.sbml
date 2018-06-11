@@ -25,6 +25,8 @@
 =end content
 =end box
 
+=object label: id=label.amount.coin, style=label_amount.coin
+
 =end amount
 
 =object button: script=confirm_transfer, form=amount.box, label="송금하기", style=btn_send

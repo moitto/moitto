@@ -18,8 +18,8 @@ import ~/themes.sbss
 
 -- body --
 
-#image: min-width=10dp, min-height=10dp, max-width="1pw-40dp", default-color=#f00, \
-        scales-in-background=yes, script-when-download=on_image_download
+#image: min-width=10dp, min-height=10dp, max-width=100%, default-color=#f00, \
+        scales-in-background=yes, text-decoration="", script-when-download=on_image_download
 #image.full: max-width=1pw
 #youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
 
@@ -40,7 +40,7 @@ import ~/themes.sbss
 #linethrough: text-decoration=line-through
 #sub: vertical-align=bottom, font-size=0.7
 #sup: vertical-align=top, font-size=0.7
-#line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
+#line: color=$THEME_COLOR_01, width=100%, height=1dp
 
 #text-left: text-align=left
 #text-right: text-align=right
@@ -48,6 +48,7 @@ import ~/themes.sbss
 %quote: background-color=$THEME_COLOR_01
 %list: text-indent=1em
 %code: background-color=$THEME_COLOR_01
+%center: text-align=center
 
 /cell/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1, \
             line-spacing=0.3em, paragraph-spacing=0.3em, margin="50dp 10dp 10dp 10dp"

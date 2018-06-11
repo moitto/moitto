@@ -42,17 +42,18 @@ import ~/themes.sbss
 #image.full: max-width=1pw
 #youtube: width="1pw-40dp", height=(1pw-40dp)*9/16
 
-#heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em
-#heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em
-#heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em
-#heading-4: font-size=1.2em
-#heading-5: font-size=1.1em
-#heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101
-
+#heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1em 0 0 0"
+#heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1em 0 0 0"
+#heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em, margin="1em 0 0 0"
+#heading-4: font-size=1.2em, margin="1em 0 0 0"
+#heading-5: font-size=1.1em, margin="1em 0 0 0"
+#heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="1em 0 0 0"
 
 #link: text-decoration=underline-#6C6C6C-1
 #user: script=show_user, text-decoration=underline-#6C6C6C-1
 #italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
+#em: font-family=$SANSSERIF_BOLD
+#em-italic: font-style=italic, font-family="Times New Roman, KoPubBatang BOLD"
 #strong: font-family=$SANSSERIF_BOLD
 #bold: font-family=$SANSSERIF_BOLD
 #sup: vertical-align=top, font-size=0.7
@@ -78,8 +79,6 @@ end
 
 미완성
 #code: highlight-color=$THEME_COLOR_01
-#em: font-family=$SANSSERIF_BOLD
-#em-italic: font-family=$SANSSERIF_BOLD
 %code: background-color=$THEME_COLOR_01
 
 

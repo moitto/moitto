@@ -1,6 +1,7 @@
 =begin cell
 
-=object image: style=img_cover
+=object image: image-downloadable=yes, style=img_cover
+=object blank: style=blank_dim
 
 =object section: section=contents, style=section_contents
 

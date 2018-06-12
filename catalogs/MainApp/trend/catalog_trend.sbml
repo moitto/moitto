@@ -1,6 +1,6 @@
 =begin catalog
 
-=object panes: name=trend, \
+=object panes: id=panes.trend, name=trend, \
             has-navibar=yes, \
             style=panes_trend
 

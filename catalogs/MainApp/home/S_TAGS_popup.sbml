@@ -1,18 +1,20 @@
 =begin popup
-
+ 
+=object showcase: id=showcase.history, style=showcase_history
 =object section: style=section_query.bar
 =object section: style=section_suggestion
-=object blank: style=blank_categories.dim
-=object cell: style=cell_categories
-=object button: style=btn_categories.close
 
 =begin query.bar
 =object image: style=img_query.bar
-=object textfield: style=textfield_tag
+=object textfield: id=textfield.tag, style=textfield_tag
 =object label: style=label_placeholder
 =object input: style=input_tag
 =object button: style=btn_clear
 =object button: style=btn_close
 =end query.bar
+
+=begin suggestion
+=object showcase: style=showcase_suggestion
+=end suggestion
 
 =end popup

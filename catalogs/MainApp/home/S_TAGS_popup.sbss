@@ -17,10 +17,11 @@ import ~/themes.sbss
 
 #img_query.bar: default-color=$WHITE_COLOR, \
         width=1pw-5dp, height=44dp, position=abs, gravity=left-top, x=5dp, y=20dp+6dp
-#textfield_tag: id=textfield.tag, return-key-type=search, keyboard-type=alphabet, \
+#textfield_tag: return-key-type=search, keyboard-type=alphabet, \
         script=change_tag, form=query, \
         action-when-editing@begin=hide, params-when-editing@begin="group=query.categories", \
         script-when-editing@change=on_change_tag, \
+        valid-format="[a-z-]*", prevents-invalid-text=yes, \
         invalid-when-empty=yes, message-when-empty="태그를 입력하세요.", \
         width=1pw-55dp, height=30dp, \
         position=abs, gravity=left-top, x=10dp, y=20dp+6dp+7dp, \
@@ -36,6 +37,13 @@ import ~/themes.sbss
         width=44dp, height=44dp, position=abs, gravity=right-top, x=-5dp, y=20dp+6dp, \
         content-background-color=$SUB_COLOR
 
+#showcase_history: name=tags.history, \
+        width=1pw-20dp, height=1ph-(76dp+10dp+10dp+238dp), max-height=40dp+40dp*6+36dp, \
+        position=abs, gravity=top, y=76dp+10dp, \
+        column-count=1, cell-size="1pw-20dp, 40dp", selected-color=$LIGHT_COLOR_DIM, bounces=no, \
+        sortable=yes, sortkey=rowid, sortorder=descending, \
+        selectable=yes, script-when-selected=select_history
+
 #showcase_suggestion: id=showcase.suggestion, alternate-name=tag.suggestion, \
         data-script=load_suggestion, \
         selectable=yes, script-when-selected=select_suggestion, \
@@ -45,3 +53,4 @@ import ~/themes.sbss
 /popup: page-background-color=$THEME_COLOR_02, script-when-loaded=on_loaded, \
         first-responder=textfield.tag, scrolls-on-keyboard=no,
 /popup/query.bar: id=query.bar, display=none, form=query
+/popup/suggestion: display=none

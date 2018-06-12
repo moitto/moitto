@@ -1,0 +1,9 @@
+import ~/themes.sbss
+
+#blank_line: color=$LIGHT_LINE_COLOR, width=1pw, height=1dp, \
+        position=abs, gravity=bottom
+
+#btn_remove: label="X", width=44dp, height=44dp, position=abs, gravity=right, x=-5dp
+
+/cell/tag: display=block, position=abs, gravity=left, x=10dp, \
+        font-family=$SANSSERIF_BOLD, font-size=1.1

@@ -24,10 +24,12 @@ var __impl = {
 }
 
 function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
+    var value = controller.catalog().value("showcase", "auxiliary", "S_TREND");
+    var tag = value["tag"] || "kr";
     var start_author   = (location > 0) ? __impl[$data["id"]]["last_discussion"]["author"]   : null;
     var start_permlink = (location > 0) ? __impl[$data["id"]]["last_discussion"]["permlink"] : null;
 
-    __impl[$data["id"]].method("kr", start_author, start_permlink, length).then(function(discussions) {
+    __impl[$data["id"]].method(tag, start_author, start_permlink, length).then(function(discussions) {
         var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 

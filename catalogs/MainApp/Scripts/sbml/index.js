@@ -125,8 +125,10 @@ Sbml.__elements_to_sbml = function(elements, inline) {
             sbml += center_ended ? "\n=end center\n" : "";
             sbml += has_center_tag ? "\n=begin center\n" : "";
             sbml += element.data["leadings"];
-            sbml += "=[heading-" + element.data["level"] + "|" + Sbml.__elements_to_sbml(element.data["elements"], true) + "]=";
             sbml += "\n";
+            sbml += "=begin heading-" + element.data["level"] + "\n";
+            sbml += Sbml.__elements_to_sbml(element.data["elements"], true) + "\n";
+            sbml += "=end heading-" + element.data["level"] + "\n";
             sbml += has_center_tag ? "\n=end center\n" : "";
 
             center_begin_pos = sbml.length;

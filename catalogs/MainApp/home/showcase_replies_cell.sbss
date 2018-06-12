@@ -23,12 +23,6 @@ import ~/themes.sbss
 #image.full: max-width=1pw
 #youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
 
-#heading-1: font-size=1.8
-#heading-2: font-size=1.6
-#heading-3: font-size=1.4
-#heading-4: font-size=1.2
-#heading-5: font-size=1.1
-#heading-6: font-size=1.0
 #link: text-decoration=underline-#6C6C6C-1
 #user: script=show_user, text-decoration=underline-#6C6C6C-1
 #code: highlight-color=$THEME_COLOR_01
@@ -44,6 +38,13 @@ import ~/themes.sbss
 
 #text-left: text-align=left
 #text-right: text-align=right
+
+%heading-1: font-size=1.8
+%heading-2: font-size=1.6
+%heading-3: font-size=1.4
+%heading-4: font-size=1.2
+%heading-5: font-size=1.1
+%heading-6: font-size=1.0
 
 %quote: background-color=$THEME_COLOR_01
 %list: text-indent=1em

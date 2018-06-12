@@ -42,7 +42,8 @@ import ~/themes.sbss
         position=abs, gravity=top, y=76dp+10dp, \
         column-count=1, cell-size="1pw-20dp, 40dp", selected-color=$LIGHT_COLOR_DIM, bounces=no, \
         sortable=yes, sortkey=rowid, sortorder=descending, \
-        selectable=yes, script-when-selected=select_history
+        selectable=yes, script-when-selected=select_history, \
+        has-toolbar=yes, toolbar-height=50dp
 
 #showcase_suggestion: id=showcase.suggestion, alternate-name=tag.suggestion, \
         data-script=load_suggestion, \

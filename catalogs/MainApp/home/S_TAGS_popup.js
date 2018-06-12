@@ -22,6 +22,12 @@ function select_history(data) {
     __change_tag_of_host(tag);
 }
 
+function reset_history() {
+    console.log("reset_history!!!!");
+    __remove_all_tags_in_history();
+    __reload_history_showcase();
+}
+
 function __save_tag_to_history(tag) {
     var identifier = "S_TAGS.HISTORY_" + tag;
 
@@ -39,7 +45,7 @@ function __remove_tag_in_history(tag) {
 }
 
 function __remove_all_tags_in_history() {
-
+    controller.catalog().remove("showcase", "tags.history");
 }
 
 function __change_tag_of_host(tag) {

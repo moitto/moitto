@@ -1,4 +1,4 @@
-=begin catalog
+=begin catalog: script-when-loaded=on_loaded
 
 =object showcase: id=showcase.assets, alternate-name=assets, \
                 data-script=feed_assets, \

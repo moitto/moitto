@@ -5,6 +5,7 @@ import ~/themes.sbss
 #emoji: font-family=$EMOJI
 
 #img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
+#blank_userpic.mask: position=absolute, color=$THEME_COLOR_01
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
 #btn_userpic: scale-mode=fill, position=absolute
 #btn_author: width="1pw-66dp", position=absolute, \
@@ -20,16 +21,17 @@ import ~/themes.sbss
 
 if $LAYOUT == "thumbnail"
     #img_cover: width=1pw, height=1ph, visual-effect=blur-dark
-    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
-    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1, label-align=left
-    #blank_userpic.mask: display=none
-    #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
+    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9
+    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=0.9, label-align=left
+    #blank_userpic.mask: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
+    #btn_userpic: width=38dp, height=38dp, gravity=bottom, y=-101dp, content-border-radius=38dp/2
     #btn_author: height=30dp, gravity=bottom, y=-70dp, \
                 label-color=$THEME_COLOR_102, label-align=center, label-font-size=1.1
     #label_date: height=20dp, gravity=bottom-left, x=30dp, y=-20dp, \
                 font-size=0.9, text-color=$THEME_COLOR_102
     #img_reblogged: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
     #label_reblogged: height=15dp, font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
+    /cell: page-background-color=$THEME_COLOR_02
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, font-size=1.8, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em, padding="(1sbh+120dp) 30dp 10dp 30dp"
     /cell/contents/meta: padding="0 30dp"
@@ -41,7 +43,7 @@ else
     #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.8, label-align=left
     #blank_userpic.mask: width=30dp, height=30dp, \
                 position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
-                content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
+                content-border-radius=30dp/2
     #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
     #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
                 label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9

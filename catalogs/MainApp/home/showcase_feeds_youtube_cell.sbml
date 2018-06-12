@@ -4,6 +4,7 @@
 
 
 =object image: type=youtube, video-id="${video-id}", quality=high, style=img_preview.list
+=object blank: style=blank_dim.list
 =object image: style=img_play.list
 
 =object section: section=youtube.contents, style=section_contents

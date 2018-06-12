@@ -1,78 +1,18 @@
-import ~/themes.sbss
+import showcase_feeds_cell.sbss
 
-#section_contents: width=1pw, height=1ph, position=absolute
-#goB: label-font-family=$SANSSERIF_BOLD
-#emoji: font-family=$EMOJI
-
-#img_cover: filename="~/${background.image}", scale-mode=fill, loading-duration=0.3, \
-            content-gravity=center, position=absolute
-#label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
-#btn_userpic: scale-mode=fill, position=absolute
-#btn_author: width="1pw-66dp", position=absolute, \
-            label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation
-#label_date: width=200dp, position=absolute, \
-            font-family=$SANSSERIF_MEDIUM, text-align=left
-
-/cell/contents: display=none
-/cell/contents/title: text-align=left
-
+#img_cover: filename="~/${background.image}", visual-effect=no
 
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #img_cover: width=1pw, height=1ph
     #blank_dim: width=1pw, height=1ph, position=absolute, color=$BLACK_COLOR_LIGHT_DIM
-    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1
-    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1, label-align=left
-    #blank_userpic.mask: display=none
-    #btn_userpic: width=40dp, height=40dp, gravity=bottom, y=-100dp, content-border-radius=40dp/2
-    #btn_author: height=30dp, gravity=bottom, y=-70dp, \
-                label-color=$THEME_COLOR_102, label-align=center, label-font-size=1.1
-    #label_date: height=20dp, gravity=bottom-left, x=30dp, y=-20dp, \
-                font-size=0.9, text-color=$THEME_COLOR_102
-    #img_reblogged: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
-    #label_reblogged: height=15dp, font-family=$SANSSERIF_MEDIUM, font-size=0.9, text-color=$THEME_COLOR_102, text-align=left
-    /cell: page-background-color=$BLACK_COLOR
     /cell/contents/title: display=block, width="1pw-60dp", \
-                font-family=$SANSSERIF_LIGHT, font-size=1.8, text-color=${background.text-color}, \
-                line-break-mode=word-wrap, line-spacing=0.3em, \
+                text-color=${background.text-color}, \
                 padding="10dp 20dp 120dp 10dp", margin="(1sbh+120dp) 0 0 0", \
                 background-color=$BLACK_COLOR_DIM
     /cell/contents/meta: padding="0 40dp", margin="-25dp 0 0 0"
-    /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=30dp, y=-40dp
 else
     #img_cover: display=none
     #blank_dim: display=none
-    #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.8
-    #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=0.8, label-align=left
-    #blank_userpic.mask: width=30dp, height=30dp, \
-                position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
-                content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
-    #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
-    #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
-                label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
-    #label_date: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
-                font-size=0.7, text-color=$THEME_COLOR_101
-    #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
-                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
-    #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_101, text-align=left
-    /cell: display=block, width=1pw, height=1ph, \
-                border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
-    /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.4, text-color=$THEME_COLOR_100, \
-                line-spacing=0.2em, padding=10dp
-    /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
-    /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
-                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+    /cell/contents/title: font-size=1.4, padding=10dp
     end
-
--- 리블로그 분기 --
-
-if "${reblogged}" == "yes"
-    if "${reblogged-count-1}" == 0
-        /cell/contents/reblogged/multiple: display=none
-    else
-        /cell/contents/reblogged/single: display=none
-    end
-else
-    /cell/contents/reblogged: display=none
-end

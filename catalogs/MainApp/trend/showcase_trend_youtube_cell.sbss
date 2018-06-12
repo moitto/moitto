@@ -1,6 +1,6 @@
 import showcase_trend_cell.sbss
 
-#img_main: width=1.05pw, scales-in-background=yes, loading-duration=0.3
+#img_main: width=1.2pw, scales-in-background=yes, loading-duration=0.3
 #img_play: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
             position=absolute, gravity=bottom-right, x=-10dp, y=-65dp
 

@@ -1,57 +1,50 @@
 import ~/themes.sbss
 
-#section_query.bar: id=query.bar, section=query.bar, \
-        width=1pw, height=76dp, position=abs, gravity=top, \
-        content-background-color=$MAIN_COLOR
+/popup: page-background-color=$THEME_COLOR_02
 
-#section_suggestion: id=suggestion, section=suggestion, hidden=yes, \
-        width=1pw, height=36dp*5, position=abs, gravity=top, y=76dp
 
-#blank_categories.dim: group=query.categories, color=$BLACK_COLOR_DEEP_DIM, hidden=yes, \
-        width=1pw, height=1ph-76dp, position=abs, gravity=top, y=76dp
-#cell_categories: group=query.categories, \
-        alternate-name=query.categories, display-unit=S_QUERY.CATEGORIES, \
-        width=1pw, height=150dp, position=abs, gravity=top, y=76dp, hidden=yes
-#btn_categories.close: image="~/subview_btn_close.png", action=hide, group=query.categories, \
-        width=44dp, height=44dp, position=abs, gravity=top-right, y=76dp+150dp
+-- 태그 입력창 --
 
-#img_query.bar: default-color=$WHITE_COLOR, \
-        width=1pw-5dp, height=44dp, position=abs, gravity=left-top, x=5dp, y=20dp+6dp
-#textfield_tag: return-key-type=search, keyboard-type=alphabet, \
-        script=change_tag, form=query, \
-        action-when-editing@begin=hide, params-when-editing@begin="group=query.categories", \
-        script-when-editing@change=on_change_tag, \
-        valid-format="[a-z-]*", prevents-invalid-text=yes, \
-        invalid-when-empty=yes, message-when-empty="태그를 입력하세요.", \
-        width=1pw-55dp, height=30dp, \
-        position=abs, gravity=left-top, x=10dp, y=20dp+6dp+7dp, \
-        font-family=$SANSSERIF_BOLD, font-size=1.4, text-color=$BLACK_COLOR, \
-        auto-capitalization-type=none
-#label_placeholder: type=placeholder, owner=textfield.tag, text="선택할 태그를 입력하세요.", height=30dp, \
-        position=abs, gravity=left-top, x=10dp, y=20dp+6dp+7dp, \
-        font-family=$SANSSERIF_LIGHT, font-size=1.2, text-color=$LIGHT_COLOR
-#input_tag: id=tag, value=#{textfield.tag}
+#section_query.bar: width=1pw, height="1sbh+70dp", content-background-color=$THEME_COLOR_00
+#blank_query.bar: width="1pw-10dp-44dp", height=50dp, \
+            content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
+            content-background-color=$THEME_COLOR_02, \
+            align=left, margin="(1sbh+10dp) 0 0 10dp"
+#textfield_tag: width="1pw-30dp-44dp", height=50dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
+            align=left, padding="0 10dp", margin="-50dp 0 0 10dp"
 #btn_clear: image="~/textfield_btn_clear.png", action=clear, target=object, object=textfield.tag, \
         width=44dp, height=44dp, position=abs, gravity=right-top, x=-(5dp+44dp), y=20dp+6dp
-#btn_close: image="~/subview_btn_close.png", action=popup-close, \
-        width=44dp, height=44dp, position=abs, gravity=right-top, x=-5dp, y=20dp+6dp, \
-        content-background-color=$SUB_COLOR
+#btn_close: image="~/subview_btn_close.png", \
+            width=44dp, height=44dp, position=absolute, gravity=right-top, y="1sbh+13dp"
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
+/popup/query.bar: display=none
 
-#showcase_history: name=tags.history, \
-        width=1pw-20dp, height=1ph-(76dp+10dp+10dp+238dp), max-height=40dp+40dp*6+36dp, \
-        position=abs, gravity=top, y=76dp+10dp, \
-        column-count=1, cell-size="1pw-20dp, 40dp", selected-color=$LIGHT_COLOR_DIM, bounces=no, \
-        sortable=yes, sortkey=rowid, sortorder=descending, \
-        selectable=yes, script-when-selected=select_history, \
-        has-toolbar=yes, toolbar-height=50dp
 
-#showcase_suggestion: id=showcase.suggestion, alternate-name=tag.suggestion, \
-        data-script=load_suggestion, \
-        selectable=yes, script-when-selected=select_suggestion, \
-        width=1pw, height=1ph, column-count=1, cell-size="1pw, 36dp", \
+-- 검색 히스토리 --
+
+#showcase_history: width=1pw, height=1ph-(1sbh+70dp), max-height="35dp*7+40dp", \
+            column-count=1, cell-size="(1pw-20dp), 35dp", content-margin="0 10dp", \
+            position=absolute, gravity=top, y="1sbh+70dp+10dp", \
+            selected-color=$LIGHT_COLOR_DIM, toolbar-height=40dp
+/popup/suggestion: display=none
+
+
+
+
+#showcase_suggestion: width=1pw, height=1ph, column-count=1, cell-size="1pw, 36dp", \
         content-background-color=$WHITE_COLOR
 
-/popup: page-background-color=$THEME_COLOR_02, script-when-loaded=on_loaded, \
-        first-responder=textfield.tag, scrolls-on-keyboard=no,
-/popup/query.bar: id=query.bar, display=none, form=query
-/popup/suggestion: display=none
+
+
+-- 삭제할 것
+#blank_categories.dim: group=query.categories, color=$BLACK_COLOR_DEEP_DIM, hidden=yes, \
+width=1pw, height=1ph-76dp, position=abs, gravity=top, y=76dp
+#cell_categories: group=query.categories, \
+alternate-name=query.categories, display-unit=S_QUERY.CATEGORIES, \
+width=1pw, height=150dp, position=abs, gravity=top, y=76dp, hidden=yes
+#btn_categories.close: image="~/subview_btn_close.png", action=hide, group=query.categories, \
+width=44dp, height=44dp, position=abs, gravity=top-right, y=76dp+150dp
+#section_suggestion: hidden=yes, \
+width=1pw, height=36dp*5, position=abs, gravity=top, y=76dp
+

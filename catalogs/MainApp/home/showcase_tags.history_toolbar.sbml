@@ -1,5 +1,5 @@
 =begin footer
 
-=object button: script=reset, style=btn_reset
+=object button: script=reset, label="검색 기록 전체 삭제", style=btn_reset
 
 =end footer

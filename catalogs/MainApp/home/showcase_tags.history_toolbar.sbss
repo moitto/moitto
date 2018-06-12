@@ -1,7 +1,8 @@
 import ~/themes.sbss
 
-#btn_reset: label="검색기록 삭제", width=80dp, height=40dp, position=abs, gravity=left, x=5dp, \
+#btn_reset: position=absolute, gravity=right, x=-20dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-font-size=0.9, \
-        label-color=$DEFAULT_COLOR, label-align=left
+        label-color=$THEME_COLOR_102, label-align=right, \
+        content-padding="5dp 10dp", content-background-color=$THEME_COLOR_05
 
 /footer: page-background-color=$LIGHT_COLOR_DIM

@@ -1,20 +1,39 @@
-=begin popup
- 
-=object showcase: id=showcase.history, style=showcase_history
-=object section: style=section_query.bar
-=object section: style=section_suggestion
+=begin popup: script-when-loaded=on_loaded, first-responder=textfield.tag, scrolls-on-keyboard=no
 
-=begin query.bar
-=object image: style=img_query.bar
-=object textfield: id=textfield.tag, style=textfield_tag
-=object label: style=label_placeholder
-=object input: style=input_tag
+=object section: id=query.bar, section=query.bar, style=section_query.bar, alt="태그 입력창"
+=begin query.bar: id=query.bar, form=query
+=object blank: style=blank_query.bar
+=object textfield: id=textfield.tag, \
+                script=change_tag, form=query, placeholder="선택할 태그를 입력하세요", \
+                action-when-editing@begin=hide, params-when-editing@begin="group=query.categories", \
+                script-when-editing@change=on_change_tag, \
+                return-key-type=search, keyboard-type=alphabet, auto-capitalization-type=none, \
+                valid-format="[a-z-]*", prevents-invalid-text=yes, \
+                invalid-when-empty=yes, message-when-empty="태그를 입력하세요.", \
+                style=textfield_tag
+=object input: id=tag, value=#{textfield.tag}, style=input_tag
 =object button: style=btn_clear
-=object button: style=btn_close
+=object button: action=popup-close, style=btn_close
+=object blank: style=blank_line
 =end query.bar
 
-=begin suggestion
-=object showcase: style=showcase_suggestion
+
+
+=object showcase: id=showcase.history, name=tags.history, \
+                sortable=yes, sortkey=rowid, sortorder=descending, \
+                selectable=yes, script-when-selected=select_history, \
+                has-toolbar=yes, \
+                bounces=yes, \
+                style=showcase_history
+
+
+
+=object section: id=suggestion, section=suggestion, style=section_suggestion, content-background-color=$THEME_COLOR_01
+=begin suggestion: id=suggestion
+=object showcase: id=showcase.suggestion, alternate-name=tag.suggestion, \
+                data-script=load_suggestion, \
+                selectable=yes, script-when-selected=select_suggestion, \
+                style=showcase_suggestion, content-background-color=#9ff
 =end suggestion
 
 =end popup

@@ -6,6 +6,4 @@ ${tag}
 
 =object button: script=remove, style=btn_remove
 
-=object blank: style=blank_line
-
 =end cell

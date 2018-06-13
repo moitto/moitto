@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#showcase_notif: width=1pw, height=1ph, \
+#showcase_notif: width=1pw, height=1ph, hidden=yes, \
 		column-count=1, cell-size="1pw, 95dp"
 #goB: font-family=$SANSSERIF_BOLD
 

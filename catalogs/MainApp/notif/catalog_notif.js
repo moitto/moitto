@@ -1,7 +1,5 @@
-var users = require("users");
-
 var account = require("account");
-var global  = require("global");
+var users   = require("users");
 
 function on_loaded() {
     if (!account.is_logged_in()) {
@@ -10,6 +8,9 @@ function on_loaded() {
         
         return;
     }
+
+    __hide_loading_section();
+    __show_notif_showcase();
 }
 
 function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
@@ -127,6 +128,12 @@ function ___reload_notif_cell(data) {
 
     cell.data("display-unit", data);
     cell.action("reload")
+}
+
+function __show_notif_showcase() {
+    var showcase = view.object("showcase.notif");
+
+    showcase.action("show");
 }
 
 function __show_login_section() {

@@ -1,16 +1,28 @@
-var users      = require("users");
-var currencies = require("currencies");
-var account    = require("account");
-var steemjs    = require("steemjs");
+var users   = require("users");
+var account = require("account");
+var wallet  = require("wallet");
+var steemjs = require("steemjs");
 
 var __amount_to_transfer = null;
 var __current_coin_price = null;
 
+var __coin_to_transfer = null;
+var __amount_type      = null; 
+
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     var user = users.create(value["to"]);
-    
+
     __update_to_userpic(user);
+    
+    __coin_to_transfer = value["coin"];
+    __amount_type      = value["amount-type"]; 
+    
+    wallet.get_coin_price(value["currency"], value["coin"], function(price) {
+        __current_coin_price = price;
+
+        __update_coin_amount();
+    });
 }
 
 function on_change_amount() {
@@ -146,5 +158,10 @@ function __update_to_userpic(user) {
 }
 
 function __update_coin_amount() {
+    if (__amount_type !== __coin_to_transfer) {
+        var currency_amount = parseFloat(view.object("amount").value() || "0");
+        var coin_amount = (currency_amount / __current_coin_price).toFixed(3);
 
+        view.object("label.amount.coin").property({ "text":coin_amount.toString() + " " +  __coin_to_transfer });
+    }
 }

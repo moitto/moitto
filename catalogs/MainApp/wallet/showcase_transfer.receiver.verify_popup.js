@@ -5,7 +5,6 @@ function on_loaded() {
 
     global.get_user(value["to"]).then(function(user) {
         var data = {
-            "username":user.name,
             "userpic-url":user.get_userpic_url(),
             "reputation":user.get_reputation().toFixed(1).toString(),
             "post-count":user.get_post_count().toString(),

@@ -2,7 +2,7 @@
 
 =begin to: alt="받을 계정"
 =begin notice
-송금 받을 계정
+송금받을 계정
 =end notice
 =(object image: id=img.to.userpic, style=img_to.userpic)= =(object label: text="${subview.to}", style=label_to.username)=
 =end to

@@ -27,7 +27,7 @@
 
 =object button: script=transfer, label="@${to}님에게 송금하기", style=btn_transfer
 
-=object button: script=cancel, label="다른 계정 다시 선택하기", style=btn_other
+=object button: script=cancel, label="다른 계정 선택하기", style=btn_other
 
 =end content
 

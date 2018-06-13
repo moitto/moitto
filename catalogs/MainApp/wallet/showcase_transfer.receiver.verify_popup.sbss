@@ -49,11 +49,12 @@ end
 
 -- 송금 버튼 --
 
-#btn_transfer: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp+50dp+10dp), \
+#btn_transfer: width=0.8pw, height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_03
-#btn_other: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9
+            content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"
+#btn_other: width=0.8pw, height=50dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9, \
+            margin="20dp 0 0 0"
 
 
 -- loading 분기 --

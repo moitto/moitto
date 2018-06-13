@@ -1,0 +1,41 @@
+import ~/themes.sbss
+
+#btn_close: image="~/subview_btn_close.white.png", width=44dp, height=44dp, \
+            position=absolute, gravity=top-right, y=1sbh
+
+#blank_userpic.mask: width=82dp, height=82dp, \
+            position=absolute, gravity=top, y="1sbh+44dp+24dp", \
+            content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
+#img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
+            content-border-radius=40dp, margin="0 0 5dp 0"
+#label_user: height=30dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=right, font-size=1.6, \
+            line-break-mode=tail-truncation, content-padding="0 10dp"
+#label_rep: height=20dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=center, font-size=0.9, \
+            margin="0 0 10dp 0"
+
+#label_steem.info: height=40dp, align=right, margin="-40dp 40dp 0 0", \
+                font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
+                text-align=right, font-size=1.4
+#label_steem.info.title: height=40dp, align=left, margin="0 0 0 40dp", \
+                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, \
+                text-align=left, font-size=1.4
+
+/popup/content: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
+            text-align=center, page-background-color=$BLACK_COLOR_DEEP_DIM, margin="(1sbh+44dp+25dp) 0 0 0"
+/popup/content/follow: margin="20dp 0 0 0"
+/popup/content/unfollow: margin="-36dp 0 30dp 0"
+/popup/content/info: text-align=left
+
+-- loading 분기 --
+
+/popup/loading: display=block, position=absolute, gravity=center, y=-100dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=#fff, text-align=center
+
+if "${fetched}" != "yes"
+    /popup: script-when-loaded=on_loaded 
+    /popup/content: display=none
+else
+    /popup/loading: display=none
+end

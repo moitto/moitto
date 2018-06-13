@@ -8,6 +8,6 @@ function transfer() {
 
     controller.action("popup", { 
         "display-unit":"S_TRANSFER", 
-        "alternate-name":"transfer.receivers" 
+        "alternate-name":"transfer.receiver.select" 
     });
 }

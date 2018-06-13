@@ -1,0 +1,10 @@
+import ~/themes.sbss
+
+#img_to.userpic: width=80dp, height=80dp, margin-bottom=5dp, \
+            content-border-radius=3dp
+
+#label_to.username: width=1pw-40dp, height=20dp, \
+            font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
+            text-color=$THEME_COLOR_100, text-align=center
+
+/popup: page-background-color=#fff, first-responder=username

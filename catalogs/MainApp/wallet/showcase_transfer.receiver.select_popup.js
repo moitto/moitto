@@ -7,10 +7,14 @@ function on_loaded() {
 function transfer(form) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", Object.assign(value, {
-        "to":form["username"]
+        "to":form["username"],
+        "fetched":"no"
     }));
 
-    controller.action("subview", { "subview":"V_TRANSFER", "target":"popup" });
+    controller.action("popup", { 
+        "display-unit":"S_TRANSFER", 
+        "alternate-name":"transfer.receiver.verify"
+    });
 }
 
 function __update_receivers() {

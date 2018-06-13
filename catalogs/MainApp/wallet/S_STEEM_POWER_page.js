@@ -5,6 +5,6 @@ function delegate() {
 
     controller.action("popup", { 
         "display-unit":"S_DELEGATE", 
-        "alternate-name":"delegate.receivers" 
+        "alternate-name":"delegate.receiver.select" 
     });
 }

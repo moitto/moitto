@@ -1,0 +1,35 @@
+=begin popup
+
+=begin content
+=object button: action=popup-close, style=btn_close
+
+=object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
+
+=(object label: text="${username}", style=label_user)=
+=object label: text="REP. ${reputation}", style=label_rep
+
+=begin info
+=object label: text="STEEM ", style=label_steem.info.title
+=object label: text="${steem-balance}", style=label_steem.info
+=object label: text="STEEM POWER ", style=label_steem.info.title
+=object label: text="${steem-power}", style=label_steem.info
+=object label: text="STEEM DOLLAR ", style=label_steem.info.title
+=object label: text="${sbd-balance}", style=label_steem.info
+=end info
+
+=object button: script=transfer, label="@${username}님께 송금하기", \
+        width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp+50dp+10dp), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+
+=object button: script=cancel, label="다른 계정 다시 선택하기", \
+        width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=#fff, label-font-size=0.9
+=end content
+
+=begin loading
+@${username}님의 정보를 확인하는 중입니다.
+=end loading
+
+=end popup

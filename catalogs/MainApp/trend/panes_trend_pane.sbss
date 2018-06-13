@@ -1,7 +1,8 @@
 import ~/themes.sbss
 
 #showcase_trend: width=1pw, height=1ph, position=absolute, gravity=top, \
-                content-margin="0 0 1eb 0"
+                content-margin="0 0 1eb 0", \
+                sound-when-reloading="~/reloading.mp3", sound-when-reloaded="~/reloaded.mp3"
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "landscape"

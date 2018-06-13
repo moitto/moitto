@@ -1,0 +1,9 @@
+=begin navibar
+
+=object label: type=title, style=label_title
+
+=object blank: style=blank_line
+
+=object button: action=popup, display-unit=S_STEEM_DOLLAR.MENU, style=btn_menu
+
+=end navibar

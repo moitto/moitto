@@ -1,11 +1,11 @@
 =begin page
 
-=object label: text="STEEM POWER", style=label_amount
+=object label: text="${amount} SP", style=label_amount
 
 =begin notice
 STEEM POWER는 스팀잇에서의 영향력을 나타냅니다. 스팀 파워가 높을수록 보팅 금액이 더 높아지고, 큐레이션 보상도 더 많이 받을 수 있습니다.
 =end notice
 
-=object button: script=delegate, label="임대하기", style=btn_delegate
+=object button: script=delegate, label="임대하기", style=btn_action
 
 =end page

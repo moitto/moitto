@@ -1,5 +1,1 @@
-import S_STEEM_DOLLAR_page.sbss
-
-#btn_transfer: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
+import showcase_assets_page.sbss

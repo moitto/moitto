@@ -1,14 +1,1 @@
-import ~/themes.sbss
-
-#label_amount: height=50dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
-            text-align=center, font-size=1.6, \
-            line-break-mode=tail-truncation, margin="0 0 30dp 0"
-
-#btn_transfer: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
-
-/page: text-align=center, page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
-/page/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, \
-            line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap, font-size=0.8
+import showcase_assets_page.sbss

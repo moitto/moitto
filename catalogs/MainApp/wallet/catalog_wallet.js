@@ -49,21 +49,24 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
             "title":"STEEM",
             "amount":__safe_value(values, "steem-balance"),
             "has-own-title":"yes",
-            "has-own-sbml":"yes"      
+            "has-own-sbml":"yes",
+            "has-own-navibar":"yes"
         },
         {
             "id":"S_STEEM_POWER",
             "title":"STEEM POWER",
             "amount":__safe_value(values, "steem-power"),
             "has-own-title":"yes",
-            "has-own-sbml":"yes" 
+            "has-own-sbml":"yes",
+            "has-own-navibar":"yes"
         },
         {
             "id":"S_STEEM_DOLLAR",
             "title":"STEEM DOLLAR",
             "amount":__safe_value(values, "sbd-balance"),
             "has-own-title":"yes",
-            "has-own-sbml":"yes" 
+            "has-own-sbml":"yes",
+            "has-own-navibar":"yes"
         }
     ];
 

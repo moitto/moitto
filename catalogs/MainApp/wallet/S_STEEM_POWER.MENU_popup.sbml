@@ -1,0 +1,12 @@
+=begin popup
+
+=begin actions
+=object button: label="임대하기", style=btn_menu
+=object blank: style=blank_line
+=object button: label="파워다운", style=btn_menu
+=object blank: style=blank_line
+
+=object button: action=popup-close, label="취소", style=btn_close
+=end actions
+
+=end popup

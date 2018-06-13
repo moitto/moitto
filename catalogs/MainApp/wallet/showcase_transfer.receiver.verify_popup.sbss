@@ -60,7 +60,7 @@ end
 -- loading 분기 --
 
 /popup/loading: display=block, position=absolute, gravity=center, y=-100dp, \
-            font-family=$SANSSERIF_MEDIUM, text-color=#fff, text-align=center
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
 
 if "${fetched}" != "yes"
     /popup: script-when-loaded=on_loaded 

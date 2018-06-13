@@ -1,33 +1,39 @@
-=begin catalog
+=begin catalog: script-when-loaded=on_loaded
 
-=begin users
-=end users
+=begin to: alt="받을 계정"
+=begin notice
+송금 받을 계정
+=end notice
+=(object image: id=img.to.userpic, style=img_to.userpic)= =(object label: text="${subview.to}", style=label_to.username)=
+=end to
+
 
 =begin transfer
 
-=begin to
-=(object image: id=img.to.userpic, style=img_to.userpic)=
-=(object label: text="${subview.to}", style=label_to.username)=
-=end to
-
-=object section: section=amount, style=section_amount
-
+=object section: script-when-resume=on_choose_currency, section=amount, style=section_amount
 =begin amount: id=amount
 =begin heading
-송금할 금액 =(object button: id=amount.type, label="${subview.amount-type}", script=choose_currency)==(object button: label=" ▷", script=choose_currency)=
+=object label: text="송금할 금액", style=label_amount.title
+=object button: id=amount.type, label="단위 ${subview.amount-type} ▶︎", script=choose_currency, style=btn_amount.currency
 =end heading
 
 =object section: section=amount.box, style=section_amount.box
-
 =begin box: id=amount.box, form=amount.box
 =begin content
-=object textfield: id=amount, text="${subview.amount}", style=textfield_amount
+=object textfield: id=amount, text="${subview.amount}", \
+                script-when-editing@change=on_change_amount, \
+                valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
+                keyboard-type=decimal, \
+                invalid-when-empty=yes, message-when-empty="금액을 입력하세요.", \
+                style=textfield_amount
 =end content
 =end box
+
 
 =object label: id=label.amount.coin, style=label_amount.coin
 
 =end amount
+
 
 =object button: script=confirm_transfer, form=amount.box, label="송금하기", style=btn_send
 

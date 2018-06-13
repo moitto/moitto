@@ -17,4 +17,3 @@ import ~/themes.sbss
         content-background-color=$THEME_COLOR_03
 
 /catalog: page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
-/catalog/form:

@@ -28,4 +28,5 @@ import ~/themes.sbss
 
 #section_loading: width=1pw, height=1ph, position=abs, gravity=center
 
-/catalog/loading: display=none
+/catalog/loading: display=none, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100

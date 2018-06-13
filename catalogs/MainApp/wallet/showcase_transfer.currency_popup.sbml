@@ -1,10 +1,13 @@
 =begin popup
 
+=object button: action=popup-close, style=btn_close
+
 =begin menu
-
-=(object button: width=100dp, height=44dp, label="${coin}", script=choose_coin)=
-=(object button: width=100dp, height=44dp, label="${currency}", script=choose_currency)=
-
+=begin title
+송금할 단위 선택하기
+=end title
+=object button: label="${coin}", script=choose_coin, style=btn_menu
+=object button: label="${currency}", script=choose_currency, style=btn_menu
 =end menu
 
 =end popup

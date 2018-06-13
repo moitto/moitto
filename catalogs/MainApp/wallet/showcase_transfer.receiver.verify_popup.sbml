@@ -1,7 +1,14 @@
 =begin popup
 
-=begin content
+=object section: section=transfer.receiver.verify, style=section_navibar
+=begin navibar: id=transfer.receiver.verify
+=object label: text="송금받을 계정 확인하기", style=label_title
 =object button: action=popup-close, style=btn_close
+=object blank: style=blank_line
+=end navibar
+
+
+=begin content
 
 =object blank: style=blank_userpic.mask
 =object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
@@ -9,7 +16,7 @@
 =(object label: text="${to}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 
-=begin info
+=begin info: display=none
 =object label: text="STEEM ", style=label_steem.info.title
 =object label: text="${steem-balance}", style=label_steem.info
 =object label: text="STEEM POWER ", style=label_steem.info.title
@@ -18,15 +25,13 @@
 =object label: text="${sbd-balance}", style=label_steem.info
 =end info
 
-=object button: script=transfer, label="@${to}님께 송금하기", \
-        width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp+50dp+10dp), \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
+=object button: script=transfer, label="@${to}님에게 송금하기", style=btn_transfer
 
-=object button: script=cancel, label="다른 계정 다시 선택하기", \
-        width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=#fff, label-font-size=0.9
+=object button: script=cancel, label="다른 계정 다시 선택하기", style=btn_other
+
 =end content
+
+
 
 =begin loading
 @${to}님의 정보를 확인하는 중입니다.

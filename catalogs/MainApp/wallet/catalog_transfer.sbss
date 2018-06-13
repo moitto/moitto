@@ -1,43 +1,52 @@
 import ~/themes.sbss
 
-#showcase_users: width=1pw, height=1ph, position=abs, gravity=center, \
-            cell-count=1, cell-size="1pw, 60dp"
+/catalog: page-background-color=$THEME_COLOR_02
 
-#img_to.userpic: width=80dp, height=80dp, margin-bottom=5dp, \
-            content-border-radius=3dp
 
-#label_to.username: width=1pw-40dp, height=20dp, \
-            font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
-            text-color=$THEME_COLOR_100, text-align=center
+-- 송금 받을 계정 --
 
-#section_amount: width=1pw-60dp, height=140dp, position=abs, gravity=top, y=140dp, \
-            content-border-width=1px, content-border-color=$THEME_COLOR_100, \
-            script-when-resume=on_choose_currency
-#section_amount.box: width=1pw-30dp, height=60dp, content-background-color=#ff0
-#textfield_amount: width=1pw-44dp, height=60dp, keyboard-type=decimal, \
-            valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
-            invalid-when-empty=yes, message-when-empty="금액을 입력하세요.", \
-            script-when-editing@change=on_change_amount, \
-            font-family=$SANSSERIF_BOLD, font-size=3.5, \
-            text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left
+#img_to.userpic: width=30dp, height=30dp, content-border-radius=30dp/2
+#label_to.username: height=30dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.2
+/catalog/to: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1, \
+            margin="25dp 0 0 0.1pw"
+/catalog/to/notice: margin="0 0 10dp 0"
 
-#label_amount.coin: width=1pw-44dp, height=20dp, \
-            font-family=$SANSSERIF_MEDIUM, font-size=0.8
 
-#btn_send: width=0.8pw, height=50dp, position=absolute, gravity=top, y=140dp+140dp+20dp, \
+-- 송금액 --
+
+#section_amount: width=0.8pw, height=130dp, margin="25dp 0 50dp 0"
+
+#section_amount.box: width=1pw, height=60dp, \
+            content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
+            content-background-color=$THEME_COLOR_00
+#label_amount.title: height=30dp, align=left, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1.2
+#btn_amount.currency: height=20dp, align=right, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
+            label-align=left, label-font-size=0.9, \
+            content-padding="2dp 4dp", content-background-color=$THEME_COLOR_03, margin="-(20dp+5dp) 0 10dp 0"
+
+#textfield_amount: width="1pw-20dp", height=40dp, \
+            font-family=$SANSSERIF_BOLD, font-size=2.5, \
+            text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left, margin="10dp 0 0 0"
+
+#label_amount.coin: width=1pw, height=30dp, \
+            font-family=$SANSSERIF_MEDIUM, font-size=0.9
+
+#btn_send: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
-/catalog/transfer/to: display=block, position=abs, gravity=top, y=20dp, text-align=center
 /catalog/transfer/amount: display=none
 /catalog/transfer/amount/box: display=none
-/catalog/transfer/amount/heading: padding="10dp 20dp", \
-            font-family=$SANSSERIF_MEDIUM, font-size=1.2, \
-            text-color=$THEME_COLOR_100
+/catalog/transfer/amount/heading
+
+
+-- 송금 금액 분기 --
 
 if "${to}" != ""
-else
+    else
 end
 
 if "${amount}" != ""

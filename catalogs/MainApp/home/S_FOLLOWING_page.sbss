@@ -1,5 +1,6 @@
 import ~/themes.sbss
 
-#showcase_blog: width=1pw, height=1ph, column-count=1, cell-size="1pw, 95dp"
+#showcase_blog: width=1pw, height=1ph, column-count=1, cell-size="1pw, 95dp", \
+            sound-when-reloading="~/reloading.mp3", sound-when-reloaded="~/reloaded.mp3"
 
 /page: page-background-color=$THEME_COLOR_02

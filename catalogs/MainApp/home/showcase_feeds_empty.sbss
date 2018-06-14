@@ -2,7 +2,7 @@ import ~/themes.sbss
 
 #aniamtion_loading: filename="~/subview_img_loading.png", width=80dp, height=80dp*0.634, \
                 frame-count=25, duration=1.2, \
-                position=absolute, gravity=bottom, y=-0.7pw
+                position=absolute, gravity=bottom, y=-0.6pw
 
 if $LOADING == "yes"
     #aniamtion_loading: display=object

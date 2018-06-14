@@ -1,14 +1,9 @@
 import ~/themes.sbss
 
-#label_loading: position=abs, gravity=center, display=none, \
-        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
-
-if $SCREEN_WIDTH > "5"
-    #label_loading: font-size=1.2
-else
-    #label_loading: font-size=1.1
-end
+#aniamtion_loading: filename="~/subview_img_loading.png", width=80dp, height=80dp*0.634, \
+                frame-count=25, duration=1.2, \
+                position=absolute, gravity=bottom, y=-0.6pw
 
 if $LOADING == "yes"
-    #label_loading: display=object
+    #aniamtion_loading: display=object
 end

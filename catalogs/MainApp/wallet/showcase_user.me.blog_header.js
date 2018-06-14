@@ -1,12 +1,3 @@
-function show_me() {
-    controller.catalog().submit("showcase", "auxiliary", "S_USER.ME", {
-        "username":$data["username"],
-        "fetched":"no"
-    });
-
-    controller.action("page", { "display-unit":"S_USER.ME" });
-}
-
 function show_blog() {
     controller.catalog().submit("showcase", "auxiliary", "S_BLOG", {
         "username":$data["username"],
@@ -32,8 +23,4 @@ function show_followers() {
     });
 
     controller.action("page", { "display-unit":"S_FOLLOWERS" });
-}
-
-function redeem_rewards() {
-    controller.action("alert", { message:"REDEEEM!!" });
 }

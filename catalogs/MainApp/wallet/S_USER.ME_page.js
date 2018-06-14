@@ -3,11 +3,11 @@ var global = require("global");
 var __last_discussion = null;
 
 function on_loaded() {
-    var value = controller.catalog().value("showcase", "auxiliary", "S_USER");
+    var value = controller.catalog().value("showcase", "auxiliary", "S_USER.ME");
 
     global.get_user(value["username"]).then(function(user) {
         var data = {
-        	"userpic-url":user.get_userpic_url(),
+            "userpic-url":user.get_userpic_url(),
             "reputation":user.get_reputation().toFixed(1).toString(),
             "post-count":user.get_post_count().toString(),
             "following-count":user.get_following_count().toString(),
@@ -87,4 +87,3 @@ function __template_data_for_content(content) {
 
     return {};
 }
-

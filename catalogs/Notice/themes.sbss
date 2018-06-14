@@ -1,10 +1,9 @@
 -- font --
-$SANSSERIF_LIGHT = "KoPubDotumLight, AppleSDGothicNeo-Light, Roboto-Light, sans-serif"
-$SANSSERIF_MEDIUM = "KoPubDotumMedium, AppleSDGothicNeo-Medium, Roboto-Medium, sans-serif"
-$SANSSERIF_BOLD = "KoPubDotumBold, AppleSDGothicNeo-Bold, Roboto-Bold, sans-serif"
-$SERIF_MEDIUM = "KoPubBatangMedium"
-$SANSSERIF_ALTERNATE = "Roboto-Medium, sans-serif"
-$SANSSERIF_NUMBER = "HelveNueThin, Roboto-Light"
+$SANSSERIF_LIGHT = "KoPubDotum Light, sans-serif"
+$SANSSERIF_MEDIUM = "KoPubDotum Medium, sans-serif"
+$SANSSERIF_BOLD = "KoPubDotum Bold, sans-serif"
+$SERIF_MEDIUM = "KoPubBatang Medium, serif"
+$SERIF_BOLD = "KoPubBatang Bold, serif"
 
 -- global color --
 $DEFAULT_COLOR = #383838
@@ -22,17 +21,6 @@ $LIGHT_COLOR = #CCCCCC
 $LIGHT_COLOR_DIM = #CCCCCC55
 $POPUP_COLOR = #8E8E8E
 $TRANSPARENT_COLOR = #FFFFFF00
-
--- bookjam color --
-$BOOKJAM_COLOR_1 = #2ABCD9
-$BOOKJAM_COLOR_2 = #22A5BF
-$BOOKJAM_COLOR_3 = #1D8CA2
-$BOOKJAM_COLOR_4 = #353F55
-$BOOKJAM_COLOR_5 = #C1C1C1
-$BOOKJAM_COLOR_1_DIM = #E5F7FA
-$BOOKJAM_COLOR_2_DIM = #D7F2F8
-$BOOKJAM_HIGHLIGHT_COLOR = #283553
-$BOOKJAM_BACKGROUND_COLOR = #262E42
 
 -- theme color --
 $MAIN_COLOR = #22A5BF

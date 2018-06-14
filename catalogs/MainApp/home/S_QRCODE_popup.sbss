@@ -8,4 +8,4 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_05
 
-/popup: page-background-color=$THEME_COLOR_02
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM

@@ -12,8 +12,8 @@
 =end notice
 =begin value
 • =[goM|STEEM]= ${reward-steem-balance}
-• =[goM|SBD]= ${reward-sbd-balance}
 • =[goM|SP]= ${reward-steem-power}
+• =[goM|SBD]= ${reward-sbd-balance}
 =end value
 =object button: script=redeem_rewards, label="내 지갑으로 입금하기", style=btn_rewards
 =end rewards

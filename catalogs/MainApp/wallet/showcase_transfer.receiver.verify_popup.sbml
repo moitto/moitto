@@ -2,7 +2,7 @@
 
 =object section: section=transfer.receiver.verify, style=section_navibar
 =begin navibar: id=transfer.receiver.verify
-=object label: text="송금받을 계정 확인하기", style=label_title
+=object label: text="송금받을 계정 확인", style=label_title
 =object button: action=popup-close, style=btn_close
 =object blank: style=blank_line
 =end navibar

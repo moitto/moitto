@@ -28,7 +28,7 @@ import ~/themes.sbss
             content-padding="2dp 4dp", content-background-color=$THEME_COLOR_03, margin="-(20dp+5dp) 0 10dp 0"
 
 #textfield_amount: width="1pw-20dp", height=40dp, \
-            font-family=$SANSSERIF_BOLD, font-size=2.5, \
+            font-family=$SANSSERIF_BOLD, font-size=2.2, \
             text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left, margin="10dp 0 0 0"
 
 #label_amount.coin: width=1pw, height=30dp, \

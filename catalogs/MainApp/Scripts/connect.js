@@ -67,6 +67,9 @@ Connect.__invoke_transfer = function(params) {
     controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
         "to":params["to"],
         "amount":params["amount"],
+        "amount-type":params["amount-type"] || "SBD",
+        "coin":params["coin"] || "SBD",
+        "currency":params["currency"] || "KRW",
         "hidden":params["hidden"] || "no"
     });
 

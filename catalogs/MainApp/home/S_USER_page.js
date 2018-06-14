@@ -39,7 +39,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
             var reblogged = (content.data["author"] !== $data["username"]) ? true : false;
  
             if (!reblogged) {
-                data.push({
+                var datum = {
                     "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
                     "author":content.data["author"],
                     "permlink":content.data["permlink"],
@@ -52,7 +52,11 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                     "votes-count":content.data["net_votes"].toString(),
                     "main-tag":content.data["category"],
                     "created-at":content.data["created"]
-                });
+                };
+
+                datum = Object.assign(datum, __template_data_for_content(content));
+
+                data.push(datum);
             }
         });
 
@@ -73,3 +77,14 @@ function open_discussion(data) {
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });
 }
+
+function __template_data_for_content(content) {
+    if (!content.meta["image"]) {
+        return {
+            "template":"text"
+        }
+    }
+
+    return {};
+}
+

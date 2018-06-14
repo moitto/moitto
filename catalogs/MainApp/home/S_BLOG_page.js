@@ -15,9 +15,9 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
 
         discussions.forEach(function(discussion) {
             var content   = global.contents.create(discussion);
+            console.log(JSON.stringify(discussion));
             var reblogged = (content.data["author"] !== $data["username"]) ? true : false;
- 
-            data.push({
+            var datum = {
                 "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
@@ -30,11 +30,12 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                 "votes-count":content.data["net_votes"].toString(),
                 "main-tag":content.data["category"],
                 "reblogged":reblogged ? "yes" : "no",
-                "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-                "reblogged-count":content.data["reblogged_by"].length.toString(),
-                "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
                 "created-at":content.data["created"]
-            });
+            };
+ 
+            datum = Object.assign(datum, __template_data_for_content(content));
+
+            data.push(datum);
         });
 
         if (discussions.length > 0) {
@@ -53,4 +54,14 @@ function open_discussion(data) {
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });
+}
+
+function __template_data_for_content(content) {
+    if (!content.meta["image"]) {
+        return {
+            "template":"text"
+        }
+    }
+
+    return {};
 }

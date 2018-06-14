@@ -1,10 +1,8 @@
 =begin popup
 
-=object blank: width=1pw, height="1pw+1sbh", color=$THEME_COLOR_03, position=aboslute, gravity=top
-
 =object camera: metadata-enabled=yes, qrcode-enabled=yes, \
             focus-closely=yes, continuous-autofocus=yes, \
-            script-when-output@metadata=on_qrcode, display=none
+            script-when-output@metadata=on_qrcode, style=camera_qr
 =object image: style=img_qr
 
 =object button: action=popup-close, label="닫기", style=btn_close

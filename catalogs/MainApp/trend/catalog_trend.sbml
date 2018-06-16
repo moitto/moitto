@@ -1,7 +1,7 @@
 =begin catalog
 
 =object panes: id=panes.trend, name=trend, \
-            has-navibar=yes, \
+            has-navibar=yes, preloads-panes=no, \
             style=panes_trend
 
 =object button: id=btn.tag, script=show_tags, style=btn_tag

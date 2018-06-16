@@ -48,7 +48,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
     if (account.is_logged_in()) {
-        steemjs.get_discussions_by_feed(account.username, start_author, start_permlink, length).then(function(discussions) {
+        steemjs.get_discussions_by_feed(account.username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
             var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_HOME", null, [ 0, 100 ]);
             var data = [];
 

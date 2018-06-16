@@ -29,7 +29,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __impl[$data["id"]]["last_discussion"]["author"]   : null;
     var start_permlink = (location > 0) ? __impl[$data["id"]]["last_discussion"]["permlink"] : null;
 
-    __impl[$data["id"]].method(tag, start_author, start_permlink, length).then(function(discussions) {
+    __impl[$data["id"]].method(tag, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
         var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_TREND", null, [ 0, 100 ]);
         var data = [];
 

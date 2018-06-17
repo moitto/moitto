@@ -4,6 +4,9 @@
             focus-closely=yes, continuous-autofocus=yes, \
             script-when-output@metadata=on_qrcode, style=camera_qr
 =object image: style=img_qr
+=begin notice
+QR코드를 자동으로 인식합니다.
+=end notice
 
 =object button: action=popup-close, label="닫기", style=btn_close
 

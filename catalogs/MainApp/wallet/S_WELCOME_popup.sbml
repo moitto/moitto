@@ -8,7 +8,7 @@
 =end user
 
 =begin moitto
-by moitto
+moitto
 =end moitto
 
 =object button: script=on_login, label="시작하기", style=btn_start

@@ -4,8 +4,11 @@ import ~/themes.sbss
 #img_qr: width=0.6pw, height=0.6pw, filename="~/subview_img_qr.focus.png", \
         position=absolute, gravity=top, y="0.4pw/2+1sbh"
 
-#btn_close: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(0.1pw+1eb), \
+#btn_close: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(20dp+1eb), \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_05
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+/popup/notice: display=block, position=absolute, gravity=top, y="1pw+1sbh", \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=center, font-size=1.1, \
+            line-spacing=0.3em, paragraph-spacing=0.3em, padding="20dp 0.1pw"

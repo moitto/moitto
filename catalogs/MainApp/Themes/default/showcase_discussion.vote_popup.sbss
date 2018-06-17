@@ -27,7 +27,7 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00, content-border-radius=25dp
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
-/popup/actions: display=block, position=absolute, gravity=bottom, y=-(110dp+1eb), text-align=center
+/popup/actions: display=block, position=absolute, gravity=bottom, y=-(90dp+1eb), text-align=center
 
 
 -- question --

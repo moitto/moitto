@@ -1,27 +1,25 @@
-=begin catalog: script-when-loaded=on_loaded
+=begin catalog
 
 =begin to: alt="받을 계정"
 =begin notice
-송금받을 계정
+임대받을 계정
 =end notice
 =(object image: id=img.to.userpic, style=img_to.userpic)= =(object label: text="${subview.to}", style=label_to.username)=
 =end to
 
 
-=begin transfer
+=begin transaction
 
-=object section: script-when-resume=on_choose_currency, section=amount, style=section_amount
+=object section: section=amount, style=section_amount
 =begin amount: id=amount
 =begin heading
-=object label: text="송금할 금액", style=label_amount.title
-=object button: id=amount.type, label="단위 ${subview.amount-type} ▶︎", script=choose_currency, style=btn_amount.currency
+=object label: text="임대할 금액", style=label_amount.title
 =end heading
 
 =object section: section=amount.box, style=section_amount.box
 =begin box: id=amount.box, form=amount.box
 =begin content
 =object textfield: id=amount, text="${subview.amount}", \
-                script-when-editing@change=on_change_amount, \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
                 keyboard-type=decimal, \
                 invalid-when-empty=yes, message-when-empty="금액을 입력하세요.", \
@@ -29,14 +27,11 @@
 =end content
 =end box
 
-
-=object label: id=label.amount.coin, style=label_amount.coin
-
 =end amount
 
 
-=object button: script=confirm_transfer, form=amount.box, label="송금하기", style=btn_send
+=object button: script=confirm_delegate, form=amount.box, label="임대하기", style=btn_submit
 
-=end transfer
+=end transaction
 
 =end catalog

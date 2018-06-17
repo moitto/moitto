@@ -58,7 +58,7 @@ function open_notif(data) {
 
     if (value["op"] === "comment") {
         if (data["source"] === "discussion") {
-            __open_discussion(value["author"], value["permlink"]);
+            __show_replies(value["author"], value["permlink"]);
 
             return;
         }

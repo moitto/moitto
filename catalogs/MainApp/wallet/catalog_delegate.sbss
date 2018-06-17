@@ -3,7 +3,7 @@ import ~/themes.sbss
 /catalog: page-background-color=$THEME_COLOR_02
 
 
--- 송금 받을 계정 --
+-- 임대 받을 계정 --
 
 #img_to.userpic: width=30dp, height=30dp, content-border-radius=30dp/2
 #label_to.username: height=30dp, \
@@ -22,35 +22,23 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00
 #label_amount.title: height=30dp, align=left, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1.2
-#btn_amount.currency: height=20dp, align=right, \
-            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
-            label-align=left, label-font-size=0.9, \
-            content-padding="2dp 4dp", content-background-color=$THEME_COLOR_03, margin="-(20dp+5dp) 0 10dp 0"
 
 #textfield_amount: width="1pw-20dp", height=40dp, \
-            font-family=$SANSSERIF_BOLD, font-size=2.5, \
+            font-family=$SANSSERIF_BOLD, font-size=2.2, \
             text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left, margin="10dp 0 0 0"
 
-#label_amount.coin: width=1pw, height=30dp, \
-            font-family=$SANSSERIF_MEDIUM, font-size=0.9
-
-#btn_send: width=0.8pw, height=50dp, \
+#btn_submit: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/catalog/transfer/amount: display=none
-/catalog/transfer/amount/box: display=none
-/catalog/transfer/amount/heading
+/catalog/transaction/amount: display=none
+/catalog/transaction/amount/box: display=none
 
 
 -- 송금 금액 분기 --
 
-if "${to}" != ""
-    else
-end
-
 if "${amount}" != ""
     #textfield_amount: editable=no
 else
-    /catalog/transfer/amount/box: first-responder=amount
+    /catalog/transaction/amount/box: first-responder=amount
 end

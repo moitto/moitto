@@ -1,15 +1,15 @@
 =begin popup: first-responder=username
 
-=object section: section=transfer.receiver.select, style=section_navibar
-=begin navibar: id=transfer.receiver.select
-=object label: text="송금받을 계정 입력하기", style=label_title
+=object section: section=delegate.receiver.select, style=section_navibar
+=begin navibar: id=delegate.receiver.select
+=object label: text="임대받을 계정 입력하기", style=label_title
 =object button: action=popup-close, style=btn_close
 =object blank: style=blank_line
 =end navibar
 
 
 =begin notice
-송금받을 계정을 입력하세요.
+임대받을 계정을 입력하세요.
 =end notice
 
 =begin receiver: form=receiver
@@ -18,9 +18,9 @@
             return-key-type=next, auto-capitalization-type=none, \
             keyboard-type=alphabet, next-control=next, \
             valid-format="[a-z0-9\\-]*", prevents-invalid-text=yes, \
-            invalid-when-empty=yes, message-when-empty="송금받을 계정을 입력하세요.", \
+            invalid-when-empty=yes, message-when-empty="임대받을 계정을 입력하세요.", \
             style=textfield_username
-=object button: id=next, label="다음", script=transfer, form=receiver, style=btn_next
+=object button: id=next, label="다음", script=delegate, form=receiver, style=btn_next
 
 =end receiver
 

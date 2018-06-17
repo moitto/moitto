@@ -8,7 +8,7 @@
 =end to
 
 
-=begin transfer
+=begin transaction
 
 =object section: script-when-resume=on_choose_currency, section=amount, style=section_amount
 =begin amount: id=amount
@@ -35,8 +35,8 @@
 =end amount
 
 
-=object button: script=confirm_transfer, form=amount.box, label="송금하기", style=btn_send
+=object button: script=transfer, form=amount.box, label="송금하기", style=btn_submit
 
-=end transfer
+=end transaction
 
 =end catalog

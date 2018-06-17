@@ -1,0 +1,40 @@
+=begin popup
+
+=object section: section=delegate.receiver.verify, style=section_navibar
+=begin navibar: id=delegate.receiver.verify
+=object label: text="임대받을 계정 확인", style=label_title
+=object button: action=popup-close, style=btn_close
+=object blank: style=blank_line
+=end navibar
+
+
+=begin content
+
+=object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
+
+=(object label: text="${to}", style=label_user)=
+=object label: text="REP. ${reputation}", style=label_rep
+
+=begin info: display=none
+=object label: text="STEEM ", style=label_steem.info.title
+=object label: text="${steem-balance}", style=label_steem.info
+=object label: text="STEEM POWER ", style=label_steem.info.title
+=object label: text="${steem-power}", style=label_steem.info
+=object label: text="STEEM DOLLAR ", style=label_steem.info.title
+=object label: text="${sbd-balance}", style=label_steem.info
+=end info
+
+=object button: script=delegate, label="@${to}님에게 임대하기", style=btn_delegate
+
+=object button: script=cancel, label="다른 계정 선택하기", style=btn_other
+
+=end content
+
+
+
+=begin loading
+@${to}님의 정보를 확인하는 중입니다.
+=end loading
+
+=end popup

@@ -17,6 +17,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
     var sbml = "";
     var center_begin_pos = 0;
     var center_ended = false;
+    var inline_depth = 0;
 
     elements.forEach(function(element) {
         if (element.type === "text") {
@@ -26,119 +27,159 @@ Sbml.__elements_to_sbml = function(elements, inline) {
         }
 
         if (element.type === "break") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n\n";
+            if (!element.data["inline"]) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
 
             return;
         }
 
         if (element.type === "div-tag-begin") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n";
-            sbml += "=begin div: style=\"" + (element.data["class"] || "") + "\"\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin div: style=\"" + (element.data["class"] || "") + "\"\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
 
             return;
         }
 
         if (element.type === "div-tag-end") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n";
-            sbml += "=end div\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=end div\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
  
             return;
         }
 
         if (element.type === "blockquote-tag-begin") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n";
-            sbml += "=begin quote: style=\"" + (element.data["class"] || "") + "\"\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin quote: style=\"" + (element.data["class"] || "") + "\"\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
 
             return;
         }
 
         if (element.type === "blockquote-tag-end") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n";
-            sbml += "=end quote\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=end quote\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
  
             return;
         }
 
         if (element.type === "br-tag") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n=[br| ]=\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n=[br| ]=\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
 
             return;
         }
 
-        if (element.type === "center-tag-begin" && !inline) {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml = sbml.substr(0, center_begin_pos) + "\n=begin center\n" + sbml.substr(center_begin_pos);
+        if (element.type === "center-tag-begin") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml = sbml.substr(0, center_begin_pos) + "\n=begin center\n" + sbml.substr(center_begin_pos);
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+                
+            }
 
             return;
         }
  
-        if (element.type === "center-tag-end" && !inline) {
-            sbml += center_ended ? "\n=end center\n" : "";
+        if (element.type === "center-tag-end") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
 
-            center_begin_pos = sbml.length;
-            center_ended = true;
+                center_begin_pos = sbml.length;
+                center_ended = true;
+            } else {
+
+            }
 
             return;
         }
 
         if (element.type === "line" || element.type === "hr-tag") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n";
-            sbml += "=(object blank: style=line)=";
-            sbml += "\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=(object blank: style=line)=";
+                sbml += "\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
 
             return;
         }
 
         if (element.type === "heading") {
-            var has_center_tag = Sbml.__has_center_tag(element.data["elements"]);
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += has_center_tag ? "\n=begin center\n" : "";
-            sbml += element.data["leadings"];
-            sbml += "\n";
-            sbml += "=begin heading-" + element.data["level"] + "\n";
-            sbml += Sbml.__elements_to_sbml(element.data["elements"], true) + "\n";
-            sbml += "=end heading-" + element.data["level"] + "\n";
-            sbml += has_center_tag ? "\n=end center\n" : "";
+            if (!element.data["inline"] && inline_depth == 0) {
+                var has_center_tag = Sbml.__has_center_tag(element.data["elements"]);
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += has_center_tag ? "\n=begin center\n" : "";
+                sbml += element.data["leadings"];
+                sbml += "\n";
+                sbml += "=begin heading-" + element.data["level"] + "\n";
+                sbml += Sbml.__elements_to_sbml(element.data["elements"], true) + "\n";
+                sbml += "=end heading-" + element.data["level"] + "\n";
+                sbml += has_center_tag ? "\n=end center\n" : "";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
 
             return;
         }
 
         if (element.type === "quote") {
-            if (!element.data["inline"]) {
+            if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += "\n";
                 sbml += "=begin quote\n";
@@ -162,26 +203,24 @@ Sbml.__elements_to_sbml = function(elements, inline) {
         }
 
         if (element.type === "code") {
-            sbml += center_ended ? "\n=end center\n" : "";
-            sbml += "\n";
-            sbml += "=begin code\n";
-            sbml += element.data["text"] + "\n";
-            sbml += "=end code\n";
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin code\n";
+                sbml += element.data["text"] + "\n";
+                sbml += "=end code\n";
 
-            center_begin_pos = sbml.length;
-            center_ended = false;
-
-            return;
-        }
-
-        if (element.type === "inline-code") {
-            sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], true) + "]=";
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+               sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], true) + "]=";
+            }
 
             return;
         }
 
         if (element.type === "list") {
-            if (!element.data["inline"]) {
+            if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += "\n";
                 sbml += "=begin list\n";
@@ -224,12 +263,14 @@ Sbml.__elements_to_sbml = function(elements, inline) {
 
         if (element.type === "link-begin") {
             sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|";
+            inline_depth = inline_depth + 1;
 
             return;
         }
 
         if (element.type === "link-end") {
             sbml += "]=";
+            inline_depth = inline_depth - 1;
 
             return;
         }
@@ -262,24 +303,28 @@ Sbml.__elements_to_sbml = function(elements, inline) {
 
         if (["italic", "em", "em-italic", "linethrough"].includes(element.type.replace("-begin", ""))) {
             sbml += "=[" + element.type.replace("-begin", "") + "|";
+            inline_depth = inline_depth + 1;
 
             return;
         }
 
         if (["italic", "em", "em-italic", "linethrough"].includes(element.type.replace("-end", ""))) {
             sbml += "]=";
+            inline_depth = inline_depth - 1;
 
             return;
         }
 
         if (["strong", "strike", "bold", "italic", "code", "sub", "sup"].includes(element.type.replace("-tag-begin", ""))) {
             sbml += "=[" + element.type.replace("-tag-begin", "") + "|";
+            inline_depth = inline_depth + 1;
 
             return;
         }
 
         if (["strong", "strike", "bold", "italic", "code", "sub", "sup"].includes(element.type.replace("-tag-end", ""))) {
             sbml += "]=";
+            inline_depth = inline_depth - 1;
 
             return;
         }

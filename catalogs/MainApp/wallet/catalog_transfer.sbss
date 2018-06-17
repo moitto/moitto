@@ -34,23 +34,18 @@ import ~/themes.sbss
 #label_amount.coin: width=1pw, height=30dp, \
             font-family=$SANSSERIF_MEDIUM, font-size=0.9
 
-#btn_send: width=0.8pw, height=50dp, \
+#btn_submit: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/catalog/transfer/amount: display=none
-/catalog/transfer/amount/box: display=none
-/catalog/transfer/amount/heading
+/catalog/transaction/amount: display=none
+/catalog/transaction/amount/box: display=none
 
 
 -- 송금 금액 분기 --
 
-if "${to}" != ""
-    else
-end
-
 if "${amount}" != ""
     #textfield_amount: editable=no
 else
-    /catalog/transfer/amount/box: first-responder=amount
+    /catalog/transaction/amount/box: first-responder=amount
 end

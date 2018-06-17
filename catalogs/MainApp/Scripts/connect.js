@@ -48,6 +48,12 @@ Connect.invoke = function(method, params) {
         return;
     }
 
+    if (method === "delegate") {
+        Connect.__invoke_delegate(params);
+        
+        return;
+    }
+
     if (method === "follow") {
         Connect.__invoke_follow(params);
         
@@ -83,6 +89,15 @@ Connect.__invoke_pay = function(params) {
      });
 
     controller.action("subview", { "subview":"V_PAY", "target":"popup" });
+}
+
+Connect.__invoke_delegate = function(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", {
+         "to":params["to"],
+         "amount":params["amount"]
+     });
+
+    controller.action("subview", { "subview":"V_DELEGATE", "target":"popup" });
 }
 
 Connect.__invoke_follow = function(params) {

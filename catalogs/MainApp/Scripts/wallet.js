@@ -19,4 +19,5 @@ Wallet.get_coin_price = function(currency, coin, handler) {
     });
 }
 
+
 __MODULE__ = Wallet;

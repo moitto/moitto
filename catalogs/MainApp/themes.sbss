@@ -42,6 +42,7 @@ $THEME_COLOR_05 = #959595
 $THEME_HIGHLIGHT_COLOR = #0000001A
 
 -- 글자색 --
+
 -- 짙은 색
 $THEME_COLOR_100 = #383838
 -- 옅은 색

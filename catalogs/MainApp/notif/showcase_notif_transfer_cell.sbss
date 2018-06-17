@@ -1,1 +1,3 @@
-import ~/themes.sbss
+import showcase_notif_comment_cell.sbss
+
+#img_userpic: filename="~/subview_img_transfer.png"

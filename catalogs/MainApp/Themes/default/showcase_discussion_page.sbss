@@ -56,12 +56,12 @@ import ~/themes.sbss
 #text-left: text-align=left
 #text-right: text-align=right
 
-%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1em 0 0 0"
-%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1em 0 0 0"
+%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1.5em 0 0 0"
+%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1.2em 0 0 0"
 %heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em, margin="1em 0 0 0"
-%heading-4: font-size=1.2em, margin="1em 0 0 0"
-%heading-5: font-size=1.1em, margin="1em 0 0 0"
-%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="1em 0 0 0"
+%heading-4: font-size=1.2em, margin="0.8em 0 0 0"
+%heading-5: font-size=1.1em, margin="0.8em 0 0 0"
+%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="0.8em 0 0 0"
 
 %list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
 %quote: border-color=$THEME_COLOR_04, border-width=1dp, border-style=dashed, padding=15dp
@@ -70,7 +70,7 @@ import ~/themes.sbss
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em
 
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
-            line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0, \
+            line-spacing=0.6em, paragraph-spacing=0.6em, empty-line-height=0, \
             margin="20dp 20dp (90dp+1eb) 20dp"
 
 if $SCREEN_WIDTH > "5"

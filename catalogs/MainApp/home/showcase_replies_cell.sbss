@@ -51,7 +51,7 @@ scales-in-background=yes, text-decoration="", script-when-download=on_image_down
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em, pack=yes
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em
 
-/cell/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=0.9, \
+/cell/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=0.95, \
             line-spacing=0.3em, paragraph-spacing=0.3em, margin="50dp 10dp 10dp 10dp"
 
 

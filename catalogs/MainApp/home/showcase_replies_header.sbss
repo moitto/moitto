@@ -12,9 +12,6 @@ import ~/themes.sbss
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left, font-size=0.7
 
 /header: page-background-color=$THEME_COLOR_00
-/header/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2, \
-            line-spacing=0.3em, paragraph-spacing=1em, empty-line-height=0, \
-            padding="50dp 10dp 30dp 10dp"
 
 
 -- voting --
@@ -27,36 +24,38 @@ import ~/themes.sbss
 
 -- body --
 
-#image: min-width=10dp, min-height=10dp, max-width=100%, default-color=#f00, \
-        scales-in-background=yes, text-decoration="", script-when-download=on_image_download
+#image: min-width=10dp, min-height=10dp, max-width=100%, default-color=$THEME_COLOR_01, \
+scales-in-background=yes, text-decoration="", script-when-download=on_image_download
 #image.full: max-width=1pw
-#youtube: width=1pw-40dp, height=(1pw-40dp)*9/16
+#youtube: width="1pw-40dp", height=(1pw-40dp)*9/16
 
 #link: text-decoration=underline-#6C6C6C-1
 #user: script=show_user, text-decoration=underline-#6C6C6C-1
-#code: highlight-color=$THEME_COLOR_01
+#italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
+#em: font-family=$SANSSERIF_BOLD
+#em-italic: font-style=italic, font-family="Times New Roman, KoPubBatang BOLD"
 #strong: font-family=$SANSSERIF_BOLD
 #bold: font-family=$SANSSERIF_BOLD
-#em: font-family=$SANSSERIF_BOLD
-#italic: font-style=italic
-#em-italic: font-family=$SANSSERIF_BOLD
+#sup: vertical-align=top, font-size=0.7
 #linethrough: text-decoration=line-through
 #sub: vertical-align=bottom, font-size=0.7
-#sup: vertical-align=top, font-size=0.7
-#line: color=$THEME_COLOR_01, width=1pw-40dp, height=1dp
-
+#line: color=$THEME_COLOR_01, width=100%, height=1dp
 #text-left: text-align=left
 #text-right: text-align=right
 
-%heading-1: font-size=1.8
-%heading-2: font-size=1.6
-%heading-3: font-size=1.4
-%heading-4: font-size=1.2
-%heading-5: font-size=1.1
-%heading-6: font-size=1.0
+%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1em 0 0 0"
+%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1em 0 0 0"
+%heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em, margin="1em 0 0 0"
+%heading-4: font-size=1.2em, margin="1em 0 0 0"
+%heading-5: font-size=1.1em, margin="1em 0 0 0"
+%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="1em 0 0 0"
 
-%quote: background-color=$THEME_COLOR_01
-%list: text-indent=1em
-%code: background-color=$THEME_COLOR_01
+%list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
+%quote: border-color=$THEME_COLOR_04, border-width=1dp, border-style=dashed, padding=15dp
 %center: text-align=center
+#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em, pack=yes
+%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em
 
+/header/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.15, \
+line-spacing=0.3em, paragraph-spacing=1em, empty-line-height=0, \
+padding="50dp 10dp 30dp 10dp"

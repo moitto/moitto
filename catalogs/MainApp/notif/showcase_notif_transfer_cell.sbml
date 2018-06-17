@@ -1,5 +1,5 @@
 =begin cell
 
-${id}
+${from} ${amount}
 
 =end cell

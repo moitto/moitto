@@ -205,6 +205,7 @@ SteemJS.get_following = function(follower, start_following, follow_type, limit) 
         var params = [ "follow_api", "get_following", [ follower, start_following, follow_type, limit ] ];
 
         SteemJS.__request_rpc(method, params).then(function(response) {
+            console.log(JSON.stringify(response));
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);

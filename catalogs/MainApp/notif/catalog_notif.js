@@ -14,7 +14,8 @@ function on_loaded() {
 }
 
 function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
-    var values = controller.catalog().values("showcase", "notif", null, null, [location, length], [sortkey, sortorder]);
+    var username = storage.value("ACTIVE_USER");
+    var values = controller.catalog().values("showcase", "notif@" + username, null, null, [location, length], [sortkey, sortorder]);
     var data = [];
 
     values.forEach(function(value) {
@@ -29,14 +30,14 @@ function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function open_notif(data) {
-    var me = storage.value("ACTIVE_USER");
+    var username = storage.value("ACTIVE_USER");
     var catalog = controller.catalog();
-    var value = catalog.value("showcase", "notif", data["id"]);
+    var value = catalog.value("showcase", "notif@" + username, data["id"]);
 
     value["checked"] = "yes";
     data["checked"] = "yes";
 
-    catalog.submit("showcase", "notif", data["id"], value);
+    catalog.submit("showcase", "notif@" + username, data["id"], value);
     ___reload_notif_cell(data);
 
     if (value["op"] === "upvote" || value["op"] === "downvote") {
@@ -56,6 +57,12 @@ function open_notif(data) {
     }
 
     if (value["op"] === "comment") {
+        if (data["source"] === "discussion") {
+            __open_discussion(value["author"], value["permlink"]);
+
+            return;
+        }
+
         if (data["source"] === "comment") {
             __show_replies(value["author"], value["permlink"]);
 

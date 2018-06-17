@@ -49,9 +49,9 @@ import ~/themes.sbss
 #em-italic: font-style=italic, font-family="Times New Roman, KoPubBatang BOLD"
 #strong: font-family=$SANSSERIF_BOLD
 #bold: font-family=$SANSSERIF_BOLD
-#sup: vertical-align=top, font-size=0.7
+#sup: vertical-align=top, font-size=0.7em
 #linethrough: text-decoration=line-through
-#sub: vertical-align=bottom, font-size=0.7
+#sub: vertical-align=bottom, font-size=0.7em
 #line: color=$THEME_COLOR_01, width=100%, height=1dp
 #text-left: text-align=left
 #text-right: text-align=right

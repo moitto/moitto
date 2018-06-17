@@ -2,9 +2,9 @@ import ~/themes.sbss
 
 #img_userpic: width=40dp, height=40dp, position=absolute, gravity=left, x=10dp, y=-(25dp/2), \
             scale-mode=fill, content-border-radius=20dp, default-color=$THEME_COLOR_01
-#label_notif: height=25dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.1
+#label_notif: height=22dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1
 #label_highlight: font-family=$SANSSERIF_BOLD
-#label_date: height=25dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.8
+#label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, font-size=0.8
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
 
 /cell: margin="10dp 10dp 10dp 60dp"

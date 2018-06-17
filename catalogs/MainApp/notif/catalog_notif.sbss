@@ -1,9 +1,9 @@
 import ~/themes.sbss
 
 #showcase_notif: width=1pw, height=1ph, hidden=yes, \
-		column-count=1, cell-size="1pw, 95dp"
-#goB: font-family=$SANSSERIF_BOLD
+		column-count=1, cell-size="1pw, 84dp"
 
+#goB: font-family=$SANSSERIF_BOLD
 %content: display=block, position=absolute, gravity=center, text-align=center
 
 /catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02

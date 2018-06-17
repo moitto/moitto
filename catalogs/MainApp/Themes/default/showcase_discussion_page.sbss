@@ -66,6 +66,8 @@ import ~/themes.sbss
 %list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
 %quote: border-color=$THEME_COLOR_04, border-width=1dp, border-style=dashed, padding=15dp
 %center: text-align=center
+#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em, pack=yes
+%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em
 
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0, \
@@ -76,10 +78,6 @@ if $SCREEN_WIDTH > "5"
 else
     /page: font-size=1.2
 end
-
-미완성
-#code: highlight-color=$THEME_COLOR_01, padding=0.4em, pack=yes
-%code: background-color=$THEME_COLOR_01, padding=0.4em
 
 
 -- 댓글 & 보팅 --

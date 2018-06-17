@@ -1,15 +1,21 @@
 =begin catalog
 
-핀번호 입력/재설정
+=object button: label="핀번호 설정", style=btn_settings
+=object blank: style=blank_line
 
-캐시 삭제
+=object button: label="캐시 삭제", style=btn_settings
+=object blank: style=blank_line
 
-이용약관
+=object button: label="이용약관", style=btn_settings
+=object blank: style=blank_line
 
-개인정보취급방침
+=object button: label="개인정보취급방침", style=btn_settings
+=object blank: style=blank_line
 
-앱 정보
+=object button: label="앱 정보", style=btn_settings
+=object blank: style=blank_line
 
-로그아웃
+=object button: label="로그아웃", style=btn_settings
+=object blank: style=blank_line
 
 =end catalog

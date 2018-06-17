@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#btn_reset: position=absolute, gravity=right, x=-20dp, \
+#btn_reset: position=absolute, gravity=right-bottom, x=-20dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-font-size=0.9, \
         label-color=$THEME_COLOR_102, label-align=right, \
         content-padding="5dp 10dp", content-background-color=$THEME_COLOR_05

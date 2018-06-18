@@ -1,0 +1,29 @@
+=begin catalog
+
+=begin transaction
+
+=object section: section=amount, style=section_amount
+=begin amount: id=amount
+=begin heading
+=object label: text="파워 다운할 스팀파워 금액", style=label_amount.title
+=end heading
+
+=object section: section=amount.box, style=section_amount.box
+=begin box: id=amount.box, form=amount.box
+=begin content
+=object textfield: id=amount, text="${subview.amount}", \
+                valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
+                keyboard-type=decimal, \
+                invalid-when-empty=yes, message-when-empty="스팀파워 금액을 입력하세요.", \
+                style=textfield_amount
+=end content
+=end box
+
+=end amount
+
+
+=object button: script=confirm_power_up, form=amount.box, label="파워 다운하기", style=btn_submit
+
+=end transaction
+
+=end catalog

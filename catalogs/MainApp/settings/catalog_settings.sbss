@@ -5,5 +5,6 @@ import ~/themes.sbss
             label-font-size=1, content-padding="0 0 0 20dp", content-background-color=$THEME_COLOR_00
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01
 #blank_margin: width=1pw, height=20dp
+#center: label-align=center, content-padding=0
 
 /catalog: page-background-color=$THEME_COLOR_02

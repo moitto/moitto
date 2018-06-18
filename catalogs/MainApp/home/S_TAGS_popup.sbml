@@ -1,4 +1,4 @@
-=begin popup: script-when-loaded=on_loaded, first-responder=textfield.tag, scrolls-on-keyboard=no
+=begin popup: script-when-loaded=on_loaded, scrolls-on-keyboard=no
 
 =object section: id=query.bar, section=query.bar, style=section_query.bar, alt="태그 입력창"
 =begin query.bar: id=query.bar, form=query

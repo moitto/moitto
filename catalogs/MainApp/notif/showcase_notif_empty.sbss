@@ -1,0 +1,4 @@
+import ~/themes.sbss
+
+/empty/notice: display=block, position=absolute, gravity=center, y=-50dp, \
+            font-family=$SANSSERIF_MEIDUM, text-color=$THEME_COLOR_100, font-size=1.2

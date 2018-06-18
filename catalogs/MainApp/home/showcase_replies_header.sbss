@@ -53,8 +53,8 @@ scales-in-background=yes, text-decoration="", script-when-download=on_image_down
 %list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
 %quote: border-color=$THEME_COLOR_04, border-width=1dp, border-style=dashed, padding=15dp
 %center: text-align=center
-#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em, pack=yes
-%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.4em
+#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em, pack=yes
+%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em
 
 /header/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.15, \
 line-spacing=0.3em, paragraph-spacing=1em, empty-line-height=0, \

@@ -71,6 +71,12 @@ function open_notif(data) {
 
         return;
     }
+
+    if (value["op"] === "transfer") {
+        __show_user(value["from"]);
+
+        return;
+    }
 }
 
 function __extend_value_for_op(op, value) {
@@ -127,7 +133,19 @@ function __show_replies(author, permlink) {
         "permlink":permlink
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES" })
+    controller.action("page", { "display-unit":"S_REPLIES" });
+}
+
+function __show_user(username) {
+    var user = users.create(username);
+
+    controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
+        "fetched":"no"
+    });
+
+    controller.action("page", { "display-unit":"S_USER" });
 }
 
 function ___reload_notif_cell(data) {

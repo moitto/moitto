@@ -33,7 +33,8 @@
 =end option
 =end note
 
-=object button: action=subview-back, label="확인", style=btn_close
 =end privacy
+
+=object button: action=subview-back, label="확인", style=btn_close
 
 =end catalog

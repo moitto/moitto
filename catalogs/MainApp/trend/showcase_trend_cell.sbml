@@ -1,6 +1,6 @@
 =begin cell
 
-=object image: image-url="${image-url}", style=img_main
+=object -image: image-url="${image-url}", style=img_main
 =object blank: style=blank_dim
 
 

@@ -32,8 +32,20 @@ function update_vote() {
     __update_vote_button(voted);
 }
 
-function show_user() {
+function show_author() {
     var user = users.create($data["author"]);
+
+    controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
+        "fetched":"no"
+    });
+
+    controller.action("page", { "display-unit":"S_USER" })
+}
+
+function show_user(data) {
+    var user = users.create(data["username"]);
 
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
         "username":user.name,

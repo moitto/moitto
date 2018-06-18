@@ -195,6 +195,25 @@ Account.delegate_vesting = function(delegatee, amount, pin, handler) {
     });
 }
 
+Account.claim_rewards = function(handler) {
+    var account = Account.username;
+    var key = Account.__load_key(account, "posting");
+
+    Account.steem.api.get_accounts([ account ]).then(function(response) {
+        var reward_steem_balance   = "0.000 STEEM";//response[0]["reward_steem_balance"];
+        var reward_sbd_balance     = "0.000 SBD";//response[0]["reward_sbd_balance"];
+        var reward_vesting_balance = response[0]["reward_vesting_balance"];
+
+        Account.steem.broadcast.claim_reward_balance(account, reward_steem_balance, reward_sbd_balance, reward_vesting_balance, [ key ]).then(function(response) {
+            handler(response);
+        }, function(reason) {
+            handler();
+        });
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.verify_pubkey = function(pubkey, pin) {
     var saved_pubkey = keychain.password("KEYS_OWNER.PUB" + "@" + Account.username);
 

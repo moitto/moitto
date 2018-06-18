@@ -122,7 +122,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-                
+
             }
 
             return;
@@ -346,7 +346,7 @@ Sbml.__has_center_tag = function(elements) {
 }
 
 Sbml.__handle_text = function(text) {
-    text = text.replace(/@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "=[user:username=\"$1\"|@$1]=");
+    text = text.replace(/(^|\s+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
     text = Sbml.texts.replace_emoji_chars(text, "=[emoji|$1]=");
     text = decode("html", text);
 

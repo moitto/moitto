@@ -49,10 +49,10 @@ SteemBroadcast.account_create = function(fee, creator, new_account_name, owner, 
     });
 }
 
-SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd, reward_vests, keys) {
+SteemBroadcast.custom_json = function(required_auths, required_posting_auths, id, json, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "claim_reward_balance", { 
-            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests:reward_vests
+        var operation = [ "custom_json", { 
+            required_auths:required_auths, required_posting_auths:required_posting_auths, id:id, json:json
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -63,10 +63,10 @@ SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd
     });
 }
 
-SteemBroadcast.custom_json = function(required_auths, required_posting_auths, id, json, keys) {
+SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd, reward_vests, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "custom_json", { 
-            required_auths:required_auths, required_posting_auths:required_posting_auths, id:id, json:json
+        var operation = [ "claim_reward_balance", { 
+            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests:reward_vests
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

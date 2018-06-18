@@ -12,7 +12,7 @@ function User(name, data, follows, dynprops) {
 }
 
 User.prototype.get_reputation = function() {
-    return (Math.log10(this.data["reputation"]) - 9) * 9 + 25;
+    return (Math.max(Math.log10(this.data["reputation"]) || 0, 9) - 9) * 9 + 25;
 }
 
 User.prototype.get_post_count = function() {

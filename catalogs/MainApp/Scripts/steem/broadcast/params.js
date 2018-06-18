@@ -29,6 +29,12 @@ __MODULE__ = {
         id: __TYPES__.string,
         json: __TYPES__.string
     },
+    "claim_reward_balance":{
+        account: __TYPES__.string,
+        reward_steem: __TYPES__.asset,
+        reward_sbd: __TYPES__.asset,
+        reward_vests: __TYPES__.asset
+    },
     "delegate_vesting_shares":{
         delegator: __TYPES__.string,
         delegatee: __TYPES__.string,

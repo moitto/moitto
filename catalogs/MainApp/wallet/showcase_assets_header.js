@@ -35,5 +35,9 @@ function show_followers() {
 }
 
 function redeem_rewards() {
-    controller.action("alert", { message:"REDEEEM!!" });
+    controller.catalog().submit("showcase", "auxiliary", "S_REDEEM", {
+        "status":"confirm"
+    });
+
+    controller.action("popup", { "display-unit":"S_REDEEM" });
 }

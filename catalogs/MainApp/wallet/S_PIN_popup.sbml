@@ -14,7 +14,7 @@
 =begin board: id=board
 =begin content
 =begin message
-=object label: id=label.message, text="${message}", style=label_message
+${message}
 =end message
 
 =object section: section=number, style=section_number

@@ -70,7 +70,8 @@ end
 #btn_numpad.empty: style=btn_numpad
 
 /popup/numpad: display=none, text-align=center
-/popup/board/content/message: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=1.1
+/popup/board/content/message: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
+            line-spacing=0.3em, paragraph-spacing=0.3em, font-size=1.1
 
 
 -- 알파벳 키패드 --

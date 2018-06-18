@@ -32,7 +32,7 @@ end
 
 -- 로그인 전 --
 
-#section_login: width=1pw, height=1ph-44dp, position=absolute, gravity=center, hidden=yes, y=44dp, \
+#section_login: width=1pw, height=1ph-44dp, position=absolute, gravity=top, hidden=yes, y=44dp, \
             content-background-color=$THEME_COLOR_02
 
 #btn_login: width=0.8pw, height=50dp, \

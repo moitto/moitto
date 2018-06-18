@@ -9,6 +9,6 @@ else
     #label_loading: font-size=1.1
 end
 
-if $LOADING == "yes"
+if "${content-type}" != "reply" && $LOADING == "yes"
     #label_loading: display=object
 end

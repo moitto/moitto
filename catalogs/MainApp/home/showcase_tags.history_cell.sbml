@@ -1,8 +1,6 @@
 =begin cell
 
-=begin tag
-${tag}
-=end tag
+=object label: text="${tag}", style=label_tag
 
 =object button: script=remove, style=btn_remove
 

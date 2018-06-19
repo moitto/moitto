@@ -1,15 +1,13 @@
-import themes.sbss
+import ~/themes.sbss
 
 #label_title: width=0.9pw, height=26dp, \
-        font-family=$SANSSERIF_LIGHT, text-color=$DEFAULT_COLOR, \
+        font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
         text-align=left, line-break-mode=tail-truncation
 #label_date: width=0.9pw, height=14dp, align=left, \
-        font-family=$SANSSERIF_MEDIUM, text-color=$DEFAULT_COLOR, \
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, \
         text-align=left, line-break-mode=tail-truncation
 
 #img_new: width=13dp, height=13dp
-#medium: font-family=$SANSSERIF_MEDIUM, text-color=$HIGHLIGHT_COLOR
-#bold: font-family=$SANSSERIF_MEDIUM, text-color=$HIGHLIGHT_COLOR
 
 /cell: text-align=left, margin="10dp 0 0 30dp"
 

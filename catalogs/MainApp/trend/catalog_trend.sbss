@@ -1,19 +1,19 @@
 import ~/themes.sbss
 
 #panes_trend: width=1pw, height=1ph, navibar-background-color=$THEME_COLOR_00
-#btn_tag: width="1pw-0.66pw-20dp", height=44dp, \
+#btn_tag: width="1pw-(0.19pw*3)-10dp", height=44dp, \
             position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-align=right, \
             line-break-mode=tail-truncation
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
             position=absolute, gravity=top, y="1sbh+44dp"
 
-/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
+/catalog: page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > "5"
     #panes_trend: navibar-cell-size="0.2pw, (44dp+1sbh)"
     #btn_tag: label-font-size=1.3
 else
-    #panes_trend: navibar-cell-size="0.22pw, (44dp+1sbh)"
+    #panes_trend: navibar-cell-size="0.19pw, (44dp+1sbh)"
     #btn_tag: label-font-size=1.2
 end

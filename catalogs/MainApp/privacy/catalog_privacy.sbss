@@ -1,7 +1,7 @@
 import ~/themes.sbss
 
 #section_privacy: position=absolute, gravity=center, content-background-color=$THEME_COLOR_02
-#blank_line: width=0.9pw, height=1dp, color=$DEFAULT_COLOR, margin="0 0 20dp 0"
+#blank_line: width=0.9pw, height=1dp, color=$THEME_COLOR_01, margin="0 0 20dp 0"
 #btn_close: height=50dp, position=absolute, gravity=bottom, \
             label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.2, label-color=$THEME_COLOR_100, \
             content-background-color=$THEME_COLOR_03

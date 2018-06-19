@@ -90,7 +90,7 @@ position=absolute, gravity=bottom, y=-(1ehb+30dp)
 -- 입력 메시지 분기 --
 
 if "${status}" == "error"
-    #label_message: text-color=$RED_COLOR
+    #label_message: text-color=$THEME_COLOR_04
 end
 
 if "${close-disabled}" == "yes"

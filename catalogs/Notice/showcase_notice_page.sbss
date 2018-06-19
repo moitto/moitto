@@ -1,4 +1,4 @@
-import themes.sbss
+import ~/themes.sbss
 
 #label_date: width=0.9pw, height=14dp, align=left, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, \

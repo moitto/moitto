@@ -8,7 +8,7 @@ import ~/themes.sbss
         position=abs, gravity=top, y=20dp
 
 #progress_main: type=loading, owner=web.main, \
-        progress-color=$WHITE_COLOR, track-color=$MAIN_COLOR, \
+        progress-color=$WHITE_COLOR, track-color=$THEME_COLOR_03, \
         width=1pw, height=2dp, position=abs, gravity=top, y=20dp, hidden=yes
 
 /popup: page-background-color=$MAIN_COLOR

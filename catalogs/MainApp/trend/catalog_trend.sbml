@@ -1,4 +1,4 @@
-=begin catalog
+=begin catalog: script-when-loaded=on_loaded
 
 =object panes: id=panes.trend, name=trend, \
             has-navibar=yes, preloads-panes=no, \

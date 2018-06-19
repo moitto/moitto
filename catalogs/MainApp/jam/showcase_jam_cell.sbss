@@ -30,7 +30,7 @@ import ~/themes.sbss
         label-color=$WHITE_COLOR, highlight-label-color=$LIGHT_COLOR, \
         content-padding="0 10dp", content-background-color=$NAVY_COLOR, content-border-radius=12dp
 
-/cell: page-background-color=$WHITE_COLOR
+/cell: page-background-color=$THEME_COLOR_02
 
 if "${channel}" != ""
     #btn_channel: display=object

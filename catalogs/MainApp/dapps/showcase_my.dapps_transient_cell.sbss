@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-/cell/widget: display=block, width=1pw, height=160dp, \
-            position=absolute, gravity=top-left, background-color=$THEME_COLOR_01
-/cell/title: display=block, width=0.4pw, height=15dp, \
-            position=absolute, gravity=top-left, x=10dp, y=170dp, background-color=$THEME_COLOR_01
+/cell/widget: display=block, width=1ph, height=1ph, \
+            position=absolute, gravity=left, background-color=$THEME_COLOR_01
+/cell/title: display=block, width=0.3pw, height=20dp, \
+            position=absolute, gravity=top-left, x="1ph+10dp", y=10dp, background-color=$THEME_COLOR_01

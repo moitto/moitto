@@ -1,6 +1,6 @@
 =begin cell
 
-=object image: style=img_banner
+=object image: image-downloadable=yes, image-url="${banner-image}", scales-in-background=yes, style=img_banner
 
 =object label: style=label_title
 =object label: style=label_adcopy

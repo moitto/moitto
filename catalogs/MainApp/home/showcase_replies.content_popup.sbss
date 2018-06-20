@@ -6,7 +6,7 @@ content-background-color=$THEME_COLOR_03
 #btn_close: width="1pw-40dp", height=50dp, \
 label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
 content-background-color=$THEME_COLOR_00
-#down: label-color=$THEME_COLOR_102, content-background-color=$THEME_COLOR_05
+#red: label-color=$THEME_COLOR_102, content-background-color=$THEME_COLOR_04
 #blank_line: width="1pw-40dp", height=1dp
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM

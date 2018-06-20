@@ -1,7 +1,11 @@
 =begin page
 
-=object showcase: name=jam, alternate-name=jam, \
+=object showcase: name=dapps, alternate-name=dapps, \
                 data-script=feed_dapps, \
+                selectable=yes, script-when-selected=select_dapp, \
+                script-when-reload=reset_dapps, \
+                keeps-offscreen-cells=yes, scroll-indicator-hidden=yes, \
+                loads-more=yes, \
                 style=showcase_dapps
 
 =end page

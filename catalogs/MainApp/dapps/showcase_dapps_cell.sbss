@@ -1,8 +1,11 @@
 import ~/themes.sbss
 
-#img_banner: image-downloadable=yes, image-url="${banner-image}", scale-mode=fill, \
-        width=1pw, height=0.5pw, position=abs, gravity=top, \
-        scales-in-background=yes, loading-duration=0.3
+#img_banner: scale-mode=fill, loading-duration=0.3, \
+        width=1pw, height=1pw, position=absolute, gravity=top
+
+
+
+
 
 #label_title: text="${title}", width=1pw-(10dp+44dp), heigth=18dp, \
         position=abs, gravity=left-top, x=10dp, y=0.5pw+8dp, \

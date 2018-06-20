@@ -1,0 +1,12 @@
+=begin popup
+
+=begin actions
+=object button: label="나의 디앱 편집하기", style=btn_menu
+=object blank: style=blank_line
+=object button: label="더 많은 디앱 보기", style=btn_menu
+=object blank: style=blank_line
+
+=object button: action=popup-close, label="취소", style=btn_close
+=end actions
+
+=end popup

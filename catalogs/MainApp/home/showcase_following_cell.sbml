@@ -1,7 +1,7 @@
 =begin cell
 
-=object button: image-url="${userpic-url}", image-downloadable=yes, style=btn_userpic
-=object button: label="${username}", style=btn_user
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+=object label: text="${username}", style=label_user
 
 
 =object button: label="언팔로우", script=unfollow, style=btn_follow

@@ -4,11 +4,26 @@ import ~/themes.sbss
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
             text-align=center, font-size=1.6, \
             line-break-mode=tail-truncation, margin="0 0 30dp 0"
+#blank_margin: width=30dp, height=50dp
+#btn_info: image="~/subview_btn_info.small.png", width=30dp, height=50dp, scale-mode=fit
 
-#btn_action: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
+#btn_action: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
 /page: text-align=center, page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
-/page/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, \
-            line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap, font-size=0.8
+
+
+-- question --
+
+#section_info: hidden=yes, width=1pw, height=1ph, position=absolute, \
+            content-background-color=$WHITE_COLOR_DEEP_DIM
+#btn_hide: width=0.9pw, height=40dp, position=absolute, gravity=center, y=150dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1
+
+/page/question: display=none
+/page/question/note: display=block, width=0.9pw, height=350dp, \
+            position=absolute, gravity=center, background-color=$BLACK_COLOR_DEEP_DIM, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=left, font-size=1.1, \
+            line-spacing=0.3em, paragraph-spacing=0.3em, padding=20dp
+/page/question/note/title: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="0 0 20dp 0"

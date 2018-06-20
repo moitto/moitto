@@ -1,11 +1,20 @@
 =begin page
 
-=object label: text="${amount} SP", style=label_amount
-
-=begin notice
-STEEM POWER는 스팀잇에서의 영향력을 나타냅니다. 스팀 파워가 높을수록 보팅 금액이 더 높아지고, 큐레이션 보상도 더 많이 받을 수 있습니다.
-=end notice
+=(object blank: style=blank_margin)= =(object label: text="${amount} SP", style=label_amount)= =(object button: action=show, target=object, object=steempower.info, style=btn_info)=
 
 =object button: script=delegate, label="임대하기", style=btn_action
+
+
+
+=object section: id=steempower.info, section=section.steempower.info, style=section_info
+=begin question: id=section.steempower.info
+=begin note
+=begin title
+STEEM POWER
+=end title
+STEEM POWER는 스팀잇에서의 영향력을 나타냅니다. 스팀 파워가 높을수록 보팅 금액이 더 높아지고, 큐레이션 보상도 더 많이 받을 수 있습니다.
+=end note
+=object button: action=hide, target=object, object=steempower.info, label="확인", style=btn_hide
+=end question
 
 =end page

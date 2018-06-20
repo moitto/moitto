@@ -22,10 +22,10 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
             content-background-color=$THEME_COLOR_03
 
-#btn_info: width=0.25pw, height=30dp, \
+#btn_info: width=0.28pw, height=30dp, \
         label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
         label-align=center, label-font-size=1.4
-#btn_info.title: width=0.25pw, height=15dp, \
+#btn_info.title: width=0.28pw, height=15dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 

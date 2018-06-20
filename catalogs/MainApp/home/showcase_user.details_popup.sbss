@@ -28,7 +28,7 @@ import ~/themes.sbss
                 text-align=right, font-size=1.4
 #label_steem.info.title: height=40dp, align=left, margin="0 0 0 40dp", \
                 font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, \
-                text-align=left, font-size=1.4
+                text-align=left, font-size=1.2
 
 /popup: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
             text-align=center, page-background-color=$BLACK_COLOR_DEEP_DIM, margin="(1sbh+44dp+25dp) 0 0 0"

@@ -3,14 +3,15 @@
 =object image: type=app, subtype=banner, channel="${channel}", style=img_banner
 =object widget: channel="${channel}", style=widget
 
-=object label: text="${title}", style=label_title
+=begin title
+${title}
+=end title
 
 =object image: style=img_channel
-
 =object button: action=submit, form=channel.${channel}, showcase=auxiliary, display-unit=S_CHANNEL, \
-                action-when-done=subview, params-when-done="subview=V_HOME.CHANNEL,target=popup", \
-                has-own-title=yes, \
-                style=btn_channel
+            action-when-done=subview, params-when-done="subview=V_HOME.CHANNEL,target=popup", \
+            has-own-title=yes, \
+            style=btn_channel
 
 =begin form: form=channel.${channel}
 =object input: id=channel, value="${channel}"

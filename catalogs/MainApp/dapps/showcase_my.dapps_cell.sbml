@@ -3,6 +3,8 @@
 =object image: type=app, subtype=banner, app="${app}", style=img_banner
 =object widget: app="${app}", style=widget
 
-=object label: text="${title}", style=label_title
+=begin title
+${title}
+=end title
 
 =end cell

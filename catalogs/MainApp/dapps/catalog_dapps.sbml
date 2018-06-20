@@ -1,6 +1,6 @@
 =begin catalog
 
-=object showcase: type=packages, alternate-name=myjam, \
+=object showcase: type=packages, alternate-name=my.dapps, \
                 selectable=yes, action-when-selected=app, \
                 action-when-selected@channel=app, params-when-selected@channel="sortkey=running,sortorder=descending", \
                 action-when-long-pressed=popup, params-when-long-pressed="alternate-name=jam.menu,subview=V_JAM", \
@@ -8,6 +8,6 @@
                 keeps-offscreen-cells=yes, \
                 scroll-indicator-hidden=yes, \
                 has-footer=yes, \
-                style=showcase_myjam
+                style=showcase_my.dapps
 
 =end catalog

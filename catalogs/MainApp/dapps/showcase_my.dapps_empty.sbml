@@ -1,0 +1,5 @@
+=begin cell
+
+=object button: action=page, display-unit=S_DAPPS, label="디앱 보러 가기", style=btn_dapps
+
+=end cell

@@ -7,6 +7,6 @@
             action-when-long-pressed=popup, params-when-long-pressed="alternate-name=jam.menu,subview=V_JAM", \
             sortable=yes, sortkey=running, sortorder=descending, \
             keeps-offscreen-cells=yes, \
-            style=showcase_jam
+            style=showcase_dapp
 
 =end header

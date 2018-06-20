@@ -1,0 +1,7 @@
+=begin page
+
+=object showcase: name=jam, alternate-name=jam, \
+                data-script=feed_dapps, \
+                style=showcase_dapps
+
+=end page

@@ -1,8 +1,8 @@
-import showcase_myjam_cell.sbss
+import showcase_my.dapps_cell.sbss
 
 #widget: sortkey=running, sortorder=descending
 
-#img_channel: width=44dp, height=44dp, filename="~/subview_btn_jamchannel.png", \
+#img_channel: width=44dp, height=44dp, filename="~/subview_btn_dapp_channel.png", \
             position=absolute, gravity=right-bottom, x=-3dp, y=-3dp
 
 #btn_channel: width=1pw, height=50dp, position=absolute, gravity=bottom

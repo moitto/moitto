@@ -1,6 +1,6 @@
 var $BASEURL = "https://jampod-156205.appspot.com/api/v1";
 
-function feed_jam(keyword, location, length, sortkey, sortorder, handler) {
+function feed_dapps(keyword, location, length, sortkey, sortorder, handler) {
     var url = $BASEURL + "/channel/" + $data["channel"];
 
     if (location == 0) {
@@ -18,7 +18,7 @@ function feed_jam(keyword, location, length, sortkey, sortorder, handler) {
     }
 }
 
-function select_jam(data) {
+function select_dapp(data) {
     controller.action("app", {
         "app":data["app"],
         "version":data["version"],

@@ -37,7 +37,7 @@ function feed_recommend(keyword, location, length, sortkey, sortorder, handler) 
     }
 }
 
-function select_jam(data) {
+function select_dapp(data) {
     controller.action("app", {
         "app":data["app"],
         "version":data["version"],

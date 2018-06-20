@@ -6,8 +6,8 @@
 
 
 =begin done
-완료되었습니다.
-=object button: action=popup-close, label="닫기", style=btn_action
+리블로그 되었습니다.
+=object button: action=popup-close, label="확인", style=btn_action
 =end done
 
 

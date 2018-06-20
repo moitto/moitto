@@ -56,7 +56,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
             };
 
             datum = Object.assign(datum, __template_data_for_content(content));
-            datum = Object.assign(datum, __background_data_for_values(backgrounds));
+            datum = Object.assign(datum, __random_background_data(backgrounds));
 
             data.push(datum);
         });
@@ -73,7 +73,9 @@ function open_discussion(data) {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":data["author"],
         "permlink":data["permlink"],
-        "userpic-url":data["userpic-url"]
+        "tag":data["main-tag"],
+        "userpic-url":data["userpic-url"],
+        "background":data["background.id"]
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });
@@ -100,7 +102,7 @@ function __template_data_for_content(content) {
     return {};
 }
 
-function __background_data_for_values(values) {
+function __random_background_data(values) {
     var value = values[Math.floor(Math.random()*values.length)];
     var data = {};
 
@@ -110,3 +112,5 @@ function __background_data_for_values(values) {
 
     return data;
 }
+
+

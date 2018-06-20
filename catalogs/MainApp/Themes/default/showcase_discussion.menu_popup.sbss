@@ -12,3 +12,9 @@ import ~/themes.sbss
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
 /popup/actions: display=block, width="1pw-40dp", \
                 position=absolute, gravity=bottom, y=-(1eb+20dp)
+
+if "${voted}" == "yes"
+    #unvoted: display=none, width=0, height=0
+else
+    #voted: display=none, width=0, height=0
+end

@@ -79,11 +79,14 @@ SteemApi.__request_rpc = function(method, params) {
             method:"POST", header:headers, body:JSON.stringify(request)
         }).then(function(response) {
             response.json().then(function(json) {
+                console.log("__request_rpc: " + JSON.stringify(json));
                 resolve(json);
             }, function(reason) {
+                console.log("__request_rpc: " + JSON.stringify(reason));
                 reject(reason);
             });
         }, function(reason) {
+                console.log("__request_rpc: " + JSON.stringify(reason));
             reject(reason);
         });
     });

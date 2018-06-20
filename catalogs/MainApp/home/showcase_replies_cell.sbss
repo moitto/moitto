@@ -66,3 +66,7 @@ scales-in-background=yes, text-decoration="", script-when-download=on_image_down
 
 /cell/replies: display=none
 /cell/replies/comments: display=block, height=20dp, position=absolute, gravity=right, x=-10dp, text-align=right
+
+if "${voted}" == "yes"
+    #btn_vote: selected=yes
+end

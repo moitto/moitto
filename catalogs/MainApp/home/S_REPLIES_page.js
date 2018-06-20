@@ -1,28 +1,33 @@
-var global  = require("global");
+var steemjs = require("steemjs");
 var replies = require("replies");
 var themes  = require("themes");
 
 function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_REPLIES");
+    var path = "/" + value["tag"] + "/@" + value["author"] + "/" + value["permlink"];
+    var me = storage.value("ACTIVE_USER");
 
     if (location == 0) {
-        global.steemjs.get_content_replies(value["author"], value["permlink"]).then(function(response) {
+        steemjs.get_state(path).then(function(response) {
             var theme = themes.create("default");
             var data = [];
 
-            response.reverse().forEach(function(entry) {
-                var reply = replies.create(entry);
+            Object.keys(response["content"]).forEach(function(path) {
+                if (response["content"][path]["parent_permlink"] === value["permlink"]) {
+                    var reply = replies.create(response["content"][path]);
 
-                data.push({
-                    "id":"S_REPLIES_" + value["author"] + "_" + value["permlink"] + "_" + reply.data["author"],
-                    "author":reply.data["author"], 
-                    "permlink":reply.data["permlink"], 
-                    "userpic-url":reply.get_userpic_url("small"),
-                    "body":theme.build_body(reply.data["body"], "markdown"),
-                    "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
-                    "replies-count":reply.data["children"].toString(),
-                    "created-at":reply.data["created"],
-                });
+                    data.push({
+                        "id":"S_REPLIES_" + value["author"] + "_" + value["permlink"] + "_" + reply.data["author"],
+                        "author":reply.data["author"], 
+                        "permlink":reply.data["permlink"], 
+                        "userpic-url":reply.get_userpic_url("small"),
+                        "body":theme.build_body(reply.data["body"], "markdown"),
+                        "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
+                        "replies-count":reply.data["children"].toString(),
+                        "created-at":reply.data["created"],
+                        "voted":reply.is_voted(me) ? "yes" : "no"
+                    });
+                }
             });
 
             handler(data);

@@ -9,7 +9,6 @@ function login(form) {
 
     account.login(form["username"], form["password"], function(response, handler) {
         if (!response) {
-            console.log("FAILED!!!!");
             controller.action("alert", { message:"스팀 계정과 비밀번호가 일치하지 않습니다." });
             controller.action("unfreeze");
     

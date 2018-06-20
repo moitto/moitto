@@ -1,0 +1,10 @@
+=begin popup
+
+=begin message
+보팅을 취소하시겠습니까?
+=end message
+
+=object button: script=unvote, label="보팅 취소", style=btn_unvote
+=object button: action=popup-close, label="×", style=btn_close
+
+=end popup

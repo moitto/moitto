@@ -205,7 +205,6 @@ SteemJS.get_following = function(follower, start_following, follow_type, limit) 
         var params = [ "follow_api", "get_following", [ follower, start_following, follow_type, limit ] ];
 
         SteemJS.__request_rpc(method, params).then(function(response) {
-            console.log(JSON.stringify(response));
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);
@@ -217,6 +216,19 @@ SteemJS.get_follow_count = function(account) {
     return new Promise(function(resolve, reject) {
         var method = "call";
         var params = [ "follow_api", "get_follow_count", [ account ] ];
+
+        SteemJS.__request_rpc(method, params).then(function(response) {
+            resolve(response["result"]);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemJS.get_state = function(path) {
+    return new Promise(function(resolve, reject) {
+        var method = "call";
+        var params = [ "database_api", "get_state", [ path ] ];
 
         SteemJS.__request_rpc(method, params).then(function(response) {
             resolve(response["result"]);

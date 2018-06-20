@@ -183,12 +183,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-
-            if (token[23]) {
-                begin_tags.push(element);
-            } else {
-                MarkdownParser.__handle_mismatched_tags(elements, token[24], begin_tags);
-            }
         } else if (token[25]) { // start of div tag
             var klass = token[25].match(/class=\"([^"]+)\"/);
 
@@ -199,8 +193,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-
-            begin_tags.push(element);
         } else if (token[26]) { // end of div tag
             element = {
                 type:"div-tag-end",
@@ -208,20 +200,12 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-
-            MarkdownParser.__handle_mismatched_tags(elements, "div", begin_tags);
         } else if (token[27] || token[28]) { // paragraph tag
             element = {
                 type:"paragraph-tag" + (token[27] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
-            }
-
-            if (token[27]) {
-                begin_tags.push(element);
-            } else {
-                MarkdownParser.__handle_mismatched_tags(elements, "paragraph", begin_tags);
             }
         } else if (token[29] || token[30]) { // blockquote tag
             element = {
@@ -230,24 +214,12 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-
-            if (token[29]) {
-                begin_tags.push(element);
-            } else {
-                MarkdownParser.__handle_mismatched_tags(elements, "blockquote", begin_tags);
-            }
         } else if (token[31] || token[32]) { // center tag
             element = {
                 type:"center-tag" + (token[31] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
-            }
-
-            if (token[31]) {
-                begin_tags.push(element);
-            } else {
-                MarkdownParser.__handle_mismatched_tags(elements, "center", begin_tags);
             }
         } else if (token[33]) { // br tag
             element = {
@@ -318,6 +290,16 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             });
         }
 
+        var tag = element.type.match(/(.+)-tag-(begin|end)/);
+
+        if (tag) {
+            if (tag[2] === "begin") {
+                begin_tags.push(element);
+            } else {
+                MarkdownParser.__handle_mismatched_tags(elements, tag[1], element.data["inline"], begin_tags);
+            }
+        }
+
         elements.push(element);
 
         last_index = tokenizer.lastIndex;
@@ -335,7 +317,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
     }
 
     MarkdownParser.__clear_unhandled_begins(elements);
-    MarkdownParser.__handle_mismatched_tags(elements, "", begin_tags);
+    MarkdownParser.__handle_mismatched_tags(elements, "", false, begin_tags);
 
     return elements;
 }
@@ -382,11 +364,15 @@ MarkdownParser.__clear_unhandled_begins = function(elements) {
     });
 }
 
-MarkdownParser.__handle_mismatched_tags = function(elements, tag, begin_tags) {
+MarkdownParser.__handle_mismatched_tags = function(elements, tag, inline, begin_tags) {
+    var begin_matched = false;
+
     while (begin_tags.length > 0) {
         var last_begin_tag = begin_tags.pop();
 
         if (tag && last_begin_tag.type.startsWith(tag)) {
+            begin_matched = true;
+
             break;
         }
 
@@ -394,6 +380,15 @@ MarkdownParser.__handle_mismatched_tags = function(elements, tag, begin_tags) {
             type:last_begin_tag.type.split("-")[0] + "-tag-end",
             data:{
                 inline:last_begin_tag.data["inline"]
+            }
+        });
+    }
+
+    if (tag && !begin_matched) {
+        elements.push({
+            type:tag + "-tag-begin",
+            data:{
+                inline:inline
             }
         });
     }

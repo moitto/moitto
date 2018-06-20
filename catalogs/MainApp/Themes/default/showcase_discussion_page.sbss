@@ -91,7 +91,7 @@ end
         position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
 
 if "${voted}" == "yes"
-    #btn_vote: selected=yes
+    #btn_vote: selected=yes, alternate-name="discussion.unvote"
 end
 
 if "${is-payout}" == "yes"
@@ -125,3 +125,13 @@ if "${tag-5}" == ""
     #btn_tag.5: display=none, width=0, height=0
 end
 
+-- 백그라운드 --
+
+if "${image-url}" == ""
+    if "${background.image}" != ""
+        #img_header: filename="~/${background.image}"
+    else
+        #section_header: content-background-color="${background.color}"
+        #img_header: display=none
+    end
+end

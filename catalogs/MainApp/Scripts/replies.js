@@ -5,7 +5,6 @@ Replies = (function() {
 // class User
 
 function Reply(data) {
-    console.log(JSON.stringify(data));
     this.data = data;
 }
 
@@ -31,6 +30,18 @@ Reply.prototype.get_userpic_url = function(size) {
     }
 
     return userpic_url;
+}
+
+Reply.prototype.is_voted = function(username) {
+    var votes = this.data["active_votes"];
+
+    for (var i = 0; i < votes.length; i++) {
+        if (votes[i].voter === username) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 // instance factory

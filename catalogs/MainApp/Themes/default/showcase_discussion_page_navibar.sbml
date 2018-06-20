@@ -7,7 +7,7 @@
 =(object button: script=show_user, image-url="${userpic-url}", style=btn_userpic)= =(object button: script=show_user, label="${author}", style=btn_user)=
 =end user
 
-=object button: action=popup, display-unit="S_DISCUSSION", \
+=object button: action=popup, display-unit="S_DISCUSSION.POPUP", \
             dir-path="${dir-path}", alternate-name="discussion.menu", \
             style=btn_menu
 

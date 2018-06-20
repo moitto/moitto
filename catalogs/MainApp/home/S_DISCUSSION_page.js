@@ -3,9 +3,11 @@ var themes = require("themes");
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
+    var background = controller.catalog().value("showcase", "backgrounds", discussion["background"]);
     var me = storage.value("ACTIVE_USER");
     
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
+        console.log(content.data["body"]);
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);
         var impl = themes.create(theme);
@@ -38,6 +40,10 @@ function on_loaded() {
 
         Object.keys(impl.auxiliary).forEach(function(key) {
             data[key] = impl.auxiliary[key];
+        });
+
+        Object.keys(background).forEach(function(key) {
+            data["background." + key] = background[key];
         });
 
         if (content.is_voted(me)) {

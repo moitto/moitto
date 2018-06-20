@@ -1,6 +1,6 @@
 =begin page
 
-=(object blank: style=blank_margin)= =(object label: text="${amount} STEEM", style=label_amount)= =(object button: action=show, target=object, object=steem.info, style=btn_info)=
+=(object blank: style=blank_margin)=  =(object label: text="${amount} STEEM", style=label_amount)=  =(object button: action=show, target=object, object=steem.info, style=btn_info)=
 
 =object button: script=transfer, label="송금하기", style=btn_action
 

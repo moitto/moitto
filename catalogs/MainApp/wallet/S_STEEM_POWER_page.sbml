@@ -1,6 +1,6 @@
 =begin page
 
-=(object blank: style=blank_margin)= =(object label: text="${amount} SP", style=label_amount)= =(object button: action=show, target=object, object=steempower.info, style=btn_info)=
+=(object blank: style=blank_margin)=  =(object label: text="${amount} SP", style=label_amount)=  =(object button: action=show, target=object, object=steempower.info, style=btn_info)=
 
 =object button: script=delegate, label="임대하기", style=btn_action
 

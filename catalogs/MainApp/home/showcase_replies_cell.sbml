@@ -13,6 +13,8 @@ ${body}
 
 
 
+=object image: style=img_dim
+
 =object section: section=replies, style=section_replies
 =begin replies: id=replies
 =object button: label=" ${payout-value}", style=btn_value

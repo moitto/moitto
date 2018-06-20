@@ -13,10 +13,10 @@ import ~/themes.sbss
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
             margin="0 0 10dp 0"
 
-#btn_info: width=0.25pw, height=30dp, \
+#btn_info: width=0.2pw, height=30dp, \
         label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
         label-align=center, label-font-size=1.4
-#btn_info.title: width=0.25pw, height=15dp, \
+#btn_info.title: width=0.2pw, height=15dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 

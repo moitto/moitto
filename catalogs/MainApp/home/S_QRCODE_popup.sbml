@@ -2,7 +2,7 @@
 
 =object camera: metadata-enabled=yes, qrcode-enabled=yes, \
             focus-closely=yes, continuous-autofocus=yes, \
-            script-when-output@metadata=on_qrcode, style=camera_qr, display=none
+            script-when-output@metadata=on_qrcode, style=camera_qr
 =object image: style=img_qr
 =object label: text="QR코드를 자동으로 인식합니다.", style=label_notice
 

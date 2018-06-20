@@ -1,1 +1,5 @@
 import showcase_trend_loading.sbss
+
+if $CELL_COUNT == 0
+    #label_info: display=none, width=0, height=0
+end

@@ -1,0 +1,35 @@
+=begin cell
+
+=object section: section=contents, style=section_contents
+
+=begin contents: id=contents
+
+=begin title: alt="글 제목"
+${title}
+=end title
+
+
+=begin meta: alt="태그, 보팅"
+=(object button: script=show_tag, label="#${main-tag}", style=btn_meta, style=goB)==(object label: text=" • ", style=label_meta)==(object button: script=show_votes, type=decimal, label="${votes-count} ", style=btn_meta, style=goB)==(object button: script=show_votes, label="보팅", style=btn_meta)==(object label:text=" •", style=label_meta)==(object button: script=show_votes, label=" ${payout-value} ", style=btn_meta, style=goB)==(object label:text="• ", style=label_meta)==(object button: script=show_replies, label="댓글", style=btn_meta)==(object button: script=show_replies, label=" ${replies-count}", style=btn_meta, style=goB)=
+=end meta
+
+
+=begin user: alt="작성자, 작성일"
+=object blank: style=blank_userpic.mask
+=object button: script=show_user, image-url="${userpic-url}", style=btn_userpic
+=object button: script=show_user, label="${author}", style=btn_author
+=object label: type=date, format=ago, source-format="yyyy-MM-dd'T'HH:mm:ss", source-timezone=GMT, text="${created-at}", style=label_date
+=end user
+
+=begin reblogged: alt="리블로그"
+=begin multiple
+=(object image: style=img_reblogged)= =(object label: text="${reblogged-by} 외 ${reblogged-count-1}명", style=label_reblogged)=
+=end multiple
+=begin single
+=(object image: style=img_reblogged)= =(object label: text="${reblogged-by}", style=label_reblogged)=
+=end single
+=end reblogged
+
+=end contents
+
+=end cell

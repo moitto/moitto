@@ -117,6 +117,24 @@ Account.unvote = function(author, permlink, handler) {
     });
 }
 
+Account.reblog = function(author, permlink, handler) {
+    var account = Account.username;
+    var key = Account.__load_key(account, "posting");
+    var json = JSON.stringify(
+        [ "reblog", {
+            "account":account,
+            "author":author,
+            "permlink":permlink
+        }]
+    );
+
+    Account.steem.broadcast.custom_json([], [ account ], "follow", json, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.follow_user = function(following, handler) {
     var follower = Account.username;
     var key = Account.__load_key(follower, "posting");

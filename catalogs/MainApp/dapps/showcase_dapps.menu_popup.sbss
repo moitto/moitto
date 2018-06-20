@@ -1,15 +1,12 @@
 import ~/themes.sbss
 
-#btn_menu: width=160dp, height=40dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.1, label-align=left, \
-        label-color=$BLACK_COLOR, highlight-label-color=$DEFAULT_COLOR, disable-label-color=$LIGHT_COLOR
+#btn_link: width=0.6pw, height=40dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.2, label-align=center, \
+        label-color=$THEME_COLOR_100
 
-#btn_link: label="링크 주소 복사하기", style=btn_menu, \
-        action=copy, media=text, text="${url}", post-action=popup-close
-
-/popup: page-background-color=$BLACK_COLOR_DEEP_DIM, action-when-touched=popup-close
-/popup/menu: display=block, width=200dp, padding="20dp 20dp 10dp 20dp", \
-        position=abs, gravity=center, background-color=$THEME_COLOR_02, border-radius=2dp
-/popup/menu/title: margin-bottom=15dp, \
-        font-family=$SANSSERIF_BOLD, font-size=1.2, \
-        text-align=left, text-color=$DEFAULT_TEXT_COLOR
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+/popup/menu: display=block, width=0.8pw, padding=20dp, \
+            position=absolute, gravity=center, background-color=$THEME_COLOR_02
+/popup/menu/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, font-size=1.4, \
+            line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap, \
+            margin="0 0 10dp 0"

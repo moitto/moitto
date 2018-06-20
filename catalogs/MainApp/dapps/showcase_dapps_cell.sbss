@@ -1,39 +1,32 @@
 import ~/themes.sbss
 
+#blank_background: width=1pw, height=1ph, color=$THEME_COLOR_00, \
+        content-border-radius=15dp, content-border-color=$THEME_COLOR_01, content-border-width=1dp
+
 #img_banner: scale-mode=fill, loading-duration=0.3, \
         width=1pw, height=1pw, position=absolute, gravity=top
+#img_round.left: filename="~/subview_img_dapps.round.left.png", width=15dp, height=15dp, \
+        position=absolute, gravity=top-left
+#img_round.right: filename="~/subview_img_dapps.round.right.png", width=15dp, height=15dp, \
+        position=absolute, gravity=top-right
 
+#section_dapps.meta: width=1pw, height="1ph-1pw", position=absolute, gravity=bottom
 
+#label_title: width="1pw-40dp", height=44dp, position=absolute, \
+        font-family=$SANSSERIF_BOLD, font-size=1.6, text-color=$THEME_COLOR_101, \
+        line-break-mode=tail-truncation, content-padding="0 10dp"
+#label_adcopy: width="1pw-20dp", height=20dp, position=absolute, y=40dp, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.1, text-color=$THEME_COLOR_100, \
+        line-break-mode=tail-truncation, content-padding="0 10dp"
 
-
-
-#label_title: text="${title}", width=1pw-(10dp+44dp), heigth=18dp, \
-        position=abs, gravity=left-top, x=10dp, y=0.5pw+8dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=$BLACK_COLOR, \
-        line-break-mode=tail-truncation
-
-#label_adcopy: text="${adcopy}", width=1pw-(10dp+44dp), heigth=20dp, \
-        position=abs, gravity=left-top, x=10dp, y=0.5pw+8dp+18dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.0, text-color=#606060, \
-        line-break-mode=tail-truncation
-
-#label_usage: text="${use-count}", type=decimal, format="#_명 사용 중입니다.", \
-        width=1pw-(10dp+44dp), heigth=12dp, \
-        position=abs, gravity=left-top, x=10dp, y=0.5pw+8dp+18dp+20dp+5dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=0.75, text-color=#888888
-
-#btn_menu: image="subview_btn_more.png", action=popup, display-unit="${id}", alternate-name=jam.menu, \
-        width=30dp, height=30dp, position=abs, gravity=right-top, x=2dp, y=0.5pw
-
-#btn_channel: display=none, label="이 채널의 더 많은 디앱 ▶", \
-        action=page, display-unit="${id}", alternate-name=channel, target=popup, \
-        has-own-title=yes, navibar-title="채널", \
-        height=24dp, position=abs, position=abs, gravity=right-bottom, x=-5dp, y=-10dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-font-size=0.9, \
-        label-color=$WHITE_COLOR, highlight-label-color=$LIGHT_COLOR, \
-        content-padding="0 10dp", content-background-color=$NAVY_COLOR, content-border-radius=12dp
+#btn_menu: image="subview_btn_more.png", width=44dp, height=44dp, \
+        position=absolute, gravity=right-top
+#btn_channel: display=none, position=absolute, gravity=bottom-right, x=-10dp, y=-10dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
+        content-padding="4dp 8dp", content-background-color=$THEME_COLOR_03, content-border-radius=5dp
 
 /cell: page-background-color=$THEME_COLOR_02
+/cell/meta: display=none
 
 if "${channel}" != ""
     #btn_channel: display=object

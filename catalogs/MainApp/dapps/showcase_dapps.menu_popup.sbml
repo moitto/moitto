@@ -1,4 +1,4 @@
-=begin popup
+=begin popup: action-when-touched=popup-close
 
 =begin menu
 
@@ -6,7 +6,9 @@
 ${title}
 =end title
 
-=object button: style=btn_link
+=object button: action=copy, media=text, text="${url}", post-action=popup-close, \
+            label="URL 복사하기", \
+            style=btn_link
 
 =end menu
 

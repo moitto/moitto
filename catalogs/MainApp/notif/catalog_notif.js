@@ -3,13 +3,11 @@ var users   = require("users");
 
 function on_loaded() {
     if (!account.is_logged_in()) {
-        __hide_loading_section();
         __show_login_section();
         
         return;
     }
 
-    __hide_loading_section();
     __show_notif_showcase();
 }
 
@@ -165,10 +163,4 @@ function __show_login_section() {
     var section = view.object("section.login");
 
     section.action("show");
-}
-
-function __hide_loading_section() {
-    var section = view.object("section.loading");
-
-    section.action("hide");
 }

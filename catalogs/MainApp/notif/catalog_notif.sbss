@@ -20,10 +20,3 @@ content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
 /catalog/login: display=none
 /catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1, \
 line-spacing=0.4em, paragraph-spacing=0.4em
-
-
--- 로딩 중 --
-
-#section_loading: width=1pw, height=1ph, position=abs, gravity=center
-
-/catalog/loading: display=none

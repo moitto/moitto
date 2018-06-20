@@ -21,12 +21,4 @@
 =end content
 =end login
 
-
-
-=begin loading: id=loading
-=begin content
-잠시 기다려 주세요~!
-=end content
-=end loading
-
 =end catalog

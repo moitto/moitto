@@ -1,4 +1,4 @@
-=begin catalog
+=begin catalog: script-when-loaded=on_loaded
 
 =object showcase: id=showcase.notif, alternate-name=notif, data-script=feed_notif, loads-more=yes, \
             sortable=yes, sortkey=id, sortorder=descending, \

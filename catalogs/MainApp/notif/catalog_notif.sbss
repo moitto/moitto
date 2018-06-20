@@ -6,7 +6,7 @@ import ~/themes.sbss
 #goB: font-family=$SANSSERIF_BOLD
 %content: display=block, position=absolute, gravity=center, text-align=center
 
-/catalog: script-when-loaded=on_loaded, page-background-color=$THEME_COLOR_02
+/catalog: page-background-color=$THEME_COLOR_02
 
 
 -- 로그인 전 --
@@ -14,9 +14,18 @@ import ~/themes.sbss
 #section_login: width=1pw, height=1ph, position=absolute, gravity=center, hidden=yes
 
 #btn_login: width=0.8pw, height=50dp, \
-label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
 
 /catalog/login: display=none
 /catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1, \
-line-spacing=0.4em, paragraph-spacing=0.4em
+            line-spacing=0.4em, paragraph-spacing=0.4em
+
+
+-- 로딩 중 --
+
+#section_loading: width=1pw, height=1ph, position=absolute, gravity=center
+
+/catalog/loading: display=none, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1, \
+            line-spacing=0.4em, paragraph-spacing=0.4em

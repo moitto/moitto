@@ -25,7 +25,7 @@ import ~/themes.sbss
 #btn_menu: image="subview_btn_more.png", action=popup, display-unit="${id}", alternate-name=jam.menu, \
         width=30dp, height=30dp, position=abs, gravity=right-top, x=2dp, y=0.5pw
 
-#btn_channel: display=none, label="이 채널의 더 많은 잼 ▶", \
+#btn_channel: display=none, label="이 채널의 더 많은 디앱 ▶", \
         action=page, display-unit="${id}", alternate-name=channel, target=popup, \
         has-own-title=yes, navibar-title="채널", \
         height=24dp, position=abs, position=abs, gravity=right-bottom, x=-5dp, y=-10dp, \

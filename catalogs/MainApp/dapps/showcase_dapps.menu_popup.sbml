@@ -1,15 +1,13 @@
-=begin popup: action-when-touched=popup-close
+=begin popup
 
-=begin menu
-
-=begin title
-${title}
-=end title
-
+=begin actions
+=object label: text="${title}", style=label_title
 =object button: action=copy, media=text, text="${url}", post-action=popup-close, \
             label="URL 복사하기", \
-            style=btn_link
+            style=btn_menu
+=object blank: style=blank_line
 
-=end menu
+=object button: action=popup-close, label="취소", style=btn_close
+=end actions
 
 =end popup

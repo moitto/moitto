@@ -19,6 +19,7 @@
 =object section: section=amount.box, style=section_amount.box
 =begin box: id=amount.box, form=amount.box
 =begin content
+=object label: id=label.curreny, text="SP", style=label_curreny
 =object textfield: id=amount, text="${subview.amount}", \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
                 keyboard-type=decimal, \

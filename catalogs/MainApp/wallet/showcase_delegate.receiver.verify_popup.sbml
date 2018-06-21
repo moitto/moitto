@@ -16,15 +16,6 @@
 =(object label: text="${to}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 
-=begin info: display=none
-=object label: text="STEEM ", style=label_steem.info.title
-=object label: text="${steem-balance}", style=label_steem.info
-=object label: text="STEEM POWER ", style=label_steem.info.title
-=object label: text="${steem-power}", style=label_steem.info
-=object label: text="STEEM DOLLAR ", style=label_steem.info.title
-=object label: text="${sbd-balance}", style=label_steem.info
-=end info
-
 =object button: script=delegate, label="@${to}님에게 임대하기", style=btn_delegate
 
 =object button: script=cancel, label="다른 계정 선택하기", style=btn_other

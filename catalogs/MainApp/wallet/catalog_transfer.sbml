@@ -20,6 +20,7 @@
 =object section: section=amount.box, style=section_amount.box
 =begin box: id=amount.box, form=amount.box
 =begin content
+=object label: id=label.curreny, text="SBD", style=label_curreny
 =object textfield: id=amount, text="${subview.amount}", \
                 script-when-editing@change=on_change_amount, \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
@@ -31,12 +32,10 @@
 
 
 =object label: id=label.amount.coin, style=label_amount.coin
-
 =end amount
 
 
 =object button: script=transfer, form=amount.box, label="송금하기", style=btn_submit
-
 =end transaction
 
 =end catalog

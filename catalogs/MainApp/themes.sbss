@@ -1,11 +1,11 @@
 -- font --
-$SANSSERIF_LIGHT = "KoPubDotumLight"
-$SANSSERIF_MEDIUM = "KoPubDotumMedium"
-$SANSSERIF_BOLD = "KoPubDotumBold"
-$SERIF_LIGHT = "KoPubBatangLight"
-$SERIF_MEDIUM = "KoPubBatangMedium"
-$SERIF_BOLD = "KoPubBatangBold"
-$EMOJI = "KoPubDotumMedium"
+$SANSSERIF_LIGHT = "KoPubDotum Light"
+$SANSSERIF_MEDIUM = "KoPubDotum Medium"
+$SANSSERIF_BOLD = "KoPubDotum Bold"
+$SERIF_LIGHT = "KoPubBatang Light"
+$SERIF_MEDIUM = "KoPubBatang Medium"
+$SERIF_BOLD = "KoPubBatang Bold"
+$EMOJI = "KoPubDotum Medium"
 
 -- background color --
 

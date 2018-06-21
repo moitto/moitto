@@ -1,9 +1,20 @@
 =begin popup
 
+=object section: section=dapps, style=section_dapps
+=begin dapps: id=dapps
+=begin kor
+더 많은
+=[dapps|디앱]=
+=end kor
+=begin eng
+dApps
+=end eng
+=end dapps
+
+=object button: action=page, display-unit=S_DAPPS, post-action=popup-close, style=btn_dapps
+
 =begin actions
-=object button: label="나의 디앱 편집하기", style=btn_menu
-=object blank: style=blank_line
-=object button: action=page, display-unit=S_DAPPS, post-action=popup-close, label="더 많은 디앱 보기", style=btn_menu
+=object button: label="내 디앱 편집하기", style=btn_menu
 =object blank: style=blank_line
 
 =object button: action=popup-close, label="취소", style=btn_close

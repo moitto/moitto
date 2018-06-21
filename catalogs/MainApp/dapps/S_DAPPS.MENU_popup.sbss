@@ -1,14 +1,29 @@
 import ~/themes.sbss
 
-#btn_menu: width="1pw-40dp", height=50dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+#section_dapps: width=140dp, height=140dp, \
+            position=absolute, gravity=top-right, x=-20dp, y=1sbh, \
             content-background-color=$THEME_COLOR_03
-#btn_close: width="1pw-40dp", height=50dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_00
-#red: label-color=$THEME_COLOR_102, content-background-color=$THEME_COLOR_04
-#blank_line: width="1pw-40dp", height=1dp
+#dapps: font-family=$SANSSERIF_BOLD, font-size=1.3em
+#btn_dapps: width=140dp, height=140dp, position=absolute, gravity=top-right, x=-20dp, y=1sbh
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+/popup/dapps: display=none
+/popup/dapps/kor: display=block, position=absolute, gravity=top-left, x=10dp, y=10dp, \
+                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2, \
+                paragraph-spacing=0.3em
+/popup/dapps/eng: display=block, position=absolute, gravity=bottom-left, \
+                font-family=$SANSSERIF_BOLD, text-color=$WHITE_COLOR_DIM, font-size=2.7
+
+
+-- 내 디앱 편집 --
+
+#btn_menu: width="1pw-40dp", height=50dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+#btn_close: width="1pw-40dp", height=50dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_00
+#blank_line: width="1pw-40dp", height=1dp
+
 /popup/actions: display=block, width="1pw-40dp", \
-                position=absolute, gravity=bottom, y=-(1eb+20dp)
+        position=absolute, gravity=bottom, y=-(1eb+20dp)

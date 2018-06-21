@@ -3,7 +3,7 @@ import ~/themes.sbss
 #img_banner: width=1ph, height=1ph, position=absolute, gravity=left, \
             scale-mode=fill, default-color=$THEME_COLOR_01
 #widget: width=1ph, height=1ph, position=absolute, gravity=left, \
-            content-background-color=$THEME_COLOR_02
+            content-background-color=$THEME_COLOR_01
 
 /cell: display=block, width=1pw, height=1ph, \
         border-color=$THEME_COLOR_01, border-width=1dp, page-background-color=$THEME_COLOR_00

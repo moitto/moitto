@@ -24,7 +24,6 @@ font-family=$SANSSERIF_MEDIUM, text-align=left, \
         font-size=0.7, text-color=$THEME_COLOR_101
 #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
         position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
-#label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_101, text-align=left
 
 /cell: display=block, width=1pw, height=1ph, \
         border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00

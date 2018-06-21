@@ -16,7 +16,7 @@ import ~/themes.sbss
         font-family=$SANSSERIF_BOLD, font-size=1.6, text-color=$THEME_COLOR_101, \
         line-break-mode=tail-truncation, content-padding="0 10dp"
 #label_adcopy: width="1pw-20dp", height=20dp, position=absolute, y=40dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1.1, text-color=$THEME_COLOR_100, \
+        font-family=$SANSSERIF_MEDIUM, font-size=1, text-color=$THEME_COLOR_100, \
         line-break-mode=tail-truncation, content-padding="0 10dp"
 
 #btn_menu: image="subview_btn_more.png", width=44dp, height=44dp, \

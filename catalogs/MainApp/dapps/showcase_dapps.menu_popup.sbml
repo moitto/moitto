@@ -1,7 +1,9 @@
 =begin popup
 
 =begin actions
-=object label: text="${title}", style=label_title
+=begin title
+${title}
+=end title
 =object button: action=copy, media=text, text="${url}", post-action=popup-close, \
             label="URL 복사하기", \
             style=btn_menu

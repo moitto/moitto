@@ -1,54 +1,20 @@
 import themes.sbss
 
-#section_content: section=content, position=absolute, gravity=center, autoresizing=flexible-margins
+#section_content: width=140dp, height=140dp, position=absolute, gravity=center, \
+                content-border-radius=70dp, content-background-color=$WHITE_COLOR_DEEP_DIM
+#aniamtion_loading: filename="~/subview_img_loading.black.png", frame-count=26, duration=1.6, \
+                width=80dp, height=80dp*0.634, position=absolute, gravity=top, y=27dp
+#label_message: width=80dp, height=15p, \
+                position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp", \
+                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=0.9
+#progress_main: width=80dp, height=2dp, position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp+15dp+8dp"
+#btn_cancel: image=throbber_btn_cancel.png, width=44dp, height=44dp, \
+                position=absolute, gravity=top-right
 
-#img_icon: filename=throbber_icon.png
-#label_message: type=message, font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$WHITE_COLOR
-#progress_main: type=progress
-#btn_cancel: action=cancel, image=throbber_btn_cancel.png, position=absolute, gravity=top-right
-
-/throbber/content: id=content, display=none
-/throbber/content/box: background-color=$BLACK_COLOR, display=block
-
-if $SCREEN_WIDTH > "5"
-    #section_content: width=169dp+8dp*2, height=143dp+10dp
-    #btn_cancel: width=38dp, height=38dp
-    #img_icon: width=78dp, height=78dp
-    #label_message: width=169dp, height=29dp, font-size=1.2
-    #progress_main: width=110dp, height=2dp, margin-top=3dp
-
-    /throbber/content/box: width=169dp, height=143dp, border-radius=10dp, margin-top=10dp
-
-    if $PROGRESS_MODE == "yes"
-        #img_icon: margin-top=10dp
-        #label_message: margin-top=-1dp
-    else
-        #img_icon: margin-top=12dp
-        #label_message: margin-top=4dp
-    end
-else
-    #section_content: width=118dp+6dp*2, height=98dp+8dp
-    #btn_cancel: width=31dp, height=31dp
-    #img_icon: width=44dp, height=44dp
-    #label_message: width=118dp, height=29dp, font-size=1.0
-    #progress_main: width=86dp, height=2dp, margin-top=3dp
-
-    /throbber/content/box: width=118dp, height=98dp, border-radius=10dp, margin-top=8dp
-
-    if $PROGRESS_MODE == "yes"
-        #img_icon: margin-top=10dp
-        #label_message: margin-top=-1dp
-    else
-        #img_icon: margin-top=12dp
-        #label_message: margin-top=4dp
-    end
-end
+/throbber/content: display=none
+/throbber/content/box: 
 
 if $PROGRESS_MODE != "yes"
     #btn_cancel: display=none
     #progress_main: display=none
-end
-
-if $APP != ""
-    /throbber: page-background-color=$WHITE_COLOR
 end

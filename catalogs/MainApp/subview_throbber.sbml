@@ -1,14 +1,12 @@
 =begin throbber
 
-=begin content
-=begin box
-=object image: style=img_icon
-=object label: style=label_message
-=object progress: style=progress_main
-=end box
-=object button: style=btn_cancel
-=end content
+=object section: section=content, autoresizing=flexible-margins, style=section_content
 
-=object section: style=section_content
+=begin content: id=content
+=object animation: style=aniamtion_loading
+=object label: type=message, style=label_message
+=object progress: type=progress, style=progress_main
+=object button: action=cancel, style=btn_cancel
+=end content
 
 =end throbber

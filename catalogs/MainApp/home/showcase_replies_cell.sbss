@@ -23,7 +23,7 @@ import ~/themes.sbss
 #image: min-width=10dp, min-height=10dp, max-width=100%, default-color=$THEME_COLOR_01, \
 scales-in-background=yes, text-decoration="", script-when-download=on_image_download
 #image.full: max-width=1pw
-#youtube: width="1pw-40dp", height=(1pw-40dp)*9/16
+#youtube: width=100%, height=(1pw-40dp)*9/16
 
 #link: text-decoration=underline-#6C6C6C-1
 #user: script=show_user, text-decoration=underline-#6C6C6C-1
@@ -39,21 +39,27 @@ scales-in-background=yes, text-decoration="", script-when-download=on_image_down
 #text-left: text-align=left
 #text-right: text-align=right
 
-%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1em 0 0 0"
-%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1em 0 0 0"
+%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1.5em 0 0 0"
+%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1.2em 0 0 0"
 %heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em, margin="1em 0 0 0"
-%heading-4: font-size=1.2em, margin="1em 0 0 0"
-%heading-5: font-size=1.1em, margin="1em 0 0 0"
-%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="1em 0 0 0"
+%heading-4: font-size=1.2em, margin="0.8em 0 0 0"
+%heading-5: font-size=1.1em, margin="0.8em 0 0 0"
+%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="0.8em 0 0 0"
 
 %list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
-%quote: border-color=$THEME_COLOR_03, border-width=1dp, border-style=dashed, padding=10dp
+%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="0 0 0 0.6em"
 %center: text-align=center
-#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em
-%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em, pack=yes
+#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em, pack=yes
+%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em
 
-/cell/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=0.95, \
-            line-spacing=0.3em, paragraph-spacing=0.3em, margin="50dp 10dp 10dp 10dp"
+/cell/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
+        line-spacing=0.3em, paragraph-spacing=0.3em, margin="50dp 10dp 10dp 10dp"
+
+if $SCREEN_WIDTH > "5"
+    /cell: font-size=1.1
+else
+    /cell: font-size=0.95
+end
 
 
 -- 보팅 & 대댓글 --

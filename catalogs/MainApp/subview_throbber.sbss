@@ -7,9 +7,9 @@ import themes.sbss
 #label_message: width=80dp, height=15p, \
                 position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp", \
                 font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=0.9
-#progress_main: width=80dp, height=2dp, position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp+15dp+8dp"
-#btn_cancel: image=throbber_btn_cancel.png, width=44dp, height=44dp, \
-                position=absolute, gravity=top-right
+#progress_main: width=80dp, height=2dp, position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp+15dp+6dp"
+#btn_cancel: width=44dp, height=30dp, position=absolute, gravity=bottom, \
+                label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, label-font-size=0.9
 
 /throbber/content: display=none
 /throbber/content/box: 

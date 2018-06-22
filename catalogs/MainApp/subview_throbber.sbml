@@ -6,7 +6,7 @@
 =object animation: style=aniamtion_loading
 =object label: type=message, style=label_message
 =object progress: type=progress, style=progress_main
-=object button: action=cancel, style=btn_cancel
+=object button: action=cancel, label="취소", style=btn_cancel
 =end content
 
 =end throbber

@@ -5,10 +5,10 @@ import ~/themes.sbss
                 sound-when-reloading="~/reloading.mp3", sound-when-reloaded="~/reloaded.mp3"
 
 if $SCREEN_WIDTH > "5"
-    if $ORIENTATION == "landscape"
-        #showcase_trend: column-count=2, cell-size="1pw/2, 120dp"
-    else
-        #showcase_trend: column-count=1, cell-size="1pw, 120dp"
+    if $ORIENTATION == "portrait"
+        #showcase_trend: column-count=1, cell-size="1pw, 300dp", cell-spacing=15dp
+    elif $ORIENTATION == "landscape"
+        #showcase_trend: column-count=1, cell-size="1pw, 300dp", cell-spacing=15dp
     end
 else
     #showcase_trend: column-count=1, cell-size="1pw, 300dp", cell-spacing=15dp

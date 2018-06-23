@@ -30,7 +30,7 @@ if $LAYOUT == "thumbnail"
                 text-color=$THEME_COLOR_102
     #img_reblogged: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
     #label_reblogged: height=15dp, font-family=$SANSSERIF_MEDIUM, \
-                text-color=$THEME_COLOR_102, text-align=left, font-size=0.9
+                text-color=$THEME_COLOR_102, text-align=left
     /cell: page-background-color=$THEME_COLOR_02
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em
@@ -40,6 +40,7 @@ if $LAYOUT == "thumbnail"
         #btn_meta: label-font-size=1
         #btn_author: label-font-size=1.2
         #label_date: font-size=1
+    #label_reblogged: font-size=1
         /cell/contents/title: font-size=2, padding="(1sbh+160dp) 80dp 20dp 80dp"
         /cell/contents/meta: padding="0 80dp"
     else
@@ -47,11 +48,12 @@ if $LAYOUT == "thumbnail"
         #btn_meta: label-font-size=0.9
         #btn_author: label-font-size=1.1
         #label_date: font-size=0.9
+        #label_reblogged: font-size=0.9
         /cell/contents/title: font-size=1.8, padding="(1sbh+120dp) 30dp 10dp 30dp"
         /cell/contents/meta: padding="0 30dp"
     end
 else
-    #img_cover: width=0.35ph, height=0.35ph, scales-in-background=yes, loading-duration=0.3, \
+    #img_cover: scales-in-background=yes, loading-duration=0.3, \
                 position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
     #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left
@@ -65,22 +67,25 @@ else
                 font-size=0.7, text-color=$THEME_COLOR_101
     #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
                 position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
-    #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, font-size=0.8, text-color=$THEME_COLOR_101, text-align=left
+    #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left
     /cell: display=block, width=1pw, height=1ph, \
             border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
-    /cell/contents/title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
-            line-spacing=0.2em, padding="10dp (0.35ph+20dp) 10dp 10dp"
+    /cell/contents/title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
     /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
                 position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
     if $SCREEN_SIZE > 5
+        #img_cover: width=0.6ph, height=0.6ph
         #label_meta: font-size=0.9
         #btn_meta: label-font-size=0.9
-        /cell/contents/title: font-size=1.4
+        #label_reblogged: font-size=0.9
+        /cell/contents/title: font-size=1.4, line-spacing=0.2em, padding="10dp (0.6ph+20dp) 10dp 10dp"
     else
+        #img_cover: width=0.35ph, height=0.35ph
         #label_meta: font-size=0.8
         #btn_meta: label-font-size=0.8
-        /cell/contents/title: font-size=1.2
+        #label_reblogged: font-size=0.8
+        /cell/contents/title: font-size=1.2, line-spacing=0.3em, padding="10dp (0.35ph+20dp) 10dp 10dp"
     end
 end
 

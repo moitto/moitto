@@ -1,7 +1,6 @@
 import ~/themes.sbss
 
-#label_title: width=1pw, height=44dp, \
-            position=absolute, gravity=bottom, \
+#label_title: width=1pw, height=44dp, position=absolute, gravity=bottom, \
             font-family=$SANSSERIF_MEDIUM, text-align=center
 #blank_line: width=1pw, height=1dp, position=absolute, gravity=bottom
 

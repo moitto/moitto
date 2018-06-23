@@ -16,7 +16,7 @@ import ~/themes.sbss
 #label_title: width=120dp, height=44dp, position=absolute, gravity=top, y=1sbh, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     #label_title: font-size=1.4
     #btn_reset: label-font-size=1
     #btn_skip: label-font-size=1
@@ -61,7 +61,7 @@ end
 /popup/board/content/message: margin-bottom=10dp
 /popup/board/content/number: display=none
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     /popup/board/content/message: font-size=1.1
 else
     /popup/board/content/message: font-size=1

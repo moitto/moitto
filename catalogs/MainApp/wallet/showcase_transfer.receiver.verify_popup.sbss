@@ -14,10 +14,10 @@ import ~/themes.sbss
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
 /popup/navibar: display=none
 
-if $SCREEN_SIZE > 5
-#label_title: font-size=1.4
+if $SCREEN_WIDTH > "5"
+    #label_title: font-size=1.4
 else
-#label_title: font-size=1.3
+    #label_title: font-size=1.3
 end
 
 

@@ -35,7 +35,7 @@ if $LAYOUT == "thumbnail"
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em
     /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=30dp, y=-40dp
-    if $SCREEN_SIZE > 5
+    if $SCREEN_WIDTH > "5"
         #label_meta: font-size=1
         #btn_meta: label-font-size=1
         #btn_author: label-font-size=1.2
@@ -74,18 +74,18 @@ else
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
     /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
                 position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
-    if $SCREEN_SIZE > 5
-        #img_cover: width=0.6ph, height=0.6ph
+    if $SCREEN_WIDTH > "5"
+        #img_cover: width=0.18pw, height=0.18pw
         #label_meta: font-size=0.9
         #btn_meta: label-font-size=0.9
         #label_reblogged: font-size=0.9
-        /cell/contents/title: font-size=1.4, line-spacing=0.2em, padding="10dp (0.6ph+20dp) 10dp 10dp"
+        /cell/contents/title: font-size=1.4, line-spacing=0.2em, padding="10dp (0.18pw+20dp) 10dp 10dp"
     else
-        #img_cover: width=0.35ph, height=0.35ph
+        #img_cover: width=0.2pw, height=0.2pw
         #label_meta: font-size=0.8
         #btn_meta: label-font-size=0.8
         #label_reblogged: font-size=0.8
-        /cell/contents/title: font-size=1.2, line-spacing=0.3em, padding="10dp (0.35ph+20dp) 10dp 10dp"
+        /cell/contents/title: font-size=1.2, line-spacing=0.3em, padding="10dp (0.2pw+20dp) 10dp 10dp"
     end
 end
 

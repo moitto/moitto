@@ -6,7 +6,7 @@ import showcase_trend_cell.sbss
 
 /cell/contents/title: padding=15dp, margin=0, background-color=$BLACK_COLOR_DIM
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"
         #img_cover: width=1.5pw
     elif $ORIENTATION == "landscape"

@@ -9,9 +9,9 @@ import ~/themes.sbss
 
 /navibar: page-background-color=$THEME_COLOR_00
 
-if $SCREEN_SIZE > 5
-#label_title: font-size=1.4
+if $SCREEN_WIDTH > "5"
+    #label_title: font-size=1.4
 else
-#label_title: font-size=1.3
+    #label_title: font-size=1.3
 end
 

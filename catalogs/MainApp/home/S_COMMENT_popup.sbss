@@ -16,7 +16,7 @@ import ~/themes.sbss
 /popup: page-background-color=$THEME_COLOR_02
 /popup/navibar: display=none
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     #label_title: font-size=1.4
 else
     #label_title: font-size=1.3

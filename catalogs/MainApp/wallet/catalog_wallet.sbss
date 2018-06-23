@@ -24,7 +24,7 @@ import ~/themes.sbss
 /catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.4em, paragraph-spacing=0.4em
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     /catalog/login/content/notice: font-size=1.1
 else
     /catalog/login/content/notice: font-size=1

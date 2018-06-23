@@ -1,4 +1,9 @@
 import showcase_blog_cell.sbss
 
-/cell/contents/title: font-size=1.3, padding=10dp
+/cell/contents/title: padding=10dp
 
+if $SCREEN_WIDTH > "5"
+    /cell/contents/title: font-size=1.6
+else
+    /cell/contents/title: font-size=1.4
+end

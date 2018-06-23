@@ -12,8 +12,8 @@
                 invalid-when-empty=yes, message-when-empty="태그를 입력하세요.", \
                 style=textfield_tag
 =object input: id=tag, value=#{textfield.tag}, style=input_tag
-=object button: style=btn_clear
-=object button: action=popup-close, style=btn_close
+=object button: action=clear, target=object, object=textfield.tag, style=btn_clear
+=object button: action=popup-close, label="취소", style=btn_close
 =object blank: style=blank_line
 =end query.bar
 

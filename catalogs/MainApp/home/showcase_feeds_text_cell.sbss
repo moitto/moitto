@@ -10,7 +10,7 @@ if $LAYOUT == "thumbnail"
                 text-color=${background.text-color}, \
                 padding="10dp 20dp 120dp 10dp", background-color=$BLACK_COLOR_DIM
     /cell/contents/meta: margin="-25dp 0 0 0"
-    if $SCREEN_SIZE > 5
+    if $SCREEN_WIDTH > "5"
         /cell/contents/title: width="1pw-160dp", margin="(1sbh+160dp) 0 0 0"
         /cell/contents/meta: padding="0 90dp"
     else
@@ -21,7 +21,7 @@ else
     #img_cover: display=none
     #blank_dim: display=none
     /cell/contents/title: padding=10dp
-    if $SCREEN_SIZE > 5
+    if $SCREEN_WIDTH > "5"
         /cell/contents/title: font-size=1.6
     else
         /cell/contents/title: font-size=1.4

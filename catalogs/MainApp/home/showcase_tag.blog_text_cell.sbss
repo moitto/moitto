@@ -1,4 +1,1 @@
-import showcase_blog_cell.sbss
-
-/cell/contents/title: font-size=1.3, padding=10dp
-
+import showcase_blog_text_cell.sbss

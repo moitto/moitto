@@ -6,7 +6,7 @@ import ~/themes.sbss
 #label_title: height=44dp, position=absolute, gravity=top, y=1sbh, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     #label_title: font-size=1.4
 else
     #label_title: font-size=1.3

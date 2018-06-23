@@ -35,7 +35,7 @@ import ~/themes.sbss
                     margin=15dp
 /cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-15dp, padding="0 15dp"
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     /cell/contents/title: font-size=1.6
 else
     /cell/contents/title: font-size=1.5

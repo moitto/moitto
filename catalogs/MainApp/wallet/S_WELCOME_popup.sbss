@@ -17,7 +17,7 @@ import ~/themes.sbss
 /popup/moitto: font-style=italic, font-family="Times New Roman, KoPubBatang Medium", \
             text-color=$THEME_COLOR_100, text-align=center
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     /popup/user: font-size=2
     /popup/moitto: font-size=1.2
 else

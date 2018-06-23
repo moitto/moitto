@@ -8,7 +8,7 @@ import ~/themes.sbss
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=1, \
             line-spacing=0.4em, paragraph-spacing=0.4em
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     #aniamtion_loading: y=-250dp
 else
     #aniamtion_loading: y=-0.6pw

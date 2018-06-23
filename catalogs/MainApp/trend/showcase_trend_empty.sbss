@@ -4,7 +4,7 @@ import ~/themes.sbss
                 filename="~/subview_img_loading.black.png", frame-count=26, duration=1.6, \
                 position=absolute, gravity=bottom
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     #aniamtion_loading: y=-250dp
 else
     #aniamtion_loading: y=-0.6pw

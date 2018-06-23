@@ -9,7 +9,7 @@ if $LAYOUT == "thumbnail"
     #blank_dim.list: display=none
     #img_play.thumb: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
             position=absolute, gravity=top-right
-    if $SCREEN_SIZE > 5
+    if $SCREEN_WIDTH > "5"
         /cell/contents/title: padding="10dp 80dp"
         if $ORIENTATION == "portrait"
             #img_preview.thumb: width="1pw-160dp", height="(1pw-160dp)*0.5625", margin="(1sbh+140dp) 0 10dp 0"

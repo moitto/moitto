@@ -1,22 +1,5 @@
 import ~/themes.sbss
 
-#showcase_feeds: width=1pw, position=absolute, column-count=1, preload-count=1
-#goB: font-family=$SANSSERIF_BOLD
-
-/catalog: page-background-color=$THEME_COLOR_02
-
-if $LAYOUT == "thumbnail"
-    #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph"
-else
-    #showcase_feeds: height="1ph-1sbh-44dp", content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp"
-    if $SCREEN_SIZE > 5
-        #showcase_feeds: cell-size="(1pw-20dp), 220dp"
-    else
-        #showcase_feeds: cell-size="(1pw-20dp), 190dp"
-    end
-end
-
-
 -- 내비바 --
 
 #img_logo: height=44dp, position=absolute, gravity=top, y=1sbh
@@ -30,7 +13,26 @@ else
     #img_logo: filename="~/subview_img_logo.black.png"
     #btn_layout: image="~/subview_btn_thumbnail.png", action=layout, layout=thumbnail
     #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
-            position=absolute, gravity=top, y="1sbh+44dp"
+                position=absolute, gravity=top, y="1sbh+44dp"
+end
+
+
+-- showcase --
+
+#showcase_feeds: width=1pw, position=absolute, column-count=1, preload-count=1
+#goB: font-family=$SANSSERIF_BOLD
+
+/catalog: page-background-color=$THEME_COLOR_02
+
+if $LAYOUT == "thumbnail"
+    #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph"
+else
+    #showcase_feeds: height="1ph-1sbh-44dp", content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp"
+    if $SCREEN_WIDTH > "5"
+        #showcase_feeds: cell-size="(1pw-20dp), 220dp"
+    else
+        #showcase_feeds: cell-size="(1pw-20dp), 190dp"
+    end
 end
 
 
@@ -47,7 +49,7 @@ end
 /catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.4em, paragraph-spacing=0.4em
 
-if $SCREEN_SIZE > 5
+if $SCREEN_WIDTH > "5"
     /catalog/login/content/notice: font-size=1.1
 else
     /catalog/login/content/notice: font-size=1

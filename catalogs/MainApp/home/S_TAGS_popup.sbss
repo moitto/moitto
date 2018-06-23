@@ -5,27 +5,31 @@ import ~/themes.sbss
 
 -- 태그 입력창 --
 
-#section_query.bar: width=1pw, height="1sbh+70dp", content-background-color=$THEME_COLOR_00
-#blank_query.bar: width="1pw-10dp-44dp", height=50dp, \
-            content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
-            content-background-color=$THEME_COLOR_02, \
-            align=left, margin="(1sbh+10dp) 0 0 10dp"
-#textfield_tag: width="1pw-30dp-44dp", height=50dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
-            align=left, padding="0 10dp", margin="-50dp 0 0 10dp"
-#btn_clear: image="~/textfield_btn_clear.png", action=clear, target=object, object=textfield.tag, \
-        width=44dp, height=44dp, position=abs, gravity=right-top, x=-(5dp+44dp), y=20dp+6dp
-#btn_close: image="~/subview_btn_close.png", \
-            width=44dp, height=44dp, position=absolute, gravity=right-top, y="1sbh+13dp"
+#section_query.bar: width=1pw, height="1sbh+44dp", content-background-color=$THEME_COLOR_00
+#blank_query.bar: width="1pw-10dp-50dp", height=44dp, \
+            align=left, margin="(1sbh+2dp) 0 0 10dp"
+#textfield_tag: width="1pw-30dp-50dp", height=44dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, font-size=1.3, \
+            align=left, padding="0 10dp", margin="-44dp 0 0 10dp"
+#btn_clear: image="~/subview_btn_blank_cancel.png", \
+        width=34dp, height=34dp, position=absolute, gravity=right-bottom, x=-(5dp+50dp), y=-5dp
+#btn_close: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
+            width=50dp, height=44dp, position=absolute, gravity=right-bottom
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
 /popup/query.bar: display=none
+
+if $SCREEN_WIDTH > "5"
+    #btn_close: label-font-size=1.3
+else
+    #btn_close: label-font-size=1.2
+end
 
 
 -- 검색 히스토리 --
 
-#showcase_history: width=1pw, height="1ph-(1sbh+70dp)", max-height="40dp*7+5dp*6+20+40dp", \
+#showcase_history: width=1pw, height="1ph-(1sbh+44dp)", max-height="40dp*7+5dp*6+20+40dp", \
             column-count=1, cell-size="(1pw-20dp), 40dp", cell-spacing=5dp, content-margin="0 10dp 10dp 10dp", \
-            position=absolute, gravity=top, y="1sbh+70dp+10dp", \
+            position=absolute, gravity=top, y="1sbh+44dp+10dp", \
             selected-color=$LIGHT_COLOR_DIM, toolbar-height=40dp
 /popup/suggestion: display=none
 

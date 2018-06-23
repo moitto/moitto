@@ -6,13 +6,24 @@ import showcase_feeds_cell.sbss
 
 if $LAYOUT == "thumbnail"
     #blank_dim: width=1pw, height=1ph, position=absolute, color=$BLACK_COLOR_LIGHT_DIM
-    /cell/contents/title: display=block, width="1pw-60dp", \
+    /cell/contents/title: display=block, \
                 text-color=${background.text-color}, \
-                padding="10dp 20dp 120dp 10dp", margin="(1sbh+120dp) 0 0 0", \
-                background-color=$BLACK_COLOR_DIM
-    /cell/contents/meta: padding="0 40dp", margin="-25dp 0 0 0"
+                padding="10dp 20dp 120dp 10dp", background-color=$BLACK_COLOR_DIM
+    /cell/contents/meta: margin="-25dp 0 0 0"
+    if $SCREEN_SIZE > 5
+        /cell/contents/title: width="1pw-160dp", margin="(1sbh+160dp) 0 0 0"
+        /cell/contents/meta: padding="0 90dp"
+    else
+        /cell/contents/title: width="1pw-60dp", margin="(1sbh+120dp) 0 0 0"
+        /cell/contents/meta: padding="0 40dp"
+    end
 else
     #img_cover: display=none
     #blank_dim: display=none
-    /cell/contents/title: font-size=1.4, padding=10dp
+    /cell/contents/title: padding=10dp
+    if $SCREEN_SIZE > 5
+        /cell/contents/title: font-size=1.6
+    else
+        /cell/contents/title: font-size=1.4
     end
+end

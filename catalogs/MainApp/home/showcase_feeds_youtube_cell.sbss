@@ -4,14 +4,25 @@ import showcase_feeds_cell.sbss
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #img_preview.thumb: width="1pw-60dp", height="(1pw-60dp)*0.5625", loading-duration=0.3, \
-            scale-mode=fill, content-gravity=center, default-color=$BLACK_COLOR_DIM, \
-            margin="(1sbh+80dp) 0 10dp 0"
+    #img_preview.thumb: loading-duration=0.3, scale-mode=fill, content-gravity=center, default-color=$BLACK_COLOR_DIM
     #img_preview.list: display=none
     #blank_dim.list: display=none
     #img_play.thumb: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
-            position=absolute, gravity=top-right, x=-40dp, y="(1sbh+80dp)+(1pw-60dp)*0.5625-40dp"
-    /cell/contents/title: padding="10dp 30dp"
+            position=absolute, gravity=top-right
+    if $SCREEN_SIZE > 5
+        /cell/contents/title: padding="10dp 80dp"
+        if $ORIENTATION == "portrait"
+            #img_preview.thumb: width="1pw-160dp", height="(1pw-160dp)*0.5625", margin="(1sbh+140dp) 0 10dp 0"
+            #img_play.thumb: x=-90dp, y="(1sbh+140dp)+(1pw-160dp)*0.5625-40dp"
+        elif $ORIENTATION == "landscape"
+            #img_preview.thumb: width=0.4pw, height="0.4pw*0.5625", align=left, margin="(1sbh+140dp) 0 10dp 80dp"
+            #img_play.thumb: x=-(0.6pw-80dp+10dp), y="(1sbh+140dp)+0.4pw*0.5625-40dp"
+        end
+    else
+        #img_preview.thumb: width="1pw-60dp", height="(1pw-60dp)*0.5625", margin="(1sbh+80dp) 0 10dp 0"
+        #img_play.thumb: x=-40dp, y="(1sbh+80dp)+(1pw-60dp)*0.5625-40dp"
+        /cell/contents/title: padding="10dp 30dp"
+    end
 else
     #img_cover: display=none
     #img_preview.thumb: display=none

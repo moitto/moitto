@@ -3,7 +3,6 @@ import ~/themes.sbss
 #blank_frame: width=0.8pw, height=50dp, \
             content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
             content-background-color=$THEME_COLOR_00
-
 #textfield: width="0.8pw-20dp", height=50dp, \
         font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
         margin="-50dp 0 10dp 0"
@@ -11,7 +10,6 @@ import ~/themes.sbss
 #textfield_password: style=textfield
 
 #btn_paste: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9, margin="0 0 50dp 0"
-
 #btn_login: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03

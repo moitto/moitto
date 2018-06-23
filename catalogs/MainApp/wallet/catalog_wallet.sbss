@@ -13,15 +13,22 @@ import ~/themes.sbss
 
 -- 로그인 전 --
 
-#section_login: width=1pw, height=1ph, position=absolute, gravity=center, hidden=yes
-
+#section_login: hidden=yes, width=1pw, height=1ph, position=absolute, gravity=top, \
+            content-background-color=$THEME_COLOR_02
 #btn_login: width=0.8pw, height=50dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
 
+%content: display=block, position=absolute, gravity=center, text-align=center
 /catalog/login: display=none
-/catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1, \
-        line-spacing=0.4em, paragraph-spacing=0.4em
+/catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
+            line-spacing=0.4em, paragraph-spacing=0.4em
+
+if $SCREEN_SIZE > 5
+    /catalog/login/content/notice: font-size=1.1
+else
+    /catalog/login/content/notice: font-size=1
+end
 
 
 -- 로딩 중 --

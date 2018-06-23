@@ -22,12 +22,20 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-#btn_close: width=50dp, height=50dp, position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb), \
+#btn_close: width=50dp, height=50dp, position=absolute, gravity=right-bottom, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
             content-background-color=$THEME_COLOR_00, content-border-radius=25dp
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
-/popup/actions: display=block, position=absolute, gravity=bottom, y=-(90dp+1eb), text-align=center
+/popup/actions: display=block, position=absolute, gravity=bottom, text-align=center
+
+if $SCREEN_WIDTH > "5"
+    #btn_close: x=-40dp, y=-(40dp+1eb)
+    /popup/actions: y=-(110dp+1eb)
+else
+    #btn_close: x=-20dp, y=-(20dp+1eb)
+    /popup/actions: y=-(90dp+1eb)
+end
 
 
 -- question --

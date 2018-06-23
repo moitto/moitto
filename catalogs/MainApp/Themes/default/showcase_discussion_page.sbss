@@ -5,10 +5,10 @@ import ~/themes.sbss
 
 -- header --
 
-#img_header: width=1pw, height=0.8pw, position=absolute, gravity=top, \
+#img_header: width=1pw, position=absolute, gravity=top, \
             loading-duration=0.3, scale-mode=fill, visual-effect=blur-dark
-#section_header: width=1pw, height=0.8pw
-#btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
+#section_header: width=1pw
+#btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, \
         content-background-color=$WHITE_COLOR_DEEP_DIM, content-padding="0 3dp", content-border-radius=2dp
 #btn_tag.1: style=btn_tag
 #btn_tag.2: style=btn_tag
@@ -16,23 +16,43 @@ import ~/themes.sbss
 #btn_tag.4: style=btn_tag
 #btn_tag.5: style=btn_tag
 
-#label_meta: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9
-#btn_meta: height=20dp, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left, label-font-size=0.9
+#label_meta: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102
+#btn_meta: height=20dp, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left
 
-#label_author: height=20dp, text-color=$THEME_COLOR_102, font-size=1, \
+#label_author: height=20dp, text-color=$THEME_COLOR_102, \
         font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
-#btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=1
+#btn_author: height=20dp, label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102
 #label_date: height=20dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=0.9, \
         text-align=right, align=right, margin="-20dp 0 0 0"
 
 #goB: label-font-family=$SANSSERIF_BOLD
 
 /page/header: display=none, padding=20dp
-/page/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.6, \
+/page/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
         text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
-/page/header/tags: display=block, position=absolute, gravity=bottom, y=-66dp, text-align=left, \
-        line-spacing=0.1em, paragraph-spacing=0.1em
-/page/header/meta: display=block, height=60dp, position=absolute, gravity=bottom, paragraph-spacing=0
+/page/header/tags: display=block, position=absolute, gravity=bottom, y=-66dp, \
+        text-align=left, line-spacing=0.1em, paragraph-spacing=0.1em
+/page/header/meta: display=block, position=absolute, gravity=bottom, height=60dp, paragraph-spacing=0
+
+if $SCREEN_WIDTH > "5"
+    #img_header: height=350dp
+    #section_header: height=350dp
+    #btn_tag: label-font-size=1.1
+    #label_meta: font-size=1
+    #btn_meta: label-font-size=1
+    #label_author: font-size=1.1
+    #btn_author: label-font-size=1.1
+    /page/header/title: font-size=2
+else
+    #img_header: height=0.8pw
+    #section_header: height=0.8pw
+    #btn_tag: label-font-size=1
+    #label_meta: font-size=0.9
+    #btn_meta: label-font-size=0.9
+    #label_author: font-size=1
+    #btn_author: label-font-size=1
+    /page/header/title: font-size=1.6
+end
 
 
 -- body --
@@ -70,25 +90,34 @@ import ~/themes.sbss
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em
 
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
-            line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0, \
-            margin="20dp 20dp (90dp+1eb) 20dp"
+            line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1.3
+    /page/body: margin="40dp 40dp (110dp+1eb) 40dp"
 else
     /page: font-size=1.2
+    /page/body: margin="20dp 20dp (90dp+1eb) 20dp"
 end
 
 
 -- 댓글 & 보팅 --
 
-#btn_replies: width=0.9pw, height=50dp, \
+#btn_replies: height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"
-
 #btn_vote: width=50dp, height=50dp, topmost=yes, \
         image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
-        position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
+        position=absolute, gravity=right-bottom
+
+if $SCREEN_WIDTH > "5"
+    #btn_replies: width="1pw-80dp"
+    #btn_vote: x=-40dp, y=-(40dp+1eb)
+else
+    #btn_replies: width="1pw-40dp"
+    #btn_vote: x=-20dp, y=-(20dp+1eb)
+end
+
 
 if "${voted}" == "yes"
     #btn_vote: selected=yes, alternate-name="discussion.unvote"

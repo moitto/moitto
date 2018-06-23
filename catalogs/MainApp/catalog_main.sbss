@@ -7,7 +7,14 @@ import themes.sbss
         content-background-color=$THEME_COLOR_00
 
 #blank_notif.badge: width=6dp, height=6dp, color=$THEME_COLOR_03, content-border-radius=3dp, \
-        position=absolute, gravity=bottom, x=10dp, y=-(35dp+1eb)
+        position=absolute, gravity=bottom, y=-(35dp+1eb)
 
 /catalog: page-background-color=$THEME_COLOR_00, \
 		script-when-loaded=on_loaded, script-when-foreground=on_foreground
+
+if $SCREEN_WIDTH > "5"
+    #blank_notif.badge: x=-5dp
+else
+    #blank_notif.badge: x=10dp
+end
+

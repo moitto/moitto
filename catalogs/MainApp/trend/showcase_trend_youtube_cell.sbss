@@ -1,7 +1,17 @@
 import showcase_trend_cell.sbss
 
-#img_main: width=1.2pw, scales-in-background=yes, loading-duration=0.3
+#img_cover: scales-in-background=yes, loading-duration=0.3
 #img_play: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
             position=absolute, gravity=bottom-right, x=-10dp, y=-65dp
 
 /cell/contents/title: padding=15dp, margin=0, background-color=$BLACK_COLOR_DIM
+
+if $SCREEN_SIZE > 5
+    if $ORIENTATION == "portrait"
+        #img_cover: width=1.5pw
+    elif $ORIENTATION == "landscape"
+        #img_cover: width=1.15pw
+    end
+else
+    #img_cover: width=1.2pw
+end

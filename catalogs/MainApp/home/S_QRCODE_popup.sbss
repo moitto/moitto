@@ -9,7 +9,7 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
             content-background-color=$THEME_COLOR_00, content-border-radius=25dp
 
-/popup: script-when-loaded=on_loaded, page-background-color=$BLACK_COLOR
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"

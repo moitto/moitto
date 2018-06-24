@@ -1,5 +1,10 @@
 =begin popup
 
+=begin navibar
+=object label: text="팔로우 미 QR코드", style=label_title
+=end navibar
+
+
 =object image: type=qrcode, text="https://moitto.io/connect/follow/?following=${username}", \
             style=img_qrcode
 

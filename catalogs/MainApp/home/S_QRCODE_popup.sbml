@@ -1,6 +1,6 @@
-=begin popup
+=begin popup: script-when-loaded=on_loaded
 
-=object camera: metadata-enabled=yes, qrcode-enabled=yes, \
+=object blank: metadata-enabled=yes, qrcode-enabled=yes, \
             focus-closely=yes, continuous-autofocus=yes, \
             script-when-output@metadata=on_qrcode, style=camera_qr
 =object image: style=img_qr
@@ -8,8 +8,8 @@
 
 
 =begin my.qr
-=object label: text="나의 QR코드", style=label_title.qr
-=(object button: script=show_transfer_qrcode, label="계좌", style=btn_transfer.qr)==(object blank: style=blank_margin)==(object button: script=show_follow_qrcode, label="팔로우 미", style=btn_follow.qr)=
+=object label: text="내 QR코드", style=label_title.qr
+=(object button: script=show_transfer_qrcode, label="송금 계좌", style=btn_transfer.qr)==(object blank: style=blank_margin)==(object button: script=show_follow_qrcode, label="팔로우 미", style=btn_follow.qr)=
 =end my.qr
 
 

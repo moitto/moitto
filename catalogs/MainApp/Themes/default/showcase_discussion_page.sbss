@@ -84,7 +84,7 @@ end
 %heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="0.8em 0 0 0"
 
 %list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
-%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="0 0 0 0.6em"
+%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="0 0 0 0.4em"
 %center: text-align=center
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em, pack=yes
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.3em

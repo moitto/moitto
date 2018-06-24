@@ -2,6 +2,6 @@
 
 =object button: action=subview, subview=V_SETTINGS, target=popup, style=btn_settings
 
-=object button: action=popup, display-unit=S_QRCODE, style=btn_qr
+=object button: script=qrcode, style=btn_qr
 
 =end navibar

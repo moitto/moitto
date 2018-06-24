@@ -9,7 +9,7 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
             content-background-color=$THEME_COLOR_00, content-border-radius=25dp
 
-/popup: page-background-color=$BLACK_COLOR
+/popup: script-when-loaded=on_loaded, page-background-color=$BLACK_COLOR
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"
@@ -38,6 +38,10 @@ end
 #blank_margin: width=20dp, height=50dp
 
 /popup/my.qr: display=block, position=absolute, gravity=top, text-align=center
+
+if "${logged-in}" != "yes"
+    /popup/my.qr: display=none
+end
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"

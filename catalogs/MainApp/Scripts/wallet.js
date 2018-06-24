@@ -47,6 +47,7 @@ Wallet.get_coin_price = function(currency, coin, handler) {
 
 Wallet.__register_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"암호 설정",
         "message":"송금, 임대 등에 사용할 암호를 설정하세요.",
         "status":"normal",
         "close-disabled":"yes",
@@ -60,6 +61,7 @@ Wallet.__register_pin = function() {
 
 Wallet.__confirm_transfer = function(to, amount) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"암호 입력",
         "message":"암호를 입력하면 =[amount|" + amount + "]=를 송금합니다.",
         "status":"normal",
         "script":"Wallet.__on_receive_pin"
@@ -70,6 +72,7 @@ Wallet.__confirm_transfer = function(to, amount) {
 
 Wallet.__verify_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"암호 설정",
         "message":"암호를 다시 한번 입력하세요.", 
         "status":"normal",
         "close-disabled":"yes",
@@ -122,6 +125,7 @@ Wallet.__on_receive_pin_again = function() {
         Wallet.__transaction = null;
     } else {
         controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+            "title":"암호 설정",
             "message":"암호가 일치하지 않습니다.\\n송금, 임대 등에 사용할 암호를 입력하세요.", 
             "status":"error",
             "close-disabled":"yes",
@@ -136,6 +140,7 @@ Wallet.__on_receive_pin_again = function() {
 
 Wallet.__retry_confirm_transfer = function(wrong_count) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"암호 입력",
         "message":"암호가 올바르지 않습니다. 다시 한번 암호를 입력하세요.\\n(현재 " + wrong_count + "회 틀림/" + Wallet.__max_wrong_count  + "회 연속 틀릴 시 사용 중지)", 
         "status":"error",
         "script":"Wallet.__on_receive_pin"
@@ -147,10 +152,10 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
 
 Wallet.__reset_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
-        "message":Wallet.max_wrong_count + "회 연속 암호를 틀려서 사용 중지된 상태입니다. 다시 사용하시려면 스팀 비밀번호를 입력하여 암호를 재설정해주세요.", 
+        "message":Wallet.max_wrong_count + "회 연속 암호를 틀려서 사용 중지된 상태입니다. 다시 사용하시려면 스팀 비밀번호나 액티브 키를 입력하여 암호를 재설정해주세요.", 
         "script":"Wallet.__on_reset_pin"
     });
- 
+
     controller.action("popup", { "display-unit":"S_RESET_PIN" });
 }
 

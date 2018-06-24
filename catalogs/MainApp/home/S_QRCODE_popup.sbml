@@ -9,7 +9,7 @@
 
 =begin my.qr
 =object label: text="나의 QR코드", style=label_title.qr
-=(object button: label="계좌", style=btn_transfer.qr)==(object blank: style=blank_margin)==(object button: label="팔로우 미", style=btn_follow.qr)=
+=(object button: script=show_transfer_qrcode, label="계좌", style=btn_transfer.qr)==(object blank: style=blank_margin)==(object button: script=show_follow_qrcode, label="팔로우 미", style=btn_follow.qr)=
 =end my.qr
 
 

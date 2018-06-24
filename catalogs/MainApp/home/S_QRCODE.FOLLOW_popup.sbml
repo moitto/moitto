@@ -1,0 +1,8 @@
+=begin popup
+
+=object image: type=qrcode, text="https://moitto.io/connect/follow/?following=${username}", \
+            style=img_qrcode
+
+=object button: action=popup-close, label="×", style=btn_close
+
+=end popup

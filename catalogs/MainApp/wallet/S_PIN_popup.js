@@ -24,7 +24,7 @@ function press_text(form) {
         __input_numbers.push(form["label"]);
 
         document.value("WALLET.PIN", __input_numbers.join(""));
-       __update_number_labels();
+        __update_number_labels();
 
         timeout(0.1, function() {
             host.action("script", { "script":$data["script"] });

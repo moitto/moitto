@@ -3,6 +3,7 @@ include("./sjcl/convenience.js");
 include("./sjcl/bitArray.js");
 include("./sjcl/codecString.js");
 include("./sjcl/codecBytes.js");
+include("./sjcl/codecBase64.js");
 include("./sjcl/codecBase58.js");
 include("./sjcl/codecBase58Check.js");
 include("./sjcl/codecBytes.js");
@@ -10,15 +11,30 @@ include("./sjcl/codecHex.js");
 include("./sjcl/sha256.js");
 include("./sjcl/ripemd160.js");
 include("./sjcl/aes.js");
+include("./sjcl/ccm.js");
 include("./sjcl/random.js");
 include("./sjcl/bn.js");
 include("./sjcl/ecc.js");
+include("./sjcl/pbkdf2.js");
+include("./sjcl/scrypt.js");
+include("./sjcl/hmac.js");
 
 Crypto = (function() {
     sjcl.random.addEntropy(random(1024));
 
     return {};
 })();
+
+Crypto.__encrypt_params = {
+    "iv":"tjp81jkAzUpW1bI9gLDDpg==", // iv Base64 encoded
+    "v":1,                           // version
+    "iter":1000,                     // iteration count
+    "ks":128,                        // key size in bits
+    "ts":64,                         // authentication strength
+    "mode":"ccm",                    // mode
+    "cipher":"aes",                  // cipher
+    "salt":"lx06UoJDNys=",           // key derivation salt
+}
 
 Crypto.sha256 = {
     hash : function(data) {
@@ -70,15 +86,11 @@ Crypto.base58.check = {
 };
 
 Crypto.encrypt = function(password, plaintext) {
-    return sjcl.encrypt(password, plaintext, {
-
-    });
+    return sjcl.encrypt(password, plaintext, Crypto.__encrypt_params);
 }
 
 Crypto.decrypt = function(password, ciphertext) {
-    return sjcl.encrypt(password, ciphertext, {
-        
-    });
+    return sjcl.encrypt(password, ciphertext, Crypto.__encrypt_params);
 }
 
 Crypto.number_from_bits = function(bits) {

@@ -13,9 +13,9 @@ Account.login = function(username, password, handler) {
     Account.steem.api.get_accounts([ username ]).then(function(response) {
         var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
-        var owner_key = response[0] ? response[0]["owner"]["key_auths"][0][0] : "";
+        var owner_pubkey = response[0] ? response[0]["owner"]["key_auths"][0][0] : "";
 
-        if (keys["owner"].pub !== owner_key) {
+        if (keys["owner"].pub !== owner_pubkey) {
             handler();
 
             return;
@@ -31,13 +31,14 @@ Account.login = function(username, password, handler) {
                 var key = keys[role].priv;
 
                 if ([ "active" ].includes(role)) {
-                    //key = Account.crypto.encrypt(pin, key);
+                    key = Account.crypto.encrypt(pin, key);
                 }
 
                 keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
             });
 
-            keychain.password("KEYS_OWNER.PUB" + "@" + username, owner_key);
+            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, Account.crypto.encrypt(pin, owner_pubkey));
+            keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
         });
     });
 }
@@ -234,11 +235,12 @@ Account.claim_rewards = function(handler) {
     });
 }
 
-Account.verify_pubkey = function(pubkey, pin) {
-    var saved_pubkey = keychain.password("KEYS_OWNER.PUB" + "@" + Account.username);
+Account.verify_pin = function(pin) {
+    var owner_pubkey = keychain.password("OWNER_PUBKEY" + "@" + Account.username);
+    var encrypted_owner_pubkey = keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + Account.username);
 
-    if (saved_pubkey === pubkey) {
-        //return true;
+    if (Account.crypto.encrypt(pin, owner_pubkey) === encrypted_owner_pubkey) {
+        return true;
     }
 
     return false;
@@ -248,7 +250,7 @@ Account.__load_key = function(username, role, pin) {
     var key = keychain.password("KEYS_" + role.toUpperCase() + "@" + username)
 
     if (pin) {
-
+        key = Account.crypto.decrypt(pin, key);
     }
 
     return key;

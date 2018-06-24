@@ -5,7 +5,7 @@ function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     var background = controller.catalog().value("showcase", "backgrounds", discussion["background"]);
     var me = storage.value("ACTIVE_USER");
-    
+
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
         console.log(content.data["body"]);
         var tags = content.meta["tags"];
@@ -34,6 +34,10 @@ function on_loaded() {
             "dir-path":impl.dir_path
         };
 
+        if (content.is_voted(me)) {
+            data["voted"] = "yes"; 
+        }
+
         if (impl.hides_navibar) {
             data["hides-navibar"] = "yes";
         }
@@ -42,17 +46,17 @@ function on_loaded() {
             data[key] = impl.auxiliary[key];
         });
 
-        Object.keys(background).forEach(function(key) {
-            data["background." + key] = background[key];
-        });
-
-        if (content.is_voted(me)) {
-            data["voted"] = "yes"; 
+        if (background) {
+            Object.keys(background).forEach(function(key) {
+                data["background." + key] = background[key];
+            });
         }
-
+ 
         view.data("display-unit", data);
         view.data("environment", { "alternate-name":"discussion" });
         view.action("reload");
+
+        console.log("@@@@@@@@@@@@@@ 3 @@@@@@@@@@@@@@");
     });
 }
 

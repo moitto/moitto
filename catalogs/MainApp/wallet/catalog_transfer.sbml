@@ -20,7 +20,7 @@
 =object section: section=amount.box, style=section_amount.box
 =begin box: id=amount.box, form=amount.box
 =begin content
-=object label: id=label.curreny, text="SBD", style=label_curreny
+=object label: id=label.amount.type, text="${subview.amount-type}", style=label_amount.type
 =object textfield: id=amount, text="${subview.amount}", \
                 script-when-editing@change=on_change_amount, \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \

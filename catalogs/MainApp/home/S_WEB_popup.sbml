@@ -1,0 +1,5 @@
+=begin popup
+
+=object web: url="${url}", width=1pw, height=1ph
+
+=end popup

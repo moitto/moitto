@@ -27,7 +27,7 @@ import ~/themes.sbss
             label-align=left, label-font-size=0.9, \
             content-padding="2dp 4dp", content-background-color=$THEME_COLOR_03, margin="-(20dp+5dp) 0 10dp 0"
 
-#label_curreny: width="1pw-20dp", height=40dp, font-family=$SANSSERIF_BOLD, font-size=2.2, \
+#label_amount.type: width="1pw-20dp", height=40dp, font-family=$SANSSERIF_BOLD, font-size=2.2, \
             text-color=$THEME_COLOR_104, text-align=right, margin="10dp 0 0 0"
 #textfield_amount: width="1pw-20dp", height=40dp, \
             font-family=$SANSSERIF_BOLD, font-size=2.2, \

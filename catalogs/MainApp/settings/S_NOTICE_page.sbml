@@ -1,4 +1,4 @@
-=begin catalog
+=begin page
 
 =object showcase: name=notice, id=notice, \
                 sortable=yes, sortkey=id, sortorder=descending, \
@@ -6,4 +6,4 @@
                 history-enabled=yes, history=notice, \
                 style=showcase_notice
 
-=end catalog
+=end page

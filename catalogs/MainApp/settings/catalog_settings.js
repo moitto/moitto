@@ -15,10 +15,10 @@ function logout_button_pressed() {
 
 function cache_button_pressed() {
 	controller.action("prompt", {
-		"title": "title message",
-		"message": "cache message~~",
+		"title": "캐시 삭제",
+		"message": "임시로 저장됐던 파일을 삭제하시겠습니까?",
 		"has-cancel-button": "yes",
-		"button-1": "캐시 삭제;script;script=clear_cache"
+		"button-1": "확인;script;script=clear_cache"
 	});
 }
 

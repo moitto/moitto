@@ -1,1 +1,7 @@
 import ~/themes.sbss
+
+/page: page-background-color=$THEME_COLOR_02
+
+if $SCREEN_WIDTH > "5"
+else
+end

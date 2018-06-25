@@ -1,15 +1,14 @@
 import ~/themes.sbss
 
-#label_title: width=0.9pw, height=26dp, \
+#label_title: width="1pw-28dp", height=26dp, \
         font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
         text-align=left, line-break-mode=tail-truncation
-#label_date: width=0.9pw, height=14dp, align=left, \
+#label_date: height=14dp, align=left, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, \
         text-align=left, line-break-mode=tail-truncation
+#blank_new: width=6dp, height=6dp, color=$THEME_COLOR_03, content-border-radius=3dp
 
-#img_new: width=13dp, height=13dp
-
-/cell: text-align=left, margin="10dp 0 0 30dp"
+/cell: text-align=left, margin="10dp 0 0 18dp"
 
 
 if $SCREEN_WIDTH > "5"
@@ -26,15 +25,15 @@ end
 -- new image --
 
 if "${new}" == "yes"
-    #img_new: filename=subview_icon_new.png, position=absolute, gravity=left, x=10dp
+    #blank_new: position=absolute, gravity=left, x=6dp
 else
-    #img_new: display=none
+    #blank_new: display=none
 end
 
 if $STATE == "selected"
-    #img_new: display=none
+    #blank_new: display=none
 end
 
 if $STATE == "focused"
-    #img_new: display=none
+    #blank_new: display=none
 end

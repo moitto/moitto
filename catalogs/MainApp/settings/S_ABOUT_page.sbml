@@ -1,43 +1,16 @@
 =begin page
 
-=begin icon
+=begin header
 =object image: style=img_icon
 =begin title
 웅진 OPMS 전자도서관
 =end title
 =object label: type=info, info-type=app-version, format="App. Version  #_", style=label_version
-=object label: type=info, info-type=catalog-version, format="Cat. Version  #_", style=label_version, margin-top=-10dp
-=end icon
+=end header
 
 
 
-=begin cache
-=object label: text="캐시 지우기", style=label_title
-=object button: action=clear-cache, label="삭제", \
-                prompt-message="임시 저장된 데이터를 삭제하시겠습니까?\n\n도서 데이터는 삭제되지 않습니다.", \
-                style=btn_settings
-=end cache
-
-
-
-=begin reset
-=object label: text="초기화하기", style=label_title
-=object button: action="prompt", label="초기화", \
-                title="알림", message="등록된 도서관과 책 데이터를 모두 삭제하시겠습니까?", \
-                button-1="초기화하기;script;script=reset_app", \
-                style=btn_settings
-=end reset
-
-
-
-=begin introduction
-사업자등록번호: 220-87-03688
-통신판매업신고: 강남7412호대표이사: 강동수
-주소: 경기도 파주시 문발동 535-6 사무동 1층 (주)오피엠에스
-TEL: 1566-2806
-FAX: 031-955-2859
-
-Copyright (c) 2017 OPMS Co., Ltd. All rights reserved.
-=end introduction
+=begin body
+=end body
 
 =end page

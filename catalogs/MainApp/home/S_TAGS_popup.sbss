@@ -9,7 +9,7 @@ import ~/themes.sbss
 #blank_query.bar: width="1pw-10dp-50dp", height=44dp, \
             align=left, margin="(1sbh+2dp) 0 0 10dp"
 #textfield_tag: width="1pw-30dp-50dp", height=44dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, font-size=1.3, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, font-size=1.2, \
             align=left, padding="0 10dp", margin="-44dp 0 0 10dp"
 #btn_clear: image="~/subview_btn_blank_cancel.png", \
         width=34dp, height=34dp, position=absolute, gravity=right-bottom, x=-(5dp+50dp), y=-5dp

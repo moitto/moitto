@@ -16,8 +16,15 @@ end
 
 -- loading 분기 --
 
-/page/loading: display=block, position=absolute, gravity=center, y=-100dp, \
+/page/loading: display=block, position=absolute, gravity=center, y=-50dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
+
+if $SCREEN_WIDTH > "5"
+    /page/loading: font-size=1.2
+else
+    /page/loading: font-size=1.1
+end
+
 
 if "${fetched}" != "yes"
       /page: script-when-loaded=on_loaded 

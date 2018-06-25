@@ -1,9 +1,1 @@
-import ~/themes.sbss
-
-#label_info: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
-
-if $SCREEN_WIDTH > "5"
-    #label_info: font-size=1.1, margin="30dp 0"
-else
-    #label_info: font-size=1, margin="20dp 0"
-end
+import showcase_blog_loading.sbss

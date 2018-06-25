@@ -4,6 +4,7 @@ import ~/themes.sbss
             content-border-radius=10dp, margin="0 0 20dp 0"
 #label_version: width=150dp, height=30dp, align=center, \
                 font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$THEME_COLOR_101
+#italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
 
 /page: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
         page-background-color=$THEME_COLOR_02, margin=20dp
@@ -11,7 +12,7 @@ import ~/themes.sbss
 /page/header/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2em, text-align=center
 
 if $SCREEN_WIDTH > "5"
-    /page: font-size=1.1, margin="40dp 40dp (40dp+1eb) 40dp"
+    /page: font-size=1, margin="40dp 40dp (40dp+1eb) 40dp"
 else
     /page: font-size=0.9, margin="20dp 20dp (20dp+1eb) 20dp"
 end

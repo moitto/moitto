@@ -1,19 +1,14 @@
 import ~/themes.sbss
 
-#label_date: width=0.9pw, height=14dp, align=left, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, \
-            text-align=left, line-break-mode=tail-truncation
 #goB: font-family=$SANSSERIF_BOLD
 
 /page: page-background-color=$THEME_COLOR_02, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
         line-spacing=0.6em, paragraph-spacing=0.6em
-/page/title: font-family=$SANSSERIF_MEDIUM, font-size=1.1em, margin="0 0 2em 0"
+/page/question: font-family=$SANSSERIF_MEDIUM, font-size=1.1em, margin="0 0 2em 0"
 
 if $SCREEN_WIDTH > "5"
-    #label_date: font-size=1.1
     /page: font-size=1.2, margin="40dp 40dp (40dp+1eb) 40dp"
 else
-    #label_date: font-size=1
     /page: font-size=1.1, margin="20dp 20dp (20dp+1eb) 20dp"
 end

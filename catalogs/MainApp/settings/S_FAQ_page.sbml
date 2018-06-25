@@ -1,3 +1,8 @@
 =begin page
-faq 입니다.
+
+=object showcase: name=faq, id=faq, \
+                sortable=yes, sortkey=id, sortorder=descending, \
+                selectable=yes, action-when-selected=page, \
+                style=showcase_faq
+
 =end page

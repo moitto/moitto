@@ -3,7 +3,7 @@
 =begin header
 =object image: style=img_icon
 =begin title
-웅진 OPMS 전자도서관
+모이또=[italic|moitto]=
 =end title
 =object label: type=info, info-type=app-version, format="App. Version  #_", style=label_version
 =end header

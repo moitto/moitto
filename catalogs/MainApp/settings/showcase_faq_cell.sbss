@@ -1,0 +1,11 @@
+import ~/themes.sbss
+
+#label_qeustion: height=60dp, \
+            font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
+            text-align=left, line-break-mode=tail-truncation, align=left
+
+if $SCREEN_WIDTH > "5"
+    #label_qeustion: width="1pw-80dp", font-size=1.2
+else
+    #label_qeustion: width="1pw-40dp", font-size=1.1
+end

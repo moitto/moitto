@@ -1,0 +1,11 @@
+=begin page
+
+=begin question
+${question}
+=end question
+
+=begin answer
+${answer}
+=end answer
+
+=end page

@@ -1,38 +1,44 @@
 =begin catalog
 
-=object button: label="핀번호 설정", style=btn_settings
+=object button: label="핀번호 설정", style=btn_settings, style=btn_pin
 
 =object blank: style=blank_line
 
-=object button: label="캐시 삭제", style=btn_settings
-
-=object blank: style=blank_line
-=object blank: style=blank_margin
-=object blank: style=blank_line
-
-=object button: label="공지사항", style=btn_settings
-
-=object blank: style=blank_line
-
-=object button: label="FAQ", style=btn_settings
-
-=object blank: style=blank_line
-
-=object button: label="이용약관", style=btn_settings
-
-=object blank: style=blank_line
-
-=object button: label="개인정보취급방침", style=btn_settings
-
-=object blank: style=blank_line
-
-=object button: label="앱 정보", style=btn_settings
+=object button: label="캐시 삭제", script="cache_button_pressed", \
+                style=btn_settings
 
 =object blank: style=blank_line
 =object blank: style=blank_margin
 =object blank: style=blank_line
 
-=object button: label="로그아웃", style=btn_settings, style=center
+=object button: label="공지사항", action=page, display-unit=S_NOTICE, catalog=Notice, \
+				has-own-title=yes, navibar-title="공지사항", style=btn_settings
+
+=object blank: style=blank_line
+
+=object button: label="FAQ", action=page, display-unit=S_FAQ, \
+				has-own-title=yes, navibar-title="FAQ", style=btn_settings
+
+=object blank: style=blank_line
+
+=object button: label="이용약관", action=page, display-unit=S_TERMS_1, \
+				has-own-title=yes, navibar-title="이용약관", style=btn_settings
+
+=object blank: style=blank_line
+
+=object button: label="개인정보취급방침", action=page, display-unit=S_TERMS_2, \
+				has-own-title=yes, navibar-title="개인정보취급방침", style=btn_settings
+
+=object blank: style=blank_line
+
+=object button: label="앱 정보", action=page, display-unit=S_ABOUT, \
+				has-own-title=yes, navibar-title="앱 정보", style=btn_settings
+
+=object blank: style=blank_line, style=login
+=object blank: style=blank_margin, style=login
+=object blank: style=blank_line, style=login
+
+=object button: style=btn_settings, style=btn_login
 
 =object blank: style=blank_line
 

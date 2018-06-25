@@ -1,15 +1,15 @@
 import themes.sbss
 
 #section_content: width=140dp, height=140dp, position=absolute, gravity=center, \
-                content-border-radius=70dp, content-background-color=$WHITE_COLOR_DEEP_DIM
-#aniamtion_loading: filename="~/subview_img_loading.black.png", frame-count=26, duration=1.6, \
+                content-border-radius=70dp, content-background-color=$BLACK_COLOR_DEEP_DIM
+#aniamtion_loading: filename="~/subview_img_loading.white.png", frame-count=26, duration=1.6, \
                 width=80dp, height=80dp*0.634, position=absolute, gravity=top, y=27dp
 #label_message: width=80dp, height=15p, \
                 position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp", \
-                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=0.9
+                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=center, font-size=0.9
 #progress_main: width=80dp, height=2dp, position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp+15dp+6dp"
 #btn_cancel: width=44dp, height=30dp, position=absolute, gravity=bottom, \
-                label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, label-font-size=0.9
+                label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_102, label-font-size=0.9
 
 /throbber/content: display=none
 /throbber/content/box: 

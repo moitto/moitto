@@ -5,7 +5,7 @@ import ~/themes.sbss
             text-align=left, line-break-mode=tail-truncation, align=left
 
 if $SCREEN_WIDTH > "5"
-    #label_qeustion: width="1pw-80dp", font-size=1.2
+    #label_qeustion: width="1pw-80dp", font-size=1.2, margin="0 0 0 40dp"
 else
-    #label_qeustion: width="1pw-40dp", font-size=1.1
+    #label_qeustion: width="1pw-40dp", font-size=1.1, margin="0 0 0 20dp"
 end

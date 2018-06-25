@@ -5,9 +5,5 @@ import ~/themes.sbss
 if $SCREEN_WIDTH > "5"
     #label_info: font-size=1.1, margin="30dp 0"
 else
-    if $LAYOUT == "thumbnail"
-        #label_info: font-size=1, margin="(1sbh+44dp+20dp) 0 20dp 0"
-    else
-        #label_info: font-size=1, margin="20dp 0"
-    end
+    #label_info: font-size=1, margin="(1sbh+10dp) 0 20dp 0"
 end

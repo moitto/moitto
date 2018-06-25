@@ -1,6 +1,7 @@
 import ~/themes.sbss
 
-#showcase_faq: width=1pw, height=1ph, column-count=1, cell-size="1pw, 60dp", \
+#showcase_faq: width=1pw, height=1ph, column-count=1, \
+            cell-size="1pw, 60dp", content-margin="0 0 1eb 0", \
             cell-background-1=$THEME_COLOR_02, cell-background-2=$THEME_COLOR_00
 
 /page: page-background-color=$THEME_COLOR_02

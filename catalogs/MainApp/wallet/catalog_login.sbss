@@ -4,7 +4,7 @@ import ~/themes.sbss
             content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
             content-background-color=$THEME_COLOR_00
 #textfield: width="0.8pw-20dp", height=50dp, \
-        font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, font-size=1.3, \
+        font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, font-size=1.2, \
         margin="-50dp 0 10dp 0"
 #textfield_username: style=textfield
 #textfield_password: style=textfield
@@ -14,4 +14,4 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/catalog: page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
+/catalog: page-background-color=$THEME_COLOR_02, margin=0.1pw

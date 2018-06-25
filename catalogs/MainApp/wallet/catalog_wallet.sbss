@@ -36,4 +36,10 @@ end
 #section_loading: width=1pw, height=1ph, position=abs, gravity=center
 
 /catalog/loading: display=none, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
+
+if $SCREEN_WIDTH > "5"
+    /catalog/loading: font-size=1.2
+else
+    /catalog/loading: font-size=1.1
+end

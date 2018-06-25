@@ -4,8 +4,8 @@
 =object label: text="${username}", style=label_user
 
 
-=object button: label="팔로우", script=follow, style=btn_follow
-=object button: label="뮤트", script=mute, style=btn_mute
+=object button: label="팔로우", script=follow, style=btn_follow, display=none, alt="temporary"
+=object button: label="뮤트", script=mute, style=btn_mute, display=none, alt="temporary"
 
 
 =begin form: form="form.${username}"

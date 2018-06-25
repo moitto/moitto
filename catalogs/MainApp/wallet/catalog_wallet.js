@@ -1,4 +1,5 @@
 var account = require("account");
+var wallet  = require("wallet");
 var global  = require("global");
 
 function on_loaded() {
@@ -75,6 +76,12 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     ];
 
     handler(assets);
+}
+
+function redeem_rewards() {
+    wallet.redeem_rewards(function(response) {
+        __reload_assets_showcase_header();
+    });
 }
 
 function __reload_assets_showcase() {

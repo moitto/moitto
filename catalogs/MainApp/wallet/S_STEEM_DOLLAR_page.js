@@ -8,6 +8,7 @@ function transfer() {
 
     controller.action("popup", { 
         "display-unit":"S_TRANSFER", 
-        "alternate-name":"transfer.receiver.select" 
+        "alternate-name":"transfer.receiver.select",
+        "has-own-sbml":"no"
     });
 }

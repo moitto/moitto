@@ -13,9 +13,12 @@ Account.login = function(username, password, handler) {
     Account.steem.api.get_accounts([ username ]).then(function(response) {
         var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
-        var owner_pubkey = response[0] ? response[0]["owner"]["key_auths"][0][0] : "";
+        var owner_pubkey   = response[0] ? response[0]["owner"]["key_auths"][0][0]   : "";
+        var active_pubkey  = response[0] ? response[0]["active"]["key_auths"][0][0]  : "";
+        var posting_pubkey = response[0] ? response[0]["posting"]["key_auths"][0][0] : "";
 
         if (keys["owner"].pub !== owner_pubkey) {
+            
             handler();
 
             return;
@@ -32,6 +35,7 @@ Account.login = function(username, password, handler) {
 
                 if ([ "active" ].includes(role)) {
                     key = Account.crypto.encrypt(pin, key);
+                    console.log(key);
                 }
 
                 keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
@@ -190,6 +194,8 @@ Account.transfer = function(to, amount, memo, pin, handler) {
     var from = Account.username;
     var key = Account.__load_key(from, "active", pin);
 
+    console.log("KEY: " + key);
+
     Account.steem.broadcast.transfer(from, to, amount, memo, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
@@ -222,7 +228,7 @@ Account.claim_rewards = function(handler) {
 
     Account.steem.api.get_accounts([ account ]).then(function(response) {
         var reward_steem_balance   = "0.000 STEEM";//response[0]["reward_steem_balance"];
-        var reward_sbd_balance     = "0.000 SBD";//response[0]["reward_sbd_balance"];
+        var reward_sbd_balance     = response[0]["reward_sbd_balance"];
         var reward_vesting_balance = response[0]["reward_vesting_balance"];
 
         Account.steem.broadcast.claim_reward_balance(account, reward_steem_balance, reward_sbd_balance, reward_vesting_balance, [ key ]).then(function(response) {
@@ -247,7 +253,7 @@ Account.verify_pin = function(pin) {
 }
 
 Account.__load_key = function(username, role, pin) {
-    var key = keychain.password("KEYS_" + role.toUpperCase() + "@" + username)
+    var key = keychain.password("KEYS_" + role.toUpperCase() + "@" + username);
 
     if (pin) {
         key = Account.crypto.decrypt(pin, key);

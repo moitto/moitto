@@ -18,21 +18,27 @@ Wallet.register_pin = function(handler) {
     Wallet.__register_pin();
 }
 
-Wallet.transfer = function(to, coin, amount, handler) {
-    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
-    
-    if (wrong_count < Wallet.__max_wrong_count) {
-        Wallet.__confirm_transfer(to, amount.toFixed(3) + " " + coin);
-    } else {
-        Wallet.__reset_pin();
-    }
+Wallet.transfer = function(to, coin, amount, memo, handler) {
+    amount = amount.toFixed(3) + " " + coin;
 
     Wallet.__transaction = {
         "action":"transfer",
         "to":to,
-        "amount":amount.toFixed(3) + " " + coin,
+        "amount":amount,
+        "memo":memo,
         "handler":handler
     };
+
+    Wallet.__start_transfer(to, amount);
+}
+
+Wallet.redeem_rewards = function(handler) {
+    Wallet.__transaction = {
+        "action":"redeem_rewards",
+        "handler":handler
+    };
+
+    Wallet.__confirm_redeem();
 }
 
 Wallet.get_coin_price = function(currency, coin, handler) {
@@ -59,6 +65,16 @@ Wallet.__register_pin = function() {
     controller.action("popup", { "display-unit":"S_PIN" });
 }
 
+Wallet.__start_transfer = function(to, amount) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_transfer(to, amount);
+    } else {
+        Wallet.__reset_pin();
+    }
+}
+
 Wallet.__confirm_transfer = function(to, amount) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"암호 입력",
@@ -68,6 +84,37 @@ Wallet.__confirm_transfer = function(to, amount) {
     });
 
     controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__confirm_redeem = function() {
+    controller.catalog().submit("showcase", "auxiliary", "S_REDEEM.TASK", {
+        "status":"confirm",
+        "script":"Wallet.__redeem_rewards"
+    });
+
+    controller.action("popup", { "display-unit":"S_REDEEM.TASK" });
+}
+
+Wallet.__redeem_rewards = function() {
+    Wallet.account.claim_rewards(function(response) {
+        controller.catalog().submit("showcase", "auxiliary", "S_REDEEM.TASK", {
+            "status":response ? "done" : "failed"
+        });
+
+        controller.action("popup", { "display-unit":"S_REDEEM.TASK" });
+
+        if (Wallet.__transaction["handler"]) {
+            Wallet.__transaction["handler"](response);
+        }
+
+        Wallet.__transaction = null;
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_REDEEM.TASK", {
+        "status":"progress"
+    });
+
+    controller.action("popup", { "display-unit":"S_REDEEM.TASK" });
 }
 
 Wallet.__verify_pin = function() {
@@ -92,9 +139,14 @@ Wallet.__on_receive_pin = function() {
 
     if (Wallet.__transaction["action"] !== "register_pin") {
         if (Wallet.account.verify_pin(pin)) {
-            Wallet.__process_transaction();
+            Wallet.__process_transaction(pin);
+ 
+            storage.value("WALLET.WRONG_PIN_COUNT", 0);
         } else {
-            Wallet.__retry_confirm_transfer(wrong_count + 1);
+         console.log("failed: " + pin);
+           Wallet.__retry_confirm_transfer(wrong_count + 1);
+ 
+            storage.value("WALLET.WRONG_PIN_COUNT", wrong_count + 1);
         }
     } else {
         Wallet.__pin_to_verify = document.value("WALLET.PIN");
@@ -146,7 +198,6 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
         "script":"Wallet.__on_receive_pin"
     });
 
-    storage.value("WALLET.WRONG_PIN_COUNT", wrong_count);
     controller.action("popup", { "display-unit":"S_PIN" });
 }
 
@@ -163,9 +214,28 @@ Wallet.__on_reset_pin = function() {
 
 }
 
-Wallet.__process_transaction = function() {
+Wallet.__process_transaction = function(pin) {
+    if (Wallet.__transaction["action"] == "transfer") {
+        var to     = Wallet.__transaction["to"];
+        var amount = Wallet.__transaction["amount"];
+        var memo   = Wallet.__transaction["memo"];
 
-    storage.value("WALLET.WRONG_PIN_COUNT", 0);
+        Wallet.account.transfer(to, amount, memo, pin, function(response) {
+            controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER.TASK", {
+                "status":response ? "done" : "failed"
+            });
+
+            controller.action("popup", { "display-unit":"S_TRANSFER.TASK" });
+        });
+
+        controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER.TASK", {
+            "status":"progress"
+        });
+
+        controller.action("popup", { "display-unit":"S_TRANSFER.TASK" });
+
+        return;
+    }
 }
 
 __MODULE__ = Wallet;

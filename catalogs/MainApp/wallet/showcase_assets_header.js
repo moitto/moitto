@@ -1,3 +1,5 @@
+var wallet = require("wallet");
+
 function show_me() {
     controller.catalog().submit("showcase", "auxiliary", "S_USER.ME", {
         "username":$data["username"],
@@ -35,9 +37,5 @@ function show_followers() {
 }
 
 function redeem_rewards() {
-    controller.catalog().submit("showcase", "auxiliary", "S_REDEEM", {
-        "status":"confirm"
-    });
-
-    controller.action("popup", { "display-unit":"S_REDEEM" });
+    owner.action("script", { "script":"redeem_rewards" });
 }

@@ -9,6 +9,7 @@ import ~/themes.sbss
 #slider_percent: width=0.9pw, height=20dp, scroll-thumb-image=mediabar_scroll_thumb_white.png, \
             track-color=$THEME_COLOR_02, scroll-color=$THEME_COLOR_03, margin="60dp 0 0 0", \
             max-value=100, script-when-changed=on_change_percent
+#italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
 
 #btn_percent: script=select_percent, width=50dp, height=40dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102
@@ -49,6 +50,6 @@ end
 /popup/question/note: display=block, width=0.9pw, height=350dp, \
             position=absolute, gravity=center, background-color=$THEME_COLOR_02, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.1, \
-            line-spacing=0.3em, paragraph-spacing=0.3em, padding=20dp
+            line-spacing=0.4em, paragraph-spacing=0.4em, padding=20dp
 /popup/question/note/title: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="0 0 20dp 0"
 

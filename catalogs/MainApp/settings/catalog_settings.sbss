@@ -7,6 +7,9 @@ import ~/themes.sbss
             align=right, margin="-43dp 0 7dp 20dp"
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01
 #blank_margin: width=1pw, height=20dp
+#img_notice: filename="~/subview_img_notice.png", width=6dp, height=6dp, align=left, \
+            margin="-28dp 0 22dp 80dp"
+
 #btn_login: label-align=center, content-padding=0
 
 /catalog: page-background-color=$THEME_COLOR_02

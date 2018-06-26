@@ -1,7 +1,7 @@
 =begin page
 
 =object showcase: name=faq, id=faq, \
-                sortable=yes, sortkey=id, sortorder=descending, \
+                sortable=yes, sortkey=id, sortorder=ascending, \
                 selectable=yes, action-when-selected=page, \
                 style=showcase_faq
 

@@ -1,9 +1,11 @@
 {
+    "autorun":{},
     "database-version":"2.0",
+    "default-layout":"thumbnail",
     "has-new-notices":"yes",
     "recent-app-version":"1.0.0",
     "required-app-version":"1.0.0",
-    "title":"모이또 공지사항",
+    "title":"모이또 Notice",
     "uses-database":"yes",
     "version":"1.0"
 }

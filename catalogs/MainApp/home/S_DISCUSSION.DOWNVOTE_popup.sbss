@@ -1,0 +1,54 @@
+import ~/themes.sbss
+
+#label_title: height=30dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, font-size=1.2, \
+            margin="0 0 10dp 0"
+#btn_question: image="~/subview_btn_question.small.white.png", width=30dp, height=30dp
+#blank_margin: width=30dp, height=30dp
+#label_volume: width=0.9pw, font-family=$SANSSERIF_BOLD, font-size=1.6, margin="0 0 30dp 0", \
+            text-color=$THEME_COLOR_102, text-align=center
+#slider_percent: width=0.9pw, height=20dp, scroll-thumb-image=mediabar_scroll_thumb_white.png, \
+            track-color=$THEME_COLOR_02, scroll-color=$THEME_COLOR_03, margin="60dp 0 0 0", \
+            max-value=100, script-when-changed=on_change_percent
+
+#btn_percent: script=select_percent, width=50dp, height=40dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102
+#btn_percent.1: value=1, style=btn_percent, label-align=left, align=left, margin="0 0 0 0.05pw"
+#btn_percent.25: value=25, style=btn_percent, label-align=left, align=left, margin="-40dp 0 0 0.255pw"
+#btn_percent.50: value=50, style=btn_percent, label-align=center, align=center, margin="-40dp 0 0 0"
+#btn_percent.75: value=75, style=btn_percent, label-align=right, align=right, margin="-40dp 0.255pw 0 0"
+#btn_percent.100: value=100, style=btn_percent, label-align=right, align=right, margin="-40dp 0.05pw 20dp 0"
+
+#btn_vote: width="1pw-40dp", height=50dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_04
+
+#btn_close: width=50dp, height=50dp, position=absolute, gravity=right-bottom, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
+            content-background-color=$THEME_COLOR_00, content-border-radius=25dp
+
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+/popup/actions: display=block, position=absolute, gravity=bottom, text-align=center
+
+if $SCREEN_WIDTH > "5"
+    #btn_close: x=-40dp, y=-(40dp+1eb)
+    /popup/actions: y=-(110dp+1eb)
+else
+    #btn_close: x=-20dp, y=-(20dp+1eb)
+    /popup/actions: y=-(90dp+1eb)
+end
+
+
+-- question --
+
+#section_question: hidden=yes, width=1pw, height=1ph, position=absolute, \
+            content-background-color=$BLACK_COLOR_DEEP_DIM
+#btn_hide: width=0.9pw, height=40dp, position=absolute, gravity=center, y=150dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1
+
+/popup/question: display=none
+/popup/question/note: display=block, width=0.9pw, height=350dp, \
+            position=absolute, gravity=center, background-color=$THEME_COLOR_02, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.1, \
+            line-spacing=0.3em, paragraph-spacing=0.3em, padding=20dp
+/popup/question/note/title: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="0 0 20dp 0"
+

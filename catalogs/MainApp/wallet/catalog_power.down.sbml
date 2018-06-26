@@ -14,7 +14,15 @@
 =object textfield: id=amount, text="${subview.amount}", \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
                 keyboard-type=decimal, \
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 invalid-when-empty=yes, message-when-empty="스팀파워 액수를 입력하세요.", \
+=======
+                invalid-when-empty=yes, message-when-empty="스팀파워를 입력하세요.", \
+>>>>>>> Stashed changes
+=======
+                invalid-when-empty=yes, message-when-empty="스팀파워를 입력하세요.", \
+>>>>>>> Stashed changes
                 style=textfield_amount
 =end content
 =end box
@@ -22,7 +30,15 @@
 =end amount
 
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =object button: script=confirm_power_up, form=amount.box, label="파워다운하기", style=btn_submit
+=======
+=object button: script=power_down, form=amount.box, label="파워 다운하기", style=btn_submit
+>>>>>>> Stashed changes
+=======
+=object button: script=power_down, form=amount.box, label="파워 다운하기", style=btn_submit
+>>>>>>> Stashed changes
 
 =end transaction
 

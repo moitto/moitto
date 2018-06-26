@@ -101,12 +101,15 @@ function open_discussion(data) {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":data["author"],
         "permlink":data["permlink"],
+        "userpic-url":data["userpic-url"]
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.CONTENT", {
         "tag":data["main-tag"],
-        "userpic-url":data["userpic-url"],
         "background":data["background.id"]
     });
     
-    controller.action("page", { "display-unit":"S_DISCUSSION" });
+    controller.action("page", { "display-unit":"S_DISCUSSION.CONTENT" });
 }
 
 function __reload_feeds_header() {

@@ -1,0 +1,89 @@
+var global = require("global");
+
+var __user = null;
+
+function on_loaded() {
+    var me = storage.value("ACTIVE_USER");
+
+    global.get_user(me).then(function(user) {
+		__update_power_label(user.get_voting_power().toFixed(1));
+    	__update_amount_label(user.get_voting_amount(__get_voting_weight()).toFixed(2));
+
+    	__user = user;
+    });
+
+    __restore_recent_percent();
+}
+
+function on_change_percent(params) {
+	var percent = parseFloat(params["value"]).toFixed(1);
+	
+	__update_percent_label(percent);
+
+	if (__user) {
+		__update_amount_label(__user.get_voting_amount(__get_voting_weight()).toFixed(2));
+	}
+}
+
+function select_percent(params) {
+	var percent = parseFloat(params["value"]).toFixed(1);
+
+	__update_percent_slider(percent);
+}
+
+function upvote() {
+	document.value("VOTE", {
+		author:$data["author"],
+		permlink:$data["permlink"],
+		weight:__get_voting_weight()
+	});
+
+	__save_recent_percent();
+
+	controller.action("script", { 
+		"script":"vote",
+		"subview":"__MAIN__",
+		"close-popup":"yes"
+	});
+}
+
+function __restore_recent_percent() {
+	var percent = storage.value("UPVOTE_PERCENT") || 100;
+
+	__update_percent_slider(percent);
+	__update_percent_label(percent);
+}
+
+function __save_recent_percent() {
+	var percent = view.object("slider.percent").value();
+
+	storage.value("UPVOTE_PERCENT", parseFloat(percent));
+}
+
+function __update_percent_slider(percent) {
+	var slider = view.object("slider.percent");
+
+	slider.property({ "position":percent.toString() });
+}
+
+function __update_percent_label(percent) {
+	var label = view.object("label.percent");
+
+	label.property({ "text":percent.toString() + "%" });
+}
+
+function __update_power_label(power) {
+	var label = view.object("label.power");
+
+	label.property({ "text":power.toString() + "%" });
+}
+
+function __update_amount_label(amount) {
+	var label = view.object("label.amount");
+
+	label.property({ "text":"$" + amount });
+}
+
+function __get_voting_weight() {
+	return parseFloat(view.object("slider.percent").value()).toFixed(1) * 100;
+}

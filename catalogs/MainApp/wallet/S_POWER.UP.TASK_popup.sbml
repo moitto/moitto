@@ -8,7 +8,15 @@
 =end progress
 
 =begin done
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 파워업이 완료됐었습니다.
+=======
+축하합니다. 파워업에 성공했습니다.
+>>>>>>> Stashed changes
+=======
+축하합니다. 파워업에 성공했습니다.
+>>>>>>> Stashed changes
 =object button: action=subview-back, label="닫기", style=btn_action
 =end done
 

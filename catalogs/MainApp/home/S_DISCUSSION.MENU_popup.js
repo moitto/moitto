@@ -1,17 +1,13 @@
 function upvote(form) {
-    controller.action("popup", {
-        "display-unit":"S_DISCUSSION.POPUP",
-        "alternate-name":"discussion.vote",
-        "dir-path":$data["dir-path"]
-    });
+    controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
+}
+
+function downvote(form) {
+    controller.action("popup", { "display-unit":"S_DISCUSSION.DOWNVOTE" });
 }
 
 function unvote(form) {
-    controller.action("popup", {
-        "display-unit":"S_DISCUSSION.POPUP",
-        "alternate-name":"discussion.unvote",
-        "dir-path":$data["dir-path"]
-    });
+    controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
 }
 
 function reblog(form) {

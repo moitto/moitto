@@ -49,7 +49,7 @@ Content.prototype.get_userpic_url = function(size) {
 
 Content.prototype.is_voted = function(username) {
     var votes = this.data["active_votes"];
-
+    console.log("is_voted: " + JSON.stringify(this.data["active_votes"]));
     for (var i = 0; i < votes.length; i++) {
         if (votes[i].voter === username) {
             return true;

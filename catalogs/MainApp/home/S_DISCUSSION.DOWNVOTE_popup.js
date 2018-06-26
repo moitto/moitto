@@ -29,17 +29,17 @@ function select_percent(params) {
 	__update_percent_slider(percent);
 }
 
-function vote() {
+function downvote() {
 	document.value("VOTE", {
 		author:$data["author"],
 		permlink:$data["permlink"],
 		weight:__get_voting_weight()
 	});
 
-	controller.action("popup", { 
-		"display-unit":$data["id"],
-		"alternate-name":"discussion.voting",
-		"dir-path":$data["dir-path"]
+	controller.action("script", { 
+		"script":"vote",
+		"subview":"__MAIN__",
+		"close-popup":"yes"
 	});
 }
 
@@ -68,5 +68,5 @@ function __update_amount_label(amount) {
 }
 
 function __get_voting_weight() {
-	return parseFloat(view.object("slider.percent").value()).toFixed(1) * 100;
+	return -parseFloat(view.object("slider.percent").value()).toFixed(1) * 100;
 }

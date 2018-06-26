@@ -22,15 +22,7 @@
 =end amount
 
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =object button: script=confirm_power_up, form=amount.box, label="파워업하기", style=btn_submit
-=======
-=object button: script=power_up, form=amount.box, label="파워 업하기", style=btn_submit
->>>>>>> Stashed changes
-=======
-=object button: script=power_up, form=amount.box, label="파워 업하기", style=btn_submit
->>>>>>> Stashed changes
 
 =end transaction
 

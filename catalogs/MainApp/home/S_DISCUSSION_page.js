@@ -3,7 +3,7 @@ var themes = require("themes");
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
-    var background = controller.catalog().value("showcase", "backgrounds", discussion["background"]);
+    var background = controller.catalog("ImageBank").value("showcase", "backgrounds", discussion["background"]);
     var me = storage.value("ACTIVE_USER");
 
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {

@@ -1,6 +1,6 @@
 import showcase_feeds_cell.sbss
 
-#img_cover: filename="~/${background.image}", visual-effect=no
+#img_cover: filename="~/${background.image}", catalog="ImageBank", visual-effect=no
 
 -- 레이아웃 분기 --
 

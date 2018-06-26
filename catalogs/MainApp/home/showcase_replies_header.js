@@ -61,10 +61,13 @@ function open_url(params) {
             var user = users.create(matched[2]);
 
             if (matched[3]) {
+                var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ]);
+            
                 controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
                     "author":user.name,
                     "permlink":matched[3],
-                    "userpic-url":user.get_userpic_url("small")
+                    "userpic-url":user.get_userpic_url("small"),
+                    "background":backgrounds[0]["id"]
                 });
     
                 controller.action("page", { "display-unit":"S_DISCUSSION" });                

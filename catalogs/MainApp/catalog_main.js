@@ -54,6 +54,14 @@ function vote() {
     });
 }
 
+function reblog() {
+    var value = document.value("REBLOG");
+
+    account.reblog(value["author"], value["permlink"], function(response) {
+        controller.action("toast", { "message":"리블로그 되었습니다." });
+    });
+}
+
 function __show_notif_badge() {
     var blank = view.object("blank.notif.badge");
 

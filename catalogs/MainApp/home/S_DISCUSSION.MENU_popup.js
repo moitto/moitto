@@ -26,13 +26,12 @@ function unvote(form) {
 }
 
 function reblog(form) {
-    controller.catalog().submit("showcase", "auxiliary", "S_REBLOG", {
-        "status":"progress",
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REBLOG", {
         "author":$data["author"],
         "permlink":$data["permlink"]
     });
 
-    controller.action("popup", { "display-unit":"S_REBLOG" });
+    controller.action("popup", { "display-unit":"S_DISCUSSION.REBLOG" });
 }
 
 function copy_url(form) {

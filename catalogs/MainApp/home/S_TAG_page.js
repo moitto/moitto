@@ -7,6 +7,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
     global.steemjs.get_discussions_by_created($data["tag"], start_author, start_permlink, length).then(function(discussions) {
+        var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
         if (location > 0) {
@@ -31,6 +32,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
             };
  
             datum = Object.assign(datum, __template_data_for_content(content));
+            datum = Object.assign(datum, __random_background_data(backgrounds));
 
             data.push(datum);
         });
@@ -47,7 +49,8 @@ function open_discussion(data) {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":data["author"],
         "permlink":data["permlink"],
-        "userpic-url":data["userpic-url"]
+        "userpic-url":data["userpic-url"],
+        "background":data["background.id"]
     });
     
     controller.action("page", { "display-unit":"S_DISCUSSION" });
@@ -61,4 +64,15 @@ function __template_data_for_content(content) {
     }
 
     return {};
+}
+
+function __random_background_data(values) {
+    var value = values[Math.floor(Math.random()*values.length)];
+    var data = {};
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
 }

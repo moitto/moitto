@@ -1,0 +1,10 @@
+=begin popup
+
+=begin message
+리블로그 하시겠습니까?
+=end message
+
+=object button: script=reblog, label="리블로그", style=btn_reblog
+=object button: action=popup-close, label="×", style=btn_close
+
+=end popup

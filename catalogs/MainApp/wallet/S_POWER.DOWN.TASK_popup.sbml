@@ -8,15 +8,7 @@
 =end progress
 
 =begin done
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 파워다운이 완료됐습니다.
-=======
-요청하신 파워다운이 시작되었습니다.
->>>>>>> Stashed changes
-=======
-요청하신 파워다운이 시작되었습니다.
->>>>>>> Stashed changes
 =object button: action=subview-back, label="닫기", style=btn_action
 =end done
 

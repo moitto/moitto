@@ -30,7 +30,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
     var start_permlink = (location > 0) ? __impl[$data["id"]]["last_discussion"]["permlink"] : null;
 
     __impl[$data["id"]].method(tag, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-        var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
+        var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
         if (location > 0) {

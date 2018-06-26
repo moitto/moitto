@@ -1,6 +1,6 @@
 =begin catalog
 
-=object button: label="핀번호 설정", style=btn_settings, style=btn_pin
+=object button: label="핀번호 설정", script="pin_button_pressed", style=btn_settings, style=btn_pin
 
 =object blank: style=blank_line
 

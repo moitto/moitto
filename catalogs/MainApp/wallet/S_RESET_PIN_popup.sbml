@@ -2,7 +2,7 @@
 
 =begin navibar
 =object button: action=popup-close, style=btn_close
-=object label: text="PIN번호 재설정", style=label_title
+=object label: text="${title}", style=label_title
 =end navibar
 
 
@@ -21,7 +21,7 @@ ${message}
             label="비밀번호를 클립보드에서 붙여넣기", \
             style=btn_paste
 
-=object button: script=reset, form=reset, label="PIN번호 재설정", style=btn_reset
+=object button: script=reset, form=reset, label="${btn-message}", style=btn_reset
 =end form
 
 =end popup

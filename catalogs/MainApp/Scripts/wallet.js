@@ -18,6 +18,15 @@ Wallet.register_pin = function(handler) {
     Wallet.__register_pin();
 }
 
+Wallet.reregister_pin = function(handler) {
+    Wallet.__transaction = {
+        "action":"reregister_pin",
+        "handler":handler
+    };
+
+    Wallet.__reregister_pin();
+}
+
 Wallet.transfer = function(to, coin, amount, memo, handler) {
     amount = amount.toFixed(3) + " " + coin;
 
@@ -176,8 +185,8 @@ Wallet.__on_receive_pin = function() {
  
             storage.value("WALLET.WRONG_PIN_COUNT", 0);
         } else {
-         console.log("failed: " + pin);
-           Wallet.__retry_confirm_transfer(wrong_count + 1);
+            console.log("failed: " + pin);
+            Wallet.__retry_confirm_transfer(wrong_count + 1);
  
             storage.value("WALLET.WRONG_PIN_COUNT", wrong_count + 1);
         }
@@ -236,7 +245,20 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
 
 Wallet.__reset_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
+        "title": "PIN번호 재설정",
         "message":Wallet.max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
+        "btn-message":"PIN번호 재설정",
+        "script":"Wallet.__on_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_RESET_PIN" });
+}
+
+Wallet.__reregister_pin = function() {
+    controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
+        "title": "PIN번호 설정",
+        "message": "PIN 번호 설정을 위해 스팀 비밀번호를 입력해주세요.",
+        "btn-message":"PIN번호 설정",
         "script":"Wallet.__on_reset_pin"
     });
 
@@ -244,7 +266,7 @@ Wallet.__reset_pin = function() {
 }
 
 Wallet.__on_reset_pin = function() {
-
+    
 }
 
 Wallet.__process_transaction = function(pin) {

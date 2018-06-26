@@ -32,6 +32,19 @@ Wallet.transfer = function(to, coin, amount, memo, handler) {
     Wallet.__start_transfer(to, amount);
 }
 
+Wallet.delegate = function(to, amount, handler) {
+    amount = amount.toFixed(3) + " " + "SP";
+
+    Wallet.__transaction = {
+        "action":"delegate",
+        "to":to,
+        "amount":amount,
+        "handler":handler
+    };
+
+    Wallet.__start_delegate(to, amount);
+}
+
 Wallet.redeem_rewards = function(handler) {
     Wallet.__transaction = {
         "action":"redeem_rewards",
@@ -79,6 +92,27 @@ Wallet.__confirm_transfer = function(to, amount) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"암호 입력",
         "message":"암호를 입력하면 =[amount|" + amount + "]=를 송금합니다.",
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__start_delegate = function(to, amount) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_delegate(to, amount);
+    } else {
+        Wallet.__reset_pin();
+    }
+}
+
+Wallet.__confirm_delegate = function(to, amount) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"암호 입력",
+        "message":"암호를 입력하면 =[amount|" + amount + "]=를 임대합니다.",
         "status":"normal",
         "script":"Wallet.__on_receive_pin"
     });
@@ -203,7 +237,7 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
 
 Wallet.__reset_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
-        "message":Wallet.max_wrong_count + "회 연속 암호를 틀려서 사용 중지된 상태입니다. 다시 사용하시려면 스팀 비밀번호나 액티브 키를 입력하여 암호를 재설정해주세요.", 
+        "message":Wallet.max_wrong_count + "회 연속 암호를 틀려서 사용 중지된 상태입니다. 다시 사용하시려면 비밀번호를 입력하여 암호를 재설정해주세요.", 
         "script":"Wallet.__on_reset_pin"
     });
 
@@ -216,26 +250,63 @@ Wallet.__on_reset_pin = function() {
 
 Wallet.__process_transaction = function(pin) {
     if (Wallet.__transaction["action"] == "transfer") {
-        var to     = Wallet.__transaction["to"];
-        var amount = Wallet.__transaction["amount"];
-        var memo   = Wallet.__transaction["memo"];
+        Wallet.__process_transfer(Wallet.__transaction, pin);
 
-        Wallet.account.transfer(to, amount, memo, pin, function(response) {
-            controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER.TASK", {
-                "status":response ? "done" : "failed"
-            });
+        return;
+    }
 
-            controller.action("popup", { "display-unit":"S_TRANSFER.TASK" });
-        });
+    if (Wallet.__transaction["action"] == "delegate") {
+        Wallet.__process_delegate(Wallet.__transaction, pin);
 
+        return;
+    }
+}
+
+Wallet.__process_transfer = function(transaction, pin) {
+    var to     = transaction["to"];
+    var amount = transaction["amount"];
+    var memo   = transaction["memo"] || "";
+
+    Wallet.account.transfer(to, amount, memo, pin, function(response) {
         controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER.TASK", {
-            "status":"progress"
+            "status":response ? "done" : "failed"
         });
 
         controller.action("popup", { "display-unit":"S_TRANSFER.TASK" });
 
-        return;
-    }
+        if (transaction["handler"]) {
+            transaction["handler"](response);
+        }
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER.TASK", {
+        "status":"progress"
+    });
+
+    controller.action("popup", { "display-unit":"S_TRANSFER.TASK" });
+}
+
+Wallet.__process_delegate = function(transaction, pin) {
+    var to     = transaction["to"];
+    var amount = transaction["amount"];
+
+    Wallet.account.delegate_vesting(to, amount, pin, function(response) {
+        controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE.TASK", {
+            "status":response ? "done" : "failed"
+        });
+
+        controller.action("popup", { "display-unit":"S_DELEGATE.TASK" });
+
+        if (transaction["handler"]) {
+            transaction["handler"](response);
+        }
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE.TASK", {
+        "status":"progress"
+    });
+
+    controller.action("popup", { "display-unit":"S_DELEGATE.TASK" });
 }
 
 __MODULE__ = Wallet;

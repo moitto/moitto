@@ -1,4 +1,4 @@
-=begin catalog
+=begin catalog: script-when-loaded=on_loaded
 
 =begin to: alt="받을 계정"
 =begin notice
@@ -31,7 +31,7 @@
 =end amount
 
 
-=object button: script=confirm_delegate, form=amount.box, label="임대하기", style=btn_submit
+=object button: script=delegate, form=amount.box, label="임대하기", style=btn_submit
 
 =end transaction
 

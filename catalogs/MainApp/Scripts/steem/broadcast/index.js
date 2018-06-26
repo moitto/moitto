@@ -99,11 +99,12 @@ SteemBroadcast.__send_transaction = function(operation, keys) {
         transaction["extensions"] = [];
 
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
+            console.log(JSON.stringify(transaction));
             SteemBroadcast.__sign_transaction(transaction, keys, function(signatures) {
                 transaction["signatures"] = signatures;
 
                 Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
-                    resolve(transaction);
+                    resolve(response);
                 }, function(reason) {
                     reject(reason);
                 });

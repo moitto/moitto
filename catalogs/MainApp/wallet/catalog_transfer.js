@@ -81,8 +81,8 @@ function transfer(form) {
 }
 
 function __transfer(to, coin, amount) {
-    wallet.transfer(to, coin, amount, function(response) {
-
+    wallet.transfer(to, coin, amount, "", function(response) {
+        // TBD
     });
 }
 

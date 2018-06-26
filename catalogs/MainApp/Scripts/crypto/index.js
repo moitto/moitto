@@ -86,11 +86,11 @@ Crypto.base58.check = {
 };
 
 Crypto.encrypt = function(password, plaintext) {
-    return JSON.parse(sjcl.encrypt(password, plaintext, Crypto.__encrypt_params))["ct"];
+    return sjcl.encrypt(password, plaintext, Crypto.__encrypt_params);
 }
 
 Crypto.decrypt = function(password, ciphertext) {
-    return sjcl.decrypt(password, ciphertext, Crypto.__encrypt_params);
+    return sjcl.decrypt(password, ciphertext);
 }
 
 Crypto.number_from_bits = function(bits) {

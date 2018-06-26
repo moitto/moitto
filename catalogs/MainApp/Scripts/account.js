@@ -35,13 +35,12 @@ Account.login = function(username, password, handler) {
 
                 if ([ "active" ].includes(role)) {
                     key = Account.crypto.encrypt(pin, key);
-                    console.log(key);
                 }
 
                 keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
             });
 
-            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, Account.crypto.encrypt(pin, owner_pubkey));
+            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
             keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
         });
     });
@@ -194,8 +193,6 @@ Account.transfer = function(to, amount, memo, pin, handler) {
     var from = Account.username;
     var key = Account.__load_key(from, "active", pin);
 
-    console.log("KEY: " + key);
-
     Account.steem.broadcast.transfer(from, to, amount, memo, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
@@ -206,8 +203,6 @@ Account.transfer = function(to, amount, memo, pin, handler) {
 Account.delegate_vesting = function(delegatee, amount, pin, handler) {
     var delegator = Account.username;
     var key = Account.__load_key(delegator, "active", pin);
-
-    console.log("KEY: " + key);
 
     Account.global.get_dynprops().then(function(dynprops) {
         var vesting_shares = (parseFloat(amount.split(" ")[0]) / dynprops.get_steems_per_vest()).toFixed(6) + " VESTS";
@@ -245,7 +240,7 @@ Account.verify_pin = function(pin) {
     var owner_pubkey = keychain.password("OWNER_PUBKEY" + "@" + Account.username);
     var encrypted_owner_pubkey = keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + Account.username);
 
-    if (Account.crypto.encrypt(pin, owner_pubkey) === encrypted_owner_pubkey) {
+    if (JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"] === encrypted_owner_pubkey) {
         return true;
     }
 

@@ -9,13 +9,15 @@ function on_loaded() {
         if (response.length == 0 || response[0]["follower"] !== me) {
             __show_follow_button("follow");
         } else {
-            __show_followed_label("unfollow");
+            __show_follow_button("followed");
+            __show_followed_label();
         }
     });
 
     global.get_user($data["subview.following"]).then(function(user) {
         __update_following_userpic(user);
-    });    
+        __update_following_reputation(user);
+    });
 }
 
 function follow() {
@@ -23,23 +25,19 @@ function follow() {
 
     account.follow_user($data["subview.following"], function(response) {
         __hide_follow_button("follow");
-        __show_follow_button("unfollow");
+        __show_follow_button("followed");
         __unfreeze_follow_button("follow");
-    });
-}
-
-function unfollow() {
-    __freeze_follow_button("unfollow");
-
-    account.unfollow_user($data["subview.following"], function(response) {
-        __hide_follow_button("unfollow");
-        __show_follow_button("follow");
-        __unfreeze_follow_button("unfollow");
     });
 }
 
 function __update_following_userpic(user) {
     var image = view.object("img.following.userpic");
+    var userpic_url = user.get_userpic_url();
+
+    image.property({ "image-url":userpic_url });
+}
+
+function __update_following_reputation(user) {
     var userpic_url = user.get_userpic_url();
 
     image.property({ "image-url":userpic_url });

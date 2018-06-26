@@ -1,9 +1,9 @@
 =begin catalog
 
 =object blank: style=blank_userpic.mask
-=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+=object image: id=img.following.userpic, image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
 
-=(object label: text="${username}", style=label_user)=
+=(object label: text="${subview.following}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 =object label: id="label.followed", text="팔로우 중입니다", style=label_followed
 
@@ -13,7 +13,7 @@
 
 
 =begin loading: id=loading
-잠시 기다려 주세요~!
+잠시 기다려 주세요.
 =end loading
 
 =end catalog

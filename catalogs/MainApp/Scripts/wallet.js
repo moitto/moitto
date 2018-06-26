@@ -9,6 +9,10 @@ Wallet = (function() {
 Wallet.account = require("account"); 
 Wallet.upbit   = require("upbit");
 
+Wallet.registered_pin = function(username) {
+    return storage.value("PIN_ENABLED" + "@" + username);
+}
+
 Wallet.register_pin = function(handler) {
     Wallet.__transaction = {
         "action":"register_pin",
@@ -216,6 +220,10 @@ Wallet.__on_receive_pin_again = function() {
         if (Wallet.__transaction["handler"]) {
             Wallet.__transaction["handler"](pin);
         }
+
+        if (Wallet.__transaction["pin_handler"]) {
+            Wallet.__transaction["pin_handler"](pin);
+        }
     
         document.value("WALLET.PIN", null);
 
@@ -282,6 +290,7 @@ Wallet.__on_reset_pin = function(form) {
 
         controller.action("unfreeze");
 
+        Wallet.__transaction["pin_handler"] = handler;
         Wallet.__register_pin();
     });
 }

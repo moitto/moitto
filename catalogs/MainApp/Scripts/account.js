@@ -41,6 +41,8 @@ Account.login = function(username, password, handler) {
 
             keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
             keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+
+            storage.value("PIN_ENABLED" + "@" + username, true);
         });
     });
 }
@@ -52,6 +54,8 @@ Account.logout = function(handler) {
         roles.forEach(function(role) {
             keychain.password("KEYS_" + role.toUpperCase() + "@" + username, "");
         });
+
+        storage.value("PIN_ENABLED" + "@" + username, false);
     });
 
     Account.username = "";
@@ -265,6 +269,8 @@ Account.register_active_key = function(password, handler) {
 
             keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
             keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+
+            storage.value("PIN_ENABLED" + "@" + username, true);
         });
     });
 }

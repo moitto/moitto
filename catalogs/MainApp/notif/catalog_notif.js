@@ -116,13 +116,15 @@ function __extend_value_for_op(op, value) {
 function __open_discussion(author, permlink) {
     var user = users.create(author);
 
+    console.log("__open_discussion: " + author + " " + permlink);
+
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":author,
         "permlink":permlink,
         "userpic-url":user.get_userpic_url("small")
     });
 
-    controller.action("page", { "display-unit":"S_DISCUSSION.CONTENT" });
+    controller.action("page", { "display-unit":"S_DISCUSSION" });
 }
 
 function __show_replies(author, permlink) {

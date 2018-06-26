@@ -61,13 +61,13 @@ function open_url(params) {
             var user = users.create(matched[2]);
 
             if (matched[3]) {
-                controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.CONTENT", {
+                controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
                     "author":user.name,
                     "permlink":matched[3],
                     "userpic-url":user.get_userpic_url("small")
                 });
     
-                controller.action("page", { "display-unit":"S_DISCUSSION.CONTENT" });                
+                controller.action("page", { "display-unit":"S_DISCUSSION" });                
             } else {
                 controller.catalog().submit("showcase", "auxiliary", "S_USER", {
                     "username":user.name,

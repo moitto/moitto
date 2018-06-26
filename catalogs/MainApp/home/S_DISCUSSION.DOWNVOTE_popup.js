@@ -11,6 +11,8 @@ function on_loaded() {
 
     	__user = user;
     });
+
+    __restore_recent_percent();
 }
 
 function on_change_percent(params) {
@@ -43,22 +45,29 @@ function downvote() {
 	});
 }
 
+function __restore_recent_percent() {
+	var percent = storage.value("DOWNVOTE_PERCENT") || 100;
+
+	__update_percent_slider(percent);
+	__update_percent_label(percent);
+}
+
 function __update_percent_slider(percent) {
 	var slider = view.object("slider.percent");
 
-	slider.property({ "position":percent });
+	slider.property({ "position":percent.toString() });
 }
 
 function __update_percent_label(percent) {
 	var label = view.object("label.percent");
 
-	label.property({ "text":percent + "%" });
+	label.property({ "text":percent.toString() + "%" });
 }
 
 function __update_power_label(power) {
 	var label = view.object("label.power");
 
-	label.property({ "text":power + "%" });
+	label.property({ "text":power.toString() + "%" });
 }
 
 function __update_amount_label(amount) {

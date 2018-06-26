@@ -1,8 +1,8 @@
-var account = require("account");
+var wallet = require("wallet");
 
 function reset(form) {
     host.action("script", { 
         "script":$data["script"],
-        "password":form["password"] 
+        "password":form["password"]
     });
 }

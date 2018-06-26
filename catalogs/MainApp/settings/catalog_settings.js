@@ -2,6 +2,11 @@ var account = require("account");
 var wallet  = require("wallet");
 var users   = require("users");
 
+function pin_button_pressed() {
+	wallet.register_pin_again(function(pin) {
+	});
+}
+
 function logout_button_pressed() {
 	controller.action("prompt", {
 		"title": "로그아웃",
@@ -38,7 +43,7 @@ function clear_cache() {
 }
 
 function show_pin() {
-	wallet.reregister_pin(function(pin) {
+	wallet.register_pin_again(function(pin) {
         if (pin) {
  	       console.log("pin" + pin);
         }

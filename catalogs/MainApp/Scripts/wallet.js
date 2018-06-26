@@ -18,6 +18,15 @@ Wallet.register_pin = function(handler) {
     Wallet.__register_pin();
 }
 
+Wallet.register_pin_again = function(handler) {
+    Wallet.__transaction = {
+        "action":"register_pin_again",
+        "handler":handler
+    };
+
+    Wallet.__register_pin_again();
+}
+
 Wallet.transfer = function(to, coin, amount, memo, handler) {
     amount = amount.toFixed(3) + " " + coin;
 
@@ -165,12 +174,13 @@ Wallet.__verify_pin = function() {
 }
 
 Wallet.__on_receive_pin = function() {
+    var action = Wallet.__transaction["action"];
     var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
     var pin = document.value("WALLET.PIN");
 
     console.log("__on_receive_pin: " + pin);
 
-    if (Wallet.__transaction["action"] !== "register_pin") {
+    if (action !== "register_pin" && action !== "register_pin_again") {
         if (Wallet.account.verify_pin(pin)) {
             Wallet.__process_transaction(pin);
  
@@ -229,7 +239,7 @@ Wallet.__on_receive_pin_again = function() {
 Wallet.__retry_confirm_transfer = function(wrong_count) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 입력",
-        "message":"PIN번호를 잘못 입력했습니다.\\n다시 PIN번호를 입력하세요.\\n(현재 " + wrong_count + "회 틀림 / " + Wallet.__max_wrong_count  + "회 연속 틀리면 사용 중지됩니다.)",
+        "message":"PIN번호를 잘못 입력했습니다.\\n다시 PIN번호를 입력하세요.\\n(현재 " + wrong_count + "회 틀림 / " + Wallet.__max_wrong_count  + "회 연속 틀리면 PIN번호를 재설정해야 합니다.)",
         "status":"error",
         "script":"Wallet.__on_receive_pin"
     });
@@ -239,6 +249,9 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
 
 Wallet.__reset_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
+        "title": "PIN번호 재설정",
+        "message":Wallet.__max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
+        "btn-message":"PIN번호 재설정",
         "message":Wallet.__max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
         "script":"Wallet.__on_reset_pin"
     });
@@ -246,9 +259,32 @@ Wallet.__reset_pin = function() {
     controller.action("popup", { "display-unit":"S_RESET_PIN" });
 }
 
-Wallet.__on_reset_pin = function() {
-    
+Wallet.__on_reset_pin = function(form) {  
+    controller.action("freeze", { message:"확인 중..." });
 
+    account.register_active_key(form["password"], function(response, handler) {
+        if (!response) {
+            controller.action("alert", { message:"비밀번호가 일치하지 않습니다." });
+            controller.action("unfreeze");
+    
+            return;
+        }
+
+        controller.action("unfreeze");
+
+        Wallet.__register_pin();
+    });
+}
+
+Wallet.__register_pin_again = function() {
+    controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
+        "title": "PIN번호 설정",
+        "message": "PIN 번호 설정을 위해 스팀 비밀번호를 입력해주세요.",
+        "btn-message":"PIN번호 설정",
+        "script":"Wallet.__on_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_RESET_PIN" });
 }
 
 Wallet.__process_transaction = function(pin) {

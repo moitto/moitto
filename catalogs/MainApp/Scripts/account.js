@@ -14,7 +14,6 @@ Account.login = function(username, password, handler) {
         var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
         var owner_pubkey   = response[0] ? response[0]["owner"]["key_auths"][0][0]   : "";
-        var active_pubkey  = response[0] ? response[0]["active"]["key_auths"][0][0]  : "";
         var posting_pubkey = response[0] ? response[0]["posting"]["key_auths"][0][0] : "";
 
         if (keys["owner"].pub !== owner_pubkey) {
@@ -235,6 +234,38 @@ Account.claim_rewards = function(handler) {
         });
     }, function(reason) {
         handler();
+    });
+}
+
+Account.register_active_key = function(password, handler) {
+    var username = Account.username;
+
+    Account.steem.api.get_accounts([ username ]).then(function(response) {
+        var roles = [ "owner", "active" ];
+        var keys = Account.steem.auth.generate_keys(username, password, roles);
+        var owner_pubkey = response[0] ? response[0]["owner"]["key_auths"][0][0]   : "";
+
+        if (keys["owner"].pub !== owner_pubkey) {
+            
+            handler();
+
+            return;
+        }
+
+        handler(response[0], function(pin) {
+            roles.splice(1).forEach(function(role) {
+                var key = keys[role].priv;
+
+                if ([ "active" ].includes(role)) {
+                    key = Account.crypto.encrypt(pin, key);
+                }
+
+                keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+            });
+
+            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
+            keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+        });
     });
 }
 

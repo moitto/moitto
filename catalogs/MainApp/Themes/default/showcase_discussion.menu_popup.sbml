@@ -7,8 +7,8 @@
 =object blank: style=blank_line, style=voted
 =object button: script=reblog, label="리블로그", style=btn_menu
 =object blank: style=blank_line
-=object button: script=show_replies, label="댓글", style=btn_menu
-=object blank: style=blank_line
+=object button: script=show_replies, label="댓글", style=btn_menu, display=none, alt="temporary"
+=object blank: style=blank_line, display=none, alt="temporary"
 =object button: script=bookmark, label="북마크", style=btn_menu
 =object blank: style=blank_line
 =object button: script=copy_url, label="URL 복사", style=btn_menu

@@ -18,7 +18,7 @@ import ~/themes.sbss
 #btn_percent.75: value=75, style=btn_percent, label-align=right, align=right, margin="-40dp 0.255pw 0 0"
 #btn_percent.100: value=100, style=btn_percent, label-align=right, align=right, margin="-40dp 0.05pw 20dp 0"
 
-#btn_vote: width=0.9pw, height=50dp, \
+#btn_vote: width="1pw-40dp", height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 

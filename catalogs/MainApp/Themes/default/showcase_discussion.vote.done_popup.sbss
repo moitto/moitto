@@ -1,7 +1,16 @@
 import ~/themes.sbss
 
-#btn_close: width=0.9pw, height=50dp, position=abs, gravity=bottom, y=-30dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_00
+#btn_close: width="1pw-40dp", height=50dp, position=absolute, gravity=bottom, \
+label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+content-background-color=$THEME_COLOR_03
 
-%message: display=block, position=abs, gravity=center, text-align=center, text-color=$WHITE_COLOR
+%message: display=block, position=absolute, gravity=center, \
+        font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$THEME_COLOR_102
+
+if $SCREEN_WIDTH > "5"
+    #btn_close: y=-(40dp+1eb)
+    %message: font-size=1.2
+else
+    #btn_close: y=-(20dp+1eb)
+    %message: font-size=1.1
+end

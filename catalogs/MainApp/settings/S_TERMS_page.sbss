@@ -1,6 +1,7 @@
 import ~/themes.sbss
 
-/page: page-background-color=$THEME_COLOR_02
+/page: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
+        line-spacing=0.4em, paragraph-spacing=0.4em, page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1.1, margin="40dp 40dp (40dp+1eb) 40dp"

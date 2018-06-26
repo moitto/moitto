@@ -1,0 +1,14 @@
+=begin page
+
+=begin content
+=object showcase: alternate-name=user.me.blog, data-script=feed_blog, loads-more=yes, \
+            has-header=yes, header-display-unit=S_USER.ME, \
+            selectable=yes, script-when-selected=open_discussion, \
+            style=showcase_blog
+=end content
+
+=begin loading
+불러오는 중입니다.
+=end loading
+
+=end page

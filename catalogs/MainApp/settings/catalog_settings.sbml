@@ -22,12 +22,12 @@
 =object blank: style=blank_line
 
 =object button: label="이용약관", action=page, display-unit=S_TERMS, catalog=Notice, \
-				has-own-title=yes, navibar-title="이용약관", style=btn_settings
+				style=btn_settings
 
 =object blank: style=blank_line
 
 =object button: label="개인정보취급방침", action=page, display-unit=S_PRICACYPOLICY, catalog=Notice, \
-				has-own-title=yes, navibar-title="개인정보취급방침", style=btn_settings
+				style=btn_settings
 
 =object blank: style=blank_line
 

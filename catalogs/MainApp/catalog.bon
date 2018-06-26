@@ -4,7 +4,8 @@
     "default-subview":"V_HOME",
     "privacy-version":"1.0",
     "related-catalogs":[
-        "Notice"
+        "Notice",
+        "ImageBank"
     ],
     "title":"모이또",
     "uses-database":"yes",

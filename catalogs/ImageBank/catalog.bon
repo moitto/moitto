@@ -1,0 +1,8 @@
+{
+    "autorun":{},
+    "database-version":"2.0",
+    "default-layout":"thumbnail",
+    "title":"모이또 ImageBank",
+    "uses-database":"yes",
+    "version":"1.0"
+}

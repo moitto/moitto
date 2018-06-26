@@ -1,16 +1,16 @@
 =begin page
 
-=begin header
-=object image: style=img_icon
-=begin title
-모이또=[italic|moitto]=
-=end title
-=object label: type=info, info-type=app-version, format="App. Version  #_", style=label_version
-=end header
-
-
+=object image: style=img_logo
 
 =begin body
+Mobile DApp Browser
+×
+Blockchain Wallet
+=begin title
+모이또
+=end title
 =end body
+
+=object label: type=info, info-type=app-version, format="App. Version  #_", style=label_version
 
 =end page

@@ -1,20 +1,39 @@
 import ~/themes.sbss
 
+
+-- 내비바 --
+
+#btn_close: image=~/subview_btn_close.png, width=44dp, height=44dp, \
+            position=absolute, gravity=left-top, y=1sbh
+#label_title: width=120dp, height=44dp, position=absolute, gravity=top, y=1sbh, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
+
+if $SCREEN_WIDTH > "5"
+    #label_title: font-size=1.4
+else
+    #label_title: font-size=1.3
+end
+
+
 #blank_frame: width=0.8pw, height=50dp, \
             content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
             content-background-color=$THEME_COLOR_00
-
-#textfield: width="0.8pw-20dp", height=50dp, \
-        font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, \
+#textfield_password: width="0.8pw-20dp", height=50dp, \
+        font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, font-size=1.2, \
         margin="-50dp 0 10dp 0"
-#textfield_password: style=textfield
 
-#btn_paste: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_03, label-font-size=0.9, \
-        margin="0 0 50dp 0"
+#btn_paste: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9, margin="0 0 50dp 0"
 
 #btn_reset: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/popup: page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
-/popup/form:
+/popup: page-background-color=$THEME_COLOR_02, margin="(1sbh+44dp+0.1pw) 0.1pw 0.1pw 0.1pw"
+/popup/message: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
+            line-spacing=0.3em, paragraph-spacing=0.3em, margin="0 0 20dp 0"
+
+if $SCREEN_WIDTH > "5"
+    /popup/message: font-size=1.1
+else
+    /popup/message: font-size=1
+end

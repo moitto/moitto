@@ -5,7 +5,7 @@ import ~/themes.sbss
 
 -- 내비바 --
 
-#btn_close: image=~/subview_btn_close.white.png, width=44dp, height=44dp, \
+#btn_close: image=~/subview_btn_close.png, width=44dp, height=44dp, \
             position=absolute, gravity=left-top, y=1sbh
 #btn_reset: height=44dp, \
             position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
@@ -58,7 +58,7 @@ end
 
 /popup/board: display=none
 /popup/board/content: display=block, position=absolute, gravity=center
-/popup/board/content/message: margin-bottom=10dp
+/popup/board/content/message: margin="0 20dp 10dp 20dp"
 /popup/board/content/number: display=none
 
 if $SCREEN_WIDTH > "5"
@@ -81,7 +81,7 @@ end
 
 /popup/numpad: display=none, text-align=center
 /popup/board/content/message: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
-            line-spacing=0.3em, paragraph-spacing=0.3em, font-size=1.1
+            line-break-mode=word-wrap, line-spacing=0.3em, paragraph-spacing=0.3em, font-size=1.1
 
 
 -- 알파벳 키패드 --

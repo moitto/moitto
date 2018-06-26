@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#camera_qr: width=1pw, height="1pw+1sbh", position=absolute, gravity=top
+#camera_qr: width=1pw, height=0.5ph, position=absolute, gravity=top
 #img_qr: filename="~/subview_img_qr.focus.png", position=absolute, gravity=top
 #label_notice: width=1pw, height=30dp, position=absolute, gravity=top, \
         font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=center, font-size=1
@@ -20,26 +20,25 @@ if $SCREEN_WIDTH > "5"
         #label_notice: y="0.5ph+1sbh+44dp"
     end
 else
-    #img_qr: width=0.6pw, height=0.6pw, y="0.4pw/2+1sbh"
-    #label_notice: y="1pw+1sbh"
+    #img_qr: width=0.3ph, height=0.3ph, y="0.5ph/2-0.15ph+0.5sbh"
+    #label_notice: y=0.5ph
 end
 
 
 -- 나의 QR --
 
-#label_title.qr: width="1pw-40dp", height=50dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=center, font-size=1.2
-#btn_transfer.qr: width="0.5pw-50dp", height=50dp, \
+#label_title.qr: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=left, font-size=1.2
+#btn_transfer.qr: width="1pw-80dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_03
-#btn_follow.qr: width="0.5pw-50dp", height=50dp, \
+            content-background-color=$THEME_COLOR_03, margin="10dp 0"
+#btn_follow.qr: width="1pw-80dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03
 #blank_margin: width=20dp, height=50dp
 
 /popup/my.qr: display=block, width="1pw-40dp", \
             position=absolute, gravity=top, text-align=center, \
-            padding="20dp 0 40dp 0", background-color=$THEME_COLOR_02
+            padding=20dp, background-color=$THEME_COLOR_02
 
 
 if "${logged-in}" != "yes"
@@ -48,10 +47,10 @@ end
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"
-        /popup/my.qr: y="0.6pw+1sbh+44dp+50dp"
+        /popup/my.qr: y="0.5ph+44dp+50dp"
     elif $ORIENTATION == "landscape"
-        /popup/my.qr: y="0.5ph+1sbh+44dp+50dp"
+        /popup/my.qr: y="0.5ph+44dp+50dp"
     end
 else
-    /popup/my.qr: y="1pw+1sbh+50dp"
+    /popup/my.qr: y="0.5ph+50dp"
 end

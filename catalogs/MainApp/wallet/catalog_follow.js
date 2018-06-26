@@ -9,7 +9,7 @@ function on_loaded() {
         if (response.length == 0 || response[0]["follower"] !== me) {
             __show_follow_button("follow");
         } else {
-            __show_follow_button("unfollow");
+            __show_followed_label("unfollow");
         }
     });
 

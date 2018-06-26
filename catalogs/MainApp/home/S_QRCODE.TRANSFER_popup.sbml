@@ -1,9 +1,10 @@
 =begin popup
 
+=object blank: style=blank_bg
+
 =begin navibar
 =object label: text="내 계좌 QR코드", style=label_title
 =end navibar
-
 
 =object image: type=qrcode, text="https://moitto.io/connect/transfer/?to=${username}", \
             style=img_qrcode

@@ -1,17 +1,19 @@
 =begin catalog
 
-=begin following
-=(object image: id="img.following.userpic", style=img_following.userpic)=
-=(object label: text="${subview.following}", style=label_following.username)=
-=end following
+=object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+
+=(object label: text="${username}", style=label_user)=
+=object label: text="REP. ${reputation}", style=label_rep
+=object label: id="label.followed", text="팔로우 중입니다", style=label_followed
+
 
 =object button: id="btn.follow", script=follow, label="팔로우", style=btn_follow
-=object button: id="btn.unfollow", script=unfollow, label="언팔로우", style=btn_unfollow
+=object button: id="btn.followed", action=subview-back, label="확인", style=btn_follow
+
 
 =begin loading: id=loading
-=begin content
 잠시 기다려 주세요~!
-=end content
 =end loading
 
 =end catalog

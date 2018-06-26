@@ -1,6 +1,7 @@
 =begin navibar
 
-=object button: script=show_settings, style=btn_settings
+=object button: script=show_settings, style=btn_settings, display=none
+=object button: action=subview, subview=V_FOLLOW, target=popup, style=btn_settings
 =object image: type=notice, catalog=Notice, style=img_notice, display=none, alt="temporary"
 
 =object button: script=qrcode, style=btn_qr

@@ -9,16 +9,18 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/page: text-align=center, page-background-color=$THEME_COLOR_02, margin="0.1pw 20dp 20dp 20dp"
+/page: text-align=center, page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > "5"
     #label_amount: height=70dp, font-size=1.8
     #blank_margin: height=70dp
     #btn_info: height=70dp
+    /page: margin="0.1pw 40dp 20dp 40dp"
 else
     #label_amount: height=50dp, font-size=1.6
     #blank_margin: height=50dp
     #btn_info: height=50dp
+    /page: margin="0.1pw 20dp 20dp 20dp"
 end
 
 

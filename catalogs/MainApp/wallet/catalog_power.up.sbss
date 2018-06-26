@@ -1,27 +1,4 @@
-import ~/themes.sbss
-
-/catalog: page-background-color=$THEME_COLOR_02
-
--- 송금액 --
-
-#section_amount: width=0.8pw, height=130dp, margin="25dp 0 50dp 0"
-
-#section_amount.box: width=1pw, height=60dp, \
-            content-border-color=$THEME_COLOR_01, content-border-width=1dp, \
-            content-background-color=$THEME_COLOR_00
-#label_amount.title: height=30dp, align=left, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1.2
-
-#textfield_amount: width="1pw-20dp", height=40dp, \
-            font-family=$SANSSERIF_BOLD, font-size=2.2, \
-            text-color=$THEME_COLOR_100, cursor-color=$THEME_COLOR_100, text-align=left, margin="10dp 0 0 0"
-
-#btn_submit: width=0.8pw, height=50dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
-
-/catalog/transaction/amount: display=none
-/catalog/transaction/amount/box: display=none
+import catalog_transfer.sbss
 
 
 -- 송금 금액 분기 --

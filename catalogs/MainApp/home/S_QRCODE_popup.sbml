@@ -1,8 +1,8 @@
 =begin popup: script-when-loaded=on_loaded
 
-=object camera: metadata-enabled=yes, qrcode-enabled=yes, \
+=object blank: metadata-enabled=yes, qrcode-enabled=yes, \
             focus-closely=yes, continuous-autofocus=yes, \
-            script-when-output@metadata=on_qrcode, style=camera_qr
+            script-when-output@metadata=on_qrcode, style=camera_qr, color=#ff4
 =object image: style=img_qr
 =object label: text="QR코드를 자동으로 인식합니다.", style=label_notice
 

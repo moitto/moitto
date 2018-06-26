@@ -15,7 +15,7 @@ import ~/themes.sbss
 
 -- 송금액 --
 
-#section_amount: width=0.8pw, height=130dp, margin="25dp 0 50dp 0"
+#section_amount: width=0.8pw, height=130dp, margin="25dp 0 40dp 0"
 
 #section_amount.box: width=1pw, height=60dp, \
             content-border-color=$THEME_COLOR_01, content-border-width=1dp, \

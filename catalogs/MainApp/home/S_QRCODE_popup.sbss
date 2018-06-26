@@ -28,16 +28,19 @@ end
 -- 나의 QR --
 
 #label_title.qr: width="1pw-40dp", height=50dp, \
-            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=center, font-size=1.2
-#btn_transfer.qr: width="0.5pw-20dp-10dp", height=50dp, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=center, font-size=1.2
+#btn_transfer.qr: width="0.5pw-50dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03
-#btn_follow.qr: width="0.5pw-20dp-10dp", height=50dp, \
+#btn_follow.qr: width="0.5pw-50dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03
 #blank_margin: width=20dp, height=50dp
 
-/popup/my.qr: display=block, position=absolute, gravity=top, text-align=center
+/popup/my.qr: display=block, width="1pw-40dp", \
+            position=absolute, gravity=top, text-align=center, \
+            padding="20dp 0 40dp 0", background-color=$THEME_COLOR_02
+
 
 if "${logged-in}" != "yes"
     /popup/my.qr: display=none
@@ -45,10 +48,10 @@ end
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"
-        /popup/my.qr: y="0.6pw+1sbh+44dp+40dp"
+        /popup/my.qr: y="0.6pw+1sbh+44dp+50dp"
     elif $ORIENTATION == "landscape"
-        /popup/my.qr: y="0.5ph+1sbh+44dp+40dp"
+        /popup/my.qr: y="0.5ph+1sbh+44dp+50dp"
     end
 else
-    /popup/my.qr: y="1pw+1sbh+40dp"
+    /popup/my.qr: y="1pw+1sbh+50dp"
 end

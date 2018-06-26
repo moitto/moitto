@@ -34,4 +34,4 @@ end
             content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"
 
 /popup/notice: font-family=$SANSSERIF_MEDIUM, font-size=1.1, text-color=$THEME_COLOR_100, \
-            margin="25dp 0.1pw 10dp 0.1pw"
+            margin="0.1pw 0.1pw 10dp 0.1pw"

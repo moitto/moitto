@@ -2,14 +2,14 @@
 
 =object section: section=delegate.receiver.select, style=section_navibar
 =begin navibar: id=delegate.receiver.select
-=object label: text="임대받을 계정 입력하기", style=label_title
+=object label: text="임대할 계정 입력하기", style=label_title
 =object button: action=popup-close, style=btn_close
 =object blank: style=blank_line
 =end navibar
 
 
 =begin notice
-임대받을 계정을 입력하세요.
+임대할 계정을 입력하세요.
 =end notice
 
 =begin receiver: form=receiver
@@ -18,7 +18,7 @@
             return-key-type=next, auto-capitalization-type=none, \
             keyboard-type=alphabet, next-control=next, \
             valid-format="[a-z0-9\\-]*", prevents-invalid-text=yes, \
-            invalid-when-empty=yes, message-when-empty="임대받을 계정을 입력하세요.", \
+            invalid-when-empty=yes, message-when-empty="임대할 계정을 입력하세요.", \
             style=textfield_username
 =object button: id=next, label="다음", script=delegate, form=receiver, style=btn_next
 

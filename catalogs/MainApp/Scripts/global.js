@@ -38,7 +38,11 @@ Global.get_user = function(username) {
             Global.steemjs.get_follow_count(username),
             Global.steemjs.get_dynamic_global_properties()
         ]).then(function(response) {
-            resolve(Global.users.create(username, response[0][0], response[1], new DynProps(response[2])));
+            if (response[0][0]) {
+                resolve(Global.users.create(username, response[0][0], response[1], new DynProps(response[2])));    
+            } else {
+                resolve();
+            }
         }, function(reason) {
             reject(reason);
         });

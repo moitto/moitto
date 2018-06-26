@@ -54,9 +54,22 @@ end
 /popup/loading: display=block, position=absolute, gravity=center, y=-100dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
 
+-- 계정조회 실패 --
+
+/popup/invalid: display=block, position=absolute, gravity=center, y=-100dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
+
 if "${fetched}" != "yes"
     /popup: script-when-loaded=on_loaded 
+    
     /popup/content: display=none
+    /popup/invalid: display=none
 else
     /popup/loading: display=none
+    
+    if "${invalid}" != "yes"
+        /popup/invalid: display=none
+    else
+        /popup/content: display=none
+    end
 end

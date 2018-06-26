@@ -239,7 +239,7 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
 
 Wallet.__reset_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
-        "message":Wallet.max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
+        "message":Wallet.__max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
         "script":"Wallet.__on_reset_pin"
     });
 

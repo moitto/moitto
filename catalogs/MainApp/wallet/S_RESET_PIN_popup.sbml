@@ -1,8 +1,10 @@
 =begin popup
 
-=begin navibar
-=object button: action=popup-close, style=btn_close
+=object section: section=reset.pin, style=section_navibar
+=begin navibar: id=reset.pin
 =object label: text="${title}", style=label_title
+=object button: action=popup-close, style=btn_close
+=object blank: style=blank_line
 =end navibar
 
 

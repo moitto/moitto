@@ -27,7 +27,7 @@ end
 
 -- 나의 QR --
 
-#label_title.qr: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=left, font-size=1.2
+#label_title.qr: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=left, font-size=1.2
 #btn_transfer.qr: width="1pw-80dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03, margin="10dp 0"
@@ -38,7 +38,7 @@ end
 
 /popup/my.qr: display=block, width="1pw-40dp", \
             position=absolute, gravity=top, text-align=center, \
-            padding=20dp, background-color=$THEME_COLOR_02
+            padding=20dp, background-color=$BLACK_COLOR_DIM
 
 
 if "${logged-in}" != "yes"

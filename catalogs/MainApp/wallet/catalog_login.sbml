@@ -15,7 +15,7 @@
             label="비밀번호를 클립보드에서 붙여넣기", \
             style=btn_paste
 
-=object button: script=login, form=login, label="로그인", style=btn_login
+=object button: id=login, script=login, form=login, label="로그인", style=btn_login
 =end form
 
 =end catalog

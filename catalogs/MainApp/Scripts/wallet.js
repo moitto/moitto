@@ -247,6 +247,7 @@ Wallet.__reset_pin = function() {
 }
 
 Wallet.__on_reset_pin = function() {
+    
 
 }
 

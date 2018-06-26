@@ -2,13 +2,13 @@
 
 =begin actions: form=form
 
-=begin : display=none, alt="temporary"
 =(object blank: style=blank_margin)==(object label: text="Voting Power", style=label_title)==(object button: action=show, target=object, object=power, style=btn_question)=
 =object label: id=label.power, text=" ", style=label_volume
 
 =(object blank: style=blank_margin)==(object label: text="Voting Percent", style=label_title)==(object button: action=show, target=object, object=percent, style=btn_question)=
 =object label: id=label.percent, text="00.00%", style=label_volume
 
+=begin : display=none, alt="temporary"
 =(object blank: style=blank_margin)==(object label: text="Voting Amount", style=label_title)==(object button: action=show, target=object, object=amount, style=btn_question)=
 =object label: id=label.amount, text=" ", style=label_volume
 =end
@@ -34,7 +34,9 @@
 =begin title
 Voting Power
 =end title
-Voting Power는 이런 겁니다.
+보팅파워=[italic|Voting Power]=는 보팅할 수 있는 에너지입니다. 블로그 글에 보팅을 하면 보팅파워는 일정량이 줄어듭니다. 풀보팅(보팅퍼센트=100%)을 하는 경우, 현재 보팅파워의 2%가 줄어듭니다.
+
+보팅파워는 하루에 20%씩 회복됩니다. 보팅파워가 0%이면 보팅할 수 없습니다.
 =end note
 =object button: action=hide, target=object, object=power, label="확인", style=btn_hide
 =end question
@@ -47,7 +49,9 @@ Voting Power는 이런 겁니다.
 =begin title
 Voting Percent
 =end title
-Voting Percent는 이런 겁니다.
+보팅퍼센트=[italic|Voting Percent]=는 보팅의 강약을 조절하는 게이지입니다. 보팅퍼센트를 100%로 설정하여 보팅하는 게 풀보팅입니다.
+
+보팅퍼센트 설정에 따라 보팅파워 감소에 영향을 줍니다. 예를 들어, 보팅퍼센트를 100%로 하면 보팅파워는 2% 감소하고, 50%로 하면 보팅파워는 1% 감소합니다.
 =end note
 =object button: action=hide, target=object, object=percent, label="확인", style=btn_hide
 =end question

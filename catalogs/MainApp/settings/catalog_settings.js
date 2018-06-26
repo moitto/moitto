@@ -14,7 +14,7 @@ function reset_pin_force() {
 function prompt_logout() {
 	controller.action("prompt", {
 		"title": "로그아웃",
-		"message": "로그아웃 하시겠습니까?",
+		"message": "로그아웃하시겠습니까?",
 		"has-cancel-button": "yes",
 		"button-1": "로그아웃;script;script=logout"
 	});

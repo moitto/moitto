@@ -1,5 +1,7 @@
 =begin cell
 
-=object label: text="${qeustion}", style=label_qeustion
+=object label: text="${navibar-title}", style=label_date
+
+=object label: text="${question}", style=label_question
 
 =end cell

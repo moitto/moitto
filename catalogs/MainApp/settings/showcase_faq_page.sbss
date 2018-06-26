@@ -5,7 +5,7 @@ import ~/themes.sbss
 /page: page-background-color=$THEME_COLOR_02, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
         line-spacing=0.6em, paragraph-spacing=0.6em
-/page/question: font-family=$SANSSERIF_MEDIUM, font-size=1.1em, margin="0 0 2em 0"
+/page/question: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="0 0 2em 0"
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1.2, margin="40dp 40dp (40dp+1eb) 40dp"

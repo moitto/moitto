@@ -1,11 +1,15 @@
 import ~/themes.sbss
 
-#label_qeustion: height=60dp, \
-            font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
+#label_date: height=15dp, align=left, \
+            font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=0.8, \
+            text-align=left, content-background-color="${category-color}", \
+            content-padding="1dp 3dp", align=left, margin="15dp 0 0 20dp"
+#label_question: height=30dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             text-align=left, line-break-mode=tail-truncation, align=left
 
 if $SCREEN_WIDTH > "5"
-    #label_qeustion: width="1pw-80dp", font-size=1.2, margin="0 0 0 40dp"
+    #label_question: width="1pw-80dp", font-size=1.2, margin="0 0 0 40dp"
 else
-    #label_qeustion: width="1pw-40dp", font-size=1.1, margin="0 0 0 20dp"
+    #label_question: width="1pw-40dp", font-size=1.1, margin="0 0 0 20dp"
 end

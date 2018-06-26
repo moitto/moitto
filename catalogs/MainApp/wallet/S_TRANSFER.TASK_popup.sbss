@@ -25,7 +25,9 @@ end
 /popup/done: display=none
 /popup/failed: display=none
 
-if "${status}" == "progress"
+if "${status}" == "confirm"
+    /popup/confirm: display=section
+elif "${status}" == "progress"
     /popup/progress: display=section
 elif "${status}" == "done"
     /popup/done: display=section

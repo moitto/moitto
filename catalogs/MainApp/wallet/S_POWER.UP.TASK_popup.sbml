@@ -1,20 +1,20 @@
 =begin popup: script-when-loaded=on_loaded
 
 =object button: action=popup-close, style=btn_close
-=object label: text="송금하기", style=label_title
+=object label: text="파워업", style=label_title
 
 =begin progress
 처리 중입니다.
 =end progress
 
 =begin done
-축하합니다. 완료되었습니다.
+파워업이 완료됐었습니다.
 =object button: action=subview-back, label="닫기", style=btn_action
 =end done
 
 =begin failed
 이런, 문제가 발생했습니다.
-잠시 후 다시 시도해주세요.
+잠시 후 다시 시도해 주세요.
 =object button: action=subview-back, label="닫기", style=btn_action
 =end failed
 

@@ -1,7 +1,7 @@
 =begin popup: script-when-loaded=on_loaded
 
 =object button: action=popup-close, style=btn_close
-=object label: text="리워드 입금하기", style=label_title
+=object label: text="리워드 입금", style=label_title
 
 =begin confirm
 리워드를 지갑에 입금하시겠습니까?
@@ -25,7 +25,7 @@
 
 =begin failed
 이런, 문제가 발생했습니다.
-잠시 후 다시 시도해주세요.
+잠시 후 다시 시도해 주세요.
 =object button: action=popup-close, label="닫기", style=btn_action
 =end failed
 

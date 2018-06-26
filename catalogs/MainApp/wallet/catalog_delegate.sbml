@@ -13,7 +13,7 @@
 =object section: section=amount, style=section_amount
 =begin amount: id=amount
 =begin heading
-=object label: text="임대할 금액", style=label_amount.title
+=object label: text="임대할 스팀파워", style=label_amount.title
 =end heading
 
 =object section: section=amount.box, style=section_amount.box
@@ -23,7 +23,7 @@
 =object textfield: id=amount, text="${subview.amount}", \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
                 keyboard-type=decimal, \
-                invalid-when-empty=yes, message-when-empty="금액을 입력하세요.", \
+                invalid-when-empty=yes, message-when-empty="스팀파워 액수를 입력하세요.", \
                 style=textfield_amount
 =end content
 =end box

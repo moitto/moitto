@@ -7,12 +7,12 @@ import ~/themes.sbss
             align=right, margin="-47dp 0 0 20dp"
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01
 #blank_margin: width=1pw, height=20dp
-#login: label-align=center, content-padding=0
+#btn_login: label-align=center, content-padding=0
 
 /catalog: page-background-color=$THEME_COLOR_02
 
 
-if "${logged-in}" = "yes"
+if "${subview.logged-in}" == "yes"
 	#login: display=block
 	#btn_login: label="로그아웃", script="logout_button_pressed"
 	#btn_pin: display=block

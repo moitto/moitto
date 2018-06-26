@@ -3,7 +3,7 @@ var wallet  = require("wallet");
 var users   = require("users");
 
 function pin_button_pressed() {
-	wallet.register_pin_again(function(pin) {
+	wallet.reset_pin_force(function(pin) {
 	});
 }
 
@@ -43,7 +43,7 @@ function clear_cache() {
 }
 
 function show_pin() {
-	wallet.register_pin_again(function(pin) {
+	wallet.reset_pin_force(function(pin) {
         if (pin) {
  	       console.log("pin" + pin);
         }

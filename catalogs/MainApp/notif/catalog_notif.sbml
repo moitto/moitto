@@ -7,8 +7,6 @@
             style=showcase_notif
 
 =object section: id=section.login, section=login, style=section_login
-=object section: id=section.loading, section=loading, style=section_loading
-
 
 
 =object section: id=section.login, section=login, style=section_login, alt="로그인 전"

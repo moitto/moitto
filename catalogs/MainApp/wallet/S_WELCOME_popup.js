@@ -1,5 +1,5 @@
 function on_login() {
-    [ "V_HOME", "V_WALLET", "V_NOTIFY" ].forEach(function(subview) {
+    [ "V_HOME", "V_WALLET", "V_NOTIF" ].forEach(function(subview) {
         controller.action("reload", { target:"catalog", subview:subview });
     });
     

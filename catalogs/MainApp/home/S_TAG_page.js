@@ -50,7 +50,7 @@ function open_discussion(data) {
         "userpic-url":data["userpic-url"]
     });
     
-    controller.action("page", { "display-unit":"S_DISCUSSION" });
+    controller.action("page", { "display-unit":"S_DISCUSSION.CONTENT" });
 }
 
 function __template_data_for_content(content) {

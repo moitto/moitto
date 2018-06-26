@@ -42,6 +42,18 @@ function snooze_notif() {
     __hide_notif_badge();
 }
 
+function vote() {
+    var value = document.value("VOTE");
+
+    account.vote(value["author"], value["permlink"], value["weight"], function(response) {
+        if (value["weight"] == 0) {
+            controller.action("toast", { "message":"보팅이 취소되었습니다." });
+        } else {
+            controller.action("toast", { "message":"보팅이 완료되었습니다." });
+        }
+    });
+}
+
 function __show_notif_badge() {
     var blank = view.object("blank.notif.badge");
 

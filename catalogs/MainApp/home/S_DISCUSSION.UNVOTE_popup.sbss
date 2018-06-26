@@ -1,8 +1,8 @@
 import ~/themes.sbss
 
 #btn_unvote: width="1pw-40dp", height=50dp, position=absolute, gravity=bottom, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-            content-background-color=$THEME_COLOR_03
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_04
 
 #btn_close: width=50dp, height=50dp, position=absolute, gravity=right-bottom, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \

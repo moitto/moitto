@@ -120,7 +120,7 @@ end
 
 
 if "${voted}" == "yes"
-    #btn_vote: selected=yes, alternate-name="discussion.unvote"
+    #btn_vote: selected=yes, display-unit="S_DISCUSSION.UNVOTE"
 end
 
 if "${is-payout}" == "yes"

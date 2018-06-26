@@ -122,7 +122,7 @@ function __open_discussion(author, permlink) {
         "userpic-url":user.get_userpic_url("small")
     });
 
-    controller.action("page", { "display-unit":"S_DISCUSSION" });
+    controller.action("page", { "display-unit":"S_DISCUSSION.CONTENT" });
 }
 
 function __show_replies(author, permlink) {

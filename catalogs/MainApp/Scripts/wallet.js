@@ -185,9 +185,12 @@ Wallet.__on_receive_pin = function() {
  
             storage.value("WALLET.WRONG_PIN_COUNT", 0);
         } else {
-            console.log("failed: " + pin);
-            Wallet.__retry_confirm_transfer(wrong_count + 1);
- 
+            if (wrong_count + 1 < Wallet.__max_wrong_count) {
+                Wallet.__retry_confirm_transfer(wrong_count + 1);
+            } else {
+                Wallet.__reset_pin();
+            }
+            
             storage.value("WALLET.WRONG_PIN_COUNT", wrong_count + 1);
         }
     } else {
@@ -235,7 +238,7 @@ Wallet.__on_receive_pin_again = function() {
 Wallet.__retry_confirm_transfer = function(wrong_count) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 입력",
-        "message":"PIN번호를 잘못 입력했습니다.\\n다시 PIN번호를 입력하세요.\\n(현재 " + wrong_count + "회 틀림 / " + Wallet.__max_wrong_count  + "회 연속 틀리면 사용 중지됩니다.)",
+        "message":"PIN번호를 잘못 입력했습니다.\\n다시 PIN번호를 입력하세요.\\n(현재 " + wrong_count + "회 틀림 / " + Wallet.__max_wrong_count  + "회 연속 틀리면 PIN번호를 재설정해야 합니다.)",
         "status":"error",
         "script":"Wallet.__on_receive_pin"
     });
@@ -246,8 +249,9 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
 Wallet.__reset_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
         "title": "PIN번호 재설정",
-        "message":Wallet.max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
+        "message":Wallet.__max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
         "btn-message":"PIN번호 재설정",
+        "message":Wallet.__max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
         "script":"Wallet.__on_reset_pin"
     });
 

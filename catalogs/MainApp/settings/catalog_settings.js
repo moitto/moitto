@@ -5,7 +5,7 @@ var users   = require("users");
 function pin_button_pressed() {
 	wallet.reregister_pin(function(pin) {
 		if (pin) {
-			console.log("pin_button_pressed::" + pin);
+
 		}
 	});
 }

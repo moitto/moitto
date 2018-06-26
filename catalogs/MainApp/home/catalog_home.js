@@ -49,7 +49,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
 
     if (account.is_logged_in()) {
         steemjs.get_discussions_by_feed(account.username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-            var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_HOME", null, [ 0, 100 ]);
+            var backgrounds = controller.catalog().values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);
             var data = [];
 
             if (location > 0) {
@@ -101,12 +101,15 @@ function open_discussion(data) {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
         "author":data["author"],
         "permlink":data["permlink"],
+        "userpic-url":data["userpic-url"]
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.CONTENT", {
         "tag":data["main-tag"],
-        "userpic-url":data["userpic-url"],
         "background":data["background.id"]
     });
     
-    controller.action("page", { "display-unit":"S_DISCUSSION" });
+    controller.action("page", { "display-unit":"S_DISCUSSION.CONTENT" });
 }
 
 function __reload_feeds_header() {

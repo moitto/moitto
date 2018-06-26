@@ -20,7 +20,7 @@
 =object button: label="75%", style=btn_percent.75
 =object button: label="100%", style=btn_percent.100
 
-=object button: id=btn.vote, script=vote, label="보팅하기", style=btn_vote
+=object button: id=btn.vote, script=upvote, label="보팅하기", style=btn_vote
 
 =end actions
 

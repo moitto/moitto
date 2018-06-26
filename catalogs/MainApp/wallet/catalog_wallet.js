@@ -3,10 +3,6 @@ var wallet  = require("wallet");
 var global  = require("global");
 
 function on_loaded() {
-    account.delegate_vesting("stimcity", "337.000 SP", "", function(response) {
-        console.log(JSON.stringify(response));
-    });
-
     if (!account.is_logged_in()) {
         __hide_loading_section();
         __show_login_section();

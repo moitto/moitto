@@ -3,6 +3,8 @@ import ~/themes.sbss
 #btn_settings: width=1pw, height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left, \
             label-font-size=1, content-padding="0 0 0 20dp", content-background-color=$THEME_COLOR_00
+#img_arrow: filename="~/subview_btn_arrow.png", width=36dp, height=36dp, \
+            align=right, margin="-43dp 0 7dp 20dp"
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01
 #blank_margin: width=1pw, height=20dp
 #btn_login: label-align=center, content-padding=0

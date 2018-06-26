@@ -4,7 +4,7 @@
 =begin query.bar: id=query.bar, form=query
 =object blank: style=blank_query.bar
 =object textfield: id=textfield.tag, \
-                script=change_tag, form=query, placeholder="선택할 태그를 검색하세요", \
+                script=change_tag, form=query, placeholder="태그를 검색하세요", \
                 action-when-editing@begin=hide, params-when-editing@begin="group=query.categories", \
                 script-when-editing@change=on_change_tag, \
                 return-key-type=search, keyboard-type=alphabet, auto-capitalization-type=none, \
@@ -25,15 +25,5 @@
                 has-toolbar=yes, \
                 bounces=yes, \
                 style=showcase_history
-
-
-
-=object section: id=suggestion, section=suggestion, style=section_suggestion, content-background-color=$THEME_COLOR_01
-=begin suggestion: id=suggestion
-=object showcase: id=showcase.suggestion, alternate-name=tag.suggestion, \
-                data-script=load_suggestion, \
-                selectable=yes, script-when-selected=select_suggestion, \
-                style=showcase_suggestion, content-background-color=#9ff
-=end suggestion
 
 =end popup

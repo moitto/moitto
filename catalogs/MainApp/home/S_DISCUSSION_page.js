@@ -2,7 +2,7 @@ var global = require("global");
 var themes = require("themes");
 
 function on_loaded() {
-    var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION.CONTENT");
+    var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     var background = controller.catalog().value("showcase", "backgrounds", discussion["background"]);
     var me = storage.value("ACTIVE_USER");
 
@@ -53,7 +53,7 @@ function on_loaded() {
         }
  
         view.data("display-unit", data);
-        view.data("environment", { "alternate-name":"discussion.content" });
+        view.data("environment", { "alternate-name":"discussion" });
         view.action("reload");
     });
 }

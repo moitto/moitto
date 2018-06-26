@@ -1,12 +1,27 @@
 function upvote(form) {
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
+        "author":$data["author"],
+        "permlink":$data["permlink"]
+    });
+
     controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
 }
 
 function downvote(form) {
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.DOWNVOTE", {
+        "author":$data["author"],
+        "permlink":$data["permlink"]
+    });
+
     controller.action("popup", { "display-unit":"S_DISCUSSION.DOWNVOTE" });
 }
 
 function unvote(form) {
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
+        "author":$data["author"],
+        "permlink":$data["permlink"]
+    });
+
     controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
 }
 

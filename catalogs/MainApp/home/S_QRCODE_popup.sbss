@@ -12,13 +12,8 @@ import ~/themes.sbss
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
 
 if $SCREEN_WIDTH > "5"
-    if $ORIENTATION == "portrait"
-        #img_qr: width=0.5pw, height=0.5pw, y="0.1pw/2+1sbh+44dp"
-        #label_notice: y="0.6pw+1sbh+44dp"
-    elif $ORIENTATION == "landscape"
-        #img_qr: width=0.4ph, height=0.4ph, y="0.1ph/2+1sbh+44dp"
-        #label_notice: y="0.5ph+1sbh+44dp"
-    end
+    #img_qr: width=0.25ph, height=0.25ph, y="0.5ph/2-0.125ph+0.5sbh"
+    #label_notice: y="0.5ph+1sbh"
 else
     #img_qr: width=0.3ph, height=0.3ph, y="0.5ph/2-0.15ph+0.5sbh"
     #label_notice: y=0.5ph
@@ -27,7 +22,7 @@ end
 
 -- 나의 QR --
 
-#label_title.qr: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=left, font-size=1.2
+#label_title.qr: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=left, font-size=1.2
 #btn_transfer.qr: width="1pw-80dp", height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03, margin="10dp 0"
@@ -38,7 +33,7 @@ end
 
 /popup/my.qr: display=block, width="1pw-40dp", \
             position=absolute, gravity=top, text-align=center, \
-            padding=20dp, background-color=$BLACK_COLOR_DIM
+            padding=20dp, background-color=$THEME_COLOR_02
 
 
 if "${logged-in}" != "yes"

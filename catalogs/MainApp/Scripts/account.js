@@ -46,7 +46,7 @@ Account.login = function(username, password, handler) {
     });
 }
 
-Account.logout = function() {
+Account.logout = function(handler) {
     (storage.value("USERS") || []).forEach(function(username) {
         var roles = [ "active", "posting", "memo" ];
     
@@ -59,6 +59,8 @@ Account.logout = function() {
 
     storage.value("ACTIVE_USER", "");
     storage.value("USERS", []);
+
+    handler();
 }
 
 Account.is_logged_in = function() {

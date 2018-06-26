@@ -1,18 +1,18 @@
 import ~/themes.sbss
 
-#img_icon: filename=aboutview_icon.png, width=80dp, height=80dp, \
-            content-border-radius=10dp, margin="0 0 20dp 0"
+#img_logo: filename="~/aboutview_img_logo.png", width=80dp, margin="0 0 20dp 0"
 #label_version: width=150dp, height=30dp, align=center, \
-                font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$THEME_COLOR_101
-#italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
+                font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$THEME_COLOR_101, \
+                font-size=0.8
 
 /page: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
-        page-background-color=$THEME_COLOR_02, margin=20dp
-/page/header: margin="0 0 20dp 0"
-/page/header/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2em, text-align=center
+        line-spacing=0.3em, paragraph-spacing=0.3em, \
+        page-background-color=$THEME_COLOR_02
+/page/body: font-family=$SANSSERIF_MEDIUM, text-align=center
+/page/body/title: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="40dp 0 0 0"
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1, margin="40dp 40dp (40dp+1eb) 40dp"
 else
-    /page: font-size=0.9, margin="20dp 20dp (20dp+1eb) 20dp"
+    /page: font-size=0.9, margin="0.1pw 0.1pw (0.1pw+1eb) 0.1pw"
 end

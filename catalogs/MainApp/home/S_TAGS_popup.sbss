@@ -32,23 +32,3 @@ end
             position=absolute, gravity=top, y="1sbh+44dp+10dp", \
             selected-color=$LIGHT_COLOR_DIM, toolbar-height=40dp
 /popup/suggestion: display=none
-
-
--- 태그 제안 --
-
-#showcase_suggestion: width=1pw, height=1ph, column-count=1, cell-size="1pw, 36dp", \
-        content-background-color=$WHITE_COLOR
-
-
-
--- 삭제할 것
-#blank_categories.dim: group=query.categories, color=$BLACK_COLOR_DEEP_DIM, hidden=yes, \
-width=1pw, height=1ph-76dp, position=abs, gravity=top, y=76dp
-#cell_categories: group=query.categories, \
-alternate-name=query.categories, display-unit=S_QUERY.CATEGORIES, \
-width=1pw, height=150dp, position=abs, gravity=top, y=76dp, hidden=yes
-#btn_categories.close: image="~/subview_btn_close.png", action=hide, group=query.categories, \
-width=44dp, height=44dp, position=abs, gravity=top-right, y=76dp+150dp
-#section_suggestion: hidden=yes, \
-width=1pw, height=36dp*5, position=abs, gravity=top, y=76dp
-

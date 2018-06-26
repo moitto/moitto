@@ -14,7 +14,7 @@ import ~/themes.sbss
 
 if "${subview.logged-in}" == "yes"
 	#login: display=block
-	#btn_login: label="로그아웃", script="logout_button_pressed"
+	#btn_login: display=block
 	#btn_pin: display=block
 else
 	#login: display=none

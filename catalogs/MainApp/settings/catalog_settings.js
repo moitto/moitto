@@ -2,12 +2,16 @@ var account = require("account");
 var wallet  = require("wallet");
 var users   = require("users");
 
-function pin_button_pressed() {
+function reset_pin_force() {
 	wallet.reset_pin_force(function(pin) {
+		if (pin) {
+			controller.action("toast", { "message":"PIN번호가 설정 되었습니다." });
+		}
+		controller.action("popup-close");
 	});
 }
 
-function logout_button_pressed() {
+function prompt_logout() {
 	controller.action("prompt", {
 		"title": "로그아웃",
 		"message": "로그아웃 하시겠습니까?",
@@ -16,7 +20,7 @@ function logout_button_pressed() {
 	});
 }
 
-function cache_button_pressed() {
+function prompt_clear_cache() {
 	controller.action("prompt", {
 		"title": "캐시 삭제",
 		"message": "임시로 저장됐던 파일을 삭제하시겠습니까?",
@@ -40,12 +44,4 @@ function logout() {
 
 function clear_cache() {
 	controller.action("clear-cache");
-}
-
-function show_pin() {
-	wallet.reset_pin_force(function(pin) {
-        if (pin) {
- 	       console.log("pin" + pin);
-        }
-    });
 }

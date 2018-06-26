@@ -1,11 +1,11 @@
 =begin catalog
 
-=object button: label="핀번호 설정", script="pin_button_pressed", style=btn_settings, style=btn_pin
+=object button: label="핀번호 설정", script="reset_pin_force", style=btn_settings, style=btn_pin
 =object image: style=img_arrow, style=btn_pin
 
 =object blank: style=blank_line
 
-=object button: label="캐시 삭제", script="cache_button_pressed", \
+=object button: label="캐시 삭제", script="prompt_clear_cache", \
                 style=btn_settings
 
 =object blank: style=blank_line
@@ -44,7 +44,7 @@
 =object blank: style=blank_margin, style=login
 =object blank: style=blank_line, style=login
 
-=object button: style=btn_settings, style=btn_login
+=object button: label="로그아웃", script="prompt_logout", style=btn_settings, style=btn_login
 
 =object blank: style=blank_line
 

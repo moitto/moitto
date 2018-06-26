@@ -176,9 +176,12 @@ Wallet.__on_receive_pin = function() {
  
             storage.value("WALLET.WRONG_PIN_COUNT", 0);
         } else {
-         console.log("failed: " + pin);
-           Wallet.__retry_confirm_transfer(wrong_count + 1);
- 
+            if (wrong_count + 1 < Wallet.__max_wrong_count) {
+                Wallet.__retry_confirm_transfer(wrong_count + 1);
+            } else {
+                Wallet.__reset_pin();
+            }
+            
             storage.value("WALLET.WRONG_PIN_COUNT", wrong_count + 1);
         }
     } else {

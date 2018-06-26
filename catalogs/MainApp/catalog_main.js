@@ -46,8 +46,6 @@ function vote() {
     var value = document.value("VOTE");
 
     account.vote(value["author"], value["permlink"], value["weight"], function(response) {
-        console.log("%%%%%%%%%%%%%%%");
-        console.log(JSON.stringify(response));
         if (value["weight"] == 0) {
             controller.action("toast", { "message":"보팅이 취소되었습니다." });
         } else {

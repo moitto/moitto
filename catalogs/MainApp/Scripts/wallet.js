@@ -9,10 +9,6 @@ Wallet = (function() {
 Wallet.account = require("account"); 
 Wallet.upbit   = require("upbit");
 
-Wallet.registered_pin = function(username) {
-    return storage.value("PIN_ENABLED" + "@" + username);
-}
-
 Wallet.register_pin = function(handler) {
     Wallet.__transaction = {
         "action":"register_pin",
@@ -42,7 +38,11 @@ Wallet.transfer = function(to, coin, amount, memo, handler) {
         "handler":handler
     };
 
-    Wallet.__start_transfer(to, amount);
+    if (Wallet.account.active_key_enabled()) {
+        Wallet.__start_transfer(to, amount);
+    } else {
+        Wallet.__prompt_reset_pin();
+    }
 }
 
 Wallet.delegate = function(to, amount, handler) {
@@ -55,7 +55,11 @@ Wallet.delegate = function(to, amount, handler) {
         "handler":handler
     };
 
-    Wallet.__start_delegate(to, amount);
+    if (Wallet.account.active_key_enabled()) {
+        Wallet.__start_delegate(to, amount);
+    } else {
+        Wallet.__prompt_reset_pin();
+    }
 }
 
 Wallet.redeem_rewards = function(handler) {
@@ -97,7 +101,7 @@ Wallet.__start_transfer = function(to, amount) {
     if (wrong_count < Wallet.__max_wrong_count) {
         Wallet.__confirm_transfer(to, amount);
     } else {
-        Wallet.__reset_pin();
+        Wallet.__on_exceed_max_wrong_count();
     }
 }
 
@@ -106,7 +110,8 @@ Wallet.__confirm_transfer = function(to, amount) {
         "title":"PIN번호 입력",
         "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 송금합니다.",
         "status":"normal",
-        "script":"Wallet.__on_receive_pin"
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
     });
 
     controller.action("popup", { "display-unit":"S_PIN" });
@@ -118,7 +123,7 @@ Wallet.__start_delegate = function(to, amount) {
     if (wrong_count < Wallet.__max_wrong_count) {
         Wallet.__confirm_delegate(to, amount);
     } else {
-        Wallet.__reset_pin();
+        Wallet.__on_exceed_max_wrong_count();
     }
 }
 
@@ -127,7 +132,8 @@ Wallet.__confirm_delegate = function(to, amount) {
         "title":"PIN번호 입력",
         "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 임대합니다.",
         "status":"normal",
-        "script":"Wallet.__on_receive_pin"
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
     });
 
     controller.action("popup", { "display-unit":"S_PIN" });
@@ -182,8 +188,6 @@ Wallet.__on_receive_pin = function() {
     var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
     var pin = document.value("WALLET.PIN");
 
-    console.log("__on_receive_pin: " + pin);
-
     if (action !== "register_pin" && action !== "reset_pin_force") {
         if (Wallet.account.verify_pin(pin)) {
             Wallet.__process_transaction(pin);
@@ -193,7 +197,7 @@ Wallet.__on_receive_pin = function() {
             if (wrong_count + 1 < Wallet.__max_wrong_count) {
                 Wallet.__retry_confirm_transfer(wrong_count + 1);
             } else {
-                Wallet.__reset_pin();
+                Wallet.__on_exceed_max_wrong_count();
             }
             
             storage.value("WALLET.WRONG_PIN_COUNT", wrong_count + 1);
@@ -216,7 +220,9 @@ Wallet.__on_receive_pin = function() {
 Wallet.__on_receive_pin_again = function() {
     var pin = document.value("WALLET.PIN");
 
-    if (pin === Wallet.__pin_to_verify) {
+    if (pin && pin === Wallet.__pin_to_verify) {
+        console.log("__on_receive_pin_again, pin is " + pin);
+        console.log("__on_receive_pin_again, __pin_to_verify is " + Wallet.__pin_to_verify);
         if (Wallet.__transaction["handler"]) {
             Wallet.__transaction["handler"](pin);
         }
@@ -225,22 +231,34 @@ Wallet.__on_receive_pin_again = function() {
             Wallet.__transaction["pin_handler"](pin);
         }
     
-        document.value("WALLET.PIN", null);
+        document.value("WALLET.PIN", "");
 
         Wallet.__pin_to_verify = null;
         Wallet.__transaction = null;
     } else {
-        controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
-            "title":"PIN번호 설정",
-            "message":"PIN번호가 일치하지 않습니다.\\n송금, 임대 등에 사용할 PIN번호를 입력하세요.",
-            "status":"error",
-            "close-disabled":"yes",
-            "reset-disabled":"yes",
-            "skip-enabled":"yes",
-            "script":"Wallet.__on_receive_pin"
-        });
+        if (pin) {
+            console.log("__on_receive_pin_again, pin is " + pin);
+            controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+                "title":"PIN번호 설정",
+                "message":"PIN번호가 일치하지 않습니다.\\n송금, 임대 등에 사용할 PIN번호를 입력하세요.",
+                "status":"error",
+                "close-disabled":"yes",
+                "reset-disabled":"yes",
+                "skip-enabled":"yes",
+                "script":"Wallet.__on_receive_pin"
+            });
 
-        controller.action("popup", { "display-unit":"S_PIN" });
+            controller.action("popup", { "display-unit":"S_PIN" });
+        } else {
+            console.log("__on_receive_pin_again, but not pin");
+            if (Wallet.__transaction["handler"]) {
+                Wallet.__transaction["handler"]();
+            }
+
+            if (Wallet.__transaction["pin_handler"]) {
+                Wallet.__transaction["pin_handler"]();
+            }
+        }
     }
 }
 
@@ -255,10 +273,57 @@ Wallet.__retry_confirm_transfer = function(wrong_count) {
     controller.action("popup", { "display-unit":"S_PIN" });
 }
 
-Wallet.__reset_pin = function() {
+Wallet.__on_exceed_max_wrong_count = function() {
+    Wallet.__transaction = {
+        "action":"reset_pin_force",
+        "handler":function(pin) {
+            if (pin) {
+                controller.action("toast", {
+                    "message":"PIN번호가 등록되었습니다.",
+                    "close-popup":"yes"
+                });
+
+                storage.value("WALLET.WRONG_PIN_COUNT", 0);
+            } else {
+                controller.action("popup-close");
+            }
+        }
+    };
+
+    Wallet.__reset_pin_for_wrong(Wallet.__max_wrong_count)
+}
+
+Wallet.__prompt_reset_pin = function() {
+    controller.action("prompt", {
+        "title": "알림",
+        "message": "송금이나 임대를 하시려면 먼저 PIN번호를 설정해주세요.",
+        "has-cancel-button": "yes",
+        "button-1": "PIN 설정하기;script;script=Wallet.__on_confirm_reset_pin"
+    });
+}
+
+Wallet.__on_confirm_reset_pin = function() {
+    Wallet.__transaction = {
+        "action":"reset_pin_force",
+        "handler":function(pin) {
+            if (pin) {
+                controller.action("toast", {
+                    "message":"PIN번호가 등록되었습니다.",
+                    "close-popup":"yes"
+                });
+            } else {
+                controller.action("popup-close");
+            }
+        }
+    };
+
+    Wallet.__reset_pin_force();
+}
+
+Wallet.__reset_pin_for_wrong = function(wrong_count) {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
         "title": "PIN번호 재설정",
-        "message":Wallet.__max_wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
+        "message":wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
         "btn-message":"PIN번호 재설정",
         "script":"Wallet.__on_reset_pin"
     });

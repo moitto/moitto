@@ -35,7 +35,6 @@ end
             position=absolute, gravity=top, text-align=center, \
             padding=20dp, background-color=$THEME_COLOR_02
 
-
 if "${logged-in}" != "yes"
     /popup/my.qr: display=none
 end

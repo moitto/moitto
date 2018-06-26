@@ -1,7 +1,8 @@
 function transfer() {
-    var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
+    var amount_type = storage.value("STEEM.AMOUNT-TYPE") || "STEEM";
+
     controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
-        "amount-type":value["amount-type"] || "STEEM",
+        "amount-type":amount_type,
         "coin":"STEEM",
         "currency":"KRW"
     });

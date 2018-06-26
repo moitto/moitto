@@ -4,7 +4,7 @@
 =object label: text="파워업", style=label_title
 
 =begin progress
-처리 중입니다.
+파워업 진행 중입니다.
 =end progress
 
 =begin done

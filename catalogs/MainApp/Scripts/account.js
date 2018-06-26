@@ -33,16 +33,20 @@ Account.login = function(username, password, handler) {
                 var key = keys[role].priv;
 
                 if ([ "active" ].includes(role)) {
-                    key = Account.crypto.encrypt(pin, key);
+                    key = pin ?  Account.crypto.encrypt(pin, key) : null;
                 }
 
-                keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+                if (key) {
+                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+                }
             });
 
-            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
-            keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+            if (pin) {
+                keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
+                keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
 
-            storage.value("PIN_ENABLED" + "@" + username, true);
+                storage.value("ACTIVE_KEY_ENABLED" + "@" + username, true);
+            }
         });
     });
 }
@@ -55,7 +59,7 @@ Account.logout = function(handler) {
             keychain.password("KEYS_" + role.toUpperCase() + "@" + username, "");
         });
 
-        storage.value("PIN_ENABLED" + "@" + username, false);
+        storage.value("ACTIVE_KEY_ENABLED" + "@" + username, false);
     });
 
     Account.username = "";
@@ -69,6 +73,14 @@ Account.logout = function(handler) {
 Account.is_logged_in = function() {
     if (Account.username) {
         return true;
+    }
+
+    return false;
+}
+
+Account.active_key_enabled = function() {
+    if (Account.username) {
+        return storage.value("ACTIVE_KEY_ENABLED" + "@" + Account.username) || false;
     }
 
     return false;
@@ -261,16 +273,20 @@ Account.register_active_key = function(password, handler) {
                 var key = keys[role].priv;
 
                 if ([ "active" ].includes(role)) {
-                    key = Account.crypto.encrypt(pin, key);
+                    key = pin ? Account.crypto.encrypt(pin, key) : null;
                 }
 
-                keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+                if (key) {
+                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+                }
             });
 
-            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
-            keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+            if (pin) {
+                keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
+                keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
 
-            storage.value("PIN_ENABLED" + "@" + username, true);
+                storage.value("ACTIVE_KEY_ENABLED" + "@" + username, true);
+            }
         });
     });
 }

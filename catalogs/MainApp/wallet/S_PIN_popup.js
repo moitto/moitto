@@ -1,21 +1,15 @@
-var wallet  = require("wallet");
-
 var __input_numbers = [];
 
 function skip() {
-    document.value("WALLET.PIN", null);
+    document.value("WALLET.PIN", "");
 
     host.action("script", { "script":$data["script"] });
 }
 
-function reset_pin_force() {
-    wallet.reset_pin_force(function(pin) {
-        if (pin) {
-            controller.action("toast", { "message":"PIN번호가 설정 되었습니다." });
-        }
+function reset() {
+    document.value("WALLET.PIN", "");
 
-        controller.action("popup-close");
-    });
+    host.action("script", { "script":$data["reset"] });
 }
 
 function press_number(form) {

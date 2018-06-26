@@ -3,7 +3,7 @@
 =begin navibar
 =object button: action=popup-close, style=btn_close
 =object label: text="${title}", style=label_title
-=object button: script=reset_pin_force, label="PIN번호 재설정", style=btn_reset
+=object button: script=reset, label="PIN번호 재설정", style=btn_reset
 =object button: script=skip, label="다음에 하기", style=btn_skip
 =end navibar
 

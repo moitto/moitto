@@ -4,7 +4,8 @@
 =object label: text="임대", style=label_title
 
 =begin progress
-처리 중입니다.
+임대 진행 중입니다.
+잠시 기다려 주세요.
 =end progress
 
 =begin done

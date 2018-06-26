@@ -4,7 +4,8 @@
 =object label: text="파워다운", style=label_title
 
 =begin progress
-처리 중입니다.
+파워다운 진행 중입니다.
+잠시 기다려 주세요.
 =end progress
 
 =begin done

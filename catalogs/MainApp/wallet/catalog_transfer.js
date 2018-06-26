@@ -58,6 +58,8 @@ function on_choose_currency() {
 
             controller.action("reload");
         }
+
+        storage.value(value["coin"] + ".AMOUNT-TYPE", amount_type);
     }
 
     document.value("WALLET.AMOUNT.TYPE", null);

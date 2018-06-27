@@ -12,7 +12,8 @@
 =object blank: style=blank_margin
 =object blank: style=blank_line
 
-=object button: label="공지사항", action=page, display-unit=S_NOTICE, catalog=Notice, style=btn_settings
+=object button: label="공지사항", action=page, display-unit=S_NOTICE, catalog=Notice, \
+                has-own-title=yes, navibar-title="공지사항", style=btn_settings
 =object image: style=img_arrow
 =object image: type=notice, catalog=Notice, style=img_notice, display=none, alt="temporary"
 

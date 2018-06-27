@@ -11,6 +11,9 @@ Multi Blockchain Wallet
 =end title
 =end body
 
-=object label: type=info, info-type=app-version, format="App. Version  #_", style=label_version
-
+=begin footer
+=(object label: type=info, info-type=app-version, format="App. Version  #_", style=label_info)=
+=(object button: action=link, url="mailto:help@bookjam.net", label="Contact us help@bookjam.net", style=btn_info)=
+=(object label: text="Copyright ⓒ2018 Bookjam Corp.", style=label_info)=
+=end footer
 =end page

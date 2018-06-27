@@ -1,18 +1,25 @@
 import ~/themes.sbss
 
 #img_logo: filename="~/aboutview_img_logo.png", width=80dp, margin="0 0 20dp 0"
-#label_version: width=150dp, height=30dp, align=center, \
-                font-family=$SANSSERIF_MEDIUM, text-align=center, text-color=$THEME_COLOR_101, \
-                font-size=0.8
+#btn_info: width=300dp, height=25dp, label-font-family=$SANSSERIF_MEDIUM, label-align=left, label-color=$THEME_COLOR_100
+#label_info: width=300dp, height=25dp, font-family=$SANSSERIF_MEDIUM, text-align=left, text-color=$THEME_COLOR_100
 
 /page: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_100, \
-        line-spacing=0.3em, paragraph-spacing=0.3em, \
+        line-spacing=0.4em, paragraph-spacing=0.4em, \
         page-background-color=$THEME_COLOR_02
 /page/body: font-family=$SANSSERIF_MEDIUM, text-align=center
-/page/body/title: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="40dp 0 0 0"
+/page/body/title: font-family=$SANSSERIF_BOLD, font-size=1.2em, margin="20dp 0 0 0"
+/page/footer: display=block, position=absolute, gravity=bottom-left, \
+        line-spacing=0, paragraph-spacing=0
 
 if $SCREEN_WIDTH > "5"
+    #btn_info: label-font-size=1
+    #label_info: font-size=1
     /page: font-size=1, margin="40dp 40dp (40dp+1eb) 40dp"
+    /page/footer: width="1pw-80dp", x=40dp, y=-(1eb+40dp)
 else
+    #btn_info: label-font-size=0.9
+    #label_info: font-size=0.9
     /page: font-size=0.9, margin="0.1pw 0.1pw (0.1pw+1eb) 0.1pw"
+    /page/footer: width=0.8pw, x=0.1pw, y=-(1eb+0.1pw)
 end

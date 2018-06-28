@@ -8,11 +8,15 @@ function on_loaded() {
         __show_notif_badge();
     }
 
-    update_notif();
+    if (account.is_logged_in()) {
+        update_notif();
+    }
 }
 
 function on_foreground() {
-    update_notif();
+    if (account.is_logged_in()) {
+        update_notif();
+    }
 }
 
 function on_connect(form) {

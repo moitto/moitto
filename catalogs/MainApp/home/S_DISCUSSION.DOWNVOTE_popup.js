@@ -35,7 +35,8 @@ function downvote() {
 	document.value("VOTE", {
 		author:$data["author"],
 		permlink:$data["permlink"],
-		weight:__get_voting_weight()
+		weight:__get_voting_weight(),
+		subview:$data["SUBVIEW"]
 	});
 
 	controller.action("script", { 

@@ -35,7 +35,8 @@ function upvote() {
 	document.value("VOTE", {
 		author:$data["author"],
 		permlink:$data["permlink"],
-		weight:__get_voting_weight()
+		weight:__get_voting_weight(),
+		subview:$data["SUBVIEW"]
 	});
 
 	__save_recent_percent();

@@ -14,7 +14,7 @@ function show_transfer_qrcode() {
     var user = users.create(username);
 
     controller.catalog().submit("showcase", "auxiliary", "S_QRCODE.TRANSFER", {
-        "username":user.neme,
+        "username":user.name,
         "userpic-url":user.get_userpic_url("small"),
         "userpic-large-url":user.get_userpic_url()   
     });

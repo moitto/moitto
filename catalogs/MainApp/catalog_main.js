@@ -58,10 +58,14 @@ function vote() {
             } else {
                 controller.action("toast", { "message":"보팅이 완료되었습니다." });
             }
+            controller.action("script", { "script":"on_finish_vote", "subview":value["subview"] })
         } else {
             controller.action("toast", { "message":"보팅에 실패했습니다." });
+            controller.action("script", { "script":"on_fail_vote", "subview":value["subview"] })
         }
     });
+
+    controller.action("script", { "script":"on_start_vote", "subview":value["subview"] })
 }
 
 function reblog() {

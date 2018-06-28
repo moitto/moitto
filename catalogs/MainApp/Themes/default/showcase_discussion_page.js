@@ -14,7 +14,7 @@ function on_loaded() {
         }
     });
 
-    __update_vote_button(parseInt($data["vote-weight"]));
+    __update_vote();
 }
 
 function on_image_download() {
@@ -57,8 +57,30 @@ function vote() {
     }
 }
 
-function update_vote() {
+function on_start_vote(form) {
+    var value = document.value("VOTE");
 
+    if (value["author"] === $data["author"] && value["permlink"] === $data["permlink"]) {
+
+    }
+}
+
+function on_finish_vote(form) {
+    var value = document.value("VOTE");
+
+    if (value["author"] === $data["author"] && value["permlink"] === $data["permlink"]) {
+        view.data("display-unit", { "vote-weight":value["weight"].toString() });
+
+        __update_vote();
+    }
+}
+
+function on_fail_vote(form) {
+    var value = document.value("VOTE");
+
+    if (value["author"] === $data["author"] && value["permlink"] === $data["permlink"]) {
+        __update_vote();
+    }
 }
 
 function show_author() {
@@ -156,6 +178,12 @@ function __is_steem_host(host) {
     return false;
 }
 
+function __update_vote() {
+    var value = view.data("display-unit");
+
+    __update_vote_button(parseInt(value["vote-weight"]));
+}
+
 function __update_vote_button(weight) {
     var button = view.object("btn.vote");
 
@@ -163,12 +191,12 @@ function __update_vote_button(weight) {
         if (weight > 0) {
             button.property({
                 "selected":"yes",
-                "image":"~/subview_btn_upvoted.png"
+                "selected-image":"~/subview_btn_upvoted.png"
             });        
         } else {
             button.property({
                 "selected":"yes",
-                "image":"~/subview_btn_downvoted.png"
+                "selected-image":"~/subview_btn_downvoted.png"
             });        
         }
     } else {

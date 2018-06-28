@@ -84,7 +84,10 @@ function transfer(form) {
 
 function __transfer(to, coin, amount) {
     wallet.transfer(to, coin, amount, "", function(response) {
-        // TBD
+        controller.action("script", {
+            "script":"update_assets",
+            "subview":"V_WALLET"
+        });
     });
 }
 

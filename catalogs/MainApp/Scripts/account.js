@@ -263,7 +263,7 @@ Account.claim_rewards = function(handler) {
     var key = Account.__load_key(account, "posting");
 
     Account.steem.api.get_accounts([ account ]).then(function(response) {
-        var reward_steem_balance   = "0.000 STEEM";//response[0]["reward_steem_balance"];
+        var reward_steem_balance   = response[0]["reward_steem_balance"];
         var reward_sbd_balance     = response[0]["reward_sbd_balance"];
         var reward_vesting_balance = response[0]["reward_vesting_balance"];
 

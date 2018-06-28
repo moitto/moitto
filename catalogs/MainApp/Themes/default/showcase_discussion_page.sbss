@@ -107,8 +107,7 @@ end
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"
 #btn_vote: width=50dp, height=50dp, topmost=yes, \
-        image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
-        position=absolute, gravity=right-bottom
+        image="~/subview_btn_vote.png", position=absolute, gravity=right-bottom
 
 if $SCREEN_WIDTH > "5"
     #btn_replies: width="1pw-80dp"
@@ -116,11 +115,6 @@ if $SCREEN_WIDTH > "5"
 else
     #btn_replies: width="1pw-40dp"
     #btn_vote: x=-20dp, y=-(20dp+1eb)
-end
-
-
-if "${voted}" == "yes"
-    #btn_vote: selected=yes, display-unit="S_DISCUSSION.UNVOTE"
 end
 
 if "${is-payout}" == "yes"

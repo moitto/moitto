@@ -1,5 +1,5 @@
 var connect = require("connect");
-var users = require("users");
+var users   = require("users");
 
 function on_qrcode(params) {
     if (connect.handle_url(params["text"])) {

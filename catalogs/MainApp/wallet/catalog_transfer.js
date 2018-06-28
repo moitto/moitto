@@ -10,9 +10,9 @@ var __amount_type      = null;
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
-    var username = storage.value("ACTIVE_USER");
+    var user = users.create(value["to"]);
 
-    __update_to_userpic(users.create(value["to"]));
+    __update_to_userpic(user);
     
     __coin_to_transfer = value["coin"];
     __amount_type      = value["amount-type"]; 

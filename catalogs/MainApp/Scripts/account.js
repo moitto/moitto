@@ -1,7 +1,5 @@
 Account = (function() {
-    return {
-        username : storage.value("ACTIVE_USER") || ""
-    };
+    return {}
 })();
 
 Account.steem  = require("steem");
@@ -22,26 +20,22 @@ Account.login = function(username, password, handler) {
 
             return;
         }
-
-        Account.username = username;
         
         storage.value("ACTIVE_USER", username);
         storage.value("USERS", (storage.value("USERS") || []).concat([ username ]));
 
+        [ "posting", "memo" ].forEach(function(role) {
+            keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
+        });
+
         handler(response[0], function(pin) {
-            roles.splice(1).forEach(function(role) {
-                var key = keys[role].priv;
-
-                if ([ "active" ].includes(role)) {
-                    key = pin ?  Account.crypto.encrypt(pin, key) : null;
-                }
-
-                if (key) {
-                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
-                }
-            });
-
             if (pin) {
+                [ "active" ].forEach(function(role) {
+                    var key = Account.crypto.encrypt(pin, keys[role].priv);
+
+                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+                });
+
                 keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
                 keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
 
@@ -62,8 +56,6 @@ Account.logout = function(handler) {
         storage.value("ACTIVE_KEY_ENABLED" + "@" + username, false);
     });
 
-    Account.username = "";
-
     storage.value("ACTIVE_USER", "");
     storage.value("USERS", []);
 
@@ -71,16 +63,22 @@ Account.logout = function(handler) {
 }
 
 Account.is_logged_in = function() {
-    if (Account.username) {
+    if (storage.value("ACTIVE_USER")) {
         return true;
     }
 
     return false;
 }
 
+Account.get_username = function() {
+    return storage.value("ACTIVE_USER") || "";
+}
+
 Account.active_key_enabled = function() {
-    if (Account.username) {
-        return storage.value("ACTIVE_KEY_ENABLED" + "@" + Account.username) || false;
+    var username = storage.value("ACTIVE_USER") || ""
+
+    if (username) {
+        return storage.value("ACTIVE_KEY_ENABLED" + "@" + username) || false;
     }
 
     return false;
@@ -88,8 +86,6 @@ Account.active_key_enabled = function() {
 
 Account.switch_user = function(username) {
     if ((storage.value("USERS") || []).includes(username)) {
-        Account.username = username;
-
         storage.value("ACTIVE_USER", username);
 
         return true;
@@ -99,7 +95,7 @@ Account.switch_user = function(username) {
 }
 
 Account.create_user = function(username, fee, pin, handler) {
-    var creator = Account.username;
+    var creator = storage.value("ACTIVE_USER") || "";
     var password = Account.__generate_password();
     var roles = [ "owner", "active", "posting", "memo" ];
     var keys = Account.steem.auth.generate_keys(username, password, roles);
@@ -117,7 +113,7 @@ Account.create_user = function(username, fee, pin, handler) {
 }
 
 Account.vote = function(author, permlink, weight, handler) {
-    var voter = Account.username;
+    var voter = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(voter, "posting");
 
     Account.steem.broadcast.vote(voter, author, permlink, weight, [ key ]).then(function(response) {
@@ -128,7 +124,7 @@ Account.vote = function(author, permlink, weight, handler) {
 }
 
 Account.unvote = function(author, permlink, handler) {
-    var voter = Account.username;
+    var voter = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(voter, "posting");
 
     Account.steem.broadcast.vote(voter, author, permlink, 0, [ key ]).then(function(response) {
@@ -139,7 +135,7 @@ Account.unvote = function(author, permlink, handler) {
 }
 
 Account.reblog = function(author, permlink, handler) {
-    var account = Account.username;
+    var account = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(account, "posting");
     var json = JSON.stringify(
         [ "reblog", {
@@ -157,7 +153,7 @@ Account.reblog = function(author, permlink, handler) {
 }
 
 Account.follow_user = function(following, handler) {
-    var follower = Account.username;
+    var follower = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(follower, "posting");
     var json = JSON.stringify(
         [ "follow", {
@@ -175,7 +171,7 @@ Account.follow_user = function(following, handler) {
 }
 
 Account.unfollow_user = function(following, handler) {
-    var follower = Account.username;
+    var follower = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(follower, "posting");
     var json = JSON.stringify(
         [ "follow", {
@@ -193,7 +189,7 @@ Account.unfollow_user = function(following, handler) {
 }
 
 Account.is_following = function(username, handler) {
-    var follower = Account.username;
+    var follower = storage.value("ACTIVE_USER") || "";
 
     Account.global.steemjs.get_followers(username, follower, "blog", 1).then(function(response) {
         if (response.length == 0 || response[0]["follower"] !== follower) {
@@ -207,7 +203,7 @@ Account.is_following = function(username, handler) {
 }
 
 Account.transfer = function(to, amount, memo, pin, handler) {
-    var from = Account.username;
+    var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);
 
     Account.steem.broadcast.transfer(from, to, amount, memo, [ key ]).then(function(response) {
@@ -218,7 +214,7 @@ Account.transfer = function(to, amount, memo, pin, handler) {
 }
 
 Account.delegate_vesting = function(delegatee, amount, pin, handler) {
-    var delegator = Account.username;
+    var delegator = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(delegator, "active", pin);
 
     Account.global.get_dynprops().then(function(dynprops) {
@@ -234,8 +230,36 @@ Account.delegate_vesting = function(delegatee, amount, pin, handler) {
     });
 }
 
+Account.transfer_to_vesting = function(to, amount, pin, handler) {
+    var from = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.transfer_to_vesting(from, to, amount, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.withdraw_vesting = function(amount, pin, handler) {
+    var account = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(delegator, "active", pin);
+
+    Account.global.get_dynprops().then(function(dynprops) {
+        var vesting_shares = (parseFloat(amount.split(" ")[0]) / dynprops.get_steems_per_vest()).toFixed(6) + " VESTS";
+
+        Account.steem.broadcast.withdraw_vesting(account, vesting_shares, [ key ]).then(function(response) {
+            handler(response);
+        }, function(reason) {
+            handler();
+        });
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.claim_rewards = function(handler) {
-    var account = Account.username;
+    var account = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(account, "posting");
 
     Account.steem.api.get_accounts([ account ]).then(function(response) {
@@ -254,7 +278,7 @@ Account.claim_rewards = function(handler) {
 }
 
 Account.register_active_key = function(password, handler) {
-    var username = Account.username;
+    var username = storage.value("ACTIVE_USER") || "";
 
     Account.steem.api.get_accounts([ username ]).then(function(response) {
         var roles = [ "owner", "active" ];
@@ -269,19 +293,13 @@ Account.register_active_key = function(password, handler) {
         }
 
         handler(response[0], function(pin) {
-            roles.splice(1).forEach(function(role) {
-                var key = keys[role].priv;
-
-                if ([ "active" ].includes(role)) {
-                    key = pin ? Account.crypto.encrypt(pin, key) : null;
-                }
-
-                if (key) {
-                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
-                }
-            });
-
             if (pin) {
+                [ "active" ].forEach(function(role) {
+                    var key = Account.crypto.encrypt(pin, keys[role].priv);
+
+                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
+                });
+
                 keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
                 keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
 
@@ -292,8 +310,9 @@ Account.register_active_key = function(password, handler) {
 }
 
 Account.verify_pin = function(pin) {
-    var owner_pubkey = keychain.password("OWNER_PUBKEY" + "@" + Account.username);
-    var encrypted_owner_pubkey = keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + Account.username);
+    var username = storage.value("ACTIVE_USER") || "";
+    var owner_pubkey = keychain.password("OWNER_PUBKEY" + "@" + username);
+    var encrypted_owner_pubkey = keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username);
 
     if (JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"] === encrypted_owner_pubkey) {
         return true;

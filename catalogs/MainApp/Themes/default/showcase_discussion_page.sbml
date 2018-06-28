@@ -29,8 +29,6 @@ ${body}
 =end body
 
 
-=object button: id=btn.vote, action=popup, display-unit="S_DISCUSSION.UPVOTE", \
-            script-when-resume=update_vote, \
-            style=btn_vote
+=object button: id=btn.vote, script=vote, style=btn_vote
 
 =end page

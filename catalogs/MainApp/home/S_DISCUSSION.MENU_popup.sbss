@@ -13,7 +13,7 @@ import ~/themes.sbss
 /popup/actions: display=block, width="1pw-40dp", \
                 position=absolute, gravity=bottom, y=-(1eb+20dp)
 
-if "${voted}" == "yes"
+if "${vote-weight}" != 0
     #unvoted: display=none, width=0, height=0
 else
     #voted: display=none, width=0, height=0

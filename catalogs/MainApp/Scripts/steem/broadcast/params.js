@@ -39,5 +39,14 @@ __MODULE__ = {
         delegator: __TYPES__.string,
         delegatee: __TYPES__.string,
         vesting_shares: __TYPES__.asset
+    },
+    "transfer_to_vesting":{
+        from: __TYPES__.string,
+        to: __TYPES__.string,
+        amount: __TYPES__.asset
+    },
+    "withdraw_vestring":{
+        account: __TYPES__.string,
+        vesting_shares: __TYPES__.asset
     }
 };

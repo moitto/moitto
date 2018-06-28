@@ -15,7 +15,7 @@ function transfer() {
 
 function power_up() {
     controller.action("subview", { 
-        "subview":"V_POWER.UP", 
+        "subview":"V_POWER_UP",
         "target":"popup",
         "close-popup":"yes"
     });

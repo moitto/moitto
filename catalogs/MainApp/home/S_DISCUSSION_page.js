@@ -20,6 +20,7 @@ function on_loaded() {
             "body":impl.build_body(content.data["body"], content.meta["format"]),
             "votes-count":content.data["net_votes"].toString(),
             "replies-count":content.data["children"].toString(),
+            "vote-weight":content.get_vote_weight(me).toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
             "is-payout":content.is_payout() ? "yes" : "no",
             "image-url":content.get_title_image_url("640x480"),
@@ -34,10 +35,6 @@ function on_loaded() {
             "dir-path":impl.dir_path
         };
 
-        if (content.is_voted(me)) {
-            data["voted"] = "yes"; 
-        }
-
         if (impl.hides_navibar) {
             data["hides-navibar"] = "yes";
         }
@@ -51,7 +48,7 @@ function on_loaded() {
                 data["background." + key] = background[key];
             });
         }
- 
+
         view.data("display-unit", data);
         view.data("environment", { "alternate-name":"discussion" });
         view.action("reload");

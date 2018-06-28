@@ -31,14 +31,16 @@ function prompt_clear_cache() {
 
 function logout() {
 	account.logout(function() {
-		controller.catalog().submit("showcase", "auxiliary", "S_ACCOUNT", {
+		controller.catalog().submit("showcase", "auxiliary", "S_SETTINGS", {
 			"logged-in":account.is_logged_in() ? "yes" : "no"
 		});
 
+		[ "V_HOME", "V_NOTIF", "V_WALLET" ].forEach(function(subview) {
+        	controller.action("reload", { "target":"catalog", "subview":subview });
+		});
+
 		controller.action("reload");
-		controller.action("reload", { "subview":"V_WALLET" });
-		controller.action("reload", { "subview":"V_NOTIF" });
-		controller.action("reload", { "subview":"V_HOME" });
+	    controller.action("script", { "script":"reset_notif", "subview":"__MAIN__" });
 	});
 }
 

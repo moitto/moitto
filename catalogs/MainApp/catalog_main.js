@@ -36,6 +36,12 @@ function update_notif() {
     });
 }
 
+function reset_notif() {
+    storage.value("HAS_NEW_NOTIF", false);
+
+    __hide_notif_badge();
+}
+
 function snooze_notif() {
     storage.value("HAS_NEW_NOTIF", false);
 
@@ -46,10 +52,14 @@ function vote() {
     var value = document.value("VOTE");
 
     account.vote(value["author"], value["permlink"], value["weight"], function(response) {
-        if (value["weight"] == 0) {
-            controller.action("toast", { "message":"보팅이 취소되었습니다." });
+        if (response) {
+            if (value["weight"] == 0) {
+                controller.action("toast", { "message":"보팅이 취소되었습니다." });
+            } else {
+                controller.action("toast", { "message":"보팅이 완료되었습니다." });
+            }
         } else {
-            controller.action("toast", { "message":"보팅이 완료되었습니다." });
+            controller.action("toast", { "message":"보팅에 실패했습니다." });
         }
     });
 }
@@ -58,7 +68,11 @@ function reblog() {
     var value = document.value("REBLOG");
 
     account.reblog(value["author"], value["permlink"], function(response) {
-        controller.action("toast", { "message":"리블로그 되었습니다." });
+        if (response) {
+            controller.action("toast", { "message":"리블로그 되었습니다." });
+        } else {
+            controller.action("toast", { "message":"리블로그에 실패했습니다." });
+        }
     });
 }
 

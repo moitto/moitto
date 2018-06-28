@@ -10,6 +10,7 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
         var operation = [ "vote", { 
             voter:voter, author:author, permlink:permlink, weight:weight
         }];
+        console.log("VOTE: " + JSON.stringify(operation));
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
             resolve(response);
@@ -91,6 +92,34 @@ SteemBroadcast.delegate_vesting_shares = function(delegator, delegatee, vesting_
     });
 }
 
+SteemBroadcast.transfer_to_vesting = function(from, to, amount, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "transfer_to_vesting", { 
+            from:from, to:to, amount:amount
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.withraw_vesting = function(account, amount, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "withdraw_vesting", { 
+            account:account, amount:amount
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
 SteemBroadcast.__send_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};
@@ -99,11 +128,10 @@ SteemBroadcast.__send_transaction = function(operation, keys) {
         transaction["extensions"] = [];
 
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
-            console.log(JSON.stringify(transaction));
             SteemBroadcast.__sign_transaction(transaction, keys, function(signatures) {
                 transaction["signatures"] = signatures;
 
-                Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
+               Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
                     resolve(response);
                 }, function(reason) {
                     reject(reason);

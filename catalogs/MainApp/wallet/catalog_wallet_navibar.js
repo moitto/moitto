@@ -8,10 +8,8 @@ function qrcode() {
 }
 
 function show_settings() {
-	controller.catalog().submit("showcase", "auxiliary", "S_ACCOUNT", {
+	controller.catalog().submit("showcase", "auxiliary", "S_SETTINGS", {
 		"logged-in":account.is_logged_in() ? "yes" : "no"
 	});
-	
-	controller.action("subview", { "subview":"V_SETTINGS",
-								   "target":"popup" });
+	controller.action("subview", { "subview":"V_SETTINGS", "target":"popup" });
 }

@@ -62,6 +62,38 @@ Wallet.delegate = function(to, amount, handler) {
     }
 }
 
+Wallet.power_up = function(amount, handler) {
+    amount = amount.toFixed(3) + " " + "STEEM";
+
+    Wallet.__transaction = {
+        "action":"power_up",
+        "amount":amount,
+        "handler":handler
+    };
+
+    if (Wallet.account.active_key_enabled()) {
+        Wallet.__start_power_up(amount);
+    } else {
+        Wallet.__prompt_reset_pin();
+    }
+}
+
+Wallet.power_down = function(amount, handler) {
+    amount = amount.toFixed(3) + " " + "SP";
+
+    Wallet.__transaction = {
+        "action":"power_down",
+        "amount":amount,
+        "handler":handler
+    };
+
+    if (Wallet.account.active_key_enabled()) {
+        Wallet.__start_power_down(amount);
+    } else {
+        Wallet.__prompt_reset_pin();
+    }
+}
+
 Wallet.redeem_rewards = function(handler) {
     Wallet.__transaction = {
         "action":"redeem_rewards",
@@ -131,6 +163,50 @@ Wallet.__confirm_delegate = function(to, amount) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 입력",
         "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 임대합니다.",
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__start_power_up = function(amount) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_power_up(amount);
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
+Wallet.__confirm_power_up = function(amount) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 파워업합니다.",
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__start_power_down = function(amount) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_power_down(amount);
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
+Wallet.__confirm_power_down = function(amount) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 파워다운합니다.",
         "status":"normal",
         "script":"Wallet.__on_receive_pin",
         "reset":"Wallet.__on_confirm_reset_pin"
@@ -345,7 +421,7 @@ Wallet.__reset_pin_force = function() {
 Wallet.__on_reset_pin = function(form) {  
     controller.action("freeze", { message:"확인 중..." });
 
-    account.register_active_key(form["password"], function(response, handler) {
+    Wallet.account.register_active_key(form["password"], function(response, handler) {
         if (!response) {
             controller.action("alert", { message:"비밀번호가 일치하지 않습니다." });
             controller.action("unfreeze");
@@ -369,6 +445,18 @@ Wallet.__process_transaction = function(pin) {
 
     if (Wallet.__transaction["action"] == "delegate") {
         Wallet.__process_delegate(Wallet.__transaction, pin);
+
+        return;
+    }
+
+    if (Wallet.__transaction["action"] == "power_up") {
+        Wallet.__process_power_up(Wallet.__transaction, pin);
+
+        return;
+    }
+
+    if (Wallet.__transaction["action"] == "power_down") {
+        Wallet.__process_power_down(Wallet.__transaction, pin);
 
         return;
     }
@@ -419,6 +507,50 @@ Wallet.__process_delegate = function(transaction, pin) {
     });
 
     controller.action("popup", { "display-unit":"S_DELEGATE.TASK" });
+}
+
+Wallet.__process_power_up = function(transaction, pin) {
+    var amount = transaction["amount"];
+
+    Wallet.account.transfer_to_vesting("", amount, pin, function(response) {
+        controller.catalog().submit("showcase", "auxiliary", "S_POWER_UP.TASK", {
+            "status":response ? "done" : "failed"
+        });
+
+        controller.action("popup", { "display-unit":"S_POWER_UP.TASK" });
+
+        if (transaction["handler"]) {
+            transaction["handler"](response);
+        }
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_POWER_UP.TASK", {
+        "status":"progress"
+    });
+
+    controller.action("popup", { "display-unit":"S_POWER_UP.TASK" });
+}
+
+Wallet.__process_power_down = function(transaction, pin) {
+    var amount = transaction["amount"];
+
+    Wallet.account.withdraw_vesting(amount, pin, function(response) {
+        controller.catalog().submit("showcase", "auxiliary", "S_POWER_DOWN.TASK", {
+            "status":response ? "done" : "failed"
+        });
+
+        controller.action("popup", { "display-unit":"S_POWER_DOWN.TASK" });
+
+        if (transaction["handler"]) {
+            transaction["handler"](response);
+        }
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_POWER_DOWN.TASK", {
+        "status":"progress"
+    });
+
+    controller.action("popup", { "display-unit":"S_POWER_DOWN.TASK" });
 }
 
 __MODULE__ = Wallet;

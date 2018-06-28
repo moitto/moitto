@@ -23,7 +23,7 @@
 =end amount
 
 
-=object button: script=confirm_power_up, form=amount.box, label="파워업하기", style=btn_submit
+=object button: script=power_up, form=amount.box, label="파워업하기", style=btn_submit
 
 =end transaction
 

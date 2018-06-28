@@ -1,0 +1,39 @@
+import ~/themes.sbss
+
+#section_content: hidden=yes, width=1pw, height=1ph, position=abs, gravity=center
+
+#blank_userpic.mask: width=82dp, height=82dp, \
+                position=absolute, gravity=top, y=24dp, \
+                content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
+#img_userpic: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
+                content-border-radius=80dp/2, margin="25dp 0 5dp 0"
+#label_user: height=30dp, \
+                font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
+                line-break-mode=tail-truncation, content-padding="0 10dp"
+#label_rep: height=20dp, \
+                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
+                margin="0 0 50dp 0"
+
+#label_followed: hidden=yes, height=50dp, \
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2
+#btn_follow: hidden=yes, width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+#btn_close: hidden=yes, width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+
+/catalog: page-background-color=$THEME_COLOR_02
+
+if $SCREEN_WIDTH > "5"
+    /catalog/loading: font-size=1.2
+else
+    /catalog/loading: font-size=1.1
+end
+
+-- loading 분기 --
+
+/catalog: script-when-loaded=on_loaded 
+/catalog/loading: display=block, position=absolute, gravity=center, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
+

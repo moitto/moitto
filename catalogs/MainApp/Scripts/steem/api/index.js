@@ -10,6 +10,12 @@ SteemApi.get_dynamic_global_properties = function() {
         var params = [];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
+            if (!response["result"]) {
+                reject(response["error"]["data"]["code"]);
+
+                return;
+            }
+
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);
@@ -23,6 +29,12 @@ SteemApi.get_block = function(block) {
         var params = [ block ];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
+            if (!response["result"]) {
+                reject(response["error"]["data"]["code"]);
+
+                return;
+            }
+
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);
@@ -36,6 +48,12 @@ SteemApi.get_accounts = function(names) {
         var params = [ names ];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
+            if (!response["result"]) {
+                reject(response["error"]["data"]["code"]);
+
+                return;
+            }
+
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);
@@ -49,6 +67,12 @@ SteemApi.get_follow_count = function(account) {
         var params = [ "follow_api", "get_follow_count", [ account ] ];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
+            if (!response["result"]) {
+                reject(response["error"]["data"]["code"]);
+
+                return;
+            }
+
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);
@@ -62,7 +86,12 @@ SteemApi.broadcast_transaction_synchronous = function(transaction) {
         var params = [ transaction ];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
-            console.log(JSON.stringify(response));
+            if (!response["result"]) {
+                reject(response["error"]["data"]["code"]);
+
+                return;
+            }
+            console.log("broadcast_transaction_synchronous: " + JSON.stringify(response));
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);

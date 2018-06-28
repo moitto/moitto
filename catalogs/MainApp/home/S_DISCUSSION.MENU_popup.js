@@ -1,37 +1,71 @@
-function upvote(form) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
-        "author":$data["author"],
-        "permlink":$data["permlink"]
-    });
+var account = require("account");
 
-    controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
+function upvote(form) {
+    if (account.is_logged_in()) {
+        controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
+            "author":$data["author"],
+            "permlink":$data["permlink"]
+        });
+
+        controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
 }
 
 function downvote(form) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.DOWNVOTE", {
-        "author":$data["author"],
-        "permlink":$data["permlink"]
-    });
+    if (account.is_logged_in()) {
+        controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.DOWNVOTE", {
+            "author":$data["author"],
+            "permlink":$data["permlink"]
+        });
 
-    controller.action("popup", { "display-unit":"S_DISCUSSION.DOWNVOTE" });
+        controller.action("popup", { "display-unit":"S_DISCUSSION.DOWNVOTE" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
 }
 
 function unvote(form) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
-        "author":$data["author"],
-        "permlink":$data["permlink"]
-    });
+    if (account.is_logged_in()) {
+        controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
+            "author":$data["author"],
+            "permlink":$data["permlink"]
+        });
 
-    controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
+        controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
 }
 
 function reblog(form) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REBLOG", {
-        "author":$data["author"],
-        "permlink":$data["permlink"]
-    });
+    if (account.is_logged_in()) {
+        controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REBLOG", {
+            "author":$data["author"],
+            "permlink":$data["permlink"]
+        });
 
-    controller.action("popup", { "display-unit":"S_DISCUSSION.REBLOG" });
+        controller.action("popup", { "display-unit":"S_DISCUSSION.REBLOG" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
 }
 
 function copy_url(form) {

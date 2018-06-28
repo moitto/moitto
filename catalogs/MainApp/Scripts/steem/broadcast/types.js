@@ -17,7 +17,7 @@ __MODULE__ = {
     }, 
     "int16" : {
         pack : function(buffer, value) {
-            SteemSerializer.__pack_buffer(buffer, "<H", [ value ]);
+            SteemSerializer.__pack_buffer(buffer, "<h", [ value ]);
         },
         unpack : function(buffer) {
 
@@ -33,7 +33,7 @@ __MODULE__ = {
     },
     "int32" : {
         pack : function(buffer, value) {
-            SteemSerializer.__pack_buffer(buffer, "<I", [ value ]);
+            SteemSerializer.__pack_buffer(buffer, "<i", [ value ]);
         },
         unpack : function(buffer) {
 

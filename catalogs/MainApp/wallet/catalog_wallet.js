@@ -10,7 +10,7 @@ function on_loaded() {
         return;
     }
 
-    global.get_user(account.username).then(function(user) {
+    global.get_user(account.get_username()).then(function(user) {
         var catalog = controller.catalog();
 
         catalog.submit("showcase", "auxiliary", "S_WALLET.ACCOUNT", {

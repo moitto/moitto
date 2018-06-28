@@ -24,5 +24,3 @@ else
 	#btn_login: display=none
 	#btn_pin: display=none
 end
-
-

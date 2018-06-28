@@ -47,16 +47,16 @@ Content.prototype.get_userpic_url = function(size) {
     return userpic_url;
 }
 
-Content.prototype.is_voted = function(username) {
+Content.prototype.get_vote_weight = function(username) {
     var votes = this.data["active_votes"];
-    console.log("is_voted: " + JSON.stringify(this.data["active_votes"]));
+
     for (var i = 0; i < votes.length; i++) {
         if (votes[i].voter === username) {
-            return true;
+            return votes[i].percent;
         }
     }
 
-    return false;
+    return 0;
 }
 
 Content.prototype.is_payout = function() {

@@ -1,5 +1,6 @@
 var connect = require("connect");
 var users   = require("users");
+var account = require("account");
 
 var __schedule_to_reload = false;
 
@@ -12,6 +13,8 @@ function on_loaded() {
             return;
         }
     });
+
+    __update_vote_button(parseInt($data["vote-weight"]));
 }
 
 function on_image_download() {
@@ -26,10 +29,36 @@ function on_image_download() {
     __schedule_to_reload = true;
 }
 
-function update_vote() {
-    var voted = __is_voted();
+function vote() {
+    if (account.is_logged_in()) {
+        var value = view.data("display-unit");
 
-    __update_vote_button(voted);
+        if (parseInt(value["vote-weight"]) == 0) {
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
+                "author":$data["author"],
+                "permlink":$data["permlink"]
+            });
+
+            controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
+        } else {
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
+                "author":$data["author"],
+                "permlink":$data["permlink"]
+            });
+
+            controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
+        }
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
+}
+
+function update_vote() {
+
 }
 
 function show_author() {
@@ -127,22 +156,26 @@ function __is_steem_host(host) {
     return false;
 }
 
-function __update_vote_button(voted) {
+function __update_vote_button(weight) {
     var button = view.object("btn.vote");
 
-    button.property({
-        "selected":voted ? "yes" : "no"
-    });
-}
-
-function __is_voted() {
-    var data = view.data("display-unit");
-
-    if (data.hasOwnProperty("voted") && data["voted"] === "yes") {
-        return true;
-    }    
-
-    return false;
+    if (weight != 0) {
+        if (weight > 0) {
+            button.property({
+                "selected":"yes",
+                "image":"~/subview_btn_upvoted.png"
+            });        
+        } else {
+            button.property({
+                "selected":"yes",
+                "image":"~/subview_btn_downvoted.png"
+            });        
+        }
+    } else {
+        button.property({
+            "selected":"no"
+        });   
+    }
 }
 
 function __get_urls_in_content(body) {

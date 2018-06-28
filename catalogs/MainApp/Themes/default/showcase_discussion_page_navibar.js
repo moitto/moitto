@@ -9,7 +9,7 @@ function show_user() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER" })
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
 function show_menu() {
@@ -17,5 +17,5 @@ function show_menu() {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.MENU", {
         "vote-weight":value["vote-weight"]
     });
-    controller.action("popup", { "display-unit":"S_DISCUSSION.MENU", "target":"popup" })
+    controller.action("popup", { "display-unit":"S_DISCUSSION.MENU" })
 }

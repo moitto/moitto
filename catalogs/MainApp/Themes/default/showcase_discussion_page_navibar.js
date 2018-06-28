@@ -17,5 +17,5 @@ function show_menu() {
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.MENU", {
         "vote-weight":value["vote-weight"]
     });
-    controller.action("popup", { "display-unit":"S_DISCUSSION.MENU" })
+    controller.action("popup", { "display-unit":"S_DISCUSSION.MENU", "target":"popup" })
 }

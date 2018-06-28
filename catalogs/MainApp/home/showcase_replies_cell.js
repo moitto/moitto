@@ -23,7 +23,7 @@ function show_user(params) {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER" })
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
 function show_replies() {
@@ -34,7 +34,7 @@ function show_replies() {
         "content-type":"reply"
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES" })
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
 function vote() {

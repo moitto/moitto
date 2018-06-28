@@ -6,7 +6,7 @@ function show_me() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER.ME" });
+    controller.action("page", { "display-unit":"S_USER.ME", "target":"popup" });
 }
 
 function show_blog() {
@@ -15,7 +15,7 @@ function show_blog() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_BLOG" });
+    controller.action("page", { "display-unit":"S_BLOG", "target":"popup" });
 }
 
 function show_following() {
@@ -24,7 +24,7 @@ function show_following() {
         "fetched":"no"
     });
     
-    controller.action("page", { "display-unit":"S_FOLLOWING" });
+    controller.action("page", { "display-unit":"S_FOLLOWING", "target":"popup" });
 }
 
 function show_followers() {
@@ -33,7 +33,7 @@ function show_followers() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_FOLLOWERS" });
+    controller.action("page", { "display-unit":"S_FOLLOWERS", "target":"popup" });
 }
 
 function redeem_rewards() {

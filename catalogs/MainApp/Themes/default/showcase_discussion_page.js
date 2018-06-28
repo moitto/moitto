@@ -92,7 +92,7 @@ function show_author() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER" })
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
 function show_user(data) {
@@ -104,7 +104,7 @@ function show_user(data) {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER" })
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
 function show_tag(params) {
@@ -113,7 +113,7 @@ function show_tag(params) {
         "navibar-title":"#" + params["label"]
     });
 
-    controller.action("page", { "display-unit":"S_TAG" })    
+    controller.action("page", { "display-unit":"S_TAG", "target":"popup" })    
 }
 
 function show_votes() {
@@ -122,7 +122,7 @@ function show_votes() {
         "permlink":$data["permlink"]
     });
 
-    controller.action("page", { "display-unit":"S_VOTES" })
+    controller.action("page", { "display-unit":"S_VOTES", "target":"popup" })
 }
 
 function show_replies() {
@@ -131,7 +131,7 @@ function show_replies() {
         "permlink":$data["permlink"]
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES" })
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
 function open_url(params) {
@@ -148,7 +148,7 @@ function open_url(params) {
                     "userpic-url":user.get_userpic_url("small")
                 });
     
-                controller.action("page", { "display-unit":"S_DISCUSSION" });                
+                controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });                
             } else {
                 controller.catalog().submit("showcase", "auxiliary", "S_USER", {
                     "username":user.name,
@@ -156,7 +156,7 @@ function open_url(params) {
                     "fetched":"no"
                 });
 
-                controller.action("page", { "display-unit":"S_USER" })
+                controller.action("page", { "display-unit":"S_USER", "target":"popup" })
             }
 
             return;

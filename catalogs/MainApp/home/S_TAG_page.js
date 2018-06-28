@@ -53,7 +53,7 @@ function open_discussion(data) {
         "background":data["background.id"]
     });
     
-    controller.action("page", { "display-unit":"S_DISCUSSION" });
+    controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
 function __template_data_for_content(content) {

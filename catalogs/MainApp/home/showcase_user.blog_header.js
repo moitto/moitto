@@ -38,7 +38,7 @@ function show_blog() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_BLOG" });
+    controller.action("page", { "display-unit":"S_BLOG", "target":"popup" });
 }
 
 function show_following() {
@@ -47,7 +47,7 @@ function show_following() {
         "fetched":"no"
     });
     
-    controller.action("page", { "display-unit":"S_FOLLOWING" });
+    controller.action("page", { "display-unit":"S_FOLLOWING", "target":"popup" });
 }
 
 function show_followers() {
@@ -56,7 +56,7 @@ function show_followers() {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_FOLLOWERS" });
+    controller.action("page", { "display-unit":"S_FOLLOWERS", "target":"popup" });
 }
 
 function __show_follow_button(id) {

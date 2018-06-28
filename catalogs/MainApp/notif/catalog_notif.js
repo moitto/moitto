@@ -124,7 +124,7 @@ function __open_discussion(author, permlink) {
         "background":backgrounds[0]["id"]
     });
 
-    controller.action("page", { "display-unit":"S_DISCUSSION" });
+    controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
 function __show_replies(author, permlink) {
@@ -133,7 +133,7 @@ function __show_replies(author, permlink) {
         "permlink":permlink
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES" });
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" });
 }
 
 function __show_user(username) {
@@ -145,7 +145,7 @@ function __show_user(username) {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER" });
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" });
 }
 
 function ___reload_notif_cell(data) {

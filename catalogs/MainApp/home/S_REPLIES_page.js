@@ -55,5 +55,5 @@ function show_replies(data) {
         "has-own-navibar":"yes"
     });
 
-    controller.action("page", { "display-unit":"S_REPLIES" })
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }

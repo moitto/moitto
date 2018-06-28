@@ -50,5 +50,5 @@ function show_user(data) {
         "fetched":"no"
     });
 
-    controller.action("page", { "display-unit":"S_USER" })
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }

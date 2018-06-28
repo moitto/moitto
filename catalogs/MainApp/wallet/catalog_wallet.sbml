@@ -5,6 +5,7 @@
                 has-header=yes, header-display-unit=S_WALLET.ACCOUNT, \
                 has-footer=yes, \
                 selectable=yes, action-when-selected=page, \
+                script-when-resume=update_wallet, \
                 style=showcase_assets
 
 =object section: id=section.login, section=login, style=section_login

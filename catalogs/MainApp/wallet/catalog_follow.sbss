@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#cell_content: hidden=yes, width=1pw, height=1ph, position=abs, gravity=center
+#cell_follow: hidden=yes, width=1pw, height=1ph, position=abs, gravity=center
 
 /catalog: page-background-color=$THEME_COLOR_02
 

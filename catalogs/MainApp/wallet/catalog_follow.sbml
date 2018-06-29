@@ -1,9 +1,9 @@
 =begin catalog
 
-=object cell: display-unit="S_FOLLOW", alternate-name="follow", style=cell_content
+=object cell: id=cell.follow, display-unit="S_FOLLOW", alternate-name="follow", style=cell_follow
 
 =begin loading: id=loading
-잠시 기다려 주세요.
+계정 정보를 확인 중입니다.
 =end loading
 
 =end catalog

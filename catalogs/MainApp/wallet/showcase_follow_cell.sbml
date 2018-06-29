@@ -1,10 +1,7 @@
-=begin catalog
+=begin cell
 
-=object section: section=content, style=section_content
-
-=begin content: id=content
 =object blank: style=blank_userpic.mask
-=object image: id=img.following.userpic, image-downloadable=yes, style=img_userpic
+=object image: image-url="${userpic-url}", style=img_userpic
 
 =(object label: text="${username}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
@@ -13,10 +10,5 @@
 
 =object button: script=follow, label="팔로우", style=btn_follow
 =object button: action=subview-back, label="확인", style=btn_close
-=end content
 
-=begin loading: id=loading
-잠시 기다려 주세요.
-=end loading
-
-=end catalog
+=end cell

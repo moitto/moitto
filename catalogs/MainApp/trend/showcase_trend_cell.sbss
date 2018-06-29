@@ -1,6 +1,7 @@
 import ~/themes.sbss
 
 #img_cover: width=1pw, height="1ph-55dp", scale-mode=fill, \
+            constraint-size="2pw, 2ph", \
             position=absolute, gravity=top, \
             scales-in-background=yes, loading-duration=0.3, default-color=$THEME_COLOR_01
 #blank_dim: width=1pw, height="1ph-55dp", position=absolute, gravity=top, color=$BLACK_COLOR_DIM

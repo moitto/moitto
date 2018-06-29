@@ -10,7 +10,6 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
         var operation = [ "vote", { 
             voter:voter, author:author, permlink:permlink, weight:weight
         }];
-        console.log("VOTE: " + JSON.stringify(operation));
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
             resolve(response);

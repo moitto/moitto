@@ -13,8 +13,7 @@ function delegate(form) {
     var amount = parseFloat(form["amount"]);
 
     wallet.delegate(value["to"], amount, function(response) {
-        console.log("==============");
-        console.log(JSON.stringify(response));
+        // TBD
     });
 }
 

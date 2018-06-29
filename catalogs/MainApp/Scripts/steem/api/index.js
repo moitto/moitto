@@ -11,7 +11,7 @@ SteemApi.get_dynamic_global_properties = function() {
 
         SteemApi.__request_rpc(method, params).then(function(response) {
             if (!response["result"]) {
-                reject(response["error"]["data"]["code"]);
+                reject(response["error"]);
 
                 return;
             }
@@ -30,7 +30,7 @@ SteemApi.get_block = function(block) {
 
         SteemApi.__request_rpc(method, params).then(function(response) {
             if (!response["result"]) {
-                reject(response["error"]["data"]["code"]);
+                reject(response["error"]);
 
                 return;
             }
@@ -49,7 +49,7 @@ SteemApi.get_accounts = function(names) {
 
         SteemApi.__request_rpc(method, params).then(function(response) {
             if (!response["result"]) {
-                reject(response["error"]["data"]["code"]);
+                reject(response["error"]);
 
                 return;
             }
@@ -68,7 +68,7 @@ SteemApi.get_follow_count = function(account) {
 
         SteemApi.__request_rpc(method, params).then(function(response) {
             if (!response["result"]) {
-                reject(response["error"]["data"]["code"]);
+                reject(response["error"]);
 
                 return;
             }
@@ -87,11 +87,11 @@ SteemApi.broadcast_transaction_synchronous = function(transaction) {
 
         SteemApi.__request_rpc(method, params).then(function(response) {
             if (!response["result"]) {
-                reject(response["error"]["data"]["code"]);
+                reject(response["error"]);
 
                 return;
             }
-            console.log("broadcast_transaction_synchronous: " + JSON.stringify(response));
+            
             resolve(response["result"]);
         }, function(reason) {
             reject(reason);

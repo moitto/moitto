@@ -9,7 +9,13 @@ function Reply(data) {
 }
 
 Reply.prototype.get_reputation = function() {
-    return (Math.log10(this.data["reputation"]) - 9) * 9 + 25;
+    var reputation = this.data["author_reputation"];
+
+    if (reputation < 0) {
+        return 25 - (Math.log10(-reputation) - 9) * 9;
+    }
+
+    return (Math.log10(reputation) - 9) * 9 + 25;
 }
 
 Reply.prototype.get_payout_value = function() {

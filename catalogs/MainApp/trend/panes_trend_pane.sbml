@@ -5,7 +5,6 @@
                 more-count=16, preload-count=16, \
                 selectable=yes, script-when-selected=open_discussion, \
                 has-header=yes, has-footer=yes, hides-navibar=yes, \
-                keeps-offscreen-cells=yes, \
                 style=showcase_trend
 
 =end pane

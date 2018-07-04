@@ -40,6 +40,36 @@ Sbml.__elements_to_sbml = function(elements, inline) {
             return;
         }
 
+       if (element.type === "h-tag-begin") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin heading-" + element.data["level"] + "\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+
+            return;
+        }
+
+        if (element.type === "h-tag-end") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=end heading-" + element.data["level"] + "\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+ 
+            return;
+        }
+
         if (element.type === "div-tag-begin") {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";

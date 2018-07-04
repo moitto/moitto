@@ -15,7 +15,7 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+)\s{0,3}(?:(?:-\s*)+|(?:_\s*)+|(?:\*\s*)+)(?:\n+|$))|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n{1,2})\s*>.*(?:\n.+)*)+)|((?:(?:^|\n{1,2})(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)\s*(#{1,6})(?:\n+|$))|(?:(?:^|\n)\s*(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|(  \n\n*|\n{2,}|(\*{1,3})|(~{2}))/igm;
+    var tokenizer = /((?:^|\n+)\s{0,3}(?:(?:-\s*)+|(?:_\s*)+|(?:\*\s*)+)(?:\n+|$))|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n{1,2})\s*>.*(?:\n.+)*)+)|((?:(?:^|\n{1,2})(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)\s*(#{1,6})(?:\n+|$))|(?:(?:^|\n)\s*(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|(  \n\n*|\n{2,}|(\*{1,3})|(~{2}))/igm;
     var elements = [], begin_tags = [];
     var token, text_chunk, chunk, element;
     var last_index = 0;
@@ -183,8 +183,18 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-        } else if (token[25]) { // start of div tag
-            var klass = token[25].match(/class=\"([^"]+)\"/);
+        } else if (token[25] || token[26]) { // h1~h6 tag
+            var level = (token[25] || token[26]).match(/<\/?h([1-6])/);
+
+            element = {
+                type:"h-tag" + (token[25] ? "-begin" : "-end"),
+                data:{
+                    level:parseInt(level[1]),
+                    inline:inline
+                }
+            }
+        } else if (token[27]) { // start of div tag
+            var klass = token[27].match(/class=\"([^"]+)\"/);
 
             element = {
                 type:"div-tag-begin",
@@ -193,79 +203,79 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-        } else if (token[26]) { // end of div tag
+        } else if (token[28]) { // end of div tag
             element = {
                 type:"div-tag-end",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[27] || token[28]) { // paragraph tag
+        } else if (token[29] || token[30]) { // paragraph tag
             element = {
-                type:"paragraph-tag" + (token[27] ? "-begin" : "-end"),
+                type:"paragraph-tag" + (token[29] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[29] || token[30]) { // blockquote tag
+        } else if (token[31] || token[32]) { // blockquote tag
             element = {
-                type:"blockquote-tag" + (token[29] ? "-begin" : "-end"),
+                type:"blockquote-tag" + (token[31] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[31] || token[32]) { // center tag
+        } else if (token[33] || token[34]) { // center tag
             element = {
-                type:"center-tag" + (token[31] ? "-begin" : "-end"),
+                type:"center-tag" + (token[33] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[33]) { // br tag
+        } else if (token[35]) { // br tag
             element = {
                 type:"br-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[34]) { // hr tag
+        } else if (token[36]) { // hr tag
             element = {
                 type:"hr-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[35]) { // unhandled tag
+        } else if (token[37]) { // unhandled tag
             element = {
                 type:"tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[36]) { // inline formatting: *em*, **strong**, ...
-            var symbol = token[37] ? "*" : (token[38] ? "~" : "");
+        } else if (token[38]) { // inline formatting: *em*, **strong**, ...
+            var symbol = token[38] ? "*" : (token[39] ? "~" : "");
 
             if (symbol === "*" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
 
                 if (formatter_begin) {
-                    var length = Math.min(formatter_begin.data["text"].length, token[36].length);
+                    var length = Math.min(formatter_begin.data["text"].length, token[38].length);
                     var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
 
                     formatter_begin["type"] = type + "-begin";
-                    formatter_begin.data["prior"] = formatter_begin.data["text"].substring(0, token[36].length - length);
+                    formatter_begin.data["prior"] = formatter_begin.data["text"].substring(0, token[38].length - length);
 
                     element = {
                         type:type + "-end",
                         data:{
-                            trailing:token[36].substring(0, formatter_begin.data["text"].length - length)
+                            trailing:token[38].substring(0, formatter_begin.data["text"].length - length)
                         }
                     }
                 } else {
                    element = {
                         type:"formatter-begin",
                         data:{
-                            text:token[36]
+                            text:token[38]
                         }
                     }
                 }
@@ -273,7 +283,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"break",
                     data:{
-                        text:token[36]
+                        text:token[38]
                     }
                 }
 

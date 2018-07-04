@@ -332,14 +332,14 @@ Sbml.__elements_to_sbml = function(elements, inline) {
         }
 
         if (["italic", "em", "em-italic", "linethrough"].includes(element.type.replace("-begin", ""))) {
-            sbml += "=[" + element.type.replace("-begin", "") + "|";
+            sbml += element.data["prior"] + "=[" + element.type.replace("-begin", "") + "|";
             inline_depth = inline_depth + 1;
 
             return;
         }
 
         if (["italic", "em", "em-italic", "linethrough"].includes(element.type.replace("-end", ""))) {
-            sbml += "]=";
+            sbml += "]=" + element.data["trailing"];
             inline_depth = inline_depth - 1;
 
             return;

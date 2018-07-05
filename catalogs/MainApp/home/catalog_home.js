@@ -1,7 +1,6 @@
 var account  = require("account");
 var steemjs  = require("steemjs");
 var contents = require("contents"); 
-var media    = require("media");
 var texts    = require("texts");
 
 var __last_discussion = null;
@@ -83,14 +82,20 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function open_discussion(data) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+    var discussion = {
         "author":data["author"],
         "permlink":data["permlink"],
         "userpic-url":data["userpic-url"],
-        "tag":data["main-tag"],
-        "background":data["background.id"]
+        "tag":data["main-tag"]
+    }
+
+    Object.keys(data).forEach(function(key) {
+        if (key.startsWith("template") || key.startsWith("background")) {
+            discussion[key] = data[key];
+        }
     });
 
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", discussion);
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
@@ -113,17 +118,15 @@ function __show_login_section() {
 }
 
 function __template_data_for_content(content) {
-    for (var i = 0; i < (content.meta["links"] || []).length; ++i) {
-        var youtube_video_id = media.get_youtube_video_id(content.meta["links"][i]);
+    var video_id = content.get_title_video_id();
 
-        if (youtube_video_id && content.meta["links"].length < 4) {
-            return {
-                "template":"youtube",
-                "video-id":youtube_video_id
-            }
+    if (video_id) {
+        return {
+            "template":video_id[0], 
+            "template.video-id":video_id[1]
         }
     }
-
+    
     if (!content.meta["image"]) {
         return {
             "template":"text"
@@ -135,7 +138,7 @@ function __template_data_for_content(content) {
 
 function __random_background_data(values) {
     var value = values[Math.floor(Math.random()*values.length)];
-    var data = {};
+    var data = { "background":value["id"]};
 
     Object.keys(value).forEach(function(key) {
         data["background." + key] = value[key];

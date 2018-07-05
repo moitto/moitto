@@ -1,4 +1,5 @@
 var users = require("users");
+var urls  = require("urls");
 
 var __schedule_to_reload = false;
 
@@ -54,48 +55,44 @@ function show_replies() {
 }
 
 function open_url(params) {
-    var matched = /https?:\/\/((?:[a-z0-9]+\.?)+)(?:\/[a-zA-Z0-9_@%:\/\.\-]+)?\/@([^\/]+)\/([^\/]+)/.exec(params["url"]);
+    var steem_url = urls.parse_steem_url(params["url"]);
 
-    if (matched) {
-        if (__is_steem_host(matched[1])) {
-            var user = users.create(matched[2]);
+    if (steem_url) {
+        var user = users.create(steem_url[1]);
 
-            if (matched[3]) {
-                var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ]);
-            
-                controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
-                    "author":user.name,
-                    "permlink":matched[3],
-                    "userpic-url":user.get_userpic_url("small"),
-                    "background":backgrounds[0]["id"]
-                });
+        if (steem_url[2]) {
+            var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
+            var datum = __background_data_for_value(backgrounds[0]);
+
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", Object.assign(datum, {
+                "author":user.name,
+                "permlink":steem_url[2],
+                "userpic-url":user.get_userpic_url("small")
+            }));
     
-                controller.action("page", { "display-unit":"S_DISCUSSION" });                
-            } else {
-                controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-                    "username":user.name,
-                    "userpic-url":user.get_userpic_url("small"),
-                    "fetched":"no"
-                });
+            controller.action("page", { "display-unit":"S_DISCUSSION" });                
+        } else {
+            controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+                "username":user.name,
+                "userpic-url":user.get_userpic_url("small"),
+                "fetched":"no"
+            });
 
-                controller.action("page", { "display-unit":"S_USER", "target":"popup" })
-            }
-
-            return;
+            controller.action("page", { "display-unit":"S_USER", "target":"popup" })
         }
+
+        return;
     }
 
     controller.action("link", { url:params["url"] });
 }
 
-function __is_steem_host(host) {
-    var known_hosts = [ "steemit.com", "busy.org", "steemkr.com" ];
+function __background_data_for_value(value) {
+    var data = { "background":value["id"] };
 
-    for (var i = 0; i < known_hosts.length; i++) {
-        if (host.includes(known_hosts[i])) {
-            return true;
-        }
-    }
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
 
-    return false;
+    return data;
 }

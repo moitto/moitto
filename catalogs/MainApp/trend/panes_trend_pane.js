@@ -1,6 +1,5 @@
 var steemjs  = require("steemjs");
 var contents = require("contents");
-var media    = require("media");
 
 var __impl = {
     "P_TREND.TRENDING":{
@@ -70,29 +69,22 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function open_discussion(data) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
-        "author":data["author"],
-        "permlink":data["permlink"],
-        "userpic-url":data["userpic-url"],
-        "tag":data["main-tag"],
-        "background":data["background.id"]
-    });
-    
+    var discussion = __discussion_data_for_value(data);
+
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", discussion);
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
 function __template_data_for_content(content) {
-    for (var i = 0; i < (content.meta["links"] || []).length; ++i) {
-        var youtube_video_id = media.get_youtube_video_id(content.meta["links"][i]);
+    var video_id = content.get_title_video_id();
 
-        if (youtube_video_id && content.meta["links"].length < 4) {
-            return {
-                "template":"youtube",
-                "video-id":youtube_video_id
-            }
+    if (video_id) {
+        return {
+            "template":video_id[0], 
+            "template.video-id":video_id[1]
         }
     }
-
+    
     if (!content.meta["image"]) {
         return {
             "template":"text"
@@ -104,7 +96,7 @@ function __template_data_for_content(content) {
 
 function __random_background_data(values) {
     var value = values[Math.floor(Math.random()*values.length)];
-    var data = {};
+    var data = { "background":value["id"] };
 
     Object.keys(value).forEach(function(key) {
         data["background." + key] = value[key];
@@ -113,4 +105,18 @@ function __random_background_data(values) {
     return data;
 }
 
+function __discussion_data_for_value(value) {
+    var data = [];
 
+    [ "author", "permlink", "userpic-url", "main-tag" ].forEach(function(key) {
+        data[key] = value[key];
+    });
+
+    Object.keys(value).forEach(function(key) {
+        if (key.startsWith("template") || key.startsWith("background")) {
+            data[key] = value[key];
+        }
+    });
+
+    return data;
+}

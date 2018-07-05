@@ -2,7 +2,7 @@ Sbml = (function() {
     return {};
 })();
 
-Sbml.media = require("media");
+Sbml.urls  = require("urls");
 Sbml.texts = require("texts");
 
 Sbml.generate_from_markdown = function(markdown) {
@@ -312,7 +312,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
         }
 
         if (element.type === "url") {
-            var youtube_video_id = Sbml.media.get_youtube_video_id(element.data["url"]);
+            var youtube_video_id = Sbml.urls.get_youtube_video_id(element.data["url"]);
 
             if (youtube_video_id) {
                 sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\")=";

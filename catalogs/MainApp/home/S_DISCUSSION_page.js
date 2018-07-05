@@ -3,15 +3,15 @@ var themes = require("themes");
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
-    var background = controller.catalog("ImageBank").value("showcase", "backgrounds", discussion["background"]);
     var me = storage.value("ACTIVE_USER");
 
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
-        console.log(content.data["body"]);
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);
         var impl = themes.create(theme);
- 
+
+        console.log(content.data["body"]);
+        
         var data = {
             "author":content.data["author"],
             "permlink":content.data["permlink"],
@@ -35,6 +35,12 @@ function on_loaded() {
             "dir-path":impl.dir_path
         };
 
+        Object.keys(discussion).forEach(function(key) {
+            if (key.startsWith("template") || key.startsWith("background")) {
+                data[key] = discussion[key];
+            }
+        });
+
         if (impl.hides_navibar) {
             data["hides-navibar"] = "yes";
         }
@@ -42,12 +48,6 @@ function on_loaded() {
         Object.keys(impl.auxiliary).forEach(function(key) {
             data[key] = impl.auxiliary[key];
         });
-
-        if (background) {
-            Object.keys(background).forEach(function(key) {
-                data["background." + key] = background[key];
-            });
-        }
 
         view.data("display-unit", data);
         view.data("environment", { "alternate-name":"discussion" });

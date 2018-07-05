@@ -114,15 +114,15 @@ function __extend_value_for_op(op, value) {
 }
 
 function __open_discussion(author, permlink) {
-    var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ]);
+    var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
+    var datum = __background_data_for_value(backgrounds[0]);
     var user = users.create(author);
 
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", Object.assign(datum, {
         "author":author,
         "permlink":permlink,
-        "userpic-url":user.get_userpic_url("small"),
-        "background":backgrounds[0]["id"]
-    });
+        "userpic-url":user.get_userpic_url("small")
+    }));
 
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
@@ -165,4 +165,14 @@ function __show_login_section() {
     var section = view.object("section.login");
 
     section.action("show");
+}
+
+function __background_data_for_value(value) {
+    var data = { "background":value["id"] };
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
 }

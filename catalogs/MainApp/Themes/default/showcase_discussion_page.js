@@ -1,6 +1,7 @@
 var connect = require("connect");
 var users   = require("users");
 var account = require("account");
+var urls    = require("urls");
 
 var __schedule_to_reload = false;
 
@@ -135,47 +136,33 @@ function show_replies() {
 }
 
 function open_url(params) {
-    var matched = /https?:\/\/((?:[a-z0-9]+\.?)+)(?:\/[a-zA-Z0-9_@%:\/\.\-]+)?\/@([^\/]+)\/([^\/]+)/.exec(params["url"]);
+    var steem_url = urls.parse_steem_url(params["url"]);
 
-    if (matched) {
-        if (__is_steem_host(matched[1])) {
-            var user = users.create(matched[2]);
+    if (steem_url) {
+        var user = users.create(steem_url[1]);
 
-            if (matched[3]) {
-                controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
-                    "author":user.name,
-                    "permlink":matched[3],
-                    "userpic-url":user.get_userpic_url("small")
-                });
+        if (steem_url[2]) {
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+                "author":user.name,
+                "permlink":steem_url[2],
+                "userpic-url":user.get_userpic_url("small")
+            });
     
-                controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });                
-            } else {
-                controller.catalog().submit("showcase", "auxiliary", "S_USER", {
-                    "username":user.name,
-                    "userpic-url":user.get_userpic_url("small"),
-                    "fetched":"no"
-                });
+            controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });                
+        } else {
+            controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+                "username":user.name,
+                "userpic-url":user.get_userpic_url("small"),
+                "fetched":"no"
+            });
 
-                controller.action("page", { "display-unit":"S_USER", "target":"popup" })
-            }
-
-            return;
+            controller.action("page", { "display-unit":"S_USER", "target":"popup" })
         }
+
+        return;
     }
 
     controller.action("link", { url:params["url"] });
-}
-
-function __is_steem_host(host) {
-    var known_hosts = [ "steemit.com", "busy.org", "steemkr.com" ];
-
-    for (var i = 0; i < known_hosts.length; i++) {
-        if (host.includes(known_hosts[i])) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 function __update_vote() {

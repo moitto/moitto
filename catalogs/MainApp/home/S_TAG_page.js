@@ -46,13 +46,9 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function open_discussion(data) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
-        "author":data["author"],
-        "permlink":data["permlink"],
-        "userpic-url":data["userpic-url"],
-        "background":data["background.id"]
-    });
-    
+    var discussion = __discussion_data_for_value(data);
+
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", discussion);
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
@@ -68,10 +64,26 @@ function __template_data_for_content(content) {
 
 function __random_background_data(values) {
     var value = values[Math.floor(Math.random()*values.length)];
-    var data = {};
+    var data = { "background":value["id"] };
 
     Object.keys(value).forEach(function(key) {
         data["background." + key] = value[key];
+    });
+
+    return data;
+}
+
+function __discussion_data_for_value(value) {
+    var data = [];
+
+    [ "author", "permlink", "userpic-url" ].forEach(function(key) {
+        data[key] = value[key];
+    });
+
+    Object.keys(value).forEach(function(key) {
+        if (key.startsWith("template") || key.startsWith("background")) {
+            data[key] = value[key];
+        }
     });
 
     return data;

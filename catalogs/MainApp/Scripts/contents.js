@@ -2,6 +2,8 @@ Contents = (function() {
     return {};
 })();
 
+Contents.urls = require("urls");
+
 // class Content
 
 function Content(data) {
@@ -21,6 +23,18 @@ Content.prototype.get_title_image_url = function(size) {
     }
 
     return "";
+}
+
+Content.prototype.get_title_video_id = function() {
+    var urls = this.__get_external_urls();
+
+    if (urls.length < 3) {
+        var youtube_video_id = this.__get_youtube_video_id(urls);
+ 
+        if (youtube_video_id) {
+            return [ "youtube", youtube_video_id ];
+        }
+    }
 }
 
 Content.prototype.get_author_reputation = function() {
@@ -65,6 +79,30 @@ Content.prototype.is_payout = function() {
     }
 
     return false;
+}
+
+Content.prototype.__get_external_urls = function() {
+    var urls = [];
+
+    for (var i = 0; i < (this.meta["links"] || []).length; ++i) {
+        var steem_url = Contents.urls.parse_steem_url(this.meta["links"][i]);
+
+        if (!steem_url) {
+            urls.push(this.meta["links"][i]);
+        }
+    }
+
+    return urls;
+}
+
+Content.prototype.__get_youtube_video_id = function(urls) {
+    for (var i = 0; i < urls.length; ++i) {
+        var video_id = Contents.urls.get_youtube_video_id(urls[i]);
+
+        if (video_id) {
+            return video_id;
+        }
+    }
 }
 
 // instance factory

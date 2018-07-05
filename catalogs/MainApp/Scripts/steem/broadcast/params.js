@@ -45,7 +45,7 @@ __MODULE__ = {
         to: __TYPES__.string,
         amount: __TYPES__.asset
     },
-    "withdraw_vestring":{
+    "withdraw_vesting":{
         account: __TYPES__.string,
         vesting_shares: __TYPES__.asset
     }

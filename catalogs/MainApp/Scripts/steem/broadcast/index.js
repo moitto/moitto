@@ -105,10 +105,10 @@ SteemBroadcast.transfer_to_vesting = function(from, to, amount, keys) {
     });
 }
 
-SteemBroadcast.withraw_vesting = function(account, amount, keys) {
+SteemBroadcast.withdraw_vesting = function(account, vesting_shares, keys) {
     return new Promise(function(resolve, reject) {
         var operation = [ "withdraw_vesting", { 
-            account:account, amount:amount
+            account:account, vesting_shares:vesting_shares
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

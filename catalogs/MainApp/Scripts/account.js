@@ -246,7 +246,7 @@ Account.transfer_to_vesting = function(to, amount, pin, handler) {
 
 Account.withdraw_vesting = function(amount, pin, handler) {
     var account = storage.value("ACTIVE_USER") || "";
-    var key = Account.__load_key(delegator, "active", pin);
+    var key = Account.__load_key(account, "active", pin);
 
     Account.global.get_dynprops().then(function(dynprops) {
         var vesting_shares = (parseFloat(amount.split(" ")[0]) / dynprops.get_steems_per_vest()).toFixed(6) + " VESTS";

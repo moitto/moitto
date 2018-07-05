@@ -68,12 +68,16 @@ __MODULE__ = {
     "asset" : {
         pack : function(buffer, value) {
             var tokens = value.split(" ");
-            var amount = tokens[0].replace(".", ""); // * 1000
+            var amount = parseLong(tokens[0].replace(".", "")); // * 1000
             var dot = tokens[0].indexOf("."); // 0.000
             var precision = (dot === -1) ? 0 : tokens[0].length - dot - 1;
             var symbol = tokens[1];
+            var amount_high, amount_low;
 
-            SteemSerializer.__pack_buffer(buffer, "<I<I", [ parseInt(amount, 10), 0 ]);
+            amount_low  = amount[1] - amount[0];
+            amount_high = amount[0] - ((amount_low < 0) ? 1 : 0);
+
+            SteemSerializer.__pack_buffer(buffer, "<i<i", [ amount_low, amount_high ]);
             SteemSerializer.__pack_buffer(buffer, "B", [ precision ]);
             SteemSerializer.__pack_buffer(buffer, symbol.length + "s", [ symbol ]);
 

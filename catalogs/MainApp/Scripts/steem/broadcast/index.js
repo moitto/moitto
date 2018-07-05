@@ -170,6 +170,9 @@ SteemBroadcast.__prepare_transaction = function(transaction) {
 
 SteemBroadcast.__sign_transaction = function(transaction, keys, handler) {
     var buffer = SteemBroadcast.serializer.serialize_transaction(transaction);
+    console.log(Array.from(buffer, function(byte) {
+    return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+  }).join(''));
     var signatures = SteemAuth.sign_transaction(buffer, keys);
 
     handler(signatures);

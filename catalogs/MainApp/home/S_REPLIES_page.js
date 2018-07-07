@@ -22,7 +22,7 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
                             "author":reply.data["author"], 
                             "permlink":reply.data["permlink"], 
                             "userpic-url":reply.get_userpic_url("small"),
-                            "body":theme.build_body(reply.data["body"], "markdown"),
+                            "body":theme.build_body(reply.data["body"], "markdown", []),
                             "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
                             "replies-count":reply.data["children"].toString(),
                             "created-at":reply.data["created"],

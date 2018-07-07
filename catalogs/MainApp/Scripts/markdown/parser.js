@@ -15,7 +15,7 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+)\s{0,3}(?:(?:-\s*)+|(?:_\s*)+|(?:\*\s*)+)(?:\n+|$))|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n{1,2})\s*>.*(?:\n.+)*)+)|((?:(?:^|\n{1,2})(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)\s*(#{1,6})(?:\n+|$))|(?:(?:^|\n)\s*(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|(  \n\n*|\n{2,}|(\s?)(_{1,3})|(\*{1,3})|(~{2}))/igm;
+    var tokenizer = /((?:^|\n+)\s{0,3}(?:(?:-\s*)+|(?:_\s*)+|(?:\*\s*)+)(?:\n+|$))|(?:(?:^|\n)```(\w*)\n([\s\S]*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:(?:^|\n{1,2})\s*>.*(?:\n.+)*)+)|((?:(?:^|\n{1,2})(?:[*+-]|\d+\.)\s+.*(?:\n.+)*)+)|((?:^|\n+)\s*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)\n\s*\|?(?:(?:\s*:?-+:?\s*)\|)+(?:(?:\s*:?-+:?\s*)\|?)(?:\n|$)(?:\s*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)\s*(#{1,6})(?:\n+|$))|(?:(?:^|\n)\s*(#{1,6})\s*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^\s]+)|(?:\#[^\s]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|(  \n\n*|\n{2,}|(\s?)(_{1,3})|(\*{1,3})|(~{2}))/igm;
     var elements = [], begin_tags = [];
     var token, text_chunk, chunk, element;
     var last_index = 0;
@@ -79,32 +79,40 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             }
 
             MarkdownParser.__clear_unhandled_begins(elements);
-        } else if (token[8]) { // image
+        } else if (token[7]) { // table
+            element = {
+                type:"table",
+                data:{
+                }
+            }
+            console.log("TABLE:::::::::::");
+            console.log(token[7]);
+        } else if (token[9]) { // image
             element = {
                 type:"image",
                 data:{
-                    url:token[8],
-                    alt:token[7]
+                    url:token[9].trim(),
+                    alt:token[8]
                 }
             }
-        } else if (token[9]) { // begin of link
+        } else if (token[10]) { // begin of link
             element = {
                 type:"link-begin-or-text",
                 data:{
-                    text:token[9] // "[" of "!["
+                    text:token[10] // "[" of "!["
                 }
             }     
-        } else if (token[10]) { // end of link
+        } else if (token[11]) { // end of link
             var link_begin_or_text = MarkdownParser.__last_link_begin_or_text(elements);
 
-            if (token[11] && link_begin_or_text) { // link
+            if (token[12] && link_begin_or_text) { // link
                 link_begin_or_text["type"] = "link-begin";
-                link_begin_or_text.data["url"] = token[11];
+                link_begin_or_text.data["url"] = token[12].trim();
 
                 element = {
                     type:"link-end",
                     data:{
-                        url:token[11]
+                        url:token[12].trim()
                     }
                 }
             } else {
@@ -115,11 +123,11 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"text",
                     data:{
-                        text:token[10] // "](...)"
+                        text:token[11] // "](...)"
                     }
                 }
             }
-        } else if (token[12]) { // "]"
+        } else if (token[13]) { // "]"
             var link_begin_or_text = MarkdownParser.__last_link_begin_or_text(elements);
 
             if (link_begin_or_text) {
@@ -129,72 +137,72 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"text",
                 data:{
-                    text:token[12] // "]"
+                    text:token[13] // "]"
                 }
             }
-        } else if (token[13] || token[14]) { // headings
+        } else if (token[14] || token[15]) { // headings
             element = {
                 type:"heading",
                 data:{
-                    elements:MarkdownParser.__parse_to_markdown(token[14] ? token[15].replace(/\s+#+$/, "") : "", true),
-                    level:(token[13] || token[14]).length,
+                    elements:MarkdownParser.__parse_to_markdown(token[15] ? token[16].replace(/\s+#+$/, "") : "", true),
+                    level:(token[14] || token[15]).length,
                     leadings:(token.index > 0) ? "\n" : "",
                     inline:inline
                 }
             }
-        } else if (token[16]) { // url
+        } else if (token[17]) { // url
             element = {
                 type:"url",
                 data:{
-                    url:token[16],
-                    host:token[17],
-                    path:token[18]
+                    url:token[17].trim(),
+                    host:token[18],
+                    path:token[19]
                 }
             }
-        } else if (token[19]) { // `code`
+        } else if (token[20]) { // `code`
             element = {
                 type:"code",
                 data:{
-                    elements:MarkdownParser.__parse_to_markdown(token[19], true),
+                    elements:MarkdownParser.__parse_to_markdown(token[20], true),
                     inline:true
                 }
             }
-        } else if (token[20]) { // anchor tag
+        } else if (token[21]) { // anchor tag
             element = {
                 type:"anchor-tag",
                 data:{
-                    url:token[20],
-                    elements:MarkdownParser.__parse_to_markdown(token[21], true),
+                    url:token[21].trim(),
+                    elements:MarkdownParser.__parse_to_markdown(token[22], true),
                     inline:inline
                 }
             }
-        } else if (token[22]) { // image tag
+        } else if (token[23]) { // image tag
             element = {
                 type:"image-tag",
                 data:{
-                    url:token[22],
+                    url:token[23].trim(),
                     inline:inline
                 }
             }
-        } else if (token[23] || token[24]) { // strong, strike, bold, italic, code, sub, and sup tag
+        } else if (token[24] || token[25]) { // strong, strike, bold, italic, code, sub, and sup tag
             element = {
-                type:(token[23] || token[24]) + "-tag" + (token[23] ? "-begin" : "-end"),
+                type:(token[24] || token[25]) + "-tag" + (token[24] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[25] || token[26]) { // h1~h6 tag
-            var level = (token[25] || token[26]).match(/<\/?h([1-6])/);
+        } else if (token[26] || token[27]) { // h1~h6 tag
+            var level = (token[26] || token[27]).match(/<\/?h([1-6])/);
 
             element = {
-                type:"h-tag" + (token[25] ? "-begin" : "-end"),
+                type:"h-tag" + (token[26] ? "-begin" : "-end"),
                 data:{
                     level:parseInt(level[1]),
                     inline:inline
                 }
             }
-        } else if (token[27]) { // start of div tag
-            var klass = token[27].match(/class=\"([^"]+)\"/);
+        } else if (token[28]) { // start of div tag
+            var klass = token[28].match(/class=\"([^"]+)\"/);
 
             element = {
                 type:"div-tag-begin",
@@ -203,63 +211,64 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-        } else if (token[28]) { // end of div tag
+        } else if (token[29]) { // end of div tag
             element = {
                 type:"div-tag-end",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[29] || token[30]) { // paragraph tag
+        } else if (token[30] || token[31]) { // paragraph tag
             element = {
-                type:"paragraph-tag" + (token[29] ? "-begin" : "-end"),
+                type:"paragraph-tag" + (token[30] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[31] || token[32]) { // blockquote tag
+        } else if (token[32] || token[33]) { // blockquote tag
             element = {
-                type:"blockquote-tag" + (token[31] ? "-begin" : "-end"),
+                type:"blockquote-tag" + (token[32] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[33] || token[34]) { // center tag
+        } else if (token[34] || token[35]) { // center tag
             element = {
-                type:"center-tag" + (token[33] ? "-begin" : "-end"),
+                type:"center-tag" + (token[34] ? "-begin" : "-end"),
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[35]) { // br tag
+        } else if (token[36]) { // br tag
             element = {
                 type:"br-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[36]) { // hr tag
+        } else if (token[37]) { // hr tag
             element = {
                 type:"hr-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[37]) { // unhandled tag
+        } else if (token[38]) { // unhandled tag
             element = {
                 type:"tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[38]) { // inline formatting: *em*, **strong**, ...
-            var symbols = token[40] || (token[41] || (token[42] || ""));
+        } else if (token[39]) { // inline formatting: *em*, **strong**, ...
+            var symbols = token[41] || (token[42] || (token[43] || ""));
             var symbol = symbols ? symbols[0] : "";
+            var prior = token[40] || "";
 
             if (symbol === "_" || symbol === "*" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
 
-                 if (formatter_begin && !(symbol === "_" && token[39])) {
+                 if (formatter_begin && !(symbol === "_" && token[40])) {
                     var begin_symbols = formatter_begin.data["symbols"];
                     var length = Math.min(begin_symbols.length, symbols.length);
                     var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
@@ -279,7 +288,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     element = {
                         type:"formatter-begin",
                         data:{
-                            prior:token[39] || "",
+                            text:prior + symbols,
+                            prior:prior,
                             symbols:symbols
                         }
                     }
@@ -288,11 +298,9 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"break",
                     data:{
-                        text:token[38]
+                        text:token[39]
                     }
                 }
-
-                MarkdownParser.__clear_unhandled_begins(elements);
             }
         }
 
@@ -373,11 +381,6 @@ MarkdownParser.__clear_unhandled_begins = function(elements) {
     elements.forEach(function(element) {
         if (["link-begin-or-text", "formatter-begin"].includes(element.type)) {
             element["type"] = "text";
-            element["data"] = {
-                text:element.data["prior"] + element.data["symbols"]
-            };
-
-            return;
         }
     });
 }

@@ -5,15 +5,15 @@ Sbml = (function() {
 Sbml.urls  = require("urls");
 Sbml.texts = require("texts");
 
-Sbml.generate_from_markdown = function(markdown) {
-    var sbml =  Sbml.__elements_to_sbml(markdown.elements, false);
+Sbml.generate_from_markdown = function(markdown, images) {
+    var sbml =  Sbml.__elements_to_sbml(markdown.elements, images, false);
 
     console.log(sbml);
 
     return sbml;
 }
 
-Sbml.__elements_to_sbml = function(elements, inline) {
+Sbml.__elements_to_sbml = function(elements, images, inline) {
     var sbml = "";
     var center_begin_pos = 0;
     var center_ended = false;
@@ -195,7 +195,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
                 sbml += element.data["leadings"];
                 sbml += "\n";
                 sbml += "=begin heading-" + element.data["level"] + "\n";
-                sbml += Sbml.__elements_to_sbml(element.data["elements"], true) + "\n";
+                sbml += Sbml.__elements_to_sbml(element.data["elements"], images, true) + "\n";
                 sbml += "=end heading-" + element.data["level"] + "\n";
                 sbml += has_center_tag ? "\n=end center\n" : "";
 
@@ -214,7 +214,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
                 sbml += "\n";
                 sbml += "=begin quote\n";
                 element.data["items"].forEach(function(elements) {
-                    sbml += Sbml.__elements_to_sbml(elements, false);
+                    sbml += Sbml.__elements_to_sbml(elements, images, false);
                     sbml += "\n";
                 });
                 sbml += "=end quote\n";
@@ -224,7 +224,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
             } else {
                 element.data["items"].forEach(function(elements) {
                     sbml += "\n";
-                    sbml += Sbml.__elements_to_sbml(elements, true);
+                    sbml += Sbml.__elements_to_sbml(elements, images, true);
                 });
                 sbml += "\n";
             }
@@ -243,7 +243,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-               sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], true) + "]=";
+               sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
             }
 
             return;
@@ -255,7 +255,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
                 sbml += "\n";
                 sbml += "=begin list\n";
                 element.data["items"].forEach(function(elements) {
-                    sbml += Sbml.__elements_to_sbml(elements, false);
+                    sbml += Sbml.__elements_to_sbml(elements, images, false);
                     sbml += "\n";
                 });
                 sbml += "=end list\n";
@@ -265,7 +265,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
             } else {
                 element.data["items"].forEach(function(elements) {
                     sbml += "\n";
-                    sbml += Sbml.__elements_to_sbml(elements, true);
+                    sbml += Sbml.__elements_to_sbml(elements, images, true);
                 });
                 sbml += "\n";
             }
@@ -306,7 +306,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
         }
 
         if (element.type === "anchor-tag") {
-            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + Sbml.__elements_to_sbml(element.data["elements"], true) + "]=";
+            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
 
             return;
         }
@@ -320,7 +320,7 @@ Sbml.__elements_to_sbml = function(elements, inline) {
                 return;
             }
 
-            if ((element.data["path"] || "").search(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig) != -1) {
+            if ((images || []).includes(element.data["url"]) || (element.data["path"] || "").match(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig)) {
                 sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
 
                 return;

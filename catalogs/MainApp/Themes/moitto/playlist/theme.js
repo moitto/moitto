@@ -7,6 +7,6 @@ function Theme(theme) {
 Theme.prototype = Object.create(ThemeBase.prototype);
 Theme.prototype.constructor = Theme;
 
-Theme.prototype.build_body = function(body, format) {
+Theme.prototype.build_body = function(body, format, images) {
     return body;
 }

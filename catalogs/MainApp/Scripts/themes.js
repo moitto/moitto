@@ -18,8 +18,8 @@ ThemeBase.prototype.parse_markdown = function(text) {
     return Themes.markdown.parse(text);
 }
 
-ThemeBase.prototype.markdown_to_sbml = function(markdown) {
-    return Themes.sbml.generate_from_markdown(markdown);
+ThemeBase.prototype.markdown_to_sbml = function(markdown, images) {
+    return Themes.sbml.generate_from_markdown(markdown, images);
 }
 
 // instance factory

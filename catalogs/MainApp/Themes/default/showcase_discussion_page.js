@@ -142,12 +142,14 @@ function open_url(params) {
         var user = users.create(steem_url[1]);
 
         if (steem_url[2]) {
-            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+            var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
+            var discussion = Object.assign(__background_data_for_value(backgrounds[0]), {
                 "author":user.name,
                 "permlink":steem_url[2],
                 "userpic-url":user.get_userpic_url("small")
             });
-    
+
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", discussion);
             controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });                
         } else {
             controller.catalog().submit("showcase", "auxiliary", "S_USER", {
@@ -191,6 +193,16 @@ function __update_vote_button(weight) {
             "selected":"no"
         });   
     }
+}
+
+function __background_data_for_value(value) {
+    var data = { "background":value["id"] };
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
 }
 
 function __get_urls_in_content(body) {

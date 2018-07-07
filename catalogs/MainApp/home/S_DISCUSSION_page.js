@@ -17,7 +17,7 @@ function on_loaded() {
             "permlink":content.data["permlink"],
             "userpic-url":content.get_userpic_url("small"),
             "title":content.data["title"],
-            "body":impl.build_body(content.data["body"], content.meta["format"]),
+            "body":impl.build_body(content.data["body"], content.meta["format"], content.meta["image"]),
             "votes-count":content.data["net_votes"].toString(),
             "replies-count":content.data["children"].toString(),
             "vote-weight":content.get_vote_weight(me).toString(),

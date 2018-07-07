@@ -273,6 +273,38 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             return;
         }
 
+        if (element.type === "table") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin table\n";
+                sbml += "=begin tr\n";
+                element.data["headers"].forEach(function(elements) {
+                    sbml += "=begin th\n";
+                    sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
+                    sbml += "=end th\n";
+                });
+                sbml += "=end tr\n";
+                element.data["rows"].forEach(function(row) {
+                    sbml += "=begin tr\n";
+                    row.forEach(function(elements) {
+                        sbml += "=begin td\n";
+                        sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
+                        sbml += "=end td\n";
+                    });
+                    sbml += "=end tr\n";
+                });
+                sbml += "=end table\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+
+            return;
+        }
+
         if (element.type === "bullet") {
             sbml += (element.data["symbol"] || "•") + " "
 

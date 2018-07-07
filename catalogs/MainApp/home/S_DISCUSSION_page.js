@@ -5,6 +5,9 @@ function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     var me = storage.value("ACTIVE_USER");
 
+    discussion["author"]   = "wonsama";
+    discussion["permlink"] = "wtrans-google-translation-codes";
+
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);

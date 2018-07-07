@@ -88,6 +88,10 @@ end
 %center: text-align=center
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em
+%table: display=table
+%th: font-family=$SANSSERIF_BOLD, background-color=#ff0
+%tr:
+%td: background-color=#eee
 
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0

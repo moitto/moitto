@@ -80,13 +80,29 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 
             MarkdownParser.__clear_unhandled_begins(elements);
         } else if (token[7]) { // table
+            var lines = token[7].trim().split("\n");
+            var headers = [], rows = [];
+
+            lines[0].replace(/^\||\|$/g, "").split("|").forEach(function(text) {
+                headers.push(MarkdownParser.__parse_to_markdown(text.trim(), true));
+            });
+
+            lines.splice(1).forEach(function(line) {
+                var row = [];
+                line.replace(/^\||\|$/g, "").split("|").forEach(function(text) {
+                    row.push(MarkdownParser.__parse_to_markdown(text.trim(), true));
+                });
+
+                rows.push(row);
+            });
+
             element = {
                 type:"table",
                 data:{
+                    headers:headers,
+                    rows:rows
                 }
             }
-            console.log("TABLE:::::::::::");
-            console.log(token[7]);
         } else if (token[9]) { // image
             element = {
                 type:"image",

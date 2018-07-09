@@ -2,49 +2,54 @@
 
 =object button: label="핀번호 설정", script="reset_pin_force", style=btn_settings, style=btn_pin
 =object image: style=img_arrow, style=btn_pin
-
 =object blank: style=blank_line
 
 =object button: label="캐시 삭제", script="prompt_clear_cache", \
                 style=btn_settings
-
 =object blank: style=blank_line
+
 =object blank: style=blank_margin
 =object blank: style=blank_line
+
+
 
 =object button: label="공지사항", action=page, display-unit=S_NOTICE, catalog=Notice, \
                 has-own-title=yes, navibar-title="공지사항", style=btn_settings
 =object image: style=img_arrow
 =object image: type=notice, catalog=Notice, style=img_notice, display=none, alt="temporary"
-
 =object blank: style=blank_line
 
 =object button: label="FAQ", action=page, display-unit=S_FAQ, catalog=Notice, \
 				has-own-title=yes, navibar-title="FAQ", style=btn_settings
 =object image: style=img_arrow
+=object blank: style=blank_line
 
+=object label: text="#NSFW", style=label_settings
+=object checkbox: saves-state=yes, selected=yes, \
+                action-when-selected=toast, params-when-selected="message=\"#NSFW 글이 보이지 않습니다.\"", \
+                action-when-deselected=toast, params-when-deselected="message=\"#NSFW 글이 보입니다.\"", \
+                style=check_nsfw
 =object blank: style=blank_line
 
 =object button: label="이용약관", action=page, display-unit=S_TERMS, catalog=Notice, style=btn_settings
 =object image: style=img_arrow
-
 =object blank: style=blank_line
 
 =object button: label="개인정보취급방침", action=page, display-unit=S_PRIVACYPOLICY, catalog=Notice, style=btn_settings
 =object image: style=img_arrow
-
 =object blank: style=blank_line
 
 =object button: label="앱 정보", action=page, display-unit=S_ABOUT, \
 				has-own-title=yes, navibar-title="앱 정보", style=btn_settings
 =object image: style=img_arrow
-
 =object blank: style=blank_line, style=login
+
 =object blank: style=blank_margin, style=login
 =object blank: style=blank_line, style=login
 
-=object button: label="로그아웃", script="prompt_logout", style=btn_settings, style=btn_login
 
+
+=object button: label="로그아웃", script="prompt_logout", style=btn_settings, style=btn_login
 =object blank: style=blank_line
 
 =end catalog

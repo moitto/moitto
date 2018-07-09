@@ -255,8 +255,9 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml += "\n";
                 sbml += "=begin list\n";
                 element.data["items"].forEach(function(elements) {
-                    sbml += Sbml.__elements_to_sbml(elements, images, false);
-                    sbml += "\n";
+                    sbml += "=begin list-item\n";
+                    sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
+                    sbml += "=end list-item\n";
                 });
                 sbml += "=end list\n";
 
@@ -278,21 +279,24 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += "\n";
                 sbml += "=begin table\n";
-                sbml += "=begin tr\n";
+                sbml += "=begin tr: style=tr-header\n";
                 element.data["headers"].forEach(function(elements) {
                     sbml += "=begin th\n";
                     sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
                     sbml += "=end th\n";
                 });
                 sbml += "=end tr\n";
+
+                var even = false;
                 element.data["rows"].forEach(function(row) {
-                    sbml += "=begin tr\n";
+                    sbml += "=begin tr: style=" + even ? "tr-even" : "tr-odd" + "\n";
                     row.forEach(function(elements) {
-                        sbml += "=begin td\n";
+                        sbml += "=begin td: style=" + even ? "td-even" : "td-odd" + "\n";
                         sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
                         sbml += "=end td\n";
                     });
                     sbml += "=end tr\n";
+                    even = even ? false : true;
                 });
                 sbml += "=end table\n";
 

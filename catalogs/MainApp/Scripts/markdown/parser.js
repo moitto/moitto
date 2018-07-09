@@ -58,6 +58,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             var lines = token[6].split(/(?:^|\n)(?:[*+-]|\d+\.)\s+/g).slice(1);
             var number = token[6].match(/(?:^|\n)(?:[*+-]|(\d+)\.)/)[1];
             var items = [];
+
             lines.forEach(function(line) {
                 var elements = MarkdownParser.__parse_to_markdown(line.replace(/\n\s+/g, "\n"), false);
 
@@ -81,13 +82,17 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             MarkdownParser.__clear_unhandled_begins(elements);
         } else if (token[7]) { // table
             var lines = token[7].trim().split("\n");
-            var headers = [], rows = [];
+            var headers = [], columns = [], rows = [];
 
             lines[0].replace(/^\||\|$/g, "").split("|").forEach(function(text) {
                 headers.push(MarkdownParser.__parse_to_markdown(text.trim(), true));
             });
 
-            lines.splice(1).forEach(function(line) {
+            lines[1].replace(/^\||\|$/g, "").split("|").forEach(function(text) {
+                columns.push(MarkdownParser.__align_for_table_column(text.trim()));
+            });
+
+            lines.slice(2).forEach(function(line) {
                 var row = [];
                 line.replace(/^\||\|$/g, "").split("|").forEach(function(text) {
                     row.push(MarkdownParser.__parse_to_markdown(text.trim(), true));
@@ -100,6 +105,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 type:"table",
                 data:{
                     headers:headers,
+                    columns:columns,
                     rows:rows
                 }
             }
@@ -369,6 +375,22 @@ MarkdownParser.__outdent = function(text) {
     }
 
     return text;
+}
+
+MarkdownParser.__align_for_table_column = function(text) {
+    if (text[0] === ":") {
+        if (text[text.length - 1] === ":") {
+            return "center";
+        }
+
+        return "left";
+    } 
+
+    if (text[text.length - 1] === ":") {
+        return "right";
+    }
+
+    return "left";
 }
 
 MarkdownParser.__last_link_begin_or_text = function(elements) {

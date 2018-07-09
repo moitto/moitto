@@ -91,7 +91,13 @@ end
 %table: display=table
 %th: font-family=$SANSSERIF_BOLD, background-color=#ff0
 %tr:
+#tr-header:
+#tr-odd:
+#tr-even:
 %td: background-color=#eee
+#td-odd:
+#td-even:
+
 
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0

@@ -24,7 +24,7 @@
 =object image: style=img_arrow
 =object blank: style=blank_line
 
-=object label: text="#NSFW", style=label_settings
+=object label: text="#NSFW 차단", style=label_settings
 =object checkbox: saves-state=yes, selected=yes, \
                 action-when-selected=toast, params-when-selected="message=\"#NSFW 글이 보이지 않습니다.\"", \
                 action-when-deselected=toast, params-when-deselected="message=\"#NSFW 글이 보입니다.\"", \

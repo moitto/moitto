@@ -12,7 +12,7 @@ import ~/themes.sbss
             image="~/subview_btn_settings_off.png", \
             highlight-image="~/subview_btn_settings_off.png", \
             selected-image="~/subview_btn_settings_on.png", \
-            align=right, margin="-40dp 10dp 10dp 0"
+            align=right, margin="-39dp 10dp 10dp 0"
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01
 #blank_margin: width=1pw, height=20dp
 #img_notice: filename="~/subview_img_notice.png", width=6dp, height=6dp, align=left, \

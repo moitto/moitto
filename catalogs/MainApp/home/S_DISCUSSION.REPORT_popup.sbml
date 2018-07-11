@@ -1,0 +1,20 @@
+=begin popup
+
+=object section: section=discussion.report, style=section_navibar
+=begin navibar: id=discussion.report
+=object label: text="신고하기", style=label_title
+=object button: action=popup-close, style=btn_close
+=object blank: style=blank_line
+=end navibar
+
+
+=begin report
+=object checkbox: label="성적인 콘텐츠", style=ckeck_report
+=object checkbox: label="폭력적 또는 혐오스러운 콘텐츠", style=ckeck_report
+=object checkbox: label="유해하거나 위험한 콘텐츠", style=ckeck_report
+=object checkbox: label="스팸 또는 사용자를 현혹하는 콘텐츠", style=ckeck_report
+=end report
+
+=object button: label="확인", style=btn_report
+
+=end popup

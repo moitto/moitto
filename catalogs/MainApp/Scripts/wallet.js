@@ -2,7 +2,7 @@ Wallet = (function() {
     return {
         __transaction:null,
         __max_wrong_count:5,
-        __pin_to_verify:null
+        __pin_to_confirm:null
     };
 })();
 
@@ -25,6 +25,24 @@ Wallet.reset_pin_force = function(handler) {
     };
 
     Wallet.__reset_pin_force();
+}
+
+Wallet.is_pin_registered = function() {
+    if (Wallet.account.active_key_enabled()) {
+        return true;
+    }
+
+    return false;
+}
+
+Wallet.verify_pin = function(message, handler) {
+    Wallet.__transaction = {
+        "action":"verify_pin",
+        "message":message,
+        "handler":handler
+    };
+
+    Wallet.__start_verify();
 }
 
 Wallet.transfer = function(to, coin, amount, memo, handler) {
@@ -193,6 +211,28 @@ Wallet.__register_pin = function() {
     controller.action("popup", { "display-unit":"S_PIN" });
 }
 
+Wallet.__start_verify = function() {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_verify();
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
+Wallet.__confirm_verify = function() {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":Wallet.__transaction["message"],
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
 Wallet.__start_transfer = function(to, amount) {
     var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
     
@@ -312,7 +352,7 @@ Wallet.__redeem_rewards = function() {
     controller.action("popup", { "display-unit":"S_REDEEM.TASK" });
 }
 
-Wallet.__verify_pin = function() {
+Wallet.__confirm_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 설정",
         "message":"PIN번호를 다시 입력하세요.",
@@ -345,16 +385,16 @@ Wallet.__on_receive_pin = function() {
             storage.value("WALLET.WRONG_PIN_COUNT", wrong_count + 1);
         }
     } else {
-        Wallet.__pin_to_verify = document.value("WALLET.PIN");
+        Wallet.__pin_to_confirm = document.value("WALLET.PIN");
 
-        if (!Wallet.__pin_to_verify) {
+        if (!Wallet.__pin_to_confirm) {
             if (Wallet.__transaction["handler"]) {
                 Wallet.__transaction["handler"]();
             }
     
             Wallet.__transaction = null;
         } else {
-            Wallet.__verify_pin();
+            Wallet.__confirm_pin();
         }
     }
 }
@@ -362,9 +402,7 @@ Wallet.__on_receive_pin = function() {
 Wallet.__on_receive_pin_again = function() {
     var pin = document.value("WALLET.PIN");
 
-    if (pin && pin === Wallet.__pin_to_verify) {
-        console.log("__on_receive_pin_again, pin is " + pin);
-        console.log("__on_receive_pin_again, __pin_to_verify is " + Wallet.__pin_to_verify);
+    if (pin && pin === Wallet.__pin_to_confirm) {
         if (Wallet.__transaction["handler"]) {
             Wallet.__transaction["handler"](pin);
         }
@@ -375,11 +413,10 @@ Wallet.__on_receive_pin_again = function() {
     
         document.value("WALLET.PIN", "");
 
-        Wallet.__pin_to_verify = null;
+        Wallet.__pin_to_confirm = null;
         Wallet.__transaction = null;
     } else {
         if (pin) {
-            console.log("__on_receive_pin_again, pin is " + pin);
             controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
                 "title":"PIN번호 설정",
                 "message":"PIN번호가 일치하지 않습니다.\\n송금, 임대 등에 사용할 PIN번호를 입력하세요.",
@@ -392,7 +429,6 @@ Wallet.__on_receive_pin_again = function() {
 
             controller.action("popup", { "display-unit":"S_PIN" });
         } else {
-            console.log("__on_receive_pin_again, but not pin");
             if (Wallet.__transaction["handler"]) {
                 Wallet.__transaction["handler"]();
             }
@@ -487,7 +523,7 @@ Wallet.__reset_pin_force = function() {
 Wallet.__on_reset_pin = function(form) {  
     controller.action("freeze", { message:"확인 중..." });
 
-    Wallet.account.register_active_key(form["password"], function(response, handler) {
+    Wallet.account.enable_active_key(form["password"], function(response, handler) {
         if (!response) {
             controller.action("alert", { message:"비밀번호가 일치하지 않습니다." });
             controller.action("unfreeze");
@@ -503,6 +539,12 @@ Wallet.__on_reset_pin = function(form) {
 }
 
 Wallet.__process_transaction = function(pin) {
+    if (Wallet.__transaction["action"] == "verify_pin") {
+        Wallet.__process_verify_pin(Wallet.__transaction, pin);
+
+        return;
+    }
+
     if (Wallet.__transaction["action"] == "transfer") {
         Wallet.__process_transfer(Wallet.__transaction, pin);
 
@@ -526,6 +568,14 @@ Wallet.__process_transaction = function(pin) {
 
         return;
     }
+}
+
+Wallet.__process_verify_pin = function(transaction, pin) {
+    if (transaction["handler"]) {
+        transaction["handler"](pin);
+    }
+
+    controller.action("popup-close");
 }
 
 Wallet.__process_transfer = function(transaction, pin) {

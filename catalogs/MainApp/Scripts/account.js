@@ -280,7 +280,7 @@ Account.claim_rewards = function(handler) {
     });
 }
 
-Account.register_active_key = function(password, handler) {
+Account.enable_active_key = function(password, handler) {
     var username = storage.value("ACTIVE_USER") || "";
 
     Account.steem.api.get_accounts([ username ]).then(function(response) {
@@ -310,6 +310,12 @@ Account.register_active_key = function(password, handler) {
             }
         });
     });
+}
+
+Account.active_key_enabled = function() {
+    var username = storage.value("ACTIVE_USER") || "";
+
+    return storage.value("ACTIVE_KEY_ENABLED" + "@" + username);
 }
 
 Account.verify_pin = function(pin) {

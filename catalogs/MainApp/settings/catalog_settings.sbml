@@ -25,10 +25,7 @@
 =object blank: style=blank_line
 
 =object label: text="#NSFW 차단", style=label_settings
-=object checkbox: saves-state=yes, selected=yes, \
-                action-when-selected=toast, params-when-selected="message=\"#NSFW 글이 보이지 않습니다.\"", \
-                action-when-deselected=toast, params-when-deselected="message=\"#NSFW 글이 보입니다.\"", \
-                style=check_nsfw
+=object button: id=btn.nsfw, script="toggle_nsfw_lock", selected=yes, style=btn_nsfw
 =object blank: style=blank_line
 
 =object button: label="이용약관", action=page, display-unit=S_TERMS, catalog=Notice, style=btn_settings

@@ -289,9 +289,9 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
 
                 var even = false;
                 element.data["rows"].forEach(function(row) {
-                    sbml += "=begin tr: style=" + even ? "tr-even" : "tr-odd" + "\n";
+                    sbml += "=begin tr: style=" + (even ? "tr-even" : "tr-odd") + "\n";
                     row.forEach(function(elements) {
-                        sbml += "=begin td: style=" + even ? "td-even" : "td-odd" + "\n";
+                        sbml += "=begin td: style=" + (even ? "td-even" : "td-odd") + "\n";
                         sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
                         sbml += "=end td\n";
                     });

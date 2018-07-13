@@ -24,20 +24,16 @@ function on_connect(form) {
 }
 
 function update_notif() {
-    if (!notif.is_updating()) {
-        notif.update().then(function(history) {
-            if (history.length > 0) {
+    if (!history.is_updating()) {
+        history.update(function(username, history) {
+            if (notif.update(username, history)) {
                 controller.action("reload", { "subview":"V_NOTIF" });
                 storage.value("HAS_NEW_NOTIF", true);
 
                 __show_notif_badge();
             }
-        });
+        }); 
     }
-
-    history.update(function(history) {
-
-    });
 }
 
 function reset_notif() {

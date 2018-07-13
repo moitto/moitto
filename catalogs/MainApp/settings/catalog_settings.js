@@ -74,29 +74,21 @@ function toggle_nsfw_lock() {
 		}
 	} else {
 		if (account.is_logged_in()) {
-			__prompt_register_pin();
+			controller.action("prompt", {
+				"title": "알림",
+				"message": "NSFW 설정을 변경하려면 핀번호를 설정하셔야 합니다. 핀번호를 설정하시겠습니까?",
+				"has-cancel-button": "yes",
+				"button-1": "설정하기;script;script=reset_pin_force"
+			});
 		} else {
-			__prompt_login();
+			controller.action("prompt", {
+				"title": "알림",
+				"message": "NSFW 설정을 변경하려면 로그인을 하셔야 합니다. 로그인 하시겠습니까?",
+				"has-cancel-button": "yes",
+				"button-1": "로그인하기;subview;subview=V_LOGIN,target=popup"
+			});
 		}
 	}
-}
-
-function __prompt_login() {
-	controller.action("prompt", {
-		"title": "알림",
-		"message": "NSFW 설정을 변경하려면 로그인을 하셔야 합니다. 로그인 하시겠습니까?",
-		"has-cancel-button": "yes",
-		"button-1": "로그인하기;subview;subview=V_LOGIN,target=popup"
-	});
-}
-
-function __prompt_register_pin() {
-	controller.action("prompt", {
-		"title": "알림",
-		"message": "NSFW 설정을 변경하려면 핀번호를 설정하셔야 합니다. 핀번호를 설정하시겠습니까?",
-		"has-cancel-button": "yes",
-		"button-1": "설정하기;script;script=reset_pin_force"
-	});
 }
 
 function __select_nsfw_button() {

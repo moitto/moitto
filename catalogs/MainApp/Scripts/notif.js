@@ -1,67 +1,43 @@
 Notif = (function() {
-    return {
-        __updating : false
-    };
+    return {};
 })();
 
 Notif.steemjs = require("steemjs");
 
-Notif.update = function() {
-    return new Promise(function(resolve, reject) {
-        var username = storage.value("ACTIVE_USER");
-        var earliest_date = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
-        var last_updated_date = storage.value("NOTIF_UPDATED_DATE@" + username) || earliest_date;
-        var updated_date = new Date();
+Notif.update = function(username, history) {
+    var catalog = controller.catalog();
+    var has_new_notif = false;
 
-        Notif.__get_account_history_for_notif(username, last_updated_date).then(function(history) {
-            history.reverse().forEach(function(data) {
-                Notif.__update_notif(controller.catalog(), username, data["op"], data["timestamp"]);
-            });
-
-            storage.value("NOTIF_UPDATED_DATE@" + username, updated_date);
-
-            resolve(history);
-
-            Notif.__updating = false;
-        }, function(reason) {
-            reject(reason);
-
-            Notif.__updating = false;
-        });
-
-        Notif.__updating = true;
-    });
-}
-
-Notif.is_updating = function() {
-    return Notif.__updating;
-}
-
-Notif.__get_account_history_for_notif = function(account, last_updated_date) {
-    return new Promise(function(resolve, reject) {
-        var history = [];
-
-        Notif.steemjs.get_account_history(account, Number.MAX_SAFE_INTEGER, 3000).then(function(response) {
-            response = response.reverse();
-
-            for (var i = 0; i < response.length; ++i) {
-                var timestamp = response[i][1]["timestamp"];
-                var op = response[i][1]["op"];
- 
-                if (last_updated_date > new Date(Date.parse(timestamp))) {
-                    break;
-                }
-
-                if (Notif.__is_notify_op_for_account(op, account)) {
-                    history.push(response[i][1]);
-                }
+    history.reverse().forEach(function(data) {
+        if (Notif.__is_notify_op_for_account(data["op"], username)) {
+            if (Notif.__update_notif(catalog, username, data["op"], data["timestamp"])) {
+                has_new_notif = true;
             }
-
-            resolve(history);
-        }, function(reason) {
-            reject(reason);
-        });
+        }
     });
+
+    return has_new_notif;
+}
+
+Notif.values = function(username, location, length, sortkey, sortorder) {
+    var catalog = controller.catalog();
+
+    return catalog.values("showcase", "notif@" + username, null, null, [location, length], [sortkey, sortorder]);
+}
+
+Notif.value = function(username, identifier) {
+    var catalog = controller.catalog();
+
+    return catalog.value("showcase", "notif@" + username, identifier);
+}
+
+Notif.check = function(username, identifier) {
+    var catalog = controller.catalog();
+    var value = catalog.value("showcase", "notif@" + username, identifier);
+
+    value["checked"] = "yes";
+
+    catalog.submit("showcase", "notif@" + username, identifier, value);
 }
 
 Notif.__update_notif = function(catalog, username, op, timestamp) {
@@ -74,7 +50,7 @@ Notif.__update_notif = function(catalog, username, op, timestamp) {
             var last_actors = values[0]["actors"].split(",");
 
             if (last_actors.includes(op[1]["author"])) {
-                return;
+                return false;
             }
             
             actors = actors.concat(last_actors);
@@ -95,7 +71,7 @@ Notif.__update_notif = function(catalog, username, op, timestamp) {
         catalog.submit("showcase", "notif@" + username, value["id"], value);
         catalog.categorize("showcase", "notif@" + username, value["id"], [ category ], null);
 
-        return;
+        return true;
     }
 
     if (op[0] === "vote") {
@@ -108,7 +84,7 @@ Notif.__update_notif = function(catalog, username, op, timestamp) {
             var last_actors = values[0]["actors"].split(",");
 
             if (last_actors.includes(op[1]["voter"])) {
-                return;
+                return false;
             }
             
             actors = actors.concat(last_actors);
@@ -129,7 +105,7 @@ Notif.__update_notif = function(catalog, username, op, timestamp) {
         catalog.submit("showcase", "notif@" + username, value["id"], value);
         catalog.categorize("showcase", "notif@" + username, value["id"], [ category ], null);
 
-        return;
+        return true;
     }
 
     if (op[0] === "transfer") {
@@ -144,7 +120,7 @@ Notif.__update_notif = function(catalog, username, op, timestamp) {
 
         catalog.submit("showcase", "notif@" + username, value["id"], value);
 
-        return;
+        return true;
     }
 }
 

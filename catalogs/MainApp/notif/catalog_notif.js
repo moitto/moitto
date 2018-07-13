@@ -1,4 +1,5 @@
 var account = require("account");
+var notif   = require("notif");
 var users   = require("users");
 
 function on_loaded() {
@@ -13,7 +14,7 @@ function on_loaded() {
 
 function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
     var username = storage.value("ACTIVE_USER");
-    var values = controller.catalog().values("showcase", "notif@" + username, null, null, [location, length], [sortkey, sortorder]);
+    var values = notif.values(username, location, length, sortkey, sortorder);
     var data = [];
 
     values.forEach(function(value) {
@@ -29,14 +30,10 @@ function feed_notif(keyword, location, length, sortkey, sortorder, handler) {
 
 function open_notif(data) {
     var username = storage.value("ACTIVE_USER");
-    var catalog = controller.catalog();
-    var value = catalog.value("showcase", "notif@" + username, data["id"]);
+    var value = notif.value(username, data["id"]);
 
-    value["checked"] = "yes";
-    data["checked"] = "yes";
-
-    catalog.submit("showcase", "notif@" + username, data["id"], value);
-    ___reload_notif_cell(data);
+    notif.check(username, data["id"]);
+    ___reload_notif_cell(Object.assign(data, {"checked":"yes"}));
 
     if (value["op"] === "upvote" || value["op"] === "downvote") {
         if (data["source"] === "discussion") {

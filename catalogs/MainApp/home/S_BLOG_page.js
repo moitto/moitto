@@ -55,7 +55,7 @@ function open_discussion(data) {
 }
 
 function __template_data_for_content(content) {
-    if (!content.meta["image"]) {
+    if ((content.meta["image"] || []).length == 0) {
         return {
             "template":"text"
         }

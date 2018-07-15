@@ -19,7 +19,7 @@ Settings.set_refresh_interval = function(interval) {
 }
 
 Settings.get_refresh_interval = function() {
-    return storage.value("REFRESH_INTERVAL") || 60 * 1000; // 1 hour
+    return storage.value("REFRESH_INTERVAL") || 60 * 60 * 1000; // 1 hour
 }
 
 __MODULE__ = Settings;

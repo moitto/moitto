@@ -28,7 +28,7 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
                     }
 
                     if (reply.is_allowed()) {
-                        data.push();
+                        data.push(datum);
                     }
                 }
             });

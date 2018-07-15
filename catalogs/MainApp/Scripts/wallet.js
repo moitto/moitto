@@ -501,7 +501,7 @@ Wallet.__on_confirm_reset_pin = function() {
 Wallet.__reset_pin_for_wrong = function(wrong_count) {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
         "title": "PIN번호 재설정",
-        "message":wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호를 입력하여 PIN번호를 재설정해야 합니다.",
+        "message":wrong_count + "회 연속 PIN번호를 잘못 입력하여 사용 중지됐습니다. 다시 사용하려면 스팀 비밀번호 혹은 액티브 키를 입력하여 PIN번호를 재설정해야 합니다.",
         "btn-message":"PIN번호 재설정",
         "script":"Wallet.__on_reset_pin"
     });
@@ -512,7 +512,7 @@ Wallet.__reset_pin_for_wrong = function(wrong_count) {
 Wallet.__reset_pin_force = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_RESET_PIN", {
         "title": "PIN번호 설정",
-        "message": "PIN 번호 설정을 위해 스팀 비밀번호를 입력해주세요.",
+        "message": "PIN 번호 설정을 위해 스팀 비밀번호 혹은 액티브 키를 입력해주세요.",
         "btn-message":"PIN번호 설정",
         "script":"Wallet.__on_reset_pin"
     });
@@ -523,9 +523,9 @@ Wallet.__reset_pin_force = function() {
 Wallet.__on_reset_pin = function(form) {  
     controller.action("freeze", { message:"확인 중..." });
 
-    Wallet.account.enable_active_key(form["password"], function(response, handler) {
-        if (!response) {
-            controller.action("alert", { message:"비밀번호가 일치하지 않습니다." });
+    Wallet.account.enable_active_key(form["password"].trim(), function(keys, handler) {
+        if (!keys) {
+            controller.action("alert", { message:"비밀번호 혹은 액티브 키가 일치하지 않습니다." });
             controller.action("unfreeze");
     
             return;

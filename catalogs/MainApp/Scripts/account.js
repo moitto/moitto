@@ -11,36 +11,41 @@ Account.login = function(username, password, handler) {
     Account.steem.api.get_accounts([ username ]).then(function(response) {
         var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
-        var owner_pubkey   = response[0] ? response[0]["owner"]["key_auths"][0][0]   : "";
-        var posting_pubkey = response[0] ? response[0]["posting"]["key_auths"][0][0] : "";
+        var needs_pin = true;
 
-        if (keys["owner"].pub !== owner_pubkey) {
-            
-            handler();
+        if (!Account.__is_private_key_for_role(keys["owner"].priv, "owner", response[0])) {
+            if (!Account.__is_private_key_for_role(password, "posting", response[0])) {
+                handler();
 
-            return;
+                return;
+            }
+
+            keys = { "posting":{ "priv":password } }
+            needs_pin = false;
         }
         
         storage.value("ACTIVE_USER", username);
         storage.value("USERS", (storage.value("USERS") || []).concat([ username ]));
 
         [ "posting", "memo" ].forEach(function(role) {
-            keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
+            if (keys.hasOwnProperty(role)) {
+                keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
+            }
         });
 
-        handler(response[0], function(pin) {
-            if (pin) {
-                [ "active" ].forEach(function(role) {
-                    var key = Account.crypto.encrypt(pin, keys[role].priv);
+        handler(keys, needs_pin, function(pin) {
+            var owner_pubkey = response[0]["owner"]["key_auths"][0][0];
 
-                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
-                });
+            [ "active" ].forEach(function(role) {
+                if (keys.hasOwnProperty(role)) {
+                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, Account.crypto.encrypt(pin, keys[role].priv));
+                }
+            });
 
-                keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
-                keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
+            keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
 
-                storage.value("ACTIVE_KEY_ENABLED" + "@" + username, true);
-            }
+            storage.value("ACTIVE_KEY_ENABLED" + "@" + username, true);
         });
     });
 }
@@ -283,30 +288,38 @@ Account.enable_active_key = function(password, handler) {
     var username = storage.value("ACTIVE_USER") || "";
 
     Account.steem.api.get_accounts([ username ]).then(function(response) {
-        var roles = [ "owner", "active" ];
+        var roles = [ "owner", "active", "posting", "memo" ];
         var keys = Account.steem.auth.generate_keys(username, password, roles);
-        var owner_pubkey = response[0] ? response[0]["owner"]["key_auths"][0][0]   : "";
 
-        if (keys["owner"].pub !== owner_pubkey) {
-            
-            handler();
+        if (!Account.__is_private_key_for_role(keys["owner"].priv, "owner", response[0])) {
+            if (!Account.__is_private_key_for_role(password, "active", response[0])) {
+                handler();
 
-            return;
+                return;
+            }
+
+            keys = { "active":{ "priv":password } }
         }
 
-        handler(response[0], function(pin) {
-            if (pin) {
-                [ "active" ].forEach(function(role) {
-                    var key = Account.crypto.encrypt(pin, keys[role].priv);
-
-                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, key);
-                });
-
-                keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
-                keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
-
-                storage.value("ACTIVE_KEY_ENABLED" + "@" + username, true);
+        [ "posting", "memo" ].forEach(function(role) {
+            if (keys.hasOwnProperty(role)) {
+                keychain.password("KEYS_" + role.toUpperCase() + "@" + username, keys[role].priv);
             }
+        });
+
+        handler(keys, function(pin) {
+            var owner_pubkey = response[0]["owner"]["key_auths"][0][0];
+
+            [ "active" ].forEach(function(role) {
+                if (keys.hasOwnProperty(role)) {
+                    keychain.password("KEYS_" + role.toUpperCase() + "@" + username, Account.crypto.encrypt(pin, keys[role].priv));
+                }
+            });
+
+            keychain.password("OWNER_PUBKEY.ENCRYPTED" + "@" + username, JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"]);
+            keychain.password("OWNER_PUBKEY" + "@" + username, owner_pubkey);
+
+            storage.value("ACTIVE_KEY_ENABLED" + "@" + username, true);
         });
     });
 }
@@ -314,7 +327,11 @@ Account.enable_active_key = function(password, handler) {
 Account.active_key_enabled = function() {
     var username = storage.value("ACTIVE_USER") || "";
 
-    return storage.value("ACTIVE_KEY_ENABLED" + "@" + username);
+    if (storage.value("ACTIVE_KEY_ENABLED" + "@" + username)) {
+        return true;
+    }
+
+    return false;
 }
 
 Account.verify_pin = function(pin) {
@@ -324,6 +341,22 @@ Account.verify_pin = function(pin) {
 
     if (JSON.parse(Account.crypto.encrypt(pin, owner_pubkey))["ct"] === encrypted_owner_pubkey) {
         return true;
+    }
+
+    return false;
+}
+
+Account.__is_private_key_for_role = function(key, role, data) {
+    try {
+        var public_key = Account.steem.auth.generate_public_key(key);
+
+        for (var i = 0; i < data[role]["key_auths"].length; i++) {
+            if (public_key === data[role]["key_auths"][i][0]) {
+                return true;
+            }
+        }
+    } catch(e) {
+        console.log(e);
     }
 
     return false;

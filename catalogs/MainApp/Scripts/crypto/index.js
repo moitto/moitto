@@ -59,9 +59,6 @@ Crypto.ecdsa = {
             curve, sjcl.bn.fromBits(secret)
         );
     },
-    sign : function(bits, key) {
-
-    },
     curve_from_name : function(name) {
         return sjcl.ecc.curves[name];
     }

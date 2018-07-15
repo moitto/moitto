@@ -24,6 +24,15 @@ SteemAuth.generate_keys = function(name, password, roles) {
     return keys;
 }
 
+SteemAuth.generate_public_key = function(key) {
+    var private_key = SteemAuth.__strip_private_key(key);
+    var curve = Steem.crypto.ecdsa.curve_from_name("k256");
+    var secret = Steem.crypto.number_from_bits(private_key.get());
+    var pair = Steem.crypto.ecdsa.generate_keys(curve, secret);
+
+    return SteemAuth.__build_public_key(pair.pub);
+}
+
 SteemAuth.sign_transaction = function(transcation, keys) {
     var message = decode("hex", Steem.chain_id).concat(transcation);
     var signatures = [];
@@ -61,10 +70,8 @@ SteemAuth.__build_public_key = function(key) {
         header |= 0x2;
     }
 
-    return (
-        Steem.net.pub_prefix + Steem.crypto.base58.check.encode(
-            header, point.x, SteemAuth.__checksum_for_key
-        )
+    return Steem.net.pub_prefix + Steem.crypto.base58.check.encode(
+        header, point.x, SteemAuth.__checksum_for_key
     );
 }
 

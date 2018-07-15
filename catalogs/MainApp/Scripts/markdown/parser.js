@@ -261,36 +261,43 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-        } else if (token[36]) { // br tag
+        } else if (token[36] || token[37]) { // pre tag
+            element = {
+                type:"pre-tag" + (token[36] ? "-begin" : "-end"),
+                data:{
+                    inline:inline
+                }
+            }
+        } else if (token[38]) { // br tag
             element = {
                 type:"br-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[37]) { // hr tag
+        } else if (token[39]) { // hr tag
             element = {
                 type:"hr-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[38]) { // unhandled tag
+        } else if (token[40]) { // unhandled tag
             element = {
                 type:"tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[39]) { // inline formatting: *em*, **strong**, ...
-            var symbols = token[41] || (token[42] || (token[43] || ""));
+        } else if (token[41]) { // inline formatting: *em*, **strong**, ...
+            var symbols = token[43] || (token[44] || (token[45] || ""));
             var symbol = symbols ? symbols[0] : "";
-            var prior = token[40] || "";
+            var prior = token[42] || "";
 
             if (symbol === "_" || symbol === "*" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
 
-                 if (formatter_begin && !(symbol === "_" && token[40])) {
+                 if (formatter_begin && !(symbol === "_" && token[42])) {
                     var begin_symbols = formatter_begin.data["symbols"];
                     var length = Math.min(begin_symbols.length, symbols.length);
                     var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
@@ -320,7 +327,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"break",
                     data:{
-                        text:token[39]
+                        text:token[41]
                     }
                 }
             }

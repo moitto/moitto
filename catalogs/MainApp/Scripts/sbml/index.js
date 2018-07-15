@@ -21,6 +21,8 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
     var inline_depth = 0;
 
     elements.forEach(function(element) {
+        console.log("******************* (" + inline_depth + ")");
+        console.log(JSON.stringify(element));
         if (element.type === "text") {
             sbml += Sbml.__handle_text(element.data["text"]);
 
@@ -244,7 +246,11 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-               sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
+                if (element.data.hasOwnProperty("elements")) {
+                    sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
+                } else {
+                    sbml += "=[code|" + element.data["text"] + "]=";
+                }
             }
 
             return;

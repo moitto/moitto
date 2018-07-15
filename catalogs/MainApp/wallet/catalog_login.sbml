@@ -5,14 +5,16 @@
 =object textfield: id=username, placeholder="스팀 계정", \
             return-key-type=next, next-control=password, \
             auto-capitalization-type=none, \
+            invalid-when-empty=yes, message-when-empty="스팀 계정을 입력하세요", \
             style=textfield_username
 =object blank: style=blank_frame
-=object textfield: id=password, placeholder="비밀번호", \
+=object textfield: id=password, placeholder="비밀번호 혹은 포스팅 키", \
             secure=yes, script=login, form=login, \
             return-key-type=go, next-control=login, \
+            invalid-when-empty=yes, message-when-empty="비밀번호 혹은 포스팅 키를 입력하세요", \
             style=textfield_password
 =object button: action=paste, source=clipboard, target=object, object=password, \
-            label="비밀번호를 클립보드에서 붙여넣기", \
+            label="비밀번호 혹은 포스팅 키를 클립보드에서 붙여넣기", \
             style=btn_paste
 
 =object button: id=login, script=login, form=login, label="로그인", style=btn_login

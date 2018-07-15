@@ -53,10 +53,10 @@ Content.prototype.get_author_reputation = function() {
     var reputation = this.data["author_reputation"];
 
     if (reputation < 0) {
-        return 25 - (Math.log10(-reputation) - 9) * 9;
+        return 25 - (Math.max(Math.log10(-reputation) || 0, 9) - 9) * 9;
     }
 
-    return (Math.log10(reputation) - 9) * 9 + 25;
+    return (Math.max(Math.log10(reputation) || 0, 9) - 9) * 9 + 25;
 }
 
 Content.prototype.get_payout_value = function() {

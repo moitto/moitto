@@ -18,9 +18,7 @@ function on_loaded() {
 
 function on_foreground() {
     if (__reaches_refresh_interval()) {
-        [ "V_HOME", "V_TREND" ].forEach(function(subview) {
-            controller.action("reload", { "target":"catalog", "subview":subview });
-        });
+        __reload_subviews([ "V_HOME", "V_TREND" ]);
     }
 
     if (account.is_logged_in()) {
@@ -102,6 +100,12 @@ function __reaches_refresh_interval() {
     }
 
     return false;
+}
+
+function __reload_subviews(subviews) {
+    subviews.forEach(function(subview) {
+        controller.action("reload", { "target":"catalog", "subview":subview });
+    });
 }
 
 function __show_notif_badge() {

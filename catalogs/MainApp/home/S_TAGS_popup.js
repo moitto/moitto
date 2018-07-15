@@ -23,7 +23,6 @@ function select_history(data) {
 }
 
 function reset_history() {
-    console.log("reset_history!!!!");
     __remove_all_tags_in_history();
     __reload_history_showcase();
 }

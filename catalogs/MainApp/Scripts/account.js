@@ -110,7 +110,6 @@ Account.create_user = function(username, fee, pin, handler) {
     Account.steem.broadcast.account_create(fee, creator, username, owner, active, posting, memo_key, "", [ key ]).then(function(response) {
         handler(response, password);
     }, function(reason) {
-        console.log(JSON.stringify(reason));
         handler();
     });
 }

@@ -1,5 +1,6 @@
 var account  = require("account");
 var settings = require("settings");
+var wallet   = require("wallet");
 var users    = require("users");
 
 function on_loaded() {
@@ -11,7 +12,7 @@ function on_loaded() {
 }
 
 function reset_pin_force() {
-	settings.reset_pin_force(function(pin) {
+	wallet.reset_pin_force(function(pin) {
 		if (pin) {
 			controller.action("toast", { "message":"PIN번호가 설정 되었습니다." });
 		}
@@ -44,9 +45,7 @@ function logout() {
 			"logged-in":account.is_logged_in() ? "yes" : "no"
 		});
 
-		[ "V_HOME", "V_NOTIF", "V_WALLET" ].forEach(function(subview) {
-        	controller.action("reload", { "target":"catalog", "subview":subview });
-		});
+		__reload_subviews([ "V_HOME", "V_NOTIF", "V_WALLET" ]);
 
 		controller.action("reload");
 	    controller.action("script", { "script":"reset_notif", "subview":"__MAIN__" });
@@ -58,19 +57,25 @@ function clear_cache() {
 }
 
 function toggle_nsfw_lock() {
-	if (settings.is_pin_registered()) {
+	if (wallet.is_pin_registered()) {
 		if (settings.nsfw_contents_allowed()) {
-			settings.disallow_nsfw_contents(function() {
+    		wallet.verify_pin("PIN번호를 입력하면 #NSFW 글을 보이지 않게 합니다.", function(pin) {
+    			settings.disallow_nsfw_contents();
+
+				__reload_subviews([ "V_HOME", "V_TREND" ]);
 				__select_nsfw_button();
 
 				controller.action("toast", { "message":"#NSFW 글이 보이지 않습니다." });
-			});
+    		});
 		} else {
-			settings.allow_nsfw_contents(function() {
+    		wallet.verify_pin("PIN번호를 입력하면 #NSFW 글을 보이도록 합니다.", function(pin) {
+        		settings.allow_nsfw_contents();
+
+				__reload_subviews([ "V_HOME", "V_TREND" ]);
 				__deselect_nsfw_button();
 
 				controller.action("toast", { "message":"#NSFW 글이 보입니다." });
-			});
+		    });
 		}
 	} else {
 		if (account.is_logged_in()) {
@@ -89,6 +94,12 @@ function toggle_nsfw_lock() {
 			});
 		}
 	}
+}
+
+function __reload_subviews(subviews) {
+	subviews.forEach(function(subview) {
+        controller.action("reload", { "target":"catalog", "subview":subview });
+	});
 }
 
 function __select_nsfw_button() {

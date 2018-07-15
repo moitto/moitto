@@ -8,6 +8,7 @@ Sbml.texts = require("texts");
 Sbml.generate_from_markdown = function(markdown, images) {
     var sbml =  Sbml.__elements_to_sbml(markdown.elements, images, false);
 
+    console.log(JSON.stringify(images));
     console.log(sbml);
 
     return sbml;
@@ -356,7 +357,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 return;
             }
 
-            if ((images || []).includes(element.data["url"]) || (element.data["path"] || "").match(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig)) {
+            if (Sbml.__is_image_url((images || []), element.data["url"]) || Sbml.__is_image_path(element.data["path"] || "")) {
                 sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
 
                 return;
@@ -417,6 +418,24 @@ Sbml.__handle_text = function(text) {
     text = decode("html", text);
 
     return text;
+}
+
+Sbml.__is_image_url = function(images, url) {
+    for (var index = 0; index < images.length; index++) {
+        if (url.includes(images[index])) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+Sbml.__is_image_path = function(path) {
+    if (path.match(/\.(jpg|jpeg|png|gif)(\?|\/|$)/ig)) {
+        return true;
+    }
+
+    return false;
 }
 
 Sbml.__url_for_image = function(url, size) {

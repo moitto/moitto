@@ -13,8 +13,8 @@ Contents = (function() {
     };
 })();
 
+Contents.settings = require("settings"); 
 Contents.urls     = require("urls");
-Contents.settings = require("settings");
 
 // class Content
 
@@ -113,7 +113,6 @@ Content.prototype.is_allowed = function() {
 
 Content.prototype.is_nsfw = function() {
     for (var index = 0; index < Contents.__nsfw_tags.length; ++index) {
-        console.log(Contents.__nsfw_tags[index]);
         if (this.meta["tags"].includes(Contents.__nsfw_tags[index])) {
             return true;
         }

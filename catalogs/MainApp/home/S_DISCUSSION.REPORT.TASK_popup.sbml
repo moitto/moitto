@@ -1,0 +1,29 @@
+=begin popup: script-when-loaded=on_loaded
+
+=begin progress
+신고 접수를 진행하고 있습니다.
+잠시 기다려 주세요.
+=end progress
+
+
+
+=begin done
+신고가 접수되었습니다.
+
+=begin notice
+신고에 대한 처리는 24시간 이내에 진행되며, 
+처리결과는 따로 통보해드리지 않습니다.
+=end notice
+
+=object button: action=popup-close, label="닫기", style=btn_action
+=end done
+
+
+
+=begin failed
+이런, 문제가 발생했습니다.
+잠시 후 다시 시도해 주세요.
+=object button: action=popup-close, label="닫기", style=btn_action
+=end failed
+
+=end popup

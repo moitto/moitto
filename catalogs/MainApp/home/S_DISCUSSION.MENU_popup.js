@@ -68,6 +68,24 @@ function reblog(form) {
     }
 }
 
+function report(form) {
+    if (account.is_logged_in()) {
+        controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REPORT", {
+            "author":$data["author"],
+            "permlink":$data["permlink"],
+            "status":"report"
+        });
+
+        controller.action("popup", { "display-unit":"S_DISCUSSION.REPORT" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
+}
+
 function copy_url(form) {
     var url = "https://steemit.com/@" + $data["author"] + "/" + $data["permlink"];
 

@@ -8,13 +8,13 @@
 =end navibar
 
 
-=begin report
-=object checkbox: label="성적인 콘텐츠", style=ckeck_report
-=object checkbox: label="폭력적 또는 혐오스러운 콘텐츠", style=ckeck_report
-=object checkbox: label="유해하거나 위험한 콘텐츠", style=ckeck_report
-=object checkbox: label="스팸 또는 사용자를 현혹하는 콘텐츠", style=ckeck_report
+=begin report: form=report
+=object checkbox: group=reason, value=1, label="성적인 콘텐츠", style=checkbox_reason
+=object checkbox: group=reason, value=2, label="폭력적 또는 혐오스러운 콘텐츠", style=checkbox_reason
+=object checkbox: group=reason, value=3, label="유해하거나 위험한 콘텐츠", style=checkbox_reason
+=object checkbox: group=reason, value=4, label="스팸 또는 사용자를 현혹하는 콘텐츠", style=checkbox_reason
 =end report
 
-=object button: label="확인", style=btn_report
+=object button: script=report, form=report, label="신고하기", style=btn_report
 
 =end popup

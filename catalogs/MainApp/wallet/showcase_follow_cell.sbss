@@ -14,10 +14,10 @@ import ~/themes.sbss
 
 #label_followed: height=50dp, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2
-#btn_follow: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+#btn_follow: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
-#btn_close: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+#btn_close: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 

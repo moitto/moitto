@@ -21,5 +21,5 @@ else
     #btn_info: label-font-size=0.9
     #label_info: font-size=0.9
     /page: font-size=0.9, margin="0.1pw 0.1pw (0.1pw+1eb) 0.1pw"
-    /page/footer: width=0.8pw, x=0.1pw, y=-(1eb+0.1pw)
+    /page/footer: width=0.8pw, x=0.1pw, y=-(1eb+20dp)
 end

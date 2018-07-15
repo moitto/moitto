@@ -2,36 +2,35 @@ import ~/themes.sbss
 
 /popup: page-background-color=$THEME_COLOR_02
 
-
 -- 내비바 --
 
 #section_navibar: width=1pw, height="1sbh+44dp", content-background-color=$THEME_COLOR_00
 #btn_close: image="~/subview_btn_close.png", width=44dp, height=44dp, \
-position=absolute, gravity=right-bottom
+        position=absolute, gravity=right-bottom
 #label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=bottom, \
-font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
-line-break-mode=tail-truncation
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
+        line-break-mode=tail-truncation
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
+
 /popup/navibar: display=none
 
 if $SCREEN_WIDTH > "5"
-#label_title: font-size=1.4
+    #label_title: font-size=1.4
 else
-#label_title: font-size=1.3
+    #label_title: font-size=1.3
 end
 
 
 -- 내용 --
 
-#ckeck_report: width="1pw-40dp", height=50dp, \
-image="~/subview_btn_deselected.png", selected-image="~/subview_btn_selected.png", \
-label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-align=left, \
-label-font-size=1.2
+#checkbox_reason: width="1pw-40dp", height=50dp, \
+        image="~/subview_btn_deselected.png", selected-image="~/subview_btn_selected.png", \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-align=left, label-font-size=1.2, \
+        select-mode=single, group=reason, valid-when-selected=yes, message-when-invalid="신고 이유를 선택하세요."
 
 #btn_report: width="1pw-40dp", height=50dp, position=absolute, gravity=bottom, y=-(1eb+20dp), \
-label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, \
-label-align=center, label-font-size=1.2, \
-content-background-color=$THEME_COLOR_04
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, \
+        label-align=center, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_04
 
 /popup/report: margin="20dp 0 0 0"
-

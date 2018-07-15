@@ -2,7 +2,7 @@ Reports = (function() {
     return {};
 })();
 
-Reports.report_content = function(author, permlink, reasons, handler) {
+Reports.report_content = function(author, permlink, reason, handler) {
     var reporter = storage.value("ACTIVE_USER") || "";
     var url = "https://moitto.io/api/reports/post";
 
@@ -12,10 +12,14 @@ Reports.report_content = function(author, permlink, reasons, handler) {
             "reporter":reporter,
             "author":author,
             "permlink":permlink,
-            "reasons":reasons
+            "reason":reason
         })
     }).then(function(response) {
-        handler(response);
+        if (response.ok) {
+            handler(response);
+        } else {
+            handler();
+        }
     }, function(reason) {
         handler();
     });

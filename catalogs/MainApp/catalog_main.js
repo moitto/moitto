@@ -1,7 +1,10 @@
-var history = require("history");
-var notif   = require("notif");
-var connect = require("connect");
-var account = require("account");
+var account  = require("account");
+var history  = require("history");
+var notif    = require("notif");
+var connect  = require("connect");
+var settings = require("settings");
+
+var __last_background_time = new Date().getTime();
 
 function on_loaded() {
     if (storage.value("HAS_NEW_NOTIF")) {
@@ -14,9 +17,19 @@ function on_loaded() {
 }
 
 function on_foreground() {
+    if (__reaches_refresh_interval()) {
+        [ "V_HOME", "V_TREND" ].forEach(function(subview) {
+            controller.action("reload", { "target":"catalog", "subview":subview });
+        });
+    }
+
     if (account.is_logged_in()) {
         update_notif();
     }
+}
+
+function on_background() {
+    __last_background_time = new Date().getTime();
 }
 
 function on_connect(form) {
@@ -78,6 +91,17 @@ function reblog() {
             controller.action("toast", { "message":"리블로그에 실패했습니다." });
         }
     });
+}
+
+function __reaches_refresh_interval() {
+    var refresh_interval = settings.get_refresh_interval();
+    var interval = new Date().getTime() - __last_background_time;
+
+    if (interval > refresh_interval) {
+        return true;
+    }
+
+    return false;
 }
 
 function __show_notif_badge() {

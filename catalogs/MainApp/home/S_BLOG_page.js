@@ -36,7 +36,9 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
             datum = Object.assign(datum, __template_data_for_content(content));
             datum = Object.assign(datum, __random_background_data(backgrounds));
 
-            data.push(datum);
+            if (content.is_allowed()) {
+                data.push(datum);
+            }
         });
 
         if (discussions.length > 0) {

@@ -170,5 +170,6 @@ if "${image-url}" == ""
 end
 
 if "${template}" == "youtube"
-    #img_header: type=youtube, quality=high, video-id="${template.video-id}", visual-effect="" 
+    #img_header: type=youtube, quality=high, video-id="${template.video-id}", \
+                filename="", image-url="", visual-effect=""
 end

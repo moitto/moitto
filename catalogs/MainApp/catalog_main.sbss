@@ -10,7 +10,9 @@ import themes.sbss
                 position=absolute, gravity=bottom
 
 /catalog: page-background-color=$THEME_COLOR_00, \
-		script-when-loaded=on_loaded, script-when-foreground=on_foreground
+		script-when-loaded=on_loaded, \
+        script-when-foreground=on_foreground, \
+        script-when-background=on_background
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"

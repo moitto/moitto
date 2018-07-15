@@ -8,7 +8,7 @@ function Reply(data) {
     this.data = data;
 }
 
-Reply.prototype.get_reputation = function() {
+Reply.prototype.get_author_reputation = function() {
     var reputation = this.data["author_reputation"];
 
     if (reputation < 0) {
@@ -45,6 +45,22 @@ Reply.prototype.is_voted = function(username) {
         if (votes[i].voter === username) {
             return true;
         }
+    }
+
+    return false;
+}
+
+Reply.prototype.is_allowed = function() {
+    if (this.is_banned()) {
+        return false;
+    }
+
+    return true;
+}
+
+Reply.prototype.is_banned = function() {
+    if (this.get_author_reputation() <= 0) {
+        return true;
     }
 
     return false;

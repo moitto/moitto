@@ -1,8 +1,20 @@
 Contents = (function() {
-    return {};
+    return {
+        __nsfw_tags:(function() {
+            var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
+            var tags = [];
+
+            values.forEach(function(value) {
+                tags.push(value["tag"]);
+            });
+
+            return tags;
+        })()
+    };
 })();
 
-Contents.urls = require("urls");
+Contents.urls     = require("urls");
+Contents.settings = require("settings");
 
 // class Content
 
@@ -38,7 +50,13 @@ Content.prototype.get_title_video_id = function() {
 }
 
 Content.prototype.get_author_reputation = function() {
-    return (Math.log10(this.data["author_reputation"]) - 9) * 9 + 25;
+    var reputation = this.data["author_reputation"];
+
+    if (reputation < 0) {
+        return 25 - (Math.log10(-reputation) - 9) * 9;
+    }
+
+    return (Math.log10(reputation) - 9) * 9 + 25;
 }
 
 Content.prototype.get_payout_value = function() {
@@ -75,6 +93,37 @@ Content.prototype.get_vote_weight = function(username) {
 
 Content.prototype.is_payout = function() {
     if (this.data["last_payout"] !== "1970-01-01T00:00:00") {
+        return true;
+    }
+
+    return false;
+}
+
+Content.prototype.is_allowed = function() {
+    if (this.is_nsfw() && !Contents.settings.nsfw_contents_allowed()) {
+        return false;
+    }
+
+    if (this.is_banned()) {
+        return false;
+    }
+
+    return true;
+}
+
+Content.prototype.is_nsfw = function() {
+    for (var index = 0; index < Contents.__nsfw_tags.length; ++index) {
+        console.log(Contents.__nsfw_tags[index]);
+        if (this.meta["tags"].includes(Contents.__nsfw_tags[index])) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+Content.prototype.is_banned = function() {
+    if (this.get_author_reputation() <= 0) {
         return true;
     }
 

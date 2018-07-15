@@ -15,19 +15,20 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
             Object.keys(response["content"]).forEach(function(path) {
                 if (response["content"][path]["parent_permlink"] === value["permlink"]) {
                     var reply = replies.create(response["content"][path]);
+                    var datum = {
+                        "id":"S_REPLIES_" + value["author"] + "_" + value["permlink"] + "_" + reply.data["author"],
+                        "author":reply.data["author"], 
+                        "permlink":reply.data["permlink"], 
+                        "userpic-url":reply.get_userpic_url("small"),
+                        "body":theme.build_body(reply.data["body"], "markdown", []),
+                        "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
+                        "replies-count":reply.data["children"].toString(),
+                        "created-at":reply.data["created"],
+                        "voted":reply.is_voted(me) ? "yes" : "no"
+                    }
 
-                    if (reply.get_reputation() > 0) {
-                        data.push({
-                            "id":"S_REPLIES_" + value["author"] + "_" + value["permlink"] + "_" + reply.data["author"],
-                            "author":reply.data["author"], 
-                            "permlink":reply.data["permlink"], 
-                            "userpic-url":reply.get_userpic_url("small"),
-                            "body":theme.build_body(reply.data["body"], "markdown", []),
-                            "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
-                            "replies-count":reply.data["children"].toString(),
-                            "created-at":reply.data["created"],
-                            "voted":reply.is_voted(me) ? "yes" : "no"
-                        });
+                    if (reply.is_allowed()) {
+                        data.push();
                     }
                 }
             });

@@ -49,9 +49,16 @@ function on_loaded() {
             data[key] = impl.auxiliary[key];
         });
 
-        view.data("display-unit", data);
-        view.data("environment", { "alternate-name":"discussion" });
-        view.action("reload");
+        if (content.is_allowed()) {
+            view.data("display-unit", data);
+            view.data("environment", { "alternate-name":"discussion" });
+            view.action("reload");            
+        } else {
+            controller.action("toast", {
+                "message":"허용되지 않는 컨텐츠입니다.",
+                "close-popup":"yes"
+            });
+        }
     });
 }
 

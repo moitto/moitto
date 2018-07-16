@@ -81,14 +81,14 @@ function toggle_nsfw_lock() {
 		if (account.is_logged_in()) {
 			controller.action("prompt", {
 				"title": "알림",
-				"message": "NSFW 설정을 변경하려면 핀번호를 설정하셔야 합니다. 핀번호를 설정하시겠습니까?",
+				"message": "NSFW 설정을 변경하려면 PIN번호를 설정해야 합니다. PIN번호를 설정하시겠습니까?",
 				"has-cancel-button": "yes",
-				"button-1": "설정하기;script;script=reset_pin_force"
+				"button-1": "PIN번호 설정;script;script=reset_pin_force"
 			});
 		} else {
 			controller.action("prompt", {
 				"title": "알림",
-				"message": "NSFW 설정을 변경하려면 로그인을 하셔야 합니다. 로그인 하시겠습니까?",
+				"message": "NSFW 설정을 변경하려면 로그인을 해야 합니다. 로그인 하시겠습니까?",
 				"has-cancel-button": "yes",
 				"button-1": "로그인하기;subview;subview=V_LOGIN,target=popup"
 			});

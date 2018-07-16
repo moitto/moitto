@@ -26,4 +26,4 @@ import ~/themes.sbss
 #blank_line: width="1pw-40dp", height=1dp
 
 /popup/actions: display=block, width="1pw-40dp", \
-        position=absolute, gravity=bottom, y=-(1eb+20dp)
+        position=absolute, gravity=bottom, y=-(1eb+0.1pw)

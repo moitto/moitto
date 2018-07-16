@@ -1,6 +1,6 @@
 =begin popup: script-when-loaded=on_loaded
 
-=object blank: metadata-enabled=yes, qrcode-enabled=yes, \
+=object camera: metadata-enabled=yes, qrcode-enabled=yes, \
             focus-closely=yes, continuous-autofocus=yes, \
             script-when-output@metadata=on_qrcode, style=camera_qr, color=#ff4
 =object image: style=img_qr

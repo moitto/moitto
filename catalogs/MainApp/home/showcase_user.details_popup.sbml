@@ -8,12 +8,16 @@
 =(object label: text="${username}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 
-=begin follow: display=none, alt="temporary"
-=(object button: id=btn.follow, script=follow, label="팔로우", style=btn_follow)==(object blank: style=blank_gap)==(object button: label="뮤트", style=btn_follow)=
-=end follow
-=begin unfollow: display=none, alt="temporary"
-=(object button: id=btn.unfollow, script=unfollow, label="언팔로우", style=btn_unfollow)==(object blank: style=blank_gap)==(object button: label="언뮤트", style=btn_follow)=
-=end unfollow
+
+
+=object button: id=btn.follow, script=follow, label="팔로우", style=btn_follow
+=object button: label="뮤트", style=btn_mute
+
+
+=object button: id=btn.unfollow, script=unfollow, label="언팔로우", style=btn_unfollow
+=object button: label="언뮤트", style=btn_unmute
+
+
 
 =begin info
 =object label: text="STEEM ", style=label_steem.info.title

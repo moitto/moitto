@@ -6,13 +6,4 @@ import ~/themes.sbss
             text-align=left, font-size=1.1, \
             position=absolute, gravity=left, x=60dp
 
-#btn_follow: width=70dp, height=26dp, position=absolute, gravity=right, x=-10dp, y=-18dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
-            content-background-color=$THEME_COLOR_02, \
-            content-border-color=$THEME_COLOR_03, content-border-width=1px
-#btn_mute: width=70dp, height=26dp, position=absolute, gravity=right, x=-10dp, y=18dp, \
-            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
-            content-background-color=$THEME_COLOR_02, \
-            content-border-color=$THEME_COLOR_03, content-border-width=1px
-
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom

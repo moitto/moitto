@@ -3,6 +3,13 @@ import ~/themes.sbss
 #btn_close: image="~/subview_btn_close.white.png", width=44dp, height=44dp, \
             position=absolute, gravity=top-right, y=1sbh
 
+/popup: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
+            text-align=center, page-background-color=$BLACK_COLOR_DEEP_DIM, margin="(1sbh+44dp+25dp) 0 0 0"
+/popup/info: text-align=left
+
+
+-- 사용자 정보 --
+
 #blank_userpic.mask: width=82dp, height=82dp, \
             position=absolute, gravity=top, y="1sbh+44dp+24dp", \
             content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
@@ -15,13 +22,24 @@ import ~/themes.sbss
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=center, font-size=0.9, \
             margin="0 0 10dp 0"
 
-#btn_follow: width=100dp, height=36dp, \
+
+-- 팔로우, 뮤트 --
+
+#btn_follow: width=100dp, height=36dp, align=center, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
-            content-background-color=$THEME_COLOR_03
-#btn_unfollow: width=100dp, height=36dp, \
+            content-background-color=$THEME_COLOR_03, margin="20dp 120dp 0 0"
+#btn_mute: width=100dp, height=36dp, align=center, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
-            content-background-color=$THEME_COLOR_03
-#blank_gap: width=30dp, height=36dp
+            content-background-color=$THEME_COLOR_03, margin="-36dp 0 0 120dp"
+#btn_unfollow: width=100dp, height=36dp, align=center, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
+            content-background-color=$THEME_COLOR_03, margin="-36dp 120dp 0 0"
+#btn_unmute: width=100dp, height=36dp, align=center, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
+            content-background-color=$THEME_COLOR_03, margin="-36dp 0 30dp 120dp"
+
+
+-- 지갑 정보 --
 
 #label_steem.info: height=40dp, align=right, margin="-40dp 40dp 0 0", \
                 font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
@@ -29,9 +47,3 @@ import ~/themes.sbss
 #label_steem.info.title: height=40dp, align=left, margin="0 0 0 40dp", \
                 font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, \
                 text-align=left, font-size=1.2
-
-/popup: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
-            text-align=center, page-background-color=$BLACK_COLOR_DEEP_DIM, margin="(1sbh+44dp+25dp) 0 0 0"
-/popup/follow: margin="20dp 0 0 0"
-/popup/unfollow: margin="-36dp 0 30dp 0"
-/popup/info: text-align=left

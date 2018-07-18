@@ -1,8 +1,9 @@
-var users = require("users");
+var account = require("account");
+var users   = require("users");
 
 var __schedule_to_reload = false;
 
-function on_image_download() {
+function on_download_image() {
     if (!__schedule_to_reload) {
         timeout(0.5, function() {
             view.action("reload", { "keeps-position":"yes" });
@@ -14,8 +15,12 @@ function on_image_download() {
     __schedule_to_reload = true;
 }
 
-function show_user(params) {
-    var user = users.create(params["username"]);
+function on_change_data(data) {
+
+}
+
+function show_user() {
+    var user = users.create($data["author"]);
     
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
         "username":user.name,
@@ -27,35 +32,41 @@ function show_user(params) {
 }
 
 function show_replies() {
-    controller.catalog().remove("showcase", "auxiliary", "S_REPLIES.CONTENT");
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES.CONTENT", $data);
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
         "author":$data["author"],
         "permlink":$data["permlink"],
-        "content-type":"reply"
+        "content-type":"reply",
+        "has-own-navibar":"yes"
     });
 
     controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
 function vote() {
-    __freeze_vote_button();
+    if (account.is_logged_in()) {
+        var value = view.data("display-unit");
 
-}
+        if (parseInt(value["vote-weight"]) == 0) {
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
+                "author":$data["author"],
+                "permlink":$data["permlink"]
+            });
 
-function __freeze_vote_button() {
-    var button = view.object("btn.vote");
+            controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
+        } else {
+            controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
+                "author":$data["author"],
+                "permlink":$data["permlink"]
+            });
 
-    button.property({ "enabled":"no" });
-}
-
-function __unfreeze_vote_button() {
-    var button = view.object("btn.vote");
-
-    button.property({ "enabled":"yes" });
-}
-
-function __select_vote_button() {
-    var button = view.object("btn.vote");
-
-    button.property({ "selected":"yes" });
+            controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
+        }
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
 }

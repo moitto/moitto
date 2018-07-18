@@ -123,6 +123,9 @@ Account.vote = function(author, permlink, weight, handler) {
     var voter = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(voter, "posting");
 
+    console.log(JSON.stringify([author, permlink, weight]));
+    console.log(key);
+
     Account.steem.broadcast.vote(voter, author, permlink, weight, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {

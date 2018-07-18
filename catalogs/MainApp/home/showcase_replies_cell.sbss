@@ -17,7 +17,9 @@ import ~/themes.sbss
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
 #img_dim: filename="~/subview_img_replies_dim.png", scale-mode=fill, \
         width=1pw, position=absolute, gravity=bottom, y=-40dp
-/cell: page-background-color=$THEME_COLOR_02
+
+/cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+    page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > "5"
     #img_dim: height=30dp
@@ -29,7 +31,7 @@ end
 -- body --
 
 #image: min-width=10dp, min-height=10dp, max-width=100%, default-color=$THEME_COLOR_01, \
-scales-in-background=yes, text-decoration="", script-when-download=on_image_download
+scales-in-background=yes, text-decoration="", script-when-download=on_download_image
 #image.full: max-width=1pw
 #youtube: width=100%, height=(1pw-40dp)*9/16
 
@@ -82,6 +84,13 @@ end
 /cell/replies: display=none
 /cell/replies/comments: display=block, height=20dp, position=absolute, gravity=right, x=-10dp, text-align=right
 
-if "${voted}" == "yes"
-    #btn_vote: selected=yes
+if "${vote-weight}" != 0
+    if "${vote-weight}" > 0
+        #btn_vote: selected=yes, selected-image="~/subview_btn_upvoted.png"
+    else
+        #btn_vote: selected=yes, selected-image="~/subview_btn_downvoted.png"
+    end
+else
+    #btn_vote: selected=no
 end
+

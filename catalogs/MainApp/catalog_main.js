@@ -69,14 +69,15 @@ function vote() {
             } else {
                 controller.action("toast", { "message":"보팅이 완료되었습니다." });
             }
-            controller.action("script", { "script":"on_finish_vote", "subview":value["subview"] })
+            controller.update("content-" + value["author"] + "." + value["permlink"], {
+                "vote-weight":value["weight"]
+            });
         } else {
             controller.action("toast", { "message":"보팅에 실패했습니다." });
-            controller.action("script", { "script":"on_fail_vote", "subview":value["subview"] })
         }
     });
 
-    controller.action("script", { "script":"on_start_vote", "subview":value["subview"] })
+    controller.action("toast", { "message":"보팅을 요청합니다." });
 }
 
 function reblog() {
@@ -85,10 +86,16 @@ function reblog() {
     account.reblog(value["author"], value["permlink"], function(response) {
         if (response) {
             controller.action("toast", { "message":"리블로그 되었습니다." });
+            controller.update("content-" + value["author"] + "." + value["permlink"], {
+                "reblogged":"yes", 
+                "reblogged-by":account.get_username()
+            });
         } else {
             controller.action("toast", { "message":"리블로그에 실패했습니다." });
         }
     });
+
+    controller.action("toast", { "message":"리블로그를 요청합니다." });
 }
 
 function __reaches_refresh_interval() {

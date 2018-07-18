@@ -1,6 +1,7 @@
 import ~/themes.sbss
 
-/page: page-background-color=$THEME_COLOR_02
+/page: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+    page-background-color=$THEME_COLOR_02
 
 
 -- header --
@@ -58,7 +59,7 @@ end
 -- body --
 
 #image: min-width=10dp, min-height=10dp, max-width=100%, default-color=$THEME_COLOR_01, \
-        scales-in-background=yes, text-decoration="", script-when-download=on_image_download
+        scales-in-background=yes, text-decoration="", script-when-download=on_download_image
 #image.full: max-width=1pw
 #youtube: width=100%, height=(1pw-40dp)*9/16
 
@@ -125,6 +126,16 @@ if $SCREEN_WIDTH > "5"
 else
     #btn_replies: width="1pw-40dp"
     #btn_vote: x=-20dp, y=-(20dp+1eb)
+end
+
+if "${vote-weight}" != 0
+    if "${vote-weight}" > 0
+        #btn_vote: selected=yes, selected-image="~/subview_btn_upvoted.png"
+    else
+        #btn_vote: selected=yes, selected-image="~/subview_btn_downvoted.png"
+    end
+else
+    #btn_vote: selected=no
 end
 
 if "${is-payout}" == "yes"

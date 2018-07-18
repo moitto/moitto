@@ -25,7 +25,8 @@ import ~/themes.sbss
 #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
         position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
 
-/cell: display=block, width=1pw, height=1ph, \
+/cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+        display=block, width=1pw, height=1ph, \
         border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
 /cell/contents: display=none
 /cell/contents/title: text-align=left

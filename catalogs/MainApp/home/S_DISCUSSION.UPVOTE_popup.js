@@ -33,10 +33,9 @@ function select_percent(params) {
 
 function upvote() {
 	document.value("VOTE", {
-		author:$data["author"],
-		permlink:$data["permlink"],
-		weight:__get_voting_weight(),
-		subview:$data["SUBVIEW"]
+		"author":$data["author"],
+		"permlink":$data["permlink"],
+		"weight":__get_voting_weight()
 	});
 
 	__save_recent_percent();

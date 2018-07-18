@@ -14,11 +14,9 @@ function on_loaded() {
             return;
         }
     });
-
-    __update_vote();
 }
 
-function on_image_download() {
+function on_download_image() {
     if (!__schedule_to_reload) {
         timeout(0.5, function() {
             view.action("reload", { "keeps-position":"yes" });
@@ -28,6 +26,12 @@ function on_image_download() {
     }
 
     __schedule_to_reload = true;
+}
+
+function on_change_data(data) {
+    if (data.hasOwnProperty("vote-weight")) {
+        __update_vote_button(parseInt(data["vote-weight"]));
+    }
 }
 
 function vote() {
@@ -55,32 +59,6 @@ function vote() {
             "target":"popup",
             "close-popup":"yes" 
         });
-    }
-}
-
-function on_start_vote(form) {
-    var value = document.value("VOTE");
-
-    if (value["author"] === $data["author"] && value["permlink"] === $data["permlink"]) {
-
-    }
-}
-
-function on_finish_vote(form) {
-    var value = document.value("VOTE");
-
-    if (value["author"] === $data["author"] && value["permlink"] === $data["permlink"]) {
-        view.data("display-unit", { "vote-weight":value["weight"].toString() });
-
-        __update_vote();
-    }
-}
-
-function on_fail_vote(form) {
-    var value = document.value("VOTE");
-
-    if (value["author"] === $data["author"] && value["permlink"] === $data["permlink"]) {
-        __update_vote();
     }
 }
 
@@ -165,12 +143,6 @@ function open_url(params) {
     }
 
     controller.action("link", { url:params["url"] });
-}
-
-function __update_vote() {
-    var value = view.data("display-unit");
-
-    __update_vote_button(parseInt(value["vote-weight"]));
 }
 
 function __update_vote_button(weight) {

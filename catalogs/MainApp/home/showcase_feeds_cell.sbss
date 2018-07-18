@@ -12,6 +12,7 @@ import ~/themes.sbss
 #goB: label-font-family=$SANSSERIF_BOLD
 #emoji: font-family=$EMOJI
 
+/cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data
 /cell/contents: display=none
 /cell/contents/title: text-align=left
 

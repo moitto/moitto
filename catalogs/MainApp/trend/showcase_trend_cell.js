@@ -1,5 +1,9 @@
 var users = require("users");
 
+function on_change_data(data) {
+    controller.action("alert", {message:$data["author"] + "." + $data["permlink"]});
+}
+
 function show_user() {
     var user = users.create($data["author"]);
     

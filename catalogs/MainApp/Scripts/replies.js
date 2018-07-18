@@ -38,16 +38,16 @@ Reply.prototype.get_userpic_url = function(size) {
     return userpic_url;
 }
 
-Reply.prototype.is_voted = function(username) {
+Reply.prototype.get_vote_weight = function(username) {
     var votes = this.data["active_votes"];
 
     for (var i = 0; i < votes.length; i++) {
         if (votes[i].voter === username) {
-            return true;
+            return votes[i].percent;
         }
     }
 
-    return false;
+    return 0;
 }
 
 Reply.prototype.is_allowed = function() {

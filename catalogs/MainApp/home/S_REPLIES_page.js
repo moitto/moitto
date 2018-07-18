@@ -5,7 +5,7 @@ var themes  = require("themes");
 function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_REPLIES");
     var path = "/" + value["tag"] + "/@" + value["author"] + "/" + value["permlink"];
-    var me = storage.value("ACTIVE_USER");
+    var me = storage.value("ACTIVE_USER") || "";
 
     if (location == 0) {
         steemjs.get_state(path).then(function(response) {
@@ -24,7 +24,7 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
                         "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
                         "replies-count":reply.data["children"].toString(),
                         "created-at":reply.data["created"],
-                        "voted":reply.is_voted(me) ? "yes" : "no"
+                        "vote-weight":reply.get_vote_weight(me).toString()
                     }
 
                     if (reply.is_allowed()) {
@@ -34,7 +34,7 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
             });
 
             handler(data);
-        });                
+        });
     } else {
         handler();
     }

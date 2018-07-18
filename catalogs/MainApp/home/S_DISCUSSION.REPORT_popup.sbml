@@ -13,6 +13,7 @@
 =object checkbox: group=reason, value=2, label="폭력적 또는 혐오스러운 콘텐츠", style=checkbox_reason
 =object checkbox: group=reason, value=3, label="유해하거나 위험한 콘텐츠", style=checkbox_reason
 =object checkbox: group=reason, value=4, label="스팸 또는 사용자를 현혹하는 콘텐츠", style=checkbox_reason
+=object checkbox: group=reason, value=5, label="저작권을 위반한 콘텐츠", style=checkbox_reason
 =end report
 
 =object button: script=report, form=report, label="신고하기", style=btn_report

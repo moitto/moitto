@@ -3,7 +3,7 @@ var urls  = require("urls");
 
 var __schedule_to_reload = false;
 
-function on_image_download() {
+function on_download_image() {
     if (!__schedule_to_reload) {
         timeout(0.5, function() {
             owner.action("reload-header");

@@ -8,7 +8,6 @@ function show_user() {
         "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
-
     controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 

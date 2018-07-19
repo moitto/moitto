@@ -25,7 +25,7 @@ import ~/themes.sbss
 -- body --
 
 #image: min-width=10dp, min-height=10dp, max-width=100%, default-color=$THEME_COLOR_01, \
-scales-in-background=yes, text-decoration="", script-when-download=on_image_download
+scales-in-background=yes, text-decoration="", script-when-download=on_download_image
 #image.full: max-width=1pw
 #youtube: width=100%, height=(1pw-40dp)*9/16
 

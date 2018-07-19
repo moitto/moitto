@@ -61,17 +61,21 @@ function snooze_notif() {
 
 function vote() {
     var value = document.value("VOTE");
+    var me = account.get_username();
 
     account.vote(value["author"], value["permlink"], value["weight"], function(response) {
         if (response) {
-            console.log(JSON.stringify(response));
-            if (value["weight"] == 0) {
-                controller.action("toast", { "message":"보팅이 취소되었습니다." });
-            } else {
-                controller.action("toast", { "message":"보팅이 완료되었습니다." });
-            }
-            controller.update("content-" + value["author"] + "." + value["permlink"], {
-                "vote-weight":value["weight"]
+            account.global.get_content(value["author"], value["permlink"]).then(function(content) {
+                if (value["weight"] == 0) {
+                    controller.action("toast", { "message":"보팅이 취소되었습니다." });
+                } else {
+                    controller.action("toast", { "message":"보팅이 완료되었습니다." });
+                }
+                controller.update("content-" + value["author"] + "." + value["permlink"], {
+                    "votes-count":content.data["net_votes"].toString(),
+                    "vote-weight":content.get_vote_weight(me).toString(),
+                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                });
             });
         } else {
             controller.action("toast", { "message":"보팅에 실패했습니다." });

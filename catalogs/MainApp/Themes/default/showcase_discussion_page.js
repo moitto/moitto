@@ -29,9 +29,19 @@ function on_download_image() {
 }
 
 function on_change_data(data) {
-    if (data.hasOwnProperty("vote-weight")) {
+    if (data.hasOwnProperty("votes-weight")) {
         __update_vote_button(parseInt(data["vote-weight"]));
+    }
+
+    if (data.hasOwnProperty("votes-count")) {
         __update_votes_count_button(parseInt(data["votes-count"]));
+    }
+
+    if (data.hasOwnProperty("replies-count")) {
+        __update_replies_count_button(parseInt(data["replies-count"]));
+    }
+
+    if (data.hasOwnProperty("payout-value")) {
         __update_payout_value_button(data["payout-value"]);
     }
 }
@@ -45,14 +55,12 @@ function vote() {
                 "author":$data["author"],
                 "permlink":$data["permlink"]
             });
-
             controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });
         } else {
             controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
                 "author":$data["author"],
                 "permlink":$data["permlink"]
             });
-
             controller.action("popup", { "display-unit":"S_DISCUSSION.UNVOTE" });
         }
     } else {
@@ -72,7 +80,6 @@ function show_author() {
         "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
-
     controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
@@ -84,7 +91,6 @@ function show_user(data) {
         "userpic-url":user.get_userpic_url("small"),
         "fetched":"no"
     });
-
     controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
@@ -93,7 +99,6 @@ function show_tag(params) {
         "tag":params["label"],
         "navibar-title":"#" + params["label"]
     });
-
     controller.action("page", { "display-unit":"S_TAG", "target":"popup" })    
 }
 
@@ -102,7 +107,6 @@ function show_votes() {
         "author":$data["author"],
         "permlink":$data["permlink"]
     });
-
     controller.action("page", { "display-unit":"S_VOTES", "target":"popup" })
 }
 
@@ -111,7 +115,6 @@ function show_replies() {
         "author":$data["author"],
         "permlink":$data["permlink"]
     });
-
     controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
@@ -179,6 +182,12 @@ function __update_payout_value_button(value) {
     var button = view.object("btn.payout.value");
 
     button.property({ "label":" " + value + " " });
+}
+
+function __update_replies_count_button(count) {
+    var button = view.object("btn.replies.count");
+
+    button.property({ "label":count.toString() });
 }
 
 function __background_data_for_value(value) {

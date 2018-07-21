@@ -18,6 +18,7 @@ function show_transfer_qrcode() {
         "userpic-url":user.get_userpic_url("small"),
         "userpic-large-url":user.get_userpic_url()   
     });
+
     controller.action("popup", { "display-unit":"S_QRCODE.TRANSFER" });
 }
 
@@ -30,5 +31,6 @@ function show_follow_qrcode() {
         "userpic-url":user.get_userpic_url("small"),
         "userpic-large-url":user.get_userpic_url()   
     });
+
     controller.action("popup", { "display-unit":"S_QRCODE.FOLLOW" });
 }

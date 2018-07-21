@@ -119,6 +119,21 @@ SteemBroadcast.withdraw_vesting = function(account, vesting_shares, keys) {
     });
 }
 
+SteemBroadcast.comment = function(parent_author, parent_permlink, author, permlink, title, body, json_metadata, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "comment", { 
+            parent_author:parent_author, parent_permlink:parent_permlink,
+            author:author, permlink:permlink, title:title, body:body, json_metadata:json_metadata
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
 SteemBroadcast.__send_transaction = function(operation, keys) {
     return new Promise(function(resolve, reject) {
         var transaction = {};

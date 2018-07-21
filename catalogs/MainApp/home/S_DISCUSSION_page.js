@@ -3,27 +3,32 @@ var themes = require("themes");
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
-    var me = storage.value("ACTIVE_USER");
     
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
+        var me = storage.value("ACTIVE_USER") || "";
         var tags = content.meta["tags"];
+        var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
         var theme = __get_theme_in_tags(tags);
-        var impl = themes.create(theme);
-
-        console.log(content.data["body"]);
-        
+        var impl = themes.create(theme);        
         var data = {
             "author":content.data["author"],
             "permlink":content.data["permlink"],
-            "userpic-url":content.get_userpic_url("small"),
             "title":content.data["title"],
             "body":impl.build_body(content.data["body"], content.meta["format"], content.meta["image"]),
+            "image-url":content.get_title_image_url("256x512"),
+            "large-image-url":content.get_title_image_url("640x480"),
+            "userpic-url":content.get_userpic_url("small"),
+            "userpic-large-url":content.get_userpic_url(),
+            "author-reputation":content.get_author_reputation().toFixed(0).toString(),
             "votes-count":content.data["net_votes"].toString(),
-            "replies-count":content.data["children"].toString(),
             "vote-weight":content.get_vote_weight(me).toString(),
+            "replies-count":content.data["children"].toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
             "is-payout":content.is_payout() ? "yes" : "no",
-            "image-url":content.get_title_image_url("640x480"),
+            "reblogged":reblogged ? "yes" : "no",
+            "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
+            "reblogged-count":content.data["reblogged_by"].length.toString(),
+            "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
             "main-tag":content.data["category"],
             "tag-1":(tags.length > 0) ? tags[0] : "",
             "tag-2":(tags.length > 1) ? tags[1] : "",
@@ -49,11 +54,15 @@ function on_loaded() {
             data[key] = impl.auxiliary[key];
         });
 
-        controller.update("content-" + discussion["author"] + "." + discussion["permlink"], {
-            "votes-count":data["votes-count"],
-            "replies-count":data["replies-count"],
-            "vote-weight":data["vote-weight"],
-            "payout-value":data["payout-value"]
+        controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
+            "votes-count":content.data["net_votes"].toString(),
+            "replies-count":content.data["children"].toString(),
+            "vote-weight":content.get_vote_weight(me).toString(),
+            "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+            "reblogged":reblogged ? "yes" : "no",
+            "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
+            "reblogged-count":content.data["reblogged_by"].length.toString(),
+            "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
         });
 
         if (content.is_allowed()) {

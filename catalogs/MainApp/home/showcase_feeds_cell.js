@@ -1,17 +1,7 @@
 var users = require("users");
 
 function on_change_data(data) {
-    if (data.hasOwnProperty("votes-count")) {
-        __update_votes_count_button(parseInt(data["votes-count"]));
-    }
-
-    if (data.hasOwnProperty("replies-count")) {
-        __update_replies_count_button(parseInt(data["replies-count"]));
-    }
-
-    if (data.hasOwnProperty("payout-value")) {
-        __update_payout_value_button(data["payout-value"]);
-    }
+    view.action("reload", { "keeps-position":"yes" });
 }
 
 function show_user() {

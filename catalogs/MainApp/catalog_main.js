@@ -61,20 +61,27 @@ function snooze_notif() {
 
 function vote() {
     var value = document.value("VOTE");
-    var me = account.get_username();
 
     account.vote(value["author"], value["permlink"], value["weight"], function(response) {
         if (response) {
             account.global.get_content(value["author"], value["permlink"]).then(function(content) {
+                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
+                var me = account.get_username();
+
                 if (value["weight"] == 0) {
                     controller.action("toast", { "message":"보팅이 취소되었습니다." });
                 } else {
                     controller.action("toast", { "message":"보팅이 완료되었습니다." });
                 }
-                controller.update("content-" + value["author"] + "." + value["permlink"], {
+                controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
                     "votes-count":content.data["net_votes"].toString(),
+                    "replies-count":content.data["children"].toString(),
                     "vote-weight":content.get_vote_weight(me).toString(),
                     "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                    "reblogged":reblogged ? "yes" : "no",
+                    "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
+                    "reblogged-count":content.data["reblogged_by"].length.toString(),
+                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
                 });
             });
         } else {
@@ -90,10 +97,21 @@ function reblog() {
 
     account.reblog(value["author"], value["permlink"], function(response) {
         if (response) {
-            controller.action("toast", { "message":"리블로그 되었습니다." });
-            controller.update("content-" + value["author"] + "." + value["permlink"], {
-                "reblogged":"yes", 
-                "reblogged-by":account.get_username()
+            account.global.get_content(value["author"], value["permlink"]).then(function(content) {
+                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
+                var me = account.get_username();
+
+                controller.action("toast", { "message":"리블로그 되었습니다." });
+                controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
+                    "votes-count":content.data["net_votes"].toString(),
+                    "replies-count":content.data["children"].toString(),
+                    "vote-weight":content.get_vote_weight(me).toString(),
+                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                    "reblogged":reblogged ? "yes" : "no",
+                    "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
+                    "reblogged-count":content.data["reblogged_by"].length.toString(),
+                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
+                });
             });
         } else {
             controller.action("toast", { "message":"리블로그에 실패했습니다." });

@@ -48,5 +48,14 @@ __MODULE__ = {
     "withdraw_vesting":{
         account: __TYPES__.string,
         vesting_shares: __TYPES__.asset
+    },
+    "comment":{
+        parent_author: __TYPES__.string,
+        parent_permlink: __TYPES__.string,
+        author: __TYPES__.string,
+        permlink: __TYPES__.string,
+        title: __TYPES__.string,
+        body: __TYPES__.string,
+        json_metadata: __TYPES__.string
     }
 };

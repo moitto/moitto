@@ -32,7 +32,9 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
     if (account.is_logged_in()) {
-        steemjs.get_discussions_by_feed(account.get_username(), start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
+        var me = account.get_username();
+        
+        steemjs.get_discussions_by_feed(me, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
             var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);
             var data = [];
 
@@ -41,26 +43,28 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
             }
 
             discussions.forEach(function(discussion) {
-                var content   = contents.create(discussion);
+                var content = contents.create(discussion);
                 var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
                 var datum = {
                     "id":"S_FEEDS_" + content.data["author"] + "_" + content.data["permlink"],
                     "author":content.data["author"],
                     "permlink":content.data["permlink"],
-                    "title":__handle_text(content.data["title"]), 
+                    "title":content.data["title"], 
                     "image-url":content.get_title_image_url("256x512"),
                     "large-image-url":content.get_title_image_url("640x480"),
                     "userpic-url":content.get_userpic_url("small"),
                     "userpic-large-url":content.get_userpic_url(),
                     "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                     "votes-count":content.data["net_votes"].toString(),
+                    "vote-weight":content.get_vote_weight(me).toString(),
                     "replies-count":content.data["children"].toString(),
-                    "main-tag":content.data["category"],
+                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                    "is-payout":content.is_payout() ? "yes" : "no",
                     "reblogged":reblogged ? "yes" : "no",
                     "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
                     "reblogged-count":content.data["reblogged_by"].length.toString(),
                     "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
+                    "main-tag":content.data["category"],
                     "created-at":content.data["created"]
                 };
 
@@ -153,10 +157,3 @@ function __discussion_data_for_value(value) {
 
     return data;
 }
-
-function __handle_text(text) {
-    text = texts.replace_emoji_chars(text, "=[emoji|$1]=");
-    
-    return text;
-}
-

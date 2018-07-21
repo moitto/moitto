@@ -3,7 +3,6 @@ var wallet  = require("wallet");
 var global  = require("global");
 
 var __is_updating = false;
-var __is_updating_rewards = false;
 
 function on_loaded() {
     if (!account.is_logged_in()) {
@@ -102,22 +101,6 @@ function redeem_rewards() {
     wallet.redeem_rewards(function(response) {
         update_wallet();
     });
-}
-
-function __update_rewards() {
-    if (!__is_updating_rewards) {
-        global.get_user(account.get_username()).then(function(user) {
-            if (wallet.is_rewards_changed(user)) {
-                wallet.update_account_data(user);
-                
-                __reload_assets_showcase_header();
-            }
-
-            __is_updating_rewards = false;
-        });
-
-        __is_updating_rewards = true;
-    }
 }
 
 function __reload_assets_showcase() {

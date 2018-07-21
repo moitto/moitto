@@ -284,6 +284,18 @@ Account.claim_rewards = function(handler) {
     });
 }
 
+Account.comment = function(parent_author, parent_permlink, title, body, json_metadata) {
+    var author = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(author, "posting");
+    var permlink = "";
+
+    Account.steem.broadcast.comment(parent_author, parent_permlink, author, permlink, title, body, json_metadata, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.enable_active_key = function(password, handler) {
     var username = storage.value("ACTIVE_USER") || "";
 

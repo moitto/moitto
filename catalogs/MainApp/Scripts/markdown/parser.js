@@ -140,7 +140,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"link-begin-or-text",
                 data:{
-                    text:token[10] // "[" of "!["
+                    text:token[10], // "[" of "!["
+                    inline:inline
                 }
             }     
         } else if (token[11]) { // end of link
@@ -164,7 +165,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"text",
                     data:{
-                        text:token[11] // "](...)"
+                        text:token[11], // "](...)"
+                        inline:inline
                     }
                 }
             }
@@ -178,7 +180,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"text",
                 data:{
-                    text:token[13] // "]"
+                    text:token[13], // "]"
+                    inline:inline
                 }
             }
         } else if (token[14] || token[15]) { // headings
@@ -215,7 +218,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"text",
                     data:{
-                        text:token[20]
+                        text:token[20],
+                        inline:inline
                     }
                 }
             }
@@ -349,7 +353,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                         data:{
                             text:prior + symbols,
                             prior:prior,
-                            symbols:symbols
+                            symbols:symbols,
+                            inline:inline
                         }
                     }
                 }
@@ -369,7 +374,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             elements.push({
                 type:"text",
                 data:{
-                    text:text_chunk
+                    text:text_chunk,
+                    inline:inline
                 }
             });
         }
@@ -395,7 +401,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
         elements.push({
             type:"text",
             data:{
-                text:text_chunk
+                text:text_chunk,
+                inline:inline
             }
         });
     }

@@ -24,7 +24,15 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         console.log("******************* (" + inline_depth + ")");
         console.log(JSON.stringify(element));
         if (element.type === "text") {
-            sbml += Sbml.__handle_text(element.data["text"]);
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += Sbml.__handle_text(element.data["text"]);
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+                sbml += Sbml.__handle_text(element.data["text"]);
+            }
 
             return;
         }

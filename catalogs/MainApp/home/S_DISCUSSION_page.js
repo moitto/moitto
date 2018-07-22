@@ -4,9 +4,6 @@ var themes = require("themes");
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
-    //discussion["author"] = "roundyround";
-    //discussion["permlink"] = "38jqpw-2";
-
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
         var me = storage.value("ACTIVE_USER") || "";
         var tags = content.meta["tags"];

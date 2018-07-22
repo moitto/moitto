@@ -15,14 +15,13 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+)[ \t]{0,3}(?:(?:-[ \t]*)+|(?:_[ \t]*)+|(?:\*[ \t]*)+)(?:\n+|$))|(?:(?:^|\n)```(\w*)\n(.*?)```(?:\n+|$))|((?:(?:^|\n+)(?:\t|  {2,}).+)+\n*)|((?:^|\n)[ \t]*>.*)|((?:^|\n)(?:[*+-]|\d+\.)[ \t]+.*)|((?:^|\n+)[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)\n[ \t]*\|?(?:(?:[ \t]*:?-+:?[ \t]*)\|)+(?:(?:[ \t]*:?-+:?[ \t]*)\|?)(?:\n|$)(?:[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)[ \t]*(#{1,6})(?:\n+|$))|(?:(?:^|\n)[ \t]*(#{1,6})[ \t]*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^ \t\n]+)|(?:\#[^ \t\n]+))?)|(?:`([^`]*)`)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|((?:[ \t]*\n){2,}|([ \t]?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
+    var tokenizer = /((?:^|\n+)[ \t]{0,3}(?:(?:-[ \t]*)+|(?:_[ \t]*)+|(?:\*[ \t]*)+)(?:\n+|$))|(?:(?:^|\n)[ \t]*```(.*)\n((?:.*\n)*?)[ \t]*```[ \t]*(?:\n+|$))|(?:(?:^|\n+)((?:(?:\t| {4}).+(?:\n[ \t]*)*)+)(?:\n+|$))|((?:(?:^|\n)[ \t]*>.*(?:\n[ \t]*[^ \t\n].+)*)+)|((?:(?:^|\n)[ \t]*(?:[*+-]|\d+\.)[ \t]+.*(?:\n[ \t]*[^ \t\n].+)*)+)|((?:^|\n+)[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)\n[ \t]*\|?(?:(?:[ \t]*:?-+:?[ \t]*)\|)+(?:(?:[ \t]*:?-+:?[ \t]*)\|?)(?:\n|$)(?:[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)[ \t]*(#{1,6})(?:\n+|$))|(?:(?:^|\n)[ \t]*(#{1,6})[ \t]*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^ \t\n]+)|(?:\#[^ \t\n]+))?)|(`+[^`]*`+)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|((?:[ \t]*\n){2,}|([ \t]?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
     var elements = [], begin_tags = [];
-    var token, text_chunk, chunk, element;
-    var last_index = 0, last_number = 0, last_element = null;
+    var token, text_chunk, element;
+    var last_index = 0;
 
     while ((token = tokenizer.exec(text))) {
         text_chunk = text.substring(last_index, token.index);
-        chunk = token[0];
 
         if (token[1]) { // line
             element = {
@@ -32,59 +31,72 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             }
         } else if (token[3] || token[4]) { // code/indent block
-            element = {
+           element = {
                 type:"code",
                 data:{
-                    text:MarkdownParser.__outdent(token[3] || token[4]).replace(/^\n+|\n+$/g, ''),
+                    text:MarkdownParser.__outdent(token[3] || token[4]),
                     inline:inline
                 }
             }
         } else if (token[5]) { // > quote
-            var line = token[5].replace(/(?:^|\n{1,2})[ \t]*>[ \t]*/g, "");
-            var items = MarkdownParser.__parse_to_markdown(line, false);
-
-            if (last_element && last_element["type"] === "quote" && text_chunk) {
-                last_element.data["items"].push(items);
-
-                element = {
-                    type:"none"
-                }
-            } else {
-                element = {
-                    type:"quote",
-                    data:{
-                        items:[ items ], 
-                        inline:inline
-                    }
+            element = {
+                type:"quote",
+                data:{
+                    elements:MarkdownParser.__parse_to_markdown(token[5].replace(/(^|\n)[ \t]*>/g, "$1"), false), 
+                    inline:inline
                 }
             }
         } else if (token[6]) { // -* list
-            var line = token[6].replace(/(?:^|\n{1,2})(?:[*+-]|\d+\.)[ \t]+/g, "");
-            var number = token[6].match(/(?:^|\n{1,2})(?:[*+-]|(\d+)\.)/)[1];
-            var items = MarkdownParser.__parse_to_markdown(line, false);
+            var lines = token[6].replace(/^\n/, "").split("\n");
+            var items = [], indents = [], numbers = [];
+            var level = 0, number = "", subtext = "";
 
-            items.splice(0, 0, {
-                type:"bullet",
-                data:{
-                    number:number ? (inline ? number : last_number + 1) + "." : ""
+            lines.forEach(function(line) {
+                var match = line.match(/^([ \t]*)(?:[*+-]|(\d+)\.)[ \t]+(.*)/);
+                var indent = match ? match[1].length : 0;
+ 
+                if (match && (level == 0 || indent < indents[level - 1] + 6)) {
+                    if (subtext) {
+                        var children = MarkdownParser.__parse_to_markdown(subtext, false);
+                        var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
+
+                        items.push([ symbol, level, children ]);
+                    }
+
+                    subtext = match[3];
+                    number  = match[2];
+
+                    if (level == 0 || indent > indents[level - 1] + 1) {
+                        indents.push(indent);
+                        numbers.push(match[2] ? 1 : 0);
+
+                        level = level + 1;
+                    } else {
+                        level = MarkdownParser.__find_level_for_indent(indents, indent);
+
+                        indents = indents.slice(0, level);
+                        numbers = numbers.slice(0, level);
+
+                        indents[level - 1] = indent;
+                        numbers[level - 1] = match[2] ? numbers[level - 1] + 1 : 0;
+                    }
+                } else {
+                    subtext = subtext + "\n" + line;
                 }
             });
 
-            last_number = (number && !inline) ? last_number + 1 : 0;
+            if (subtext) {
+                var children = MarkdownParser.__parse_to_markdown(subtext, false);
+                var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1] + 1) + "." : "";
 
-            if (last_element && last_element["type"] === "list") {
-                last_element.data["items"].push(items);
+                items.push([ symbol, level, children ]);
+            }
 
-                element = {
-                    type:"none"
-                }
-            } else {
-                element = {
-                    type:"list",
-                    data:{
-                        items:[ items ], 
-                        inline:inline
-                    }
+            element = {
+                type:"list",
+                data:{
+                    items:items, 
+                    inline:inline
                 }
             }
         } else if (token[7]) { // table
@@ -188,12 +200,23 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     path:token[19]
                 }
             }
-        } else if (token[20]) { // `code`
-            element = {
-                type:"code",
-                data:{
-                    elements:MarkdownParser.__parse_to_markdown(token[20], true),
-                    inline:true
+        } else if (token[20]) { // ``code``
+            var code = token[20].match(/(`+)([^`]*)(`+)/);
+
+            if (code[1].length == code[3].length) {
+                element = {
+                    type:"code",
+                    data:{
+                        elements:MarkdownParser.__parse_to_markdown(code[2], true),
+                        inline:true
+                    }
+                }                
+            } else {
+                element = {
+                    type:"text",
+                    data:{
+                        text:token[20]
+                    }
                 }
             }
         } else if (token[21]) { // anchor tag
@@ -339,29 +362,16 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
 
                 MarkdownParser.__clear_unhandled_begins(elements);
-                last_number = 0;
             }
         }
 
         if (text_chunk) {
-            if (last_element && [ "quote", "list" ].includes(last_element["type"])) {
-                var items = last_element.data["items"];
-
-                items[items.length - 1].push({
-                    type:"text",
-                    data:{
-                        text:text_chunk,
-                        chunk:true
-                    }
-                });
-            } else {
-                elements.push({
-                    type:"text",
-                    data:{
-                        text:text_chunk
-                    }
-                });
-            }
+            elements.push({
+                type:"text",
+                data:{
+                    text:text_chunk
+                }
+            });
         }
 
         var tag = element["type"].match(/(.+)-tag-(begin|end)/);
@@ -374,11 +384,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             }
         }
 
-        if (element["type"] != "none") {
-            elements.push(element);
-        }
+        elements.push(element);
 
-        last_element = elements[elements.length - 1];
         last_index = tokenizer.lastIndex;
     }
 
@@ -397,38 +404,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
     MarkdownParser.__handle_mismatched_tags(elements, "", false, begin_tags);
 
     return elements;
-}
-
-MarkdownParser.__outdent = function(text) {
-    var leadings = text.match(/^(\t| )+/);
-
-    if (leadings) {
-        return text.replace(new RegExp(leadings[0], 'gm'), '');
-    }
-
-    return text;
-}
-
-MarkdownParser.__align_for_table_column = function(text) {
-    if (text[0] === ":") {
-        if (text[text.length - 1] === ":") {
-            return "center";
-        }
-
-        return "left";
-    } 
-
-    if (text[text.length - 1] === ":") {
-        return "right";
-    }
-
-    return "left";
-}
-
-MarkdownParser.__last_element = function(elements) {
-    if (elements.length > 0) {
-        return elements[elements.length - 1];
-    }
 }
 
 MarkdownParser.__last_link_begin_or_text = function(elements) {
@@ -489,6 +464,48 @@ MarkdownParser.__handle_mismatched_tags = function(elements, tag, inline, begin_
             }
         });
     }
+}
+
+MarkdownParser.__outdent = function(text) {
+    var leadings = text.match(/^(\t| {4})/);
+
+    if (leadings) {
+        var lines = [];
+
+        text.split("\n").forEach(function(line) {
+            lines.push(line.replace(new RegExp(leadings[0], "g"), ""));
+        });
+
+        return lines.join("\n");
+    }
+
+    return text;
+}
+
+MarkdownParser.__align_for_table_column = function(text) {
+    if (text[0] === ":") {
+        if (text[text.length - 1] === ":") {
+            return "center";
+        }
+
+        return "left";
+    } 
+
+    if (text[text.length - 1] === ":") {
+        return "right";
+    }
+
+    return "left";
+}
+
+MarkdownParser.__find_level_for_indent = function(indents, indent) {
+    for (var index = indents.length - 1; index >= 0; --index) {
+        if (indents[index] <= indent) {
+            return index + 1;
+        }
+    }
+
+    return 1;
 }
 
 __MODULE__ = MarkdownParser;

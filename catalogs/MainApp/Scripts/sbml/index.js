@@ -216,19 +216,13 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += "\n";
                 sbml += "=begin quote\n";
-                element.data["items"].forEach(function(elements) {
-                    sbml += Sbml.__elements_to_sbml(elements, images, false);
-                    sbml += "\n";
-                });
+                sbml += Sbml.__elements_to_sbml(element.data["elements"], images, false) + "\n";
                 sbml += "=end quote\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-                element.data["items"].forEach(function(elements) {
-                    sbml += "\n";
-                    sbml += Sbml.__elements_to_sbml(elements, images, true);
-                });
+                sbml += Sbml.__elements_to_sbml(element.data["elements"], images, true) + "\n";
                 sbml += "\n";
             }
 
@@ -261,9 +255,9 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += "\n";
                 sbml += "=begin list\n";
-                element.data["items"].forEach(function(elements) {
-                    sbml += "=begin list-item\n";
-                    sbml += Sbml.__elements_to_sbml(elements, images, false) + "\n";
+                element.data["items"].forEach(function(item) {
+                    sbml += "=begin list-item: style=list-level-" + item[1] + "\n";
+                    sbml += (item[0] || "•") + " " + Sbml.__elements_to_sbml(item[2], images, false) + "\n";
                     sbml += "=end list-item\n";
                 });
                 sbml += "=end list\n";
@@ -312,12 +306,6 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             } else {
 
             }
-
-            return;
-        }
-
-        if (element.type === "bullet") {
-            sbml += (element.data["symbol"] || "•") + " "
 
             return;
         }

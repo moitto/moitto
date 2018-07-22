@@ -141,20 +141,6 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             return;
         }
 
-        if (element.type === "br-tag") {
-            if (!element.data["inline"] && inline_depth == 0) {
-                sbml += center_ended ? "\n=end center\n" : "";
-                sbml += "\n=[br| ]=\n";
-
-                center_begin_pos = sbml.length;
-                center_ended = false;
-            } else {
-
-            }
-
-            return;
-        }
-
         if (element.type === "center-tag-begin") {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
@@ -175,6 +161,60 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
 
                 center_begin_pos = sbml.length;
                 center_ended = true;
+            } else {
+
+            }
+
+            return;
+        }
+
+        if (element.type === "pre-tag-begin") {
+
+            return;
+        }
+
+        if (element.type === "pre-tag-end") {
+
+            return;
+        }
+
+        if (["table", "tr", "th", "td"].includes(element.type.replace("-tag-begin", ""))) {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin " + element.type.replace("-tag-begin", "") + "\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+
+            return;
+        }
+
+        if (["table", "tr", "th", "td"].includes(element.type.replace("-tag-end", ""))) {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=end " + element.type.replace("-tag-end", "") + "\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+ 
+            return;
+        }
+
+        if (element.type === "br-tag") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n=[br| ]=\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
             } else {
 
             }
@@ -273,9 +313,9 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-                element.data["items"].forEach(function(elements) {
+                element.data["items"].forEach(function(item) {
                     sbml += "\n";
-                    sbml += Sbml.__elements_to_sbml(elements, images, true);
+                    sbml += (item[0] || "•") + " " + Sbml.__elements_to_sbml(item[2], images, true);
                 });
                 sbml += "\n";
             }
@@ -415,7 +455,7 @@ Sbml.__has_center_tag = function(elements) {
 }
 
 Sbml.__handle_text = function(text) {
-    text = text.replace(/\\/g, "").replace(/(\[|\]|=)/g, "\\$1");
+    text = text.replace(/\\/g, "").replace(/(\[|\]|=|\(|\))/g, "\\$1");
     text = text.replace(/(^|\s+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
     text = Sbml.texts.replace_emoji_chars(text, "=[emoji|$1]=");
     text = decode("html", text);

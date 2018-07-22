@@ -15,7 +15,7 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+)[ \t]{0,3}(?:(?:-[ \t]*)+|(?:_[ \t]*)+|(?:\*[ \t]*)+)(?:\n+|$))|(?:(?:^|\n)[ \t]*```(.*)\n((?:.*\n)*?)[ \t]*```[ \t]*(?:\n+|$))|(?:(?:^|\n+)((?:(?:\t| {4}).+(?:\n[ \t]*)*)+)(?:\n+|$))|((?:(?:^|\n)[ \t]*>.*(?:\n[ \t]*[^ \t\n].+)*)+)|((?:(?:^|\n{1,2})[ \t]*(?:[*+-]|\d+\.)[ \t]+.*(?:\n[ \t]*[^ \t\n].+)*)+)|((?:^|\n+)[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)\n[ \t]*\|?(?:(?:[ \t]*:?-+:?[ \t]*)\|)+(?:(?:[ \t]*:?-+:?[ \t]*)\|?)(?:\n|$)(?:[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)[ \t]*(#{1,6})(?:\n+|$))|(?:(?:^|\n)[ \t]*(#{1,6})[ \t]*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^ \t\n]+)|(?:\#[^ \t\n]+))?)|(`+[^`]*`+)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|((?:[ \t]*\n){2,}|([ \t]?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
+    var tokenizer = /((?:^|\n+)[ \t]{0,3}(?:(?:-[ \t]*)+|(?:_[ \t]*)+|(?:\*[ \t]*)+)(?:\n+|$))|(?:(?:^|\n)[ \t]*```(.*)\n((?:.*\n)*?)[ \t]*```[ \t]*(?:\n+|$))|(?:(?:^|\n+)((?:(?:\t| {4}).+(?:\n[ \t]*)*)+)(?:\n+|$))|((?:(?:^|\n)[ \t]*>.*(?:\n[ \t]*[^ \t\n].+)*)+)|((?:(?:^|\n{1,2})[ \t]*(?:[*+-]|\d+\.)[ \t]+.*(?:\n[ \t]*[^ \t\n].+)*)+)|((?:^|\n+)[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)\n[ \t]*\|?(?:(?:[ \t]*:?-+:?[ \t]*)\|)+(?:(?:[ \t]*:?-+:?[ \t]*)\|?)(?:\n|$)(?:[ \t]*\|?(?:[^\n|]*\|)+(?:[^\n|]*\|?)(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*\)|.)*?)\)|(\[)|(\]\((.*?)\))|(\])|(?:(?:^|\n)[ \t]*(#{1,6})(?:\n+|$))|(?:(?:^|\n)[ \t]*(#{1,6})[ \t]*(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+)((?:\/[a-zA-Z0-9~_@%:,\/\.\-\+\*]+)|\/)?(?:(?:\?[^ \t\n]+)|(?:\#[^ \t\n]+))?)|(`+[^`]*`+)|(?:<a[^>]*href=\"([^"]+)\"[^>]*>)(.+)<\/a>|(?:<img[^>]*src=\"([^"]+)\"[^>]*\/?>(?:<\/img>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p[^>]*>)|(<\/p[^>]*>)|(<blockquote[^>]*>)|(<\/blockquote[^>]*>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(?:<(table|tr|th|td)>)|(?:<\/(table|tr|th|td)>)|(<br[^>]*>)|(<hr>)|(<\/?[a-z][^>]*>)|((?:[ \t]*\n){2,}|([ \t]?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
     var elements = [], begin_tags = [];
     var token, text_chunk, element;
     var last_index = 0;
@@ -302,36 +302,43 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     inline:inline
                 }
             }
-        } else if (token[38]) { // br tag
+        } else if (token[38] || token[39]) { // table, tr, th, td tag
+            element = {
+                type:(token[38] || token[39]) + "-tag" + (token[38] ? "-begin" : "-end"),
+                data:{
+                    inline:inline
+                }
+            }
+        } else if (token[40]) { // br tag
             element = {
                 type:"br-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[39]) { // hr tag
+        } else if (token[41]) { // hr tag
             element = {
                 type:"hr-tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[40]) { // unhandled tag
+        } else if (token[42]) { // unhandled tag
             element = {
                 type:"tag",
                 data:{
                     inline:inline
                 }
             }
-        } else if (token[41]) { // inline formatting: *em*, **strong**, ...
-            var symbols = token[43] || (token[44] || (token[45] || ""));
+        } else if (token[43]) { // inline formatting: *em*, **strong**, ...
+            var symbols = token[45] || (token[46] || (token[47] || ""));
             var symbol = symbols ? symbols[0] : "";
-            var prior = token[42] || "";
+            var prior = token[44] || "";
 
             if (symbol === "_" || symbol === "*" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
 
-                 if (formatter_begin && !token[42]) {
+                 if (formatter_begin && !token[44]) {
                     var begin_symbols = formatter_begin.data["symbols"];
                     var length = Math.min(begin_symbols.length, symbols.length);
                     var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
@@ -362,7 +369,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 element = {
                     type:"break",
                     data:{
-                        text:token[41]
+                        text:token[43]
                     }
                 }
 

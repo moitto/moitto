@@ -12,6 +12,10 @@ function on_loaded() {
     });
 }
 
+function on_change_data(data) {
+    view.action("reload");
+}
+
 function follow() {
     __freeze_follow_button("follow");
 

@@ -18,9 +18,9 @@ function transfer() {
 }
 
 function update_assets() {
-    var username = storage.value("ACTIVE_USER");
+    var me = storage.value("ACTIVE_USER") || "";
 
-    global.get_user(username).then(function(user) {
+    global.get_user(me).then(function(user) {
         wallet.update_assets_data(user);
         document.value("WALLET.ASSETS_CHANGED", true);
 

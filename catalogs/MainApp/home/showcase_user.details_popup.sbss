@@ -3,8 +3,9 @@ import ~/themes.sbss
 #btn_close: image="~/subview_btn_close.white.png", width=44dp, height=44dp, \
             position=absolute, gravity=top-right, y=1sbh
 
-/popup: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
-            text-align=center, page-background-color=$BLACK_COLOR_DEEP_DIM, margin="(1sbh+44dp+25dp) 0 0 0"
+/popup: data-binding="user-${username}", script-when-data-changed=on_change_data, \
+        font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
+        text-align=center, page-background-color=$BLACK_COLOR_DEEP_DIM, margin="(1sbh+44dp+25dp) 0 0 0"
 /popup/info: text-align=left
 
 

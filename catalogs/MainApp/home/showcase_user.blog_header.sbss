@@ -29,4 +29,5 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 
-/header: text-align=center, margin="0 0 25dp 0"
+/header: data-binding="user-${username}", script-when-data-changed=on_change_data, \
+        text-align=center, margin="0 0 25dp 0"

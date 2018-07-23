@@ -3,7 +3,7 @@ var global = require("global");
 var __user = null;
 
 function on_loaded() {
-    var me = storage.value("ACTIVE_USER");
+    var me = storage.value("ACTIVE_USER") || "";
 
     global.get_user(me).then(function(user) {
 		__update_power_label(user.get_voting_power().toFixed(1));

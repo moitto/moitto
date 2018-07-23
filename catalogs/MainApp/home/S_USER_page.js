@@ -33,6 +33,10 @@ function on_loaded() {
     });
 }
 
+function on_change_data(data) {
+    
+}
+
 function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;

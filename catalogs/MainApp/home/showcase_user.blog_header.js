@@ -12,10 +12,6 @@ function on_loaded() {
     });
 }
 
-function on_change_data(data) {
-    
-}
-
 function follow() {
     __freeze_follow_button("follow");
 

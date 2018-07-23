@@ -33,6 +33,6 @@ if "${fetched}" != "yes"
 	/page: script-when-loaded=on_loaded	
 	/page/content: display=none
 else
-    /page: data-binding="user-${username}"
+    /page: data-binding="user-${username}", script-when-data-changed=on_change_data
 	/page/loading: display=none
 end

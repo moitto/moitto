@@ -27,7 +27,7 @@ function feed_replies(keyword, location, length, sortkey, sortorder, handler) {
                         "vote-weight":reply.get_vote_weight(me).toString()
                     }
 
-                    if (reply.is_allowed()) {
+                    if (!reply.is_banned()) {
                         data.push(datum);
                     }
                 }

@@ -1,7 +1,22 @@
 var account  = require("account");
 var steemjs  = require("steemjs");
-var contents = require("contents"); 
-var texts    = require("texts");
+var contents = require("contents");
+var settings = require("settings");
+
+var __disallowed_tags = (function() {
+    var tags = [];
+
+    if (!settings.nsfw_contents_allowed()) {
+        var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
+
+        values.forEach(function(value) {
+            tags.push(value["tag"]);
+        });
+    }
+
+    return tags;
+})();
+
 
 var __last_discussion = null;
 var __has_packages = true;
@@ -71,7 +86,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                 datum = Object.assign(datum, __template_data_for_content(content));
                 datum = Object.assign(datum, __random_background_data(backgrounds));
 
-                if (content.is_allowed()) {
+                if (content.is_allowed(__disallowed_tags) && !content.is_banned()) {
                     data.push(datum);
                 }
             });

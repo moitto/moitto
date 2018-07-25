@@ -149,3 +149,4 @@ function __hide_notif_badge() {
 
     blank.action("hide");
 }
+

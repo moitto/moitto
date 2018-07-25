@@ -1,4 +1,4 @@
--- font --
+-- fonts --
 $SANSSERIF_LIGHT = "KoPubDotum Light"
 $SANSSERIF_MEDIUM = "KoPubDotum Medium"
 $SANSSERIF_BOLD = "KoPubDotum Bold"
@@ -7,7 +7,7 @@ $SERIF_MEDIUM = "KoPubBatang Medium"
 $SERIF_BOLD = "KoPubBatang Bold"
 $EMOJI = "KoPubDotum Medium"
 
--- background color --
+-- background colors --
 
 -- 내비바색, 툴바색
 $THEME_COLOR_00 = #FCFCFC
@@ -33,7 +33,7 @@ $BLACK_COLOR_DEEP_DIM = #000000BB
 -- 선택색
 $THEME_HIGHLIGHT_COLOR = #0000001A
 
--- text color --
+-- text colors --
 
 -- 짙은 색
 $THEME_COLOR_100 = #383838

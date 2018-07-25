@@ -1,4 +1,20 @@
-var global = require("global");
+var steemjs  = require("steemjs");
+var contents = require("contents");
+var settings = require("settings");
+
+var __disallowed_tags = (function() {
+    var tags = [];
+
+    if (!settings.nsfw_contents_allowed()) {
+        var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
+
+        values.forEach(function(value) {
+            tags.push(value["tag"]);
+        });
+    }
+
+    return tags;
+})();
 
 var __last_discussion = null;
 
@@ -6,7 +22,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
-    global.steemjs.get_discussions_by_blog($data["username"], start_author, start_permlink, length).then(function(discussions) {
+    steemjs.get_discussions_by_blog($data["username"], start_author, start_permlink, length).then(function(discussions) {
         var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
@@ -15,7 +31,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
         }
 
         discussions.forEach(function(discussion) {
-            var content   = global.contents.create(discussion);
+            var content   = contents.create(discussion);
             var reblogged = (content.data["author"] !== $data["username"]) ? true : false;
             var datum = {
                 "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
@@ -37,8 +53,8 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
             datum = Object.assign(datum, __template_data_for_content(content));
             datum = Object.assign(datum, __random_background_data(backgrounds));
 
-            if (content.is_allowed()) {
-                data.push(datum);
+            if (content.is_allowed(__disallowed_tags) && !content.is_banned()) {
+               data.push(datum);
             }
         });
 

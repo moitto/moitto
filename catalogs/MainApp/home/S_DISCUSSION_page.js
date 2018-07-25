@@ -1,5 +1,20 @@
-var global = require("global");
-var themes = require("themes");
+var global   = require("global");
+var themes   = require("themes");
+var settings = require("settings");
+
+var __disallowed_tags = (function() {
+    var tags = [];
+
+    if (!settings.nsfw_contents_allowed()) {
+        var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
+
+        values.forEach(function(value) {
+            tags.push(value["tag"]);
+        });
+    }
+
+    return tags;
+})();
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
@@ -65,7 +80,7 @@ function on_loaded() {
             "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
         });
 
-        if (content.is_allowed()) {
+        if (content.is_allowed(__disallowed_tags) && !content.is_banned()) {
             view.data("display-unit", data);
             view.data("environment", { "alternate-name":"discussion" });
             view.action("reload"); 

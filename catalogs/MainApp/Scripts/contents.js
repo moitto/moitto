@@ -1,20 +1,8 @@
 Contents = (function() {
-    return {
-        __nsfw_tags:(function() {
-            var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
-            var tags = [];
-
-            values.forEach(function(value) {
-                tags.push(value["tag"]);
-            });
-
-            return tags;
-        })()
-    };
+    return {};
 })();
 
-Contents.settings = require("settings"); 
-Contents.urls     = require("urls");
+Contents.urls = require("urls");
 
 // class Content
 
@@ -99,26 +87,14 @@ Content.prototype.is_payout = function() {
     return false;
 }
 
-Content.prototype.is_allowed = function() {
-    if (this.is_nsfw() && !Contents.settings.nsfw_contents_allowed()) {
-        return false;
-    }
-
-    if (this.is_banned()) {
-        return false;
-    }
-
-    return true;
-}
-
-Content.prototype.is_nsfw = function() {
-    for (var index = 0; index < Contents.__nsfw_tags.length; ++index) {
-        if (this.meta["tags"].includes(Contents.__nsfw_tags[index])) {
-            return true;
+Content.prototype.is_allowed = function(disallowed_tags) {
+    for (var index = 0; index < this.meta["tags"].length; ++index) {
+        if (disallowed_tags.includes(this.meta["tags"][index].toLowerCase())) {
+            return false;
         }
     }
 
-    return false;
+    return true;
 }
 
 Content.prototype.is_banned = function() {

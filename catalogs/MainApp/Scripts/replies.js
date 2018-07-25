@@ -50,14 +50,6 @@ Reply.prototype.get_vote_weight = function(username) {
     return 0;
 }
 
-Reply.prototype.is_allowed = function() {
-    if (this.is_banned()) {
-        return false;
-    }
-
-    return true;
-}
-
 Reply.prototype.is_banned = function() {
     if (this.get_author_reputation() <= 0) {
         return true;

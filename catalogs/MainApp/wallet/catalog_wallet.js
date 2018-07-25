@@ -1,6 +1,6 @@
-var account = require("account");
 var wallet  = require("wallet");
-var global  = require("global");
+var account = wallet.account;
+var global  = account.global;
 
 var __is_updating = false;
 

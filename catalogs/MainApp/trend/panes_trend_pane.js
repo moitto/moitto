@@ -1,6 +1,6 @@
 var steemjs  = require("steemjs");
 var contents = require("contents");
-var settings = require("settings");
+var safety   = require("safety");
 
 var __impl = {
     "P_TREND.TRENDING":{
@@ -23,19 +23,7 @@ var __impl = {
     }
 }
 
-var __disallowed_tags = (function() {
-    var tags = [];
-
-    if (!settings.nsfw_contents_allowed()) {
-        var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
-
-        values.forEach(function(value) {
-            tags.push(value["tag"]);
-        });
-    }
-
-    return tags;
-})();
+var __disallowed_tags = safety.get_disallowed_tags();
 
 function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TREND");
@@ -47,7 +35,7 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
         var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
-        if (location > 0) {
+        if (start_author) {
             discussions = discussions.splice(1);
         }
 

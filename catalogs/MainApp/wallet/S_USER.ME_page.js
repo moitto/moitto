@@ -1,5 +1,8 @@
-var global = require("global");
+var global   = require("global");
+var steemjs  = global.steemjs;
+var contents = global.contents;
 
+var __discussions = [];
 var __last_discussion = null;
 
 function on_loaded() {
@@ -27,39 +30,31 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
-    global.steemjs.get_discussions_by_blog($data["username"], start_author, start_permlink, length).then(function(discussions) {
+    __get_discussions_by_blog($data["username"], start_author, start_permlink, length, function(discussions) {
         var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
-        if (location > 0) {
-            discussions = discussions.splice(1);
-        }
-
         discussions.forEach(function(discussion) {
-            var content   = global.contents.create(discussion);
-            var reblogged = (content.data["author"] !== $data["username"]) ? true : false;
- 
-            if (!reblogged) {
-                var datum = {
-                    "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
-                    "author":content.data["author"],
-                    "permlink":content.data["permlink"],
-                    "title":content.data["title"], 
-                    "image-url":content.get_title_image_url("256x512"),
-                    "userpic-url":content.get_userpic_url("small"),
-                    "userpic-large-url":content.get_userpic_url(),
-                    "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-                    "votes-count":content.data["net_votes"].toString(),
-                    "main-tag":content.data["category"],
-                    "created-at":content.data["created"]
-                };
+            var content = contents.create(discussion);
+            var datum = {
+                "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
+                "author":content.data["author"],
+                "permlink":content.data["permlink"],
+                "title":content.data["title"], 
+                "image-url":content.get_title_image_url("256x512"),
+                "userpic-url":content.get_userpic_url("small"),
+                "userpic-large-url":content.get_userpic_url(),
+                "author-reputation":content.get_author_reputation().toFixed(0).toString(),
+                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                "votes-count":content.data["net_votes"].toString(),
+                "main-tag":content.data["category"],
+                "created-at":content.data["created"]
+            };
 
-                datum = Object.assign(datum, __template_data_for_content(content));
-                datum = Object.assign(datum, __random_background_data(backgrounds));
+            datum = Object.assign(datum, __template_data_for_content(content));
+            datum = Object.assign(datum, __random_background_data(backgrounds));
 
-                data.push(datum);
-            }
+            data.push(datum);
         });
 
         if (discussions.length > 0) {
@@ -75,6 +70,35 @@ function open_discussion(data) {
 
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", discussion);
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
+}
+
+function __get_discussions_by_blog(username, start_author, start_permlink, length, handler) {
+    steemjs.get_discussions_by_blog(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
+        if (start_author) {
+            discussions = discussions.splice(1);
+        }
+
+        discussions.forEach(function(discussion) {
+            if (discussion["author"] === username) {
+                if (__discussions.length < length) {
+                   __discussions.push(discussion);
+                }
+            }
+        });
+
+        if (__discussions.length < length && discussions.length > 0) {
+            start_author   = discussions[discussions.length - 1]["author"];
+            start_permlink = discussions[discussions.length - 1]["permlink"];
+
+            __get_discussions_by_blog(username, start_author, start_permlink, length, handler);
+
+            return;
+        }
+
+        handler(__discussions);
+
+        __discussions = [];
+    });
 }
 
 function __template_data_for_content(content) {

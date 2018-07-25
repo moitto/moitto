@@ -1,6 +1,6 @@
-var users   = require("users");
-var account = require("account");
 var wallet  = require("wallet");
+var account = wallet.account;
+var users   = account.global.users;
 
 var __amount_to_transfer = null;
 var __current_coin_price = null;

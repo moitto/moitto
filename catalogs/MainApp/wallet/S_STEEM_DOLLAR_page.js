@@ -1,5 +1,5 @@
-var global = require("global");
 var wallet = require("wallet");
+var global = wallet.account.global;
 
 function transfer() {
     var amount_type = storage.value("SBD.AMOUNT-TYPE") || "SBD";

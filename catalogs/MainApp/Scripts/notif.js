@@ -2,8 +2,6 @@ Notif = (function() {
     return {};
 })();
 
-Notif.steemjs = require("steemjs");
-
 Notif.update = function(username, history) {
     var catalog = controller.catalog();
     var has_new_notif = false;

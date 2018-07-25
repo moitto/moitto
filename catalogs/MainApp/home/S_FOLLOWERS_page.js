@@ -7,10 +7,10 @@ function feed_followers(keyword, location, length, sortkey, sortorder, handler) 
     var value = controller.catalog().value("showcase", "auxiliary", "S_FOLLOWERS");
     var start_follower = (location > 0) ? __last_follower["follower"] : null;
 
-    steemjs.get_followers(value["username"], start_follower, "blog", length).then(function(followers) {
+    steemjs.get_followers(value["username"], start_follower, "blog", length + (start_follower ? 1 : 0)).then(function(followers) {
         var data = [];
 
-        if (location > 0) {
+        if (start_follower) {
             followers = followers.splice(1);
         }
 

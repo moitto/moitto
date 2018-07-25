@@ -1,28 +1,16 @@
-var global   = require("global");
-var themes   = require("themes");
-var settings = require("settings");
+var global = require("global");
+var themes = require("themes");
+var safety = require("safety");
 
-var __disallowed_tags = (function() {
-    var tags = [];
-
-    if (!settings.nsfw_contents_allowed()) {
-        var values = controller.catalog().values("showcase", "nsfw.tags", null, null, [ 0, 100 ]);
-
-        values.forEach(function(value) {
-            tags.push(value["tag"]);
-        });
-    }
-
-    return tags;
-})();
+var __disallowed_tags = safety.get_disallowed_tags();
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
     global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
         var me = storage.value("ACTIVE_USER") || "";
-        var tags = content.meta["tags"];
         var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
+        var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);
         var impl = themes.create(theme);        
         var data = {

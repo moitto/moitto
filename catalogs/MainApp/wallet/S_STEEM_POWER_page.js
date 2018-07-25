@@ -1,5 +1,5 @@
-var global = require("global");
 var wallet = require("wallet");
+var global = wallet.account.global;
 
 function delegate() {
     controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", {

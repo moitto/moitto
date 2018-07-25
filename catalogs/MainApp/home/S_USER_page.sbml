@@ -1,7 +1,7 @@
 =begin page
 
 =begin content
-=object showcase: alternate-name=user.blog, data-script=feed_blog, loads-more=yes, \
+=object showcase: id=showcase.blog, alternate-name=user.blog, data-script=feed_blog, loads-more=yes, \
             has-header=yes, header-display-unit=S_USER, \
             selectable=yes, script-when-selected=open_discussion, \
             style=showcase_blog

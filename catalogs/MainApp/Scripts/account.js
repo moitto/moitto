@@ -2,10 +2,10 @@ Account = (function() {
     return {}
 })();
 
-Account.steem  = require("steem");
-Account.global = require("global");
-Account.users  = require("users");
-Account.crypto = require("crypto");
+Account.global  = require("global");
+Account.steemjs = Account.global.steemjs; 
+Account.steem   = require("steem");
+Account.crypto  = require("crypto");
 
 Account.login = function(username, password, handler) {
     Account.steem.api.get_accounts([ username ]).then(function(response) {
@@ -198,7 +198,7 @@ Account.unfollow_user = function(following, handler) {
 Account.is_following = function(username, handler) {
     var follower = storage.value("ACTIVE_USER") || "";
 
-    Account.global.steemjs.get_followers(username, follower, "blog", 1).then(function(response) {
+    Account.steemjs.get_followers(username, follower, "blog", 1).then(function(response) {
         if (response.length == 0 || response[0]["follower"] !== follower) {
             handler(username, false);
         } else {

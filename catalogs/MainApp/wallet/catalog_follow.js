@@ -1,14 +1,14 @@
 var account = require("account");
-var users   = require("users");
-var steemjs = require("steemjs");
+var steemjs = account.global.steemjs;
+var users   = account.global.users;
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_FOLLOW");
     var username = value["following"];
 
     Promise.all([
-        Global.steemjs.get_accounts([ username ]),
-        Global.steemjs.get_followers(username, account.get_username(), "blog", 1)
+        steemjs.get_accounts([ username ]),
+        steemjs.get_followers(username, account.get_username(), "blog", 1)
     ]).then(function(response) {
         var user = users.create(username, response[0][0]);
         var followed = (response[1].length == 0 || response[1][0]["follower"] !== account.get_username()) ? false : true;

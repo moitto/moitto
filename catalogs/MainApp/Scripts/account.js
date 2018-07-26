@@ -209,6 +209,56 @@ Account.is_following = function(username, handler) {
     });
 }
 
+Account.mute_user = function(following, handler) {
+    var follower = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(follower, "posting");
+    var json = JSON.stringify(
+        [ "follow", {
+            "follower":follower,
+            "following":following,
+            "what":["ignore"]
+        }]
+    );
+
+    Account.steem.broadcast.custom_json([], [ follower ], "follow", json, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.unmute_user = function(following, handler) {
+    var follower = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(follower, "posting");
+    var json = JSON.stringify(
+        [ "follow", {
+            "follower":follower,
+            "following":following,
+            "what":[]
+        }]
+    );
+
+    Account.steem.broadcast.custom_json([], [ follower ], "follow", json, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.is_muted = function(username, handler) {
+    var follower = storage.value("ACTIVE_USER") || "";
+
+    Account.steemjs.get_followers(username, follower, "ignore", 1).then(function(response) {
+        if (response.length == 0 || response[0]["follower"] !== follower) {
+            handler(username, false);
+        } else {
+            handler(username, true);
+        }
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.transfer = function(to, amount, memo, pin, handler) {
     var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);

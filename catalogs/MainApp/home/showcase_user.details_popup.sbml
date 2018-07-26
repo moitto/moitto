@@ -9,14 +9,13 @@
 =object label: text="REP. ${reputation}", style=label_rep
 
 
-
+=begin buttons
 =object button: id=btn.follow, script=follow, label="팔로우", style=btn_follow
-=object button: label="뮤트", style=btn_mute
-
-
 =object button: id=btn.unfollow, script=unfollow, label="언팔로우", style=btn_unfollow
-=object button: label="언뮤트", style=btn_unmute
 
+=object button: id=btn.mute, label="뮤트", style=btn_mute
+=object button: id=btn.unmute, label="언뮤트", style=btn_unmute
+=end buttons
 
 
 =begin info

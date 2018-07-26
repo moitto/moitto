@@ -48,3 +48,13 @@ import ~/themes.sbss
 #label_steem.info.title: height=40dp, align=left, margin="0 0 0 40dp", \
                 font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, \
                 text-align=left, font-size=1.2
+
+
+-- 불러오기 --
+
+if "${fetched}" != "yes"
+    /popup: script-when-loaded=on_loaded
+    /popup/buttons: display=none
+else
+    /popup: data-binding="user-${username}", script-when-data-changed=on_change_data
+end

@@ -1,39 +1,48 @@
-var account = require("account");
-
-var __last_label_for_follow_buttons = {};
+var global  = require("global");
 
 function on_loaded() {
-    account.is_following($data["username"], function(username, is_following) {
-        if (is_following) {
-            __show_follow_button("unfollow");
-        } else {
-            __show_follow_button("follow");
-        }
-    });
-}
+    var value = controller.catalog().value("showcase", "auxiliary", "S_USER.DETAILS");
 
-function on_change_data(data) {
-    view.action("reload");
+    global.get_user(value["username"]).then(function(user) {
+        var data = {
+            "username":user.name, 
+            "userpic-url":user.get_userpic_url(),
+            "reputation":user.get_reputation().toFixed(1).toString(),
+            "post-count":user.get_post_count().toString(),
+            "following-count":user.get_following_count().toString(),
+            "follower-count":user.get_follower_count().toString(),
+            "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+            "steem-power":user.get_steem_power().toFixed(3).toString(),
+            "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
+            "is-following":"no",
+            "fetched":"yes"
+        };
+
+        controller.update("user-" + user.name, {
+            "reputation":user.get_reputation().toFixed(1).toString(),
+            "post-count":user.get_post_count().toString(),
+            "following-count":user.get_following_count().toString(),
+            "follower-count":user.get_follower_count().toString(),
+            "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+            "steem-power":user.get_steem_power().toFixed(3).toString(),
+            "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
+        });
+
+        view.data("display-unit", data);
+        view.action("reload");
+    });
 }
 
 function follow() {
-    __freeze_follow_button("follow");
-
-    account.follow_user($data["username"], function(response) {
-        __hide_follow_button("follow");
-        __show_follow_button("unfollow");
-        __unfreeze_follow_button("follow");
-    });
 }
 
 function unfollow() {
-    __freeze_follow_button("unfollow");
+}
 
-    account.unfollow_user($data["username"], function(response) {
-        __hide_follow_button("unfollow");
-        __show_follow_button("follow");
-        __unfreeze_follow_button("unfollow");
-    });
+function mute() {
+}
+
+function unmute() {
 }
 
 function show_blog() {
@@ -61,32 +70,4 @@ function show_followers() {
     });
 
     controller.action("page", { "display-unit":"S_FOLLOWERS", "target":"popup" });
-}
-
-function __show_follow_button(id) {
-    var button = view.object("btn." + id);
-
-    button.action("show");
-}
-
-function __hide_follow_button(id) {
-    var button = view.object("btn." + id);
-
-    button.action("hide");
-}
-
-function __freeze_follow_button(id) {
-    var button = view.object("btn." + id);
-
-    __last_label_for_follow_buttons[id] = button.value("label");
-
-    button.property({ "label":"···"} );
-    button.property({ "enabled":"no" });
-}
-
-function __unfreeze_follow_button(id) {
-    var button = view.object("btn." + id);
-
-    button.property({ "label":__last_label_for_follow_buttons[id] });
-    button.property({ "enabled":"yes" });
 }

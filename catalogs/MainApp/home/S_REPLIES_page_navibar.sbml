@@ -5,6 +5,6 @@
 =object blank: style=blank_line
 
 =object button: action=popup, display-unit=S_REPLIES.CONTENT, alternate-name="replies.content", \
-        style=btn_menuㅍ display=none, alt="temporary"
+        style=btn_menu, display=none, alt="temporary"
 
 =end navibar

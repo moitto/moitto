@@ -1,3 +1,7 @@
+function on_loaded() {
+    
+}
+
 function follow() {
 
 }

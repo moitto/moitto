@@ -84,11 +84,12 @@ function transfer(form) {
 
 function __transfer(to, coin, amount, memo) {
     controller.action("script", {
-        "script":"transfer",
+        "script":"api.transfer",
         "subview":"__MAIN__",
         "to":to,
         "coin":coin,
-        "amount":amount.toString()
+        "amount":amount.toString(),
+        "memo":memo
     });
 }
 

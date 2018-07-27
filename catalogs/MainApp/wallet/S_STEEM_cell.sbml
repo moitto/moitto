@@ -1,0 +1,6 @@
+=begin cell
+
+=object label: text="${title}", style=label_title
+=object label: text="${amount}", style=label_value
+
+=end cell

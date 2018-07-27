@@ -1,5 +1,3 @@
-var wallet = require("wallet");
-
 function transfer() {
     var amount_type = storage.value("STEEM.AMOUNT-TYPE") || "STEEM";
 
@@ -16,8 +14,6 @@ function transfer() {
 }
 
 function on_change_data(data) {
-    var value = wallet.get_assets_data();
-
-    view.data("display-unit", { "amount":value["steem-balance"] });
+    view.data("display-unit", { "amount":data["steem-balance"] });
     view.action("reload");
 }

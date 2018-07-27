@@ -1,6 +1,6 @@
 function follow() {
     controller.action("script", {
-        "script":"follow",
+        "script":"api.follow_user",
         "subview":"__MAIN__",
         "username":$data["username"]
     });

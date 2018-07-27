@@ -1,5 +1,3 @@
-var wallet = require("wallet");
-
 function transfer() {
     var amount_type = storage.value("SBD.AMOUNT-TYPE") || "SBD";
 
@@ -17,8 +15,6 @@ function transfer() {
 }
 
 function on_change_data(data) {
-    var value = wallet.get_assets_data();
-
-    view.data("display-unit", { "amount":value["sbd-balance"] });
+    view.data("display-unit", { "amount":data["sbd-balance"] });
     view.action("reload");
 }

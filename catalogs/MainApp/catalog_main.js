@@ -1,13 +1,9 @@
 var account  = require("account");
 var history  = require("history");
 var notif    = require("notif");
-var wallet   = require("wallet");
 var connect  = require("connect");
 var settings = require("settings");
-var steemjs  = require("steemjs");
-var global   = require("global");
-var contents = require("contents");
-var users    = require("users");
+var api      = require("api");
 
 var __last_background_time = new Date().getTime();
 
@@ -64,277 +60,6 @@ function snooze_notif() {
     __hide_notif_badge();
 }
 
-function vote(params) {
-    account.vote(params["author"], params["permlink"], parseInt(params["weight"]), function(response) {
-        if (response) {
-            __get_content(params["author"], params["permlink"], function(content) {
-                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
-                var me = account.get_username();
-
-                if (parseInt(params["weight"]) == 0) {
-                    controller.action("toast", { "message":"보팅이 취소되었습니다." });
-                } else {
-                    controller.action("toast", { "message":"보팅이 완료되었습니다." });
-                }
-                controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
-                    "votes-count":content.data["net_votes"].toString(),
-                    "vote-weight":content.get_vote_weight(me).toString(),
-                    "replies-count":content.data["children"].toString(),
-                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-                    "is-payout":content.is_payout() ? "yes" : "no",
-                    "reblogged":reblogged ? "yes" : "no",
-                    "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-                    "reblogged-count":content.data["reblogged_by"].length.toString(),
-                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
-                });
-            });
-        } else {
-            controller.action("toast", { "message":"보팅에 실패했습니다." });
-        }
-    });
-
-    controller.action("toast", { "message":"보팅을 진행합니다." });
-}
-
-function reblog(params) {
-    account.reblog(params["author"], params["permlink"], function(response) {
-        if (response) {
-            __get_content(params["author"], params["permlink"], function(content) {
-                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
-                var me = account.get_username();
-
-                controller.action("toast", { "message":"리블로그 되었습니다." });
-                controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
-                    "votes-count":content.data["net_votes"].toString(),
-                    "vote-weight":content.get_vote_weight(me).toString(),
-                    "replies-count":content.data["children"].toString(),
-                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-                    "is-payout":content.is_payout() ? "yes" : "no",
-                    "reblogged":reblogged ? "yes" : "no",
-                    "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-                    "reblogged-count":content.data["reblogged_by"].length.toString(),
-                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
-                });
-            });
-        } else {
-            controller.action("toast", { "message":"리블로그에 실패했습니다." });
-        }
-    });
-
-    controller.action("toast", { "message":"리블로그를 진행합니다." });
-}
-
-function follow(params) {
-    account.follow_user(params["username"], function(response) {
-        if (response) {
-            __get_user(params["username"], function(user, follows, muted) {
-                controller.action("toast", { "message":"팔로우가 완료되었습니다." });
-                controller.update("user-" + user.name, {
-                    "reputation":user.get_reputation().toFixed(1).toString(),
-                    "post-count":user.get_post_count().toString(),
-                    "following-count":user.get_following_count().toString(),
-                    "follower-count":user.get_follower_count().toString(),
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
-                    "follows":follows ? "yes" : "no",
-                    "muted":muted ? "yes" : "no"
-                });
-            });
-        } else {
-            controller.action("toast", { "message":"팔로우에 실패했습니다." });
-        }
-    });
-
-    controller.action("toast", { "message":"팔로우를 진행합니다." });
-}
-
-function unfollow(params) {
-    account.unfollow_user(params["username"], function(response) {
-        if (response) {
-            __get_user(params["username"], function(user, follows, muted) {
-                controller.action("toast", { "message":"언팔로우가 완료되었습니다." });
-                controller.update("user-" + user.name, {
-                    "reputation":user.get_reputation().toFixed(1).toString(),
-                    "post-count":user.get_post_count().toString(),
-                    "following-count":user.get_following_count().toString(),
-                    "follower-count":user.get_follower_count().toString(),
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
-                    "follows":follows ? "yes" : "no",
-                    "muted":muted ? "yes" : "no"
-                });
-            });
-        } else {
-            controller.action("toast", { "message":"언팔로우에 실패했습니다." });
-        }
-    });
-
-    controller.action("toast", { "message":"언팔로우를 진행합니다." });
-}
-
-function mute(params) {
-    account.mute_user(params["username"], function(response) {
-        if (response) {
-            __get_user(params["username"], function(user, follows, muted) {
-                controller.action("toast", { "message":"뮤트가 완료되었습니다." });
-                controller.update("user-" + user.name, {
-                    "reputation":user.get_reputation().toFixed(1).toString(),
-                    "post-count":user.get_post_count().toString(),
-                    "following-count":user.get_following_count().toString(),
-                    "follower-count":user.get_follower_count().toString(),
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
-                    "follows":follows ? "yes" : "no",
-                    "muted":muted ? "yes" : "no"
-                });
-            });
-        } else {
-            controller.action("toast", { "message":"뮤트에 실패했습니다." });
-        }
-    });
-
-    controller.action("toast", { "message":"뮤트를 진행합니다." });
-}
-
-function unmute(params) {
-    account.unmute_user(params["username"], function(response) {
-        if (response) {
-            __get_user(params["username"], function(user, follows, muted) {
-                controller.action("toast", { "message":"언뮤트가 완료되었습니다." });
-                controller.update("user-" + user.name, {
-                    "reputation":user.get_reputation().toFixed(1).toString(),
-                    "post-count":user.get_post_count().toString(),
-                    "following-count":user.get_following_count().toString(),
-                    "follower-count":user.get_follower_count().toString(),
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
-                    "follows":follows ? "yes" : "no",
-                    "muted":muted ? "yes" : "no"
-                });
-            });
-        } else {
-            controller.action("toast", { "message":"언뮤트에 실패했습니다." });
-        }
-    });
-
-    controller.action("toast", { "message":"언뮤트를 진행합니다." });
-}
-
-function transfer(params) {
-    wallet.transfer(params["to"], params["coin"], parseFloat(params["amount"]), params["memo"], function(response) {
-        if (response) {
-            __get_user_assets(account.get_username(), function(user) {
-                wallet.update_assets_data(user);
-                controller.update("assets", {
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
-                });
-            });
-        }
-    });
-}
-
-function delegate(params) {
-    wallet.delegate(params["to"], parseFloat(params["amount"]), function(response) {
-        if (response) {
-            __get_user_assets(account.get_username(), function(user) {
-                wallet.update_assets_data(user);
-                controller.update("assets", {
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
-                });
-            });
-        }
-    });
-}
-
-function power_up(params) {
-    wallet.power_up(parseFloat(params["amount"]), function(response) {
-        if (response) {
-            __get_user_assets(account.get_username(), function(user) {
-                wallet.update_assets_data(user);
-                controller.update("assets", {
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
-                });
-            });
-        }
-    });
-}
-
-function power_down(params) {
-    wallet.power_down(parseFloat(params["amount"]), function(response) {
-        if (response) {
-            __get_user_assets(account.get_username(), function(user) {
-                wallet.update_assets_data(user);
-                controller.update("assets", {
-                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
-                    "steem-power":user.get_steem_power().toFixed(3).toString(),
-                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
-                });
-            });
-        }
-    });
-}
-
-function __get_content(author, permlink, handler) {
-    steemjs.get_content(author, permlink).then(function(response) {
-        if (response) {
-            handler(contents.create(response));
-        } else {
-            handler();
-        }
-    }, function(reason) {
-        handler();
-    }); 
-}
-
-function __get_user(username, handler) {
-    var me = account.get_username();
-
-    Promise.all([
-        steemjs.get_accounts([ username ]),
-        steemjs.get_follow_count(username),
-        steemjs.get_dynamic_global_properties(),
-        steemjs.get_followers(username, me, "blog", 1),
-        steemjs.get_followers(username, me, "ignore", 1)
-    ]).then(function(response) {
-        if (response[0][0]) {
-            var user = users.create(username, response[0][0], response[1], global.create(response[2]));
-            var follows = (response[3].length == 0 || response[3][0]["follower"] !== me) ? false : true;
-            var muted   = (response[4].length == 0 || response[4][0]["follower"] !== me) ? false : true;
-
-            handler(user, follows, muted);
-        } else {
-            handler();
-        }
-    }, function(reason) {
-        handler();
-    });
-}
-
-function __get_user_assets(username, handler) {
-    Promise.all([
-        steemjs.get_accounts([ username ]),
-        steemjs.get_dynamic_global_properties()
-    ]).then(function(response) {
-        if (response[0][0]) {
-            handler(users.create(username, response[0][0], undefined, global.create(response[1])));
-        } else {
-            handler();
-        }
-    }, function(reason) {
-        handler();
-    });
-}
-
 function __reaches_refresh_interval() {
     var refresh_interval = settings.get_refresh_interval();
     var interval = new Date().getTime() - __last_background_time;
@@ -364,3 +89,15 @@ function __hide_notif_badge() {
     blank.action("hide");
 }
 
+//export([
+    //"api.vote",
+    //"api.reblog",
+    //"api.follow",
+    //"api.unfollow",
+    //"api.mute",
+    //"api.unmute",
+    //"api.transfer",
+    //"api.delegate",
+    //"api.power_up",
+    //"api.power_down"
+//]);

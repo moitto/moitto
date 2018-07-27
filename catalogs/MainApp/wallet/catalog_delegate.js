@@ -11,7 +11,7 @@ function delegate(form) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_DELEGATE");
 
     controller.action("script", {
-        "script":"delegate",
+        "script":"api.delegate",
         "subview":"__MAIN__",
         "to":value["to"],
         "amount":form["amount"]

@@ -1,5 +1,3 @@
-var wallet = require("wallet");
-
 function delegate() {
     controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", {
         // TBD
@@ -12,8 +10,6 @@ function delegate() {
 }
 
 function on_change_data(data) {
-    var value = wallet.get_assets_data();
-
-    view.data("display-unit", { "amount":value["steem-power"] });
+    view.data("display-unit", { "amount":data["steem-power"] });
     view.action("reload");
 }

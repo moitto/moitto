@@ -1,6 +1,6 @@
 function unvote() {
     controller.action("script", { 
-        "script":"vote",
+        "script":"api.vote",
         "subview":"__MAIN__",
         "author":$data["author"],
         "permlink":$data["permlink"],

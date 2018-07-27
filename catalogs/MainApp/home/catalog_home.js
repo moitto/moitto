@@ -1,5 +1,5 @@
 var account  = require("account");
-var steemjs  = account.steemjs;
+var steemjs  = require("steemjs");
 var contents = require("contents");
 var safety   = require("safety");
 
@@ -38,7 +38,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
         var me = account.get_username();
         
         __get_discussions_by_feed(me, start_author, start_permlink, length, function(discussions) {
-            var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);
+            var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);
             var data = [];
 
             discussions.forEach(function(discussion) {
@@ -95,7 +95,7 @@ function open_discussion(data) {
 
 function __get_discussions_by_feed(username, start_author, start_permlink, length, handler) {
     steemjs.get_discussions_by_feed(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-        if (start_author) {
+        if (start_author && discussions.length > 0) {
             discussions = discussions.splice(1);
         }
 

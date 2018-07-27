@@ -5,7 +5,7 @@
 
 =(object label: text="${username}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
-=object label: id=label.followed, text="팔로우 중입니다", style=label_followed
+=object label: id=label.follows, text="팔로우 중입니다", style=label_follows
 
 
 =object button: script=follow, label="팔로우", style=btn_follow

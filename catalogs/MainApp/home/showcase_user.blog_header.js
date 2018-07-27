@@ -1,5 +1,11 @@
 function follow() {
+    controller.action("script", {
+        "script":"follow",
+        "subview":"__MAIN__",
+        "username":$data["username"]
+    });
 
+    __disable_follow_button();
 }
 
 function show_blog() {
@@ -27,4 +33,10 @@ function show_followers() {
     });
 
     controller.action("page", { "display-unit":"S_FOLLOWERS", "target":"popup" });
+}
+
+function __disable_follow_button() {
+    var button = view.object("btn.follow");
+
+    button.property({ "enabled":"no" });
 }

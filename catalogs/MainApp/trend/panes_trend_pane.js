@@ -31,13 +31,10 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __impl[$data["id"]]["last_discussion"]["author"]   : null;
     var start_permlink = (location > 0) ? __impl[$data["id"]]["last_discussion"]["permlink"] : null;
 
-    __impl[$data["id"]].method(tag, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-        var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
+    __get_discussions_by_impl(__impl[$data["id"]], tag, start_author, start_permlink, length, function(discussions) {
+        var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
+        var me = storage.value("ACTIVE_USER") || "";
         var data = [];
-
-        if (start_author) {
-            discussions = discussions.splice(1);
-        }
 
         discussions.forEach(function(discussion) {
             var content = contents.create(discussion);
@@ -50,9 +47,11 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "userpic-url":content.get_userpic_url("small"),
                 "userpic-large-url":content.get_userpic_url(),
                 "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                 "votes-count":content.data["net_votes"].toString(),
+                "vote-weight":me ? content.get_vote_weight(me).toString() : "",
                 "replies-count":content.data["children"].toString(),
+                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                "is-payout":content.is_payout() ? "yes" : "no",
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
             };
@@ -78,6 +77,16 @@ function open_discussion(data) {
 
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", discussion);
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
+}
+
+function __get_discussions_by_impl(impl, tag, start_author, start_permlink, length, handler) {
+    impl.method(tag, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
+        if (start_author && discussions.length > 0) {
+            discussions = discussions.splice(1);
+        }
+
+        handler(discussions);
+    });   
 }
 
 function __template_data_for_content(content) {

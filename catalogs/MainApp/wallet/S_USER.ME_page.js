@@ -1,6 +1,7 @@
 var global   = require("global");
-var steemjs  = global.steemjs;
-var contents = global.contents;
+var steemjs  = require("steemjs");
+var contents = require("contents");
+var users    = require("users");
 
 var __discussions = [];
 var __last_discussion = null;
@@ -8,7 +9,7 @@ var __last_discussion = null;
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_USER.ME");
 
-    global.get_user(value["username"]).then(function(user) {
+    __get_user(value["username"], function(user) {
         var data = {
             "userpic-url":user.get_userpic_url(),
             "reputation":user.get_reputation().toFixed(1).toString(),
@@ -31,7 +32,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
     __get_discussions_by_blog($data["username"], start_author, start_permlink, length, function(discussions) {
-        var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
+        var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var data = [];
 
         discussions.forEach(function(discussion) {
@@ -72,9 +73,25 @@ function open_discussion(data) {
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
+function __get_user(username, handler) {
+    Promise.all([
+        steemjs.get_accounts([ username ]),
+        steemjs.get_follow_count(username),
+        steemjs.get_dynamic_global_properties()
+    ]).then(function(response) {
+        if (response[0][0]) {
+            handler(users.create(username, response[0][0], response[1], global.create(response[2])))
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
+    });
+}
+
 function __get_discussions_by_blog(username, start_author, start_permlink, length, handler) {
     steemjs.get_discussions_by_blog(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-        if (start_author) {
+        if (start_author && discussions.length > 0) {
             discussions = discussions.splice(1);
         }
 

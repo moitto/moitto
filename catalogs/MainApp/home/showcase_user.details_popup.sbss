@@ -39,13 +39,13 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1, \
             content-background-color=$THEME_COLOR_03, margin="-36dp 0 30dp 120dp"
 
-if "${is-following}" == "yes"
+if "${follows}" == "yes"
     #btn_follow: hidden=yes
 else
     #btn_unfollow: hidden=yes
 end
 
-if "${is-muted}" == "yes"
+if "${muted}" == "yes"
     #btn_mute: hidden=yes
 else
     #btn_unmute: hidden=yes

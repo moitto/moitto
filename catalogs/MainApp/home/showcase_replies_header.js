@@ -61,7 +61,7 @@ function open_url(params) {
         var user = users.create(steem_url[1]);
 
         if (steem_url[2]) {
-            var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
+            var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
             var datum = __background_data_for_value(backgrounds[0]);
 
             controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", Object.assign(datum, {

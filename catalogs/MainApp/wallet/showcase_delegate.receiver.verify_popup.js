@@ -1,9 +1,11 @@
-var global = require("global");
+var steemjs = require("steemjs");
+var global  = require("global");
+var users   = require("users");
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_DELEGATE");
 
-    global.get_user(value["to"]).then(function(user) {
+    __get_user(value["to"], function(user) {
         var data = undefined;
 
         if (user) {
@@ -27,8 +29,6 @@ function on_loaded() {
         
         view.data("display-unit", data);
         view.action("reload");
-    }, function(reason) {
-
     });
 }
 
@@ -44,5 +44,21 @@ function cancel() {
     controller.action("popup", { 
         "display-unit":"S_DELEGATE", 
         "alternate-name":"delegate.receiver.select"
+    });
+}
+
+function __get_user(username, handler) {
+    Promise.all([
+        steemjs.get_accounts([ username ]),
+        steemjs.get_follow_count(username),
+        steemjs.get_dynamic_global_properties()
+    ]).then(function(response) {
+        if (response[0][0]) {
+            handler(users.create(username, response[0][0], response[1], global.create(response[2])))
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
     });
 }

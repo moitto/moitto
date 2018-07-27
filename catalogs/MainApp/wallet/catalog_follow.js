@@ -1,30 +1,41 @@
 var account = require("account");
-var steemjs = account.global.steemjs;
-var users   = account.global.users;
+var steemjs = require("steemjs");
+var users   = require("users");
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_FOLLOW");
-    var username = value["following"];
 
-    Promise.all([
-        steemjs.get_accounts([ username ]),
-        steemjs.get_followers(username, account.get_username(), "blog", 1)
-    ]).then(function(response) {
-        var user = users.create(username, response[0][0]);
-        var followed = (response[1].length == 0 || response[1][0]["follower"] !== account.get_username()) ? false : true;
- 
-        __reload_follow_cell({
-            "username":username,
+    __get_user(value["following"], function(user, follows) {
+       __reload_follow_cell({
+            "username":user.name,
             "userpic-url":user.get_userpic_url(),
             "reputation":user.get_reputation().toFixed(1).toString(),
-            "followed":followed ? "yes" : "no" 
+            "follows":follows ? "yes" : "no" 
         });
 
         __show_follow_cell();
         __hide_loading_section();
-    }, function(reason) {
-        // TBD
     });
+}
+
+function __get_user(username, handler) {
+    var me = storage.value("ACTIVE_USER") || "";
+
+    Promise.all([
+        steemjs.get_accounts([ username ]),
+        steemjs.get_followers(username, me, "blog", 1)
+    ]).then(function(response) {
+        if (response[0][0]) {
+            var user = users.create(username, response[0][0]);
+            var follows = (response[1].length == 0 || response[1][0]["follower"] !== me) ? false : true;
+
+            handler(user, follows);
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
+    });    
 }
 
 function __reload_follow_cell(data) {

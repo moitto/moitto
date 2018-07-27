@@ -10,10 +10,10 @@
 
 
 =begin buttons
-=object button: id=btn.follow, script=follow, label="팔로우", style=btn_follow
-=object button: id=btn.mute, label="뮤트", style=btn_mute
-=object button: id=btn.unfollow, script=unfollow, label="언팔로우", style=btn_unfollow
-=object button: id=btn.unmute, label="언뮤트", style=btn_unmute
+=object button: group=btn.follow, script=follow, label="팔로우", style=btn_follow
+=object button: group=btn.follow, script=mute, label="뮤트", style=btn_mute
+=object button: group=btn.follow, script=unfollow, label="언팔로우", style=btn_unfollow
+=object button: group=btn.follow, script=unmute, label="언뮤트", style=btn_unmute
 =end buttons
 
 

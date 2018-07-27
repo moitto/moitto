@@ -12,7 +12,7 @@ import ~/themes.sbss
                 font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
                 margin="0 0 50dp 0"
 
-#label_followed: height=50dp, \
+#label_follows: height=50dp, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2
 #btn_follow: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
@@ -23,9 +23,9 @@ import ~/themes.sbss
 
 /cell: page-background-color=$THEME_COLOR_02, text-align=center
 
-if "${followed}" == "yes"
+if "${follows}" == "yes"
     #btn_follow: display=none, width=0, height=0
 else
-    #label_followed: display=none, width=0, height=0
+    #label_follows: display=none, width=0, height=0
     #btn_close: display=none, width=0, height=0
 end

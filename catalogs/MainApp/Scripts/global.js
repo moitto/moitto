@@ -2,10 +2,6 @@ Global = (function() {
     return {};
 })();
 
-Global.steemjs  = require("steemjs");
-Global.users    = require("users");
-Global.contents = require("contents");
-
 // class DynProps
 
 function DynProps(data) {
@@ -19,44 +15,10 @@ DynProps.prototype.get_steems_per_vest = function() {
     return parseFloat(total_vesting_fund_steem) / parseFloat(total_vesting_shares);
 }
 
-// methods
+// instance factory
 
-Global.get_dynprops = function() {
-    return new Promise(function(resolve, reject) {
-        Global.steemjs.get_dynamic_global_properties().then(function(response) {
-            resolve(new DynProps(response));
-        }, function(reason) {
-            reject(reason);
-        }); 
-    });   
-}
-
-Global.get_user = function(username) {
-    return new Promise(function(resolve, reject) {
-        Promise.all([
-            Global.steemjs.get_accounts([ username ]),
-            Global.steemjs.get_follow_count(username),
-            Global.steemjs.get_dynamic_global_properties()
-        ]).then(function(response) {
-            if (response[0][0]) {
-                resolve(Global.users.create(username, response[0][0], response[1], new DynProps(response[2])));    
-            } else {
-                resolve();
-            }
-        }, function(reason) {
-            reject(reason);
-        });
-    });
-}
-
-Global.get_content = function(author, permlink) {
-    return new Promise(function(resolve, reject) {
-        Global.steemjs.get_content(author, permlink).then(function(response) {
-            resolve(Global.contents.create(response));
-        }, function(reason) {
-            reject(reason);
-        }); 
-    });   
+Global.create = function(data) {
+    return new DynProps(data);
 }
 
 __MODULE__ = Global;

@@ -1,5 +1,5 @@
 var wallet  = require("wallet");
-var users   = wallet.account.global.users;
+var users   = require("users");
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_DELEGATE");

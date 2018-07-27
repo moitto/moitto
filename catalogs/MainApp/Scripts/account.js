@@ -3,7 +3,7 @@ Account = (function() {
 })();
 
 Account.global  = require("global");
-Account.steemjs = Account.global.steemjs; 
+Account.steemjs = require("steemjs");
 Account.steem   = require("steem");
 Account.crypto  = require("crypto");
 
@@ -199,10 +199,10 @@ Account.is_following = function(username, handler) {
     var follower = storage.value("ACTIVE_USER") || "";
 
     Account.steemjs.get_followers(username, follower, "blog", 1).then(function(response) {
-        if (response.length == 0 || response[0]["follower"] !== follower) {
-            handler(username, false);
-        } else {
+        if (response[0].length == 0 || response[0][0]["follower"] !== follower) {
             handler(username, true);
+        } else {
+            handler(username, false);
         }
     }, function(reason) {
         handler();
@@ -249,10 +249,10 @@ Account.is_muted = function(username, handler) {
     var follower = storage.value("ACTIVE_USER") || "";
 
     Account.steemjs.get_followers(username, follower, "ignore", 1).then(function(response) {
-        if (response.length == 0 || response[0]["follower"] !== follower) {
-            handler(username, false);
-        } else {
+        if (response[0].length == 0 || response[0][0]["follower"] !== follower) {
             handler(username, true);
+        } else {
+            handler(username, false);
         }
     }, function(reason) {
         handler();
@@ -274,7 +274,7 @@ Account.delegate_vesting = function(delegatee, amount, pin, handler) {
     var delegator = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(delegator, "active", pin);
 
-    Account.global.get_dynprops().then(function(dynprops) {
+    Account.__get_dynprops().then(function(dynprops) {
         var vesting_shares = (parseFloat(amount.split(" ")[0]) / dynprops.get_steems_per_vest()).toFixed(6) + " VESTS";
 
         Account.steem.broadcast.delegate_vesting_shares(delegator, delegatee, vesting_shares, [ key ]).then(function(response) {
@@ -302,7 +302,7 @@ Account.withdraw_vesting = function(amount, pin, handler) {
     var account = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(account, "active", pin);
 
-    Account.global.get_dynprops().then(function(dynprops) {
+    Account.__get_dynprops().then(function(dynprops) {
         var vesting_shares = (parseFloat(amount.split(" ")[0]) / dynprops.get_steems_per_vest()).toFixed(6) + " VESTS";
 
         Account.steem.broadcast.withdraw_vesting(account, vesting_shares, [ key ]).then(function(response) {
@@ -406,6 +406,16 @@ Account.verify_pin = function(pin) {
     }
 
     return false;
+}
+
+Account.__get_dynprops = function() {
+    return new Promise(function(resolve, reject) {
+        Account.steemjs.get_dynamic_global_properties().then(function(response) {
+            resolve(Account.global.create(response));
+        }, function(reason) {
+            reject(reason);
+        });
+    });
 }
 
 Account.__is_private_key_for_role = function(key, role, data) {

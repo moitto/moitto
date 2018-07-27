@@ -1,6 +1,8 @@
 var wallet  = require("wallet");
-var account = wallet.account;
-var global  = account.global;
+var account = require("account");
+var steemjs = require("steemjs");
+var global  = require("global");
+var users   = require("users");
 
 var __is_updating = false;
 
@@ -12,7 +14,7 @@ function on_loaded() {
         return;
     }
 
-    global.get_user(account.get_username()).then(function(user) {
+    __get_user(account.get_username(), function(user) {
         wallet.update_account_data(user);
         wallet.update_assets_data(user);
 
@@ -100,6 +102,22 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 function redeem_rewards() {
     wallet.redeem_rewards(function(response) {
         update_wallet();
+    });
+}
+
+function __get_user(username, handler) {
+    Promise.all([
+        steemjs.get_accounts([ username ]),
+        steemjs.get_follow_count(username),
+        steemjs.get_dynamic_global_properties()
+    ]).then(function(response) {
+        if (response[0][0]) {
+            handler(users.create(username, response[0][0], response[1], global.create(response[2])))
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
     });
 }
 

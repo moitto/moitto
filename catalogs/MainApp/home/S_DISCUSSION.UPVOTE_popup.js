@@ -1,11 +1,13 @@
-var global = require("global");
+var steemjs = require("steemjs");
+var global  = require("global");
+var users   = require("users");
 
 var __user = null;
 
 function on_loaded() {
     var me = storage.value("ACTIVE_USER") || "";
 
-    global.get_user(me).then(function(user) {
+    __get_user(me, function(user) {
 		__update_power_label(user.get_voting_power().toFixed(1));
     	__update_amount_label(user.get_voting_amount(__get_voting_weight()).toFixed(2));
 
@@ -32,19 +34,33 @@ function select_percent(params) {
 }
 
 function upvote() {
-	document.value("VOTE", {
-		"author":$data["author"],
-		"permlink":$data["permlink"],
-		"weight":__get_voting_weight()
-	});
-
-	__save_recent_percent();
-
 	controller.action("script", { 
 		"script":"vote",
 		"subview":"__MAIN__",
+        "author":$data["author"],
+        "permlink":$data["permlink"],
+        "weight":__get_voting_weight(),
 		"close-popup":"yes"
 	});
+
+    __save_recent_percent();
+}
+
+function __get_user(username, handler) {
+    Promise.all([
+        steemjs.get_accounts([ username ]),
+        steemjs.get_dynamic_global_properties()
+    ]).then(function(response) {
+                console.log(JSON.stringify(response));
+
+        if (response[0][0]) {
+            handler(users.create(username, response[0][0], undefined, global.create(response[1])));
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
+    });
 }
 
 function __restore_recent_percent() {

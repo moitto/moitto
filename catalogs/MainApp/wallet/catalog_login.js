@@ -1,6 +1,6 @@
 var wallet  = require("wallet");
-var account = wallet.account;
-var users   = account.global.users;
+var account = require("account");
+var users   = require("users");
 
 function login(form) {
     var username = form["username"].trim();

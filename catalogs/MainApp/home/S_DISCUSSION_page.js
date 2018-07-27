@@ -1,13 +1,14 @@
-var global = require("global");
-var themes = require("themes");
-var safety = require("safety");
+var steemjs  = require("steemjs");
+var contents = require("contents");
+var themes   = require("themes");
+var safety   = require("safety");
 
 var __disallowed_tags = safety.get_disallowed_tags();
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
-    global.get_content(discussion["author"], discussion["permlink"]).then(function(content) {
+    __get_content(discussion["author"], discussion["permlink"], function(content) {
         var me = storage.value("ACTIVE_USER") || "";
         var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
         var tags = content.meta["tags"];
@@ -79,6 +80,18 @@ function on_loaded() {
             });
         }
     });
+}
+
+function __get_content(author, permlink, handler) {
+    steemjs.get_content(author, permlink).then(function(response) {
+        if (response) {
+            handler(contents.create(response));
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
+    }); 
 }
 
 function __get_theme_in_tags(tags) {

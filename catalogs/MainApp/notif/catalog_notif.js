@@ -111,7 +111,7 @@ function __extend_value_for_op(op, value) {
 }
 
 function __open_discussion(author, permlink) {
-    var backgrounds = controller.catalog("ImageBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
+    var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ]);
     var datum = __background_data_for_value(backgrounds[0]);
     var user = users.create(author);
 

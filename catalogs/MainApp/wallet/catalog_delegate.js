@@ -1,5 +1,4 @@
-var wallet  = require("wallet");
-var users   = require("users");
+var users = require("users");
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_DELEGATE");
@@ -10,10 +9,12 @@ function on_loaded() {
 
 function delegate(form) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_DELEGATE");
-    var amount = parseFloat(form["amount"]);
 
-    wallet.delegate(value["to"], amount, function(response) {
-        // TBD
+    controller.action("script", {
+        "script":"delegate",
+        "subview":"__MAIN__",
+        "to":value["to"],
+        "amount":form["amount"]
     });
 }
 

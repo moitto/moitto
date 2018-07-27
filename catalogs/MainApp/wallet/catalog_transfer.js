@@ -67,26 +67,28 @@ function on_choose_currency() {
 function transfer(form) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     var amount = parseFloat(form["amount"]);
+    var memo = form["memo"] || "";
 
     if (value["amount-type"] !== value["coin"]) {
         if (!__current_coin_price) {
             wallet.get_coin_price(value["currency"], value["coin"], function(price) {
-                __transfer(value["to"], value["coin"], amount / price);
+                __transfer(value["to"], value["coin"], amount / price, memo);
             });
         } else {
-            __transfer(value["to"], value["coin"], amount / __current_coin_price);
+            __transfer(value["to"], value["coin"], amount / __current_coin_price, memo);
         }
     } else {
-        __transfer(value["to"], value["coin"], amount);
+        __transfer(value["to"], value["coin"], amount, memo);
     }
 }
 
-function __transfer(to, coin, amount) {
-    wallet.transfer(to, coin, amount, "", function(response) {
-        controller.action("script", {
-            "script":"update_assets",
-            "subview":"V_WALLET"
-        });
+function __transfer(to, coin, amount, memo) {
+    controller.action("script", {
+        "script":"transfer",
+        "subview":"__MAIN__",
+        "to":to,
+        "coin":coin,
+        "amount":amount.toString()
     });
 }
 

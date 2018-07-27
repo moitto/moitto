@@ -15,7 +15,7 @@
 처리결과는 따로 통보해드리지 않습니다.
 =end notice
 
-=object button: action=popup-close, label="닫기", style=btn_action
+=object button: action=subview-back, close-popup=yes, label="닫기", style=btn_action
 =end done
 
 
@@ -23,7 +23,7 @@
 =begin failed
 이런, 문제가 발생했습니다.
 잠시 후 다시 시도해 주세요.
-=object button: action=popup-close, label="닫기", style=btn_action
+=object button: action=subview-back, close-popup=yes, label="닫기", style=btn_action
 =end failed
 
 =end popup

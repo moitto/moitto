@@ -33,9 +33,13 @@ function on_loaded() {
     __is_updating = true;
 }
 
+function on_change_data(data) {
+    __reload_assets_showcase();
+}
+
 function update_wallet() {
     if (!__is_updating) {
-        global.get_user(account.get_username()).then(function(user) {
+        __get_user(account.get_username(), function(user) {
             if (wallet.is_assets_changed(user)) {
                 wallet.update_assets_data(user);
 
@@ -69,32 +73,11 @@ function update_wallet() {
 
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     var values = wallet.get_assets_data();
-    var assets = [
-        {
-            "id":"S_STEEM",
-            "title":"STEEM",
-            "amount":__safe_value(values, "steem-balance"),
-            "has-own-title":"yes",
-            "has-own-sbml":"yes",
-            "has-own-navibar":"yes"
-        },
-        {
-            "id":"S_STEEM_POWER",
-            "title":"STEEM POWER",
-            "amount":__safe_value(values, "steem-power"),
-            "has-own-title":"yes",
-            "has-own-sbml":"yes",
-            "has-own-navibar":"yes"
-        },
-        {
-            "id":"S_STEEM_DOLLAR",
-            "title":"STEEM DOLLAR",
-            "amount":__safe_value(values, "sbd-balance"),
-            "has-own-title":"yes",
-            "has-own-sbml":"yes",
-            "has-own-navibar":"yes"
-        }
-    ];
+    var assets = [];
+ 
+    assets.push(__asset_data("S_STEEM",        "STEEM",        values["steem-balance"]));
+    assets.push(__asset_data("S_STEEM_POWER",  "STEEM POWER",  values["steem-power"  ]));
+    assets.push(__asset_data("S_STEEM_DOLLAR", "STEEM DOLLAR", values["sbd-balance"  ]));
 
     handler(assets);
 }
@@ -119,6 +102,17 @@ function __get_user(username, handler) {
     }, function(reason) {
         handler();
     });
+}
+
+function __asset_data(id, title, amount) {
+    return {
+        "id":id,
+        "title":title,
+        "amount":amount.toString(),
+        "has-own-title":"yes",
+        "has-own-sbml":"yes",
+        "has-own-navibar":"yes"
+    }
 }
 
 function __reload_assets_showcase() {
@@ -151,14 +145,3 @@ function __hide_loading_section() {
     section.action("hide");
 }
 
-function __calculate_reputation(reputation) {
-    return (Math.log10(reputation) - 9) * 9 + 25;
-}
-
-function __safe_value(values, property) {
-    if (values && values.hasOwnProperty(property)) {
-        return values[property];
-    }
-
-    return "";
-}

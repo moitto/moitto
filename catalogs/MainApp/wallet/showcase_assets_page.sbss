@@ -9,7 +9,8 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
-/page: text-align=center, page-background-color=$THEME_COLOR_02
+/page: data-binding=assets, script-when-data-changed=on_change_data, \
+        text-align=center, page-background-color=$THEME_COLOR_02
 
 if $SCREEN_WIDTH > "5"
     #label_amount: height=70dp, font-size=1.8

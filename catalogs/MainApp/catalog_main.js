@@ -1,6 +1,7 @@
 var account  = require("account");
 var history  = require("history");
 var notif    = require("notif");
+var wallet   = require("wallet");
 var connect  = require("connect");
 var settings = require("settings");
 var steemjs  = require("steemjs");
@@ -223,6 +224,66 @@ function unmute(params) {
     controller.action("toast", { "message":"언뮤트를 진행합니다." });
 }
 
+function transfer(params) {
+    wallet.transfer(params["to"], params["coin"], parseFloat(params["amount"]), params["memo"], function(response) {
+        if (response) {
+            __get_user_assets(account.get_username(), function(user) {
+                wallet.update_assets_data(user);
+                controller.update("assets", {
+                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+                    "steem-power":user.get_steem_power().toFixed(3).toString(),
+                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
+                });
+            });
+        }
+    });
+}
+
+function delegate(params) {
+    wallet.delegate(params["to"], parseFloat(params["amount"]), function(response) {
+        if (response) {
+            __get_user_assets(account.get_username(), function(user) {
+                wallet.update_assets_data(user);
+                controller.update("assets", {
+                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+                    "steem-power":user.get_steem_power().toFixed(3).toString(),
+                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
+                });
+            });
+        }
+    });
+}
+
+function power_up(params) {
+    wallet.power_up(parseFloat(params["amount"]), function(response) {
+        if (response) {
+            __get_user_assets(account.get_username(), function(user) {
+                wallet.update_assets_data(user);
+                controller.update("assets", {
+                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+                    "steem-power":user.get_steem_power().toFixed(3).toString(),
+                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
+                });
+            });
+        }
+    });
+}
+
+function power_down(params) {
+    wallet.power_down(parseFloat(params["amount"]), function(response) {
+        if (response) {
+            __get_user_assets(account.get_username(), function(user) {
+                wallet.update_assets_data(user);
+                controller.update("assets", {
+                    "steem-balance":user.get_steem_balance().toFixed(3).toString(),
+                    "steem-power":user.get_steem_power().toFixed(3).toString(),
+                    "sbd-balance":user.get_sbd_balance().toFixed(3).toString()
+                });
+            });
+        }
+    });
+}
+
 function __get_content(author, permlink, handler) {
     steemjs.get_content(author, permlink).then(function(response) {
         if (response) {
@@ -251,6 +312,21 @@ function __get_user(username, handler) {
             var muted   = (response[4].length == 0 || response[4][0]["follower"] !== me) ? false : true;
 
             handler(user, follows, muted);
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
+    });
+}
+
+function __get_user_assets(username, handler) {
+    Promise.all([
+        steemjs.get_accounts([ username ]),
+        steemjs.get_dynamic_global_properties()
+    ]).then(function(response) {
+        if (response[0][0]) {
+            handler(users.create(username, response[0][0], undefined, global.create(response[1])));
         } else {
             handler();
         }

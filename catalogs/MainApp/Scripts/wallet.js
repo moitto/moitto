@@ -669,12 +669,4 @@ Wallet.__process_power_down = function(transaction, pin) {
     controller.action("popup", { "display-unit":"S_POWER_DOWN.TASK" });
 }
 
-Wallet.__get_steem_balance = function(handler) {
-
-}
-
-Wallet.__get_sbd_balance = function(handler) {
-    
-}
-
 __MODULE__ = Wallet;

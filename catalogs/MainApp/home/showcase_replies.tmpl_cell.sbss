@@ -1,0 +1,6 @@
+import ~/themes.sbss
+
+#cell_header: alternate-name=replies.header, lazy-loading=no, width=1pw, height=50dp
+#cell_footer: alternate-name=replies.footer, lazy-loading=no, width=1pw, height=40dp
+
+%body: margin-bottom=20dp

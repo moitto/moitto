@@ -72,8 +72,8 @@ function show_author() {
     controller.action("page", { "display-unit":"S_USER", "target":"popup" })
 }
 
-function show_user(data) {
-    var user = users.create(data["username"]);
+function show_user(params) {
+    var user = users.create(params["username"]);
 
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
         "username":user.name,

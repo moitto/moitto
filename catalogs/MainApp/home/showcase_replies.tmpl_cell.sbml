@@ -1,0 +1,11 @@
+=begin reply
+
+=object cell: display-unit="${id}", style=cell_header
+
+=begin body
+${body}
+=end body
+
+=object cell: display-unit="${id}", style=cell_footer
+
+=end reply

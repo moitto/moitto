@@ -41,7 +41,8 @@ function on_loaded() {
             "tag-5":(tags.length > 4) ? tags[4] : "",
             "created-at":content.data["created"],
             "theme":impl.theme,
-            "dir-path":impl.dir_path
+            "dir-path":impl.dir_path,
+            "has-own-sbml":"no"
         };
 
         Object.keys(discussion).forEach(function(key) {

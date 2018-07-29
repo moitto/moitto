@@ -1,15 +1,7 @@
 =begin page
 
-=object showcase: id=showcase.replies, name="replies.${author}.${permlink}", \
-            alternate-name=replies, data-script=feed_replies, \
-            header-display-unit=S_REPLIES.CONTENT, empty-display-unit=S_REPLIES, \
-            selectable=yes, script-when-selected=show_replies, \
-            style=showcase_replies
-
-=object section: script-when-touched=comment, section=comment, style=section_comment, display=none, alt="temporary"
-=begin comment: id=comment
-=object blank: style=blank_line
-=object label: text="댓글 쓰기", style=label_replies
-=end comment
+=begin loading
+불러오는 중입니다.
+=end loading
 
 =end page

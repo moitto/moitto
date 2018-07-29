@@ -51,8 +51,6 @@ function __get_user(username, handler) {
         steemjs.get_accounts([ username ]),
         steemjs.get_dynamic_global_properties()
     ]).then(function(response) {
-                console.log(JSON.stringify(response));
-
         if (response[0][0]) {
             handler(users.create(username, response[0][0], undefined, global.create(response[1])));
         } else {

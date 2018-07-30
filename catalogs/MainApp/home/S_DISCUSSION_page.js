@@ -9,9 +9,7 @@ function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
     __get_content(discussion["author"], discussion["permlink"], function(content) {
-        console.log(JSON.stringify(content.meta["image"]));
         var me = storage.value("ACTIVE_USER") || "";
-        var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);
         var impl = themes.create(theme);        
@@ -30,10 +28,6 @@ function on_loaded() {
             "replies-count":content.data["children"].toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
             "is-payout":content.is_payout() ? "yes" : "no",
-            "reblogged":reblogged ? "yes" : "no",
-            "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-            "reblogged-count":content.data["reblogged_by"].length.toString(),
-            "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
             "main-tag":content.data["category"],
             "tag-1":(tags.length > 0) ? tags[0] : "",
             "tag-2":(tags.length > 1) ? tags[1] : "",
@@ -64,11 +58,7 @@ function on_loaded() {
             "votes-count":content.data["net_votes"].toString(),
             "replies-count":content.data["children"].toString(),
             "vote-weight":content.get_vote_weight(me).toString(),
-            "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-            "reblogged":reblogged ? "yes" : "no",
-            "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-            "reblogged-count":content.data["reblogged_by"].length.toString(),
-            "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
+            "payout-value":"$" + content.get_payout_value().toFixed(2).toString()
         });
 
         if (content.is_allowed(__disallowed_tags) && !content.is_banned()) {

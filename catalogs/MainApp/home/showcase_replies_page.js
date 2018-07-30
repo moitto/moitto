@@ -75,3 +75,14 @@ function open_url(params) {
 
     controller.action("link", { url:params["url"] });
 }
+
+function __background_data_for_value(value) {
+    var data = { "background":value["id"] };
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
+}
+

@@ -350,7 +350,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-
+                sbml += "\n=[br| ]=\n";
             }
 
             return;

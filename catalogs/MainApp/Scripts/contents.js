@@ -9,6 +9,10 @@ Contents.urls = require("urls");
 function Content(data) {
     this.data = data;
     this.meta = JSON.parse(data["json_metadata"] || "{}");
+
+    if (this.meta["image"]) {
+        this.meta["image"] = this.__normalize_urls(this.meta["image"]);
+    }
 }
 
 Content.prototype.get_title_image_url = function(size) {
@@ -127,6 +131,16 @@ Content.prototype.__get_youtube_video_id = function(urls) {
             return video_id;
         }
     }
+}
+
+Content.prototype.__normalize_urls = function(urls) {
+    var normalized_urls = [];
+
+    urls.forEach(function(url) {
+        normalized_urls.push(decode("html", url));
+    });
+
+    return normalized_urls;
 }
 
 // instance factory

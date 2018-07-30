@@ -28,12 +28,18 @@ function on_loaded() {
                 }
 
                 if (!reply.is_banned() && !reply.is_down_voted(value["author"]) ) {
-                    replies_text += read("catalog@resource", "showcase_replies.tmpl_cell.sbml", datum) + "\n";
-                    replies_text += "\n";
-
                     replies_data.push(datum);
                 }
             }
+        });
+
+        replies_data.sort(function(datum1, datum2) {
+            return datum1["created-at"].localeCompare(datum2["created-at"]);
+        });
+
+        replies_data.forEach(function(datum) {
+            replies_text += read("catalog@resource", "showcase_replies.tmpl_cell.sbml", datum) + "\n";
+            replies_text += "\n";
         });
 
         controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"], replies_data);

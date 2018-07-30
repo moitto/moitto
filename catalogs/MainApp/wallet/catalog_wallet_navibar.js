@@ -1,8 +1,6 @@
-var account = require("account");
-
 function qrcode() {
     controller.catalog().submit("showcase", "auxiliary", "S_QRCODE", {
-        "logged-in":account.is_logged_in() ? "yes" : "no"
+        "logged-in":storage.value("ACTIVE_USER") ? "yes" : "no"
     });
     
     controller.action("popup", { "display-unit":"S_QRCODE" });
@@ -10,7 +8,7 @@ function qrcode() {
 
 function show_settings() {
 	controller.catalog().submit("showcase", "auxiliary", "S_SETTINGS", {
-		"logged-in":account.is_logged_in() ? "yes" : "no"
+		"logged-in":storage.value("ACTIVE_USER") ? "yes" : "no"
 	});
 
 	controller.action("subview", { "subview":"V_SETTINGS", "target":"popup" });

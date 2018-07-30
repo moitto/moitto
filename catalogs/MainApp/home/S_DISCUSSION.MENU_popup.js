@@ -1,7 +1,5 @@
-var account = require("account");
-
 function upvote(form) {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
             "author":$data["author"],
             "permlink":$data["permlink"]
@@ -18,7 +16,7 @@ function upvote(form) {
 }
 
 function downvote(form) {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.DOWNVOTE", {
             "author":$data["author"],
             "permlink":$data["permlink"]
@@ -35,7 +33,7 @@ function downvote(form) {
 }
 
 function unvote(form) {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
             "author":$data["author"],
             "permlink":$data["permlink"]
@@ -52,7 +50,7 @@ function unvote(form) {
 }
 
 function reblog(form) {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REBLOG", {
             "author":$data["author"],
             "permlink":$data["permlink"]
@@ -69,7 +67,7 @@ function reblog(form) {
 }
 
 function report(form) {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REPORT", {
             "author":$data["author"],
             "permlink":$data["permlink"],

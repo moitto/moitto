@@ -1,5 +1,4 @@
 var wallet  = require("wallet");
-var account = require("account");
 var steemjs = require("steemjs");
 var global  = require("global");
 var users   = require("users");
@@ -7,31 +6,31 @@ var users   = require("users");
 var __is_updating = false;
 
 function on_loaded() {
-    if (!account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
+        var me = storage.value("ACTIVE_USER") || "";
+
+        __get_user(me, function(user) {
+            __update_account_data(__account_data_for_user(user));
+            __update_rewards_data(__rewards_data_for_user(user));
+            __update_assets_data(__assets_data_for_user(user));
+
+            __reload_assets_showcase();
+
+            if (user.has_rewards()) {
+                __reload_assets_showcase_header();
+            }
+
+            __hide_loading_section();
+            __show_assets_showcase();
+
+            __is_updating = false;
+        });
+
+        __is_updating = true;
+    } else {
         __hide_loading_section();
         __show_login_section();
-        
-        return;
     }
-
-    __get_user(account.get_username(), function(user) {
-        __update_account_data(__account_data_for_user(user));
-        __update_rewards_data(__rewards_data_for_user(user));
-        __update_assets_data(__assets_data_for_user(user));
-
-        __reload_assets_showcase();
-
-        if (user.has_rewards()) {
-            __reload_assets_showcase_header();
-        }
-
-        __hide_loading_section();
-        __show_assets_showcase();
-
-        __is_updating = false;
-    });
-
-    __is_updating = true;
 }
 
 function on_change_data(data) {
@@ -57,8 +56,10 @@ function on_change_data(data) {
 }
 
 function update_wallet() {
-    if (!__is_updating) {
-        __get_user(account.get_username(), function(user) {
+    if (storage.value("ACTIVE_USER") && !__is_updating) {
+        var me = storage.value("ACTIVE_USER") || "";
+
+        __get_user(me, function(user) {
             var assets_data = __assets_data_for_user(user);
 
             if (__is_assets_changed(assets_data)) {

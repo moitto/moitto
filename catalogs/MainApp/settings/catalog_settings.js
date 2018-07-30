@@ -42,7 +42,7 @@ function prompt_clear_cache() {
 function logout() {
 	account.logout(function() {
 		controller.catalog().submit("showcase", "auxiliary", "S_SETTINGS", {
-			"logged-in":account.is_logged_in() ? "yes" : "no"
+			"logged-in":"no"
 		});
 
 		__reload_subviews([ "V_HOME", "V_NOTIF", "V_WALLET" ]);

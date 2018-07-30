@@ -1,4 +1,3 @@
-var account  = require("account");
 var history  = require("history");
 var notif    = require("notif");
 var connect  = require("connect");
@@ -12,7 +11,7 @@ function on_loaded() {
         __show_notif_badge();
     }
 
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         update_notif();
     }
 }
@@ -22,7 +21,7 @@ function on_foreground() {
         __reload_subviews([ "V_HOME", "V_TREND" ]);
     }
 
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         update_notif();
     }
 }

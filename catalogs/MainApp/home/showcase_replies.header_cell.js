@@ -1,12 +1,11 @@
-var account = require("account");
-var users   = require("users");
+var users = require("users");
 
 function on_change_data(data) {
     view.action("reload");
 }
 
 function vote() {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         var value = view.data("display-unit");
 
         if (parseInt(value["vote-weight"]) == 0) {

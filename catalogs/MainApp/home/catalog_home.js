@@ -1,4 +1,3 @@
-var account  = require("account");
 var steemjs  = require("steemjs");
 var contents = require("contents");
 var safety   = require("safety");
@@ -10,32 +9,30 @@ var __last_discussion = null;
 var __has_packages = true;
 
 function on_loaded() {
-    if (!account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
+        var packages = controller.module("packages");
+        var has_packages = (packages.count() > 0) ? true : false;
+
+        controller.catalog().submit("showcase", "auxiliary", "S_PACKAGES", {
+            "has-packages":has_packages ? "yes" : "no"
+        });
+
+        if (has_packages != __has_packages) {
+            __reload_feeds_header();
+        }
+
+        __has_packages = has_packages;
+    } else {
         __show_login_section();
-        
-        return;
     }
-
-    var packages = controller.module("packages");
-    var has_packages = (packages.count() > 0) ? true : false;
-
-    controller.catalog().submit("showcase", "auxiliary", "S_PACKAGES", {
-        "has-packages":has_packages ? "yes" : "no"
-    });
-
-    if (has_packages != __has_packages) {
-        __reload_feeds_header();
-    }
-
-    __has_packages = has_packages;
 }
 
 function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
-    if (account.is_logged_in()) {
-        var me = account.get_username();
+    if (storage.value("ACTIVE_USER")) {
+        var me = storage.value("ACTIVE_USER") || "";
         
         __get_discussions_by_feed(me, start_author, start_permlink, length, function(discussions) {
             var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);

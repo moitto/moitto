@@ -15,6 +15,24 @@ function on_download_image() {
     __schedule_to_reload = true;
 }
 
+function comment() {
+    if (storage.value("ACTIVE_USER")) {
+        controller.catalog().submit("showcase", "auxiliary", "S_COMMENT", {
+            "author":$data["author"],
+            "permlink":$data["permlink"]
+        });
+
+        controller.action("popup", { "display-unit":"S_COMMENT" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
+
+}
+
 function show_user(params) {
     var user = users.create(params["username"]);
 

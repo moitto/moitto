@@ -1,15 +1,12 @@
-var account = require("account");
-var notif   = require("notif");
-var users   = require("users");
+var notif = require("notif");
+var users = require("users");
 
 function on_loaded() {
-    if (!account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
+        __show_notif_showcase();
+    } else {
         __show_login_section();
-        
-        return;
     }
-
-    __show_notif_showcase();
 }
 
 function feed_notif(keyword, location, length, sortkey, sortorder, handler) {

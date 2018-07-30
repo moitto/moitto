@@ -1,4 +1,3 @@
-var account = require("account");
 var connect = require("connect");
 var users   = require("users");
 var urls    = require("urls");
@@ -33,7 +32,7 @@ function on_change_data(data) {
 }
 
 function vote() {
-    if (account.is_logged_in()) {
+    if (storage.value("ACTIVE_USER")) {
         var value = view.data("display-unit");
 
         if (parseInt(value["vote-weight"]) == 0) {

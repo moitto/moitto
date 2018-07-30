@@ -11,9 +11,10 @@ import ~/themes.sbss
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.1
 #btn_write: width=50dp, height=44dp, position=absolute, gravity=right-bottom, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.1
-#editor: width=1pw, height="1ph-(1sbh+44dp)", position=absolute, gravity=top, y="1sbh+44dp"
+#editor: width=1pw, height="1ph-(1sbh+44dp)", position=absolute, gravity=top, y="1sbh+44dp", \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.1
 
-/popup: page-background-color=$THEME_COLOR_02
+/popup: first-responder=editor, scrolls-on-keyboard=no, page-background-color=$THEME_COLOR_02
 /popup/navibar: display=none
 
 if $SCREEN_WIDTH > "5"

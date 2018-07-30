@@ -2,7 +2,7 @@ import themes.sbss
 
 #section_content: width=140dp, height=140dp, position=absolute, gravity=center, \
                 content-border-radius=70dp, content-background-color=$BLACK_COLOR_DEEP_DIM
-#aniamtion_loading: filename="~/subview_img_loading.white.png", frame-count=26, duration=1.6, \
+#animation_loading: filename="~/subview_img_loading.white.png", frame-count=26, duration=1.6, \
                 width=80dp, height=80dp*0.634, position=absolute, gravity=top, y=27dp
 #label_message: width=80dp, height=15p, \
                 position=absolute, gravity=top, y="27dp+(80dp*0.634)+8dp", \

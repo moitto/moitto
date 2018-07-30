@@ -58,6 +58,14 @@ Reply.prototype.is_banned = function() {
     return false;
 }
 
+Reply.prototype.is_down_voted = function(username) {
+    if (this.get_vote_weight(username) < 0) {
+        return true;
+    }
+
+    return false;
+}
+
 // instance factory
 
 Replies.create = function(data) {

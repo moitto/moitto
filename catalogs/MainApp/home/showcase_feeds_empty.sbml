@@ -1,6 +1,6 @@
 =begin empty
 
-=object animation: style=aniamtion_loading
+=object animation: style=animation_loading
 
 =begin guide
 홈에서는 팔로우한 사람의 글을 볼 수 있습니다.

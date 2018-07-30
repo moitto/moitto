@@ -27,7 +27,7 @@ function on_loaded() {
                     "vote-weight":reply.get_vote_weight(me).toString()
                 }
 
-                if (!reply.is_banned()) {
+                if (!reply.is_banned() && !reply.is_down_voted(value["author"]) ) {
                     replies_text += read("catalog@resource", "showcase_replies.tmpl_cell.sbml", datum) + "\n";
                     replies_text += "\n";
 

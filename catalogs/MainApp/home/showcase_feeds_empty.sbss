@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#aniamtion_loading: display=none, width=80dp, height=80dp*0.634, \
+#animation_loading: display=none, width=80dp, height=80dp*0.634, \
                 filename="~/subview_img_loading.black.png", frame-count=26, duration=1.6, \
                 position=absolute, gravity=bottom
 
@@ -9,14 +9,14 @@ import ~/themes.sbss
             line-spacing=0.4em, paragraph-spacing=0.4em
 
 if $SCREEN_WIDTH > "5"
-    #aniamtion_loading: y=-250dp
+    #animation_loading: y=-250dp
 else
-    #aniamtion_loading: y=-0.6pw
+    #animation_loading: y=-0.6pw
 end
 
 
 if $LOADING == "yes"
-    #aniamtion_loading: display=object
+    #animation_loading: display=object
 else
     /empty/guide: display=block
 end

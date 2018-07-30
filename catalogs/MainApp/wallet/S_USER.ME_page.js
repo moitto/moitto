@@ -33,6 +33,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
 
     __get_discussions_by_blog($data["username"], start_author, start_permlink, length, function(discussions) {
         var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
+        var me = storage.value("ACTIVE_USER") || "";
         var data = [];
 
         discussions.forEach(function(discussion) {
@@ -46,8 +47,11 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                 "userpic-url":content.get_userpic_url("small"),
                 "userpic-large-url":content.get_userpic_url(),
                 "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                 "votes-count":content.data["net_votes"].toString(),
+                "vote-weight":me ? content.get_vote_weight(me).toString() : "",
+                "replies-count":content.data["children"].toString(),
+                "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                "is-payout":content.is_payout() ? "yes" : "no",
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
             };

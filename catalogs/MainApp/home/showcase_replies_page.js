@@ -30,7 +30,6 @@ function comment() {
             "close-popup":"yes" 
         });
     }
-
 }
 
 function show_user(params) {

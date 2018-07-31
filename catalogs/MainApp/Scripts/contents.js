@@ -83,7 +83,7 @@ Content.prototype.get_vote_weight = function(username) {
     return 0;
 }
 
-Content.prototype.is_payout = function() {
+Content.prototype.is_payout_done = function() {
     if (this.data["last_payout"] !== "1970-01-01T00:00:00") {
         return true;
     }
@@ -92,10 +92,6 @@ Content.prototype.is_payout = function() {
 }
 
 Content.prototype.is_payout_declined = function() {
-    if (parseFloat(this.data["max_accepted_payout"].split(" ")[0]) == 0) {
-        return true;
-    }
-
     return false;
 }
 

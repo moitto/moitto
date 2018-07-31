@@ -3,6 +3,10 @@ var urls  = require("urls");
 
 var __schedule_to_reload = false;
 
+function on_change_data() {
+    controller.action("alert", {message:$data["author"]+"."+$data["permlink"]});
+}
+
 function on_download_image() {
     if (!__schedule_to_reload) {
         timeout(0.5, function() {

@@ -1,5 +1,7 @@
+var users = require("users");
+
 function show_user() {
-    var user = users.create($data["username"]);
+    var user = users.create($data["voter"]);
 
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
         "username":user.name,

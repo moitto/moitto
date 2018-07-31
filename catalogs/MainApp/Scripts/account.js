@@ -334,10 +334,13 @@ Account.claim_rewards = function(handler) {
     });
 }
 
-Account.comment = function(parent_author, parent_permlink, title, body, json_metadata) {
+Account.comment = function(parent_author, parent_permlink, permlink, title, body, json_metadata, handler) {
     var author = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(author, "posting");
-    var permlink = "";
+ 
+    if (!permlink) {
+        permlink = "re-" + parent_author + "-" + parent_permlink + "-" + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
+    }
 
     Account.steem.broadcast.comment(parent_author, parent_permlink, author, permlink, title, body, json_metadata, [ key ]).then(function(response) {
         handler(response);

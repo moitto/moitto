@@ -8,6 +8,8 @@ Sbml.texts = require("texts");
 Sbml.generate_from_markdown = function(markdown, images) {
     var sbml =  Sbml.__elements_to_sbml(markdown.elements, images, false);
 
+    sbml = sbml.replace(/\n{3,}/g, "\n\n");
+
     console.log(JSON.stringify(images));
     console.log(sbml);
 
@@ -346,13 +348,13 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += (sbml.length > 0 && sbml[sbml.length - 1] != "\n") ? "\n" : "";
-                sbml += "=[br|]=\n";
+                sbml += "=[br| ]=\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
                 sbml += (sbml.length > 0 && sbml[sbml.length - 1] != "\n") ? "\n" : "";
-                sbml += "=[br|]=\n";
+                sbml += "=[br| ]=\n";
             }
 
             return;
@@ -471,8 +473,6 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
 
     sbml += center_ended ? "\n=end center\n" : "";
 
-    sbml = sbml.replace(/\n\n+/g, "\n\n");
-
     return sbml;
 }
 
@@ -487,6 +487,7 @@ Sbml.__has_center_tag = function(elements) {
 }
 
 Sbml.__handle_text = function(text) {
+    text = text.replace(/\u2028|\u2029/g, "\n"); // unicode line seperators
     text = text.replace(/\\/g, "").replace(/(\[|\]|=|\(|\))/g, "\\$1");
     text = text.replace(/(^|\s+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
     text = text.replace(/[ \t][ \t]+/g, " ");

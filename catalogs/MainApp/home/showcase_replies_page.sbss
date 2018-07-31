@@ -9,7 +9,8 @@ import showcase_replies.tmpl_cell.sbss
             content-padding="0 0 0 10dp", content-background-color=$THEME_COLOR_02
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=top
 
-/page: page-background-color=$THEME_COLOR_02
+/page: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+        page-background-color=$THEME_COLOR_02
 /page/comment: display=none
 
 -- body --
@@ -33,15 +34,15 @@ import showcase_replies.tmpl_cell.sbss
 #text-left: text-align=left
 #text-right: text-align=right
 
-%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, margin="1.5em 0 0 0"
-%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, margin="1.2em 0 0 0"
-%heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em, margin="1em 0 0 0"
-%heading-4: font-size=1.2em, margin="0.8em 0 0 0"
-%heading-5: font-size=1.1em, margin="0.8em 0 0 0"
-%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="0.8em 0 0 0"
+%heading-1: font-family=$SANSSERIF_BOLD, font-size=1.5em, line-spacing=0.2em, margin="1.5em 0 0.4em 0"
+%heading-2: font-family=$SANSSERIF_BOLD, font-size=1.4em, line-spacing=0.2em, margin="1.2em 0 0.6em 0"
+%heading-3: font-family=$SANSSERIF_BOLD, font-size=1.3em, line-spacing=0.4em, margin="1.1em 0 0.6em 0"
+%heading-4: font-size=1.2em, margin="0.8em 0 0.4em 0"
+%heading-5: font-size=1.1em, margin="0.8em 0 0.4em 0"
+%heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="0.8em 0 0.2em 0"
 
-%list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
-%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="0 0 0 0.4em"
+%list: text-indent=-0.7em, margin="1.6em 0 1.6em 1.4em", paragraph-spacing=0.6em
+%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="1.4em 0 1.4em 0.4em"
 %center: text-align=center
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em

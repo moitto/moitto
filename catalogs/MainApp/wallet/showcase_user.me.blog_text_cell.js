@@ -1,1 +1,1 @@
-include("~/home/showcase_user.blog_text_cell.js");
+include("showcase_user.me.blog_cell.js");

@@ -1,5 +1,9 @@
 var users = require("users");
 
+function on_change_data(data) {
+    view.action("reload", { "keeps-position":"yes" });
+}
+
 function show_user() {
     var user = users.create($data["author"]);
     

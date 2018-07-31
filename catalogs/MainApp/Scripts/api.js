@@ -160,7 +160,10 @@ API.unmute_user = function(params) {
 }
 
 API.transfer = function(params) {
-    API.wallet.transfer(params["to"], params["coin"], parseFloat(params["amount"]), params["memo"], function(response) {
+    API.wallet.transfer(params["to"], 
+                        params["coin"], 
+                        parseFloat(params["amount"]), 
+                        params["memo"], function(response) {
         if (response) {
             API.__get_user_simple(account.get_username(), function(user) {
                 controller.update("assets", {
@@ -247,6 +250,41 @@ API.redeem_rewards = function(params) {
             });
         }
     });
+}
+
+API.comment = function(params) {
+    API.account.comment(params["parent_author"], 
+                        params["parent_permlink"],
+                        params["permlink"], 
+                        params["title"] || "", 
+                        params["body"] || "", 
+                        JSON.stringify(params["meta"]), function(response) {
+        if (response) {
+            API.__get_content(params["parent_author"], params["parent_permlink"], function(content) {
+                console.log(JSON.stringify(content.data));
+                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
+                var me = API.account.get_username();
+
+                controller.action("toast", { "message":"댓글을 업로드했습니다." });
+                controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
+                    "votes-count":content.data["net_votes"].toString(),
+                    "vote-weight":content.get_vote_weight(me).toString(),
+                    "replies-count":content.data["children"].toString(),
+                    "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+                    "payout-done":content.is_payout_done() ? "yes" : "no",
+                    "payout-declined":content.is_payout_declined() ? "yes" : "no",
+                    "reblogged":reblogged ? "yes" : "no",
+                    "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
+                    "reblogged-count":content.data["reblogged_by"].length.toString(),
+                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString()
+                });
+            });
+        } else {
+            controller.action("toast", { "message":"댓글 업로드에 실패했습니다." });
+        }
+    });
+
+    controller.action("toast", { "message":"댓글 업로드를 진행하고 있습니다." });
 }
 
 API.__get_content = function(author, permlink, handler) {

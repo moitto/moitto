@@ -11,10 +11,14 @@ Urls.parse_steem_url = function(url) {
 }
 
 Urls.get_youtube_video_id = function(url) {
-    var matched = /https?:\/\/(?:.*youtube\.com|youtu\.be)\/(?:[^/]+\/)*([^/?]+)(?:\?.+)?/.exec(url);
+    var matched = /https?:\/\/.*youtube\.com\/.*\?.*v=([^&/]+).*/.exec(url);
 
     if (!matched) {
-        matched = /https?:\/\/.*youtube\.com\/.*\?.*v=([^&/]+).*/.exec(url);
+        matched = /https?:\/\/.*youtube\.com\/embed\/([^?/]+).*/.exec(url);
+    }
+
+    if (!matched) {
+        matched = /https?:\/\/youtu\.be\/([^/?]+)(?:\?.+)?/.exec(url);
     }
 
     if (matched) {

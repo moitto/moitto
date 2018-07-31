@@ -14,7 +14,8 @@ import ~/themes.sbss
 #editor: width=1pw, height="1ph-(1sbh+44dp)", position=absolute, gravity=top, y="1sbh+44dp", \
         font-family=$SANSSERIF_MEDIUM, font-size=1.1
 
-/popup: first-responder=editor, scrolls-on-keyboard=no, page-background-color=$THEME_COLOR_02
+/popup: script-when-loaded=on_loaded, first-responder=editor, scrolls-on-keyboard=no, \
+        page-background-color=$THEME_COLOR_02
 /popup/navibar: display=none
 
 if $SCREEN_WIDTH > "5"

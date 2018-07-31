@@ -2,6 +2,7 @@ var wallet  = require("wallet");
 var steemjs = require("steemjs");
 var global  = require("global");
 var users   = require("users");
+var account = require("account");
 
 var __is_updating = false;
 

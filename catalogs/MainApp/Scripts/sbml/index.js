@@ -52,9 +52,9 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         if (element.type === "line") {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
-                sbml += "\n";
+                sbml += "\n\n";
                 sbml += "=(object blank: style=line)=";
-                sbml += "\n";
+                sbml += "\n\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;
@@ -345,12 +345,14 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         if (element.type === "br-tag") {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
-                sbml += "\n\n";
+                sbml += (sbml.length > 0 && sbml[sbml.length - 1] != "\n") ? "\n" : "";
+                sbml += "=[br|]=\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;
             } else {
-                sbml += "\n\n";
+                sbml += (sbml.length > 0 && sbml[sbml.length - 1] != "\n") ? "\n" : "";
+                sbml += "=[br|]=\n";
             }
 
             return;
@@ -455,6 +457,8 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
 
     sbml += center_ended ? "\n=end center\n" : "";
 
+    sbml = sbml.replace(/\n\n+/g, "\n\n");
+
     return sbml;
 }
 
@@ -471,6 +475,7 @@ Sbml.__has_center_tag = function(elements) {
 Sbml.__handle_text = function(text) {
     text = text.replace(/\\/g, "").replace(/(\[|\]|=|\(|\))/g, "\\$1");
     text = text.replace(/(^|\s+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
+    text = text.replace(/[ \t][ \t]+/g, " ");
     text = Sbml.texts.replace_emoji_chars(text, "=[emoji|$1]=");
     text = decode("html", text);
 

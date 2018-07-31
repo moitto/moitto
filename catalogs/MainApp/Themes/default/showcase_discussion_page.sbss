@@ -84,8 +84,8 @@ end
 %heading-5: font-size=1.1em, margin="0.8em 0 0 0"
 %heading-6: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, margin="0.8em 0 0 0"
 
-%list: text-indent=-0.7em, margin-left=1.4em, paragraph-spacing=0.6em
-%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="0 0 0 0.4em"
+%list: text-indent=-0.7em, margin="1.6em 0 1.6em 1.4em", paragraph-spacing=0.6em
+%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="1.6em 0 1.6em 0.4em"
 %center: text-align=center
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em
@@ -99,9 +99,8 @@ end
 #td-odd:
 #td-even:
 
-
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
-            line-spacing=0.6em, paragraph-spacing=1.6em, empty-line-height=0
+            line-spacing=0.6em, paragraph-spacing=0.6em, empty-line-height=0.6em
 
 if $SCREEN_WIDTH > "5"
     /page: font-size=1.3

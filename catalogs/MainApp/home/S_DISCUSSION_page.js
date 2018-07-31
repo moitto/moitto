@@ -9,7 +9,6 @@ function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
     __get_content(discussion["author"], discussion["permlink"], function(content) {
-        console.log(JSON.stringify(content.data));
         var me = storage.value("ACTIVE_USER") || "";
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);

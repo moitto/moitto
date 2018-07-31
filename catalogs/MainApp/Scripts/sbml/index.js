@@ -386,6 +386,20 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             return;
         }
 
+        if (element.type === "iframe-tag") {
+            var youtube_video_id = Sbml.urls.get_youtube_video_id(element.data["url"]);
+
+            if (youtube_video_id) {
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\")=";
+
+                return;
+            }
+
+            sbml += "=(object web: style=web, url=\"" + element.data["url"] + "\")=";
+
+            return;
+        }
+
         if (element.type === "link-begin") {
             sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|";
             inline_depth = inline_depth + 1;

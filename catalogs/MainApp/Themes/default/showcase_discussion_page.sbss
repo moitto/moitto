@@ -137,7 +137,7 @@ else
     #btn_vote: selected=no
 end
 
-if "${is-payout}" == "yes"
+if "${payout-done}" == "yes"
     #btn_vote: hidden=yes
 end
 

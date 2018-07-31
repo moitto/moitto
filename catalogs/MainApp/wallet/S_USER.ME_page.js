@@ -51,7 +51,8 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                 "vote-weight":me ? content.get_vote_weight(me).toString() : "",
                 "replies-count":content.data["children"].toString(),
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-                "is-payout":content.is_payout() ? "yes" : "no",
+                "payout-done":content.is_payout_done() ? "yes" : "no",
+                "payout-declined":content.is_payout_declined() ? "yes" : "no",
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
             };

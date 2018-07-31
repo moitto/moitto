@@ -9,6 +9,7 @@ function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
     __get_content(discussion["author"], discussion["permlink"], function(content) {
+        console.log(JSON.stringify(content.data));
         var me = storage.value("ACTIVE_USER") || "";
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);
@@ -27,7 +28,8 @@ function on_loaded() {
             "vote-weight":content.get_vote_weight(me).toString(),
             "replies-count":content.data["children"].toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
-            "is-payout":content.is_payout() ? "yes" : "no",
+            "payout-done":content.is_payout_done() ? "yes" : "no",
+            "payout-declined":content.is_payout_declined() ? "yes" : "no",
             "main-tag":content.data["category"],
             "tag-1":(tags.length > 0) ? tags[0] : "",
             "tag-2":(tags.length > 1) ? tags[1] : "",

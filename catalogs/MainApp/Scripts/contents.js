@@ -91,6 +91,14 @@ Content.prototype.is_payout = function() {
     return false;
 }
 
+Content.prototype.is_payout_declined = function() {
+    if (parseFloat(this.data["max_accepted_payout"].split(" ")[0]) == 0) {
+        return true;
+    }
+
+    return false;
+}
+
 Content.prototype.is_allowed = function(disallowed_tags) {
     for (var index = 0; index < this.meta["tags"].length; ++index) {
         if (disallowed_tags.includes(this.meta["tags"][index].toLowerCase())) {

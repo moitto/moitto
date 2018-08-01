@@ -454,10 +454,10 @@ Wallet.__reset_pin_force = function() {
     controller.action("popup", { "display-unit":"S_RESET_PIN" });
 }
 
-Wallet.__on_reset_pin = function(form) {  
+Wallet.__on_reset_pin = function(params) {  
     controller.action("freeze", { message:"확인 중..." });
 
-    Wallet.account.enable_active_key(form["password"].trim(), function(keys, handler) {
+    Wallet.account.enable_active_key(params["password"].trim(), function(keys, handler) {
         if (!keys) {
             controller.action("alert", { message:"비밀번호 혹은 액티브 키가 일치하지 않습니다." });
             controller.action("unfreeze");

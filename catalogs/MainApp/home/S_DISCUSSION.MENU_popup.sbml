@@ -13,6 +13,8 @@
 =object blank: style=blank_line, display=none, alt="temporary"
 =object button: script=copy_url, label="URL 복사", style=btn_menu
 =object blank: style=blank_line
+=object button: script=open_url, label="웹 브라우저로 열기", style=btn_menu
+=object blank: style=blank_line
 =object button: script=downvote, label="다운보팅", style=btn_menu, style=unvoted, style=red
 =object blank: style=blank_line, style=unvoted
 =object button: script=report, label="신고", style=btn_menu, style=red

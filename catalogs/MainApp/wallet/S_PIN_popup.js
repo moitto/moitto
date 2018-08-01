@@ -12,9 +12,9 @@ function reset() {
     host.action("script", { "script":$data["reset"] });
 }
 
-function press_number(form) {
+function press_number(params) {
     if (__input_numbers.length < 4) {
-        __input_numbers.push(form["label"]);
+        __input_numbers.push(params["label"]);
 
         __update_number_labels();
 
@@ -25,9 +25,9 @@ function press_number(form) {
     }
 }
 
-function press_text(form) {
+function press_text(params) {
     if (__input_numbers.length == 4) {
-        __input_numbers.push(form["label"]);
+        __input_numbers.push(params["label"]);
 
         document.value("WALLET.PIN", __input_numbers.join(""));
         __update_number_labels();

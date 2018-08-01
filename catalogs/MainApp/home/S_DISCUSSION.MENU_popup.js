@@ -1,4 +1,4 @@
-function upvote(form) {
+function upvote(params) {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
             "author":$data["author"],
@@ -15,7 +15,7 @@ function upvote(form) {
     }
 }
 
-function downvote(form) {
+function downvote(params) {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.DOWNVOTE", {
             "author":$data["author"],
@@ -32,7 +32,7 @@ function downvote(form) {
     }
 }
 
-function unvote(form) {
+function unvote(params) {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UNVOTE", {
             "author":$data["author"],
@@ -49,7 +49,7 @@ function unvote(form) {
     }
 }
 
-function reblog(form) {
+function reblog(params) {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REBLOG", {
             "author":$data["author"],
@@ -66,7 +66,7 @@ function reblog(form) {
     }
 }
 
-function report(form) {
+function report(params) {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.REPORT", {
             "author":$data["author"],
@@ -84,7 +84,7 @@ function report(form) {
     }
 }
 
-function copy_url(form) {
+function copy_url(params) {
     var url = "https://steemit.com/@" + $data["author"] + "/" + $data["permlink"];
 
     controller.action("copy", {
@@ -93,3 +93,14 @@ function copy_url(form) {
         "close-popup":"yes"
     });
 }
+
+function open_url(params) {
+    var url = "https://steemit.com/@" + $data["author"] + "/" + $data["permlink"];
+
+    controller.action("link", {
+        "url":url,
+        "target":"browser",
+        "close-popup":"yes"
+    });
+}
+

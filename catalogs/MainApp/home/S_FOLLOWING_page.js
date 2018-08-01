@@ -33,14 +33,6 @@ function feed_following(keyword, location, length, sortkey, sortorder, handler) 
     });
 }
 
-function unfollow(form) {
-    controller.action("alert", {message:"unfollow:" + form["username"]});
-}
-
-function mute(form) {
-    controller.action("alert", {message:"mute:" + form["username"]});
-}
-
 function show_user(data) {
     var user = users.create(data["username"]);
 

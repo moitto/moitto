@@ -1,6 +1,6 @@
 var users = require("users");
 
-function on_change_data(data) {
+function on_change_data(identifier, data) {
     view.action("reload", { "keeps-position":"yes" });
 }
 

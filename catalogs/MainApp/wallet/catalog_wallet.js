@@ -34,7 +34,7 @@ function on_loaded() {
     }
 }
 
-function on_change_data(data) {
+function on_change_data(identifier, data) {
     if (!__is_updating) {
         if (data["data-binding"] === "assets") {
             var assets_data = __assets_data_for_value(data);

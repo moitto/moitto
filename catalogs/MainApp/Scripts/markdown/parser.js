@@ -39,6 +39,9 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             }
         } else if (token[5]) { // > quote
+            console.log("++++++++++++");
+            console.log(token[5].replace(/(^|\n)[ \t]*>/g, "$1"));
+            console.log("++++++++++++");
             element = {
                 type:"quote",
                 data:{
@@ -345,8 +348,10 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 
             if (symbol === "_" || symbol === "*" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
+                console.log("formatter-begin: " + JSON.stringify(formatter_begin));
+                console.log("token[45]: " + token[45]);
 
-                 if (formatter_begin && !token[45]) {
+                if (formatter_begin && !token[45]) {
                     var begin_symbols = formatter_begin.data["symbols"];
                     var length = Math.min(begin_symbols.length, symbols.length);
                     var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";

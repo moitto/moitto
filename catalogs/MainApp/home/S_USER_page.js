@@ -46,7 +46,7 @@ function on_loaded() {
     });
 }
 
-function on_change_data(data) {
+function on_change_data(identifier, data) {
     __reload_showcase_header();
 }
 

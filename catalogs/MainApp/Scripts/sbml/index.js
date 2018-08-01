@@ -133,8 +133,8 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml += "\n";
                 sbml += "=begin list\n";
                 element.data["items"].forEach(function(item) {
-                    sbml += "=begin list-item: style=list-level-" + item[1] + "\n";
-                    sbml += (item[0] || "•") + " " + Sbml.__elements_to_sbml(item[2], images, false) + "\n";
+                    sbml += "=begin list-item: style=list-level-" + item[1] + ", bullet-text=\"" + (item[0] || "•") + "\"\n";
+                    sbml += Sbml.__elements_to_sbml(item[2], images, false) + "\n";
                     sbml += "=end list-item\n";
                 });
                 sbml += "=end list\n";

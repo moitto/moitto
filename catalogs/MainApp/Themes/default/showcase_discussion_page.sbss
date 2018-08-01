@@ -150,7 +150,7 @@ if "${payout-done}" == "yes"
 end
 
 if "${replies-count}" == 0
-    #btn_replies: label="첫 번째 댓글을 남겨보세요"
+    #btn_replies: script=comment, label="첫 번째 댓글을 남겨보세요"
 end
 
 

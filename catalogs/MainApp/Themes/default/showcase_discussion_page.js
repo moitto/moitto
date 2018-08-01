@@ -110,6 +110,23 @@ function show_replies() {
     controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
+function comment() {
+    if (storage.value("ACTIVE_USER")) {
+        controller.catalog().submit("showcase", "auxiliary", "S_COMMENT", {
+            "author":$data["author"],
+            "permlink":$data["permlink"]
+        });
+
+        controller.action("popup", { "display-unit":"S_COMMENT" });
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
+}
+
 function open_url(params) {
     var steem_url = urls.parse_steem_url(params["url"]);
 

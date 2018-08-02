@@ -13,8 +13,10 @@ function on_loaded() {
         var replies_data = [];
 
         Object.keys(response["content"]).forEach(function(path) {
-            if (response["content"][path]["parent_permlink"] === value["permlink"]) {
-                var reply = replies.create(response["content"][path]);
+            var content = response["content"][path];
+
+            if (content["parent_permlink"] === value["permlink"] && content["parent_permlink"] != content["permlink"]) {
+                var reply = replies.create(content);
                 var datum = {
                     "id":"S_REPLIES_" + value["author"] + "_" + value["permlink"] + "_" + reply.data["author"],
                     "author":reply.data["author"], 

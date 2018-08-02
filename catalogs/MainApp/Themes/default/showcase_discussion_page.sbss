@@ -73,20 +73,20 @@ end
 #sup: vertical-align=top, font-size=0.7em
 #linethrough: text-decoration=line-through
 #sub: vertical-align=bottom, font-size=0.7em
-%line: padding="0.8em 0 0.6em 0"
+%line: padding="0.8em 0 0.4em 0"
 #line: color=$THEME_COLOR_01, width=100%, height=1dp
 #text-left: text-align=left
 #text-right: text-align=right
 
 #heading: font-family=$SANSSERIF_BOLD, text-align=left
-%heading-1: style=heading, font-size=1.5em, text-align=left, line-spacing=0.18em, margin-top=1.5em
-%heading-2: style=heading, font-size=1.4em, line-spacing=0.2em, margin-top=1.2em
-%heading-3: style=heading, font-size=1.3em, line-spacing=0.4em, margin-top=1.1em
-%heading-4: style=heading, font-size=1.2em, margin-top=0.8em
-%heading-5: style=heading, font-size=1.1em, margin-top=0.8em
-%heading-6: style=heading, text-color=$THEME_COLOR_101, margin-top=0.8em
+%heading-1: style=heading, font-size=1.5em, text-align=left, line-spacing=0.18em, margin="1.5em 0 0.6em 0"
+%heading-2: style=heading, font-size=1.4em, line-spacing=0.2em, margin="1.2em 0 0.6em 0"
+%heading-3: style=heading, font-size=1.3em, line-spacing=0.4em, margin="1.1em 0 0.6em 0"
+%heading-4: style=heading, font-size=1.2em, margin="0.8em 0 0.7em 0"
+%heading-5: style=heading, font-size=1.1em, margin="0.8em 0 0.7em 0"
+%heading-6: style=heading, text-color=$THEME_COLOR_101, margin="0.8em 0 0.7em 0"
 
-%list: display=list, margin-top=1.6em, padding-left=0.1em, line-spacing=0.5em, paragraph-spacing=0.6em
+%list: display=list, margin="1.2em 0 1.2em 0", padding-left=0.1em, line-spacing=0.5em, paragraph-spacing=0.6em
 %list-item: display=list-item, margin-left=0.5em
 #list-level-1: padding-left=0.5em
 #list-level-2: padding-left=1.5em
@@ -94,8 +94,8 @@ end
 #list-level-4: padding-left=4.5em
 #list-level-5: padding-left=6em
 #list-level-6: padding-left=7.5em
-%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="1.4em 0 0 0.4em"
-%center: text-align=center
+%quote: border-color=$THEME_COLOR_01, border-width="0 0 0 5dp", padding="0.2em 0 0.2em 0.6em", margin="1.4em 0 1.0em 0.4em"
+%center: text-align=center, margin="1.2em 0 1.2em 0"
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes
 %table: display=table

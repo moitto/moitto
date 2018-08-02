@@ -104,7 +104,8 @@ function show_votes() {
 function show_replies() {
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
         "author":$data["author"],
-        "permlink":$data["permlink"]
+        "permlink":$data["permlink"],
+        "tag":$data["main-tag"]
     });
     
     controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })

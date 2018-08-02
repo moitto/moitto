@@ -364,9 +364,10 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         if (element.type === "hr-tag") {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
-                sbml += "\n\n";
-                sbml += "=(object blank: style=line)=";
-                sbml += "\n\n";
+                sbml += "\n";
+                sbml += "=begin line\n"
+                sbml += "=(object blank: style=line)=" + "\n";
+                sbml += "=end line\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;

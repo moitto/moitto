@@ -21,9 +21,13 @@ SteemSerializer.serialize_transaction = function(transaction) {
             SteemSerializer.__pack_buffer(buffer, "B", [ index ]);
 
             operation["params"].forEach(function(param) {
-                SteemSerializer.params[operation.operation][param].pack(
-                    buffer, params[param]
-                );
+                var serializer = SteemSerializer.params[operation.operation][param];
+
+                if (serializer instanceof Array) {
+                    serializer[0].pack(buffer, params[param], serializer[1]);
+                } else {
+                    serializer.pack(buffer, params[param]);
+                }
             });
         });
     });

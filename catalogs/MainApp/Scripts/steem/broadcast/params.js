@@ -24,8 +24,8 @@ __MODULE__ = {
         json_metadata: __TYPES__.string
     },
     "custom_json":{
-        required_auths: __TYPES__.array,
-        required_posting_auths: __TYPES__.array,
+        required_auths: [ __TYPES__.array, __TYPES__.string ],
+        required_posting_auths: [ __TYPES__.array, __TYPES__.string ],
         id: __TYPES__.string,
         json: __TYPES__.string
     },

@@ -1,9 +1,7 @@
 __MODULE__ = {
     "string" : {
         pack : function(buffer, value) {
-            var length;
-            
-            length = SteemSerializer.utfx.calculateUTF16asUTF8(SteemSerializer.__stringSource(value))[1];
+            var length = SteemSerializer.utfx.calculateUTF16asUTF8(SteemSerializer.__stringSource(value))[1];
             SteemSerializer.__pack_buffer_varint32(buffer, length);
 
             SteemSerializer.utfx.encodeUTF16toUTF8(SteemSerializer.__stringSource(value), function(c) {
@@ -119,10 +117,9 @@ __MODULE__ = {
     },
     "array" : {
         pack : function(buffer, value, serializer) {
-            SteemSerializer.__pack_buffer(buffer, "B", [ value.length ]);
+            SteemSerializer.__pack_buffer_varint32(buffer, value.length);
             value.forEach(function(item) {
-                //serializer.pack(buffer, item);
-                SteemSerializer.__pack_buffer(buffer, "B" + item.length + "s", [ item.length, item ]);
+                serializer.pack(buffer, item);
             });
         },
         unpack : function(buffer) {

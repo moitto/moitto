@@ -15,6 +15,9 @@ function on_loaded() {
         Object.keys(response["content"]).forEach(function(path) {
             var content = response["content"][path];
 
+            console.log("!!!!!!!!!!!");
+            console.log(JSON.stringify(content));
+
             if (content["parent_permlink"] === value["permlink"] && content["parent_permlink"] != content["permlink"]) {
                 var reply = replies.create(content);
                 var datum = {
@@ -36,7 +39,7 @@ function on_loaded() {
         });
 
         replies_data.sort(function(datum1, datum2) {
-            return datum1["created-at"].localeCompare(datum2["created-at"]);
+            return datum2["created-at"].localeCompare(datum1["created-at"]);
         });
 
         replies_data.forEach(function(datum) {

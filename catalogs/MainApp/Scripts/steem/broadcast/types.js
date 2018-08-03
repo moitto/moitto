@@ -1,7 +1,14 @@
 __MODULE__ = {
     "string" : {
         pack : function(buffer, value) {
-            SteemSerializer.__pack_buffer(buffer, "B" + value.length + "s", [ value.length, value ]);
+            var length;
+            
+            length = SteemSerializer.utfx.calculateUTF16asUTF8(SteemSerializer.__stringSource(value))[1];
+            SteemSerializer.__pack_buffer_varint32(buffer, length);
+
+            SteemSerializer.utfx.encodeUTF16toUTF8(SteemSerializer.__stringSource(value), function(c) {
+                SteemSerializer.__pack_buffer(buffer, "c", [ String.fromCharCode(c) ]);
+            });
         },
         unpack : function(buffer) {
 

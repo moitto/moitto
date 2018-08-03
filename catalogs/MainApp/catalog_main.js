@@ -30,8 +30,8 @@ function on_background() {
     __last_background_time = new Date().getTime();
 }
 
-function on_connect(form) {
-    connect.invoke(form["method"], form);
+function on_connect(params) {
+    connect.invoke(params["method"], params);
 }
 
 function update_notif() {

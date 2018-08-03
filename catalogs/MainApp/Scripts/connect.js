@@ -5,7 +5,7 @@ Connect = (function() {
 Connect.books = require("books");
 
 Connect.handle_url = function(url, referrer) {
-    var matched = /connect\/([^/?]+)\/?\?(.+)/g.exec(url);
+    var matched = /moitto\.io\/connect\/([^/?]+)\/?\?(.+)/g.exec(url);
 
     if (matched) {
         var params = Connect.__parse_query(matched[2]);
@@ -62,7 +62,7 @@ Connect.invoke = function(method, params) {
 }
 
 Connect.__invoke_app = function(params) {
-    controller.action("app", { "url":params["url"] });
+    controller.action("app", { "url":Connect.__get_app_url(params["url"]) });
 }
 
 Connect.__invoke_book = function(params) {
@@ -84,8 +84,11 @@ Connect.__invoke_transfer = function(params) {
 
 Connect.__invoke_pay = function(params) {
     controller.catalog().submit("showcase", "auxiliary", "S_PAY", {
-         "to":params["to"],
-         "amount":params["amount"]
+        "to":params["to"],
+        "amount":params["amount"],
+        "amount-type":params["amount-type"] || "SBD",
+        "coin":params["coin"] || "SBD",
+        "currency":params["currency"] || "KRW"
      });
 
     controller.action("subview", { "subview":"V_PAY", "target":"popup" });
@@ -108,6 +111,16 @@ Connect.__invoke_follow = function(params) {
     controller.action("subview", { "subview":"V_FOLLOW", "target":"popup" });
 }
 
+Connect.__get_app_url = function(url) {
+    var github = /github:\/\/([^/]+)\/([^/]+)/.exec(url);
+
+    if (github) {
+        return "https://github.com/" + github[1] + "/" + github[2] + "/archive/master.zip";
+    }
+
+    return url;
+}
+
 Connect.__parse_query = function(query) {
     var params = {};
 
@@ -116,7 +129,7 @@ Connect.__parse_query = function(query) {
         var key   = decodeURIComponent(pair[0]);
         var value = decodeURIComponent(pair[1] || '')
 
-        params[key] = value;
+        params[key.replace("_", "-")] = value;
     });
 
     return params;

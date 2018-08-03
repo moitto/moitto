@@ -19,6 +19,7 @@ Sbml.generate_from_markdown = function(markdown, images) {
 Sbml.__elements_to_sbml = function(elements, images, inline) {
     var sbml = "";
     var center_begin_pos = 0;
+    var center_began = false;
     var center_ended = false;
     var inline_depth = 0;
 
@@ -71,11 +72,12 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         if (element.type === "heading") {
             if (!element.data["inline"] && inline_depth == 0) {
                 var has_center_tag = Sbml.__has_center_tag(element.data["elements"]);
+                var needs_center_style = has_center_tag || center_began;
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += has_center_tag ? "\n=begin center\n" : "";
                 sbml += element.data["leadings"];
                 sbml += "\n";
-                sbml += "=begin heading-" + element.data["level"] + "\n";
+                sbml += "=begin heading-" + element.data["level"] + (needs_center_style ? ": style=center" : "") + "\n";
                 sbml += Sbml.__elements_to_sbml(element.data["elements"], images, true) + "\n";
                 sbml += "=end heading-" + element.data["level"] + "\n";
                 sbml += has_center_tag ? "\n=end center\n" : "";
@@ -284,6 +286,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml = sbml.substr(0, center_begin_pos) + "\n=begin center\n" + sbml.substr(center_begin_pos);
 
                 center_begin_pos = sbml.length;
+                center_began = true;
                 center_ended = false;
             } else {
 
@@ -297,6 +300,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                 sbml += center_ended ? "\n=end center\n" : "";
 
                 center_begin_pos = sbml.length;
+                center_began = false;
                 center_ended = true;
             } else {
 

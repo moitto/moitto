@@ -339,7 +339,9 @@ Account.comment = function(parent_author, parent_permlink, permlink, title, body
     var key = Account.__load_key(author, "posting");
  
     if (!permlink) {
-        permlink = "re-" + parent_author + "-" + parent_permlink + "-" + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
+        permlink = "re-" + parent_author + "-" 
+                 + parent_permlink.replace(/-[0-9]{8}t[0-9]{9}z$/, "") + "-" 
+                 + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
     }
 
     Account.steem.broadcast.comment(parent_author, parent_permlink, author, permlink, title, body, json_metadata, [ key ]).then(function(response) {

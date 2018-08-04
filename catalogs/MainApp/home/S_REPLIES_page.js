@@ -21,7 +21,7 @@ function on_loaded() {
             if (content["parent_permlink"] === value["permlink"] && content["parent_permlink"] != content["permlink"]) {
                 var reply = replies.create(content);
                 var datum = {
-                    "id":"S_REPLIES_" + value["author"] + "_" + value["permlink"] + "_" + reply.data["author"],
+                    "id":"S_REPLIES_" + reply.data["permlink"],
                     "author":reply.data["author"], 
                     "permlink":reply.data["permlink"], 
                     "userpic-url":reply.get_userpic_url("small"),

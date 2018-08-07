@@ -4,7 +4,7 @@ function power_up(form) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_POWER_UP");
 
     controller.action("script", {
-        "script":"api.power_up",
+        "script":"actions.power_up",
         "subview":"__MAIN__",
         "amount":form["amount"]
     });

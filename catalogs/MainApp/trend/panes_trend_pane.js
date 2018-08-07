@@ -53,6 +53,8 @@ function feed_trend(keyword, location, length, sortkey, sortorder, handler) {
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                 "payout-done":content.is_payout_done() ? "yes" : "no",
                 "payout-declined":content.is_payout_declined() ? "yes" : "no",
+                "editable":content.is_editable(me) ? "yes" : "no",
+                "deletable":content.is_deletable(me) ? "yes" : "no",
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
             };

@@ -4,6 +4,11 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00
 #btn_value: height=40dp, position=absolute, gravity=left, x=10dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left, label-font-size=0.9
+#btn_comment: height=20dp, content-padding="0 3dp", \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, \
+            label-font-size=0.9
+#btn_edit: style=btn_comment
+#btn_delete: style=btn_comment
 #btn_replies.icon: image="~/subview_icon_replies.png", width=20dp, height=20dp
 #btn_replies: height=20dp, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9
 
@@ -14,3 +19,11 @@ import ~/themes.sbss
 
 /cell/replies: display=none
 /cell/replies/comments: display=block, height=20dp, position=absolute, gravity=right, x=-10dp, text-align=right
+
+if "${editable}" != "yes"
+    #btn_edit: display=none, width=0, height=0
+end
+
+if "${deletable}" != "yes"
+    #btn_delete: display=none, width=0, height=0
+end

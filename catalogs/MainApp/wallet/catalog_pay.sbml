@@ -1,9 +1,0 @@
-=begin catalog
-
-=object image: image-url="https://steemitimages.com/u/${to}/avatar", style=img_userpic
-
-${amount}
-
-=object button: script=send, label="결제하기", style=btn_send
-
-=end catalog

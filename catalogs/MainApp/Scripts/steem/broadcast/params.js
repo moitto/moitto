@@ -57,5 +57,9 @@ __MODULE__ = {
         title: __TYPES__.string,
         body: __TYPES__.string,
         json_metadata: __TYPES__.string
+    },
+    "delete_comment":{
+        author: __TYPES__.string,
+        permlink: __TYPES__.string
     }
 };

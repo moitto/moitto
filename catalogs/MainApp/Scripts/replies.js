@@ -50,6 +50,18 @@ Reply.prototype.get_vote_weight = function(username) {
     return 0;
 }
 
+Reply.prototype.is_payout_done = function() {
+    if (this.data["last_payout"] !== "1970-01-01T00:00:00") {
+        return true;
+    }
+
+    return false;
+}
+
+Reply.prototype.is_payout_declined = function() {
+    return false;
+}
+
 Reply.prototype.is_banned = function() {
     if (this.get_author_reputation() <= 0) {
         return true;
@@ -60,6 +72,22 @@ Reply.prototype.is_banned = function() {
 
 Reply.prototype.is_down_voted = function(username) {
     if (this.get_vote_weight(username) < 0) {
+        return true;
+    }
+
+    return false;
+}
+
+Reply.prototype.is_editable = function(username) {
+    if (this.data["author"] === username && !this.is_payout_done()) {
+        return true;
+    }
+
+    return false;
+}
+
+Reply.prototype.is_deletable = function(username) {
+    if (this.is_editable(username) && this.data["children"] == 0) {
         return true;
     }
 

@@ -113,6 +113,22 @@ Content.prototype.is_banned = function() {
     return false;
 }
 
+Content.prototype.is_editable = function(username) {
+    if (this.data["author"] === username && !this.is_payout_done()) {
+        return true;
+    }
+
+    return false;
+}
+
+Content.prototype.is_deletable = function(username) {
+    if (this.is_editable(username) && this.data["children"] == 0) {
+        return true;
+    }
+
+    return false;
+}
+
 Content.prototype.__get_external_urls = function() {
     var urls = [];
 

@@ -6,21 +6,29 @@ var __current_coin_price = null;
 
 var __coin_to_transfer = null;
 var __amount_type      = null; 
+var __invoke_params    = null;
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     var user = users.create(value["to"]);
-
-    __update_to_userpic(user);
-    
+        
     __coin_to_transfer = value["coin"];
-    __amount_type      = value["amount-type"]; 
-    
+    __amount_type      = value["amount-type"];
+
+    __invoke_params = { 
+        "return-script":value["return-script"] || "",
+        "return-subview":value["return-subview"] || "",
+        "request-id":value["request-id"] || "",
+        "source-app":value["source-app"] || ""
+    }
+
     wallet.get_coin_price(value["currency"], value["coin"], function(price) {
         __current_coin_price = price;
 
         __update_coin_amount();
     });
+
+    __update_userpic(user);
 }
 
 function on_change_amount() {
@@ -83,17 +91,17 @@ function transfer(form) {
 }
 
 function __transfer(to, coin, amount, memo) {
-    controller.action("script", {
-        "script":"api.transfer",
+    controller.action("script", Object.assign({
+        "script":"actions.transfer",
         "subview":"__MAIN__",
         "to":to,
         "coin":coin,
         "amount":amount.toString(),
-        "memo":memo
-    });
+        "memo":memo, 
+    }, __invoke_params));
 }
 
-function __update_to_userpic(user) {
+function __update_userpic(user) {
     var image = view.object("img.to.userpic");
 
     image.property({ 

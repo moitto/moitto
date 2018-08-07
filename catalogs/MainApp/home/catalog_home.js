@@ -61,6 +61,8 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
                     "reblogged-count":content.data["reblogged_by"].length.toString(),
                     "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
+                    "editable":content.is_editable(me) ? "yes" : "no",
+                    "deletable":content.is_deletable(me) ? "yes" : "no",
                     "main-tag":content.data["category"],
                     "created-at":content.data["created"]
                 };

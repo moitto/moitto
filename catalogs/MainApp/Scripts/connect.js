@@ -2,6 +2,7 @@ Connect = (function() {
     return {};
 })();
 
+Connect.apps  = require("apps");
 Connect.books = require("books");
 
 Connect.handle_url = function(url, referrer) {
@@ -42,12 +43,6 @@ Connect.invoke = function(method, params) {
         return;
     }
 
-    if (method === "pay") {
-        Connect.__invoke_pay(params);
-        
-        return;
-    }
-
     if (method === "delegate") {
         Connect.__invoke_delegate(params);
         
@@ -62,63 +57,53 @@ Connect.invoke = function(method, params) {
 }
 
 Connect.__invoke_app = function(params) {
-    controller.action("app", { "url":Connect.__get_app_url(params["url"]) });
+    Connect.apps.open_app(
+        params["author"], params["permlink"], params["url"]
+    );
 }
 
 Connect.__invoke_book = function(params) {
-    Connect.books.open_book(params["author"], params["permlink"], params["url"]);
+    Connect.books.open_book(
+        params["author"], params["permlink"], params["url"]
+    );
 }
 
 Connect.__invoke_transfer = function(params) {
-    controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", {
+    controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", Object.assign({
         "to":params["to"],
-        "amount":params["amount"],
+        "amount":params["amount"] || "",
         "amount-type":params["amount-type"] || "SBD",
         "coin":params["coin"] || "SBD",
-        "currency":params["currency"] || "KRW",
-        "hidden":params["hidden"] || "no"
-    });
+        "currency":params["currency"] || "KRW"
+    }, Connect.__invoke_params(params)));
 
     controller.action("subview", { "subview":"V_TRANSFER", "target":"popup" });
 }
 
-Connect.__invoke_pay = function(params) {
-    controller.catalog().submit("showcase", "auxiliary", "S_PAY", {
-        "to":params["to"],
-        "amount":params["amount"],
-        "amount-type":params["amount-type"] || "SBD",
-        "coin":params["coin"] || "SBD",
-        "currency":params["currency"] || "KRW"
-     });
-
-    controller.action("subview", { "subview":"V_PAY", "target":"popup" });
-}
-
 Connect.__invoke_delegate = function(params) {
-    controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", {
-         "to":params["to"],
-         "amount":params["amount"]
-     });
+    controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", Object.assign({
+        "to":params["to"],
+        "amount":params["amount"] || ""
+     }, Connect.__invoke_params(params)));
 
     controller.action("subview", { "subview":"V_DELEGATE", "target":"popup" });
 }
 
 Connect.__invoke_follow = function(params) {
-    controller.catalog().submit("showcase", "auxiliary", "S_FOLLOW", {
-         "following":params["following"]
-     });
+    controller.catalog().submit("showcase", "auxiliary", "S_FOLLOW", Object.assign({
+        "following":params["following"]
+     }, Connect.__invoke_params(params)));
 
     controller.action("subview", { "subview":"V_FOLLOW", "target":"popup" });
 }
 
-Connect.__get_app_url = function(url) {
-    var github = /github:\/\/([^/]+)\/([^/]+)/.exec(url);
-
-    if (github) {
-        return "https://github.com/" + github[1] + "/" + github[2] + "/archive/master.zip";
+Connect.__invoke_params = function(params) {
+    return {
+        "return-script":params["return-script"] || "",
+        "return-subview":params["return-subview"] || "",
+        "request-id":params["request-id"] || "",
+        "source-app":params["source-app"] || ""
     }
-
-    return url;
 }
 
 Connect.__parse_query = function(query) {

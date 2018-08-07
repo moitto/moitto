@@ -2,9 +2,9 @@ Books = (function() {
     return {};
 })();
 
-Books.open_book = function(author, permlink, download_url) {
+Books.open_book = function(author, permlink, url) {
     var item_id = author + "+" + permlink;
-    var product_id = "p_" + item_id;
+    var product_id = "P_" + item_id;
 
     controller.catalog().submit("product", null, product_id, {
         "items":[ item_id ]
@@ -12,7 +12,7 @@ Books.open_book = function(author, permlink, download_url) {
 
     controller.catalog().submit("item", null, item_id, {
         "type":"external",
-        "download-url":download_url
+        "download-url":url
     });
     
     controller.action("invoice", {

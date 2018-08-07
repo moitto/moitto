@@ -35,7 +35,7 @@ function select_percent(params) {
 
 function upvote() {
 	controller.action("script", { 
-		"script":"api.vote",
+		"script":"actions.vote",
 		"subview":"__MAIN__",
         "author":$data["author"],
         "permlink":$data["permlink"],

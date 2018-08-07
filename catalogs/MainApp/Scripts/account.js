@@ -159,6 +159,34 @@ Account.reblog = function(author, permlink, handler) {
     });
 }
 
+Account.comment = function(parent_author, parent_permlink, permlink, title, body, json_metadata, handler) {
+    var author = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(author, "posting");
+ 
+    if (!permlink) {
+        permlink = "re-" + parent_author + "-" 
+                 + parent_permlink.replace(/-[0-9]{8}t[0-9]{9}z$/, "") + "-" 
+                 + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
+    }
+
+    Account.steem.broadcast.comment(parent_author, parent_permlink, author, permlink, title, body, json_metadata, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.delete_comment = function(permlink, handler) {
+    var author = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(author, "posting");
+
+    Account.steem.broadcast.delete_comment(author, permlink, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
 Account.follow_user = function(following, handler) {
     var follower = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(follower, "posting");
@@ -287,6 +315,13 @@ Account.delegate_vesting = function(delegatee, amount, pin, handler) {
     });
 }
 
+Account.undelegate_vesting = function(delegatee, pin, handler) {
+    var delegator = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(delegator, "active", pin);
+
+
+}
+
 Account.transfer_to_vesting = function(to, amount, pin, handler) {
     var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);
@@ -334,17 +369,77 @@ Account.claim_rewards = function(handler) {
     });
 }
 
-Account.comment = function(parent_author, parent_permlink, permlink, title, body, json_metadata, handler) {
-    var author = storage.value("ACTIVE_USER") || "";
-    var key = Account.__load_key(author, "posting");
- 
-    if (!permlink) {
-        permlink = "re-" + parent_author + "-" 
-                 + parent_permlink.replace(/-[0-9]{8}t[0-9]{9}z$/, "") + "-" 
-                 + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
-    }
+Account.escrow_transfer = function(to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_metadata, pin, handler) {
+    var from = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
 
-    Account.steem.broadcast.comment(parent_author, parent_permlink, author, permlink, title, body, json_metadata, [ key ]).then(function(response) {
+    Account.steem.broadcast.escrow_transfer(from, to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_metadata, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.escrow_approve = function(to, agent, who, escrow_id, approve, pin, handler) {
+    var from = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.escrow_approve(from, to, agent, who, escrow_id, approve, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.escrow_dispute = function(to, agent, who, escrow_id, pin, handler) {
+    var from = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.escrow_dispute(from, to, agent, who, escrow_id, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.escrow_release = function(to, agent, who, receiver, escrow_id, sbd_amount, steem_amount, pin, handler) {
+    var from = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.escrow_release(from, to, agent, who, receiver, escrow_id, sbd_amount, steem_amount, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.witness_vote = function(witness, pin, handler) {
+    var account = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.account_witness_vote(account, witness, '', [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.witness_unvote = function(witness, pin, handler) {
+    var account = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.account_witness_vote(account, witness, '', [ key ]).then(function(response) {
+         handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.witness_proxy = function(proxy, pin, handler) {
+    var account = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(from, "active", pin);
+
+    Account.steem.broadcast.account_witness_proxy(account, proxy, [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();

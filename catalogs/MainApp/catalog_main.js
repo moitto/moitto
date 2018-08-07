@@ -2,6 +2,7 @@ var history  = require("history");
 var notif    = require("notif");
 var connect  = require("connect");
 var settings = require("settings");
+var actions  = require("actions");
 var api      = require("api");
 
 var __last_background_time = new Date().getTime();

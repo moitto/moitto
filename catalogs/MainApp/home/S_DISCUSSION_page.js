@@ -29,6 +29,8 @@ function on_loaded() {
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
             "payout-done":content.is_payout_done() ? "yes" : "no",
             "payout-declined":content.is_payout_declined() ? "yes" : "no",
+            "editable":content.is_editable(me) ? "yes" : "no",
+            "deletable":content.is_deletable(me) ? "yes" : "no",
             "main-tag":content.data["category"],
             "tag-1":(tags.length > 0) ? tags[0] : "",
             "tag-2":(tags.length > 1) ? tags[1] : "",
@@ -59,7 +61,9 @@ function on_loaded() {
             "votes-count":content.data["net_votes"].toString(),
             "replies-count":content.data["children"].toString(),
             "vote-weight":content.get_vote_weight(me).toString(),
-            "payout-value":"$" + content.get_payout_value().toFixed(2).toString()
+            "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
+            "editable":content.is_editable(me) ? "yes" : "no",
+            "deletable":content.is_deletable(me) ? "yes" : "no"
         });
 
         if (content.is_allowed(__disallowed_tags) && !content.is_banned()) {

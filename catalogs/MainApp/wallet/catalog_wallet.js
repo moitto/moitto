@@ -97,7 +97,7 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 
 function redeem_rewards() {
     controller.action("script", {
-        "script":"api.redeem_rewards",
+        "script":"actions.redeem_rewards",
         "subview":"__MAIN__"
     });
 }

@@ -15,8 +15,8 @@ function on_loaded() {
         Object.keys(response["content"]).forEach(function(path) {
             var content = response["content"][path];
 
-            console.log("!!!!!!!!!!!");
-            console.log(JSON.stringify(content));
+            //console.log("!!!!!!!!!!!");
+            //console.log(JSON.stringify(content));
 
             if (content["parent_permlink"] === value["permlink"] && content["parent_permlink"] != content["permlink"]) {
                 var reply = replies.create(content);
@@ -24,12 +24,17 @@ function on_loaded() {
                     "id":"S_REPLIES_" + reply.data["permlink"],
                     "author":reply.data["author"], 
                     "permlink":reply.data["permlink"], 
+                    "parent-author":reply.data["parent_author"],
+                    "parent-permlink":reply.data["parent_permlink"],
                     "userpic-url":reply.get_userpic_url("small"),
                     "body":theme.build_body(reply.data["body"], "markdown", []),
+                    "body-text":reply.data["body"], 
                     "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
                     "replies-count":reply.data["children"].toString(),
                     "created-at":reply.data["created"],
-                    "vote-weight":reply.get_vote_weight(me).toString()
+                    "vote-weight":reply.get_vote_weight(me).toString(),
+                    "editable":reply.is_editable(me) ? "yes" : "no",
+                    "deletable":reply.is_deletable(me) ? "yes" : "no",
                 }
 
                 if (!reply.is_banned() && !reply.is_down_voted(value["author"]) ) {
@@ -47,6 +52,7 @@ function on_loaded() {
             replies_text += "\n";
         });
 
+        controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"]);
         controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"], replies_data);
 
         var data = {

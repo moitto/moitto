@@ -1,17 +1,20 @@
 function on_loaded() {
-    var identifier = "S_COMMENTS_" + $data["author"] + "_" + $data["permlink"];
+    var identifier = "S_COMMENTS_" + $data["parent-author"] + "_" + $data["parent-permlink"];
     var value = controller.catalog().value("showcase", "comments", identifier);
     var editor = view.object("editor");
 
     if (value) {
         editor.property({ "text":value["text"] });
+    } else {
+        editor.property({ "text":$data["text"] });
     }
 }
 
 function close() {
     var editor = view.object("editor");
+    var text = editor.value();
 
-    if (editor.value().length > 0) {
+    if (text.length > 0 && text !== $data["text"]) {
         controller.action("prompt", {
             "title":"알림",
             "message":"이 댓글을 임시 저장하시겠어요?",
@@ -28,10 +31,11 @@ function submit() {
     var editor = view.object("editor");
 
     controller.action("script", { 
-        "script":"api.comment",
+        "script":"actions.comment",
         "subview":"__MAIN__",
-        "parent_author":$data["author"],
-        "parent_permlink":$data["permlink"],
+        "parent-author":$data["parent-author"],
+        "parent-permlink":$data["parent-permlink"],
+        "permlink":$data["permlink"] || "",
         "title":"",
         "body":editor.value(),
         "meta":JSON.stringify({})
@@ -41,7 +45,7 @@ function submit() {
 }
 
 function save() {
-    var identifier = "S_COMMENTS_" + $data["author"] + "_" + $data["permlink"];
+    var identifier = "S_COMMENTS_" + $data["parent-author"] + "_" + $data["parent-permlink"];
     var editor = view.object("editor");
 
     controller.catalog().submit("showcase", "comments", identifier, {
@@ -51,7 +55,7 @@ function save() {
 }
 
 function discard() {
-    var identifier = "S_COMMENTS_" + $data["author"] + "_" + $data["permlink"];
+    var identifier = "S_COMMENTS_" + $data["parent-author"] + "_" + $data["parent-permlink"];
 
     controller.catalog().remove("showcase", "comments", identifier);
     controller.action("popup-close");

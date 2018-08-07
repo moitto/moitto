@@ -1,8 +1,15 @@
-var connect = require("connect");
-var users   = require("users");
+var connect      = require("connect");
+var steemconnect = require("steemconnect");
+var users        = require("users");
 
 function on_qrcode(params) {
     if (connect.handle_url(params["text"])) {
+        controller.action("popup-close");
+
+        return;
+    }
+
+    if (steemconnect.handle_url(params["text"])) {
         controller.action("popup-close");
 
         return;

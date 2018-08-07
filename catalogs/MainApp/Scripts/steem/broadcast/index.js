@@ -19,10 +19,53 @@ SteemBroadcast.vote = function(voter, author, permlink, weight, keys) {
     });
 }
 
+SteemBroadcast.comment = function(parent_author, parent_permlink, author, permlink, title, body, json_metadata, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "comment", { 
+            parent_author:parent_author, parent_permlink:parent_permlink,
+            author:author, permlink:permlink, title:title, body:body, json_metadata:json_metadata
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
 SteemBroadcast.transfer = function(from, to, amount, memo, keys) {
     return new Promise(function(resolve, reject) {
         var operation = [ "transfer", { 
             from:from, to:to, amount:amount, memo:memo
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.transfer_to_vesting = function(from, to, amount, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "transfer_to_vesting", { 
+            from:from, to:to, amount:amount
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.withdraw_vesting = function(account, vesting_shares, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "withdraw_vesting", { 
+            account:account, vesting_shares:vesting_shares
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -39,6 +82,48 @@ SteemBroadcast.account_create = function(fee, creator, new_account_name, owner, 
             fee:fee, creator:creator, new_account_name:new_account_name, 
             owner:owner, active:active, posting:posting, memo_key:memo_key, 
             json_metadata:json_metadata
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.account_witness_vote = function(account, witness, approve, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "account_witness_vote", { 
+            account:account, witness:witness, approve:approve
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.account_witness_proxy = function(account, proxy, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "account_witness_proxy", { 
+            account:account, proxy:proxy
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.delete_comment = function(author, permlink, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "delete_comment", { 
+            author:author, permlink:permlink
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -91,10 +176,11 @@ SteemBroadcast.delegate_vesting_shares = function(delegator, delegatee, vesting_
     });
 }
 
-SteemBroadcast.transfer_to_vesting = function(from, to, amount, keys) {
+SteemBroadcast.escrow_transfer = function(from, to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_metadata, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "transfer_to_vesting", { 
-            from:from, to:to, amount:amount
+        var operation = [ "escrow_transfer", { 
+            from:from, to:to, agent:agent, escrow_id:escrow_id, sbd_amount:sbd_amount, steem_amount:steem_amount, fee:fee,
+            ratification_deadline:ratification_deadline, escrow_expiration:escrow_expiration, json_metadata:json_metadata
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -105,10 +191,10 @@ SteemBroadcast.transfer_to_vesting = function(from, to, amount, keys) {
     });
 }
 
-SteemBroadcast.withdraw_vesting = function(account, vesting_shares, keys) {
+SteemBroadcast.escrow_dispute = function(from, to, agent, who, escrow_id, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "withdraw_vesting", { 
-            account:account, vesting_shares:vesting_shares
+        var operation = [ "escrow_dispute", { 
+            from:from, to:to, agent:agent, who:who, escrow_id:escrow_id
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -119,11 +205,25 @@ SteemBroadcast.withdraw_vesting = function(account, vesting_shares, keys) {
     });
 }
 
-SteemBroadcast.comment = function(parent_author, parent_permlink, author, permlink, title, body, json_metadata, keys) {
+SteemBroadcast.escrow_release = function(from, to, agent, who, receiver, escrow_id, sbd_amount, steem_amount, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "comment", { 
-            parent_author:parent_author, parent_permlink:parent_permlink,
-            author:author, permlink:permlink, title:title, body:body, json_metadata:json_metadata
+        var operation = [ "escrow_release", { 
+            from:from, to:to, agent:agent, who:who, receiver:receiver, escrow_id:escrow_id,
+            sbd_amount:sbd_amount, steem_amount:steem_amount
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.escrow_approve = function(from, to, agent, who, escrow_id, approve, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "escrow_approve", { 
+            from:from, to:to, agent:agent, who:who, escrow_id:escrow_id, approve:approve
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

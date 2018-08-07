@@ -22,8 +22,8 @@ function on_download_image() {
 function comment() {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_COMMENT", {
-            "author":$data["author"],
-            "permlink":$data["permlink"]
+            "parent-author":$data["author"],
+            "parent-permlink":$data["permlink"]
         });
 
         controller.action("popup", { "display-unit":"S_COMMENT" });

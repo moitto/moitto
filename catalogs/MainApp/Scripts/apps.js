@@ -4,7 +4,7 @@ Apps = (function() {
 
 Apps.open_app = function(author, permlink, url) {
     controller.action("app", { 
-        "url":Apps.__get_app_url(params["url"])
+        "url":Apps.__get_app_url(url)
     });
 }
 

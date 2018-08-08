@@ -27,25 +27,63 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"line",
                 data:{
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
-        } else if (token[3]) { // code/indent block
+        } else if (token[3]) { // code block
            element = {
                 type:"code",
                 data:{
                     text:token[3],
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
         } else if (token[4]) { // > quote
-            element = {
-                type:"quote",
-                data:{
-                    elements:MarkdownParser.__parse_to_markdown(token[4].replace(/(^|\n)[ \t]*>/g, "$1"), false), 
-                    inline:inline
+            var lines = token[4].replace(/^\n+|\n+$/, "").split(/(?:\n|^)[ \t]*>/g).slice(1);
+
+            lines.forEach(function(line) {
+                var children = MarkdownParser.__parse_to_markdown(line, false);
+                var break_met = false;
+
+                if (!element) {
+                    element = {
+                        type:"quote",
+                        data:{
+                            elements:[], 
+                            inline:inline
+                        }
+                    }
                 }
-            }
+
+                children.forEach(function(child) {
+                    if (!break_met && element.data["elements"].length > 0 && child.data["break"]) {
+                        if (text_chunk) {
+                            elements.push({
+                                type:"text",
+                                data:{
+                                    text:text_chunk,
+                                    inline:inline
+                                }
+                            });
+                        }
+
+                        elements.push(element);
+                        
+                        element    = null;
+                        text_chunk = null;
+
+                        break_met  = true;
+                    }
+
+                    if (break_met) {
+                        elements.push(child);
+                    } else {
+                        element.data["elements"].push(child);
+                    }
+                });
+            });
         } else if (token[5]) { // -* list
             var lines = token[5].replace(/^\n+|\n+$/, "").split("\n");
             var items = [], indents = [], numbers = [];
@@ -191,7 +229,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     elements:MarkdownParser.__parse_to_markdown(token[14] ? token[15].replace(/\s+#+$/, "") : " ", true),
                     level:(token[13] || token[14]).length,
                     leadings:(token.index > 0) ? "\n" : "",
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
         } else if (token[16]) { // url
@@ -286,7 +325,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"paragraph-tag" + (token[30] ? "-begin" : "-end"),
                 data:{
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
         } else if (token[32] || token[33]) { // blockquote tag
@@ -307,14 +347,16 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"pre-tag" + (token[36] ? "-begin" : "-end"),
                 data:{
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
         } else if (token[38] || token[39]) { // table, tr, th, td tag
             element = {
                 type:(token[38] || token[39]) + "-tag" + (token[38] ? "-begin" : "-end"),
                 data:{
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
         } else if (token[40]) { // br tag
@@ -328,7 +370,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             element = {
                 type:"hr-tag",
                 data:{
-                    inline:inline
+                    inline:inline,
+                    break:true
                 }
             }
         } else if (token[42]) { // unhandled tag
@@ -397,17 +440,22 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             });
         }
 
-        var tag = element["type"].match(/(.+)-tag-(begin|end)/);
+        if (element) {
+            var tag = element["type"].match(/(.+)-tag-(begin|end)/);
 
-        if (tag) {
-            if (tag[2] === "begin") {
-                begin_tags.push(element);
-            } else {
-                MarkdownParser.__handle_mismatched_tags(elements, tag[1], element.data["inline"], begin_tags);
+            if (tag) {
+                if (tag[2] === "begin") {
+                    begin_tags.push(element);
+                } else {
+                    MarkdownParser.__handle_mismatched_tags(elements, tag[1], element.data["inline"], begin_tags);
+                }
             }
+
+            elements.push(element);
         }
 
-        elements.push(element);
+        element    = null;
+        text_chunk = null;
 
         last_index = tokenizer.lastIndex;
     }

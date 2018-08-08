@@ -36,22 +36,20 @@ function on_loaded() {
 
 function on_change_data(identifier, data) {
     if (!__is_updating) {
-        if (data["data-binding"] === "assets") {
-            var assets_data = __assets_data_for_value(data);
+        var assets_data = __assets_data_for_value(data);
 
-            if (__is_assets_changed(assets_data)) {
-                __update_assets_data(assets_data);
+        if (__is_assets_changed(assets_data)) {
+            __update_assets_data(assets_data);
 
-                // do not reload the assets showcase
-            }
+            // do not reload the assets showcase
+        }
 
-            var rewards_data = __rewards_data_for_value(data);
+        var rewards_data = __rewards_data_for_value(data);
 
-            if (__is_rewards_changed(rewards_data)) {
-                __update_rewards_data(rewards_data);
+        if (__is_rewards_changed(rewards_data)) {
+            __update_rewards_data(rewards_data);
         
-                __reload_assets_showcase_header();
-            }
+            __reload_assets_showcase_header();
         }
     }
 }

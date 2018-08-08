@@ -1,20 +1,22 @@
 function on_loaded() {
-    var identifier = "S_COMMENTS_" + $data["parent-author"] + "_" + $data["parent-permlink"];
-    var value = controller.catalog().value("showcase", "comments", identifier);
+    var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
+    var identifier = "S_COMMENTS_" + value["parent-author"] + "_" + value["parent-permlink"];
+    var temporary = controller.catalog().value("showcase", "comments", identifier);
     var editor = view.object("editor");
 
-    if (value) {
-        editor.property({ "text":value["text"] });
+    if (temporary) {
+        editor.property({ "text":temporary["text"] });
     } else {
-        editor.property({ "text":$data["text"] });
+        editor.property({ "text":value["text"] });
     }
 }
 
 function close() {
+    var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
     var editor = view.object("editor");
     var text = editor.value();
 
-    if (text.length > 0 && text !== $data["text"]) {
+    if (text.length > 0 && text !== value["text"]) {
         controller.action("prompt", {
             "title":"알림",
             "message":"이 댓글을 임시 저장하시겠어요?",
@@ -28,14 +30,15 @@ function close() {
 }
 
 function submit() {
+    var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
     var editor = view.object("editor");
 
     controller.action("script", { 
         "script":"actions.comment",
         "subview":"__MAIN__",
-        "parent-author":$data["parent-author"],
-        "parent-permlink":$data["parent-permlink"],
-        "permlink":$data["permlink"] || "",
+        "parent-author":value["parent-author"],
+        "parent-permlink":value["parent-permlink"],
+        "permlink":value["permlink"] || "",
         "title":"",
         "body":editor.value(),
         "meta":JSON.stringify({})
@@ -45,7 +48,8 @@ function submit() {
 }
 
 function save() {
-    var identifier = "S_COMMENTS_" + $data["parent-author"] + "_" + $data["parent-permlink"];
+    var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
+    var identifier = "S_COMMENTS_" + value["parent-author"] + "_" + value["parent-permlink"];
     var editor = view.object("editor");
 
     controller.catalog().submit("showcase", "comments", identifier, {
@@ -55,7 +59,8 @@ function save() {
 }
 
 function discard() {
-    var identifier = "S_COMMENTS_" + $data["parent-author"] + "_" + $data["parent-permlink"];
+    var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
+    var identifier = "S_COMMENTS_" + value["parent-author"] + "_" + value["parent-permlink"];
 
     controller.catalog().remove("showcase", "comments", identifier);
     controller.action("popup-close");

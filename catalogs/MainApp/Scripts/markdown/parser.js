@@ -86,19 +86,29 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             });
         } else if (token[5]) { // -* list
             var lines = token[5].replace(/^\n+|\n+$/, "").split("\n");
-            var items = [], indents = [], numbers = [];
+            var indents = [], numbers = [];
             var level = 0, number = "", subtext = "";
 
             lines.forEach(function(line) {
                 var match = line.match(/^([ \t]*)(?:[*+-]|(\d+)\.)[ \t]+(.*)/);
                 var indent = match ? match[1].length : 0;
 
+                if (!element) {
+                    element = {
+                        type:"list",
+                        data:{
+                            items:[], 
+                            inline:inline
+                        }
+                    }
+                }
+
                 if (match && (level == 0 || indent < indents[level - 1] + 6)) {
                     if (subtext) {
                         var children = MarkdownParser.__parse_to_markdown(subtext, false);
                         var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
 
-                        items.push([ symbol, level, children ]);
+                        element.data["items"].push([ symbol, level, children ]);
                     }
 
                     subtext = match[3];
@@ -127,15 +137,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 var children = MarkdownParser.__parse_to_markdown(subtext, false);
                 var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
 
-                items.push([ symbol, level, children ]);
-            }
-
-            element = {
-                type:"list",
-                data:{
-                    items:items, 
-                    inline:inline
-                }
+                element.data["items"].push([ symbol, level, children ]);
             }
         } else if (token[6]) { // table
             var lines = token[6].trim().split("\n");

@@ -15,8 +15,8 @@ function on_loaded() {
         Object.keys(response["content"]).forEach(function(path) {
             var content = response["content"][path];
 
-            //console.log("!!!!!!!!!!!");
-            //console.log(JSON.stringify(content));
+            console.log("!!!!!!!!!!!");
+            console.log(JSON.stringify(content));
 
             if (content["parent_permlink"] === value["permlink"] && content["parent_permlink"] != content["permlink"]) {
                 var reply = replies.create(content);

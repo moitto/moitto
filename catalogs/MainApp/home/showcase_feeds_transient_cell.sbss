@@ -1,30 +1,29 @@
 import ~/themes.sbss
 
-/cell: page-background-color=$THEME_COLOR_02
-/cell/title: display=block, background-color=$THEME_COLOR_01
-/cell/meta: display=block, background-color=$THEME_COLOR_01
-/cell/userpic: display=block, background-color=$THEME_COLOR_01
-/cell/line: display=block, background-color=$THEME_COLOR_01
+#blank_title: color=$THEME_COLOR_01
+#blank_meta: color=$THEME_COLOR_01
+#blank_userpic: color=$THEME_COLOR_01
+#blank_line: color=$THEME_COLOR_01
 
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    /cell/title: width=0.5pw, height=30dp, align=left, \
+    #blank_title: width=0.5pw, height=30dp, align=left, \
                 margin="(1sbh+120dp) 30dp 10dp 30dp"
-    /cell/meta: width=0.3pw, height=10dp, align=left, \
+    #blank_meta: width=0.3pw, height=10dp, align=left, \
                 margin="0 30dp"
-    /cell/userpic: display=block, width=40dp, height=40dp, \
-                position=absolute, gravity=bottom, y=-100dp, border-radius=40dp/2
-    /cell/line: display=none
+    #blank_userpic: width=40dp, height=40dp, \
+                position=absolute, gravity=bottom, y=-100dp, \
+                content-border-radius=40dp/2
+    #blank_line: display=none
 else
-    /cell/title: width=0.5pw, height=20dp, align=left, \
+    #blank_title: width=0.5pw, height=20dp, align=left, \
                 margin="15dp 15dp 10dp 15dp"
-    /cell/meta: width=0.3pw, height=10dp, align=left, \
+    #blank_meta: width=0.3pw, height=10dp, align=left, \
                 margin="0 15dp"
-    /cell/userpic: display=block, width=35dp, height=35dp, \
+    #blank_userpic: width=35dp, height=35dp, \
                 position=absolute, gravity=top-left, x=15dp, y=110dp, \
-                border-radius=35dp/2
-    /cell/line: display=block, width=1pw, height=1dp, \
+                content-border-radius=35dp/2
+    #blank_line: width=1pw, height=1dp, \
                 position=absolute, gravity=bottom
 end
-

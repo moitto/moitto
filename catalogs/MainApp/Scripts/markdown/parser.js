@@ -44,7 +44,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             var lines = token[4].replace(/^\n+|\n+$/, "").split(/(?:\n|^)[ \t]*>/g).slice(1);
 
             lines.forEach(function(line) {
-                var children = MarkdownParser.__parse_to_markdown(line, false);
+                var children = MarkdownParser.__parse_to_markdown(line + "\n", false);
                 var break_met = false;
 
                 if (!element) {
@@ -310,12 +310,12 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             }
         } else if (token[28]) { // start of div tag
-            var klass = token[28].match(/class=\"([^"]+)\"/);
+            var klass = token[28].match(/class=(?:\"([^"]+)\"|([^ ,>]+))/);
 
             element = {
                 type:"div-tag-begin",
                 data:{
-                    class:klass ? klass[1] : "",
+                    class:klass ? (klass[1] || klass[2]) : "",
                     inline:inline
                 }
             }

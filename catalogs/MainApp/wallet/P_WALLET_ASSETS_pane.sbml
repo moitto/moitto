@@ -1,0 +1,9 @@
+=begin pane
+
+=object showcase: alternate-name=assets, \
+                data-script=feed_assets, \
+                has-header=yes, header-display-unit=S_WALLET_ASSETS, \
+                selectable=yes, action-when-selected=page, \
+                style=showcase_assets
+
+=end pane

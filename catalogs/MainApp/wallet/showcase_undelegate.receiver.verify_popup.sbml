@@ -2,7 +2,7 @@
 
 =object section: section=receiver.verify, style=section_navibar
 =begin navibar: id=receiver.verify
-=object label: text="송금받을 계정 확인", style=label_title
+=object label: text="회수할 계정 확인", style=label_title
 =object button: action=popup-close, style=btn_close
 =object blank: style=blank_line
 =end navibar
@@ -13,10 +13,10 @@
 =object blank: style=blank_userpic.mask
 =object image: image-url="${userpic-url}", image-downloadable=yes, style=img_profile
 
-=(object label: text="${to}", style=label_user)=
+=(object label: text="${from}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 
-=object button: script=transfer, label="계속 진행하기", style=btn_transfer
+=object button: script=delegate, label="계속 진행하기", style=btn_undelegate
 
 =object button: script=cancel, label="다른 계정 선택하기", style=btn_other
 
@@ -25,11 +25,11 @@
 
 
 =begin loading
-@${to}님의 정보를 확인하는 중입니다.
+@${from}님의 정보를 확인하는 중입니다.
 =end loading
 
 =begin invalid
-@${to}님의 계정을 찾을 수 없습니다.
+@${from}님의 계정을 찾을 수 없습니다.
 =object button: script=cancel, label="다른 계정 선택하기", style=btn_other.invalid
 =end invalid
 

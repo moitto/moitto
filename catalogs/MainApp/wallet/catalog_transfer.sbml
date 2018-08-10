@@ -10,17 +10,17 @@
 
 =begin transaction
 
-=object section: script-when-resume=on_choose_currency, section=amount, style=section_amount
+=object section: section=amount, style=section_amount
 =begin amount: id=amount
 =begin heading
 =object label: text="송금할 액수", style=label_amount.title
-=object button: id=amount.type, label="단위 ${subview.amount-type} ▶︎", script=choose_currency, style=btn_amount.currency
+=object button: id=btn.amount_type, label="단위 ${subview.amount-type} ▶︎", script=choose_amount_type, style=btn_amount_type
 =end heading
 
 =object section: section=amount.box, style=section_amount.box
 =begin box: id=amount.box, form=amount.box
 =begin content
-=object label: id=label.amount.type, text="${subview.amount-type}", style=label_amount.type
+=object label: id=label.amount_type, text="${subview.amount-type}", style=label_amount_type
 =object textfield: id=amount, text="${subview.amount}", \
                 script-when-editing@change=on_change_amount, \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \

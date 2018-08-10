@@ -27,7 +27,7 @@ end
 if $LAYOUT == "thumbnail"
     #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph"
 else
-    #showcase_feeds: preload-count=30, height="1ph-1sbh-44dp", content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp"
+    #showcase_feeds: preload-count=15, height="1ph-1sbh-44dp", content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp"
     if $SCREEN_WIDTH > "5"
         #showcase_feeds: cell-size="(1pw-20dp), 220dp"
     else

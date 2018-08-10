@@ -1,4 +1,4 @@
-=begin cell
+=begin cell: skips-drawing=yes
 
 =object section: id=contents, section=text.trend.contents, style=section_contents
 

@@ -1,4 +1,4 @@
-=begin cell
+=begin cell: skips-drawing=yes
 
 =object image: image-url="${image-url}", style=img_cover
 =object blank: style=blank_dim

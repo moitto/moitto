@@ -22,12 +22,12 @@ import ~/themes.sbss
             content-background-color=$THEME_COLOR_00
 #label_amount.title: height=30dp, align=left, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1.2
-#btn_amount.currency: height=20dp, align=right, \
+#btn_amount_type: height=20dp, align=right, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
             label-align=left, label-font-size=0.9, \
             content-padding="2dp 4dp", content-background-color=$THEME_COLOR_03, margin="-(20dp+5dp) 0 10dp 0"
 
-#label_amount.type: width="1pw-20dp", height=40dp, font-family=$SANSSERIF_BOLD, font-size=2.2, \
+#label_amount_type: width="1pw-20dp", height=40dp, font-family=$SANSSERIF_BOLD, font-size=2.2, \
             text-color=$THEME_COLOR_105, text-align=right, margin="10dp 0 0 0"
 #textfield_amount: width="1pw-20dp", height=40dp, \
             font-family=$SANSSERIF_BOLD, font-size=2.2, \

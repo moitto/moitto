@@ -19,14 +19,14 @@ Content.prototype.get_title_image_url = function(size) {
     var images = this.meta["image"];
 
     if (images && images.length > 0) {
+        var image_url = images[0].replace(/\"/g, "");
+
         if (size) {
-            return "https://steemitimages.com/" + size +"/" + images[0];
+            return "https://steemitimages.com/" + size +"/" + image_url;
         }
 
-        return images[0];
+        return image_url;
     }
-
-    return "";
 }
 
 Content.prototype.get_title_video_id = function() {

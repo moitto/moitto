@@ -46,7 +46,7 @@ function on_loaded() {
     });
 }
 
-function on_change_data(identifier, data) {
+function on_change_data(id, data) {
     __reload_showcase_header();
 }
 
@@ -66,7 +66,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
                 "title":content.data["title"], 
-                "image-url":content.get_title_image_url("256x512"),
+                "image-url":content.get_title_image_url("256x512") || "",
                 "userpic-url":content.get_userpic_url("small"),
                 "userpic-large-url":content.get_userpic_url(),
                 "author-reputation":content.get_author_reputation().toFixed(0).toString(),

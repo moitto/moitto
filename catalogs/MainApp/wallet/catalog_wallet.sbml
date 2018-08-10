@@ -1,12 +1,9 @@
 =begin catalog: script-when-loaded=on_loaded
 
-=object showcase: id=showcase.assets, alternate-name=assets, \
-                data-script=feed_assets, \
-                has-header=yes, header-display-unit=S_WALLET.ACCOUNT, \
-                has-footer=yes, \
-                selectable=yes, action-when-selected=page, \
-                script-when-resume=update_wallet, \
-                style=showcase_assets
+=object panes: id=panes.wallet, name=wallet, data-script=feed_wallet, \
+                has-header=yes, header-display-unit=S_WALLET_ACCOUNT, \
+                script-when-resume=on_resume, \
+                style=panes_wallet
 
 =object section: id=section.login, section=login, style=section_login
 =object section: id=section.loading, section=loading, style=section_loading

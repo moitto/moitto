@@ -1,0 +1,5 @@
+import showcase_transfer.receiver.verify_popup.sbss
+
+#btn_undelegate: width=0.8pw, height=50dp, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"

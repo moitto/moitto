@@ -3,6 +3,8 @@
 =begin actions
 =object button: script=delegate, label="임대하기", style=btn_menu
 =object blank: style=blank_line
+=object button: script=undelegate, label="임대회수", style=btn_menu
+=object blank: style=blank_line
 =object button: script=power_down, label="파워다운", style=btn_menu
 =object blank: style=blank_line
 

@@ -1,7 +1,7 @@
 =begin popup
 
-=object section: section=delegate.receiver.verify, style=section_navibar
-=begin navibar: id=delegate.receiver.verify
+=object section: section=receiver.verify, style=section_navibar
+=begin navibar: id=receiver.verify
 =object label: text="임대할 계정 확인", style=label_title
 =object button: action=popup-close, style=btn_close
 =object blank: style=blank_line
@@ -16,7 +16,7 @@
 =(object label: text="${to}", style=label_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 
-=object button: script=delegate, label="@${to}님에게 임대하기", style=btn_delegate
+=object button: script=delegate, label="계속 진행하기", style=btn_delegate
 
 =object button: script=cancel, label="다른 계정 선택하기", style=btn_other
 

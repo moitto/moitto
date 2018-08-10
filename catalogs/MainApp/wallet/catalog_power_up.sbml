@@ -11,7 +11,7 @@
 =object section: section=amount.box, style=section_amount.box
 =begin box: id=amount.box, form=amount.box
 =begin content
-=object label: text="STEEM", style=label_amount.type
+=object label: text="STEEM", style=label_amount_type
 =object textfield: id=amount, text="${subview.amount}", \
                 valid-format="([0-9]+\\.?)?([0-9]*)?", prevents-invalid-text=yes, \
                 keyboard-type=decimal, \

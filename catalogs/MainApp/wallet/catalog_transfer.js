@@ -45,31 +45,25 @@ function choose_user(form) {
     
 }
 
-function choose_currency() {
+function choose_amount_type() {
     controller.action("popup", { 
         "display-unit":"S_TRANSFER",
-        "alternate-name":"transfer.currency"
+        "alternate-name":"amount_type.select"
     });
 }
 
-function on_choose_currency() {
-    var amount_type = document.value("WALLET.AMOUNT.TYPE");
-
-    if (amount_type) {
-        var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
+function on_choose_amount_type(params) {
+    var value = controller.catalog().value("showcase", "auxiliary", "S_TRANSFER");
     
-        if (value["amount-type"] !== amount_type) {
-            controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", Object.assign(value, {
-                "amount-type":amount_type
-            }));
+    if (value["amount-type"] !== params["amount-type"]) {
+        controller.catalog().submit("showcase", "auxiliary", "S_TRANSFER", Object.assign(value, {
+            "amount-type":params["amount-type"]
+        }));
 
-            controller.action("reload");
-        }
-
-        storage.value(value["coin"] + ".AMOUNT-TYPE", amount_type);
+        controller.action("reload");
     }
 
-    document.value("WALLET.AMOUNT.TYPE", null);
+    storage.value(value["coin"] + ".AMOUNT-TYPE", params["amount-type"]);
 }
 
 function transfer(form) {

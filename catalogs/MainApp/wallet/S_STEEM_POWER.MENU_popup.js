@@ -9,6 +9,17 @@ function delegate() {
     });
 }
 
+function undelegate() {
+    controller.catalog().submit("showcase", "auxiliary", "S_UNDELEGATE", {
+        // TBD
+    });
+
+    controller.action("popup", { 
+        "display-unit":"S_UNDELEGATE", 
+        "alternate-name":"undelegate.receiver.select" 
+    });
+}
+
 function power_down() {
     controller.catalog().submit("showcase", "auxiliary", "S_POWER_DOWN", {
         // TBD

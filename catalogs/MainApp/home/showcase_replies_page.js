@@ -4,13 +4,15 @@ var urls  = require("urls");
 var __schedule_to_reload = false;
 
 function on_change_data(id, data) {
-    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
-        "author":$data["author"],
-        "permlink":$data["permlink"],
-        "tag":$data["main-tag"]
-    });
+    if (parseInt(data["replies-count"]) != parseInt($data["replies-count"])) {
+        controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
+            "author":$data["author"],
+            "permlink":$data["permlink"],
+            "tag":$data["tag"]
+        });
 
-    controller.action("page", { "display-unit":"S_REPLIES" })
+        controller.action("page", { "display-unit":"S_REPLIES" })
+    }
 }
 
 function on_download_image() {

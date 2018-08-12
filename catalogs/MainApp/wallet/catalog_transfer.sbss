@@ -5,12 +5,12 @@ import ~/themes.sbss
 
 -- 송금 받을 계정 --
 
-#img_to.userpic: width=30dp, height=30dp, content-border-radius=30dp/2
-#label_to.username: height=30dp, \
+#img_userpic: width=30dp, height=30dp, content-border-radius=30dp/2
+#label_username: height=30dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.2
-/catalog/to: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1, \
+/catalog/user: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1, \
             margin="25dp 0 0 0.1pw"
-/catalog/to/notice: margin="0 0 10dp 0"
+/catalog/user/notice: margin="0 0 10dp 0"
 
 
 -- 송금액 --

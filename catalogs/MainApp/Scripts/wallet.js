@@ -80,6 +80,21 @@ Wallet.delegate = function(to, amount, handler) {
     }
 }
 
+Wallet.undelegate = function(from, handler) {
+    Wallet.__transaction = {
+        "action":"undelegate",
+        "from":from,
+        "amount":amount,
+        "handler":handler
+    };
+
+    if (Wallet.account.active_key_enabled()) {
+        Wallet.__start_undelegate(from);
+    } else {
+        Wallet.__prompt_reset_pin();
+    }
+}
+
 Wallet.power_up = function(amount, handler) {
     amount = amount.toFixed(3) + " " + "STEEM";
 
@@ -199,10 +214,32 @@ Wallet.__start_delegate = function(to, amount) {
     }
 }
 
+Wallet.__start_undelegate = function(from) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_undelegate(from);
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
 Wallet.__confirm_delegate = function(to, amount) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 입력",
         "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 임대합니다.",
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__confirm_undelegate = function(from) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":"PIN번호를 입력하면\\n임대를 회수합니다.",
         "status":"normal",
         "script":"Wallet.__on_receive_pin",
         "reset":"Wallet.__on_confirm_reset_pin"
@@ -491,6 +528,12 @@ Wallet.__process_transaction = function(pin) {
         return;
     }
 
+    if (Wallet.__transaction["action"] == "undelegate") {
+        Wallet.__process_undelegate(Wallet.__transaction, pin);
+
+        return;
+    }
+
     if (Wallet.__transaction["action"] == "power_up") {
         Wallet.__process_power_up(Wallet.__transaction, pin);
 
@@ -557,6 +600,28 @@ Wallet.__process_delegate = function(transaction, pin) {
     });
 
     controller.action("popup", { "display-unit":"S_DELEGATE.TASK" });
+}
+
+Wallet.__process_undelegate = function(transaction, pin) {
+    var from = transaction["from"];
+
+    Wallet.account.undelegate_vesting(from, pin, function(response) {
+        controller.catalog().submit("showcase", "auxiliary", "S_UNDELEGATE.TASK", {
+            "status":response ? "done" : "failed"
+        });
+
+        controller.action("popup", { "display-unit":"S_UNDELEGATE.TASK" });
+
+        if (transaction["handler"]) {
+            transaction["handler"](response);
+        }
+    });
+
+    controller.catalog().submit("showcase", "auxiliary", "S_UNDELEGATE.TASK", {
+        "status":"progress"
+    });
+
+    controller.action("popup", { "display-unit":"S_UNDELEGATE.TASK" });
 }
 
 Wallet.__process_power_up = function(transaction, pin) {

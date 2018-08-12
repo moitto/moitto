@@ -169,6 +169,16 @@ Actions.delegate = function(params) {
     });
 }
 
+Actions.undelegate = function(params) {
+    Actions.wallet.undelegate(params["from"], function(response) {
+        if (response) {
+            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                Actions.__on_complete(params, id, data);
+            });
+        }
+    });
+}
+
 Actions.power_up = function(params) {
     Actions.wallet.power_up(parseFloat(params["amount"]), function(response) {
         if (response) {

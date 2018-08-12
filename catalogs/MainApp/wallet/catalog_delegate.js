@@ -19,7 +19,7 @@ function delegate(form) {
 }
 
 function __update_userpic(user) {
-    var image = view.object("img.to.userpic");
+    var image = view.object("img.userpic");
 
     image.property({ 
         "image-url":user.get_userpic_url() 

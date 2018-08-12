@@ -1,0 +1,29 @@
+=begin catalog: script-when-loaded=on_loaded
+
+=begin user: alt="임대회수할 계정"
+=begin notice
+임대회수할 계정
+=end notice
+=(object image: id=img.userpic, style=img_userpic)= =(object label: text="${subview.from}", style=label_username)=
+=end user
+
+
+=begin transaction
+
+=object section: section=amount, style=section_amount
+=begin amount: id=amount
+=begin heading
+=object label: text="임대회수할 스팀파워", style=label_amount.title
+=end heading
+
+=object content
+=end content
+
+=end amount
+
+
+=object button: script=undelegate, label="임대회수하기", style=btn_submit
+
+=end transaction
+
+=end catalog

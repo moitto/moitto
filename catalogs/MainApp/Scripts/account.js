@@ -318,8 +318,13 @@ Account.delegate_vesting = function(delegatee, amount, pin, handler) {
 Account.undelegate_vesting = function(delegatee, pin, handler) {
     var delegator = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(delegator, "active", pin);
+    var vesting_shares = "0.000000" + " VESTS";
 
-
+    Account.steem.broadcast.delegate_vesting_shares(delegator, delegatee, vesting_shares, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
 }
 
 Account.transfer_to_vesting = function(to, amount, pin, handler) {

@@ -1,11 +1,11 @@
 =begin catalog: script-when-loaded=on_loaded
 
-=begin to: alt="받을 계정"
+=begin user: alt="임대할 계정"
 =begin notice
 임대할 계정
 =end notice
-=(object image: id=img.to.userpic, style=img_to.userpic)= =(object label: text="${subview.to}", style=label_to.username)=
-=end to
+=(object image: id=img.userpic, style=img_userpic)= =(object label: text="${subview.to}", style=label_username)=
+=end user
 
 
 =begin transaction

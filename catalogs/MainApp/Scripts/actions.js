@@ -55,6 +55,7 @@ Actions.comment = function(params) {
         if (response) {
             Actions.__get_updated_data_for_content(params["parent-author"], params["parent-permlink"], function(id, data) {
                 controller.action("toast", { "message":"댓글을 업로드했습니다." });
+                controller.update("replies-" + params["parent-author"] + "." + params["parent-permlink"], {});
 
                 Actions.__on_complete(params, id, data);
             });
@@ -71,6 +72,7 @@ Actions.delete_comment = function(params) {
         if (response) {
             Actions.__get_updated_data_for_content(params["parent-author"], params["parent-permlink"], function(id, data) {
                 controller.action("toast", { "message":"댓글을 삭제했습니다." });
+                controller.update("replies-" + params["parent-author"] + "." + params["parent-permlink"], {});
 
                 Actions.__on_complete(params, id, data);
             });

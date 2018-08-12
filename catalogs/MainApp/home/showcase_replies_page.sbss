@@ -9,7 +9,7 @@ import showcase_replies.tmpl_cell.sbss
             content-padding="0 0 0 10dp", content-background-color=$THEME_COLOR_02
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=top
 
-/page: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+/page: data-binding="replies-${author}.${permlink}", script-when-data-changed=on_change_data, \
         page-background-color=$THEME_COLOR_02
 /page/comment: display=none
 

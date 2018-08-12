@@ -4,7 +4,7 @@ var urls  = require("urls");
 var __schedule_to_reload = false;
 
 function on_change_data(id, data) {
-    if (parseInt(data["replies-count"]) != parseInt($data["replies-count"])) {
+    if (id.startsWith("replies-")) {
         controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
             "author":$data["author"],
             "permlink":$data["permlink"],

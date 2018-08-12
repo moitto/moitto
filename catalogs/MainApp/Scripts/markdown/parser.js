@@ -59,7 +59,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
 
                 children.forEach(function(child) {
-                    if (!break_met && !first_child && child.data["break"]) {
+                    if (!break_met && child.data["break"]) {
                         if (text_chunk) {
                             elements.push({
                                 type:"text",
@@ -73,16 +73,21 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 
                         elements.push(element);
                         
+                        if (first_child) {
+                            element.data["elements"].push(child);
+                        } else {
+                            elements.push(child);
+                        }
+
                         element    = null;
                         text_chunk = null;
-
                         break_met  = true;
-                    }
-
-                    if (break_met) {
-                        elements.push(child);
                     } else {
-                        element.data["elements"].push(child);
+                        if (break_met) {
+                            elements.push(child);
+                        } else {
+                            element.data["elements"].push(child);
+                        }
                     }
 
                     first_child = false;
@@ -112,8 +117,47 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     if (subtext) {
                         var children = MarkdownParser.__parse_to_markdown(subtext, false);
                         var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
+                        var items = [], break_met = false, first_child = true;
 
-                        element.data["items"].push([ symbol, level, children ]);
+                        children.forEach(function(child) {
+                            if (!break_met && child.data["break"]) {
+                                if (text_chunk) {
+                                    elements.push({
+                                        type:"text",
+                                        data:{
+                                            text:text_chunk,
+                                            inline:inline,
+                                            break:true
+                                        }
+                                    });
+                                }
+
+                                element.data["items"].push([ symbol, level, items ]);
+                                elements.push(element);
+
+                                if (first_child) {
+                                    items.push(child);
+                                } else {
+                                    elements.push(child);
+                                }
+                        
+                                element    = null;
+                                text_chunk = null;
+                                break_met  = true;
+                            } else {
+                                if (break_met) {
+                                    elements.push(child);
+                                } else {
+                                   items.push(child);
+                                }
+                            }
+
+                            first_child = false;
+                        });
+
+                        if (!break_met) {
+                            element.data["items"].push([ symbol, level, items ]);
+                        }
                     }
 
                     subtext = match[3];
@@ -141,8 +185,47 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
             if (subtext) {
                 var children = MarkdownParser.__parse_to_markdown(subtext, false);
                 var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
+                var items = [], break_met = false, first_child = true;
 
-                element.data["items"].push([ symbol, level, children ]);
+                children.forEach(function(child) {
+                    if (!break_met && child.data["break"]) {
+                        if (text_chunk) {
+                            elements.push({
+                                type:"text",
+                                data:{
+                                    text:text_chunk,
+                                    inline:inline,
+                                    break:true
+                                }
+                            });
+                        }
+
+                        element.data["items"].push([ symbol, level, items ]);
+                        elements.push(element);
+
+                        if (first_child) {
+                            items.push(child);
+                        } else {
+                            elements.push(child);
+                        }
+                
+                        element    = null;
+                        text_chunk = null;
+                        break_met  = true;
+                    } else {
+                        if (break_met) {
+                            elements.push(child);
+                        } else {
+                            items.push(child);
+                        }
+                    }
+
+                    first_child = false;
+                 });
+
+                if (!break_met) {
+                    element.data["items"].push([ symbol, level, items ]);
+                }
             }
         } else if (token[6]) { // table
             var lines = token[6].trim().split("\n");

@@ -8,8 +8,8 @@ var __disallowed_tags = safety.get_disallowed_tags();
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     
-    //discussion["author"] = "lkw8888";
-    //discussion["permlink"] = "77roxm";
+    discussion["author"] = "pys";
+    discussion["permlink"] = "72qaue";
 
     __get_content(discussion["author"], discussion["permlink"], function(content) {
         var me = storage.value("ACTIVE_USER") || "";

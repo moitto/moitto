@@ -73,7 +73,7 @@ end
 #sup: vertical-align=top, font-size=0.7em
 #linethrough: text-decoration=line-through
 #sub: vertical-align=bottom, font-size=0.7em
-%line: padding="0.8em 0 0.4em 0"
+%line: padding="0.6em 0 0.6em 0"
 #line: color=$THEME_COLOR_01, width=100%, height=1dp
 #text-left: text-align=left
 #text-right: text-align=right
@@ -95,7 +95,7 @@ end
 #list-level-5: padding-left=6em
 #list-level-6: padding-left=7.5em
 %quote: border-color=$THEME_COLOR_01, margin="1.2em 0 1.2em 0.4em", padding="0.2em 0 0.2em 0.6em", border-width="0 0 0 5dp"
-%center: text-align=center, margin="1.2em 0 1.2em 0"
+%center: text-align=center, margin="0.6em 0 0.6em 0"
 #center: text-align=center
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes

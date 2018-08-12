@@ -1,6 +1,6 @@
 import showcase_trend_cell.sbss
 
-#section_contents: content-background-color="${background.color}""
+#section_contents: content-background-color="${background.color}"
 
 #label_meta: text-color="${background.text-color}"
 #btn_meta: label-color="${background.text-color}"

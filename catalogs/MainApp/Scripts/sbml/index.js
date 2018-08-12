@@ -192,9 +192,10 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
 
         if (element.type === "h-tag-begin") {
             if (!element.data["inline"] && inline_depth == 0) {
+                var needs_center_style = center_began;
                 sbml += center_ended ? "\n=end center\n" : "";
                 sbml += "\n";
-                sbml += "=begin heading-" + element.data["level"] + "\n";
+                sbml += "=begin heading-" + element.data["level"] + (needs_center_style ? ": style=center" : "") + "\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;

@@ -45,7 +45,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 
             lines.forEach(function(line) {
                 var children = MarkdownParser.__parse_to_markdown(line + "\n", false);
-                var break_met = false;
+                var break_met = false, first_child = true;
 
                 if (!element) {
                     element = {
@@ -59,7 +59,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
 
                 children.forEach(function(child) {
-                    if (!break_met && element.data["elements"].length > 0 && child.data["break"]) {
+                    if (!break_met && !first_child && child.data["break"]) {
                         if (text_chunk) {
                             elements.push({
                                 type:"text",
@@ -84,6 +84,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     } else {
                         element.data["elements"].push(child);
                     }
+
+                    first_child = false;
                 });
             });
         } else if (token[5]) { // -* list

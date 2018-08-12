@@ -4,7 +4,13 @@ var urls  = require("urls");
 var __schedule_to_reload = false;
 
 function on_change_data(id, data) {
-    controller.action("alert", {message:$data["author"]+"."+$data["permlink"]});
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
+        "author":$data["author"],
+        "permlink":$data["permlink"],
+        "tag":$data["main-tag"]
+    });
+
+    controller.action("page", { "display-unit":"S_REPLIES" })
 }
 
 function on_download_image() {

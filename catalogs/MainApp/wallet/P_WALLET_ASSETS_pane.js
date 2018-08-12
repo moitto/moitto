@@ -1,3 +1,7 @@
+function on_change_data(id, data) {
+    __reload_assets_showcase_header();  
+}
+
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     var values = controller.catalog().value("showcase", "auxiliary", "S_WALLET_ASSETS");
     var assets = [];
@@ -14,6 +18,12 @@ function redeem_rewards() {
         "script":"actions.redeem_rewards",
         "subview":"__MAIN__"
     });
+}
+
+function __reload_assets_showcase_header() {
+    var showcase = view.object("showcase.assets");
+
+    showcase.action("reload-header");
 }
 
 function __asset_data(id, title, amount) {

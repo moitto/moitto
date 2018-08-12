@@ -3,7 +3,7 @@ var urls  = require("urls");
 
 var __schedule_to_reload = false;
 
-function on_change_data() {
+function on_change_data(id, data) {
     controller.action("alert", {message:$data["author"]+"."+$data["permlink"]});
 }
 

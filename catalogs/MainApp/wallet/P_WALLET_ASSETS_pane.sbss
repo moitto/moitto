@@ -4,3 +4,5 @@ import ~/themes.sbss
             column-count=1, cell-size="(1pw-20dp), 60dp", \
             content-margin="0 10dp 1eb 10dp", cell-spacing=10dp
 
+
+/pane: data-binding=assets, script-when-data-changed=on_change_data

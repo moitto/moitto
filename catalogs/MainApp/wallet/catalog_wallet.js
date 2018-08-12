@@ -32,7 +32,8 @@ function on_resume() {
         var me = storage.value("ACTIVE_USER") || "";
 
         __get_user(me, function(user) {
-
+            __update_account_data(user);
+            __update_assets_data(user);
 
             __is_updating = false;
         });
@@ -111,3 +112,4 @@ function __show_wallet_panes() {
 
     panes.action("show");
 }
+

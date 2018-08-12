@@ -39,7 +39,7 @@ function on_loaded() {
     });
 }
 
-function on_change_data() {
+function on_change_data(id, data) {
     view.action("reload");
 }
 

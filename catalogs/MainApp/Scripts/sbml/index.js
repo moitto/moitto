@@ -8,7 +8,7 @@ Sbml.texts = require("texts");
 Sbml.generate_from_markdown = function(markdown, images) {
     var sbml =  Sbml.__elements_to_sbml(markdown.elements, images, false);
 
-    sbml = sbml.replace(/\n{3,}/g, "\n\n");
+    sbml = sbml.replace(/([ \xA0\t]*\n){3,}/g, "\n\n");
 
     console.log(JSON.stringify(images));
     console.log(sbml);

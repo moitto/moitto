@@ -4,10 +4,11 @@ import ~/themes.sbss
             align=right, content-background-color=$THEME_COLOR_03, content-padding=10dp
 #goM: font-family=$SANSSERIF_MEDIUM
 
-/header: text-align=center, margin="0 0 25dp 0"
+/header: data-binding=assets, script-when-data-changed=on_change_data, \
+        text-align=center, margin="0 0 25dp 0"
 /header/rewards: display=block, width="1pw-20dp", \
-            text-color=$THEME_COLOR_100, text-align=left, paragraph-spacing=0.2em, \
-            padding=10dp, border-color=$THEME_COLOR_01, border-width=1dp
+        text-color=$THEME_COLOR_100, text-align=left, paragraph-spacing=0.2em, \
+        padding=10dp, border-color=$THEME_COLOR_01, border-width=1dp
 /header/rewards/notice: font-family=$SANSSERIF_MEDIUM, margin="0 0 10dp 0"
 /header/rewards/value: font-family=$SANSSERIF_BOLD, font-size=0.85em
 

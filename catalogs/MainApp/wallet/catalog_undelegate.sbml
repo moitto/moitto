@@ -16,7 +16,7 @@
 =object label: text="임대회수할 스팀파워", style=label_amount.title
 =end heading
 
-=object content
+=begin content
 =end content
 
 =end amount

@@ -84,7 +84,6 @@ Wallet.undelegate = function(from, handler) {
     Wallet.__transaction = {
         "action":"undelegate",
         "from":from,
-        "amount":amount,
         "handler":handler
     };
 

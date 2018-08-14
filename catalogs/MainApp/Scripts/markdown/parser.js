@@ -603,30 +603,28 @@ MarkdownParser.__clear_unhandled_begins = function(elements) {
 }
 
 MarkdownParser.__handle_mismatched_tags = function(elements, tag, inline, begin_tags) {
-    var begin_matched = false;
-
-    while (begin_tags.length > 0) {
-        var last_begin_tag = begin_tags.pop();
-
-        if (tag && last_begin_tag.type.startsWith(tag)) {
-            begin_matched = true;
-
-            break;
-        }
-
-        elements.push({
-            type:last_begin_tag.type.split("-")[0] + "-tag-end",
-            data:{
-                inline:last_begin_tag.data["inline"]
-            }
-        });
-    }
-
-    if (tag && !begin_matched) {
+    if (tag && begin_tags.length > 0 && !begin_tags[begin_tags.length - 1]["type"].startsWith(tag)) {
         elements.push({
             type:tag + "-tag-begin",
             data:{
                 inline:inline
+            }
+        });
+
+        return;
+    }
+
+    while (begin_tags.length > 0) {
+        var last_begin_tag = begin_tags.pop();
+
+        if (tag && last_begin_tag["type"].startsWith(tag)) {
+            return;
+        }
+
+        elements.push({
+            type:last_begin_tag["type"].split("-")[0] + "-tag-end",
+            data:{
+                inline:last_begin_tag.data["inline"]
             }
         });
     }

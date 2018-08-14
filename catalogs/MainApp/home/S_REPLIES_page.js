@@ -57,6 +57,7 @@ function on_loaded() {
 
         var data = {
             "replies":replies_text,
+            "replies-count":replies_data.length.toString(),
             "has-own-sbml":"no"
         };
 

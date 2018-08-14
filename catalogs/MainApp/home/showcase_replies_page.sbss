@@ -9,9 +9,25 @@ import showcase_replies.tmpl_cell.sbss
             content-padding="0 0 0 10dp", content-background-color=$THEME_COLOR_02
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=top
 
+#btn_comment: height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+
 /page: data-binding="replies-${author}.${permlink}", script-when-data-changed=on_change_data, \
         page-background-color=$THEME_COLOR_02
 /page/comment: display=none
+
+if $SCREEN_WIDTH > "5"
+    #btn_comment: width="1pw-80dp"
+else
+    #btn_comment: width="1pw-40dp"
+end
+
+if ${replies-count} == 0
+    #section_comment: display=none
+else
+    /page/empty: display=none
+end
 
 -- body --
 
@@ -30,7 +46,7 @@ import showcase_replies.tmpl_cell.sbss
 #sup: vertical-align=top, font-size=0.7em
 #linethrough: text-decoration=line-through
 #sub: vertical-align=bottom, font-size=0.7em
-%line: padding="0.8em 0 0.4em 0"
+%line: padding="0.6em 0 0.6em 0"
 #line: color=$THEME_COLOR_01, width=100%, height=1dp
 #text-left: text-align=left
 #text-right: text-align=right
@@ -52,7 +68,7 @@ import showcase_replies.tmpl_cell.sbss
 #list-level-5: padding-left=6em
 #list-level-6: padding-left=7.5em
 %quote: border-color=$THEME_COLOR_01, margin="1.2em 0 1.2em 0.4em", padding="0.2em 0 0.2em 0.6em", border-width="0 0 0 5dp"
-%center: text-align=center, margin="1.2em 0 1.2em 0"
+%center: text-align=center, margin="0.6em 0 0.6em 0"
 #center: text-align=center
 %code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em
 #code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes

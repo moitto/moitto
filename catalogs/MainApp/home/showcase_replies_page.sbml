@@ -4,6 +4,10 @@
 ${replies}
 =end replies
 
+=begin empty
+=object button: script=comment, label="첫 번째 댓글을 남겨보세요.", style=btn_comment
+=end empty
+
 =object section: script-when-touched=comment, section=comment, style=section_comment
 =begin comment: id=comment
 =object blank: style=blank_line

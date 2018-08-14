@@ -628,6 +628,13 @@ MarkdownParser.__handle_mismatched_tags = function(elements, tag, inline, begin_
             }
         });
     }
+
+    elements.push({
+        type:tag + "-tag-begin",
+        data:{
+            inline:inline
+        }
+    });
 }
 
 MarkdownParser.__align_for_table_column = function(text) {

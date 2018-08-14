@@ -4,15 +4,15 @@ Reports = (function() {
 
 Reports.report_content = function(author, permlink, reason, handler) {
     var reporter = storage.value("ACTIVE_USER") || "";
-    var url = "https://moitto.io/api/reports/post";
+    var url = "https://moitto.io/api/reports/" + author + "/" + permlink;
 
     fetch(url, {
-        "method":"PUT",
+        "method":"POST",
         "body":JSON.stringify({
             "reporter":reporter,
             "author":author,
             "permlink":permlink,
-            "reason":reason
+            "reason_code":reason
         })
     }).then(function(response) {
         if (response.ok) {

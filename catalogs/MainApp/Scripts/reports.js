@@ -10,8 +10,6 @@ Reports.report_content = function(author, permlink, reason, handler) {
         "method":"POST",
         "body":JSON.stringify({
             "reporter":reporter,
-            "author":author,
-            "permlink":permlink,
             "reason_code":reason
         })
     }).then(function(response) {

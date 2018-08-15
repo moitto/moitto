@@ -1,7 +1,5 @@
 function on_change_data(id, data) {
-    if ((data["has-rewards"] && !$data["has-rewards"]) || (!data["has-rewards"] && $data["has-rewards"])) {
-        owner.action("reload-header");
-    } else {
+    if (data["has-rewards"] === $data["has-rewards"]) {
         view.action("reload");
     }
 }

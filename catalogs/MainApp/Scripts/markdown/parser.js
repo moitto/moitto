@@ -15,7 +15,7 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+) {0,3}(?:(?:- *)+|(?:_ *)+|(?:\* *)+)(?:\n+|$))|(?:(?:^|\n) *```(.*)\n((?:.*\n)*?) *``` *(?:\n+|$))|((?:(?:^|\n) *>.*(?:\n *[^ \n].+)*)+)|((?:(?:^|\n) *(?:[*+-]|\d+\.) +.*(?:\n *[^ \n].+)*(?: *\n *)?)+)|((?:^|\n+) *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?\n *\|?(?:(?: *:?-+:? *)\|)+(?: *:?-+:? *)? *(?:\n|$)(?: *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*?\)|[^)])*)\)|(\[)|(\]\(((?:\([^)]*?\)|[^)])*)\))|(\])|(?:(?:^|\n) *(#{1,6}) *(?:\n+|$))|(?:(?:^|\n) *(#{1,6}) +(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+(?::[0-9]+)?)((?:\/(?:\([\w\d.\-_~!$&'*+,;=:@]*\)|[\w\d.\-_~!$&'*+,;=:@%])+)|\/)*(?:[?#][\w\d.\-_~!$&'*+,;=:@%/]+)*)|(`+[^`]*`+)|(?:<a[^>]*href=(\".+?\"|\'.+?\'|[^ \t>]+?).*?>)(.+?)<\/a>|(?:<img[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+).*?\/?>(?:<\/img>)?)|(?:<iframe[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+).*?\/?>(?:<\/iframe>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p(?: +[^>]*)?>)|(<\/p(?: +[^>]*)?>)|(<blockquote>)|(<\/blockquote>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(?:<(table|tr|th|td)>)|(?:<\/(table|tr|th|td)>)|(\n*<br *\/?>)|(\n*<hr *\/?>)|(<\/?[a-z]+(?: +[^>]*)?>)|((?: *\n){2,}|( ?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
+    var tokenizer = /((?:^|\n+) {0,3}(?:(?:- *)+|(?:_ *)+|(?:\* *)+)(?:\n+|$))|(?:(?:^|\n) *```(.*)\n((?:.*\n)*?) *``` *(?:\n+|$))|((?:(?:^|\n) *>(?: *[^ \n].*(?:\n *[^ \n].*)*|.*))+)|((?:(?:^|\n) *(?:[*+-]|\d+\.) +.*(?:\n *[^ \n].+)*(?: *\n *)?)+)|((?:^|\n+) *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?\n *\|?(?:(?: *:?-+:? *)\|)+(?: *:?-+:? *)? *(?:\n|$)(?: *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*?\)|[^)])*)\)|(\[)|(\]\(((?:\([^)]*?\)|[^)])*)\))|(\])|(?:(?:^|\n) *(#{1,6}) *(?:\n+|$))|(?:(?:^|\n) *(#{1,6}) +(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+(?::[0-9]+)?)((?:\/(?:\([\w\d.\-_~!$&'*+,;=:@%\u00C0-\uFFFF]*\)|[\w\d.\-_~!$&'*+,;=:@%\u00C0-\uFFFF])+)|\/)*(?:[?#][\w\d.\-_~!$&'*+,;=:@%/\u00C0-\uFFFF]+)*)|(`+[^`]*`+)|(?:<a[^>]*href=(\".+?\"|\'.+?\'|[^ \t>]+?).*?>)(.+?)<\/a>|(?:<img[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+).*?\/?>(?:<\/img>)?)|(?:<iframe[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+).*?\/?>(?:<\/iframe>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^>]*>)|(<\/h[1-6][^>]*>)|(<div[^>]*>)|(<\/div[^>]*>)|(<p(?: +[^>]*)?>)|(<\/p(?: +[^>]*)?>)|(<blockquote>)|(<\/blockquote>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(?:<(table|tr|th|td)>)|(?:<\/(table|tr|th|td)>)|(\n*<br *\/?>)|(\n*<hr *\/?>)|(<\/?[a-z]+(?: +[^>]*)?>)|((?: *\n){2,}|( ?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
     var elements = [], begin_tags = [];
     var token, text_chunk, element;
     var last_index = 0;
@@ -41,10 +41,11 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             }
         } else if (token[4]) { // > quote
+            console.log("QUOTE: " + JSON.stringify(token[4]));
             var lines = token[4].replace(/^\n+|\n+$/, "").split(/(?:\n|^) *>/g).slice(1);
 
             lines.forEach(function(line) {
-                var children = MarkdownParser.__parse_to_markdown(line + "\n", false);
+                var children = MarkdownParser.__parse_to_markdown(line.trim() + "\n", false);
                 var break_met = false, first_child = true;
 
                 if (!element) {
@@ -182,6 +183,17 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
                 var items = [], break_met = false, first_child = true;
 
+                if (!element) {
+                    element = {
+                        type:"list",
+                        data:{
+                            items:[], 
+                            inline:inline,
+                            break:true
+                        }
+                    }
+                }
+
                 children.forEach(function(child) {
                     if (!break_met && child.data["break"]) {
                         if (text_chunk) {
@@ -216,7 +228,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     }
 
                     first_child = false;
-                 });
+                });
 
                 if (!break_met) {
                     element.data["items"].push([ symbol, level, items ]);
@@ -513,6 +525,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     }
                 }
 
+                MarkdownParser.__handle_mismatched_tags(elements, "", false, begin_tags);
                 MarkdownParser.__clear_unhandled_begins(elements);
             }
         }
@@ -559,8 +572,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
         });
     }
 
-    MarkdownParser.__clear_unhandled_begins(elements);
     MarkdownParser.__handle_mismatched_tags(elements, "", false, begin_tags);
+    MarkdownParser.__clear_unhandled_begins(elements);
 
     return elements;
 }
@@ -594,14 +607,6 @@ MarkdownParser.__last_formatter_begin = function(elements, symbol) {
     }
 }
 
-MarkdownParser.__clear_unhandled_begins = function(elements) {
-    elements.forEach(function(element) {
-        if (["link-begin-or-text", "formatter-begin"].includes(element.type)) {
-            element["type"] = "text";
-        }
-    });
-}
-
 MarkdownParser.__handle_mismatched_tags = function(elements, tag, inline, begin_tags) {
     if (tag && begin_tags.length > 0 && !begin_tags[begin_tags.length - 1]["type"].startsWith(tag)) {
         elements.push({
@@ -629,10 +634,20 @@ MarkdownParser.__handle_mismatched_tags = function(elements, tag, inline, begin_
         });
     }
 
-    elements.push({
-        type:tag + "-tag-begin",
-        data:{
-            inline:inline
+    if (tag) {
+        elements.push({
+            type:tag + "-tag-begin",
+            data:{
+                inline:inline
+            }
+        });        
+    }
+}
+
+MarkdownParser.__clear_unhandled_begins = function(elements) {
+    elements.forEach(function(element) {
+        if (["link-begin-or-text", "formatter-begin"].includes(element.type)) {
+            element["type"] = "text";
         }
     });
 }

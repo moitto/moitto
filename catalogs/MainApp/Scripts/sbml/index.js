@@ -384,13 +384,17 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         }
 
         if (element.type === "image") {
-            sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
+            var image_url = Sbml.__encode_url(Sbml.__url_for_image(element.data["url"]));
+
+            sbml += "=(object image: style=image, image-url=\"" + image_url + "\", load-id=\"" + image_url + "\")=";
 
             return;
         }
 
         if (element.type === "image-tag") {
-            sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
+            var image_url = Sbml.__encode_url(Sbml.__url_for_image(element.data["url"]));
+
+            sbml += "=(object image: style=image, image-url=\"" + image_url + "\", load-id=\"" + image_url + "\")=";
 
             return;
         }
@@ -399,18 +403,20 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             var youtube_video_id = Sbml.urls.get_youtube_video_id(element.data["url"]);
 
             if (youtube_video_id) {
-                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\")=";
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\", load-id=\"" + youtube_video_id + "\")=";
 
                 return;
             }
 
-            sbml += "=(object web: style=web, url=\"" + element.data["url"] + "\")=";
+            var url = Sbml.__encode_url(element.data["url"]);
+
+            sbml += "=(object web: style=web, url=\"" + url + "\", load-id=\"" + url + "\")=";
 
             return;
         }
 
         if (element.type === "link-begin") {
-            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|";
+            sbml += "=[link: script=open_url, url=\"" + Sbml.__encode_url(element.data["url"]) + "\"|";
             inline_depth = inline_depth + 1;
 
             return;
@@ -424,7 +430,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         }
 
         if (element.type === "anchor-tag") {
-            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
+            sbml += "=[link: script=open_url, url=\"" + Sbml.__encode_url(element.data["url"]) + "\"|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
 
             return;
         }
@@ -433,18 +439,20 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             var youtube_video_id = Sbml.urls.get_youtube_video_id(element.data["url"]);
 
             if (youtube_video_id) {
-                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\")=";
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\", load-id=\"" + youtube_video_id + "\")=";
 
                 return;
             }
 
             if (Sbml.__is_image_url((images || []), element.data["url"]) || Sbml.__is_image_path(element.data["path"] || "")) {
-                sbml += "=(object image: style=image, image-url=\"" + Sbml.__url_for_image(element.data["url"]) + "\")=";
+                var image_url = Sbml.__url_for_image(element.data["url"]);
+    
+                sbml += "=(object image: style=image, image-url=\"" + image_url + "\", load-id=\"" + image_url + "\")=";
 
                 return;
             }
 
-            sbml += "=[link: script=open_url, url=\"" + element.data["url"] + "\"|" + element.data["url"] + "]=";
+            sbml += "=[link: script=open_url, url=\"" + Sbml.__encode_url(element.data["url"]) + "\"|" + element.data["url"] + "]=";
 
             return;
         }
@@ -502,6 +510,10 @@ Sbml.__handle_text = function(text) {
     text = decode("html", text);
 
     return text;
+}
+
+Sbml.__encode_url = function(url) {
+    return url;
 }
 
 Sbml.__is_image_url = function(images, url) {

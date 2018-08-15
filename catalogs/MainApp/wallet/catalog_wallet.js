@@ -44,12 +44,10 @@ function on_resume() {
 
 function feed_wallet(handler) {
     var me = storage.value("ACTIVE_USER") || "";
+    var assets = controller.catalog().value("showcase", "auxiliary", "S_WALLET_ASSETS");
     var wallet = controller.catalog().values("collection", "wallet", me, null, [ 0, 100 ]);
 
-    handler([{
-        "id":"P_WALLET_ASSETS",
-        "has-own-sbml":"yes"
-    }].concat(wallet || []));
+    handler([assets].concat(wallet || []));
 }
 
 function __get_user(username, handler) {

@@ -386,7 +386,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         if (element.type === "image") {
             var image_url = Sbml.__encode_url(Sbml.__url_for_image(element.data["url"]));
 
-            sbml += "=(object image: style=image, image-url=\"" + image_url + "\", load-id=\"" + image_url + "\")=";
+            sbml += "=(object image: style=image, image-url=\"" + image_url + "\", reuse-id=\"" + image_url + "\")=";
 
             return;
         }
@@ -394,7 +394,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         if (element.type === "image-tag") {
             var image_url = Sbml.__encode_url(Sbml.__url_for_image(element.data["url"]));
 
-            sbml += "=(object image: style=image, image-url=\"" + image_url + "\", load-id=\"" + image_url + "\")=";
+            sbml += "=(object image: style=image, image-url=\"" + image_url + "\", reuse-id=\"" + image_url + "\")=";
 
             return;
         }
@@ -403,14 +403,14 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             var youtube_video_id = Sbml.urls.get_youtube_video_id(element.data["url"]);
 
             if (youtube_video_id) {
-                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\", load-id=\"" + youtube_video_id + "\")=";
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\", reuse-id=\"" + youtube_video_id + "\")=";
 
                 return;
             }
 
             var url = Sbml.__encode_url(element.data["url"]);
 
-            sbml += "=(object web: style=web, url=\"" + url + "\", load-id=\"" + url + "\")=";
+            sbml += "=(object web: style=web, url=\"" + url + "\", reuse-id=\"" + url + "\")=";
 
             return;
         }
@@ -439,7 +439,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             var youtube_video_id = Sbml.urls.get_youtube_video_id(element.data["url"]);
 
             if (youtube_video_id) {
-                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\", load-id=\"" + youtube_video_id + "\")=";
+                sbml += "=(object youtube: style=youtube, video-id=\"" + youtube_video_id + "\", reuse-id=\"" + youtube_video_id + "\")=";
 
                 return;
             }
@@ -447,7 +447,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             if (Sbml.__is_image_url((images || []), element.data["url"]) || Sbml.__is_image_path(element.data["path"] || "")) {
                 var image_url = Sbml.__url_for_image(element.data["url"]);
     
-                sbml += "=(object image: style=image, image-url=\"" + image_url + "\", load-id=\"" + image_url + "\")=";
+                sbml += "=(object image: style=image, image-url=\"" + image_url + "\", reuse-id=\"" + image_url + "\")=";
 
                 return;
             }

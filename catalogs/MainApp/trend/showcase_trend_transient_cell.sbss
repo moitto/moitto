@@ -10,4 +10,4 @@ import ~/themes.sbss
 #blank_line: color=$THEME_COLOR_01, width=1pw, height=1dp, \
             position=absolute, gravity=bottom
 
-/cell: page-background-color=$THEME_COLOR_02
+/cell: skips-drawing=yes

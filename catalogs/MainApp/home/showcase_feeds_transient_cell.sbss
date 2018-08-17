@@ -5,6 +5,8 @@ import ~/themes.sbss
 #blank_userpic: color=$THEME_COLOR_01
 #blank_line: color=$THEME_COLOR_01
 
+/cell: skips-drawing=yes, lazy-unloading=yes
+
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"

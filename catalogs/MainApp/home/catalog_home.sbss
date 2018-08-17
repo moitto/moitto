@@ -19,15 +19,21 @@ end
 
 -- showcase --
 
-#showcase_feeds: width=1pw, position=absolute, column-count=1, preload-count=1
+#showcase_feeds: width=1pw, position=absolute, column-count=1
 #goB: font-family=$SANSSERIF_BOLD
 
 /catalog: page-background-color=$THEME_COLOR_02
 
 if $LAYOUT == "thumbnail"
-    #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph"
+    #showcase_feeds: height=1ph, page-enabled=yes, lazy-loading=no, cell-size="1pw, 1ph", \
+                preload-count=1, keep-count=1, \
+                cell-background-1=$THEME_COLOR_02
 else
-    #showcase_feeds: preload-count=15, height="1ph-1sbh-44dp", content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp"
+    #showcase_feeds: height="1ph-1sbh-44dp", \
+                content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp", \
+                preload-count=15, keep-count=15, \
+                cell-border-color-1=$THEME_COLOR_01, cell-border-width=2px, \
+                cell-background-1=$THEME_COLOR_00
     if $SCREEN_WIDTH > "5"
         #showcase_feeds: cell-size="(1pw-20dp), 220dp"
     else

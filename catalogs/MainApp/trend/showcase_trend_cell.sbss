@@ -30,7 +30,7 @@ import ~/themes.sbss
             position=absolute, gravity=bottom
 
 /cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
-    page-background-color=$THEME_COLOR_02
+    skips-drawing=yes
 /cell/contents: display=none
 /cell/contents/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=left, \
                     line-break-mode=word-wrap, line-spacing=0.3em, \

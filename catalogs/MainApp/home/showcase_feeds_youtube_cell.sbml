@@ -1,4 +1,4 @@
-=begin cell: skips-drawing=yes
+=begin cell
 
 =object image: type=youtube, video-id="${template.video-id}", quality=high, \
             reuse-id="cover-${template.video-id}", style=img_cover

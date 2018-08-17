@@ -12,7 +12,8 @@ import ~/themes.sbss
 #goB: label-font-family=$SANSSERIF_BOLD
 #emoji: font-family=$EMOJI
 
-/cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data
+/cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+    skips-drawing=yes
 /cell/contents: display=none
 /cell/contents/title: text-align=left
 
@@ -32,7 +33,6 @@ if $LAYOUT == "thumbnail"
     #img_reblogged: filename="~/subview_icon_reblogged.white.png", width=15dp, height=15dp
     #label_reblogged: height=15dp, font-family=$SANSSERIF_MEDIUM, \
                 text-color=$THEME_COLOR_102, text-align=left
-    /cell: page-background-color=$THEME_COLOR_02
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em
     /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=30dp, y=-40dp
@@ -69,8 +69,7 @@ else
     #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
                 position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
     #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left
-    /cell: display=block, width=1pw, height=1ph, \
-            border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
+    /cell: display=block, width=1pw, height=1ph
     /cell/contents/title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100
     /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
     /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \

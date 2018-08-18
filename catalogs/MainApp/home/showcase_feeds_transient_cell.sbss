@@ -3,29 +3,27 @@ import ~/themes.sbss
 #blank_title: color=$THEME_COLOR_01
 #blank_meta: color=$THEME_COLOR_01
 #blank_userpic: color=$THEME_COLOR_01
-#blank_line: color=$THEME_COLOR_01
 
 /cell: skips-drawing=yes, lazy-unloading=yes
 
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #blank_title: width=0.5pw, height=30dp, align=left, \
-                margin="(1sbh+120dp) 30dp 10dp 30dp"
-    #blank_meta: width=0.3pw, height=10dp, align=left, \
-                margin="0 30dp"
+    #blank_title: width=0.7pw, height=30dp, \
+            position=absolute, gravity=left-top, x=30dp, y=1sbh+120dp
+    #blank_title.2nd: style=blank_title, width=0.6pw, y=1sbh+160dp
+    #blank_meta: width=0.3pw, height=10dp, \
+            position=absolute, gravity=left-top, x=30dp, y=1sbh+200dp
     #blank_userpic: width=40dp, height=40dp, \
                 position=absolute, gravity=bottom, y=-100dp, \
                 content-border-radius=40dp/2
-    #blank_line: display=none
 else
-    #blank_title: width=0.5pw, height=20dp, align=left, \
-                margin="15dp 15dp 10dp 15dp"
-    #blank_meta: width=0.3pw, height=10dp, align=left, \
-                margin="0 15dp"
-    #blank_userpic: width=35dp, height=35dp, \
-                position=absolute, gravity=top-left, x=15dp, y=110dp, \
-                content-border-radius=35dp/2
-    #blank_line: width=1pw, height=1dp, \
-                position=absolute, gravity=bottom
+    #blank_title: width=0.7pw, height=20dp, \
+            position=absolute, gravity=left-top, x=10dp, y=10dp
+    #blank_title.2nd: style=blank_title, width=0.6pw, y=40dp
+    #blank_meta: width=0.3pw, height=10dp, \
+            position=absolute, gravity=left-bottom, x=10dp, y=-45dp 
+    #blank_userpic: width=30dp, height=30dp, \
+            position=absolute, gravity=left-bottom, x=10dp, y=-10dp, \
+            content-border-radius=35dp/2    
 end

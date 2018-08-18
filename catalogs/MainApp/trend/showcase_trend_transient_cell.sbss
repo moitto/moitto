@@ -1,8 +1,8 @@
 import ~/themes.sbss
 
-#blank_title: color=$THEME_COLOR_01, width=0.7pw, height=20dp, \
+#blank_title: color=$THEME_COLOR_01, width=0.7pw, height=25dp, \
             position=absolute, gravity=left-top, x=15dp, y=15dp
-#blank_title.2nd: style=blank_title, width=0.6pw, y=45dp
+#blank_title.2nd: style=blank_title, width=0.6pw, y=50dp
 
 #blank_meta: color=$THEME_COLOR_01, width=0.3pw, height=10dp, \
             position=absolute, gravity=bottom-left, x=15dp, y=-70dp
@@ -13,4 +13,4 @@ import ~/themes.sbss
 #blank_line: color=$THEME_COLOR_01, width=1pw, height=1dp, \
             position=absolute, gravity=bottom
 
-/cell: skips-drawing=yes
+/cell: skips-drawing=yes, lazy-unloading=yes

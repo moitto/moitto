@@ -7,3 +7,5 @@ import ~/themes.sbss
             position=absolute, gravity=left, x=60dp
 
 #blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
+
+/cell: skips-drawing=yes, lazy-unloading=yes

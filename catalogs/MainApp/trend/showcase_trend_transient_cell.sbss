@@ -1,12 +1,15 @@
 import ~/themes.sbss
 
-#blank_title: color=$THEME_COLOR_01, width=0.5pw, height=20dp, align=left, \
-            margin="15dp 15dp 10dp 15dp"
-#blank_meta: color=$THEME_COLOR_01, width=0.3pw, height=10dp, align=left, \
-            margin="0 15dp"
-#blank_userpic: color=$THEME_COLOR_01, width=35dp, height=35dp, \
-            position=absolute, gravity=top-left, x=15dp, y=110dp, \
-            content-border-radius=35dp/2
+#blank_title: color=$THEME_COLOR_01, width=0.7pw, height=20dp, \
+            position=absolute, gravity=left-top, x=15dp, y=15dp
+#blank_title.2nd: style=blank_title, width=0.6pw, y=45dp
+
+#blank_meta: color=$THEME_COLOR_01, width=0.3pw, height=10dp, \
+            position=absolute, gravity=bottom-left, x=15dp, y=-70dp
+#blank_userpic: color=$THEME_COLOR_01, width=33dp, height=33dp, \
+            position=absolute, gravity=bottom-left, x=16dp, y=-11dp, \
+            content-border-radius=33dp/2
+
 #blank_line: color=$THEME_COLOR_01, width=1pw, height=1dp, \
             position=absolute, gravity=bottom
 

@@ -33,8 +33,7 @@ import ~/themes.sbss
     skips-drawing=yes
 /cell/contents: display=none
 /cell/contents/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=left, \
-                    line-break-mode=word-wrap, line-spacing=0.3em, \
-                    margin=15dp
+                    line-break-mode=word-wrap, line-spacing=0.3em, margin=15dp
 /cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-15dp, padding="0 15dp"
 
 if $SCREEN_WIDTH > "5"

@@ -5,6 +5,7 @@ import ~/themes.sbss
 #goM: font-family=$SANSSERIF_MEDIUM
 
 /header: data-binding=assets, script-when-data-changed=on_change_data, \
+        script-when-loaded=on_loaded, \
         text-align=center, margin="0 0 25dp 0"
 /header/rewards: display=block, width="1pw-20dp", \
         text-color=$THEME_COLOR_100, text-align=left, paragraph-spacing=0.2em, \

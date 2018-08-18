@@ -2,7 +2,7 @@
 
 =begin content
 =object showcase: alternate-name=user.me.blog, data-script=feed_blog, \
-            loads-more=yes, more-count=15, preload-count=15, \
+            loads-more=yes, more-count=15, preload-count=15, keep-count=15, \
             has-header=yes, header-display-unit=S_USER.ME, \
             selectable=yes, script-when-selected=open_discussion, \
             style=showcase_blog

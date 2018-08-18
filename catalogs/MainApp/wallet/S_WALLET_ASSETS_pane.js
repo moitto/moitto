@@ -1,5 +1,11 @@
+var __has_rewards = null;
+
+function on_loaded() {
+    __has_rewards = $data["has-rewards"];
+}
+
 function on_change_data(id, data) {
-    if (data["has-rewards"] !== $data["has-rewards"]) {
+    if (data["has-rewards"] !== __has_rewards) {
         __reload_assets_showcase_header();
     }
 }

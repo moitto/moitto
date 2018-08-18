@@ -1,0 +1,10 @@
+import ~/themes.sbss
+
+#blank_title: color=$THEME_COLOR_01, width=0.7pw, height=20dp, \
+            position=absolute, gravity=left-top, x=10dp, y=10dp
+#blank_title.2nd: style=blank_title, width=0.6pw, y=40dp
+
+#blank_meta: color=$THEME_COLOR_01, width=0.3pw, height=10dp, \
+            position=absolute, gravity=left-bottom, x=10dp, y=-25dp  
+
+/cell: skips-drawing=yes, lazy-unloading=yes

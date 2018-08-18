@@ -19,7 +19,7 @@ end
 
 -- showcase --
 
-#showcase_feeds: width=1pw, position=absolute, column-count=1
+#showcase_feeds: width=1pw, position=absolute, column-count=1, more-count=30
 #goB: font-family=$SANSSERIF_BOLD
 
 /catalog: page-background-color=$THEME_COLOR_02
@@ -31,7 +31,7 @@ if $LAYOUT == "thumbnail"
 else
     #showcase_feeds: height="1ph-1sbh-44dp", \
                 content-margin=10dp, cell-spacing=10dp, y="1sbh+44dp", \
-                preload-count=15, keep-count=15, \
+                preload-count=30, keep-count=10, \
                 cell-border-color-1=$THEME_COLOR_01, cell-border-width=2px, \
                 cell-background-1=$THEME_COLOR_00
     if $SCREEN_WIDTH > "5"

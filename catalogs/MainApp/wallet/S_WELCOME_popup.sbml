@@ -1,0 +1,16 @@
+=begin popup
+
+=begin user
+=object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+=[user|${username}]=님
+환영합니다
+=end user
+
+=begin moitto
+moitto
+=end moitto
+
+=object button: script=on_login, label="시작하기", style=btn_start
+
+=end popup

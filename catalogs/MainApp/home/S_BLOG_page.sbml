@@ -1,6 +1,7 @@
 =begin page
 
-=object showcase: alternate-name=blog, data-script=feed_blog, loads-more=yes, \
+=object showcase: alternate-name=blog, data-script=feed_blog, \
+            loads-more=yes, more-count=30, preload-count=30, keep-count=15, \
             selectable=yes, script-when-selected=open_discussion, \
             style=showcase_blog
 

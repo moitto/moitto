@@ -1,0 +1,13 @@
+import ~/themes.sbss
+
+#blank_title: color=$THEME_COLOR_01, width=0.7pw, height=20dp, \
+            position=absolute, gravity=left-top, x=10dp, y=10dp
+#blank_title.2nd: style=blank_title, width=0.6pw, y=40dp
+
+#blank_meta: color=$THEME_COLOR_01, width=0.3pw, height=10dp, \
+            position=absolute, gravity=left-bottom, x=10dp, y=-45dp 
+#blank_userpic: color=$THEME_COLOR_01, width=30dp, height=30dp, \
+            position=absolute, gravity=left-bottom, x=10dp, y=-10dp, \
+            content-border-radius=35dp/2    
+
+/cell: skips-drawing=yes, lazy-unloading=yes

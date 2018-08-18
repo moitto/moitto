@@ -1,0 +1,9 @@
+=begin cell
+
+=object blank: style=blank_title
+=object blank: style=blank_title.2nd
+
+=object blank: style=blank_meta
+=object blank: style=blank_userpic
+
+=end cell

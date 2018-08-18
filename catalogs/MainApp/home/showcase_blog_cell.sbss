@@ -26,8 +26,7 @@ import ~/themes.sbss
         position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
 
 /cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
-        display=block, width=1pw, height=1ph, \
-        border-color=$THEME_COLOR_01, border-width=2px, page-background-color=$THEME_COLOR_00
+        skips-drawing=yes
 /cell/contents: display=none
 /cell/contents/title: text-align=left
 /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \

@@ -2,7 +2,7 @@
 
 =object showcase: alternate-name=following, data-script=feed_following, \
             has-header=yes, header-display-unit=S_USER, \
-            loads-more=yes, more-count=100, \
+            loads-more=yes, more-count=100, preload-count=30, keep-count=30, \
             selectable=yes, script-when-selected=show_user, \
             style=showcase_blog
 

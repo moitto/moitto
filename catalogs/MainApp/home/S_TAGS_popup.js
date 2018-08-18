@@ -1,6 +1,3 @@
-function on_loaded() {
-}
-
 function change_tag(form) {
     var tag = form["tag"].trim();
 

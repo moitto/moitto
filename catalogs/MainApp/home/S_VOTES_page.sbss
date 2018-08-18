@@ -1,5 +1,6 @@
 import ~/themes.sbss
 
-#showcase_votes: width=1pw, height=1ph, column-count=1, cell-size="1pw, 80dp", content-margin="0 0 1eb 0"
+#showcase_votes: width=1pw, height=1ph, \
+            column-count=1, cell-size="1pw, 80dp", content-margin="0 0 1eb 0"
 
 /page: page-background-color=$THEME_COLOR_02

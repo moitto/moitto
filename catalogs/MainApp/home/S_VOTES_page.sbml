@@ -1,7 +1,7 @@
 =begin page
 
 =object showcase: alternate-name=votes, data-script=feed_votes, \
-            loads-more=yes, more-count=100, \
+            loads-more=yes, more-count=100, preload-count=30, keep-count=30, \
             selectable=yes, script-when-selected=show_user, \
             style=showcase_votes
 

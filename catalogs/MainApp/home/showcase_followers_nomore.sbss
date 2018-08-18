@@ -1,5 +1,1 @@
-import showcase_followers_loading.sbss
-
-if $CELL_COUNT == 0
-    #label_info: display=none
-end
+import showcase_following_nomore.sbss

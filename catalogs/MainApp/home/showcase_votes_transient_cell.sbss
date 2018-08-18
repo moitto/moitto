@@ -1,0 +1,11 @@
+import ~/themes.sbss
+
+#blank_userpic: color=$THEME_COLOR_01, width=40dp, height=40dp, \
+            position=absolute, gravity=left, x=10dp, \
+            content-border-radius=20dp
+#blank_user: color=$THEME_COLOR_01, width=100dp, height=15dp, \
+            position=absolute, gravity=left, x=60dp
+
+#blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
+
+/cell: skips-drawing=yes, lazy-unloading=yes

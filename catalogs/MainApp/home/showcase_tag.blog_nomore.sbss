@@ -1,5 +1,1 @@
-import showcase_feeds_loading.sbss
-
-if $CELL_COUNT == 0
-    #label_info: display=none
-end
+import showcase_blog_nomore.sbss

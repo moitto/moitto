@@ -109,27 +109,6 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             return;
         }
 
-        if (element.type === "code") {
-            if (!element.data["inline"] && inline_depth == 0) {
-                sbml += center_ended ? "\n=end center\n" : "";
-                sbml += "\n";
-                sbml += "=begin code\n";
-                sbml += element.data["text"] + "\n";
-                sbml += "=end code\n";
-
-                center_begin_pos = sbml.length;
-                center_ended = false;
-            } else {
-                if (element.data.hasOwnProperty("elements")) {
-                    sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
-                } else {
-                    sbml += "=[code|" + element.data["text"] + "]=";
-                }
-            }
-
-            return;
-        }
-
         if (element.type === "list") {
             if (!element.data["inline"] && inline_depth == 0) {
                 sbml += center_ended ? "\n=end center\n" : "";
@@ -180,6 +159,36 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
                     even = even ? false : true;
                 });
                 sbml += "=end table\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+
+            return;
+        }
+
+        if (element.type === "code-begin") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=begin code\n";
+
+                center_begin_pos = sbml.length;
+                center_ended = false;
+            } else {
+
+            }
+
+            return;
+        }
+
+        if (element.type === "code-end") {
+            if (!element.data["inline"] && inline_depth == 0) {
+                sbml += center_ended ? "\n=end center\n" : "";
+                sbml += "\n";
+                sbml += "=end code\n";
 
                 center_begin_pos = sbml.length;
                 center_ended = false;
@@ -453,6 +462,16 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             }
 
             sbml += "=[link: script=open_url, url=\"" + Sbml.__encode_url(element.data["url"]) + "\"|" + element.data["url"] + "]=";
+
+            return;
+        }
+
+        if (element.type === "code") {
+            if (element.data.hasOwnProperty("elements")) {
+                sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
+            } else {
+                sbml += "=[code|" + element.data["text"] + "]=";
+            }
 
             return;
         }

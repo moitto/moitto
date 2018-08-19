@@ -1,7 +1,5 @@
 =begin empty
 
-=begin content
-검색한 태그가 없습니다.
-=end content
+=object label: text="검색한 태그가 없습니다.", style=label_message
 
 =end empty

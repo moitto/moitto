@@ -1,4 +1,4 @@
-=begin popup: script-when-loaded=on_loaded, scrolls-on-keyboard=no
+=begin popup: scrolls-on-keyboard=no
 
 =object section: id=query.bar, section=query.bar, style=section_query.bar, alt="태그 입력창"
 =begin query.bar: id=query.bar, form=query
@@ -22,8 +22,7 @@
 =object showcase: id=showcase.history, name=tags.history, \
                 sortable=yes, sortkey=rowid, sortorder=descending, \
                 selectable=yes, script-when-selected=select_history, \
-                has-toolbar=yes, \
-                bounces=yes, \
+                has-toolbar=yes, shrinks-on-keyboard=yes, bounces=yes, \
                 style=showcase_history
 
 =end popup

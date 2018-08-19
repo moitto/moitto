@@ -1,3 +1,7 @@
+function on_change_tag() {
+    /* TBD */
+}
+
 function change_tag(form) {
     var tag = form["tag"].trim();
 

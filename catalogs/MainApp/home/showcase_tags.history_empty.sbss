@@ -1,5 +1,8 @@
 import ~/themes.sbss
 
-/empty/content: display=block, position=absolute, gravity=center, y=-20dp, \
+#label_message: position=absolute, gravity=center, y=-20dp, \
         font-family=$SANSSERIF_MEDIUM, font-size=1, \
-        text-align=center, text-color=$THEME_COLOR_101
+        text-align=center, text-color=$THEME_COLOR_101, \
+        autoresizing=flexible-margins
+
+/empty: skips-drawing=yes

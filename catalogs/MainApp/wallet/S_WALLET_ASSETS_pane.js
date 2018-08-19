@@ -8,6 +8,8 @@ function on_change_data(id, data) {
     if (data["has-rewards"] !== __has_rewards) {
         __reload_assets_showcase_header();
     }
+
+    __has_rewards = data["has-rewards"];
 }
 
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {

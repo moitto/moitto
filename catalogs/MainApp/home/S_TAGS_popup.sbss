@@ -27,8 +27,9 @@ end
 
 -- 검색 히스토리 --
 
-#showcase_history: width=1pw, height="1ph-(1sbh+44dp)", max-height="40dp*7+5dp*6+20+40dp", \
-            column-count=1, cell-size="(1pw-20dp), 40dp", cell-spacing=5dp, content-margin="0 10dp 10dp 10dp", \
+#showcase_history: width=1pw, height="1ph-(1sbh+44dp+1eb)", \
+            column-count=1, cell-size="(1pw-20dp), 40dp", cell-spacing=5dp, \
+            content-margin="0 10dp 10dp 10dp", \
             position=absolute, gravity=top, y="1sbh+44dp+10dp", \
             selected-color=$LIGHT_COLOR_DIM, toolbar-height=40dp
 /popup/suggestion: display=none

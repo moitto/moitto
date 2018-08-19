@@ -1,7 +1,7 @@
-=begin header: script-when-loaded=on_loaded
+=begin header
 
 =object blank: style=blank_userpic.mask
-=object image: image-url="${userpic-large-url}", image-downloadable=yes, style=img_profile
+=object image: image-url="${userpic-large-url}", reuse-id="profile-${username}", style=img_profile
 
 =(object blank: style=blank_margin)==(object label: text="${username}", style=label_user)==(object button: script=show_me, style=btn_user)=
 =object label: text="REP. ${reputation}", style=label_rep

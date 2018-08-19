@@ -207,6 +207,10 @@ Actions.redeem_rewards = function(params) {
             Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
                 Actions.__on_complete(params, id, data);
             });
+        } else {
+            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                Actions.__on_complete(params, id, data);
+            });
         }
     });
 }

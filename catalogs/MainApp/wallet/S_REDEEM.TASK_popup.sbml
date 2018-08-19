@@ -1,4 +1,4 @@
-=begin popup: script-when-loaded=on_loaded
+=begin popup
 
 =object button: action=popup-close, style=btn_close
 =object label: text="리워드 입금", style=label_title

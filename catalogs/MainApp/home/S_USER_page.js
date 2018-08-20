@@ -16,7 +16,8 @@ function on_loaded() {
     __get_user(value["username"], function(user, follows, muted) {
         var data = {
             "username":user.name, 
-            "userpic-url":user.get_userpic_url(),
+            "userpic-url":user.get_userpic_url("small"),
+            "userpic-large-url":user.get_userpic_url(),
             "reputation":user.get_reputation().toFixed(1).toString(),
             "post-count":user.get_post_count().toString(),
             "following-count":user.get_following_count().toString(),

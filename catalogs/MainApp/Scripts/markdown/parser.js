@@ -15,7 +15,7 @@ MarkdownParser.parse = function(text) {
 }
 
 MarkdownParser.__parse_to_markdown = function(text, inline) {
-    var tokenizer = /((?:^|\n+) {0,3}(?:(?:- *)+|(?:_ *)+|(?:\* *)+)(?:\n+|$))|(?:(?:^|\n) {0,3}(`{3,}|~{3,})(.*)(?:\n|$))|((?:(?:^|\n) *>(?: *[^ \n].*(?:\n *[^ \n].*)*|.*))+)|((?:(?:^|\n) *(?:[*+-]|\d+\.) +.*(?:\n *[^ \n].+)*(?: *\n *)?)+)|((?:^|\n+) *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?\n *\|?(?:(?: *:?-+:? *)\|)+(?: *:?-+:? *)? *(?:\n|$)(?: *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*?\)|[^)])*)\)|(\[)|(\]\(((?:\([^)]*?\)|[^)])*)\))|(\])|(?:(?:^|\n) *(#{1,6}) *(?:\n+|$))|(?:(?:^|\n) *(#{1,6}) +(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+(?::[0-9]+)?)((?:\/(?:\([\w\d.\-_~$&'+,;=:@%\u00C0-\uFFFF]*\)|[\w\d.\-_~$&'+,;=:@%\u00C0-\uFFFF])+)|\/)*(?:[?#][\w\d.\-_~$&'+,;=:@%/\u00C0-\uFFFF]+)*)|(`+[^`]*`+)|(?:<a[^>]*href=(\".+?\"|\'.+?\'|[^ \t>]+?).*?>)(.+?)<\/a>|(?:<img[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+).*?\/?>(?:<\/img>)?)|(?:<iframe[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+)[^>]*>(?:<\/iframe>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^\n>]*>)|(<\/h[1-6][^\n>]*>)|(<div[^\n>]*>)|(<\/div[^\n>]*>)|(<p(?: +[^\n>]*)?>)|(<\/p(?: +[^\n>]*)?>)|(<blockquote>)|(<\/blockquote>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(?:<(table|tr|th|td)>)|(?:<\/(table|tr|th|td)>)|(\n*<br *\/?>)|(\n*<hr *\/?>)|(<\/?[a-z]+(?: +[^\n>]*)?>)|((?: *\n){2,}|([ \n]?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
+    var tokenizer = /((?:^|\n+) {0,3}(?:(?:- *)+|(?:_ *)+|(?:\* *)+)(?:\n+|$))|(?:(?:^|\n) {0,3}(`{3,}|~{3,})(.*)(?:\n|$))|((?:(?:^|\n) *>(?: *[^ \n].*(?:\n *[^ \n].*)*|.*))+)|((?:(?:^|\n) *\* +.*(?:\n *[^ \n].+)*(?: *\n *)?)+|(?:(?:^|\n) *\+ +.*(?:\n *[^ \n].+)*(?: *\n *)?)+|(?:(?:^|\n) *\- +.*(?:\n *[^ \n].+)*(?: *\n *)?)+|(?:(?:^|\n) *\d+\. +.*(?:\n *[^ \n].+)*(?: *\n *)?)+)|((?:^|\n+) *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?\n *\|?(?:(?: *:?-+:? *)\|)+(?: *:?-+:? *)? *(?:\n|$)(?: *\|?(?:[^\n|]*\|)+(?:[^\n|]*)?(?:\n|$))*)|\!\[(.*?)\]\(((?:\([^)]*?\)|[^)])*)\)|(\[)|(\]\(((?:\([^)]*?\)|[^)])*)\))|(\])|(?:(?:^|\n) *(#{1,6}) *(?:\n+|$))|(?:(?:^|\n) *(#{1,6}) +(.+)(?:\n+|$))|((?:https?:\/\/)((?:[a-z0-9\-]+\.?)+(?::[0-9]+)?)((?:\/(?:\([\w\d.\-_~$&'+,;=:@%\u00C0-\uFFFF]*\)|[\w\d.\-_~$&'+,;=:@%\u00C0-\uFFFF])+)|\/)*(?:[?#][\w\d.\-_~$&'+,;=:@%/\u00C0-\uFFFF]+)*)|(`+[^`]*`+)|(?:<a[^>]*href=(\".+?\"|\'.+?\'|[^ \t>]+?).*?>)(.+?)<\/a>|(?:<img[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+).*?\/?>(?:<\/img>)?)|(?:<iframe[^>]*src=(\".+?\"|\'.+?\'|[^ \t>]+)[^>]*>(?:<\/iframe>)?)|(?:<(strong|strike|b|i|code|sub|sup)>)|(?:<\/(strong|strike|b|i|code|sub|sup)>)|(<h[1-6][^\n>]*>)|(<\/h[1-6][^\n>]*>)|(<div[^\n>]*>)|(<\/div[^\n>]*>)|(<p(?: +[^\n>]*)?>)|(<\/p(?: +[^\n>]*)?>)|(<blockquote>)|(<\/blockquote>)|(<center>)|(<\/center>)|(<pre>)|(<\/pre>)|(?:<(table|tr|th|td)>)|(?:<\/(table|tr|th|td)>)|(\n*<br *\/?>)|(\n*<hr *\/?>)|(<\/?[a-z]+(?: +[^\n>]*)?>)|((?: *\n){2,}|([ \n]?)(?:(_{1,3})|(\*{1,3})|(~{2})))/igm;
     var elements = [], begin_tags = [], formatters = [];
     var code_begin = null, pre_begin = null;
     var token, text_chunk, element;
@@ -93,13 +93,14 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                         first_child = false;
                     });
                 });
-            } else if (token[5]) { // -* list
+            } else if (token[5]) { // *+- list
                 var lines = token[5].replace(/^\n+|\n+$/, "").split("\n");
+                var symbol = token[5].match(/(?:^|\n) *([*+-])|(\d+)\. +/)[1];
                 var indents = [], numbers = [];
                 var level = 0, number = "", subtext = "";
 
                 lines.forEach(function(line) {
-                    var match = line.match(/^( *)(?:[*+-]|(\d+)\.) +(.*)/);
+                    var match = line.match(/^( *)(?:([*+-])|(\d+)\.) +(.*)/);
                     var indent = match ? match[1].length : 0;
 
                     if (!element) {
@@ -113,12 +114,13 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                         }
                     }
 
-                    if (match && (level == 0 || indent < indents[level - 1] + 6)) {
+                    if (match && (match[2] === symbol) && (level == 0 || indent < indents[level - 1] + 6)) {
                         if (subtext) {
                             var children = MarkdownParser.__parse_to_markdown(subtext, false);
                             var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
                             var items = [], break_met = false, first_child = true;
 
+                            console.log("list item: " + JSON.stringify(children));
                             children.forEach(function(child) {
                                 if (!break_met && child.data["break"]) {
                                     if (text_chunk) {
@@ -160,12 +162,12 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                             }
                         }
 
-                        subtext = match[3];
-                        number  = match[2];
+                        subtext = match[4];
+                        number  = match[3];
 
                         if (level == 0 || indent > indents[level - 1] + 1) {
                             indents.push(indent);
-                            numbers.push(match[2] ? 1 : 0);
+                            numbers.push(match[3] ? 1 : 0);
 
                             level = level + 1;
                         } else {
@@ -175,7 +177,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                             numbers = numbers.slice(0, level);
 
                             indents[level - 1] = indent;
-                            numbers[level - 1] = match[2] ? numbers[level - 1] + 1 : 0;
+                            numbers[level - 1] = match[3] ? numbers[level - 1] + 1 : 0;
                         }
                     } else {
                         subtext = subtext + "\n" + line;

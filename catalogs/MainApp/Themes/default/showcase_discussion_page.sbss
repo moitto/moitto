@@ -97,17 +97,17 @@ end
 %quote: border-color=$THEME_COLOR_01, margin="1.2em 0 1.2em 0.4em", padding="0.2em 0 0.2em 0.6em", border-width="0 0 0 5dp"
 %center: text-align=center, margin="0.6em 0 0.6em 0"
 #center: text-align=center
-%code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em
-#code: background-color=$THEME_COLOR_05, text-color=$THEME_COLOR_102, padding=0.2em, pack=yes
-%table: display=table
-%th: font-family=$SANSSERIF_BOLD, background-color=#ff0
-%tr:
+%code: font-size=0.95em, background-color=$THEME_COLOR_06, margin="0.6em 0 0.6em 0", padding=0.6em
+#code: font-size=0.95em, background-color=$THEME_COLOR_06, padding=0.2em, pack=yes
+%table: display=table, font-size=0.95em, line-spacing=0.2em, paragraph-spacing=0.4em
+%th: font-family=$SANSSERIF_BOLD, padding=0.4em, background-color=$THEME_COLOR_01
+%tr: 
 #tr-header:
-#tr-odd:
-#tr-even:
-%td: background-color=#eee
-#td-odd:
-#td-even:
+#tr-odd: 
+#tr-even: 
+%td: padding=0.4em
+#td-odd: background-color=$THEME_COLOR_06
+#td-even: background-color=$THEME_COLOR_01
 
 /page/body: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.6em, paragraph-spacing=0.6em, empty-line-height=0.6em

@@ -467,11 +467,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
         }
 
         if (element.type === "code") {
-            if (element.data.hasOwnProperty("elements")) {
-                sbml += "=[code|" + Sbml.__elements_to_sbml(element.data["elements"], images, true) + "]=";
-            } else {
-                sbml += "=[code|" + element.data["text"] + "]=";
-            }
+            sbml += "=[code|" + element.data["text"] + "]=";
 
             return;
         }

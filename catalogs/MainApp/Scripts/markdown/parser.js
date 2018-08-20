@@ -355,7 +355,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     element = {
                         type:"code",
                         data:{
-                            elements:MarkdownParser.__parse_to_markdown(code[2], true),
+                            text:code[2],
                             inline:true
                         }
                     }                

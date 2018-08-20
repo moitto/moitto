@@ -2,4 +2,8 @@
 
 =object label: text="불러오는 중입니다.", style=label_loading
 
+=begin guide
+=object button: script=vote, label="첫 번째로 보팅을 해보세요.", style=btn_vote
+=end guide
+
 =end empty

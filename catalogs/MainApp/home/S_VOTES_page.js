@@ -2,6 +2,10 @@ var steemjs = require("steemjs");
 var votes   = require("votes");
 var users   = require("users");
 
+function on_change_data(id, data) {
+    __reload_votes_showcase();
+}
+
 function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
     var value = controller.catalog().value("showcase", "auxiliary", "S_VOTES");
 
@@ -38,4 +42,10 @@ function show_user(data) {
     });
 
     controller.action("page", { "display-unit":"S_USER", "target":"popup" })
+}
+
+function __reload_votes_showcase() {
+    var showcase = view.object("showcase.vote");
+
+    showcase.action("reload");
 }

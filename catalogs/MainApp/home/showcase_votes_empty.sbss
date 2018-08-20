@@ -3,6 +3,12 @@ import ~/themes.sbss
 #label_loading: position=abs, gravity=center, y=-50dp, display=none, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
 
+#btn_vote: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+
+/empty/guide: display=none
+
 if $SCREEN_WIDTH > "5"
     #label_loading: font-size=1.2
 else
@@ -11,4 +17,6 @@ end
 
 if $LOADING == "yes"
     #label_loading: display=object
+else
+    /empty/guide: display=section
 end

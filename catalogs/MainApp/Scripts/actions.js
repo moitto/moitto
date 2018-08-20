@@ -18,6 +18,7 @@ Actions.vote = function(params) {
                 } else {
                     controller.action("toast", { "message":"보팅이 완료되었습니다." });
                 }
+                controller.update("votes-" + params["author"] + "." + params["permlink"], {});
 
                 Actions.__on_complete(params, id, data);
             });

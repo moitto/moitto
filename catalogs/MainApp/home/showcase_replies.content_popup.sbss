@@ -6,7 +6,7 @@ import ~/themes.sbss
 #btn_close: width="1pw-40dp", height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_00
-#red: label-color=$THEME_COLOR_104, content-background-color=$THEME_COLOR_01
+#red: label-color=$WHITE_COLOR, content-background-color=$THEME_COLOR_01
 #blank_line: width="1pw-40dp", height=1dp
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM

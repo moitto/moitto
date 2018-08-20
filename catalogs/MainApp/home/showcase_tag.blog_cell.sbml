@@ -1,6 +1,6 @@
 =begin cell
 
-=object image: image-url="${image-url}", style=img_cover
+=object image: image-url="${image-url}", reuse-id="${image-url}", style=img_cover
 
 =object section: section=tag.contents, style=section_contents
 

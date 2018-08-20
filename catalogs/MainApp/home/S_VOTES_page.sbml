@@ -1,8 +1,9 @@
 =begin page
 
-=object showcase: alternate-name=votes, data-script=feed_votes, \
+=object showcase: id=showcase.vote, alternate-name=votes, data-script=feed_votes, \
             loads-more=yes, more-count=100, preload-count=30, keep-count=30, \
             selectable=yes, script-when-selected=show_user, \
+            empty-display-unit=${id}, \
             style=showcase_votes
 
 =end page

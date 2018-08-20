@@ -1,6 +1,6 @@
 =begin page: script-when-loaded=on_loaded
 
-=object image: image-url="${image-url}", style=img_header
+=object image: image-url="${image-url}", reuse-id="${image-url}", style=img_header
 
 
 

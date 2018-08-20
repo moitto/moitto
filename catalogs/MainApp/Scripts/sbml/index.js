@@ -319,6 +319,19 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             return;
         }
 
+        if (element.type === "paragraph-tag-begin") {
+            sbml += "\n\n";
+
+            return;
+        }
+
+        if (element.type === "paragraph-tag-end") {
+            sbml += "\n\n";
+ 
+            return;
+        }
+
+
         if (element.type === "pre-tag-begin") {
 
             return;

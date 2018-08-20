@@ -34,6 +34,7 @@ $CODE_BOLD     = "CourierNewPS-BoldMT"
 %heading-5: style=heading, font-size=1.1em, margin="1.2em 0 0.7em 0"
 %heading-6: style=heading, text-color=$THEME_COLOR_101, margin="1.2em 0 0.7em 0"
 
+%paragraph: margin="0.6em 0 0.6em 0"
 %list: display=list, margin="1.2em 0 1.2em 0", padding-left=0.1em, line-spacing=0.5em, paragraph-spacing=0.6em
 %list-item: display=list-item, margin-left=0.5em
 #list-level-1: padding-left=0.5em

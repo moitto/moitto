@@ -1,6 +1,6 @@
 =begin cell
 
-=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+=object image: image-url="${userpic-url}", reuse-id="${userpic-url}", style=img_userpic
 =object label: text="${username}", style=label_user
 
 

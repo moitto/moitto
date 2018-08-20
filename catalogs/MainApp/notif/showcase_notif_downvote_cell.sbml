@@ -1,6 +1,6 @@
 =begin cell
 
-=object image: image-url="${userpic-url-1}", style=img_userpic
+=object image: image-url="${userpic-url-1}", reuse-id="${userpic-url-1}", style=img_userpic
 
 =(object label:text="${actor-1}",style=label_notif,style=label_highlight)==(object label:text="님",style=label_notif)==(object label:text=", ", style=not_single_actor,style=label_notif)==(object label:text="${actor-2}",style=not_single_actor,style=label_notif,style=label_highlight)==(object label:text="님",style=not_single_actor,style=label_notif)==(object label:text=" 외 ${actors-count-n}명", style=multiple_actors,style=label_notif,style=label_highlight)==(object label:text="이",style=label_notif)=
 =(object label:text="회원님의 ",style=label_notif)==(object label:text="글", style=discussion,style=label_notif)==(object label:text="댓글",style=comment,style=label_notif)==(object label:text="에 ",style=label_notif)==(object label:text="다운보팅",style=label_notif,style=label_highlight)==(object label:text="을 했습니다.",style=label_notif)=

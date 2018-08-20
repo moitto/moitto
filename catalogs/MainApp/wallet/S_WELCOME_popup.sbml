@@ -2,7 +2,7 @@
 
 =begin user
 =object blank: style=blank_userpic.mask
-=object image: image-url="${userpic-url}", image-downloadable=yes, style=img_userpic
+=object image: image-url="${userpic-url}", reuse-id="${userpic-url}", style=img_userpic
 =[user|${username}]=님
 환영합니다
 =end user

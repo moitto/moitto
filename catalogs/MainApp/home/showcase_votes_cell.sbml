@@ -1,7 +1,7 @@
 =begin cell
 
 =object blank: style=blank_userpic.mask
-=object button: script=show_user, image-url="${userpic-url}", image-downloadable=yes, style=btn_userpic
+=object button: script=show_user, image-url="${userpic-url}", reuse-id="${userpic-url}", style=btn_userpic
 =object button: script=show_user, label="${voter}", style=btn_voter, y=0, alt="temporary"
 =object label: text="00.00", style=label_price, display=none, alt="temporary"
 

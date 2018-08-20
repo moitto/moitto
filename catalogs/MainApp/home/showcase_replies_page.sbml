@@ -11,7 +11,7 @@ ${replies}
 =object section: script-when-touched=comment, section=comment, style=section_comment
 =begin comment: id=comment
 =object blank: style=blank_line
-=object label: text="댓글쓰기", style=label_replies
+=object label: text="댓글 쓰기", style=label_replies
 =end comment
 
 =end page

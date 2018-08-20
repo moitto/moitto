@@ -490,7 +490,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     }
                 }
             } else if (token[43]) { // inline formatting: *em*, **strong**, ...
-                console.log("format: " + token[43]);
                 var symbols = token[45] || (token[46] || (token[47] || ""));
                 var symbol = symbols ? symbols[0] : "";
                 var prior = token[44] || "";

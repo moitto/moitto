@@ -79,6 +79,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                 "payout-declined":content.is_payout_declined() ? "yes" : "no",
                 "editable":content.is_editable(me) ? "yes" : "no",
                 "deletable":content.is_deletable(me) ? "yes" : "no",
+                "hidable":(content.is_hidable(me) && !content.is_owner(me)) ? "yes" : "no",
                 "main-tag":content.data["category"],
                 "created-at":content.data["created"]
             };

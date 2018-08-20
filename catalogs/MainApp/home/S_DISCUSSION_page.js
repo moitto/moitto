@@ -34,6 +34,7 @@ function on_loaded() {
             "payout-declined":content.is_payout_declined() ? "yes" : "no",
             "editable":content.is_editable(me) ? "yes" : "no",
             "deletable":content.is_deletable(me) ? "yes" : "no",
+            "hidable":(content.is_hidable(me) && !content.is_owner(me)) ? "yes" : "no",
             "main-tag":content.data["category"],
             "tag-1":(tags.length > 0) ? tags[0] : "",
             "tag-2":(tags.length > 1) ? tags[1] : "",

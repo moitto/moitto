@@ -83,6 +83,14 @@ Content.prototype.get_vote_weight = function(username) {
     return 0;
 }
 
+Content.prototype.is_owner = function(username) {
+    if (this.data["author"] === username) {
+        return true;
+    }
+
+    return false;  
+}
+
 Content.prototype.is_payout_done = function() {
     if (this.data["last_payout"] !== "1970-01-01T00:00:00") {
         return true;
@@ -114,7 +122,7 @@ Content.prototype.is_banned = function() {
 }
 
 Content.prototype.is_editable = function(username) {
-    if (this.data["author"] === username && !this.is_payout_done()) {
+    if (this.is_owner(username) && !this.is_payout_done()) {
         return true;
     }
 
@@ -123,6 +131,14 @@ Content.prototype.is_editable = function(username) {
 
 Content.prototype.is_deletable = function(username) {
     if (this.is_editable(username) && this.data["children"] == 0) {
+        return true;
+    }
+
+    return false;
+}
+
+Content.prototype.is_hidable = function(username) {
+    if (this.data["parent_author"] === username && !this.is_payout_done()) {
         return true;
     }
 

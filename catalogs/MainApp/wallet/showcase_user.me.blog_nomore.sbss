@@ -1,4 +1,4 @@
-import showcase_feeds_loading.sbss
+import showcase_user.me.blog_loading.sbss
 
 if $CELL_COUNT == 0
     #label_info: display=none

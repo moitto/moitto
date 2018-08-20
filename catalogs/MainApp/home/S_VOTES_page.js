@@ -18,7 +18,7 @@ function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
 
                 data.push({
                     "id":"S_VOTES_" + value["author"] + "_" + value["permlink"] + "_" + vote.data["voter"],
-                    "voter":vote.data["voter"], 
+                    "username":vote.data["voter"], 
                     "userpic-url":vote.get_userpic_url("small"),
                     "reputation":vote.get_reputation().toFixed(1).toString(),
                     "voted-at":vote.data["time"]
@@ -33,7 +33,7 @@ function feed_votes(keyword, location, length, sortkey, sortorder, handler) {
 }
 
 function show_user(data) {
-    var user = users.create(data["voter"]);
+    var user = users.create(data["username"]);
 
     controller.catalog().submit("showcase", "auxiliary", "S_USER", {
         "username":user.name,

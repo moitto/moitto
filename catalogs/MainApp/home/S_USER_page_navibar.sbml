@@ -1,8 +1,13 @@
 =begin navibar
 
 =begin user
-=(object button: script=show_details, image-url="${userpic-url}", reuse-id="${userpic-url}", style=btn_userpic)= =(object button: script=show_details, label="${username}", style=btn_user)=
+=(object section: style=section_userpic)= =(object button: script=show_details, label="${username}", style=btn_user)=
 =end user
+
+=begin userpic
+=object blank: style=blank_userpic.mask
+=object button: script=show_details, image-url="${userpic-url}", reuse-id="${userpic-url}", style=btn_userpic
+=end userpic
 
 =object button: script=show_details, style=btn_menu
 

@@ -2,15 +2,9 @@
 $SANSSERIF_LIGHT = "KoPubDotum Light"
 $SANSSERIF_MEDIUM = "KoPubDotum Medium"
 $SANSSERIF_BOLD = "KoPubDotum Bold"
-$SANSSERIF_ITALIC_MEDIUM = "Times New Roman, KoPubDotum Medium"
-$SANSSERIF_ITALIC_BOLD = "Times New Roman, KoPubDotum Bold"
 $SERIF_LIGHT = "KoPubBatang Light"
 $SERIF_MEDIUM = "KoPubBatang Medium"
 $SERIF_BOLD = "KoPubBatang Bold"
-$SSERIF_ITALIC_MEDIUM = "Times New Roman, KoPubBatang Medium"
-$SERIF_ITALIC_BOLD = "Times New Roman, KoPubBatang Bold"
-$CODE_MEDIUM = "CourierNewPSMT"
-$CODE_BOLD = "CourierNewPS-BoldMT"
 $EMOJI = "KoPubDotum Medium"
 
 -- background colors --

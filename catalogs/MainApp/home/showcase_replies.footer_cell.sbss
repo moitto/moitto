@@ -7,6 +7,7 @@ import ~/themes.sbss
 #btn_comment: height=20dp, content-padding="0 3dp", \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, \
             label-font-size=0.9
+#btn_hide: style=btn_comment
 #btn_edit: style=btn_comment
 #btn_delete: style=btn_comment
 #btn_replies.icon: image="~/subview_icon_replies.png", width=20dp, height=20dp
@@ -26,4 +27,8 @@ end
 
 if "${deletable}" != "yes"
     #btn_delete: display=none, width=0, height=0
+end
+
+if "${hidable}" != "yes"
+    #btn_hide: display=none, width=0, height=0
 end

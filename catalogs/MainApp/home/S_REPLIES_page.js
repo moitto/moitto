@@ -35,6 +35,7 @@ function on_loaded() {
                     "vote-weight":reply.get_vote_weight(me).toString(),
                     "editable":reply.is_editable(me) ? "yes" : "no",
                     "deletable":reply.is_deletable(me) ? "yes" : "no",
+                    "hidable":(reply.is_hidable(me) && !reply.is_owner(me)) ? "yes" : "no"
                 }
 
                 if (!reply.is_banned() && !reply.is_down_voted(value["author"]) ) {

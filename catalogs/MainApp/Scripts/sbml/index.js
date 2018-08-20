@@ -541,6 +541,8 @@ Sbml.__handle_text = function(text) {
 }
 
 Sbml.__encode_url = function(url) {
+    url = url.replace(/['"]/g, "");
+
     return url;
 }
 

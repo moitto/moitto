@@ -95,7 +95,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 });
             } else if (token[5]) { // *+- list
                 var lines = token[5].replace(/^\n+|\n+$/, "").split("\n");
-                var symbol = token[5].match(/(?:^|\n) *([*+-])|(\d+)\. +/)[1];
+                var mark = token[5].match(/(?:^|\n) *([*+-])|(\d+)\. +/)[1];
                 var indents = [], numbers = [];
                 var level = 0, number = "", subtext = "";
 
@@ -114,13 +114,12 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                         }
                     }
 
-                    if (match && (match[2] === symbol) && (level == 0 || indent < indents[level - 1] + 6)) {
+                    if (match && (match[2] === mark) && (level == 0 || indent < indents[level - 1] + 6)) {
                         if (subtext) {
                             var children = MarkdownParser.__parse_to_markdown(subtext, false);
                             var symbol = numbers[level - 1] ? (inline ? number : numbers[level - 1]) + "." : "";
                             var items = [], break_met = false, first_child = true;
 
-                            console.log("list item: " + JSON.stringify(children));
                             children.forEach(function(child) {
                                 if (!break_met && child.data["break"]) {
                                     if (text_chunk) {

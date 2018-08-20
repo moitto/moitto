@@ -65,9 +65,9 @@ end
 
 #link: text-decoration=underline-#6C6C6C-1
 #user: script=show_user, text-decoration=underline-#6C6C6C-1
-#italic: font-style=italic, font-family="Times New Roman, KoPubBatang Medium"
+#italic: font-style=italic, font-family=$SANSERIF_ITALIC_MEDIUM
 #em: font-family=$SANSSERIF_BOLD
-#em-italic: font-style=italic, font-family="Times New Roman, KoPubBatang BOLD"
+#em-italic: font-style=italic, font-family=$SANSERIF_ITALIC_BOLD
 #strong: font-family=$SANSSERIF_BOLD
 #bold: font-family=$SANSSERIF_BOLD
 #sup: vertical-align=top, font-size=0.7em
@@ -94,11 +94,13 @@ end
 #list-level-4: padding-left=4.5em
 #list-level-5: padding-left=6em
 #list-level-6: padding-left=7.5em
-%quote: border-color=$THEME_COLOR_01, margin="1.2em 0 1.2em 0.4em", padding="0.2em 0 0.2em 0.6em", border-width="0 0 0 5dp"
+%quote: border-color=$THEME_COLOR_01, margin="1.2em 0 1.2em 0.4em", padding="0.2em 0 0.2em 0.6em", \
+        border-width="0 0 0 5dp"
 %center: text-align=center, margin="0.6em 0 0.6em 0"
 #center: text-align=center
-%code: font-size=0.95em, background-color=$THEME_COLOR_06, margin="0.6em 0 0.6em 0", padding=0.6em
-#code: font-size=0.95em, background-color=$THEME_COLOR_06, padding=0.2em, pack=yes
+%code: font-family=$CODE_MEDIUM, font-size=0.95em, background-color=$THEME_COLOR_06, \
+        margin="0.6em 0 0.6em 0", padding=0.6em, text-align=left, line-break-mode=word-wrap
+#code: font-family=$CODE_MEDIUM, font-size=0.95em, background-color=$THEME_COLOR_06, padding=0.2em
 %table: display=table, font-size=0.95em, line-spacing=0.2em, paragraph-spacing=0.4em
 %th: font-family=$SANSSERIF_BOLD, padding=0.4em, background-color=$THEME_COLOR_01
 %tr: 

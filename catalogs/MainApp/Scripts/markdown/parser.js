@@ -490,14 +490,16 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     }
                 }
             } else if (token[43]) { // inline formatting: *em*, **strong**, ...
+                console.log("format: " + token[43]);
                 var symbols = token[45] || (token[46] || (token[47] || ""));
                 var symbol = symbols ? symbols[0] : "";
                 var prior = token[44] || "";
 
                 if (symbol === "_" || symbol === "*" || symbol === "~") {
                     var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
-
-                    if (formatter_begin && !token[44]) {
+                    var nextchar = text.substring(tokenizer.lastIndex, tokenizer.lastIndex + 1);
+                    
+                    if (formatter_begin && !token[44] && (symbol !== "_" || nextchar.match(/[^\w\d]/))) {
                         var begin_symbols = formatter_begin.data["symbols"];
                         var length = Math.min(begin_symbols.length, symbols.length);
                         var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
@@ -514,10 +516,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                             }
                         }
                     } else {
-                        var nextchar = text.substring(tokenizer.lastIndex, tokenizer.lastIndex + 1);
-                        var allowed = (symbol === "_") ? /[^ \n\w\d]/ : /[^ \n]/;
-
-                        if (nextchar.match(allowed)) {
+                        if (nextchar.match(/[^ \n]/)) {
                             element = {
                                 type:"formatter-begin",
                                 data:{

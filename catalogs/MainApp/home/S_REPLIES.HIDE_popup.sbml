@@ -1,0 +1,10 @@
+=begin popup
+
+=begin message
+댓글을 숨김처리 하시겠습니까?
+=end message
+
+=object button: script=hide_comment, label="숨김 처리", style=btn_hide
+=object button: action=popup-close, label="×", style=btn_close
+
+=end popup

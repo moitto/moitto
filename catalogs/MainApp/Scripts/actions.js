@@ -85,6 +85,29 @@ Actions.delete_comment = function(params) {
     controller.action("toast", { "message":"댓글 삭제를 진행하고 있습니다." });
 }
 
+Actions.hide_comment = function(params) {
+    Actions.__get_user(Actions.account.get_username(), function(user) {
+        if (user) {
+            Actions.account.vote(params["author"], params["permlink"], -user.get_minimum_voting_weight(), function(response) {
+                if (response) {
+                    Actions.__get_updated_data_for_content(params["parent-author"], params["parent-permlink"], function(id, data) {
+                        controller.action("toast", { "message":"댓글을 숨김 처리했습니다." });
+                        controller.update("replies-" + params["parent-author"] + "." + params["parent-permlink"], {});
+
+                        Actions.__on_complete(params, id, data);
+                    });
+                } else {
+                    controller.action("toast", { "message":"숨김 처리에 실패했습니다." });
+                }
+            });
+        } else {
+            controller.action("toast", { "message":"숨김 처리에 실패했습니다." });
+        }
+    });
+
+    controller.action("toast", { "message":"숨김 처리를 진행하고 있습니다." });
+}
+
 Actions.follow_user = function(params) {
     Actions.account.follow_user(params["username"], function(response) {
         if (response) {
@@ -213,6 +236,21 @@ Actions.redeem_rewards = function(params) {
                 Actions.__on_complete(params, id, data);
             });
         }
+    });
+}
+
+Actions.__get_user = function(username, handler) {
+    Promise.all([
+        Actions.steemjs.get_accounts([ username ]),
+        Actions.steemjs.get_dynamic_global_properties()
+    ]).then(function(response) {
+        if (response[0][0]) {
+            handler(Actions.users.create(username, response[0][0], undefined, Actions.global.create(response[1])));
+        } else {
+            handler();
+        }
+    }, function(reason) {
+        handler();
     });
 }
 

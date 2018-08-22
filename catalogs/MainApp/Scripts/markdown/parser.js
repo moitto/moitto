@@ -49,6 +49,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 var lines = token[4].replace(/^\n+|\n+$/, "").split(/(?:\n|^) *>/g).slice(1);
 
                 lines.forEach(function(line) {
+                    console.log("QUOTE: " + line);
                     var children = MarkdownParser.__parse_to_markdown(line.trim() + "\n", false);
                     var break_met = false, first_child = true;
 
@@ -329,6 +330,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     }
                 }
             } else if (token[13] || token[14]) { // headings
+                console.log("HEADING: " + token[15]);
                 element = {
                     type:"heading",
                     data:{
@@ -501,24 +503,34 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                     var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
                     var nextchar = text.substring(tokenizer.lastIndex, tokenizer.lastIndex + 1);
                     
-                    if (formatter_begin && !token[44] && (symbol !== "_" || nextchar.match(/[^\w\d]/))) {
-                        var begin_symbols = formatter_begin.data["symbols"];
-                        var length = Math.min(begin_symbols.length, symbols.length);
-                        var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
+                    if (formatter_begin && !token[44]) {
+                        if (symbol !== "_" || nextchar.match(/[^\w\d]/)) {
+                            var begin_symbols = formatter_begin.data["symbols"];
+                            var length = Math.min(begin_symbols.length, symbols.length);
+                            var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
 
-                        formatter_begin["type"] = type + "-begin";
-                        formatter_begin["data"] = Object.assign(formatter_begin["data"], {
-                            prior:formatter_begin.data["prior"] + begin_symbols.substring(0, symbols.length - length),
-                        });
+                            formatter_begin["type"] = type + "-begin";
+                            formatter_begin["data"] = Object.assign(formatter_begin["data"], {
+                                prior:formatter_begin.data["prior"] + begin_symbols.substring(0, symbols.length - length),
+                            });
 
-                        element = {
-                            type:type + "-end",
-                            data:{
-                                trailing:symbols.substring(0, begin_symbols.length - length)
+                            element = {
+                                type:type + "-end",
+                                data:{
+                                    trailing:symbols.substring(0, begin_symbols.length - length)
+                                }
+                            }
+                        } else {
+                            element = {
+                                type:"text",
+                                data:{
+                                    text:prior + symbols,
+                                    inline:inline
+                                }
                             }
                         }
                     } else {
-                        if (nextchar.match(/[^ \n]/)) {
+                        if (nextchar.match(/[^ \n]/) && (symbol !== "~" || nextchar !=="~")) {
                             element = {
                                 type:"formatter-begin",
                                 data:{

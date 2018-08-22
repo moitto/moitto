@@ -467,7 +467,7 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             }
 
             if (Sbml.__is_image_url((images || []), element.data["url"]) || Sbml.__is_image_path(element.data["path"] || "")) {
-                var image_url = Sbml.__url_for_image(element.data["url"]);
+                var image_url = Sbml.__encode_url(Sbml.__url_for_image(element.data["url"]));
     
                 sbml += "=(object image: style=image, image-url=\"" + image_url + "\", reuse-id=\"" + image_url + "\")=";
 
@@ -532,7 +532,7 @@ Sbml.__has_center_tag = function(elements) {
 Sbml.__handle_text = function(text) {
     text = text.replace(/\u2028|\u2029/g, "\n"); // unicode line seperators
     text = text.replace(/\\/g, "").replace(/(\[|\]|=|\(|\))/g, "\\$1");
-    text = text.replace(/@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "=[user:username=\"$1\"|@$1]=");
+    text = text.replace(/(\W+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
     text = text.replace(/[ \t][ \t]+/g, " ");
     text = Sbml.texts.replace_emoji_chars(text, "=[emoji|$1]=");
     text = decode("html", text);
@@ -541,7 +541,7 @@ Sbml.__handle_text = function(text) {
 }
 
 Sbml.__encode_url = function(url) {
-    url = url.replace(/['"]/g, "");
+    url = url.replace(/['"‘’]/g, "");
 
     return url;
 }

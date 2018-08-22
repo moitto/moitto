@@ -1,6 +1,6 @@
-function delete_comment() {
+function hide_comment() {
     controller.action("script", { 
-        "script":"actions.delete_comment",
+        "script":"actions.hide_comment",
         "subview":"__MAIN__",
         "parent-author":$data["parent-author"],
         "parent-permlink":$data["parent-permlink"],

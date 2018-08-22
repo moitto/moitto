@@ -43,6 +43,10 @@ User.prototype.get_voting_amount = function(weight) {
     return 0.0126 * (weight / 1000.0);
 }
 
+User.prototype.get_minimum_voting_weight = function() {
+    return 200;
+}
+
 User.prototype.get_steem_balance = function() {
     return parseFloat(this.data["balance"].split(" ")[0]);
 }
@@ -52,10 +56,24 @@ User.prototype.get_sbd_balance = function() {
 }
 
 User.prototype.get_steem_power = function() {
-    var vesting_shares  = this.data["vesting_shares"].split(" ")[0];
+    var vesting_shares  = parseFloat(this.data["vesting_shares"].split(" ")[0]);
     var steems_per_vest = this.dynprops.get_steems_per_vest();
 
-    return steems_per_vest * parseFloat(vesting_shares);
+    return steems_per_vest * vesting_shares;
+}
+
+User.prototype.get_delegated_steem_power = function() {
+    var vesting_shares  = parseFloat(this.data["delegated_vesting_shares"].split(" ")[0]);
+    var steems_per_vest = this.dynprops.get_steems_per_vest();
+
+    return steems_per_vest * vesting_shares;
+}
+
+User.prototype.get_received_steem_power = function() {
+    var vesting_shares  = parseFloat(this.data["received_vesting_shares"].split(" ")[0]);
+    var steems_per_vest = this.dynprops.get_steems_per_vest();
+
+    return steems_per_vest * vesting_shares;
 }
 
 User.prototype.get_reward_steem_balance = function() {
@@ -67,10 +85,10 @@ User.prototype.get_reward_sbd_balance = function() {
 }
 
 User.prototype.get_reward_steem_power = function() {
-    var vesting_shares  = this.data["reward_vesting_balance"].split(" ")[0];
+    var vesting_shares  = parseFloat(this.data["reward_vesting_balance"].split(" ")[0]);
     var steems_per_vest = this.dynprops.get_steems_per_vest();
 
-    return steems_per_vest * parseFloat(vesting_shares);
+    return steems_per_vest * vesting_shares;
 }
 
 User.prototype.has_rewards = function() {

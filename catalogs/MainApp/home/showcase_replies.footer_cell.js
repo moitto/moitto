@@ -34,10 +34,22 @@ function delete_comment() {
     controller.catalog().submit("showcase", "auxiliary", "S_REPLIES.DELETE", {
         "parent-author":$data["parent-author"],
         "parent-permlink":$data["parent-permlink"],
+        "author":$data["author"],
         "permlink":$data["permlink"]
     });
 
     controller.action("popup", { "display-unit":"S_REPLIES.DELETE" });
+}
+
+function hide_comment() {
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES.HIDE", {
+        "parent-author":$data["parent-author"],
+        "parent-permlink":$data["parent-permlink"],
+        "author":$data["author"],
+        "permlink":$data["permlink"]
+    });
+
+    controller.action("popup", { "display-unit":"S_REPLIES.HIDE" });
 }
 
 function show_votes() {

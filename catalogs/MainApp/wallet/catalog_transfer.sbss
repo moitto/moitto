@@ -46,8 +46,9 @@ import ~/themes.sbss
 
 -- 송금 금액 분기 --
 
-if "${amount}" != ""
+if "${subview.amount}" != ""
     #textfield_amount: editable=no
+    #btn_amount_type: display=none, width=0, height=0
 else
     /catalog/transaction/amount/box: first-responder=amount
 end

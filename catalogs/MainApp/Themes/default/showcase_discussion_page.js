@@ -1,18 +1,12 @@
-var connect = require("connect");
-var users   = require("users");
-var urls    = require("urls");
+var connect      = require("connect");
+var steemconnect = require("steemconnect");
+var users        = require("users");
+var urls         = require("urls");
 
 var __schedule_to_reload = false;
 
 function on_loaded() {
     var referrer = [$data["author"], $data["permlink"]];
-    var urls = __get_urls_in_content($data["body"]);
-
-    urls.forEach(function(url) {
-        if (connect.handle_url(url["url"], referrer)) {
-            return;
-        }
-    });
 }
 
 function on_download_image() {
@@ -157,6 +151,14 @@ function open_url(params) {
         return;
     }
 
+    if (connect.handle_url(params["url"])) {
+        return;
+    }
+
+    if (steemconnect.handle_url(params["url"])) {
+        return;
+    }
+
     controller.action("link", { url:params["url"] });
 }
 
@@ -168,20 +170,4 @@ function __background_data_for_value(value) {
     });
 
     return data;
-}
-
-function __get_urls_in_content(body) {
-    var pattern = /\[([^\]]*)\]\(([^\)]+)\)/g;
-    var matched = null;
-    var urls = [];
-
-    while (matched = pattern.exec(body)) {
-        urls.push({
-            "position":[ matched.index, pattern.lastIndex ],
-            "alt":matched[1], 
-            "url":matched[2]
-        });
-    }
-    
-    return urls;
 }

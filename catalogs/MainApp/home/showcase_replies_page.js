@@ -85,6 +85,14 @@ function open_url(params) {
         return;
     }
 
+    if (connect.handle_url(params["url"])) {
+        return;
+    }
+
+    if (steemconnect.handle_url(params["url"])) {
+        return;
+    }
+
     controller.action("link", { url:params["url"] });
 }
 

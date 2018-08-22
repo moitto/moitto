@@ -2,7 +2,7 @@ import ~/themes.sbss
 
 #section_contents: width=1pw, height=1ph, position=absolute
 #img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
-#blank_userpic.mask: position=absolute, color=$THEME_COLOR_01
+#blank_userpic.mask: color=$THEME_COLOR_01, position=absolute
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
 #btn_userpic: scale-mode=fill, position=absolute
 #btn_author: width="1pw-66dp", position=absolute, \

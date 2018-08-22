@@ -9,9 +9,8 @@ import ~/themes.sbss
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
 #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left
-#blank_userpic.mask: width=30dp, height=30dp, \
-        position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
-        content-border-radius=30dp/2, content-background-color=$THEME_COLOR_01
+#blank_userpic.mask: color=$THEME_COLOR_01, width=30dp, height=30dp, \
+        position=absolute, gravity=bottom-left, x=10dp, y=-10dp, content-border-radius=30dp/2
 #btn_userpic: scale-mode=fill, position=absolute, \
         width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
 #btn_author: width="1pw-66dp", position=absolute, \

@@ -21,9 +21,8 @@ else
 end
 
 
-#blank_userpic.mask: width=82dp, height=82dp, \
-            position=absolute, gravity=top, y="1sbh+44dp+0.1pw-1dp", \
-            content-border-radius=82dp/2, content-background-color=$THEME_COLOR_01
+#blank_userpic.mask: color=$THEME_COLOR_01, width=82dp, height=82dp, \
+            position=absolute, gravity=top, y="1sbh+44dp+0.1pw-1dp", content-border-radius=82dp/2
 #img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
             content-border-radius=40dp, margin="0 0 5dp 0"
 #label_user: height=30dp, \

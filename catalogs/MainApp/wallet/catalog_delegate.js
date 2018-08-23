@@ -14,6 +14,7 @@ function delegate(form) {
         "script":"actions.delegate",
         "subview":"__MAIN__",
         "to":value["to"],
+        "coin":form["coin"] || "SP",
         "amount":form["amount"]
     });
 }

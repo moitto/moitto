@@ -173,10 +173,9 @@ Actions.unmute_user = function(params) {
 }
 
 Actions.transfer = function(params) {
-    Actions.wallet.transfer(params["to"], 
-                            params["coin"], 
-                            parseFloat(params["amount"]), 
-                            params["memo"], function(response) {
+    var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
+
+    Actions.wallet.transfer(params["to"], amount, params["memo"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
                 Actions.__on_complete(params, id, data);
@@ -186,7 +185,9 @@ Actions.transfer = function(params) {
 }
 
 Actions.delegate = function(params) {
-    Actions.wallet.delegate(params["to"], parseFloat(params["amount"]), function(response) {
+    var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
+
+    Actions.wallet.delegate(params["to"], amount, function(response) {
         if (response) {
             Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
                 Actions.__on_complete(params, id, data);
@@ -206,7 +207,9 @@ Actions.undelegate = function(params) {
 }
 
 Actions.power_up = function(params) {
-    Actions.wallet.power_up(parseFloat(params["amount"]), function(response) {
+    var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
+
+    Actions.wallet.power_up(amount, function(response) {
         if (response) {
             Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
                 Actions.__on_complete(params, id, data);
@@ -216,7 +219,9 @@ Actions.power_up = function(params) {
 }
 
 Actions.power_down = function(params) {
-    Actions.wallet.power_down(parseFloat(params["amount"]), function(response) {
+    var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
+
+    Actions.wallet.power_down(amount, function(response) {
         if (response) {
             Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
                 Actions.__on_complete(params, id, data);

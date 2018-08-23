@@ -45,9 +45,7 @@ Wallet.verify_pin = function(message, handler) {
     Wallet.__start_verify();
 }
 
-Wallet.transfer = function(to, coin, amount, memo, handler) {
-    amount = amount.toFixed(3) + " " + coin;
-
+Wallet.transfer = function(to, amount, memo, handler) {
     Wallet.__transaction = {
         "action":"transfer",
         "to":to,
@@ -64,8 +62,6 @@ Wallet.transfer = function(to, coin, amount, memo, handler) {
 }
 
 Wallet.delegate = function(to, amount, handler) {
-    amount = amount.toFixed(3) + " " + "SP";
-
     Wallet.__transaction = {
         "action":"delegate",
         "to":to,
@@ -95,8 +91,6 @@ Wallet.undelegate = function(from, handler) {
 }
 
 Wallet.power_up = function(amount, handler) {
-    amount = amount.toFixed(3) + " " + "STEEM";
-
     Wallet.__transaction = {
         "action":"power_up",
         "amount":amount,
@@ -111,11 +105,28 @@ Wallet.power_up = function(amount, handler) {
 }
 
 Wallet.power_down = function(amount, handler) {
-    amount = amount.toFixed(3) + " " + "SP";
-
     Wallet.__transaction = {
         "action":"power_down",
         "amount":amount,
+        "handler":handler
+    };
+
+    if (Wallet.account.active_key_enabled()) {
+        Wallet.__start_power_down(amount);
+    } else {
+        Wallet.__prompt_reset_pin();
+    }
+}
+
+Wallet.escrow_transfer = function(to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_metadata, handler) {
+    Wallet.__transaction = {
+        "action":"escrow_transfer",
+        "to":to,
+        "agent":agent,
+        "escrow_id":escrow_id,
+        "sbd_amount":sbd_amount,
+        "steem_amount":steem_amount,
+        "fee":fee,
         "handler":handler
     };
 
@@ -213,16 +224,6 @@ Wallet.__start_delegate = function(to, amount) {
     }
 }
 
-Wallet.__start_undelegate = function(from) {
-    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
-    
-    if (wrong_count < Wallet.__max_wrong_count) {
-        Wallet.__confirm_undelegate(from);
-    } else {
-        Wallet.__on_exceed_max_wrong_count();
-    }
-}
-
 Wallet.__confirm_delegate = function(to, amount) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 입력",
@@ -233,6 +234,16 @@ Wallet.__confirm_delegate = function(to, amount) {
     });
 
     controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__start_undelegate = function(from) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_undelegate(from);
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
 }
 
 Wallet.__confirm_undelegate = function(from) {
@@ -291,6 +302,28 @@ Wallet.__confirm_power_down = function(amount) {
     controller.action("popup", { "display-unit":"S_PIN" });
 }
 
+Wallet.__start_escrow_transfer = function(sbd_amount, steem_amount, fee) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_escrow_transfer(sbd_amount, steem_amount, fee);
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
+Wallet.__confirm_escrow_transfer = function(sbd_amount, steem_amount, fee) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":"PIN번호를 입력하면\\n=[amount|" + sbd_amount + "]=를 에스크로 송금합니다.",
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
 Wallet.__confirm_redeem = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_REDEEM.TASK", {
         "status":"confirm",
@@ -321,6 +354,29 @@ Wallet.__redeem_rewards = function() {
 
     controller.action("popup", { "display-unit":"S_REDEEM.TASK" });
 }
+
+Wallet.__start_escrow_transfer = function(to, agent, sbd_amount, steem_amount) {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_escrow_transfer(to, agent, sbd_amount, steem_amount);
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
+Wallet.__confirm_escrow_transfer = function(amount) {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":"PIN번호를 입력하면\\n=[amount|" + amount + "]=를 파워업합니다.",
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
 
 Wallet.__confirm_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {

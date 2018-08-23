@@ -176,11 +176,11 @@ SteemBroadcast.delegate_vesting_shares = function(delegator, delegatee, vesting_
     });
 }
 
-SteemBroadcast.escrow_transfer = function(from, to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_metadata, keys) {
+SteemBroadcast.escrow_transfer = function(from, to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_meta, keys) {
     return new Promise(function(resolve, reject) {
         var operation = [ "escrow_transfer", { 
             from:from, to:to, agent:agent, escrow_id:escrow_id, sbd_amount:sbd_amount, steem_amount:steem_amount, fee:fee,
-            ratification_deadline:ratification_deadline, escrow_expiration:escrow_expiration, json_metadata:json_metadata
+            ratification_deadline:ratification_deadline, escrow_expiration:escrow_expiration, json_meta:json_meta
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

@@ -29,6 +29,43 @@ __MODULE__ = {
         id: __TYPES__.string,
         json: __TYPES__.string
     },
+    "escrow_transfer":{
+        from: __TYPES__.string,
+        to: __TYPES__.string,
+        agent: __TYPES__.string,
+        escrow_id: __TYPES__.unit32,
+        sbd_amount: __TYPES__.asset,
+        steem_amount: __TYPES__.asset,
+        fee: __TYPES__.asset,
+        ratification_deadline: __TYPES__.string,
+        escrow_expiration: __TYPES__.string,
+        json_metadata: __TYPES__.string
+    },
+    "escrow_dispute":{
+        from: __TYPES__.string,
+        to: __TYPES__.string,
+        agent: __TYPES__.string,
+        who: __TYPES__.string,
+        escrow_id: __TYPES__.unit32
+    },
+    "escrow_release":{
+        from: __TYPES__.string,
+        to: __TYPES__.string,
+        agent: __TYPES__.string,
+        who: __TYPES__.string,
+        receiver: __TYPES__.string,
+        escrow_id: __TYPES__.unit32,
+        sbd_amount: __TYPES__.asset,
+        steem_amount: __TYPES__.asset
+    },
+    "escrow_approve":{
+        from: __TYPES__.string,
+        to: __TYPES__.string,
+        agent: __TYPES__.string,
+        who: __TYPES__.string,
+        escrow_id: __TYPES__.unit32,
+        approve: __TYPES__.string
+    },
     "claim_reward_balance":{
         account: __TYPES__.string,
         reward_steem: __TYPES__.asset,

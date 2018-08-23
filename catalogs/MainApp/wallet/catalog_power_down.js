@@ -1,9 +1,8 @@
 function power_down(form) {
-    var value = controller.catalog().value("showcase", "auxiliary", "S_POWER_DOWN");
-
     controller.action("script", {
         "script":"actions.power_down",
         "subview":"__MAIN__",
+        "coin":form["coin"] || "SP",
         "amount":form["amount"]
     });
 }

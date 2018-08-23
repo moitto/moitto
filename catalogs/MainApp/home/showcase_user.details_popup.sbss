@@ -1,7 +1,7 @@
 import ~/themes.sbss
 
 #btn_close: image="~/subview_btn_close.white.png", width=44dp, height=44dp, \
-            position=absolute, gravity=top-right, y=1sbh
+            position=abs, gravity=top-right, y=1sbh
 
 /popup: data-binding="user-${username}", script-when-data-changed=on_change_data, \
         font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
@@ -12,7 +12,7 @@ import ~/themes.sbss
 -- 사용자 정보 --
 
 #blank_userpic.mask: color=$THEME_COLOR_01, width=82dp, height=82dp, \
-            position=absolute, gravity=top, y="1sbh+44dp+24dp", content-border-radius=82dp/2
+            position=abs, gravity=top, y="1sbh+44dp+24dp", content-border-radius=82dp/2
 #img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
             content-border-radius=40dp, margin="0 0 5dp 0"
 #label_user: height=30dp, \

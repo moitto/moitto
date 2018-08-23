@@ -8,10 +8,10 @@ import ~/themes.sbss
 #btn_user: max-width=0.7pw, height=26dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-align=left
 #btn_menu: width=44dp, height=44dp, image="~/subview_btn_info.png", \
-        position=absolute, gravity=right-bottom
+        position=abs, gravity=right-bottom
 
 /navibar/user: display=block, width=1pw, height=26dp, \
-            position=absolute, gravity=bottom, y=-9dp, \
+            position=abs, gravity=bottom, y=-9dp, \
             text-align=center
 /navibar/userpic: id=userpic, display=none
 

@@ -8,7 +8,7 @@ if $LAYOUT == "thumbnail"
     #img_preview.list: display=none
     #blank_dim.list: display=none
     #img_play.thumb: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
-            position=absolute, gravity=top-right
+            position=abs, gravity=top-right
     if $SCREEN_WIDTH > "5"
         /cell/contents/title: padding="10dp 80dp"
         if $ORIENTATION == "portrait"
@@ -27,11 +27,11 @@ else
     #img_cover: display=none
     #img_preview.thumb: display=none
     #img_preview.list: width=1pw, height="1pw*0.5625", loading-duration=0.3, \
-            scale-mode=fill, position=absolute, gravity=top, content-gravity=center
-    #blank_dim.list: width=1pw, height=1ph, position=absolute, color=$BLACK_COLOR_LIGHT_DIM
+            scale-mode=fill, position=abs, gravity=top, content-gravity=center
+    #blank_dim.list: width=1pw, height=1ph, position=abs, color=$BLACK_COLOR_LIGHT_DIM
     #img_play.thumb: display=none
     #img_play.list: filename="~/subview_icon_play.white.png", width=30dp, height=30dp, \
-            position=absolute, gravity=center
+            position=abs, gravity=center
     #label_meta: text-color=$THEME_COLOR_102
     #btn_meta: label-color=$THEME_COLOR_102
     #btn_author: label-color=$THEME_COLOR_102

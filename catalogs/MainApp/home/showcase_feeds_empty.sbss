@@ -2,9 +2,9 @@ import ~/themes.sbss
 
 #animation_loading: display=none, width=80dp, height=80dp*0.634, \
                 filename="~/subview_img_loading.black.png", frame-count=26, duration=1.6, \
-                position=absolute, gravity=bottom
+                position=abs, gravity=bottom
 
-/empty/guide: display=none, position=absolute, gravity=center, \
+/empty/guide: display=none, position=abs, gravity=center, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=1, \
             line-spacing=0.4em, paragraph-spacing=0.4em
 

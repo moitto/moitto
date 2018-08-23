@@ -25,7 +25,7 @@ end
 -- new image --
 
 if "${new}" == "yes"
-    #blank_new: position=absolute, gravity=left, x=6dp
+    #blank_new: position=abs, gravity=left, x=6dp
 else
     #blank_new: display=none
 end

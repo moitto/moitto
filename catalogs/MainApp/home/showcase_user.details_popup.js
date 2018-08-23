@@ -45,7 +45,7 @@ function on_change_data(id, data) {
 
 function follow() {
     controller.action("script", {
-        "script":"actions.follow_user",
+        "script":"actions.follow",
         "subview":"__MAIN__",
         "username":$data["username"]
     });
@@ -55,7 +55,7 @@ function follow() {
 
 function unfollow() {
     controller.action("script", {
-        "script":"actions.unfollow_user",
+        "script":"actions.unfollow",
         "subview":"__MAIN__",
         "username":$data["username"]
     });
@@ -65,7 +65,7 @@ function unfollow() {
 
 function mute() {
     controller.action("script", {
-        "script":"actions.mute_user",
+        "script":"actions.mute",
         "subview":"__MAIN__",
         "username":$data["username"]
     });
@@ -75,7 +75,7 @@ function mute() {
 
 function unmute() {
     controller.action("script", {
-        "script":"actions.unmute_user",
+        "script":"actions.unmute",
         "subview":"__MAIN__",
         "username":$data["username"]
     });

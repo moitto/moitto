@@ -1,13 +1,13 @@
 import themes.sbss
 
-#blank_container: width=1pw, height="1ph-50dp-1eb", position=absolute, gravity=top
-#tabbar: width=1pw, height="50dp+1eb", position=absolute, gravity=bottom, \
+#blank_container: width=1pw, height="1ph-50dp-1eb", position=abs, gravity=top
+#tabbar: width=1pw, height="50dp+1eb", position=abs, gravity=bottom, \
         title-font-family=$SANSSERIF_MEDIUM, title-font-size=0.7, \
         title-color=$THEME_COLOR_100, selected-title-color=$THEME_COLOR_100, \
         content-background-color=$THEME_COLOR_00
 
 #blank_notif.badge: width=6dp, height=6dp, color=$THEME_COLOR_03, content-border-radius=3dp, \
-                position=absolute, gravity=bottom
+                position=abs, gravity=bottom
 
 /catalog: page-background-color=$THEME_COLOR_00, \
 		script-when-loaded=on_loaded, \

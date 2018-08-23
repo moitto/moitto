@@ -1,0 +1,23 @@
+=begin popup
+
+=object section: section=apps, style=section_apps
+=begin apps: id=apps
+=begin kor
+더 많은
+=[apps|디앱]=
+=end kor
+=begin eng
+apps
+=end eng
+=end apps
+
+=object button: action=page, display-unit=S_APPS, post-action=popup-close, style=btn_apps
+
+=begin actions
+=object button: label="내 디앱 편집하기", style=btn_menu
+=object blank: style=blank_line
+
+=object button: action=popup-close, label="취소", style=btn_close
+=end actions
+
+=end popup

@@ -22,7 +22,7 @@ end
 
 -- loading 분기 --
 
-/page/loading: display=block, position=absolute, gravity=center, y=-50dp, \
+/page/loading: display=block, position=abs, gravity=center, y=-50dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
 
 if $SCREEN_WIDTH > "5"

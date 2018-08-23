@@ -9,7 +9,7 @@ import ~/themes.sbss
         page-background-color=$THEME_COLOR_02
 /page/body: font-family=$SANSSERIF_MEDIUM, text-align=center
 /page/body/title: font-family=$SANSSERIF_BOLD, font-size=1.2em, margin="20dp 0 0 0"
-/page/footer: display=block, position=absolute, gravity=bottom-left, \
+/page/footer: display=block, position=abs, gravity=bottom-left, \
         line-spacing=0, paragraph-spacing=0
 
 if $SCREEN_WIDTH > "5"

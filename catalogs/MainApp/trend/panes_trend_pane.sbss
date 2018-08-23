@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-#showcase_trend: width=1pw, height=1ph, position=absolute, gravity=top, \
+#showcase_trend: width=1pw, height=1ph, position=abs, gravity=top, \
                 content-margin="0 0 1eb 0", lazy-loading=no, \
                 sound-when-reloading="~/reloading.mp3", sound-when-reloaded="~/reloaded.mp3", \
                 cell-background-1=$THEME_COLOR_02

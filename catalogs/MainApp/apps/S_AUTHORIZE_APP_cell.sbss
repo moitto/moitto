@@ -1,0 +1,34 @@
+import ~/themes.sbss
+
+#img_app: width=80dp, height=80dp, default-color=$THEME_COLOR_00, \
+        content-border-radius=5dp, content-border-width=1px, content-border-color=$THEME_COLOR_01
+
+#section_userpic: section=userpic, width=40dp, height=40dp
+#blank_userpic.mask: color=$THEME_COLOR_01, width=40dp, height=40dp, position=abs, gravity=center, \
+            content-border-radius=40dp/2
+#btn_userpic: width=38dp, height=38dp, scale-mode=fill, \
+            position=abs, gravity=center, content-border-radius=38dp/2
+
+#btn_authorize: width=0.8pw, height=50dp, position=abs, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        disable-label-color=$THEME_COLOR_100, disable-background-color=$THEME_COLOR_01, \
+        content-background-color=$THEME_COLOR_03
+
+#bold: font-family=$SANSSERIF_BOLD
+
+/cell: page-background-color=$THEME_COLOR_02, text-align=center
+/cell/guide: margin="50dp 0.1pw", \
+        font-family=$SANSSERIF_MEDIUM, font-size=1.1, text-color=$THEME_COLOR_100, \
+        line-spacing=0.6em, paragraph-spacing=0.6em
+/cell/guide/title: font-family=$SANSSERIF_BOLD, font-size=1.3
+/cell/guide/direction: margin-top=40dp, text-align=justify
+/cell/guide/description: margin-top=20dp, font-size=0.8, text-align=justify
+/cell/guide/owner: display=block, position=abs, gravity=bottom, y=-(1eb+0.1pw+100dp), \
+        font-size=0.8, line-spacing=0.3em
+/cell/userpic: id=userpic, display=none
+
+if "${owner}" != ""
+    %unknown: display=none
+else
+    %known: display=none
+end

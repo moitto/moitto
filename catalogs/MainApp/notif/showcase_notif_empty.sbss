@@ -1,6 +1,6 @@
 import ~/themes.sbss
 
-/empty/notice: display=block, position=absolute, gravity=center, \
+/empty/notice: display=block, position=abs, gravity=center, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=1
 
 if $LOADING == "yes"

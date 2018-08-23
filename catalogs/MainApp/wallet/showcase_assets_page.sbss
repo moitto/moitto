@@ -5,7 +5,7 @@ import ~/themes.sbss
 #blank_margin: width=30dp
 #btn_info: image="~/subview_btn_info.small.png", width=30dp, scale-mode=fit
 
-#btn_action: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+#btn_action: width=0.8pw, height=50dp, position=abs, gravity=bottom, y=-(1eb+0.1pw), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03
 
@@ -27,14 +27,14 @@ end
 
 -- question --
 
-#section_info: hidden=yes, width=1pw, height=1ph, position=absolute, \
+#section_info: hidden=yes, width=1pw, height=1ph, position=abs, \
             content-background-color=$WHITE_COLOR_DEEP_DIM
-#btn_hide: width=0.9pw, height=40dp, position=absolute, gravity=center, y=150dp, \
+#btn_hide: width=0.9pw, height=40dp, position=abs, gravity=center, y=150dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102
 
 /page/question: display=none
 /page/question/note: display=block, width=0.9pw, height=350dp, \
-            position=absolute, gravity=center, background-color=$BLACK_COLOR_DEEP_DIM, \
+            position=abs, gravity=center, background-color=$BLACK_COLOR_DEEP_DIM, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=left, \
             line-spacing=0.3em, paragraph-spacing=0.3em, padding=20dp
 /page/question/note/title: font-family=$SANSSERIF_BOLD, font-size=1.1em, margin="0 0 20dp 0"

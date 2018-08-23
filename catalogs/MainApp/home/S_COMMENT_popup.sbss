@@ -1,17 +1,17 @@
 import ~/themes.sbss
 
 #section_navibar: width=1pw, height="1sbh+44dp", \
-            position=absolute, gravity=top, content-background-color=$THEME_COLOR_00
+            position=abs, gravity=top, content-background-color=$THEME_COLOR_00
 
-#label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=top, y=1sbh, \
+#label_title: width="1pw-44dp*2", height=44dp, position=abs, gravity=top, y=1sbh, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
-            position=absolute, gravity=bottom
-#btn_close: width=50dp, height=44dp, position=absolute, gravity=left-bottom, \
+            position=abs, gravity=bottom
+#btn_close: width=50dp, height=44dp, position=abs, gravity=left-bottom, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.1
-#btn_write: width=50dp, height=44dp, position=absolute, gravity=right-bottom, \
+#btn_write: width=50dp, height=44dp, position=abs, gravity=right-bottom, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.1
-#editor: width=1pw, height="1ph-(1sbh+44dp)", position=absolute, gravity=top, y="1sbh+44dp", \
+#editor: width=1pw, height="1ph-(1sbh+44dp)", position=abs, gravity=top, y="1sbh+44dp", \
         font-family=$SANSSERIF_MEDIUM, font-size=1.1, shrinks-on-keyboard=yes
 
 /popup: script-when-loaded=on_loaded, first-responder=editor, scrolls-on-keyboard=no, \

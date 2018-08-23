@@ -6,7 +6,7 @@ import markdown.sbss
 
 -- header --
 
-#img_header: width=1pw, position=absolute, gravity=top, \
+#img_header: width=1pw, position=abs, gravity=top, \
             loading-duration=0.3, scale-mode=fill, visual-effect=blur-dark
 #section_header: width=1pw
 #btn_tag: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, \
@@ -31,9 +31,9 @@ import markdown.sbss
 /page/header: display=none, padding=20dp
 /page/header/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, \
         text-align=left, line-spacing=0.3em, paragraph-spacing=0.3em, line-break-mode=word-wrap
-/page/header/tags: display=block, position=absolute, gravity=bottom, y=-66dp, \
+/page/header/tags: display=block, position=abs, gravity=bottom, y=-66dp, \
         text-align=left, line-spacing=0.1em, paragraph-spacing=0.1em
-/page/header/meta: display=block, position=absolute, gravity=bottom, height=60dp, paragraph-spacing=0
+/page/header/meta: display=block, position=abs, gravity=bottom, height=60dp, paragraph-spacing=0
 
 if $SCREEN_WIDTH > "5"
     #img_header: height=350dp
@@ -76,7 +76,7 @@ end
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"
 #btn_vote: width=50dp, height=50dp, topmost=yes, \
-        image="~/subview_btn_vote.png", position=absolute, gravity=right-bottom
+        image="~/subview_btn_vote.png", position=abs, gravity=right-bottom
 
 if $SCREEN_WIDTH > "5"
     #btn_replies: width="1pw-80dp"

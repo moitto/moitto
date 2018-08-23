@@ -1,16 +1,16 @@
 import ~/themes.sbss
 
 #blank_title: color=$THEME_COLOR_01, width=0.7pw, height=25dp, \
-            position=absolute, gravity=left-top, x=15dp, y=15dp
+            position=abs, gravity=left-top, x=15dp, y=15dp
 #blank_title.2nd: style=blank_title, width=0.6pw, y=50dp
 
 #blank_meta: color=$THEME_COLOR_01, width=0.3pw, height=10dp, \
-            position=absolute, gravity=bottom-left, x=15dp, y=-70dp
+            position=abs, gravity=bottom-left, x=15dp, y=-70dp
 #blank_userpic: color=$THEME_COLOR_01, width=33dp, height=33dp, \
-            position=absolute, gravity=bottom-left, x=16dp, y=-11dp, \
+            position=abs, gravity=bottom-left, x=16dp, y=-11dp, \
             content-border-radius=33dp/2
 
 #blank_line: color=$THEME_COLOR_01, width=1pw, height=1dp, \
-            position=absolute, gravity=bottom
+            position=abs, gravity=bottom
 
 /cell: skips-drawing=yes, lazy-unloading=yes

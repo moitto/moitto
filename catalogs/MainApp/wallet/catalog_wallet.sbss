@@ -1,25 +1,24 @@
 import ~/themes.sbss
 
-#panes_wallet: width=1pw, height=1ph, position=absolute, gravity=top, \
+#panes_wallet: width=1pw, height=1ph, position=abs, gravity=top, \
             hidden=yes
 
 #goB: font-family=$SANSSERIF_BOLD
-
-%content: display=block, position=absolute, gravity=center, text-align=center
 
 /catalog: page-background-color=$THEME_COLOR_02
 
 
 -- 로그인 전 --
 
-#section_login: hidden=yes, width=1pw, height=1ph, position=absolute, gravity=top, \
+#section_login: hidden=yes, width=1pw, height=1ph, position=abs, gravity=top, \
             content-background-color=$THEME_COLOR_02
 #btn_login: width=0.8pw, height=50dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03, margin="0 0 20dp 0"
 
-%content: display=block, position=absolute, gravity=center, text-align=center
+%content: display=block, position=abs, gravity=center, text-align=center
 /catalog/login: display=none
+/catalog/login/content: display=block, position=abs, gravity=center, text-align=center
 /catalog/login/content/notice: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, \
             line-spacing=0.4em, paragraph-spacing=0.4em
 
@@ -34,11 +33,12 @@ end
 
 #section_loading: width=1pw, height=1ph, position=abs, gravity=center
 
-/catalog/loading: display=none, \
-            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
+/catalog/loading: display=none
+/catalog/loading/content: display=block, position=abs, gravity=center, y=-50dp, \
+            font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center
 
 if $SCREEN_WIDTH > "5"
-    /catalog/loading: font-size=1.2
+    /catalog/loading/content: font-size=1.2
 else
-    /catalog/loading: font-size=1.1
+    /catalog/loading/content: font-size=1.1
 end

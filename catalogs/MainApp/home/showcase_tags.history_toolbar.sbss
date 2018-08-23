@@ -1,8 +1,8 @@
 import ~/themes.sbss
 
-#blank_line: width="1pw-20dp", height=1dp, position=absolute, gravity=top, color=$THEME_COLOR_01
+#blank_line: width="1pw-20dp", height=1dp, position=abs, gravity=top, color=$THEME_COLOR_01
 
-#btn_reset: position=absolute, gravity=right, x=-10dp, \
+#btn_reset: position=abs, gravity=right, x=-10dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-font-size=0.9, \
         label-color=$THEME_COLOR_102, label-align=right, \
         content-padding="5dp 10dp", content-background-color=$THEME_COLOR_05

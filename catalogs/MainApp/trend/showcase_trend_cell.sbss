@@ -2,38 +2,38 @@ import ~/themes.sbss
 
 #img_cover: width=1pw, height="1ph-55dp", scale-mode=fill, \
             constraint-size="2pw, 0", \
-            position=absolute, gravity=top, \
+            position=abs, gravity=top, \
             scales-in-background=yes, loading-duration=0.3, default-color=$THEME_COLOR_01
-#blank_dim: width=1pw, height="1ph-55dp", position=absolute, gravity=top, color=$BLACK_COLOR_DIM
+#blank_dim: width=1pw, height="1ph-55dp", position=abs, gravity=top, color=$BLACK_COLOR_DIM
 
 #section_contents: width=1pw, height="1ph-55dp", postion=absolute, gravity=top
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=left
 #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, label-align=left
 #goB: label-font-family=$SANSSERIF_BOLD
 
-#blank_user: width=1pw, height=55dp, position=absolute, gravity=bottom, color=$THEME_COLOR_00
+#blank_user: width=1pw, height=55dp, position=abs, gravity=bottom, color=$THEME_COLOR_00
 
 #blank_userpic.mask: color=$THEME_COLOR_01, width=35dp, height=35dp, \
-            position=absolute, gravity=bottom-left, x=15dp, y=-10dp, content-border-radius=35dp/2
+            position=abs, gravity=bottom-left, x=15dp, y=-10dp, content-border-radius=35dp/2
 #btn_userpic: width=33dp, height=33dp, scale-mode=fill, \
-            position=absolute, gravity=bottom-left, x=16dp, y=-11dp, \
+            position=abs, gravity=bottom-left, x=16dp, y=-11dp, \
             content-border-radius=33dp/2
 #btn_author: height=20dp, line-break-mode=tail-truncation, \
-            position=absolute, gravity=bottom-left, x=60dp, y=-25dp, \
+            position=abs, gravity=bottom-left, x=60dp, y=-25dp, \
             label-font-family=$SANSSERIF_BOLD, label-font-size=1, label-color=$THEME_COLOR_100, label-align=left
 #label_date: width=200dp, height=12dp, \
-            position=absolute, gravity=bottom-left, x=60dp, y=-12dp, \
+            position=abs, gravity=bottom-left, x=60dp, y=-12dp, \
             font-family=$SANSSERIF_MEDIUM, font-size=0.7, text-color=$THEME_COLOR_101, text-align=left
 
 #blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, \
-            position=absolute, gravity=bottom
+            position=abs, gravity=bottom
 
 /cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
     skips-drawing=yes
 /cell/contents: display=none
 /cell/contents/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=left, \
                     line-break-mode=word-wrap, line-spacing=0.3em, margin=15dp
-/cell/contents/meta: display=block, width=1pw, position=absolute, gravity=bottom, y=-15dp, padding="0 15dp"
+/cell/contents/meta: display=block, width=1pw, position=abs, gravity=bottom, y=-15dp, padding="0 15dp"
 
 if $SCREEN_WIDTH > "5"
     #label_meta: font-size=1

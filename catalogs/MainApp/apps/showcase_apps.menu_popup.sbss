@@ -1,0 +1,20 @@
+import ~/themes.sbss
+
+#label_title: width="1pw-40dp", height=80dp, \
+        font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=center, \
+        font-size=1.5, line-break-mode=taul-truncation
+#btn_menu: width="1pw-40dp", height=50dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_03
+#btn_close: width="1pw-40dp", height=50dp, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_00
+#red: label-color=$THEME_COLOR_102, content-background-color=$THEME_COLOR_04
+#blank_line: width="1pw-40dp", height=1dp
+
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+/popup/actions: display=block, width="1pw-40dp", \
+            position=abs, gravity=bottom, y=-(1eb+0.1pw)
+/popup/actions/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=center, \
+            font-size=1.5, line-spacing=0.2em, paragraph-spacing=0.2em, \
+            margin="0 0 30dp 0"

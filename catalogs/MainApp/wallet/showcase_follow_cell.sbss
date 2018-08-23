@@ -1,30 +1,10 @@
-import ~/themes.sbss
+import showcase_following_cell.sbss
 
-#blank_userpic.mask: color=$THEME_COLOR_01, width=82dp, height=82dp, \
-                position=absolute, gravity=top, y=24dp, content-border-radius=82dp/2
-#img_userpic: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
-                content-border-radius=80dp/2, margin="25dp 0 5dp 0"
-#label_user: height=30dp, \
-                font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
-                line-break-mode=tail-truncation, content-padding="0 10dp"
-#label_rep: height=20dp, \
-                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
-                margin="0 0 50dp 0"
-
-#label_follows: height=50dp, \
-        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, font-size=1.2
-#btn_follow: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
-#btn_close: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
-
-/cell: page-background-color=$THEME_COLOR_02, text-align=center
-
-if "${follows}" == "yes"
-    #btn_follow: display=none, width=0, height=0
-else
-    #label_follows: display=none, width=0, height=0
-    #btn_close: display=none, width=0, height=0
+if "${follows}" == "yes" || "${is-me}" == "yes"
+    #btn_action: disabled=yes
+    if "${is-me}" == "yes"
+        #btn_action: label="본인은 팔로우할 수 없습니다."
+    else
+        #btn_action: label="팔로우 중입니다."    
+    end
 end

@@ -10,4 +10,4 @@ import ~/themes.sbss
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
 /popup/actions: display=block, width="1pw-40dp", \
-                position=absolute, gravity=bottom, y=-(1eb+0.1pw)
+                position=abs, gravity=bottom, y=-(1eb+0.1pw)

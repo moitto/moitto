@@ -1,0 +1,40 @@
+=begin cell
+
+=begin guide
+=object image: type=app, subtype=icon, style=img_app
+
+=begin title
+${title}
+=end title
+
+=begin direction
+=[bold|${title}]= 앱에서 모이또와의 연동을 요청합니다. 요청을 허락하신다면 =[bold|확인]= 버튼을 눌러주세요.
+=end direction
+
+=begin description
+연동이 허락된 앱은 사용자의 포스팅 권한으로 보팅과 댓글을 남길 수 있습니다. 단, 송금이나 임대 등의 중요한 요청은 사용자의 PIN 번호 입력없이는 허락되지 않습니다.
+=end description
+
+=begin owner
+
+=begin known
+=(object section: style=section_userpic)=
+=[bold:script=show_owner|@${owner}]= 제공 디앱입니다.
+=end known
+
+=begin unknown
+디앱 제공자를 확인할 수 없습니다.
+=end unknown
+
+=end owner
+
+=end guide
+
+=begin userpic
+=object blank: style=blank_userpic.mask
+=object button: script=show_owner, image-url="${userpic-url}", reuse-id="${userpic-url}", style=btn_userpic
+=end userpic
+
+=object button: script=authorize, label="확인", style=btn_authorize
+
+=end cell

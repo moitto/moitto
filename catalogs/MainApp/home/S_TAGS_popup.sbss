@@ -12,10 +12,10 @@ import ~/themes.sbss
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, font-size=1.2, \
             align=left, padding="0 10dp", margin="-44dp 0 0 10dp"
 #btn_clear: image="~/subview_btn_blank_cancel.png", \
-        width=34dp, height=34dp, position=absolute, gravity=right-bottom, x=-(5dp+50dp), y=-5dp
+        width=34dp, height=34dp, position=abs, gravity=right-bottom, x=-(5dp+50dp), y=-5dp
 #btn_close: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
-            width=50dp, height=44dp, position=absolute, gravity=right-bottom
-#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
+            width=50dp, height=44dp, position=abs, gravity=right-bottom
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=abs, gravity=bottom
 /popup/query.bar: display=none
 
 if $SCREEN_WIDTH > "5"
@@ -30,6 +30,6 @@ end
 #showcase_history: width=1pw, height="1ph-(1sbh+44dp+10dp+1eb)", \
             column-count=1, cell-size="(1pw-20dp), 40dp", cell-spacing=5dp, \
             content-margin="0 10dp 10dp 10dp", \
-            position=absolute, gravity=top, y="1sbh+44dp+10dp", \
+            position=abs, gravity=top, y="1sbh+44dp+10dp", \
             selected-color=$LIGHT_COLOR_DIM, toolbar-height=50dp
 /popup/suggestion: display=none

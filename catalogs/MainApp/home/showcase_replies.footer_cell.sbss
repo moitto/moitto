@@ -1,8 +1,8 @@
 import ~/themes.sbss
 
-#section_replies: width=1pw, height=40dp, position=absolute, gravity=bottom, \
+#section_replies: width=1pw, height=40dp, position=abs, gravity=bottom, \
             content-background-color=$THEME_COLOR_00
-#btn_value: height=40dp, position=absolute, gravity=left, x=10dp, \
+#btn_value: height=40dp, position=abs, gravity=left, x=10dp, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left, label-font-size=0.9
 #btn_comment: height=20dp, content-padding="0 3dp", \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, \
@@ -13,13 +13,13 @@ import ~/themes.sbss
 #btn_replies.icon: image="~/subview_icon_replies.png", width=20dp, height=20dp
 #btn_replies: height=20dp, label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.9
 
-#blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=absolute, gravity=bottom
+#blank_line: width=1pw, height=1dp, color=$THEME_COLOR_01, position=abs, gravity=bottom
 
 /cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
     page-background-color=$THEME_COLOR_02
 
 /cell/replies: display=none
-/cell/replies/comments: display=block, height=20dp, position=absolute, gravity=right, x=-10dp, text-align=right
+/cell/replies/comments: display=block, height=20dp, position=abs, gravity=right, x=-10dp, text-align=right
 
 if "${editable}" != "yes"
     #btn_edit: display=none, width=0, height=0

@@ -10,20 +10,20 @@ import ~/themes.sbss
 
 if $LAYOUT == "thumbnail"
     #blank_title: width=0.7pw, height=30dp, \
-            position=absolute, gravity=left-top, x=30dp, y=1sbh+120dp
+            position=abs, gravity=left-top, x=30dp, y=1sbh+120dp
     #blank_title.2nd: style=blank_title, width=0.6pw, y=1sbh+160dp
     #blank_meta: width=0.3pw, height=10dp, \
-            position=absolute, gravity=left-top, x=30dp, y=1sbh+200dp
+            position=abs, gravity=left-top, x=30dp, y=1sbh+200dp
     #blank_userpic: width=40dp, height=40dp, \
-                position=absolute, gravity=bottom, y=-100dp, \
+                position=abs, gravity=bottom, y=-100dp, \
                 content-border-radius=40dp/2
 else
     #blank_title: width=0.7pw, height=20dp, \
-            position=absolute, gravity=left-top, x=10dp, y=10dp
+            position=abs, gravity=left-top, x=10dp, y=10dp
     #blank_title.2nd: style=blank_title, width=0.6pw, y=40dp
     #blank_meta: width=0.3pw, height=10dp, \
-            position=absolute, gravity=left-bottom, x=10dp, y=-45dp 
+            position=abs, gravity=left-bottom, x=10dp, y=-45dp 
     #blank_userpic: width=30dp, height=30dp, \
-            position=absolute, gravity=left-bottom, x=10dp, y=-10dp, \
+            position=abs, gravity=left-bottom, x=10dp, y=-10dp, \
             content-border-radius=35dp/2    
 end

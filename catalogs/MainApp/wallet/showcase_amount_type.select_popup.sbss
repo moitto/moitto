@@ -1,13 +1,13 @@
 import ~/themes.sbss
 
 #btn_close: image="~/subview_btn_close.white.png", width=44dp, height=44dp, \
-            position=absolute, gravity=left-top, y=1sbh
+            position=abs, gravity=left-top, y=1sbh
 
 #btn_menu: width=0.8pw, height=50dp, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_03, margin="0 0 1dp 0"
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
-/popup/menu: display=block, position=absolute, gravity=center, y=-100dp
+/popup/menu: display=block, position=abs, gravity=center, y=-100dp
 /popup/menu/title: font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, font-size=1.2, \
             margin="0 0 20dp 0.1pw"

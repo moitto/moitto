@@ -1,13 +1,13 @@
 import ~/themes.sbss
 
-#section_contents: width=1pw, height=1ph, position=absolute
-#img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=absolute
-#blank_userpic.mask: color=$THEME_COLOR_01, position=absolute
+#section_contents: width=1pw, height=1ph, position=abs
+#img_cover: scale-mode=fill, loading-duration=0.3, content-gravity=center, position=abs
+#blank_userpic.mask: color=$THEME_COLOR_01, position=abs
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left
-#btn_userpic: scale-mode=fill, position=absolute
-#btn_author: width="1pw-66dp", position=absolute, \
+#btn_userpic: scale-mode=fill, position=abs
+#btn_author: width="1pw-66dp", position=abs, \
             label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation
-#label_date: width=200dp, position=absolute, \
+#label_date: width=200dp, position=abs, \
             font-family=$SANSSERIF_MEDIUM, text-align=left
 #goB: label-font-family=$SANSSERIF_BOLD
 #emoji: font-family=$EMOJI
@@ -35,7 +35,7 @@ if $LAYOUT == "thumbnail"
                 text-color=$THEME_COLOR_102, text-align=left
     /cell/contents/title: font-family=$SANSSERIF_LIGHT, text-color=$THEME_COLOR_102, \
                 line-break-mode=word-wrap, line-spacing=0.3em
-    /cell/contents/reblogged: display=block, width="1pw-40dp", position=absolute, gravity=bottom-left, x=30dp, y=-40dp
+    /cell/contents/reblogged: display=block, width="1pw-40dp", position=abs, gravity=bottom-left, x=30dp, y=-40dp
     if $SCREEN_WIDTH > "5"
         #label_meta: font-size=1
         #btn_meta: label-font-size=1
@@ -55,11 +55,11 @@ if $LAYOUT == "thumbnail"
     end
 else
     #img_cover: scales-in-background=yes, loading-duration=0.3, \
-                position=absolute, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
+                position=abs, gravity=top-right, x=-10dp, y=10dp, default-color=$THEME_COLOR_01
     #label_meta: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
     #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left
     #blank_userpic.mask: width=30dp, height=30dp, \
-                position=absolute, gravity=bottom-left, x=10dp, y=-10dp, \
+                position=abs, gravity=bottom-left, x=10dp, y=-10dp, \
                 content-border-radius=30dp/2
     #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
     #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
@@ -67,13 +67,13 @@ else
     #label_date: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \
                 font-size=0.7, text-color=$THEME_COLOR_101
     #img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
-                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+                position=abs, gravity=bottom-right, x=-10dp, y=-10dp
     #label_reblogged: height=12dp, font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left
     /cell: display=block, width=1pw, height=1ph
     /cell/contents/title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100
-    /cell/contents/meta: display=block, width="1pw-20dp", position=absolute, gravity=bottom-left, x=10dp, y=-45dp
+    /cell/contents/meta: display=block, width="1pw-20dp", position=abs, gravity=bottom-left, x=10dp, y=-45dp
     /cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
-                position=absolute, gravity=bottom-right, x=-10dp, y=-10dp
+                position=abs, gravity=bottom-right, x=-10dp, y=-10dp
     if $SCREEN_WIDTH > "5"
         #img_cover: width=0.18pw, height=0.18pw
         #label_meta: font-size=0.9

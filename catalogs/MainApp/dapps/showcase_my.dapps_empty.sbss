@@ -1,7 +1,0 @@
-import ~/themes.sbss
-
-#btn_dapps: width=0.8pw, height=50dp, position=absolute, gravity=center, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
-        content-background-color=$THEME_COLOR_03
-
-/empty: page-background-color=$THEME_COLOR_02

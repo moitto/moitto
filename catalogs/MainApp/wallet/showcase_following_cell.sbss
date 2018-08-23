@@ -1,0 +1,19 @@
+import ~/themes.sbss
+
+#blank_userpic.mask: color=$THEME_COLOR_01, width=82dp, height=82dp, \
+                position=abs, gravity=top, y=24dp, content-border-radius=82dp/2
+#img_userpic: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
+                content-border-radius=80dp/2, margin="25dp 0 5dp 0"
+#label_user: height=30dp, \
+                font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
+                line-break-mode=tail-truncation, content-padding="0 10dp"
+#label_rep: height=20dp, \
+                font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
+                margin="0 0 50dp 0"
+
+#btn_action: width=0.8pw, height=50dp, position=abs, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        disable-label-color=$THEME_COLOR_100, disable-background-color=$THEME_COLOR_01, \
+        content-background-color=$THEME_COLOR_03
+
+/cell: page-background-color=$THEME_COLOR_02, text-align=center

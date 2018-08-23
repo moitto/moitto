@@ -1,11 +1,11 @@
 import ~/themes.sbss
 
-#camera_qr: width=1pw, height=0.5ph, position=absolute, gravity=top
-#img_qr: filename="~/subview_img_qr.focus.png", position=absolute, gravity=top
-#label_notice: width=1pw, height=30dp, position=absolute, gravity=top, \
+#camera_qr: width=1pw, height=0.5ph, position=abs, gravity=top
+#img_qr: filename="~/subview_img_qr.focus.png", position=abs, gravity=top
+#label_notice: width=1pw, height=30dp, position=abs, gravity=top, \
         font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_102, text-align=center, font-size=1
 
-#btn_close: width=50dp, height=50dp, position=absolute, gravity=right-bottom, x=-20dp, y=-(20dp+1eb), \
+#btn_close: width=50dp, height=50dp, position=abs, gravity=right-bottom, x=-20dp, y=-(20dp+1eb), \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
             content-background-color=$THEME_COLOR_00, content-border-radius=25dp
 
@@ -32,7 +32,7 @@ end
 #blank_margin: width=20dp, height=50dp
 
 /popup/my.qr: display=block, width=1pw, \
-            position=absolute, gravity=top, y=0.5ph, text-align=center, \
+            position=abs, gravity=top, y=0.5ph, text-align=center, \
             padding=20dp, background-color=$THEME_COLOR_02
 
 if "${logged-in}" != "yes"

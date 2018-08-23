@@ -1,9 +1,9 @@
 import ~/themes.sbss
 
-#label_title: height=1ph, position=absolute, gravity=left, \
+#label_title: height=1ph, position=abs, gravity=left, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, font-size=1.2, \
             content-padding="0 0 0 10dp"
-#label_value: height=1ph, position=absolute, gravity=right, \
+#label_value: height=1ph, position=abs, gravity=right, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.4, \
             content-padding="0 10dp 0 0 0"
 

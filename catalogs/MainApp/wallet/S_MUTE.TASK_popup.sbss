@@ -1,0 +1,4 @@
+import S_TRANSFER.TASK_popup.sbss
+
+-- navibar --
+#btn_close: hidden=no

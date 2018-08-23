@@ -6,14 +6,14 @@ import ~/themes.sbss
 -- 내비바 --
 
 #btn_close: image=~/subview_btn_close.png, width=44dp, height=44dp, \
-            position=absolute, gravity=left-top, y=1sbh
+            position=abs, gravity=left-top, y=1sbh
 #btn_reset: height=44dp, \
-            position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
+            position=abs, gravity=right-top, y=1sbh, x=-10dp, \
             font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100
 #btn_skip: display=none, height=44dp, \
-            position=absolute, gravity=right-top, y=1sbh, x=-10dp, \
+            position=abs, gravity=right-top, y=1sbh, x=-10dp, \
             font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100
-#label_title: width=120dp, height=44dp, position=absolute, gravity=top, y=1sbh, \
+#label_title: width=120dp, height=44dp, position=abs, gravity=top, y=1sbh, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
 
 if $SCREEN_WIDTH > "5"
@@ -30,15 +30,15 @@ end
 -- 입력창 --
 
 #section_board: width=1pw, height=(1ph-300dp-(44dp+1sbh)), \
-            position=absolute, gravity=top, y=(44dp+1sbh)
+            position=abs, gravity=top, y=(44dp+1sbh)
 
 #section_number: width=(38dp*5+30dp+5dp*5), height=50dp
 
 #label_number: text="●", width=38dp, height=48dp, hidden=yes, \
-            position=absolute, gravity=left-top, \
+            position=abs, gravity=left-top, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=center, font-size=1.2
 #blank_number: color=$THEME_COLOR_101, width=38dp, height=2dp, \
-            position=absolute, gravity=left-bottom, y=-2dp
+            position=abs, gravity=left-bottom, y=-2dp
 
 #label_number.1: style=label_number, x=(38dp+5dp)*0
 #blank_number.1: style=blank_number, x=(38dp+5dp)*0
@@ -50,14 +50,14 @@ end
 #blank_number.4: style=blank_number, x=(38dp+5dp)*3
 
 #label_plus: text="+", width=30dp, height=48dp, \
-            position=absolute, gravity=left-top, x=((38dp+5dp)*4), \
+            position=abs, gravity=left-top, x=((38dp+5dp)*4), \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_101, text-align=center, font-size=1.6
 
 #label_number.5: style=label_number, x=(38dp+5dp)*4+(30dp+5dp)
 #blank_number.5: style=blank_number, x=(38dp+5dp)*4+(30dp+5dp)
 
 /popup/board: display=none
-/popup/board/content: display=block, position=absolute, gravity=center
+/popup/board/content: display=block, position=abs, gravity=center
 /popup/board/content/message: margin="0 20dp 10dp 20dp"
 /popup/board/content/number: display=none
 
@@ -71,7 +71,7 @@ end
 -- 숫자 키패드 --
 
 #section_numpad: width="1pw-30dp", max-width=440dp, height=280dp, \
-            position=absolute, gravity=bottom, y=-(1ehb+30dp)
+            position=abs, gravity=bottom, y=-(1ehb+30dp)
 
 #btn_numpad: width=1pw/3, height=1ph/4, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, label-align=center, label-font-size=2.4
@@ -87,7 +87,7 @@ end
 -- 알파벳 키패드 --
 
 #section_keypad: hidden=yes, width="1pw-20dp", max-width=480dp, height=224dp, \
-position=absolute, gravity=bottom, y=-(1ehb+30dp)
+position=abs, gravity=bottom, y=-(1ehb+30dp)
 
 #btn_keypad: width=(1pw-10dp)/7, height=1ph/4, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, label-align=center, label-font-size=1.55

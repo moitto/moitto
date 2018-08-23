@@ -1,0 +1,11 @@
+=begin cell
+
+=object blank: style=blank_userpic.mask
+=object image: image-url="${userpic-url}", reuse-id="${userpic-url}", style=img_userpic
+
+=(object label: text="${username}", style=label_user)=
+=object label: text="REP. ${reputation}", style=label_rep
+
+=object button: script=follow, label="언뮤트", style=btn_action
+
+=end cell

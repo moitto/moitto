@@ -1,10 +1,10 @@
 import ~/themes.sbss
 
 #blank_userpic.mask: color=$THEME_COLOR_01, width=82dp, height=82dp, \
-            position=absolute, gravity=top, y=139dp, content-border-radius=82dp/2
+            position=abs, gravity=top, y=139dp, content-border-radius=82dp/2
 #img_userpic: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
             content-border-radius=80dp/2, margin="0 0 20dp 0"
-#btn_start: width=0.8pw, height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+#btn_start: width=0.8pw, height=50dp, position=abs, gravity=bottom, y=-(1eb+0.1pw), \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03
 #user: text-color=$THEME_COLOR_100

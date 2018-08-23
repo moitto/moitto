@@ -108,8 +108,8 @@ Actions.hide_comment = function(params) {
     controller.action("toast", { "message":"숨김 처리를 진행하고 있습니다." });
 }
 
-Actions.follow_user = function(params) {
-    Actions.account.follow_user(params["username"], function(response) {
+Actions.follow = function(params) {
+    Actions.account.follow(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"팔로우가 완료되었습니다." });
@@ -124,8 +124,8 @@ Actions.follow_user = function(params) {
     controller.action("toast", { "message":"팔로우를 진행합니다." });
 }
 
-Actions.unfollow_user = function(params) {
-    Actions.account.unfollow_user(params["username"], function(response) {
+Actions.unfollow = function(params) {
+    Actions.account.unfollow(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"언팔로우가 완료되었습니다." });
@@ -140,8 +140,8 @@ Actions.unfollow_user = function(params) {
     controller.action("toast", { "message":"언팔로우를 진행합니다." });
 }
 
-Actions.mute_user = function(params) {
-    Actions.account.mute_user(params["username"], function(response) {
+Actions.mute = function(params) {
+    Actions.account.mute(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"뮤트가 완료되었습니다." });
@@ -156,8 +156,8 @@ Actions.mute_user = function(params) {
     controller.action("toast", { "message":"뮤트를 진행합니다." });
 }
 
-Actions.unmute_user = function(params) {
-    Actions.account.unmute_user(params["username"], function(response) {
+Actions.unmute = function(params) {
+    Actions.account.unmute(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"언뮤트가 완료되었습니다." });

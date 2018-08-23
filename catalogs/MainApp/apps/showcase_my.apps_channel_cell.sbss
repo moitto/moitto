@@ -1,0 +1,8 @@
+import showcase_my.apps_cell.sbss
+
+#widget: sortkey=running, sortorder=descending
+
+#img_channel: width=44dp, height=44dp, filename="~/subview_btn_app_channel.png", \
+            position=abs, gravity=right-bottom, x=-3dp, y=-3dp
+
+#btn_channel: width=1pw, height=50dp, position=abs, gravity=bottom

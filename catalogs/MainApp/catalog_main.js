@@ -1,6 +1,5 @@
 var history  = require("history");
 var notif    = require("notif");
-var connect  = require("connect");
 var settings = require("settings");
 var actions  = require("actions");
 var api      = require("api");
@@ -29,10 +28,6 @@ function on_foreground() {
 
 function on_background() {
     __last_background_time = new Date().getTime();
-}
-
-function on_connect(params) {
-    connect.invoke(params["method"], params);
 }
 
 function update_notif() {

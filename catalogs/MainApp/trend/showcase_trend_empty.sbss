@@ -2,7 +2,7 @@ import ~/themes.sbss
 
 #animation_loading: display=none, width=80dp, height=80dp*0.634, \
                 filename="~/subview_img_loading.black.png", frame-count=26, duration=1.6, \
-                position=absolute, gravity=bottom
+                position=abs, gravity=bottom
 
 if $SCREEN_WIDTH > "5"
     #animation_loading: y=-250dp

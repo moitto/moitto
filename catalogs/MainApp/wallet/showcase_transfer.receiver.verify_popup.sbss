@@ -7,11 +7,11 @@ import ~/themes.sbss
 
 #section_navibar: width=1pw, height="1sbh+44dp", content-background-color=$THEME_COLOR_00
 #btn_close: image="~/subview_btn_close.png", width=44dp, height=44dp, \
-            position=absolute, gravity=left-bottom
-#label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=bottom, \
+            position=abs, gravity=left-bottom
+#label_title: width="1pw-44dp*2", height=44dp, position=abs, gravity=bottom, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
             line-break-mode=tail-truncation
-#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=abs, gravity=bottom
 /popup/navibar: display=none
 
 if $SCREEN_WIDTH > "5"
@@ -22,7 +22,7 @@ end
 
 
 #blank_userpic.mask: color=$THEME_COLOR_01, width=82dp, height=82dp, \
-            position=absolute, gravity=top, y="1sbh+44dp+0.1pw-1dp", content-border-radius=82dp/2
+            position=abs, gravity=top, y="1sbh+44dp+0.1pw-1dp", content-border-radius=82dp/2
 #img_profile: width=80dp, height=80dp, scale-mode=fill, default-color=$THEME_COLOR_01, \
             content-border-radius=40dp, margin="0 0 5dp 0"
 #label_user: height=30dp, \
@@ -48,7 +48,7 @@ end
 
 -- loading 분기 --
 
-/popup/loading: display=block, position=absolute, gravity=center, \
+/popup/loading: display=block, position=abs, gravity=center, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center
 
 -- 계정조회 실패 --
@@ -57,7 +57,7 @@ end
                 label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
                 content-background-color=$THEME_COLOR_03, margin="50dp 0 0 0"
 
-/popup/invalid: display=block, position=absolute, gravity=top, y="1sbh+44dp+0.1pw", \
+/popup/invalid: display=block, position=abs, gravity=top, y="1sbh+44dp+0.1pw", \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, font-size=1.1, \
             line-spacing=0.3em, paragraph-spacing=0.3em, \
             margin="0 0.1pw"

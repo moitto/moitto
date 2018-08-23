@@ -1,17 +1,17 @@
 import ~/themes.sbss
 
 #blank_userpic.mask: color=$THEME_COLOR_01, width=30dp, height=30dp, \
-            position=absolute, gravity=top-left, x=10dp, y=10dp, content-border-radius=30dp/2
-#btn_userpic: width=28dp, height=28dp, position=absolute, gravity=top-left, x=11dp, y=11dp, \
+            position=abs, gravity=top-left, x=10dp, y=10dp, content-border-radius=30dp/2
+#btn_userpic: width=28dp, height=28dp, position=abs, gravity=top-left, x=11dp, y=11dp, \
             scale-mode=fill, content-border-radius=28dp/2, default-color=$THEME_COLOR_01
-#btn_user: height=15dp, position=absolute, gravity=top-left, x=50dp, y=10dp, \
+#btn_user: height=15dp, position=abs, gravity=top-left, x=50dp, y=10dp, \
             label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_100, \
             label-align=left, label-font-size=0.9
-#label_date: height=15dp, position=absolute, gravity=top-left, x=50dp, y=25dp, \
+#label_date: height=15dp, position=abs, gravity=top-left, x=50dp, y=25dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=left, font-size=0.7
 #btn_vote: width=24dp, height=24dp, \
             image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
-            position=absolute, gravity=top-right, x=-10dp, y=13dp
+            position=abs, gravity=top-right, x=-10dp, y=13dp
 
 /cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
     page-background-color=$THEME_COLOR_02

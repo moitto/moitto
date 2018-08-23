@@ -1,5 +1,0 @@
-=begin empty
-
-=object button: action=page, display-unit=S_DAPPS, label="디앱 보기", style=btn_dapps
-
-=end empty

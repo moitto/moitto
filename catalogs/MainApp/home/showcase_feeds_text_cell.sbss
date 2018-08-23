@@ -5,7 +5,7 @@ import showcase_feeds_cell.sbss
 -- 레이아웃 분기 --
 
 if $LAYOUT == "thumbnail"
-    #blank_dim: width=1pw, height=1ph, position=absolute, color=$BLACK_COLOR_LIGHT_DIM
+    #blank_dim: width=1pw, height=1ph, position=abs, color=$BLACK_COLOR_LIGHT_DIM
     /cell/contents/title: display=block, \
                 text-color=${background.text-color}, \
                 padding="10dp 20dp 120dp 10dp", background-color=$BLACK_COLOR_DIM

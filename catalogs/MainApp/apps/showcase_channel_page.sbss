@@ -1,0 +1,3 @@
+import S_APPS_page.sbss
+
+#showcase_apps: cell-size="(1pw-20dp), (1pw-20dp+80dp)"

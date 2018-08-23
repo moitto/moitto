@@ -6,11 +6,11 @@ import ~/themes.sbss
 
 #section_navibar: width=1pw, height="1sbh+44dp", content-background-color=$THEME_COLOR_00
 #btn_close: image="~/subview_btn_close.png", width=44dp, height=44dp, \
-        position=absolute, gravity=right-bottom
-#label_title: width="1pw-44dp*2", height=44dp, position=absolute, gravity=bottom, \
+        position=abs, gravity=right-bottom
+#label_title: width="1pw-44dp*2", height=44dp, position=abs, gravity=bottom, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=center, \
         line-break-mode=tail-truncation
-#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=absolute, gravity=bottom
+#blank_line: width=1pw, height=1dp, content-background-color=$THEME_COLOR_01, position=abs, gravity=bottom
 
 /popup/navibar: display=none
 
@@ -28,7 +28,7 @@ end
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-align=left, label-font-size=1.2, \
         select-mode=single, group=reason, valid-when-selected=yes, message-when-invalid="신고 이유를 선택하세요."
 
-#btn_report: width="1pw-40dp", height=50dp, position=absolute, gravity=bottom, y=-(1eb+0.1pw), \
+#btn_report: width="1pw-40dp", height=50dp, position=abs, gravity=bottom, y=-(1eb+0.1pw), \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_102, \
         label-align=center, label-font-size=1.2, \
         content-background-color=$THEME_COLOR_04

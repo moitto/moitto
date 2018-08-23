@@ -66,7 +66,8 @@ Connect.__invoke_delegate = function(params) {
 
 Connect.__invoke_undelegate = function(params) {
     controller.catalog().submit("showcase", "auxiliary", "S_UNDELEGATE", Object.assign({
-        "from":params["from"]
+        "from":params["from"],
+        "coin":params["coin"] || "SP"
      }, Connect.__invoke_params(params)));
 
     controller.action("subview", { "subview":"V_UNDELEGATE", "target":"popup" });

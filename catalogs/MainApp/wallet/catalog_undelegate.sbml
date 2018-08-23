@@ -13,11 +13,16 @@
 =object section: section=amount, style=section_amount
 =begin amount: id=amount
 =begin heading
-=object label: text="임대회수할 스팀파워", style=label_amount.title
+=object label: text="임대회수할 액수", style=label_amount.title
 =end heading
 
+=object section: section=amount.box, style=section_amount.box
+=begin box: id=amount.box, form=amount.box
 =begin content
+=object label: id=label.amount_type, text="${subview.coin}", style=label_amount_type
+=object label: id=amount, text="${subview.amount}", style=label_amount
 =end content
+=end box
 
 =end amount
 

@@ -1,6 +1,6 @@
 function delegate() {
     controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", {
-        // TBD
+        "coin":"SP"
     });
 
     controller.action("popup", { 
@@ -11,7 +11,7 @@ function delegate() {
 
 function undelegate() {
     controller.catalog().submit("showcase", "auxiliary", "S_UNDELEGATE", {
-        // TBD
+        "coin":"SP"
     });
 
     controller.action("popup", { 
@@ -22,7 +22,7 @@ function undelegate() {
 
 function power_down() {
     controller.catalog().submit("showcase", "auxiliary", "S_POWER_DOWN", {
-        // TBD
+        "coin":"SP"
     });
 
     controller.action("subview", { 

@@ -484,8 +484,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             }
         } else if (token[36]) { // pre tag
-            var pattern = new RegExp("(?:^|\\n) {0,3}" + token[2][0] + "{3,}(?:\n|$)");
-            var subtexts = MarkdownParser.__split_text_for_delemeter(text, tokenizer.lastIndex, pattern);
+            var subtexts = MarkdownParser.__split_text_for_delemeter(text, tokenizer.lastIndex, /<\/pre>/);
 
             if (text_chunk) {
                 elements.push({

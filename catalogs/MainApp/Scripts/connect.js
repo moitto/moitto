@@ -92,6 +92,22 @@ Connect.__invoke_vote = function(params) {
     }
 }
 
+Connect.__invoke_unvote = function(params) {
+    if (params["prompts"] == "yes" || !params["weight"]) {
+        controller.catalog().submit("showcase", "auxiliary", "S_UNVOTE", Object.assign({
+            "author":params["author"],
+            "permlink":params["permlink"]
+        }, Connect.__invoke_params(params)));
+
+        controller.action("subview", { "subview":"V_UNVOTE", "target":"popup" });
+    } else {
+        Connect.actions.unvote(Object.assign({
+            "author":params["author"],
+            "permlink":params["permlink"]
+        }, Connect.__invoke_params(params)));
+    }
+}
+
 Connect.__invoke_reblog = function(params) {
     controller.catalog().submit("showcase", "auxiliary", "S_REBLOG", Object.assign({
         "author":params["author"],

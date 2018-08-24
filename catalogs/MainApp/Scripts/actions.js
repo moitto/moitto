@@ -13,11 +13,7 @@ Actions.vote = function(params) {
     Actions.account.vote(params["author"], params["permlink"], parseInt(params["weight"]), function(response) {
         if (response) {
             Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
-                if (parseInt(params["weight"]) == 0) {
-                    controller.action("toast", { "message":"보팅이 취소되었습니다." });
-                } else {
-                    controller.action("toast", { "message":"보팅이 완료되었습니다." });
-                }
+                controller.action("toast", { "message":"보팅이 완료되었습니다." });
                 controller.update("votes-" + params["author"] + "." + params["permlink"], {});
 
                 Actions.__on_complete(params, id, data);
@@ -28,6 +24,23 @@ Actions.vote = function(params) {
     });
 
     controller.action("toast", { "message":"보팅을 진행합니다." });
+}
+
+Actions.unvote = function(params) {
+    Actions.account.vote(params["author"], params["permlink"], 0, function(response) {
+        if (response) {
+            Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
+                controller.action("toast", { "message":"보팅이 취소되었습니다." });
+                controller.update("votes-" + params["author"] + "." + params["permlink"], {});
+
+                Actions.__on_complete(params, id, data);
+            });
+        } else {
+            controller.action("toast", { "message":"보팅 취소에 실패했습니다." });
+        }
+    });
+
+    controller.action("toast", { "message":"보팅 취소를 진행합니다." });
 }
 
 Actions.reblog = function(params) {

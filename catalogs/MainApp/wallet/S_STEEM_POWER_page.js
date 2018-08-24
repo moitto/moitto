@@ -1,6 +1,6 @@
 function delegate() {
     controller.catalog().submit("showcase", "auxiliary", "S_DELEGATE", {
-        // TBD
+        "coin":"SP"
     });
 
     controller.action("popup", { 

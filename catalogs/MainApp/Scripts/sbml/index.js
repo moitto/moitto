@@ -499,14 +499,14 @@ Sbml.__elements_to_sbml = function(elements, images, inline) {
             return;
         }
 
-        if (["strong", "strike", "bold", "italic", "code", "sub", "sup"].includes(element.type.replace("-tag-begin", ""))) {
+        if (["strong", "strike", "b", "i", "code", "sub", "sup"].includes(element.type.replace("-tag-begin", ""))) {
             sbml += "=[" + element.type.replace("-tag-begin", "") + "|";
             inline_depth = inline_depth + 1;
 
             return;
         }
 
-        if (["strong", "strike", "bold", "italic", "code", "sub", "sup"].includes(element.type.replace("-tag-end", ""))) {
+        if (["strong", "strike", "b", "i", "code", "sub", "sup"].includes(element.type.replace("-tag-end", ""))) {
             sbml += "]=";
             inline_depth = inline_depth - 1;
 
@@ -532,7 +532,7 @@ Sbml.__has_center_tag = function(elements) {
 Sbml.__handle_text = function(text) {
     text = text.replace(/\u2028|\u2029/g, "\n"); // unicode line seperators
     text = text.replace(/\\/g, "").replace(/(\[|\]|=|\(|\))/g, "\\$1");
-    text = text.replace(/(\W+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
+    text = text.replace(/(^|\W+)@([a-z0-9\-]+(?:\.[a-z0-9\-]+)*)/g, "$1=[user:username=\"$2\"|@$2]=");
     text = text.replace(/[ \t][ \t]+/g, " ");
     text = Sbml.texts.replace_emoji_chars(text, "=[emoji|$1]=");
     text = decode("html", text);

@@ -1,5 +1,7 @@
-var users = require("users");
-var urls  = require("urls");
+var connect      = require("connect");
+var steemconnect = require("steemconnect");
+var users        = require("users");
+var urls         = require("urls");
 
 var __schedule_to_reload = false;
 

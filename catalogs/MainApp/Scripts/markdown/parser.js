@@ -561,10 +561,11 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 
             if (symbol === "_" || symbol === "*" || symbol === "~") {
                 var formatter_begin = MarkdownParser.__last_formatter_begin(elements, symbol);
+                var prevchar = prior || text.substring(Math.max(token.index - 1, 0), token.index);
                 var nextchar = text.substring(tokenizer.lastIndex, tokenizer.lastIndex + 1);
                 
                 if (formatter_begin && !token[44]) {
-                    if (symbol !== "_" || nextchar.match(/[^\w\d]|$/)) {
+                    if (symbol !== "_" || (!nextchar || nextchar.match(/[^\w\d]/))) {
                         var begin_symbols = formatter_begin.data["symbols"];
                         var length = Math.min(begin_symbols.length, symbols.length);
                         var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";
@@ -590,7 +591,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                         }
                     }
                 } else {
-                    if (nextchar.match(/[^ \n]/) && (symbol !== "~" || nextchar !=="~")) {
+                    if ((symbol !== "_" || (!prevchar || prevchar.match(/[^\w\d]/))) && (nextchar.match(/[^ \n]/) && (symbol !== "~" || nextchar !=="~"))) {
                         element = {
                             type:"formatter-begin",
                             data:{
@@ -645,6 +646,10 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 } else {
                     MarkdownParser.__handle_mismatched_tags(elements, tag[1], element.data["inline"], begin_tags);
                 }
+            }
+
+            if (element.data["break"]) {
+                MarkdownParser.__clear_unhandled_begins(elements);
             }
 
             elements.push(element);

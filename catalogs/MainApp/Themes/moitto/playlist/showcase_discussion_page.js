@@ -12,6 +12,7 @@ function on_loaded() {
 
 function on_change_data(id, data) {
     view.data("display-unit", { 
+        "custom-text":JSON.stringify(__playlist),
         "theme":$data["theme"],
         "hides-navibar":"yes"
     });

@@ -6,10 +6,19 @@ function feed_video(keyword, location, length, sortkey, sortorder, handler) {
 
         items.forEach(function(item) {
             data.push({
-                "video-id":item
+                "video-id":item, 
+                "music-id":$data["id"]
             });
         });
 
         handler(data);
     });        
+}
+
+function prev_music() {
+    owner.action("script", { "script":"prev_music" });
+}
+
+function next_music() {
+    owner.action("script", { "script":"next_music" });
 }

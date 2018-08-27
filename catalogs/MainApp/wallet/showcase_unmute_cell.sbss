@@ -1,7 +1,7 @@
 import showcase_following_cell.sbss
 
 if "${muted}" != "yes" || "${is-me}" == "yes"
-    #btn_action: disabled=yes
+    #btn_action: enabled=no
     if "${is-me}" == "yes"
         #btn_action: label="본인은 언뮤트할 수 없습니다."
     else

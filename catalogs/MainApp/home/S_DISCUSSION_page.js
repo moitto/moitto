@@ -21,6 +21,7 @@ function on_loaded() {
             "permlink":content.data["permlink"],
             "title":content.data["title"],
             "body":impl.build_body(content.data["body"], content.meta["format"], content.meta["image"]),
+            "custom-text":impl.get_custom_text(),
             "image-url":content.get_title_image_url("256x512") || "",
             "large-image-url":content.get_title_image_url("640x480") || "",
             "userpic-url":content.get_userpic_url("small"),
@@ -100,7 +101,7 @@ function __get_theme_in_tags(tags) {
         if (tags[i].startsWith("moitto-")) {
             var theme = tags[i].substring("moitto-".length);
 
-            if ([ "playlist", "webtoon" ].includes(theme)) {
+            if ([ "playlist" ].includes(theme)) {
                 return "moitto/" + theme;
             }
 

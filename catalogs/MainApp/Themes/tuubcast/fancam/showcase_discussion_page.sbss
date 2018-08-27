@@ -1,13 +1,5 @@
 import ~/themes.sbss
 
-#btn_vote: width=50dp, height=50dp, topmost=yes, \
-        image="~/subview_btn_vote.png", selected-image="~/subview_btn_voted.png", \
-        position=abs, gravity=right-bottom, x=-20dp, y=-(20dp+1eb)
-
-if "${voted}" == "yes"
-    #btn_vote: selected=yes
-end
-
 #youtube: width=1pw, height=1ph, position=abs, gravity=center, \
         autoplay=yes, info-hidden=yes, control-hidden=yes, subtitle-hidden=yes, \
         preview-section=preview, minimum-preview-time=2
@@ -22,3 +14,25 @@ end
 /page/preview/container/content: display=block, position=abs, gravity=center
 /page/preview/container/content/title: text-color=$WHITE_COLOR, text-align=center
 /page/preview/container/content/user: text-color=$WHITE_COLOR, text-align=center
+
+
+-- 보팅 --
+
+#btn_vote: image="~/subview_btn_vote.png", \
+        width=50dp, height=50dp, position=abs, gravity=right-bottom
+
+if $SCREEN_WIDTH > "5"
+    #btn_vote: x=-40dp, y=-(40dp+1eb)
+else
+    #btn_vote: x=-20dp, y=-(20dp+1eb)
+end
+
+if "${vote-weight}" != 0
+    if "${vote-weight}" > 0
+        #btn_vote: selected=yes, selected-image="~/subview_btn_upvoted.png"
+    else
+        #btn_vote: selected=yes, selected-image="~/subview_btn_downvoted.png"
+    end
+else
+    #btn_vote: selected=no
+end

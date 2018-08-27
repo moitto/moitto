@@ -564,7 +564,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 var nextchar = text.substring(tokenizer.lastIndex, tokenizer.lastIndex + 1);
                 
                 if (formatter_begin && !token[44]) {
-                    if (symbol !== "_" || nextchar.match(/[^\w\d]/)) {
+                    if (symbol !== "_" || nextchar.match(/[^\w\d]|$/)) {
                         var begin_symbols = formatter_begin.data["symbols"];
                         var length = Math.min(begin_symbols.length, symbols.length);
                         var type = (symbol === "~") ? "linethrough" : (length == 3) ? "em-italic" : (length == 2) ? "em" : "italic";

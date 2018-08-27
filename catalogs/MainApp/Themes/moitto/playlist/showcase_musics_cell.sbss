@@ -1,15 +1,30 @@
 import ~/themes.sbss
 
-#showcase_video: id=showcase.video.${id}, name="${id}", data-script=feed_video, alternate-name=video, \
-        width=1pw, height=1ph, position=abs, gravity=center, \
+#showcase_video: width=1pw, height=1ph, position=abs, gravity=center, \
         row-count=1, cell-size="1pw, 1ph", page-enabled=yes
 
-#section_info: section=info, width=1pw, height=1ph-((1pw-30dp)*9/16+20dp+10dp), \
-        position=abs, gravity=top, y=(1pw-30dp)*9/16+20dp+10dp
+#section_info: width=1pw, position=abs, gravity=top, y=(1pw-30dp)*9/16+1sbh+44dp
+#section_playbar: width=1pw, height=34dp, \
+        position=abs, gravity=top, y=(1pw-30dp)*9/16+1sbh+10dp
 
-/cell: script-when-loaded=on_loaded
-/cell/info: id=info, display=none
+#progress_time: width=1pw-40dp, height=2dp, position=abs, gravity=top, y=5dp, \
+            track-color=$THEME_COLOR_00, progress-color=$THEME_COLOR_03
+#label_progress: width=100dp, height=20dp, position=abs, \
+            font-family=$SANSSERIF_MEDIUM, font-size=0.95, text-color=$THEME_COLOR_00
+#label_time: style=label_progress, gravity=left-bottom, x=20dp, text-align=left
+#label_time.invert: style=label_progress, gravity=right-bottom, x=-20dp, text-align=right
+
+/cell/info: display=none
 /cell/info/content: display=block, position=abs, gravity=center, padding="0 20dp", \
-        text-color=$WHITE_COLOR, text-align=center
-/cell/info/content/title: font-family=$SANSSERIF_MEDIUM, font-size=1.8, margin-bottom=5dp
-/cell/info/content/artists: font-family=$SANSSERIF_MEDIUM, font-size=0.9
+        text-color=$THEME_COLOR_00, text-align=center
+/cell/info/content/title: margin-bottom=5dp, font-family=$SANSSERIF_BOLD, font-size=1.4em
+/cell/info/content/artists: font-family=$SANSSERIF_MEDIUM, font-size=1.0em
+/cell/playbar: display=none
+
+if $SCREEN_WIDTH > "5"
+    #section_info: height=1ph-((1pw-30dp)*9/16+1sbh+184dp+1eb)
+    /cell/info/content: font-size=1.3
+else
+    #section_info: height=1ph-((1pw-30dp)*9/16+1sbh+164dp+1eb)
+    /cell/info/content: font-size=1.2
+end

@@ -19,6 +19,10 @@ Theme.prototype.build_body = function(body, format, images) {
     return body;
 }
 
+Theme.prototype.get_custom_text = function() {
+    return "";
+}
+
 Theme.prototype.__get_title = function(text) {
 }
 

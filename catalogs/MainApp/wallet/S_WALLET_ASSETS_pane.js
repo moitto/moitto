@@ -15,9 +15,9 @@ function on_change_data(id, data) {
 function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
     var assets = [];
  
-    assets.push(__asset_data("S_STEEM",        "STEEM",        $data["steem-balance"]));
-    assets.push(__asset_data("S_STEEM_POWER",  "STEEM POWER",  $data["steem-power"  ]));
-    assets.push(__asset_data("S_STEEM_DOLLAR", "STEEM DOLLAR", $data["sbd-balance"  ]));
+    assets.push(__asset_data("S_STEEM",        "STEEM",        $data["steem-balance"] || "0"));
+    assets.push(__asset_data("S_STEEM_POWER",  "STEEM POWER",  $data["steem-power"  ] || "0"));
+    assets.push(__asset_data("S_STEEM_DOLLAR", "STEEM DOLLAR", $data["sbd-balance"  ] || "0"));
 
     handler(assets);
 }

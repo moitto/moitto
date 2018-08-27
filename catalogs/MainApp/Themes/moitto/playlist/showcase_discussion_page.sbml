@@ -1,8 +1,32 @@
 =begin page
 
 =object image: id=image.bg, style=img_bg
-=object showcase: id=showcase.musics, name=musics, 
-            data-script=feed_musics, page-enabled=yes, \
+=object showcase: id=showcase.musics, reuse-id="showcase.musics", \
+            name="${author}-${permlink}-musics", alternate-name="musics", \
+            data-script=feed_musics, lazy-loading=no, \
             style=showcase_musics
+
+=object section: section=control, style=section_control
+
+=object button: label="글 보기", script=open_discussion, style=btn_discussion
+=object button: id=btn.vote, script=vote, style=btn_vote
+
+=object blank: group=music.list, style=blank_music.list.background
+=object showcase: id=showcase.music.list, group=music.list, reuse-id="showcase.music.list", \
+            name="${author}-${permlink}-musics", alternate-name="music.list", \
+            preload-count=15, keep-count=15, \
+            selectable=yes, script-when-selected=select_music, \
+            style=showcase_music.list
+
+=object button: label="닫기", action=hide, group=music.list, style=btn_close.list
+
+=begin control: id=control
+=object button: action=show, params="group=music.list", style=btn_list
+=object button: id=btn.prev, script=prev_music, style=btn_prev
+=object button: action=play, target=owner, type=play, owner="youtube.player", style=btn_play
+=object button: action=pause, target=owner, type=pause, owner="youtube.player", style=btn_pause
+=object button: id=btn.next, script=next_music, style=btn_next
+=object button: id=btn.shuffle, script=shuffle_music, style=btn_shuffle
+=end control
 
 =end page

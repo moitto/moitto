@@ -1,0 +1,12 @@
+=begin empty
+
+=object blank: style=blank_background
+=object section: section=loading, style=section_loading
+
+=begin loading: id=loading
+=begin content
+검색 중입니다.
+=end content
+=end loading
+
+=end empty

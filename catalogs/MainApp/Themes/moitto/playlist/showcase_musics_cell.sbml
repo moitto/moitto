@@ -1,9 +1,11 @@
 =begin cell
 
-=object showcase: style=showcase_video
-=object section: style=section_info
+=object showcase: id="showcase.video.${id}", name="${id}", alternate-name=video, \
+        data-script=feed_video, style=showcase_video
+=object section: section=info, style=section_info
+=object section: section=playbar, style=section_playbar
 
-=begin info
+=begin info: id=info
 
 =begin content
 =begin title
@@ -13,8 +15,15 @@ ${title}
 =begin artists
 ${artists}
 =end artists
+
 =end content
 
 =end info
+
+=begin playbar: id=playbar
+=object progress: type=time, owner="youtube.player", style=progress_time
+=object label: type=time, owner="youtube.player", text="0:00", style=label_time
+=object label: type=time, inverts-value=yes, owner="youtube.player", text="0:00", style=label_time.invert
+=end playbar
 
 =end cell

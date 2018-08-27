@@ -5,6 +5,77 @@ import ~/themes.sbss
         
 #showcase_musics: width=1pw, height=1ph, position=abs, gravity=center, \
         column-count=1, cell-size="1pw, 1ph", \
-        content-background-color=$BLACK_COLOR_SWALLOW_DIM
+        scroll-enabled=no, animates-when-move-page=no, animates-when-focus=no, \
+        content-background-color=$BLACK_COLOR_LIGHT_DIM
 
-/page: page-background-color=$BLACK_COLOR, script-when-loaded=on_loaded
+#blank_music.list.background: hidden=yes, color=$BLACK_COLOR_DEEPEST_DIM, \
+        width=1pw, height=1ph, position=abs, gravity=top
+
+#showcase_music.list: hidden=yes, width=1pw-50dp, height=1ph-(30dp+1sbh+60dp+1eb+0.1pw), \
+        position=abs, gravity=top, y=30dp+1sbh, \
+        column-count=1, cell-size="1pw-50dp, 80dp", \
+        scroll-indicator-hidden=yes
+
+#btn_close.list: hidden=yes, width="1pw-40dp", height=50dp, \
+        position=abs, gravity=bottom, y=-(1eb+0.1pw), \
+        label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.1, \
+        label-color=$THEME_COLOR_100, content-background-color=$THEME_COLOR_00
+
+/page: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
+    script-when-loaded=on_loaded, page-background-color=$BLACK_COLOR
+
+
+-- 재생 컨트롤 --
+
+#section_control: width=1pw, height=64dp, position=abs, gravity=bottom
+
+#btn_play: image="~/mediabar_btn_play_white.png", width=64dp, height=64dp, \
+        position=abs, gravity=center, \
+        hides-when-disabled=yes, disable-when-selected=yes
+#btn_pause: image="~/mediabar_btn_pause_white.png", width=64dp, height=64dp, \
+        position=abs, gravity=center, \
+        hides-when-disabled=yes, disable-when-selected=yes, selected=yes
+#btn_prev: image="~/mediabar_btn_prev_white_small.png", width=36dp, height=36dp, \
+        position=abs, gravity=center, x=-70dp
+#btn_next: image="~/mediabar_btn_next_white_small.png", width=36dp, height=36dp, \
+        position=abs, gravity=center, x=70dp
+#btn_list: image="~/mediabar_btn_list_white_small.png", width=36dp, height=36dp, \
+        position=abs, gravity=center, x=-130dp
+#btn_shuffle: image="~/mediabar_btn_shuffle_white_small.png", width=36dp, height=36dp, \
+        position=abs, gravity=center, x=130dp
+
+/page/control: display=none
+
+if $SCREEN_WIDTH > "5"
+    #section_control: y=-(40dp+1eb+70dp)
+else
+    #section_control: y=-(20dp+1eb+70dp)
+end
+
+
+-- 보팅 --
+
+#btn_discussion: width=70dp, height=30dp, \
+        position=abs, gravity=left-bottom, x=20dp, y=-(20dp+1eb), \
+        label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.0, \
+        label-color=$THEME_COLOR_00, content-background-color=$BLACK_COLOR_DIM, \
+        content-border-radius=30dp/2
+
+#btn_vote: image="~/subview_btn_vote.png", \
+        width=50dp, height=50dp, position=abs, gravity=right-bottom
+
+if $SCREEN_WIDTH > "5"
+    #btn_vote: x=-40dp, y=-(40dp+1eb)
+else
+    #btn_vote: x=-20dp, y=-(20dp+1eb)
+end
+
+if "${vote-weight}" != 0
+    if "${vote-weight}" > 0
+        #btn_vote: selected=yes, selected-image="~/subview_btn_upvoted.png"
+    else
+        #btn_vote: selected=yes, selected-image="~/subview_btn_downvoted.png"
+    end
+else
+    #btn_vote: selected=no
+end

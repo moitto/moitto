@@ -1,0 +1,21 @@
+import ~/themes.sbss
+
+#blank_background: color=$BLACK_COLOR, width=1pw-30dp, height=(1pw-30dp)*9/16, \
+        position=abs, gravity=top, y=1sbh+5dp
+
+#section_loading: display=none, width=1pw-30dp, height=(1pw-30dp)*9/16, \
+        position=abs, gravity=top, y=1sbh+5dp
+
+/empty/loading: display=none
+/empty/loading/content: display=block, position=abs, gravity=center, \
+        font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_00, text-align=center
+
+if $SCREEN_WIDTH > "5"
+    /empty: font-size=1.2
+else
+    /empty: font-size=1.1
+end
+
+if $LOADING == "yes"
+    #section_loading: display=object
+end

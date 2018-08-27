@@ -1,6 +1,7 @@
 =begin cell
 
-=object youtube: style=youtube
-=object web: style=web_youtube
+=object youtube: id="youtube.player", video-id="${video-id}", reuse-id="${video-id}", \
+            script-when-finished=next_music, script-when-not-available=next_music, \
+            style=youtube
 
 =end cell

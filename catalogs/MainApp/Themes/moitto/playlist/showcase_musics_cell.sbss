@@ -3,9 +3,9 @@ import ~/themes.sbss
 #showcase_video: width=1pw, height=1ph, position=abs, gravity=center, \
         row-count=1, cell-size="1pw, 1ph", page-enabled=yes
 
-#section_info: width=1pw, position=abs, gravity=top, y=(1pw-30dp)*9/16+1sbh+44dp
+#section_info: width=1pw, position=abs, gravity=top, y=(1pw-40dp)*9/16+1sbh+44dp
 #section_playbar: width=1pw, height=34dp, \
-        position=abs, gravity=top, y=(1pw-30dp)*9/16+1sbh+10dp
+        position=abs, gravity=top, y=(1pw-40dp)*9/16+1sbh+10dp
 
 #progress_time: width=1pw-40dp, height=2dp, position=abs, gravity=top, y=5dp, \
             track-color=$THEME_COLOR_00, progress-color=$THEME_COLOR_03
@@ -17,14 +17,14 @@ import ~/themes.sbss
 /cell/info: display=none
 /cell/info/content: display=block, position=abs, gravity=center, padding="0 20dp", \
         text-color=$THEME_COLOR_00, text-align=center
-/cell/info/content/title: margin-bottom=5dp, font-family=$SANSSERIF_BOLD, font-size=1.4em
-/cell/info/content/artists: font-family=$SANSSERIF_MEDIUM, font-size=1.0em
+/cell/info/content/title: margin-bottom=5dp, font-family=$SANSSERIF_BOLD, font-size=1.3
+/cell/info/content/artists: font-family=$SANSSERIF_MEDIUM, font-size=1
 /cell/playbar: display=none
 
 if $SCREEN_WIDTH > "5"
-    #section_info: height=1ph-((1pw-30dp)*9/16+1sbh+184dp+1eb)
+    #section_info: height=1ph-((1pw-40dp)*9/16+1sbh+184dp+1eb)
     /cell/info/content: font-size=1.3
 else
-    #section_info: height=1ph-((1pw-30dp)*9/16+1sbh+164dp+1eb)
+    #section_info: height=1ph-((1pw-40dp)*9/16+1sbh+164dp+1eb)
     /cell/info/content: font-size=1.2
 end

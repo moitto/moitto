@@ -8,7 +8,7 @@
 
 =object section: section=control, style=section_control
 
-=object button: label="글 보기", script=open_discussion, style=btn_discussion
+=object button: label="원문 보기", script=open_discussion, style=btn_discussion
 =object button: id=btn.vote, script=vote, style=btn_vote
 
 =object blank: group=music.list, style=blank_music.list.background

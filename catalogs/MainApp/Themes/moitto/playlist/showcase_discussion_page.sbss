@@ -27,21 +27,21 @@ import ~/themes.sbss
 
 -- 재생 컨트롤 --
 
-#section_control: width=1pw, height=64dp, position=abs, gravity=bottom
+#section_control: width=1pw, height=64dp, position=abs, gravity=bottom, content-background-color=#ff4
 
-#btn_play: image="~/mediabar_btn_play_white.png", width=64dp, height=64dp, \
+#btn_play: image="~/mediabar_btn_play_white.png", width=50dp, height=50dp, \
         position=abs, gravity=center, \
         hides-when-disabled=yes, disable-when-selected=yes
-#btn_pause: image="~/mediabar_btn_pause_white.png", width=64dp, height=64dp, \
+#btn_pause: image="~/mediabar_btn_pause_white.png", width=50dp, height=50dp, \
         position=abs, gravity=center, \
         hides-when-disabled=yes, disable-when-selected=yes, selected=yes
-#btn_prev: image="~/mediabar_btn_prev_white_small.png", width=36dp, height=36dp, \
+#btn_prev: image="~/mediabar_btn_prev_white.png", width=50dp, height=50dp, \
         position=abs, gravity=center, x=-70dp
-#btn_next: image="~/mediabar_btn_next_white_small.png", width=36dp, height=36dp, \
+#btn_next: image="~/mediabar_btn_next_white.png", width=50dp, height=50dp, \
         position=abs, gravity=center, x=70dp
-#btn_list: image="~/mediabar_btn_list_white_small.png", width=36dp, height=36dp, \
+#btn_list: image="~/mediabar_btn_list_white.png", width=50dp, height=50dp, \
         position=abs, gravity=center, x=-130dp
-#btn_shuffle: image="~/mediabar_btn_shuffle_white_small.png", width=36dp, height=36dp, \
+#btn_shuffle: image="~/mediabar_btn_shuffle_white_small.png", width=50dp, height=50dp, \
         position=abs, gravity=center, x=130dp
 
 /page/control: display=none

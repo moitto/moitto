@@ -5,7 +5,6 @@
 =object blank: style=blank_query.bar
 =object textfield: id=textfield.tag, \
                 script=change_tag, form=query, placeholder="태그를 검색하세요", \
-                action-when-editing@begin=hide, params-when-editing@begin="group=query.categories", \
                 script-when-editing@change=on_change_tag, \
                 return-key-type=search, keyboard-type=alphabet, auto-capitalization-type=none, \
                 valid-format="[a-z-]*", prevents-invalid-text=yes, \

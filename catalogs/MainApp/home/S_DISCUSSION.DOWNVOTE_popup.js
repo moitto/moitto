@@ -35,8 +35,9 @@ function select_percent(params) {
 
 function downvote() {
 	controller.action("script", { 
-		"script":"actions.vote",
-		"subview":"__MAIN__",
+        "script":"actions.vote",
+        "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "author":$data["author"],
         "permlink":$data["permlink"],
         "weight":__get_voting_weight(),

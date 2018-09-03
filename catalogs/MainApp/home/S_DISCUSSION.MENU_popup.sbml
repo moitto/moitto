@@ -15,10 +15,10 @@
 =object blank: style=blank_line
 =object button: script=open_url, label="웹 브라우저로 열기", style=btn_menu
 =object blank: style=blank_line
-=object button: script=downvote, label="다운보팅", style=btn_menu, style=unvoted, style=red
-=object blank: style=blank_line, style=unvoted
-=object button: script=report, label="신고", style=btn_menu, style=unvoted, style=red
-=object blank: style=blank_line, style=unvoted
+=object button: script=downvote, label="다운보팅", style=btn_menu, style=unvoted, style=hides_when_payout, style=red
+=object blank: style=blank_line, style=unvoted, style=hides_when_payout
+=object button: script=report, label="신고", style=btn_menu, style=unvoted, style=hides_when_payout, style=red
+=object blank: style=blank_line, style=unvoted, style=hides_when_payout
 
 =object button: action=popup-close, label="취소", style=btn_close
 =end actions

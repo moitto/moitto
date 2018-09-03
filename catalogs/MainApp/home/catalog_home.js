@@ -3,8 +3,6 @@ var contents = require("contents");
 var safety   = require("safety");
 
 var __disallowed_tags = safety.get_disallowed_tags();
-
-var __discussions = [];
 var __last_discussion = null;
 var __has_packages = true;
 
@@ -34,7 +32,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
     if (storage.value("ACTIVE_USER")) {
         var me = storage.value("ACTIVE_USER") || "";
         
-        __get_discussions_by_feed(me, start_author, start_permlink, length, function(discussions) {
+        __get_discussions_by_feed(me, start_author, start_permlink, length, [], function(discussions) {
             var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_IMAGE", null, [ 0, 100 ]);
             var data = [];
 
@@ -94,30 +92,28 @@ function open_discussion(data) {
     controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
 }
 
-function __get_discussions_by_feed(username, start_author, start_permlink, length, handler) {
-    steemjs.get_discussions_by_feed(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-        if (start_author && discussions.length > 0) {
-            discussions = discussions.splice(1);
+function __get_discussions_by_feed(username, start_author, start_permlink, length, discussions, handler) {
+    steemjs.get_discussions_by_feed(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(response) {
+        if (start_author && response.length > 0) {
+            response = response.splice(1);
         }
 
-        discussions.forEach(function(discussion) {
-            if (__discussions.length < length) {
-                __discussions.push(discussion);
+        response.forEach(function(discussion) {
+            if (discussions.length < length) {
+                discussions.push(discussion);
             }
         });
 
-        if (__discussions.length < length && discussions.length > 0) {
-            start_author   = discussions[discussions.length - 1]["author"];
-            start_permlink = discussions[discussions.length - 1]["permlink"];
+        if (discussions.length < length && response.length > 0) {
+            start_author   = response[response.length - 1]["author"];
+            start_permlink = response[response.length - 1]["permlink"];
 
             __get_discussions_by_feed(username, start_author, start_permlink, length, handler);
 
             return;
         }
 
-        handler(__discussions);
-
-        __discussions = [];
+        handler(discussions);
     });
 }
 

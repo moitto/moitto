@@ -18,3 +18,7 @@ if "${vote-weight}" != 0
 else
     #voted: display=none, width=0, height=0
 end
+
+if "${payout-done}" == "yes"
+    #hides_when_payout: display=none, width=0, height=0
+end

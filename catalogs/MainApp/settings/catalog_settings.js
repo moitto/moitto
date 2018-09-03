@@ -48,7 +48,11 @@ function logout() {
 		__reload_subviews([ "V_HOME", "V_NOTIF", "V_WALLET" ]);
 
 		controller.action("reload");
-	    controller.action("script", { "script":"reset_notif", "subview":"__MAIN__" });
+	    controller.action("script", { 
+	    	"script":"reset_notif", 
+	    	"subview":"__MAIN__",
+	        "routes-to-topmost":"no"
+	    });
 	});
 }
 

@@ -8,6 +8,58 @@ Actions.steemjs  = require("steemjs");
 Actions.global   = require("global");
 Actions.contents = require("contents");
 Actions.users    = require("users");
+Actions.rewards  = require("rewards");
+
+Actions.open_discussion = function(params) {
+    var user = Actions.users.create(params["author"]);
+
+    controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION", {
+        "author":params["author"],
+        "permlink":params["permlink"],
+        "userpic-url":user.get_userpic_url("small")
+    });
+
+    controller.action("page", { "display-unit":"S_DISCUSSION", "target":"popup" });
+}
+
+Actions.show_user = function(params) {
+    var user = Actions.users.create(params["username"]);
+
+    controller.catalog().submit("showcase", "auxiliary", "S_USER", {
+        "username":user.name,
+        "userpic-url":user.get_userpic_url("small"),
+        "fetched":"no"
+    });
+
+    controller.action("page", { "display-unit":"S_USER", "target":"popup" })
+}
+
+Actions.show_votes = function(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_VOTES", {
+        "author":params["author"],
+        "permlink":params["permlink"]
+    });
+
+    controller.action("page", { "display-unit":"S_VOTES", "target":"popup" })
+}
+
+Actions.show_replies = function(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_REPLIES", {
+        "author":params["author"],
+        "permlink":params["permlink"]
+    });
+
+    controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
+}
+
+Actions.show_tag = function(params) {
+    controller.catalog().submit("showcase", "auxiliary", "S_TAG", {
+        "tag":params["tag"],
+        "navibar-title":"#" + params["tag"]
+    });
+
+    controller.action("page", { "display-unit":"S_TAG", "target":"popup" })    
+}
 
 Actions.vote = function(params) {
     Actions.account.vote(params["author"], params["permlink"], parseInt(params["weight"]), function(response) {
@@ -24,6 +76,25 @@ Actions.vote = function(params) {
     });
 
     controller.action("toast", { "message":"보팅을 진행합니다." });
+}
+
+Actions.vote_after_payout = function(params) {
+    Actions.rewards.get_reward_reply(params["author"], params["permlink"], "after7days", function(author, permlink) {
+        Actions.account.vote(author, permlink, parseInt(params["weight"]), function(response) {
+            if (response) {
+                Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
+                    controller.action("toast", { "message":"보팅이 완료되었습니다." });
+                    controller.update("votes-" + params["author"] + "." + params["permlink"], {});
+
+                    Actions.__on_complete(params, id, data);
+                });
+            } else {
+                controller.action("toast", { "message":"보팅에 실패했습니다." });
+            }
+        });
+
+        controller.action("toast", { "message":"보팅을 진행합니다." });
+    });
 }
 
 Actions.unvote = function(params) {
@@ -122,7 +193,7 @@ Actions.hide_comment = function(params) {
 }
 
 Actions.follow = function(params) {
-    Actions.account.follow(params["username"], function(response) {
+    Actions.account.follow_user(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"팔로우가 완료되었습니다." });
@@ -138,7 +209,7 @@ Actions.follow = function(params) {
 }
 
 Actions.unfollow = function(params) {
-    Actions.account.unfollow(params["username"], function(response) {
+    Actions.account.unfollow_user(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"언팔로우가 완료되었습니다." });
@@ -154,7 +225,7 @@ Actions.unfollow = function(params) {
 }
 
 Actions.mute = function(params) {
-    Actions.account.mute(params["username"], function(response) {
+    Actions.account.mute_user(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"뮤트가 완료되었습니다." });
@@ -170,7 +241,7 @@ Actions.mute = function(params) {
 }
 
 Actions.unmute = function(params) {
-    Actions.account.unmute(params["username"], function(response) {
+    Actions.account.unmute_user(params["username"], function(response) {
         if (response) {
             Actions.__get_updated_data_for_user(params["username"], function(id, data) {
                 controller.action("toast", { "message":"언뮤트가 완료되었습니다." });

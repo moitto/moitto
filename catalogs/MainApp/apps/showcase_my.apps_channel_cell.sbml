@@ -1,22 +1,17 @@
 =begin cell
 
-=object image: type=app, subtype=banner, channel="${channel}", style=img_banner
-=object widget: channel="${channel}", style=widget
+=object image: type=app, subtype=banner, channel="${channel}", reuse-id="banner-${channel}", style=img_banner
+=object widget: channel="${channel}", reuse-id="widget-${channel}", style=widget
 
 =begin title
 ${title}
 =end title
 
-=object image: style=img_channel
-=object button: action=submit, form=channel.${channel}, showcase=auxiliary, display-unit=S_CHANNEL, \
-            action-when-done=subview, params-when-done="subview=V_HOME.CHANNEL,target=popup", \
-            has-own-title=yes, \
-            style=btn_channel
+=begin description
+${description}
+=end description
 
-=begin form: form=channel.${channel}
-=object input: id=channel, value="${channel}"
-=object input: id=title, value="${title}"
-=object input: id=cell, value="${id}"
-=end form
+=object image: style=img_channel
+=object button: script=show_channel, style=btn_channel
 
 =end cell

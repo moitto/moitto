@@ -46,7 +46,8 @@ $CODE_BOLD     = "CourierNewPS-BoldMT"
 #list-level-6: padding-left=7.5em
 %quote: border-color=$THEME_COLOR_01, margin="1.2em 0 1.2em 0.4em", padding="0.2em 0 0.2em 0.6em", \
         border-width="0 0 0 5dp"
-%center: text-align=center, margin="0.6em 0 0.6em 0"
+%div: margin="1.2em 0 1.2em 0"
+%center: text-align=center, margin="1.2em 0 1.2em 0"
 #center: text-align=center
 %code: font-family=$CODE_MEDIUM, font-size=0.95em, background-color=$THEME_COLOR_06, \
         margin="0.6em 0 0.6em 0", padding=0.6em, text-align=left, line-break-mode=word-wrap

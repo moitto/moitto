@@ -1,7 +1,7 @@
 =begin popup
 
-=object section: section=receiver.verify, style=section_navibar
-=begin navibar: id=receiver.verify
+=object section: section=navibar, style=section_navibar
+=begin navibar: id=navibar
 =object label: text="회수할 계정 확인", style=label_title
 =object button: action=popup-close, style=btn_close
 =object blank: style=blank_line

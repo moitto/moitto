@@ -13,6 +13,7 @@ function undelegate(form) {
     controller.action("script", {
         "script":"actions.undelegate",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "from":value["from"]
     });
 }

@@ -2,6 +2,7 @@ function follow() {
     controller.action("script", {
         "script":"actions.follow",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "username":$data["username"]
     });
 

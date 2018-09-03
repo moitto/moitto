@@ -36,6 +36,7 @@ function submit() {
     controller.action("script", { 
         "script":"actions.comment",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "parent-author":value["parent-author"],
         "parent-permlink":value["parent-permlink"],
         "permlink":value["permlink"] || "",

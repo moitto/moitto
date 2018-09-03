@@ -34,9 +34,12 @@ function select_percent(params) {
 }
 
 function upvote() {
+    var script = ($data["payout-done"] !== "no") ? "actions.vote_after_payout" : "actions.vote";
+
 	controller.action("script", { 
-		"script":"actions.vote",
-		"subview":"__MAIN__",
+        "script":script,
+        "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "author":$data["author"],
         "permlink":$data["permlink"],
         "weight":__get_voting_weight(),

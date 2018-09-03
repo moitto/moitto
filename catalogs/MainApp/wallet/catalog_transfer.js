@@ -88,6 +88,7 @@ function __transfer(to, coin, amount, memo) {
     controller.action("script", Object.assign({
         "script":"actions.transfer",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "to":to,
         "coin":coin,
         "amount":amount.toString(),

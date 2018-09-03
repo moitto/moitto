@@ -12,9 +12,9 @@ function show_user() {
 }
 
 function show_menu() {
-    var value = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
     controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.MENU", {
-        "vote-weight":value["vote-weight"]
+        "vote-weight":$data["vote-weight"],
+        "payout-done":$data["payout-done"]
     });
     controller.action("popup", { "display-unit":"S_DISCUSSION.MENU" })
 }

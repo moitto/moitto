@@ -3,7 +3,6 @@ var global   = require("global");
 var contents = require("contents");
 var users    = require("users");
 
-var __discussions = [];
 var __last_discussion = null;
 
 function on_loaded() {
@@ -31,7 +30,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
     var start_author   = (location > 0) ? __last_discussion["author"]   : null;
     var start_permlink = (location > 0) ? __last_discussion["permlink"] : null;
 
-    __get_discussions_by_blog($data["username"], start_author, start_permlink, length, function(discussions) {
+    __get_discussions_by_blog($data["username"], start_author, start_permlink, length, [], function(discussions) {
         var backgrounds = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 100 ]);
         var me = storage.value("ACTIVE_USER") || "";
         var data = [];
@@ -96,32 +95,30 @@ function __get_user(username, handler) {
     });
 }
 
-function __get_discussions_by_blog(username, start_author, start_permlink, length, handler) {
-    steemjs.get_discussions_by_blog(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(discussions) {
-        if (start_author && discussions.length > 0) {
-            discussions = discussions.splice(1);
+function __get_discussions_by_blog(username, start_author, start_permlink, length, discussions, handler) {
+    steemjs.get_discussions_by_blog(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(response) {
+        if (start_author && response.length > 0) {
+            response = response.splice(1);
         }
 
-        discussions.forEach(function(discussion) {
+        response.forEach(function(discussion) {
             if (discussion["author"] === username) {
-                if (__discussions.length < length) {
-                   __discussions.push(discussion);
+                if (discussions.length < length) {
+                   discussions.push(discussion);
                 }
             }
         });
 
-        if (__discussions.length < length && discussions.length > 0) {
-            start_author   = discussions[discussions.length - 1]["author"];
-            start_permlink = discussions[discussions.length - 1]["permlink"];
+        if (discussions.length < length && response.length > 0) {
+            start_author   = response[discussions.length - 1]["author"];
+            start_permlink = response[discussions.length - 1]["permlink"];
 
-            __get_discussions_by_blog(username, start_author, start_permlink, length, handler);
+            __get_discussions_by_blog(username, start_author, start_permlink, length, discussions, handler);
 
             return;
         }
 
-        handler(__discussions);
-
-        __discussions = [];
+        handler(discussions);
     });
 }
 

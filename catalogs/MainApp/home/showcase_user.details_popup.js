@@ -47,6 +47,7 @@ function follow() {
     controller.action("script", {
         "script":"actions.follow",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "username":$data["username"]
     });
 
@@ -57,6 +58,7 @@ function unfollow() {
     controller.action("script", {
         "script":"actions.unfollow",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "username":$data["username"]
     });
 
@@ -67,6 +69,7 @@ function mute() {
     controller.action("script", {
         "script":"actions.mute",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "username":$data["username"]
     });
 
@@ -77,6 +80,7 @@ function unmute() {
     controller.action("script", {
         "script":"actions.unmute",
         "subview":"__MAIN__",
+        "routes-to-topmost":"no",
         "username":$data["username"]
     });
 

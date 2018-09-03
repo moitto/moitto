@@ -31,11 +31,17 @@ Connect.handle_url = function(url, referrer) {
 
 Connect.invoke = function(method, params) {
     if (params["source-app"] && !Connect.apps.is_authorized(params["source-app"])) {
-        Connect.__authorize_app(params["source-app"], function() {
+        if (!Connect.__is_free_method(method) && $env["SIMULATOR"] !== "yes") {
+            Connect.__authorize_app(params["source-app"], function() {
+                if (Connect.hasOwnProperty("__invoke_" + method)) {
+                    Connect["__invoke_" + method](params);
+                }                
+            });
+        } else {
             if (Connect.hasOwnProperty("__invoke_" + method)) {
                 Connect["__invoke_" + method](params);
-            }                
-        });
+            }
+        }
     } else {
         if (Connect.hasOwnProperty("__invoke_" + method)) {
             Connect["__invoke_" + method](params);
@@ -72,6 +78,39 @@ Connect.__on_authorize_app = function(params) {
     }
 
     delete Connect.__handlers["request-id"];
+}
+
+Connect.__invoke_open_discussion = function(params) {
+    Connect.actions.open_discussion(Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, Connect.__invoke_params(params)));
+}
+
+Connect.__invoke_show_user = function(params) {
+    Connect.actions.show_user(Object.assign({
+        "username":params["username"]
+    }, Connect.__invoke_params(params)));
+}
+
+Connect.__invoke_show_votes = function(params) {
+    Connect.actions.show_votes(Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, Connect.__invoke_params(params)));
+}
+
+Connect.__invoke_show_replies = function(params) {
+    Connect.actions.show_replies(Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, Connect.__invoke_params(params)));
+}
+
+Connect.__invoke_show_tag = function(params) {
+    Connect.actions.show_tag(Object.assign({
+        "tag":params["tag"]
+    }, Connect.__invoke_params(params)));
 }
 
 Connect.__invoke_vote = function(params) {
@@ -237,6 +276,22 @@ Connect.__invoke_book = function(params) {
     Connect.books.open_book(
         params["author"], params["permlink"], params["url"]
     );
+}
+
+Connect.__is_free_method = function(method) {
+    var free_methods = [ 
+        "open_discussion",
+        "show_user",
+        "show_votes",
+        "show_replies",
+        "show_tag"
+    ];
+
+    if (free_methods.includes(method)) {
+        return true;
+    }
+
+    return false;
 }
 
 Connect.__invoke_params = function(params) {

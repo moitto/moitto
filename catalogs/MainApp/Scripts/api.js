@@ -4,11 +4,44 @@ API = (function() {
 
 API.connect = require("connect");
 
+API.open_discussion = function(params) {
+    API.connect.invoke("open_discussion", Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, API.__invoke_params(params)));
+}
+
+API.show_user = function(params) {
+    API.connect.invoke("show_user", Object.assign({
+        "username":params["username"]
+    }, API.__invoke_params(params)));
+}
+
+API.show_votes = function(params) {
+    API.connect.invoke("show_votes", Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, API.__invoke_params(params)));
+}
+
+API.show_replies = function(params) {
+    API.connect.invoke("show_replies", Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, API.__invoke_params(params)));
+}
+
+API.show_tag = function(params) {
+    API.connect.invoke("show_tag", Object.assign({
+        "tag":params["tag"]
+    }, API.__invoke_params(params)));
+}
+
 API.vote = function(params) {
     API.connect.invoke("vote", Object.assign({
         "author":params["author"],
         "permlink":params["permlink"],
-        "weight":params["weight"] || "",
+        "weight":params["weight"] || ""
     }, API.__invoke_params(params)));
 }
 
@@ -103,10 +136,6 @@ API.redeem_rewards = function(params) {
     API.connect.invoke("redeem_rewards", Object.assign({
         /* nothing */
     }, API.__invoke_params(params)));
-}
-
-API.__authorize_app = function(app_id, handler) {
-    
 }
 
 API.__invoke_params = function(params) {

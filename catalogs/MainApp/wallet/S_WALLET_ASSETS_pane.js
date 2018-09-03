@@ -25,7 +25,8 @@ function feed_assets(keyword, location, length, sortkey, sortorder, handler) {
 function redeem_rewards() {
     controller.action("script", {
         "script":"actions.redeem_rewards",
-        "subview":"__MAIN__"
+        "subview":"__MAIN__",
+        "routes-to-topmost":"no"
     });
 }
 

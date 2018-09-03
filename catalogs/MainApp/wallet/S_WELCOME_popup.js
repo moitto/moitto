@@ -3,6 +3,10 @@ function on_login() {
         controller.action("reload", { "target":"catalog", "subview":subview });
     });
     
-    controller.action("script", { "script":"update_notif", "subview":"__MAIN__" });
+    controller.action("script", { 
+        "script":"update_notif", 
+        "subview":"__MAIN__",
+        "routes-to-topmost":"no"
+    });
     controller.action("subview-back");
 }

@@ -1,10 +1,14 @@
 =begin cell
 
-=object image: type=app, subtype=banner, app="${app}", style=img_banner
-=object widget: app="${app}", style=widget
+=object image: type=app, subtype=banner, app="${app}", reuse-id="banner-${app}", style=img_banner
+=object widget: app="${app}", reuse-id="widget-${app}", style=widget
 
 =begin title
 ${title}
 =end title
+
+=begin description
+${description}
+=end description
 
 =end cell

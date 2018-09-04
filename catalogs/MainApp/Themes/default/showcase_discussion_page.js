@@ -151,7 +151,7 @@ function open_url(params) {
         return;
     }
 
-    if (connect.handle_url(params["url"])) {
+    if (connect.handle_url(params["url"], __get_referrer())) {
         return;
     }
 
@@ -170,4 +170,12 @@ function __background_data_for_value(value) {
     });
 
     return data;
+}
+
+function __get_referrer() {
+    return {
+        "author":$data["author"],
+        "permlink":$data["permlink"],
+        "tags":$data["tags"].split(",")
+    }
 }

@@ -2,10 +2,20 @@ Apps = (function() {
     return {};
 })();
 
-Apps.open_app = function(author, permlink, url) {
-    controller.action("app", { 
-        "url":Apps.__get_app_url(url)
-    });
+Apps.steemjs = require("steemjs");
+
+Apps.open_app = function(url, referrer) {
+    if (referrer && !referrer["tags"]) {
+        Apps.steemjs.get_content(referrer["author"], referrer["permlink"]).then(function(response) {
+            controller.action("app", Apps.__get_app_params(url, Object.assign(referrer, {
+                "tags":response.meta["tags"]
+            })));
+        }, function(reason) {
+            controller.action("app", Apps.__get_app_params(url, referrer));
+        });
+    } else {
+        controller.action("app", Apps.__get_app_params(url, referrer));
+    }
 }
 
 Apps.authorize_app = function(app_id) {
@@ -40,6 +50,23 @@ Apps.get_authorized_apps = function(location, length) {
     return apps;
 }
 
+Apps.__get_app_params = function(url, referrer) {
+    var params = { "url":Apps.__get_app_url(url) };
+
+    if (referrer && referrer["tags"].includes("moitto-quest")) {
+        return Object.assign(params, {
+            "app-params":Apps.__to_action_params({
+                "script":"start_quest",
+                "subview":"__MAIN__",
+                "quest-author":referrer["author"],
+                "quest-permlink":referrer["permlink"]
+            })
+        });
+    }
+
+    return params;
+}
+
 Apps.__get_app_url = function(url) {
     var github = /github:\/\/([^/]+)\/([^/]+)/.exec(url);
 
@@ -48,6 +75,12 @@ Apps.__get_app_url = function(url) {
     }
 
     return url;
+}
+
+Apps.__to_action_params = function(params) {
+    return Object.keys(params).map(function(k) {
+        return k + "=" + params[k];
+    }).join(',')
 }
 
 __MODULE__ = Apps;

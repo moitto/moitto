@@ -17,8 +17,7 @@ Connect.handle_url = function(url, referrer) {
         });
 
         if (referrer) {
-            params["author"]   = referrer[0];
-            params["permlink"] = referrer[1];
+            params["referrer"] = referrer;
         }
 
         Connect.invoke(matched[1], params);
@@ -268,13 +267,13 @@ Connect.__invoke_claim_rewards = function(params) {
 
 Connect.__invoke_app = function(params) {
     Connect.apps.open_app(
-        params["author"], params["permlink"], params["url"]
+        params["url"], params["referrer"]
     );
 }
 
 Connect.__invoke_book = function(params) {
     Connect.books.open_book(
-        params["author"], params["permlink"], params["url"]
+        params["url"], params["referrer"]
     );
 }
 

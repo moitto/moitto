@@ -42,6 +42,7 @@ function on_loaded() {
             "tag-3":(tags.length > 2) ? tags[2] : "",
             "tag-4":(tags.length > 3) ? tags[3] : "",
             "tag-5":(tags.length > 4) ? tags[4] : "",
+            "tags":tags.join(","),
             "created-at":content.data["created"],
             "theme":impl.theme,
             "dir-path":impl.dir_path,
@@ -53,6 +54,10 @@ function on_loaded() {
                 data[key] = discussion[key];
             }
         });
+
+        if (!data.hasOwnProperty("background")) {
+            data = Object.assign(data, __random_background_data());
+        }
 
         if (impl.hides_navibar) {
             data["hides-navibar"] = "yes";
@@ -120,4 +125,15 @@ function __get_theme_in_tags(tags) {
     }
 
     return "default";
+}
+
+function __random_background_data() {
+    var value = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ])[0];
+    var data = { "background":value["id"] };
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
 }

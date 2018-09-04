@@ -31,7 +31,7 @@ AskSteem.__query_for_searching = function(keyword, page, options) {
 
 AskSteem.__to_query_string = function(params) {
     return Object.keys(params).map(function(k) {
-        return k + "=" + params[k];
+        return k + "=" + encodeURIComponent(params[k]);
     }).join('&')
 }
 

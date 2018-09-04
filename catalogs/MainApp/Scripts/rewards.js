@@ -21,7 +21,7 @@ Rewards.get_reward_reply = function(post_author, post_permlink, type, handler) {
 
 Rewards.__to_query_string = function(params) {
     return Object.keys(params).map(function(k) {
-        return k + "=" + params[k];
+        return k + "=" + encodeURIComponent(params[k]);
     }).join('&')
 }
 

@@ -1,0 +1,19 @@
+import ~/themes.sbss
+
+#btn_open: width="1pw-40dp", height=50dp, position=abs, gravity=bottom, \
+            label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+            content-background-color=$THEME_COLOR_03
+
+#btn_close: width=50dp, height=50dp, position=abs, gravity=right-bottom, \
+            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
+            content-background-color=$THEME_COLOR_00, content-border-radius=25dp
+
+/popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+
+if $SCREEN_WIDTH > "5"
+    #btn_open: y=-(110dp+1eb)
+    #btn_close: x=-40dp, y=-(40dp+1eb)
+else
+    #btn_open: y=-(90dp+1eb)
+    #btn_close: x=-20dp, y=-(20dp+1eb)
+end

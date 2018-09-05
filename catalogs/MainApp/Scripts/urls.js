@@ -26,6 +26,14 @@ Urls.get_youtube_video_id = function(url) {
     }
 }
 
+Urls.get_path_extension = function(url) {
+    var matched = /\.([^./]+)$/.exec(url);
+
+    if (matched) {
+        return matched[1];
+    }
+}
+
 Urls.__is_steem_host = function(host) {
     var known_hosts = [ "steemit.com", "busy.org", "steemkr.com" ];
 

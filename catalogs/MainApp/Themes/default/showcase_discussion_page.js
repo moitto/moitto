@@ -6,7 +6,11 @@ var urls         = require("urls");
 var __schedule_to_reload = false;
 
 function on_loaded() {
-    var referrer = [$data["author"], $data["permlink"]];
+    var tags = $data["tags"].split(",");
+
+    if (tags) {
+        __handle_tags(tags);
+    }
 }
 
 function on_download_image() {
@@ -105,6 +109,16 @@ function show_replies() {
     controller.action("page", { "display-unit":"S_REPLIES", "target":"popup" })
 }
 
+function show_ebook() {
+    controller.catalog().submit("showcase", "auxiliary", "S_EBOOK", {
+        "author":$data["author"],
+        "permlink":$data["permlink"],
+        "title":$data["title"]
+    });
+
+    controller.action("popup", { "display-unit":"S_EBOOK", "target":"popup" });
+}
+
 function comment() {
     if (storage.value("ACTIVE_USER")) {
         controller.catalog().submit("showcase", "auxiliary", "S_COMMENT", {
@@ -160,6 +174,14 @@ function open_url(params) {
     }
 
     controller.action("link", { url:params["url"] });
+}
+
+function __handle_tags(tags) {
+    if (tags.includes("moitto-ebook")) {
+        show_ebook();
+
+        return;
+    }
 }
 
 function __background_data_for_value(value) {

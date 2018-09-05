@@ -1,11 +1,11 @@
-import ~/themes.sbss
+import themes.sbss
 
 $ITALIC_MEDIUM = "Times New Roman, KoPubDotum Medium"
 $ITALIC_BOLD   = "Times New Roman, KoPubDotum Bold"
 $CODE_MEDIUM   = "CourierNewPSMT"
 $CODE_BOLD     = "CourierNewPS-BoldMT"
 
-#image: default-size="10dp, 10dp", max-width=100%, default-color=$THEME_COLOR_01, filename="", \
+#image: default-size="10dp, 10dp", max-width=100%, default-color=$THEME_COLOR_01, adaptive=yes, \
         text-decoration="", scales-in-background=yes, script-when-download=on_download_image
 #youtube: width=100%, height=(1pw-40dp)*9/16
 

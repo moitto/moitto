@@ -3,6 +3,7 @@ API = (function() {
 })();
 
 API.connect = require("connect");
+API.quests  = require("quests");
 
 API.open_discussion = function(params) {
     API.connect.invoke("open_discussion", Object.assign({
@@ -136,6 +137,12 @@ API.redeem_rewards = function(params) {
     API.connect.invoke("redeem_rewards", Object.assign({
         /* nothing */
     }, API.__invoke_params(params)));
+}
+
+API.start_quest = function(params) {
+}
+
+API.finish_quest = function(params) {
 }
 
 API.__invoke_params = function(params) {

@@ -1,0 +1,19 @@
+{
+    title: "${TITLE}",
+    author: "${AUTHOR}",
+    version: 1.0,
+    type: normal,
+    language: "${LANGUAGE}",
+    sbml-version: 2.1,
+
+    files: [
+        chapters.sbss,
+        chapters.sbml,
+    ],
+    
+    layouts: {
+        f-portrait: default,
+        p-portrait: default,
+        p-landscape: default,
+    },
+}

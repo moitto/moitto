@@ -1,0 +1,4 @@
+import markdown.sbss
+
+/chapter: begin-new-page=yes
+/chapter/title: margin-bottom=200dp

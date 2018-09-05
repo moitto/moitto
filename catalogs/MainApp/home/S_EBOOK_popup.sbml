@@ -1,0 +1,6 @@
+=begin popup
+
+=object button: script=open, label="전자책으로 보기", style=btn_open
+=object button: action=popup-close, label="×", style=btn_close
+
+=end popup

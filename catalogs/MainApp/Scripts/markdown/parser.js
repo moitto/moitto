@@ -303,7 +303,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 type:"image",
                 data:{
                     url:token[8].trim(),
-                    alt:token[7]
+                    alt:token[7],
+                    inline:true
                 }
             }
         } else if (token[9]) { // begin of link
@@ -359,7 +360,6 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 }
             }
         } else if (token[13] || token[14]) { // headings
-            console.log("HEADING: " + token[15]);
             element = {
                 type:"heading",
                 data:{
@@ -376,7 +376,8 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 data:{
                     url:token[16].trim(),
                     host:token[17],
-                    path:token[18]
+                    path:token[18],
+                    inline:true
                 }
             }
         } else if (token[19]) { // ``code``
@@ -413,7 +414,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 type:"image-tag",
                 data:{
                     url:token[22].replace(/^["']|["']/g, "").trim(),
-                    inline:inline
+                    inline:true
                 }
             }
         } else if (token[23]) { // iframe tag
@@ -421,7 +422,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
                 type:"iframe-tag",
                 data:{
                     url:token[23].replace(/^["']|["']/g, "").trim(),
-                    inline:inline
+                    inline:true
                 }
             }
         } else if (token[24] || token[25]) { // strong, strike, bold, italic, code, sub, and sup tag

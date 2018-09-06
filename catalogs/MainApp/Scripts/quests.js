@@ -28,7 +28,7 @@ Quests.finish_quest = function(author, permlink, comment, handler) {
     var finished_at = new Date();
     var value = Object.assign(controller.catalog().value("showcase", "quests", quest_id), {
         "finished-at":finished_at.toString()
-    };
+    });
     
     controller.catalog().submit("showcase", "quests", quest_id, value);
     controller.action("freeze", { "message":"기록 중..." });

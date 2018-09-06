@@ -112,6 +112,20 @@ Connect.__invoke_show_tag = function(params) {
     }, Connect.__invoke_params(params)));
 }
 
+Connect.__invoke_start_quest = function(params) {
+    Connect.actions.start_quest(Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, Connect.__invoke_params(params)));
+}
+
+Connect.__invoke_finish_quest = function(params) {
+    Connect.actions.finish_quest(Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, Connect.__invoke_params(params)));
+}
+
 Connect.__invoke_vote = function(params) {
     if (params["prompts"] == "yes" || !params["weight"]) {
         controller.catalog().submit("showcase", "auxiliary", "S_VOTE", Object.assign({

@@ -58,8 +58,8 @@ Apps.__get_app_params = function(url, referrer) {
             "app-params":Apps.__to_action_params({
                 "script":"start_quest",
                 "subview":"__MAIN__",
-                "quest-author":referrer["author"],
-                "quest-permlink":referrer["permlink"]
+                "author":referrer["author"],
+                "permlink":referrer["permlink"]
             })
         });
     }

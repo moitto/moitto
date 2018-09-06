@@ -9,6 +9,7 @@ Actions.global   = require("global");
 Actions.contents = require("contents");
 Actions.users    = require("users");
 Actions.rewards  = require("rewards");
+Actions.quests   = require("quests");
 
 Actions.open_discussion = function(params) {
     var user = Actions.users.create(params["author"]);
@@ -326,6 +327,18 @@ Actions.redeem_rewards = function(params) {
             });
         }
     });
+}
+
+Actions.start_quest = function(params) {
+    Actions.quests.start_quest(params["author"], params["permlink"], function() {
+        Actions.__on_complete(params);
+    });
+}
+
+Actions.finish_quest = function(params) {
+    Actions.quests.finish_quest(params["author"], params["permlink"], params["comment"], function() {
+        Actions.__on_complete(params);
+    });    
 }
 
 Actions.__get_user = function(username, handler) {

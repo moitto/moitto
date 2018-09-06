@@ -7,14 +7,30 @@ Apps.steemjs = require("steemjs");
 Apps.open_app = function(url, referrer) {
     if (referrer && !referrer["tags"]) {
         Apps.steemjs.get_content(referrer["author"], referrer["permlink"]).then(function(response) {
-            controller.action("app", Apps.__get_app_params(url, Object.assign(referrer, {
-                "tags":response.meta["tags"]
-            })));
+            referrer = Object.assign(referrer, { "tags":response.meta["tags"] });
+
+            if (!Apps.__is_login_required(referrer) || storage.value("ACTIVE_USER")) {
+                controller.action("app", Apps.__get_app_params(url, referrer));
+            } else {
+                controller.action("subview", { 
+                    "subview":"V_LOGIN", 
+                    "target":"popup",
+                    "close-popup":"yes" 
+                });
+            }
         }, function(reason) {
-            controller.action("app", Apps.__get_app_params(url, referrer));
+            controller.action("alert", { "message":"죄송합니다. 앱을 실행할 수 없습니다." });
         });
     } else {
-        controller.action("app", Apps.__get_app_params(url, referrer));
+        if (!Apps.__is_login_required(referrer) || storage.value("ACTIVE_USER")) {
+            controller.action("app", Apps.__get_app_params(url, referrer));
+        } else {
+            controller.action("subview", { 
+                "subview":"V_LOGIN", 
+                "target":"popup",
+                "close-popup":"yes" 
+            });
+        }
     }
 }
 
@@ -48,6 +64,19 @@ Apps.get_authorized_apps = function(location, length) {
     });
 
     return apps;
+}
+
+Apps.__is_login_required = function(referrer) {
+    var tags_required_login = [ "moitto-quest" ];
+    var tags = referrer ? referrer["tags"] : [];
+
+    for (var i = 0; i < tags.length; ++i) {
+        if (tags_required_login.includes(tags[i])) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 Apps.__get_app_params = function(url, referrer) {

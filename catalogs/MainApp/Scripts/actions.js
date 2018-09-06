@@ -331,13 +331,17 @@ Actions.redeem_rewards = function(params) {
 
 Actions.start_quest = function(params) {
     Actions.quests.start_quest(params["author"], params["permlink"], function() {
-        Actions.__on_complete(params);
+        Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
+            Actions.__on_complete(params, id, data);
+        });
     });
 }
 
 Actions.finish_quest = function(params) {
     Actions.quests.finish_quest(params["author"], params["permlink"], params["comment"], function() {
-        Actions.__on_complete(params);
+        Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
+            Actions.__on_complete(params, id, data);
+        });
     });    
 }
 

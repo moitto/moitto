@@ -1,6 +1,31 @@
 =begin popup
 
-=object button: script=open, label="전자책으로 보기", style=btn_open
+=object section: id=section.ready, section=ready, style=section_ready
+=object section: id=section.progress, section=progress, style=section_progress
+
+=object button: id=btn.open, script=open, label="전자책으로 보기", disable-label="전자책 변환 중...", style=btn_open
 =object button: action=popup-close, label="×", style=btn_close
+
+=begin ready: id=ready
+=begin title
+${title}
+=end title
+
+=begin message
+글들을 모아 전자책으로 볼 수가 있습니다.
+전자책으로 보시겠습니까?
+=end message
+=end ready
+
+=begin progress: id=progress
+=begin title
+${title}
+=end title
+
+=begin message
+전자책으로 변환하는 중입니다.
+1분 이상 소요될 수 있습니다.
+=end message
+=end progress
 
 =end popup

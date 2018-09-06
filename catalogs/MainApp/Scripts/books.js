@@ -146,12 +146,6 @@ Books.__get_image_elements = function(elements) {
 }
 
 Books.__is_block_image = function(image) {
-    var size = image.size();
-
-    if (size[0] > 100 && size[1] > 100) {
-        return true;
-    }
-
     return false;
 }
 

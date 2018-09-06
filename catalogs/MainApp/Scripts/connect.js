@@ -297,7 +297,9 @@ Connect.__is_free_method = function(method) {
         "show_user",
         "show_votes",
         "show_replies",
-        "show_tag"
+        "show_tag", 
+        "start_quest",
+        "finish_quest"
     ];
 
     if (free_methods.includes(method)) {

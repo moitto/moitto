@@ -30,7 +30,7 @@ Quests.finish_quest = function(author, permlink, comment, handler) {
     var finished_at = new Date();
 
     if (value && value["started-at"] && !value["finished-at"]) {
-        value = Object.assign({ "finished-at":finished_at.toString() });
+        value = Object.assign(value, { "finished-at":finished_at.toString() });
 
         controller.catalog().submit("showcase", "quests", quest_id, value);
         controller.action("freeze", { "message":"기록 중..." });
@@ -60,15 +60,17 @@ Quests.is_finished_quest = function(author, permlink) {
 }
 
 Quests.__result_body = function(value, comment) {
-    return comment + "\n\n" + "****" + "\n" +
-            + "<sub>" + "퀘스트 시작시간: " + value["started-at"] + "</sub>" +
-            + "<sub>" + "퀘스트 종료시간: " + value["finished-at"] + "</sub>" +
+    return comment + "\n\n" + "****" + "\n"
+            + "<sub>" + "퀘스트 시작시간: " + value["started-at"] + "</sub>" + "\n"
+            + "<sub>" + "퀘스트 종료시간: " + value["finished-at"] + "</sub>" + "\n"
             + "<sub>" + "퀘스트 참여코드: " + Quests.__quest_code(value) + "</sub>";
 }
 
 Quests.__quest_code = function(value) {
-    var signature = value["id"] + Quests.account.get_username() 
-                  + value["started-at"] + value["finished-at"];
+    var signature = value["id"] 
+                  + Quests.account.get_username() 
+                  + value["started-at"] 
+                  + value["finished-at"];
 
     return encode("hex", hash("md5", signature)); // Not safe. TBD
 }

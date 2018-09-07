@@ -322,6 +322,7 @@ MarkdownParser.__parse_to_markdown = function(text, inline) {
 
             if (token[11] && link_begin_or_text) { // link
                 link_begin_or_text["type"] = "link-begin";
+                link_begin_or_text.data["text"] = "";
                 link_begin_or_text.data["url"] = token[11].replace(/ +\".*?\" *$/g, "").trim();
 
                 element = {

@@ -15,7 +15,7 @@ Books.generate_book = function(author, permlink, handler) {
             var title = response["title"];
             var item = author + "-" + permlink;
 
-            Books.__generate_book(item, title, author, "ko", Books.__get_discussions(model), function(response) {
+            Books.__generate_book(item, title, author, "ko", Books.__get_chapters(model), function(response) {
                 controller.action("import", { "item":item });
 
                 handler(response);
@@ -45,16 +45,20 @@ Books.has_valid_book = function(author, permlink) {
     return false;
 }
 
-Books.__generate_book = function(item, title, author, language, discussions, handler) {
+Books.__generate_book = function(item, title, author, language, chapters, handler) {
     var promises = [];
 
-    discussions.forEach(function(discussion) {
-        promises.push(Books.steemjs.get_content(discussion["author"], discussion["permlink"]));
+    chapters.forEach(function(chapter) {
+        promises.push(Books.steemjs.get_content(chapter["author"], chapter["permlink"]));
     });
 
     Promise.all(promises).then(function(response) {
+        for (var i = 0; i < chapters.length; ++i) {
+            chapters[i]["content"] = Books.contents.create(response[i]);
+        }
+
         Books.__write_book_bon(item, title, author, language);
-        Books.__write_chapters_sbml(item, response);
+        Books.__write_chapters_sbml(item, chapters);
         Books.__copy_template_files(item);
 
         handler(response);
@@ -74,13 +78,13 @@ Books.__write_book_bon = function(item, title, author, language) {
     write("library", path, text);
 }
 
-Books.__write_chapters_sbml = function(item, discussions) {
+Books.__write_chapters_sbml = function(item, chapters) {
     var path = "Books" + "/" + item + "/" + "chapters.sbml";
     var text = "";
 
-    discussions.forEach(function(discussion) {
-        var content = Books.contents.create(discussion);
-        var title = content.data["title"].replace("\"", "\\\"");
+    chapters.forEach(function(chapter) {
+        var content = chapter["content"];
+        var title = (chapter["title"] || content.data["title"]).replace("\"", "\\\"");
         var model = Books.markdown.parse(content.data["body"], []);
         var images = Books.__get_image_elements(model.elements);
 
@@ -90,7 +94,7 @@ Books.__write_chapters_sbml = function(item, discussions) {
 
         text += "=begin chapter: toc=\"" + title + "\", title=\"" + title + "\""+ "\n";
         text += "=begin title"  + "\n";
-        text += content.data["title"] + "\n";
+        text += title + "\n";
         text += "=end title"  + "\n\n";
         text += Books.sbml.generate_from_markdown(model, content.meta["image"]) + "\n";
         text += "=end chapter" + "\n\n";
@@ -159,8 +163,8 @@ Books.__url_for_image = function(url, size) {
     return "https://cdn.steemitimages.com/" + (size || "640x0") + "/" + url;
 }
 
-Books.__get_discussions = function(model) {
-    var discussions = [];
+Books.__get_chapters = function(model) {
+    var chapters = [];
 
     model.elements.forEach(function(element) {
         if (element.type === "list") {
@@ -170,7 +174,8 @@ Books.__get_discussions = function(model) {
                         var steem_url = Books.urls.parse_steem_url(element.data["url"]);
 
                         if (steem_url && steem_url[2]) {
-                            discussions.push({
+                            chapters.push({
+                                "title":Books.__get_text_in_elements(item[2]),
                                 "author":steem_url[1],
                                 "permlink":steem_url[2]
                             });
@@ -181,9 +186,21 @@ Books.__get_discussions = function(model) {
         }
     });
 
-    console.log(JSON.stringify(discussions));
+    return chapters;
+}
 
-    return discussions;
+Books.__get_text_in_elements = function(elements) {
+    var text = "";
+
+    elements.forEach(function(element) {
+        [ "prior", "text", "trailing"].forEach(function(property) {
+            if (element.data.hasOwnProperty(property)) {
+                text += element.data[property];
+            }
+        })
+    });
+
+    return text;
 }
 
 __MODULE__ = Books;

@@ -4,6 +4,13 @@ API = (function() {
 
 API.connect = require("connect");
 
+API.query_account = function(params) {
+    API.connect.invoke("open_discussion", Object.assign({
+        "author":params["author"],
+        "permlink":params["permlink"]
+    }, API.__invoke_params(params)));
+}
+
 API.open_discussion = function(params) {
     API.connect.invoke("open_discussion", Object.assign({
         "author":params["author"],

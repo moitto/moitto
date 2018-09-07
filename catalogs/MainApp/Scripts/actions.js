@@ -80,7 +80,7 @@ Actions.vote = function(params) {
 }
 
 Actions.vote_after_payout = function(params) {
-    Actions.rewards.get_reward_reply(params["author"], params["permlink"], "after7days", function(author, permlink) {
+    Actions.rewards.get_reward_reply(params["author"], params["permlink"], "after7days", true, function(author, permlink) {
         Actions.account.vote(author, permlink, parseInt(params["weight"]), function(response) {
             if (response) {
                 Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {

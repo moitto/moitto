@@ -63,16 +63,33 @@ Quests.__result_body = function(value, comment) {
     return comment + "\n\n" + "****" + "\n"
             + "<sub>" + "퀘스트 시작시간: " + value["started-at"] + "</sub>" + "\n"
             + "<sub>" + "퀘스트 종료시간: " + value["finished-at"] + "</sub>" + "\n"
-            + "<sub>" + "퀘스트 참여코드: " + Quests.__quest_code(value) + "</sub>";
+            + "<sub>" + "퀘스트 참여코드: " + Quests.__quest_code(value, comment) + "</sub>";
 }
 
-Quests.__quest_code = function(value) {
-    var signature = value["id"] 
-                  + Quests.account.get_username() 
-                  + value["started-at"] 
-                  + value["finished-at"];
+Quests.__result_options = function(author) {
+    var username = storage.value("ACTIVE_USER");
 
-    return encode("hex", hash("md5", signature)); // Not safe. TBD
+    return JSON.stringify({
+        'allow_votes':true,
+        'allow_curation_rewards':true,
+        'extensions':[[ 0, {
+            'beneficiaries': [
+                { 'account': username, 'weight': 7000 },
+                { 'account': author,   'weight': 2100 },
+                { 'account': 'moitto', 'weight':  900 }
+            ]}
+        ]]
+    });
+}
+
+Quests.__quest_code = function(value, comment) {
+    var message = value["id"] 
+                + storage.value("ACTIVE_USER")
+                + comment
+                + value["started-at"] 
+                + value["finished-at"];
+
+    return encode("hex", hash("md5", message)); // Not safe. TBD
 }
 
 __MODULE__ = Quests;

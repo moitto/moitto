@@ -1,9 +1,11 @@
-=begin cover
-=begin title: text-color="${COVER-TEXT-COLOR}", page-background-color="${COVER-COLOR}"
+=begin cover: text-color="${COVER-TEXT-COLOR}", page-background-color="${COVER-COLOR}"
+=begin title
 ${TITLE}
 =end title
 =begin author
-${AUTHOR}
+=begin line: border-bottom-color="${COVER-TEXT-COLOR}"
+=end line
+${AUTHOR} 지음
 =end author
 =end cover
 

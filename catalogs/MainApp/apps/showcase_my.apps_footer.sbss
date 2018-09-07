@@ -3,3 +3,7 @@ import ~/themes.sbss
 #btn_apps: width="1pw-20dp", height=50dp, position=abs, gravity=top, \
             label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
             content-background-color=$THEME_COLOR_03
+
+if $EDITING == "yes"
+    #btn_apps: display=none
+end

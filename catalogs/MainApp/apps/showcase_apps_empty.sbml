@@ -1,0 +1,8 @@
+=begin empty
+
+=object label: text="불러오는 중입니다.", style=label_loading
+
+=begin guide
+=end guide
+
+=end empty

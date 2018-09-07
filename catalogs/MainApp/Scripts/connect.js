@@ -282,7 +282,7 @@ Connect.__invoke_finish_quest = function(params) {
 
 Connect.__invoke_app = function(params) {
     Connect.apps.open_app(
-        params["url"], params["referrer"]
+        params["app"], params["url"], params["referrer"]
     );
 }
 

@@ -1,8 +1,6 @@
-var $BASEURL = "https://jampod-156205.appspot.com/api/v1";
-
 function feed_apps(keyword, location, length, sortkey, sortorder, handler) {
+    var url = "https://moitto.io/api/store";
     var query = "location=" + location + "&" + "length=" + length;
-    var url = $BASEURL + "/store" + "?" + query;
     var cached = __cached_data();
 
     if (cached.length > location) {
@@ -14,7 +12,7 @@ function feed_apps(keyword, location, length, sortkey, sortorder, handler) {
             handler([]);
         }
     } else {
-        fetch(url, null, true).then(function(response) {
+        fetch(url + "?" + query, null, true).then(function(response) {
            	if (response.ok) {
                	response.json().then(function(data) {
               		handler(data);

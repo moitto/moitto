@@ -1,41 +1,3 @@
-var $BASEURL = "https://jampod-156205.appspot.com/api/v1";
-
-function feed_apps(keyword, location, length, sortkey, sortorder, handler) {
-    var query = "location=" + location + "&" + "length=" + length;
-    var url = $BASEURL + "/store" + "?" + query;
-    var cached = __cached_data();
-
-    if (cached.length > location) {
-        var last = location + Math.min(cached.length - location, length);
-        
-        if (last > location) {
-            handler(cached.slice(location, last));
-        } else {
-            handler([]);
-        }
-    } else {
-        fetch(url, null, true).then(function(response) {
-               if (response.ok) {
-                   response.json().then(function(data) {
-                      handler(data);
-                    
-                       __cache_data(cached.concat(data));
-                   });
-               } else {
-                   handler([]);
-               }
-           });    
-    }
-}
-
-function reset_apps() {
-    var data = document.value("data.store");
-    
-    if (data) {
-        document.value("data.store.at", Date.now() - 3600 * 1000);
-    }
-}
-
 function select_app(data) {
     controller.action("app", {
         "app":data["app"],
@@ -44,21 +6,32 @@ function select_app(data) {
     });
 }
 
-function __cached_data() {
-    var data = document.value("data.store");
-    
-    if (data) {
-        var interval = Date.now() - document.value("data.store.at");
-        
-        if (interval < 3600 * 1000) { /* 1 hour */
-            return data;
-        }
-    }
-    
-    return [];
+function edit_apps() {
+    var showcase = view.object("showcase.my.apps");
+
+    showcase.action("edit");
 }
 
-function __cache_data(data) {
-    document.value("data.store", data);
-    document.value("data.store.at", Date.now());
+function edit_done() {
+    var showcase = view.object("showcase.my.apps");
+
+    showcase.action("edit-done");
+}
+
+function select_all() {
+    var showcase = view.object("showcase.my.apps");
+
+    showcase.action("select-all");
+}
+
+function deselect_all() {
+    var showcase = view.object("showcase.my.apps");
+
+    showcase.action("deselect-all");
+}
+
+function remove_apps() {
+    var showcase = view.object("showcase.my.apps");
+
+    showcase.action("remove");
 }

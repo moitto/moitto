@@ -14,4 +14,10 @@ ${description}
 =object image: style=img_channel
 =object button: script=show_channel, style=btn_channel
 
+=begin edit
+=object blank: style=blank_edit.mask
+=object image: style=img_edit.deselected
+=object image: style=img_edit.selected
+=end edit
+
 =end cell

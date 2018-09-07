@@ -4,13 +4,13 @@ Apps = (function() {
 
 Apps.steemjs = require("steemjs");
 
-Apps.open_app = function(url, referrer) {
+Apps.open_app = function(app_id, url, referrer) {
     if (referrer && !referrer["tags"]) {
         Apps.steemjs.get_content(referrer["author"], referrer["permlink"]).then(function(response) {
             referrer = Object.assign(referrer, { "tags":response.meta["tags"] });
 
             if (!Apps.__is_login_required(referrer) || storage.value("ACTIVE_USER")) {
-                controller.action("app", Apps.__get_app_params(url, referrer));
+                controller.action("app", Apps.__get_app_params(app_id, url, referrer));
             } else {
                 controller.action("subview", { 
                     "subview":"V_LOGIN", 
@@ -23,7 +23,7 @@ Apps.open_app = function(url, referrer) {
         });
     } else {
         if (!Apps.__is_login_required(referrer) || storage.value("ACTIVE_USER")) {
-            controller.action("app", Apps.__get_app_params(url, referrer));
+            controller.action("app", Apps.__get_app_params(app_id, url, referrer));
         } else {
             controller.action("subview", { 
                 "subview":"V_LOGIN", 
@@ -79,8 +79,8 @@ Apps.__is_login_required = function(referrer) {
     return false;
 }
 
-Apps.__get_app_params = function(url, referrer) {
-    var params = { "url":Apps.__get_app_url(url) };
+Apps.__get_app_params = function(app_id, url, referrer) {
+    var params = { "app":app_id, "url":Apps.__get_app_url(url) };
 
     if (referrer && referrer["tags"].includes("moitto-quest")) {
         return Object.assign(params, {

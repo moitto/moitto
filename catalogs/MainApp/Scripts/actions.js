@@ -338,6 +338,7 @@ Actions.start_quest = function(params) {
 }
 
 Actions.finish_quest = function(params) {
+    console.log("finish_quest: " + JSON.stringify(params));
     Actions.quests.finish_quest(params["author"], params["permlink"], params["comment"], function() {
         Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
             Actions.__on_complete(params, id, data);
@@ -451,6 +452,7 @@ Actions.__get_updated_data_for_assets = function(username, handler) {
 }
 
 Actions.__on_complete = function(params, id, data) {
+    console.log("__on_complete: " + params["return-script"]);
     if (params["return-script"]) {
         controller.action("script", Object.assign({
             "script":params["return-script"],

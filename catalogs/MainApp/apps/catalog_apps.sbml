@@ -1,6 +1,6 @@
 =begin catalog
 
-=object showcase: type=packages, alternate-name=my.apps, \
+=object showcase: id=showcase.my.apps, type=packages, alternate-name=my.apps, \
                 selectable=yes, action-when-selected=app, \
                 action-when-selected@channel=app, params-when-selected@channel="sortkey=running,sortorder=descending", \
                 action-when-long-pressed=popup, params-when-long-pressed="alternate-name=jam.menu,subview=V_JAM", \

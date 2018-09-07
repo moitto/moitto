@@ -5,6 +5,13 @@ import ~/themes.sbss
 #widget: width=1ph, height=1ph, position=abs, gravity=left, \
             content-background-color=$THEME_COLOR_01
 
+#blank_edit.mask: display=none, color=$BLACK_COLOR_LIGHTEST_DIM, \
+        width=1pw, height=1ph, position=abs, gravity=center
+#img_edit.selected: display=none, filename=~/appview_icon_selected.png, \
+        width=40dp, height=40dp, position=abs, gravity=left, x=(1ph-40dp)/2
+#img_edit.deselected: display=none, filename=~/appview_icon_deselected.png, \
+        width=40dp, height=40dp, position=abs, gravity=left, x=(1ph-40dp)/2
+
 /cell: display=block, width=1pw, height=1ph, \
         border-color=$THEME_COLOR_01, border-width=1dp, page-background-color=$THEME_COLOR_00
 /cell/title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, \
@@ -18,4 +25,13 @@ if $HAS_OWN_WIDGET == "yes"
     #img_banner: display=none
 else
     #widget: display=none
+end
+
+if $EDITING == "yes"
+    if $STATE == "selected"
+        #blank_edit.mask: display=object
+        #img_edit.selected: display=object
+    else
+        #img_edit.deselected: display=object
+    end
 end

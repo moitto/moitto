@@ -1,0 +1,8 @@
+=begin chapter
+=begin title
+${TITLE}
+=end title
+
+${BODY}
+
+=end chapter

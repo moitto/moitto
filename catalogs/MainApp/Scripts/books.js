@@ -58,7 +58,7 @@ Books.__generate_book = function(item, title, author, language, chapters, handle
         }
 
         Books.__write_book_bon(item, title, author, language);
-        Books.__write_chapters_sbml(item, chapters);
+        Books.__write_chapters_sbml(item, title, chapters);
         Books.__copy_template_files(item);
 
         handler(response);
@@ -78,9 +78,9 @@ Books.__write_book_bon = function(item, title, author, language) {
     write("library", path, text);
 }
 
-Books.__write_chapters_sbml = function(item, chapters) {
+Books.__write_chapters_sbml = function(item, title, chapters) {
     var path = "Books" + "/" + item + "/" + "chapters.sbml";
-    var text = "";
+    var chapters_text = "";
 
     chapters.forEach(function(chapter) {
         var content = chapter["content"];
@@ -92,14 +92,17 @@ Books.__write_chapters_sbml = function(item, chapters) {
             Books.__download_images(item, images);
         }
 
-        text += "=begin chapter: toc=\"" + title + "\", title=\"" + title + "\""+ "\n";
-        text += "=begin title"  + "\n";
-        text += title + "\n";
-        text += "=end title"  + "\n\n";
-        text += Books.sbml.generate_from_markdown(model, content.meta["image"]) + "\n";
-        text += "=end chapter" + "\n\n";
+        chapters_text += read("catalog@resource", "~/Templates/book/chapter.tmpl.sbml", {
+            "TITLE":title,
+            "BODY":Books.sbml.generate_from_markdown(model, content.meta["image"])
+        });
     });
 
+    var text = read("catalog@resource", "~/Templates/book/chapters.sbml", {
+        "TITLE":title,
+        "CHAPTERS":chapters_text
+    });
+    
     write("library", path, text);
 }
 

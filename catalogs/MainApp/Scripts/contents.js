@@ -8,7 +8,7 @@ Contents.urls = require("urls");
 
 function Content(data, replies) {
     this.data = data;
-    this.replies = replies;
+    this.replies = replies || [];
     this.meta = JSON.parse(data["json_metadata"] || "{}");
 
     console.log(JSON.stringify(replies));
@@ -80,6 +80,20 @@ Content.prototype.get_vote_weight = function(username) {
     for (var i = 0; i < votes.length; i++) {
         if (votes[i].voter === username) {
             return votes[i].percent;
+        }
+    }
+
+    return 0;
+}
+
+Content.prototype.get_vote_weight_after_payout = function(username) {
+    for (var n = 0; n < this.replies.length; ++n) {
+        var votes = this.replies[n]["active_votes"];
+
+        for (var i = 0; i < votes.length; i++) {
+            if (votes[i].voter === username) {
+                return votes[i].percent;
+            }
         }
     }
 

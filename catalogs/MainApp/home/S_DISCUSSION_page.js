@@ -11,11 +11,11 @@ function on_loaded() {
     //discussion["author"] = "radajin";
     //discussion["permlink"] = "2-condition-loop";
 
-    __get_content(discussion["author"], discussion["permlink"], function(content) {
+    __get_content(discussion["tag"], discussion["author"], discussion["permlink"], function(content) {
         var me = storage.value("ACTIVE_USER") || "";
         var tags = content.meta["tags"];
         var theme = __get_theme_in_tags(tags);
-        var impl = themes.create(theme);        
+        var impl = themes.create(theme);
         var data = {
             "author":content.data["author"],
             "permlink":content.data["permlink"],
@@ -28,7 +28,7 @@ function on_loaded() {
             "userpic-large-url":content.get_userpic_url(),
             "author-reputation":content.get_author_reputation().toFixed(0).toString(),
             "votes-count":content.data["net_votes"].toString(),
-            "vote-weight":content.get_vote_weight(me).toString(),
+            "vote-weight":(content.get_vote_weight(me) || content.get_vote_weight_after_payout(me)).toString(),
             "replies-count":content.data["children"].toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
             "payout-done":content.is_payout_done() ? "yes" : "no",
@@ -89,13 +89,25 @@ function on_loaded() {
     });
 }
 
-function __get_content(author, permlink, handler) {
-    Promise.all([
-        steemjs.get_content(author, permlink),
-        steemjs.get_content_replies(author, permlink)
-    ]).then(function(response) {
+function __get_content(tag, author, permlink, handler) {
+    var path = "/" + tag + "/@" + author + "/" + permlink;
+
+    steemjs.get_state(path).then(function(response) {
+        console.log(JSON.stringify(response));
         if (response) {
-            handler(contents.create(response[0], response[1]));
+            var discussion = response["content"][author + "/" + permlink];
+            console.log(discussion);
+            var replies = [];
+
+            Object.keys(response["content"]).forEach(function(path) {
+                var content = response["content"][path];
+
+                if (content["parent_permlink"] === permlink) {
+                    replies.push(content);
+                }
+            });
+
+            handler(contents.create(discussion, replies));
         } else {
             handler();
         }

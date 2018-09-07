@@ -60,3 +60,4 @@ $CODE_BOLD     = "CourierNewPS-BoldMT"
 %td: padding=0.4em, background-color=$THEME_COLOR_06
 #td-odd: background-color=$THEME_COLOR_06
 #td-even: background-color=$THEME_COLOR_01
+#hidden-signature: display=none

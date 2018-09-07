@@ -1,14 +1,13 @@
+var __signature = "<div class=\"hidden-signature\">Posted using [Moitto](https://steemit.com/@moitto)</div>";
+var __signature_pattern = /\n+<div class=\"hidden-signature\">.*?<\/div>/;
+
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
     var identifier = "S_COMMENTS_" + value["parent-author"] + "_" + value["parent-permlink"];
     var temporary = controller.catalog().value("showcase", "comments", identifier);
-    var editor = view.object("editor");
+    var text = temporary ? temporary["text"] : value["text"].replace(__signature_pattern, "");
 
-    if (temporary) {
-        editor.property({ "text":temporary["text"] });
-    } else {
-        editor.property({ "text":value["text"] });
-    }
+    view.object("editor").property({ "text":text });
 }
 
 function close() {
@@ -16,7 +15,7 @@ function close() {
     var editor = view.object("editor");
     var text = editor.value();
 
-    if (text.length > 0 && text !== value["text"]) {
+    if (text.length > 0 && text !== value["text"].replace(__signature_pattern, "")) {
         controller.action("prompt", {
             "title":"알림",
             "message":"이 댓글을 임시 저장하시겠어요?",
@@ -31,7 +30,7 @@ function close() {
 
 function submit() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
-    var editor = view.object("editor");
+    var text = view.object("editor").value();
 
     controller.action("script", { 
         "script":"actions.comment",
@@ -41,7 +40,7 @@ function submit() {
         "parent-permlink":value["parent-permlink"],
         "permlink":value["permlink"] || "",
         "title":"",
-        "body":editor.value(),
+        "body":text + "\n\n" + __signature,
         "meta":JSON.stringify({})
     });
 
@@ -51,10 +50,10 @@ function submit() {
 function save() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
     var identifier = "S_COMMENTS_" + value["parent-author"] + "_" + value["parent-permlink"];
-    var editor = view.object("editor");
+    var text = view.object("editor").value();
 
     controller.catalog().submit("showcase", "comments", identifier, {
-        "text":editor.value()
+        "text":text
     });
     controller.action("popup-close");
 }

@@ -80,6 +80,7 @@ Books.__write_book_bon = function(item, title, author, language) {
 
 Books.__write_chapters_sbml = function(item, title, chapters) {
     var path = "Books" + "/" + item + "/" + "chapters.sbml";
+    var author = Books.__get_author(chapters);
     var cover_color = Books.__get_cover_color();
     var chapters_text = "";
 
@@ -101,6 +102,7 @@ Books.__write_chapters_sbml = function(item, title, chapters) {
 
     var text = read("catalog@resource", "~/Templates/book/chapters.sbml", {
         "TITLE":title,
+        "AUTHOR":author,
         "COVER-COLOR":cover_color[0],
         "COVER-TEXT-COLOR":cover_color[1],
         "CHAPTERS":chapters_text
@@ -179,15 +181,6 @@ Books.__get_cover_color = function() {
     return [ "$THEME_COLOR_00", "$THEME_COLOR_100" ];
 }
 
-function __random_background_data() {
-    var data = { "background":value["id"] };
-
-    Object.keys(value).forEach(function(key) {
-        data["background." + key] = value[key];
-    });
-
-    return data;
-}
 Books.__get_chapters = function(model) {
     var chapters = [];
 
@@ -212,6 +205,22 @@ Books.__get_chapters = function(model) {
     });
 
     return chapters;
+}
+
+Books.__get_author = function(chapters) {
+    var authors = [];
+
+    chapters.forEach(function(chapter) {
+        if (!authors.includes(chapter["author"])) {
+            authors.push(chapter["author"]);
+        }
+    });
+
+    if (authors.length > 1) {
+        return authors[0] + " 외 " + (authors.length - 1) + "명";
+    }
+
+    return authors[0];
 }
 
 Books.__get_text_in_elements = function(elements) {

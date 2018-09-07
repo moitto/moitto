@@ -80,6 +80,7 @@ Books.__write_book_bon = function(item, title, author, language) {
 
 Books.__write_chapters_sbml = function(item, title, chapters) {
     var path = "Books" + "/" + item + "/" + "chapters.sbml";
+    var cover_color = Books.__get_cover_color();
     var chapters_text = "";
 
     chapters.forEach(function(chapter) {
@@ -100,6 +101,8 @@ Books.__write_chapters_sbml = function(item, title, chapters) {
 
     var text = read("catalog@resource", "~/Templates/book/chapters.sbml", {
         "TITLE":title,
+        "COVER-COLOR":cover_color[0],
+        "COVER-TEXT-COLOR":cover_color[1],
         "CHAPTERS":chapters_text
     });
     
@@ -166,6 +169,25 @@ Books.__url_for_image = function(url, size) {
     return "https://cdn.steemitimages.com/" + (size || "640x0") + "/" + url;
 }
 
+Books.__get_cover_color = function() {
+    var value = controller.catalog("StyleBank").values("showcase", "backgrounds", "C_COLOR", null, [ 0, 1 ], [ null, "random" ])[0];
+
+    if (value) {
+        return [ value["color"], value["text-color"] ] ;
+    }
+
+    return [ "$THEME_COLOR_00", "$THEME_COLOR_100" ];
+}
+
+function __random_background_data() {
+    var data = { "background":value["id"] };
+
+    Object.keys(value).forEach(function(key) {
+        data["background." + key] = value[key];
+    });
+
+    return data;
+}
 Books.__get_chapters = function(model) {
     var chapters = [];
 

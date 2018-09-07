@@ -1,5 +1,5 @@
 =begin chapter
-=begin title
+=begin title: toc="${TITLE}", title="${TITLE}"
 ${TITLE}
 =end title
 

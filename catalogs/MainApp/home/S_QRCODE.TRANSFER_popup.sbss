@@ -15,8 +15,14 @@ end
 #blank_bg: width=1pw, height=0.5ph, color=$THEME_COLOR_02
 #img_qrcode: width=140dp, height=140dp, position=abs, gravity=top, y="0.5ph/2-40dp"
 
-#btn_close: width=50dp, height=50dp, position=abs, gravity=right-bottom, x=-20dp, y=-(20dp+1eb), \
-            label-font-family=$SANSSERIF_BOLD, label-color=$THEME_COLOR_101, label-font-size=2, \
-            content-background-color=$THEME_COLOR_00, content-border-radius=25dp
+#btn_close: width="1pw-40dp", height=50dp, position=absolute, gravity=bottom, \
+        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \
+        content-background-color=$THEME_COLOR_01
 
-/popup: page-background-color=$BLACK_COLOR_DEEP_DIM
+/popup: page-background-color=$THEME_COLOR_02
+
+if $SCREEN_WIDTH > "5"
+    #btn_close: y=-(1eb+0.1pw)
+else
+    #btn_close: y=-(1eb+20dp)
+end

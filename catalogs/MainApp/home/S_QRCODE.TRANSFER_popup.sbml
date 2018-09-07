@@ -9,6 +9,6 @@
 =object image: type=qrcode, text="https://moitto.io/connect/transfer/?to=${username}&coin=SBD&amount_type=SBD", \
             style=img_qrcode
 
-=object button: action=popup, display-unit=S_QRCODE, label="×", style=btn_close
+=object button: action=popup, display-unit=S_QRCODE, label="닫기", style=btn_close
 
 =end popup

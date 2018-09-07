@@ -9,8 +9,8 @@ function open() {
             }
         });
 
-        __show_progress_section();
         __hide_ready_section();
+        __show_progress_section();
         __disable_open_button();
     } else {
         books.open_book($data["author"], $data["permlink"]);

@@ -4,7 +4,8 @@
 댓글을 삭제하시겠습니까?
 =end message
 
-=object button: script=delete_comment, label="댓글 삭제", style=btn_delete
-=object button: action=popup-close, label="×", style=btn_close
+=object button: script=delete_comment, label="댓글 삭제", style=btn_action
+
+=object button: action=popup-close, label="취소", style=btn_close
 
 =end popup

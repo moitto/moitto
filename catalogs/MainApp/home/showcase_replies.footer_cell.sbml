@@ -4,7 +4,7 @@
 =begin replies: id=replies
 =object button: script=show_votes, label=" ${payout-value}", style=btn_value
 =begin comments
-=(object button: script=comment, label="댓글쓰기", style=btn_comment)= =(object button: script=hide_comment, label="숨김처리", style=btn_hide)==(object button: script=edit_comment, label="수정", style=btn_edit)= =(object button: script=delete_comment, label="삭제", style=btn_delete)= =(object button: script=show_replies, style=btn_replies.icon)==(object button: script=show_replies, label="${replies-count}", style=btn_replies)=
+=(object button: script=comment, label="댓글쓰기", style=btn_comment)= =(object button: script=hide_comment, label="댓글감추기", style=btn_hide)==(object button: script=edit_comment, label="수정", style=btn_edit)= =(object button: script=delete_comment, label="삭제", style=btn_delete)= =(object button: script=show_replies, style=btn_replies.icon)==(object button: script=show_replies, label="${replies-count}", style=btn_replies)=
 =end comments
 =end replies
 

@@ -1,4 +1,12 @@
 import markdown.sbss
 
+/cover: page-footer-hidden=yes
+/cover/title: font-family=$SANSSERIF_BOLD, text-align=left, line-break-mode=word-wrap, font-size=1.7em, \
+            line-spacing=0.4em, paragraph-spacing=0.4em, margin="2mt -0.5mr 0 -0.5ml"
+/cover/author: display=block, width=1cw, position=absolute, gravity=bottom, \
+            font-family=$SERIF_MEDIUM, text-align=left, line-break-mode=word-wrap, font-size=0.9, \
+            line-spacing=0.2em, paragraph-spacing=0.2em
+
 /chapter: begin-new-page=yes
-/chapter/title: margin-bottom=200dp
+/chapter/title: font-family=$SANSSERIF_LIGHT, text-align=left, line-break-mode=word-wrap, \
+            font-size=1.5em, line-spacing=0.2em, paragraph-spacing=0.2em, margin="0 0 3mt 0"

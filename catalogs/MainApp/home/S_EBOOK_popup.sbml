@@ -4,27 +4,27 @@
 =object section: id=section.progress, section=progress, style=section_progress
 
 =object button: id=btn.open, script=open, label="전자책으로 보기", disable-label="전자책 변환 중...", style=btn_open
-=object button: action=popup-close, label="×", style=btn_close
+=object button: action=popup-close, label="원본 보기", style=btn_close
 
 =begin ready: id=ready
 =begin title
 ${title}
 =end title
-
 =begin message
-글들을 모아 전자책으로 볼 수가 있습니다.
-전자책으로 보시겠습니까?
+• 이 글에는 전자책으로 볼 수 있도록 선별된 글 목록이 있습니다.
+• 목록의 모든 글을 전자책 한 권으로 묶어 볼 수 있습니다.
 =end message
 =end ready
+
 
 =begin progress: id=progress
 =begin title
 ${title}
 =end title
-
 =begin message
-전자책으로 변환하는 중입니다.
-1분 이상 소요될 수 있습니다.
+• 전자책으로 변환하는 중입니다.
+• 변환 시간은 5초~1분 정도입니다.
+• 이미지가 많으면 더 걸릴 수 있습니다.
 =end message
 =end progress
 

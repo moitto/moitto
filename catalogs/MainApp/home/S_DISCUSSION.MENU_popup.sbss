@@ -11,7 +11,13 @@ import ~/themes.sbss
 
 /popup: page-background-color=$BLACK_COLOR_DEEP_DIM
 /popup/actions: display=block, width="1pw-40dp", \
-                position=abs, gravity=bottom, y=-(1eb+0.1pw)
+                position=absolute, gravity=bottom
+
+if $SCREEN_WIDTH > "5"
+    /popup/actions: y=-(1eb+0.1pw)
+else
+    /popup/actions: y=-(1eb+20dp)
+end
 
 if "${vote-weight}" != 0
     #unvoted: display=none, width=0, height=0

@@ -186,21 +186,21 @@ Actions.hide_comment = function(params) {
             Actions.account.vote(params["author"], params["permlink"], -user.get_minimum_voting_weight(), function(response) {
                 if (response) {
                     Actions.__get_updated_data_for_content(params["parent-author"], params["parent-permlink"], function(id, data) {
-                        controller.action("toast", { "message":"댓글을 숨김 처리했습니다." });
+                        controller.action("toast", { "message":"댓글을 감췄습니다." });
                         controller.update("replies-" + params["parent-author"] + "." + params["parent-permlink"], {});
 
                         Actions.__on_complete(params, id, data);
                     });
                 } else {
-                    controller.action("toast", { "message":"숨김 처리에 실패했습니다." });
+                    controller.action("toast", { "message":"댓글 감추기에 실패했습니다." });
                 }
             });
         } else {
-            controller.action("toast", { "message":"숨김 처리에 실패했습니다." });
+            controller.action("toast", { "message":"댓글 감추기에 실패했습니다." });
         }
     });
 
-    controller.action("toast", { "message":"숨김 처리를 진행하고 있습니다." });
+    controller.action("toast", { "message":"댓글 감추기를 진행하고 있습니다." });
 }
 
 Actions.follow = function(params) {

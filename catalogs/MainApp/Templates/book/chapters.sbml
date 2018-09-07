@@ -1,5 +1,10 @@
 =begin cover
+=begin title: text-color="${COVER-TEXT-COLOR}", page-background-color="${COVER-COLOR}"
 ${TITLE}
+=end title
+=begin author
+${AUTHOR}
+=end author
 =end cover
 
 ${CHAPTERS}

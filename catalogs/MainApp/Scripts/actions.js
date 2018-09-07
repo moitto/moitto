@@ -11,6 +11,12 @@ Actions.users    = require("users");
 Actions.rewards  = require("rewards");
 Actions.quests   = require("quests");
 
+Actions.query_account = function(params) {
+    Actions.__on_complete(params, "account", {
+        "username":Actions.account.get_username()
+    });
+}
+
 Actions.open_discussion = function(params) {
     var user = Actions.users.create(params["author"]);
 
@@ -459,7 +465,6 @@ Actions.__get_updated_data_for_assets = function(username, handler) {
 }
 
 Actions.__on_complete = function(params, id, data) {
-    console.log("__on_complete: " + params["return-script"]);
     if (params["return-script"]) {
         controller.action("script", Object.assign({
             "script":params["return-script"],

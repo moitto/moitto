@@ -79,6 +79,10 @@ Connect.__on_authorize_app = function(params) {
     delete Connect.__handlers["request-id"];
 }
 
+Connect.__invoke_query_account = function(params) {
+    
+}
+
 Connect.__invoke_open_discussion = function(params) {
     Connect.actions.open_discussion(Object.assign({
         "author":params["author"],

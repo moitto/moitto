@@ -1,5 +1,5 @@
-=begin chapter
-=begin title: toc="${TITLE}", title="${TITLE}"
+=begin chapter: toc="${TITLE}", title="${TITLE}"
+=begin title
 ${TITLE}
 =end title
 

@@ -217,7 +217,7 @@ Books.__get_author = function(chapters) {
     });
 
     if (authors.length > 1) {
-        return authors[0] + " 외 " + (authors.length - 1) + "명";
+        return authors[0] + " 외 " + (authors.length - 1).toString() + "명";
     }
 
     return authors[0];

@@ -372,17 +372,27 @@ Actions.__get_user = function(username, handler) {
 }
 
 Actions.__get_updated_data_for_content = function(author, permlink, handler) {
-    Promise.all([
-        Actions.steemjs.get_content(author, permlink),
-        Actions.steemjs.get_content_replies(author, permlink)
-    ]).then(function(response) {
+    var path = "/" + undefined + "/@" + author + "/" + permlink;
+
+    Actions.steemjs.get_state(path).then(function(response) {
         if (response) {
-            var content = Actions.contents.create(response[0], response[1]);
+            var discussion = response["content"][author + "/" + permlink];
+            var replies = [];
+
+            Object.keys(response["content"]).forEach(function(path) {
+                var content = response["content"][path];
+
+                if (content["parent_permlink"] === permlink) {
+                    replies.push(content);
+                }
+            });
+
+            var content = Actions.contents.create(discussion, replies);
             var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
-            var me = Actions.account.get_username();
+            var me = storage.value("ACTIVE_USER") || "";
             var data = {
                 "votes-count":content.data["net_votes"].toString(),
-                "vote-weight":content.get_vote_weight(me).toString(),
+                "vote-weight":(content.get_vote_weight(me) || content.get_vote_weight_after_payout(me)).toString(),
                 "replies-count":content.data["children"].toString(),
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
                 "payout-done":content.is_payout_done() ? "yes" : "no",
@@ -406,7 +416,7 @@ Actions.__get_updated_data_for_content = function(author, permlink, handler) {
 }
 
 Actions.__get_updated_data_for_user = function(username, handler) {
-    var me = Actions.account.get_username();
+    var me = storage.value("ACTIVE_USER") || "";
 
     Promise.all([
         Actions.steemjs.get_accounts([ username ]),

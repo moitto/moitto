@@ -1,12 +1,20 @@
 function follow() {
-    controller.action("script", {
-        "script":"actions.follow",
-        "subview":"__MAIN__",
-        "routes-to-topmost":"no",
-        "username":$data["username"]
-    });
+    if (storage.value("ACTIVE_USER")) {
+        controller.action("script", {
+            "script":"actions.follow",
+            "subview":"__MAIN__",
+            "routes-to-topmost":"no",
+            "username":$data["username"]
+        });
 
-    __disable_follow_button();
+        __disable_follow_button();
+    } else {
+        controller.action("subview", { 
+            "subview":"V_LOGIN", 
+            "target":"popup",
+            "close-popup":"yes" 
+        });
+    }
 }
 
 function show_blog() {

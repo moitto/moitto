@@ -93,10 +93,8 @@ function __get_content(tag, author, permlink, handler) {
     var path = "/" + tag + "/@" + author + "/" + permlink;
 
     steemjs.get_state(path).then(function(response) {
-        console.log(JSON.stringify(response));
         if (response) {
             var discussion = response["content"][author + "/" + permlink];
-            console.log(discussion);
             var replies = [];
 
             Object.keys(response["content"]).forEach(function(path) {

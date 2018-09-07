@@ -117,7 +117,7 @@ function show_ebook() {
         "title":$data["title"]
     });
 
-    controller.action("popup", { "display-unit":"S_EBOOK", "target":"popup" });
+    controller.action("popup", { "display-unit":"S_EBOOK" });
 }
 
 function comment() {

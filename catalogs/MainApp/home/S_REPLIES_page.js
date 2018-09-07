@@ -27,6 +27,7 @@ function on_loaded() {
                     "body":theme.build_body(reply.data["body"], "markdown", []),
                     "body-text":reply.data["body"], 
                     "payout-value":"$" + reply.get_payout_value().toFixed(2).toString(),
+                    "payout-done":reply.is_payout_done() ? "yes" : "no",
                     "replies-count":reply.data["children"].toString(),
                     "created-at":reply.data["created"],
                     "vote-weight":reply.get_vote_weight(me).toString(),

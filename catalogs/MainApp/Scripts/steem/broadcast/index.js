@@ -148,10 +148,12 @@ SteemBroadcast.custom_json = function(required_auths, required_posting_auths, id
     });
 }
 
-SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd, reward_vests, keys) {
+SteemBroadcast.comment_options = function(author, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions, keys) {
     return new Promise(function(resolve, reject) {
-        var operation = [ "claim_reward_balance", { 
-            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests:reward_vests
+        var operation = [ "comment_options", { 
+            author:author, permlink:permlink, max_accepted_payout:max_accepted_payout, 
+            percent_steem_dollars:percent_steem_dollars, allow_votes:allow_votes, 
+            allow_curation_rewards:allow_curation_rewards, extensions:extensions
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
@@ -224,6 +226,20 @@ SteemBroadcast.escrow_approve = function(from, to, agent, who, escrow_id, approv
     return new Promise(function(resolve, reject) {
         var operation = [ "escrow_approve", { 
             from:from, to:to, agent:agent, who:who, escrow_id:escrow_id, approve:approve
+        }];
+
+        SteemBroadcast.__send_transaction(operation, keys).then(function(response) {
+            resolve(response);
+        }, function(reason) {
+            reject(reason);
+        });
+    });
+}
+
+SteemBroadcast.claim_reward_balance = function(account, reward_steem, reward_sbd, reward_vests, keys) {
+    return new Promise(function(resolve, reject) {
+        var operation = [ "claim_reward_balance", { 
+            account:account, reward_steem:reward_steem, reward_sbd:reward_sbd, reward_vests:reward_vests
         }];
 
         SteemBroadcast.__send_transaction(operation, keys).then(function(response) {

@@ -81,21 +81,25 @@ Actions.vote = function(params) {
 
 Actions.vote_after_payout = function(params) {
     Actions.rewards.get_reward_reply(params["author"], params["permlink"], "after7days", true, function(author, permlink) {
-        Actions.account.vote(author, permlink, parseInt(params["weight"]), function(response) {
-            if (response) {
-                Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
-                    controller.action("toast", { "message":"보팅이 완료되었습니다." });
-                    controller.update("votes-" + params["author"] + "." + params["permlink"], {});
+        if (author && permlink) {
+            Actions.account.vote(author, permlink, parseInt(params["weight"]), function(response) {
+                if (response) {
+                    Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
+                        controller.action("toast", { "message":"보팅이 완료되었습니다." });
+                        controller.update("votes-" + params["author"] + "." + params["permlink"], {});
 
-                    Actions.__on_complete(params, id, data);
-                });
-            } else {
-                controller.action("toast", { "message":"보팅에 실패했습니다." });
-            }
-        });
-
-        controller.action("toast", { "message":"보팅을 진행합니다." });
+                        Actions.__on_complete(params, id, data);
+                    });
+                } else {
+                    controller.action("toast", { "message":"보팅에 실패했습니다." });
+                }
+            });            
+        } else {
+            controller.action("toast", { "message":"보팅에 실패했습니다." });
+        }
     });
+
+    controller.action("toast", { "message":"보팅을 진행합니다." });
 }
 
 Actions.unvote = function(params) {
@@ -362,9 +366,12 @@ Actions.__get_user = function(username, handler) {
 }
 
 Actions.__get_updated_data_for_content = function(author, permlink, handler) {
-    Actions.steemjs.get_content(author, permlink).then(function(response) {
+    Promise.all([
+        Actions.steemjs.get_content(author, permlink),
+        Actions.steemjs.get_content_replies(author, permlink)
+    ]).then(function(response) {
         if (response) {
-            var content = Actions.contents.create(response);
+            var content = Actions.contents.create(response[0], response[1]);
             var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
             var me = Actions.account.get_username();
             var data = {

@@ -109,7 +109,8 @@ function vote() {
         if (parseInt(value["vote-weight"]) == 0) {
             controller.catalog().submit("showcase", "auxiliary", "S_DISCUSSION.UPVOTE", {
                 "author":$data["author"],
-                "permlink":$data["permlink"]
+                "permlink":$data["permlink"],
+                "payout-done":$data["payout-done"]
             });
 
             controller.action("popup", { "display-unit":"S_DISCUSSION.UPVOTE" });

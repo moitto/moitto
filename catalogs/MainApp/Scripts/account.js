@@ -112,7 +112,15 @@ Account.create_user = function(username, fee, pin, handler) {
 
     console.log("password: " + password);
 
-    Account.steem.broadcast.account_create(fee, creator, username, owner, active, posting, memo_key, "", [ key ]).then(function(response) {
+    Account.steem.broadcast.account_create(fee, 
+                                           creator, 
+                                           username, 
+                                           owner, 
+                                           active, 
+                                           posting, 
+                                           memo_key, 
+                                           "", 
+                                           [ key ]).then(function(response) {
         handler(response, password);
     }, function(reason) {
         handler();
@@ -169,7 +177,14 @@ Account.comment = function(parent_author, parent_permlink, permlink, title, body
                  + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
     }
 
-    Account.steem.broadcast.comment(parent_author, parent_permlink, author, permlink, title, body, json_metadata, [ key ]).then(function(response) {
+    Account.steem.broadcast.comment(parent_author, 
+                                    parent_permlink, 
+                                    author, 
+                                    permlink, 
+                                    title, 
+                                    body, 
+                                    json_metadata, 
+                                    [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -181,6 +196,24 @@ Account.delete_comment = function(permlink, handler) {
     var key = Account.__load_key(author, "posting");
 
     Account.steem.broadcast.delete_comment(author, permlink, [ key ]).then(function(response) {
+        handler(response);
+    }, function(reason) {
+        handler();
+    });
+}
+
+Account.set_comment_options = function(permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions, handler) {
+    var author = storage.value("ACTIVE_USER") || "";
+    var key = Account.__load_key(author, "posting");
+
+    Account.steem.broadcast.comment_options(author, 
+                                            permlink, 
+                                            max_accepted_payout, 
+                                            percent_steem_dollars, 
+                                            allow_votes, 
+                                            allow_curation_rewards, 
+                                            extensions, 
+                                            [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -364,7 +397,11 @@ Account.claim_rewards = function(handler) {
         var reward_sbd_balance     = response[0]["reward_sbd_balance"];
         var reward_vesting_balance = response[0]["reward_vesting_balance"];
 
-        Account.steem.broadcast.claim_reward_balance(account, reward_steem_balance, reward_sbd_balance, reward_vesting_balance, [ key ]).then(function(response) {
+        Account.steem.broadcast.claim_reward_balance(account, 
+                                                     reward_steem_balance, 
+                                                     reward_sbd_balance, 
+                                                     reward_vesting_balance, 
+                                                     [ key ]).then(function(response) {
             handler(response);
         }, function(reason) {
             handler();
@@ -378,7 +415,17 @@ Account.escrow_transfer = function(to, agent, escrow_id, sbd_amount, steem_amoun
     var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);
 
-    Account.steem.broadcast.escrow_transfer(from, to, agent, escrow_id, sbd_amount, steem_amount, fee, ratification_deadline, escrow_expiration, json_metadata, [ key ]).then(function(response) {
+    Account.steem.broadcast.escrow_transfer(from, 
+                                            to, 
+                                            agent, 
+                                            escrow_id, 
+                                            sbd_amount, 
+                                            steem_amount, 
+                                            fee, 
+                                            ratification_deadline, 
+                                            escrow_expiration, 
+                                            json_metadata, 
+                                            [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -389,7 +436,13 @@ Account.escrow_approve = function(to, agent, who, escrow_id, approve, pin, handl
     var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);
 
-    Account.steem.broadcast.escrow_approve(from, to, agent, who, escrow_id, approve, [ key ]).then(function(response) {
+    Account.steem.broadcast.escrow_approve(from, 
+                                           to, 
+                                           agent, 
+                                           who, 
+                                           escrow_id, 
+                                           approve, 
+                                           [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -400,7 +453,12 @@ Account.escrow_dispute = function(to, agent, who, escrow_id, pin, handler) {
     var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);
 
-    Account.steem.broadcast.escrow_dispute(from, to, agent, who, escrow_id, [ key ]).then(function(response) {
+    Account.steem.broadcast.escrow_dispute(from, 
+                                           to, 
+                                           agent, 
+                                           who, 
+                                           escrow_id, 
+                                           [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();
@@ -411,7 +469,15 @@ Account.escrow_release = function(to, agent, who, receiver, escrow_id, sbd_amoun
     var from = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(from, "active", pin);
 
-    Account.steem.broadcast.escrow_release(from, to, agent, who, receiver, escrow_id, sbd_amount, steem_amount, [ key ]).then(function(response) {
+    Account.steem.broadcast.escrow_release(from, 
+                                           to, 
+                                           agent, 
+                                           who, 
+                                           receiver, 
+                                           escrow_id, 
+                                           sbd_amount, 
+                                           steem_amount, 
+                                           [ key ]).then(function(response) {
         handler(response);
     }, function(reason) {
         handler();

@@ -90,9 +90,12 @@ function on_loaded() {
 }
 
 function __get_content(author, permlink, handler) {
-    steemjs.get_content(author, permlink).then(function(response) {
+    Promise.all([
+        steemjs.get_content(author, permlink),
+        steemjs.get_content_replies(author, permlink)
+    ]).then(function(response) {
         if (response) {
-            handler(contents.create(response));
+            handler(contents.create(response[0], response[1]));
         } else {
             handler();
         }

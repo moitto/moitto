@@ -7,11 +7,29 @@ __MODULE__ = {
         permlink: __TYPES__.string,
         weight: __TYPES__.int16
     },
+    "comment":{
+        parent_author: __TYPES__.string,
+        parent_permlink: __TYPES__.string,
+        author: __TYPES__.string,
+        permlink: __TYPES__.string,
+        title: __TYPES__.string,
+        body: __TYPES__.string,
+        json_metadata: __TYPES__.string
+    },
     "transfer":{
         from: __TYPES__.string,
         to: __TYPES__.string,
         amount: __TYPES__.asset,
         memo: __TYPES__.string
+    },
+    "transfer_to_vesting":{
+        from: __TYPES__.string,
+        to: __TYPES__.string,
+        amount: __TYPES__.asset
+    },
+    "withdraw_vesting":{
+        account: __TYPES__.string,
+        vesting_shares: __TYPES__.asset
     },
     "account_create":{
         fee: __TYPES__.asset,
@@ -23,11 +41,29 @@ __MODULE__ = {
         memo_key: __TYPES__.public_key,
         json_metadata: __TYPES__.string
     },
+    "delete_comment":{
+        author: __TYPES__.string,
+        permlink: __TYPES__.string
+    },
     "custom_json":{
         required_auths: [ __TYPES__.array, __TYPES__.string ],
         required_posting_auths: [ __TYPES__.array, __TYPES__.string ],
         id: __TYPES__.string,
         json: __TYPES__.string
+    },
+    "comment_options":{
+        author: __TYPES__.string,
+        permlink: __TYPES__.string,
+        max_accepted_payout: __TYPES__.asset,
+        percent_steem_dollars: __TYPES__.int16,
+        allow_votes: __TYPES__.bool,
+        allow_curation_rewards: __TYPES__.bool,
+        extensions: __TYPES__.string
+    },
+    "delegate_vesting_shares":{
+        delegator: __TYPES__.string,
+        delegatee: __TYPES__.string,
+        vesting_shares: __TYPES__.asset
     },
     "escrow_transfer":{
         from: __TYPES__.string,
@@ -71,32 +107,5 @@ __MODULE__ = {
         reward_steem: __TYPES__.asset,
         reward_sbd: __TYPES__.asset,
         reward_vests: __TYPES__.asset
-    },
-    "delegate_vesting_shares":{
-        delegator: __TYPES__.string,
-        delegatee: __TYPES__.string,
-        vesting_shares: __TYPES__.asset
-    },
-    "transfer_to_vesting":{
-        from: __TYPES__.string,
-        to: __TYPES__.string,
-        amount: __TYPES__.asset
-    },
-    "withdraw_vesting":{
-        account: __TYPES__.string,
-        vesting_shares: __TYPES__.asset
-    },
-    "comment":{
-        parent_author: __TYPES__.string,
-        parent_permlink: __TYPES__.string,
-        author: __TYPES__.string,
-        permlink: __TYPES__.string,
-        title: __TYPES__.string,
-        body: __TYPES__.string,
-        json_metadata: __TYPES__.string
-    },
-    "delete_comment":{
-        author: __TYPES__.string,
-        permlink: __TYPES__.string
     }
 };

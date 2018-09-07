@@ -3,7 +3,6 @@ Rewards = (function() {
 })();
 
 Rewards.get_reward_reply = function(post_author, post_permlink, type, create_if_not_exist, handler) {
-    console.log("get_reward_reply: " + post_author + "-" + post_permlink);
     var url = "https://moitto.io/api/rewards/" + post_author + "/" + post_permlink;
     var query = Rewards.__to_query_string({ "type":type });
     var method = create_if_not_exist ? "POST" : "GET";
@@ -13,10 +12,10 @@ Rewards.get_reward_reply = function(post_author, post_permlink, type, create_if_
     }).then(function(response) {
         if (response.ok) {
             response.json().then(function(json) {
-                handler(json);
+                handler(json["author"], json["permlink"]);
             });
         } else {
-            handler();
+             handler();
         }
     }, function(reason) {
         hanlder();

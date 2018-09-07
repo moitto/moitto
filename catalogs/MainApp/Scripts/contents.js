@@ -6,10 +6,13 @@ Contents.urls = require("urls");
 
 // class Content
 
-function Content(data) {
+function Content(data, replies) {
     this.data = data;
+    this.replies = replies;
     this.meta = JSON.parse(data["json_metadata"] || "{}");
 
+    console.log(JSON.stringify(replies));
+    
     if (this.meta["image"]) {
         this.meta["image"] = this.__normalize_urls(this.meta["image"]);
     }
@@ -181,8 +184,8 @@ Content.prototype.__normalize_urls = function(urls) {
 
 // instance factory
 
-Contents.create = function(data) {
-    return new Content(data);
+Contents.create = function(data, replies) {
+    return new Content(data, replies);
 }
 
 __MODULE__ = Contents;

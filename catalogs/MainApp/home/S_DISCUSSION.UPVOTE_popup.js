@@ -34,7 +34,7 @@ function select_percent(params) {
 }
 
 function upvote() {
-    var script = ($data["payout-done"] !== "no") ? "actions.vote_after_payout" : "actions.vote";
+    var script = ($data["payout-done"] === "yes") ? "actions.vote_after_payout" : "actions.vote";
 
 	controller.action("script", { 
         "script":script,

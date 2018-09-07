@@ -66,7 +66,17 @@ Quests.__result_body = function(value, comment) {
             + "<sub>" + "퀘스트 참여코드: " + Quests.__quest_code(value, comment) + "</sub>";
 }
 
-Quests.__result_options = function(author) {
+Quests.__quest_code = function(value, comment) {
+    var message = value["id"] 
+                + storage.value("ACTIVE_USER")
+                + comment
+                + value["started-at"] 
+                + value["finished-at"];
+
+    return encode("hex", hash("md5", message)); // Not safe. TBD
+}
+
+Quests.__comment_options = function(author) {
     var username = storage.value("ACTIVE_USER");
 
     return JSON.stringify({
@@ -80,16 +90,6 @@ Quests.__result_options = function(author) {
             ]}
         ]]
     });
-}
-
-Quests.__quest_code = function(value, comment) {
-    var message = value["id"] 
-                + storage.value("ACTIVE_USER")
-                + comment
-                + value["started-at"] 
-                + value["finished-at"];
-
-    return encode("hex", hash("md5", message)); // Not safe. TBD
 }
 
 __MODULE__ = Quests;

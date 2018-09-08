@@ -78,7 +78,7 @@ Content.prototype.get_vote_weight = function(username) {
     var votes = this.data["active_votes"];
 
     for (var i = 0; i < votes.length; i++) {
-        if (votes[i].voter === username) {
+        if (votes[i]["voter"] === username) {
             return votes[i].percent;
         }
     }
@@ -88,11 +88,13 @@ Content.prototype.get_vote_weight = function(username) {
 
 Content.prototype.get_vote_weight_after_payout = function(username) {
     for (var n = 0; n < this.replies.length; ++n) {
-        var votes = this.replies[n]["active_votes"];
+        if (this.replies[n]["permlink"].startsWith("after7days-")) {
+            var votes = this.replies[n]["active_votes"];
 
-        for (var i = 0; i < votes.length; i++) {
-            if (votes[i].voter === username) {
-                return votes[i].percent;
+            for (var i = 0; i < votes.length; i++) {
+                if (votes[i]["voter"] === username) {
+                    return votes[i].percent;
+                }
             }
         }
     }

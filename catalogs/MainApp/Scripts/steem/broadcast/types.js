@@ -82,7 +82,7 @@ __MODULE__ = {
             amount_low  = amount[1] - amount[0];
             amount_high = amount[0] - ((amount_low < 0) ? 1 : 0);
 
-            SteemSerializer.__pack_buffer(buffer, "<i<i", [ amount_low, amount_high ]);
+            SteemSerializer.__pack_buffer(buffer, (amount_low > 0) ? "<I<i" : "<i<i", [ amount_low, amount_high ]);
             SteemSerializer.__pack_buffer(buffer, "B", [ precision ]);
             SteemSerializer.__pack_buffer(buffer, symbol.length + "s", [ symbol ]);
 

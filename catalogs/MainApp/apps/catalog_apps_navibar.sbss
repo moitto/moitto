@@ -9,17 +9,17 @@ import ~/themes.sbss
 #section_edit: hidden=yes, width=1pw, height=44dp, position=abs, gravity=top, y=1sbh, \
             content-background-color=$THEME_COLOR_00
 
-#btn_action: width=80dp, height=44dp, \
-            label-font-family=$SANSSERIF_LIGHT, label-font-size=1.2, \
+#btn_action: height=44dp, \
+            label-font-family=$SANSSERIF_LIGHT, label-font-size=1.1, \
             label-color=$THEME_COLOR_100, label-align=center
 
 #btn_edit.done: width=60dp, height=44dp, position=abs, gravity=right, \
             label-font-family=$SANSSERIF_MEDIUM, label-font-size=1.2, \
-            label-color=$THEME_COLOR_100, label-align=center
+            label-color=$THEME_COLOR_103, label-align=center
 
 /navibar: page-background-color=$THEME_COLOR_00
 /navibar/edit: display=none
-/navibar/edit/actions: text-align=left
+/navibar/edit/actions: text-align=left, margin="0 0 0 10dp"
 
 if $SCREEN_WIDTH > "5"
     #label_title: font-size=1.4

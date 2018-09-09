@@ -7,7 +7,7 @@
 
 =begin edit: id=edit
 =begin actions
-=(object checkbox: script-when-selected=select_all, script-when-deselected=deselect_all, label="모두 선택", style=btn_action)= =(object button: script=remove_apps, label="삭제하기", style=btn_action)=
+=(object checkbox: script-when-selected=select_all, script-when-deselected=deselect_all, label="모두 선택", style=btn_action)=  =(object button: script=remove_apps, label="삭제하기", style=btn_action)=
 =end actions
 =object button: script=edit_done, label="완료", style=btn_edit.done
 =end edit

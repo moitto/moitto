@@ -202,10 +202,11 @@ Account.delete_comment = function(permlink, handler) {
     });
 }
 
-Account.set_comment_options = function(permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions, handler) {
+Account.set_comment_options = function(permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, beneficiaries, handler) {
     var author = storage.value("ACTIVE_USER") || "";
     var key = Account.__load_key(author, "posting");
-
+    var extensions = [ [ 0, { "beneficiaries":Account.__normalize_beneficiaries(beneficiaries) } ] ];
+   
     Account.steem.broadcast.comment_options(author, 
                                             permlink, 
                                             max_accepted_payout, 
@@ -577,6 +578,32 @@ Account.verify_pin = function(pin) {
     }
 
     return false;
+}
+
+Account.__normalize_beneficiaries = function(beneficiaries) {
+    var normalized_beneficiaries = [];
+    var summary = {};
+
+    for (var i = 0; i < beneficiaries.length; ++i) {
+        if (summary.hasOwnProperty(beneficiaries[i]["account"])) {
+            summary[beneficiaries[i]["account"]] += beneficiaries[i]["weight"];
+        } else {
+            summary[beneficiaries[i]["account"]] = beneficiaries[i]["weight"];
+        }
+    }
+
+    Object.keys(summary).forEach(function(account) {
+        normalized_beneficiaries.push({
+            "account":account, 
+            "weight":summary[account]
+        })
+    });
+
+    normalized_beneficiaries.sort(function(a, b) {
+        return a["account"] > b["account"] ? 1 : -1;
+    });
+
+    return normalized_beneficiaries;
 }
 
 Account.__get_dynprops = function() {

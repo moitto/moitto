@@ -148,7 +148,7 @@ SteemBroadcast.custom_json = function(required_auths, required_posting_auths, id
     });
 }
 
-SteemBroadcast.comment_options = function(author, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions, keys) {
+SteemBroadcast.comment_options = function(author, permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions, keys) {
     return new Promise(function(resolve, reject) {
         var operation = [ "comment_options", { 
             author:author, permlink:permlink, max_accepted_payout:max_accepted_payout, 

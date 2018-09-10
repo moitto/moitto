@@ -1,7 +1,7 @@
 =begin popup
 
 =begin actions
-=object button: script=edit, label="내 디앱 편집하기", style=btn_menu
+=object button: label="", style=btn_menu
 =object blank: style=blank_line
 
 =object button: action=popup-close, label="취소", style=btn_close

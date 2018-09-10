@@ -1,5 +1,0 @@
-=begin empty
-
-=object button: action=page, display-unit=S_APPS, label="디앱 목록 보기", style=btn_apps
-
-=end empty

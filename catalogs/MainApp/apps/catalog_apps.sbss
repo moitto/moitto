@@ -1,5 +1,5 @@
 import ~/themes.sbss
 
-#showcase_my.apps: width=1pw, height=1ph, \
+#showcase_apps: width=1pw, height=1ph, \
             column-count=1, cell-size="(1pw-20dp), 120dp", cell-spacing=10dp, \
             content-margin=10dp, footer-height=60dp

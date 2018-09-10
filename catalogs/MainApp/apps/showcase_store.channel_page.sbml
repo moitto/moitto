@@ -1,6 +1,6 @@
 =begin page
 
-=object showcase: alternate-name=apps, \
+=object showcase: alternate-name=store.apps, \
             name=apps.${channel}, data-script=feed_apps, \
             selectable=yes, script-when-selected=select_app, \
             keeps-offscreen-cells=yes, scroll-indicator-hidden=yes, \

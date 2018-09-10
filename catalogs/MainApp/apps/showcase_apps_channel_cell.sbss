@@ -1,4 +1,4 @@
-import showcase_my.apps_cell.sbss
+import showcase_apps_cell.sbss
 
 #widget: sortkey=running, sortorder=descending
 

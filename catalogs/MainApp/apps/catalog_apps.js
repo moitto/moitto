@@ -7,31 +7,31 @@ function select_app(data) {
 }
 
 function edit_apps() {
-    var showcase = view.object("showcase.my.apps");
+    var showcase = view.object("showcase.apps");
 
     showcase.action("edit");
 }
 
 function edit_done() {
-    var showcase = view.object("showcase.my.apps");
+    var showcase = view.object("showcase.apps");
 
     showcase.action("edit-done");
 }
 
 function select_all() {
-    var showcase = view.object("showcase.my.apps");
+    var showcase = view.object("showcase.apps");
 
     showcase.action("select-all");
 }
 
 function deselect_all() {
-    var showcase = view.object("showcase.my.apps");
+    var showcase = view.object("showcase.apps");
 
     showcase.action("deselect-all");
 }
 
 function remove_apps() {
-    var showcase = view.object("showcase.my.apps");
+    var showcase = view.object("showcase.apps");
 
     showcase.action("remove");
 }

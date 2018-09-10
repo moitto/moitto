@@ -12,9 +12,13 @@ Actions.rewards  = require("rewards");
 Actions.quests   = require("quests");
 
 Actions.query_account = function(params) {
-    Actions.__on_complete(params, "account", {
-        "username":Actions.account.get_username()
-    });
+    if (Actions.account.is_logged_in()) {
+        Actions.__on_complete(params, "account", {
+            "username":Actions.account.get_username()
+        });
+    } else {
+        Actions.__on_complete(params);
+    }
 }
 
 Actions.open_discussion = function(params) {
@@ -348,7 +352,6 @@ Actions.start_quest = function(params) {
 }
 
 Actions.finish_quest = function(params) {
-    console.log("finish_quest: " + JSON.stringify(params));
     Actions.quests.finish_quest(params["author"], params["permlink"], params["comment"], function() {
         Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
             Actions.__on_complete(params, id, data);

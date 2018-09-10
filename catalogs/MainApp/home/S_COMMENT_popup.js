@@ -1,4 +1,4 @@
-var __signature = "<div class=\"hidden-signature\">Posted using <a href=\"https://steemit.com/@moitto\">Moitto]</a></div>";
+var __signature = "<div class=\"hidden-signature\">Posted using <a href=\"https://steemit.com/@moitto\">Moitto</a></div>";
 var __signature_pattern = /\n+<div class=\"hidden-signature\">.*?<\/div>/;
 
 function on_loaded() {

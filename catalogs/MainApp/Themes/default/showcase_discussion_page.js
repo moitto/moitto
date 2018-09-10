@@ -185,6 +185,10 @@ function __handle_tags(tags) {
     }
 }
 
+function __needs_handle_tags(author, permlink) {
+    
+}
+
 function __background_data_for_value(value) {
     var data = { "background":value["id"] };
 

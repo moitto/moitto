@@ -16,9 +16,13 @@ Books.generate_book = function(author, permlink, handler) {
             var item = author + "-" + permlink;
 
             Books.__generate_book(item, title, author, "ko", Books.__get_chapters(model), function(response) {
-                controller.action("import", { "item":item });
-
-                handler(response);
+                if (response) {
+                    controller.action("import", { "item":item });
+    
+                    handler(item);
+                } else {
+                    handler();
+                }
             });
         } else {
             handler();
@@ -30,8 +34,15 @@ Books.generate_book = function(author, permlink, handler) {
 
 Books.open_book = function(author, permlink) {
     var item = author + "-" + permlink;
+    var path = "Books" + "/" + item + "/" + "book.bon";
 
-    controller.action("open", { "item":item });
+    if (exist("library", path)) {
+        controller.action("open", { "item":item });
+    
+        return true;
+    }
+
+    return false;
 }
 
 Books.has_valid_book = function(author, permlink) {

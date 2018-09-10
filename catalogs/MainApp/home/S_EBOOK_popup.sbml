@@ -4,7 +4,7 @@
 =object section: id=section.progress, section=progress, style=section_progress
 
 =object button: id=btn.open, script=open, label="전자책으로 보기", disable-label="전자책 변환 중...", style=btn_open
-=object button: action=popup-close, label="원본 보기", style=btn_close
+=object button: id=btn.close, script=close, label="원본 보기", style=btn_close
 
 =begin ready: id=ready
 =begin title

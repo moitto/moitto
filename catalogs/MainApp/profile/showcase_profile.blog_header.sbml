@@ -1,9 +1,9 @@
 =begin header
 
 =object blank: style=blank_userpic.mask
-=object image: image-url="${userpic-url}", reuse-id="${userpic-url}", style=img_userpic
+=object image: image-url="${userpic-large-url}", reuse-id="${userpic-large-url}", style=img_userpic
 
-=(object label: text="${username}", style=label_user)=
+=(object blank: style=blank_margin)==(object label: text="${username}", style=label_user)==(object button: script=show_details, style=btn_user)=
 =object label: text="REP. ${reputation}", style=label_rep
 
 =begin info

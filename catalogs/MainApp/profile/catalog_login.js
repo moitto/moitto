@@ -1,6 +1,7 @@
-var wallet  = require("wallet");
-var account = require("account");
-var users   = require("users");
+var wallet   = require("wallet");
+var account  = require("account");
+var users    = require("users");
+var settings = require("settings");
 
 function login(form) {
     var username = form["username"].trim();
@@ -18,7 +19,7 @@ function login(form) {
 
         controller.action("unfreeze");
 
-        if (needs_pin) {
+        if (needs_pin && settings.wallet_features_allowed()) {
             wallet.register_pin(function(pin) {
                 if (pin) {
                     handler(pin);

@@ -2,7 +2,7 @@
 
 =object blank: style=blank_background
 
-=object image: image-url="${banner-image}", scales-in-background=yes, style=img_banner
+=object image: image-url="${banner-url}", scales-in-background=yes, style=img_banner
 =object image: style=img_round.left
 =object image: style=img_round.right
 

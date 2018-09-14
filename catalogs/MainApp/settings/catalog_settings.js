@@ -45,7 +45,7 @@ function logout() {
 			"logged-in":"no"
 		});
 
-		__reload_subviews([ "V_HOME", "V_NOTIF", "V_WALLET" ]);
+		__reload_subviews([ "V_HOME", "V_NOTIF", "V_PROFILE" ]);
 
 		controller.action("reload");
 	    controller.action("script", { 

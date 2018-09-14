@@ -7,12 +7,13 @@ Connect = (function() {
 Connect.actions = require("actions");
 Connect.apps    = require("apps");
 Connect.books   = require("books");
+Connect.urls    = require("urls");
 
 Connect.handle_url = function(url, referrer) {
     var matched = /moitto\.io\/connect\/([^/?]+)\/?\?(.+)/g.exec(url);
 
     if (matched) {
-        var params = Object.assign(Connect.__parse_query(matched[2]), {
+        var params = Object.assign(Connect.urls.parse_query(matched[2]), {
             "prompts":"yes"
         });
 
@@ -321,20 +322,6 @@ Connect.__invoke_params = function(params) {
         "request-id":params["request-id"] || "",
         "source-app":params["source-app"] || ""
     }
-}
-
-Connect.__parse_query = function(query) {
-    var params = {};
-
-    query.split('&').forEach(function(text) {
-        var pair  = text.split('=');
-        var key   = decodeURIComponent(pair[0]);
-        var value = decodeURIComponent(pair[1] || '')
-
-        params[key.replace("_", "-")] = value;
-    });
-
-    return params;
 }
 
 __MODULE__ = Connect;

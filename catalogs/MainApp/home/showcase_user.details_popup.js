@@ -19,6 +19,7 @@ function on_loaded() {
             "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
             "follows":follows ? "yes" : "no",
             "muted":muted ? "yes" : "no",
+            "is-me":(account.get_username() === user.name) ? "yes" : "no",
             "fetched":"yes"
         };
 

@@ -3,7 +3,7 @@ import ~/themes.sbss
 #showcase_apps: width=1pw, height=1ph, position=abs, gravity=top, \
         column-count=1, cell-size="(1pw-20dp), (1pw-20dp+100dp)", \
         content-margin=10dp, cell-spacing=10dp, \
-        more-count=30
+        more-count=30, keeps-count=10, preload-count=10
 
 /page: page-background-color=$THEME_COLOR_02
 

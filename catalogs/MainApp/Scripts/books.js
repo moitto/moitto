@@ -12,13 +12,19 @@ Books.generate_book = function(author, permlink, handler) {
     Books.steemjs.get_content(author, permlink).then(function(response) {
         if (response) {
             var model = Books.markdown.parse(response["body"], []);
-            var title = response["title"];
+            var chapters = Books.__get_chapters_in_elements(model.elements);
+            console.log("chapters: " + JSON.stringify(chapters));
+            var title = Books.__get_title_in_elements(model.elements) || response["title"];
             var item = author + "-" + permlink;
-
-            Books.__generate_book(item, title, author, "ko", Books.__get_chapters(model), function(response) {
-                controller.action("import", { "item":item });
-
-                handler(response);
+ 
+            Books.__generate_book(item, title, author, "ko", chapters, function(response) {
+                if (response) {
+                    controller.action("import", { "item":item });
+    
+                    handler(item);
+                } else {
+                    handler();
+                }
             });
         } else {
             handler();
@@ -30,8 +36,15 @@ Books.generate_book = function(author, permlink, handler) {
 
 Books.open_book = function(author, permlink) {
     var item = author + "-" + permlink;
+    var path = "Books" + "/" + item + "/" + "book.bon";
 
-    controller.action("open", { "item":item });
+    if (exist("library", path)) {
+        controller.action("open", { "item":item });
+    
+        return true;
+    }
+
+    return false;
 }
 
 Books.has_valid_book = function(author, permlink) {
@@ -80,7 +93,7 @@ Books.__write_book_bon = function(item, title, author, language) {
 
 Books.__write_chapters_sbml = function(item, title, chapters) {
     var path = "Books" + "/" + item + "/" + "chapters.sbml";
-    var author = Books.__get_author(chapters);
+    var author = Books.__get_author_in_chapters(chapters);
     var cover_color = Books.__get_cover_color();
     var chapters_text = "";
 
@@ -181,33 +194,60 @@ Books.__get_cover_color = function() {
     return [ "$THEME_COLOR_00", "$THEME_COLOR_100" ];
 }
 
-Books.__get_chapters = function(model) {
+Books.__get_chapters_in_elements = function(elements) {
     var chapters = [];
 
-    model.elements.forEach(function(element) {
+    elements.forEach(function(element) {
         if (element.type === "list") {
-            element.data["items"].forEach(function(item) {
-                item[2].forEach(function(element) {
-                    if (element.type === "url" || element.type === "link-begin") {
-                        var steem_url = Books.urls.parse_steem_url(element.data["url"]);
-
-                        if (steem_url && steem_url[2]) {
-                            chapters.push({
-                                "title":Books.__get_text_in_elements(item[2]),
-                                "author":steem_url[1],
-                                "permlink":steem_url[2]
-                            });
-                        }
-                    }
-                });
-            });
+            chapters = chapters.concat(
+                Books.__get_chapters_in_list(element)
+            );
         }
     });
 
     return chapters;
 }
 
-Books.__get_author = function(chapters) {
+Books.__get_chapters_in_list = function(list) {
+    var chapters = [];
+
+    list.data["items"].forEach(function(item) {
+        item[2].forEach(function(element) {
+            if (element.type === "url" || element.type === "link-begin") {
+                var steem_url = Books.urls.parse_steem_url(element.data["url"]);
+
+                if (steem_url && steem_url[2]) {
+                    chapters.push({
+                        "title":Books.__get_text_in_elements(item[2]),
+                        "author":steem_url[1],
+                        "permlink":steem_url[2]
+                    });
+                }
+            }
+        });
+    });
+
+    return chapters;
+}
+
+Books.__get_title_in_elements = function(elements) {
+    for (var i = 0; i < elements.length; ++i) {
+        var element = elements[i];
+
+        if (element.type === "heading") {
+            var text = Books.__get_text_in_elements(element.data["elements"]);
+            var matched = /\[(.+)\]/.exec(text);
+
+            if (matched) {
+                return matched[1];
+            }
+        }
+    }
+
+    return "";
+}
+
+Books.__get_author_in_chapters = function(chapters) {
     var authors = [];
 
     chapters.forEach(function(chapter) {

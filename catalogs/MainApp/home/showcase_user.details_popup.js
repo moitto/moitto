@@ -17,6 +17,7 @@ function on_loaded() {
             "steem-balance":user.get_steem_balance().toFixed(3).toString(),
             "steem-power":user.get_steem_power().toFixed(3).toString(),
             "sbd-balance":user.get_sbd_balance().toFixed(3).toString(),
+            "is-me":(account.get_username() === user.name) ? "yes" : "no",
             "follows":follows ? "yes" : "no",
             "muted":muted ? "yes" : "no",
             "fetched":"yes"

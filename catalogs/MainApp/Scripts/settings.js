@@ -22,4 +22,12 @@ Settings.get_refresh_interval = function() {
     return storage.value("REFRESH_INTERVAL") || 60 * 60 * 1000; // 1 hour
 }
 
+Settings.wallet_features_allowed = function() {
+    if ($env["STORE"] === "apple") {
+        return false;
+    }
+
+    return true;
+}
+
 __MODULE__ = Settings;

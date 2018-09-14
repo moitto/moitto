@@ -35,10 +35,17 @@ Quests.finish_quest = function(author, permlink, comment, handler) {
         controller.catalog().submit("showcase", "quests", quest_id, value);
         controller.action("freeze", { "message":"기록 중..." });
 
-        Quests.account.comment(author, permlink, null, "", Quests.__result_body(value, comment), JSON.stringify({}), function(response){
+        Quests.__comment_with_result(author, permlink, Quests.__result_body(value, comment), function(response) {
             controller.action("unfreeze");
-            controller.action("toast", { "message":"퀘스트가 완료되었습니다." });
 
+            if (response) {
+                controller.action("toast", { "message":"퀘스트가 완료되었습니다." });
+            } else {
+                controller.action("alert", { 
+                    "message":"죄송합니다. 퀘스트 결과를 기록하지 못했습니다." 
+                });
+            }
+  
             handler();
         });
     } else {
@@ -59,6 +66,38 @@ Quests.is_finished_quest = function(author, permlink) {
     return false;
 }
 
+Quests.__comment_with_result = function(author, permlink, body, handler) {
+    var quest_permlink = Quests.__quest_permlink(author, permlink);
+    var username = storage.value("ACTIVE_USER");
+    var json_metadata = JSON.stringify({});
+    var max_accepted_payout = "1000000.000 SBD";
+    var percent_steem_dollars = 10000;
+    var beneficiaries = [
+        { "account": username, "weight": 7000 },
+        { "account": author,   "weight": 2100 },
+        { "account": "moitto", "weight":  900 }
+    ];
+
+    Quests.account.comment(author, permlink, quest_permlink, "", body, json_metadata, function(response) {
+        if (response) {
+                Quests.account.set_comment_options(quest_permlink, 
+                                                   max_accepted_payout,
+                                                   percent_steem_dollars,
+                                                   true, // allow_votes
+                                                   true, // allow_curation_rewards
+                                                   beneficiaries, function(response) {
+                    if (response) {
+                        handler(response);
+                    } else {
+                        handler();
+                    }
+                });
+        } else {
+            handler();
+        }
+    });
+}
+
 Quests.__result_body = function(value, comment) {
     return comment + "\n\n" + "****" + "\n"
             + "<sub>" + "퀘스트 시작시간: " + value["started-at"] + "</sub>" + "\n"
@@ -76,20 +115,10 @@ Quests.__quest_code = function(value, comment) {
     return encode("hex", hash("md5", message)); // Not safe. TBD
 }
 
-Quests.__comment_options = function(author) {
-    var username = storage.value("ACTIVE_USER");
-
-    return JSON.stringify({
-        'allow_votes':true,
-        'allow_curation_rewards':true,
-        'extensions':[[ 0, {
-            'beneficiaries': [
-                { 'account': username, 'weight': 7000 },
-                { 'account': author,   'weight': 2100 },
-                { 'account': 'moitto', 'weight':  900 }
-            ]}
-        ]]
-    });
+Quests.__quest_permlink = function(author, permlink) {
+    return "quest-" + author + "-" 
+            + permlink.replace(/-[0-9]{8}t[0-9]{9}z$/, "") + "-" 
+            + new Date().toISOString().replace(/[.:\-]/g, "").toLowerCase();
 }
 
 __MODULE__ = Quests;

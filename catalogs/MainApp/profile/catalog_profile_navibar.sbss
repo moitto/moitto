@@ -1,0 +1,8 @@
+import ~/themes.sbss
+
+#btn_settings: image="~/subview_btn_settings.png", width=44dp, height=44dp, \
+            position=abs, gravity=left-bottom
+#img_notice: filename="~/subview_img_notice.png", width=6dp, height=6dp, \
+            position=abs, gravity=left-bottom, x=30dp, y=-30dp
+
+#btn_qr: image="~/subview_btn_qr.png", width=44dp, height=44dp, position=abs, gravity=right-bottom

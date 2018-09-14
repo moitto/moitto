@@ -1,0 +1,21 @@
+=begin cell
+
+=object blank: style=blank_background
+
+=object image: image-url="${banner-url}", scales-in-background=yes, style=img_banner
+=object image: style=img_round.left
+=object image: style=img_round.right
+
+=object section: section=apps.meta, style=section_apps.meta
+=begin meta: id=apps.meta
+=object label: text="${title}", style=label_title
+=object label: text="${adcopy}", style=label_adcopy
+=object label: text="${use-count}", type=decimal, format="#_명 사용 중입니다.", style=label_usage, display=none
+=object button: action=popup, display-unit="${id}", alternate-name=store.apps.menu, style=btn_menu
+=object button: label="이 채널의 더 많은 디앱 ▶", \
+            action=page, display-unit="${id}", alternate-name=store.channel, target=popup, \
+            has-own-title=yes, navibar-title="채널", \
+            style=btn_channel
+=end meta
+
+=end cell

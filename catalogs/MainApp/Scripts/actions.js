@@ -10,11 +10,17 @@ Actions.contents = require("contents");
 Actions.users    = require("users");
 Actions.rewards  = require("rewards");
 Actions.quests   = require("quests");
+Actions.settings = require("settings");
+Actions.urls     = require("urls");
 
 Actions.query_account = function(params) {
-    Actions.__on_complete(params, "account", {
-        "username":Actions.account.get_username()
-    });
+    if (Actions.account.is_logged_in()) {
+        Actions.__on_complete(params, "account", {
+            "username":Actions.account.get_username()
+        });
+    } else {
+        Actions.__on_complete(params);
+    }
 }
 
 Actions.open_discussion = function(params) {
@@ -270,59 +276,97 @@ Actions.unmute = function(params) {
 Actions.transfer = function(params) {
     var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
 
-    Actions.wallet.transfer(params["to"], amount, params["memo"], function(response) {
-        if (response) {
-            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
-                Actions.__on_complete(params, id, data);
-            });
-        }
-    });
+    if (Actions.settings.wallet_features_allowed()) {
+        Actions.wallet.transfer(params["to"], amount, params["memo"], function(response) {
+            if (response) {
+                Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                    Actions.__on_complete(params, id, data);
+                });
+            }
+        });        
+    } else {
+        Actions.__browse_steemconnect("transfer", {
+            "from":Actions.account.get_username(),
+            "to":params["to"],
+            "amount":amount,
+            "memo":encodeURIComponent(params["memo"] || "")
+        });
+    }
 }
 
 Actions.delegate = function(params) {
     var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
 
-    Actions.wallet.delegate(params["to"], amount, function(response) {
-        if (response) {
-            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
-                Actions.__on_complete(params, id, data);
-            });
-        }
-    });
+    if (Actions.settings.wallet_features_allowed()) {
+        Actions.wallet.delegate(params["to"], amount, function(response) {
+            if (response) {
+                Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                    Actions.__on_complete(params, id, data);
+                });
+            }
+        });
+    } else {
+        Actions.__browse_steemconnect("delegate-vesting-shares", {
+            "delegator":Actions.account.get_username(),
+            "delegatee":params["to"],
+            "vesting_shares":amount
+        });
+    }
 }
 
 Actions.undelegate = function(params) {
-    Actions.wallet.undelegate(params["from"], function(response) {
-        if (response) {
-            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
-                Actions.__on_complete(params, id, data);
-            });
-        }
-    });
+    if (Actions.settings.wallet_features_allowed()) {
+        Actions.wallet.undelegate(params["from"], function(response) {
+            if (response) {
+                Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                    Actions.__on_complete(params, id, data);
+                });
+            }
+        });
+    } else {
+        Actions.__browse_steemconnect("undelegate-vesting-shares", {
+            "delegator":Actions.account.get_username(),
+            "delegatee":params["from"]
+        });
+    }
 }
 
 Actions.power_up = function(params) {
     var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
 
-    Actions.wallet.power_up(amount, function(response) {
-        if (response) {
-            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
-                Actions.__on_complete(params, id, data);
-            });
-        }
-    });
+    if (Actions.settings.wallet_features_allowed()) {
+        Actions.wallet.power_up(amount, function(response) {
+            if (response) {
+                Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                    Actions.__on_complete(params, id, data);
+                });
+            }
+        });
+    } else {
+        Actions.__browse_steemconnect("transfer-to-vesting", {
+            "to":Actions.account.get_username(),
+            "amount":amount
+        });
+    }
 }
 
 Actions.power_down = function(params) {
     var amount = parseFloat(params["amount"]).toFixed(3) + " " + params["coin"];
 
-    Actions.wallet.power_down(amount, function(response) {
-        if (response) {
-            Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
-                Actions.__on_complete(params, id, data);
-            });
-        }
-    });
+    if (Actions.settings.wallet_features_allowed()) {
+        Actions.wallet.power_down(amount, function(response) {
+            if (response) {
+                Actions.__get_updated_data_for_assets(Actions.account.get_username(), function(id, data) {
+                    Actions.__on_complete(params, id, data);
+                });
+            }
+        });
+    } else {
+        Actions.__browse_steemconnect("withdraw-vesting", {
+            "account":Actions.account.get_username(),
+            "amount":amount
+        });
+    }
 }
 
 Actions.redeem_rewards = function(params) {
@@ -348,7 +392,6 @@ Actions.start_quest = function(params) {
 }
 
 Actions.finish_quest = function(params) {
-    console.log("finish_quest: " + JSON.stringify(params));
     Actions.quests.finish_quest(params["author"], params["permlink"], params["comment"], function() {
         Actions.__get_updated_data_for_content(params["author"], params["permlink"], function(id, data) {
             Actions.__on_complete(params, id, data);
@@ -471,6 +514,17 @@ Actions.__get_updated_data_for_assets = function(username, handler) {
         }
     }, function(reason) {
         handler();
+    });
+}
+
+Actions.__browse_steemconnect = function(method, params) {
+    var query = Actions.urls.build_query(params);
+    var url = "https://v2.steemconnect.com/sign/" + method + "?" + query;
+    console.log(url);
+
+    controller.action("link", {
+        "url":url,
+        "target":"browser"
     });
 }
 

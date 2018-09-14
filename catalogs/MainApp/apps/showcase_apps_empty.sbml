@@ -1,8 +1,5 @@
 =begin empty
 
-=object label: text="불러오는 중입니다.", style=label_loading
-
-=begin guide
-=end guide
+=object button: action=page, display-unit=S_STORE.APPS, label="디앱 목록 보기", style=btn_apps
 
 =end empty

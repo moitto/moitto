@@ -1,11 +1,11 @@
-var __signature = "<div class=\"hidden-signature\">Posted using <a href=\"https://steemit.com/@moitto\">Moitto]</a></div>";
+var __signature = "<div class=\"hidden-signature\">Posted using <a href=\"https://steemit.com/@moitto\">Moitto</a></div>";
 var __signature_pattern = /\n+<div class=\"hidden-signature\">.*?<\/div>/;
 
 function on_loaded() {
     var value = controller.catalog().value("showcase", "auxiliary", "S_COMMENT");
     var identifier = "S_COMMENTS_" + value["parent-author"] + "_" + value["parent-permlink"];
     var temporary = controller.catalog().value("showcase", "comments", identifier);
-    var text = temporary ? temporary["text"] : value["text"].replace(__signature_pattern, "");
+    var text = temporary ? temporary["text"] : (value["text"] || "").replace(__signature_pattern, "");
 
     view.object("editor").property({ "text":text });
 }
@@ -15,7 +15,7 @@ function close() {
     var editor = view.object("editor");
     var text = editor.value();
 
-    if (text.length > 0 && text !== value["text"].replace(__signature_pattern, "")) {
+    if (text.length > 0 && text !== (value["text"] || "").replace(__signature_pattern, "")) {
         controller.action("prompt", {
             "title":"알림",
             "message":"이 댓글을 임시 저장하시겠어요?",

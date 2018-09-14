@@ -55,10 +55,10 @@ __MODULE__ = {
         author: __TYPES__.string,
         permlink: __TYPES__.string,
         max_accepted_payout: __TYPES__.asset,
-        percent_steem_dollars: __TYPES__.int16,
+        percent_steem_dollars: __TYPES__.uint16,
         allow_votes: __TYPES__.bool,
         allow_curation_rewards: __TYPES__.bool,
-        extensions: __TYPES__.string
+        extensions: [ __TYPES__.array, __TYPES__.beneficiaries ]
     },
     "delegate_vesting_shares":{
         delegator: __TYPES__.string,

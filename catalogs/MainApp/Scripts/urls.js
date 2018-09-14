@@ -34,6 +34,35 @@ Urls.get_path_extension = function(url) {
     }
 }
 
+Urls.build_query = function(params) {
+    var query = "";
+
+    Object.keys(params).forEach(function(key) {
+        var value = params[key];
+
+        query += (query.length > 0) ? "&" : "";
+        query += encodeURIComponent(key.replace("-", "_"));
+        query += "=";
+        query += encodeURIComponent(value);
+    });
+
+    return query;
+}
+
+Urls.parse_query = function(query) {
+    var params = {};
+
+    query.split('&').forEach(function(text) {
+        var pair  = text.split('=');
+        var key   = decodeURIComponent(pair[0]);
+        var value = decodeURIComponent(pair[1] || '')
+
+        params[key.replace("_", "-")] = value;
+    });
+
+    return params;
+}
+
 Urls.__is_steem_host = function(host) {
     var known_hosts = [ "steemit.com", "busy.org", "steemkr.com" ];
 

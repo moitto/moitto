@@ -38,7 +38,7 @@ function select_app(data) {
     controller.action("app", {
         "app":data["app"],
         "version":data["version"],
-        "url":data["file"]
+        "url":data["file-url"]
     });
 }
 

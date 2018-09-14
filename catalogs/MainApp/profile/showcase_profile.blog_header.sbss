@@ -7,7 +7,8 @@ import ~/themes.sbss
 #label_user: height=30dp, \
             font-family=$SANSSERIF_BOLD, text-color=$THEME_COLOR_100, text-align=right, font-size=1.6, \
             line-break-mode=tail-truncation, content-padding="0 10dp"
-
+#btn_user: image="~/subview_btn_info.small.png", width=30dp, height=30dp
+#blank_margin: width=30dp, height=30dp
 #label_rep: height=20dp, \
             font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101, text-align=center, font-size=0.9, \
             margin="0 0 10dp 0"
@@ -26,4 +27,5 @@ import ~/themes.sbss
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, \
         label-align=center, label-font-size=0.9
 
-/header: text-align=center, margin="0 0 25dp 0"
+/header: data-binding="account", script-when-data-changed=on_change_data, \
+        text-align=center, margin="0 0 25dp 0"

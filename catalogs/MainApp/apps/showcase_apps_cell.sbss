@@ -1,33 +1,37 @@
 import ~/themes.sbss
 
-#blank_background: width=1pw, height=1ph, color=$THEME_COLOR_00, \
-        content-border-radius=15dp, content-border-color=$THEME_COLOR_01, content-border-width=1dp
+#img_banner: width=1ph, height=1ph, position=abs, gravity=left, \
+            scale-mode=fill, default-color=$THEME_COLOR_01
+#widget: width=1ph, height=1ph, position=abs, gravity=left, \
+            content-background-color=$THEME_COLOR_01
 
-#img_banner: scale-mode=fill, loading-duration=0.3, \
-        width=1pw, height=1pw, position=abs, gravity=top
-#img_round.left: filename="~/subview_img_apps.round.left.png", width=15dp, height=15dp, \
-        position=abs, gravity=top-left
-#img_round.right: filename="~/subview_img_apps.round.right.png", width=15dp, height=15dp, \
-        position=abs, gravity=top-right
+#blank_edit.mask: display=none, color=$BLACK_COLOR_LIGHTEST_DIM, \
+        width=1pw, height=1ph, position=abs, gravity=center
+#img_edit.selected: display=none, filename=~/appview_icon_selected.png, \
+        width=30dp, height=30dp, position=abs, gravity=left, x=(1ph-30dp)/2
+#img_edit.deselected: display=none, filename=~/appview_icon_deselected.png, \
+        width=30dp, height=30dp, position=abs, gravity=left, x=(1ph-30dp)/2
 
-#section_apps.meta: width=1pw, height="1ph-1pw", position=abs, gravity=bottom
+/cell: display=block, width=1pw, height=1ph, \
+        border-color=$THEME_COLOR_01, border-width=1dp, page-background-color=$THEME_COLOR_00
+/cell/title: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, \
+        font-size=1.3, line-spacing=0.2em, paragraph-spacing=0.2em, \
+        padding="10dp 10dp 5dp (1ph+10dp)"
+/cell/description: font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_100, text-align=left, \
+        font-size=0.9, line-spacing=0.2em, paragraph-spacing=0.2em, \
+        padding="5dp 10dp 10dp (1ph+10dp)"
 
-#label_title: width="1pw-40dp", height=44dp, position=abs, \
-        font-family=$SANSSERIF_BOLD, font-size=1.6, text-color=$THEME_COLOR_101, \
-        line-break-mode=tail-truncation, content-padding="0 10dp"
-#label_adcopy: width="1pw-20dp", height=20dp, position=abs, y=40dp, \
-        font-family=$SANSSERIF_MEDIUM, font-size=1, text-color=$THEME_COLOR_100, \
-        line-break-mode=tail-truncation, content-padding="0 10dp"
+if $HAS_OWN_WIDGET == "yes"
+    #img_banner: display=none
+else
+    #widget: display=none
+end
 
-#btn_menu: image="subview_btn_more.png", width=44dp, height=44dp, \
-        position=abs, gravity=right-top
-#btn_channel: display=none, position=abs, gravity=bottom-right, x=-10dp, y=-10dp, \
-        label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=0.8, \
-        content-padding="4dp 8dp", content-background-color=$THEME_COLOR_03, content-border-radius=5dp
-
-/cell: page-background-color=$THEME_COLOR_02
-/cell/meta: display=none
-
-if "${channel}" != ""
-    #btn_channel: display=object
+if $EDITING == "yes"
+    if $STATE == "selected"
+        #blank_edit.mask: display=object
+        #img_edit.selected: display=object
+    else
+        #img_edit.deselected: display=object
+    end
 end

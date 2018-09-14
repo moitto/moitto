@@ -50,6 +50,10 @@ else
     #btn_unmute: hidden=yes
 end
 
+if "${is-me}" == "yes"
+    /popup/buttons: display=none
+end
+
 
 -- 지갑 정보 --
 

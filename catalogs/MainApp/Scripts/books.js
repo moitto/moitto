@@ -13,11 +13,10 @@ Books.generate_book = function(author, permlink, handler) {
         if (response) {
             var model = Books.markdown.parse(response["body"], []);
             var chapters = Books.__get_chapters_in_elements(model.elements);
-            console.log("chapters: " + JSON.stringify(chapters));
             var title = Books.__get_title_in_elements(model.elements) || response["title"];
             var item = author + "-" + permlink;
- 
-            Books.__generate_book(item, title, author, "ko", chapters, function(response) {
+
+            Books.__generate_book(item, title, (Books.__get_author_in_chapters(chapters) || author), "ko", chapters, function(response) {
                 if (response) {
                     controller.action("import", { "item":item });
     
@@ -71,7 +70,7 @@ Books.__generate_book = function(item, title, author, language, chapters, handle
         }
 
         Books.__write_book_bon(item, title, author, language);
-        Books.__write_chapters_sbml(item, title, chapters);
+        Books.__write_chapters_sbml(item, title, author, chapters);
         Books.__copy_template_files(item);
 
         handler(response);
@@ -91,9 +90,8 @@ Books.__write_book_bon = function(item, title, author, language) {
     write("library", path, text);
 }
 
-Books.__write_chapters_sbml = function(item, title, chapters) {
+Books.__write_chapters_sbml = function(item, title, author, chapters) {
     var path = "Books" + "/" + item + "/" + "chapters.sbml";
-    var author = Books.__get_author_in_chapters(chapters);
     var cover_color = Books.__get_cover_color();
     var chapters_text = "";
 
@@ -195,17 +193,15 @@ Books.__get_cover_color = function() {
 }
 
 Books.__get_chapters_in_elements = function(elements) {
-    var chapters = [];
+    for (var i = 0; i < elements.length; ++i) {
+        var element = elements[i];
 
-    elements.forEach(function(element) {
         if (element.type === "list") {
-            chapters = chapters.concat(
-                Books.__get_chapters_in_list(element)
-            );
+            return Books.__get_chapters_in_list(element);
         }
-    });
+    }
 
-    return chapters;
+    return [];
 }
 
 Books.__get_chapters_in_list = function(list) {

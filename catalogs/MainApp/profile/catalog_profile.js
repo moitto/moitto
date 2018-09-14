@@ -146,9 +146,7 @@ function __get_user(username, handler) {
 }
 
 function __get_discussions_by_blog(username, start_author, start_permlink, length, discussions, handler) {
-    console.log("__get_discussions_by_blog: started");
     steemjs.get_discussions_by_blog(username, start_author, start_permlink, length + (start_author ? 1 : 0)).then(function(response) {
-    console.log("__get_discussions_by_blog: fetched");
         if (start_author && response.length > 0) {
             response = response.splice(1);
         }

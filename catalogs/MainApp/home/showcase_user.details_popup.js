@@ -125,7 +125,6 @@ function __get_user(username, handler) {
         steemjs.get_followers(username, me, "blog", 1),
         steemjs.get_followers(username, me, "ignore", 1)
     ]).then(function(response) {
-        console.log(JSON.stringify(response));
         if (response[0][0]) {
             var user = users.create(username, response[0][0], response[1], global.create(response[2]));
             var follows = (response[3].length == 0 || response[3][0]["follower"] !== me) ? false : true;

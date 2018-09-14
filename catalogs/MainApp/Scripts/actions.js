@@ -520,7 +520,6 @@ Actions.__get_updated_data_for_assets = function(username, handler) {
 Actions.__browse_steemconnect = function(method, params) {
     var query = Actions.urls.build_query(params);
     var url = "https://v2.steemconnect.com/sign/" + method + "?" + query;
-    console.log(url);
 
     controller.action("link", {
         "url":url,

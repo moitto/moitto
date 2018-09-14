@@ -16,13 +16,10 @@ import themes.sbss
 
 if $SCREEN_WIDTH > "5"
     if $ORIENTATION == "portrait"
-        --(디앱 탭메뉴 없는 경우)#blank_notif.badge: x="0.25pw/2-18dp", y=-(35dp+1eb)
-        #blank_notif.badge: x=-5dp, y=-(35dp+1eb)
+        #blank_notif.badge: x=1pw/5-28dp, y=-(35dp+1eb)
     elif $ORIENTATION == "landscape"
-        --(디앱 탭메뉴 없는 경우)#blank_notif.badge: x="0.25pw/2-25dp", y=-(35dp+1eb)
-        #blank_notif.badge: x=-5dp, y=-(35dp+1eb)
+        #blank_notif.badge: x=1pw/5-36dp, y=-(35dp+1eb)
     end
 else
-    --(디앱 탭메뉴 없는 경우)#blank_notif.badge: x="0.25pw/2+10dp", y=-(37dp+1eb)
-    #blank_notif.badge: x=10dp, y=-(37dp+1eb)
+    #blank_notif.badge: x=1pw/5+10dp, y=-(37dp+1eb)
 end

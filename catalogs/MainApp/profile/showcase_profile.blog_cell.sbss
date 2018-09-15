@@ -9,20 +9,10 @@ import ~/themes.sbss
 #label_meta: font-family=$SANSSERIF_MEDIUM, text-align=left, \
         font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_101
 #btn_meta: label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_101, label-align=left
-#blank_userpic.mask: color=$THEME_COLOR_01, width=30dp, height=30dp, \
-        position=abs, gravity=bottom-left, x=10dp, y=-10dp, content-border-radius=30dp/2
-#btn_userpic: scale-mode=fill, position=abs, \
-        width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
-#btn_author: width="1pw-66dp", position=abs, \
-        label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation, \
-        height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
-        label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
 #label_date: width=200dp, position=abs, \
         font-family=$SANSSERIF_MEDIUM, text-align=left, \
         height=10dp, gravity=bottom-left, x=10dp, y=-10dp, \
         font-size=0.7, text-color=$THEME_COLOR_101
-#img_reblogged: filename="~/subview_icon_reblogged.png", width=12dp, height=12dp, \
-        position=abs, gravity=bottom-right, x=-10dp, y=-10dp
 
 /cell: data-binding="content-${author}.${permlink}", script-when-data-changed=on_change_data, \
         skips-drawing=yes
@@ -31,8 +21,6 @@ import ~/themes.sbss
 /cell/contents/title: font-family=$SANSSERIF_MEDIUM, font-size=1.2, text-color=$THEME_COLOR_100, \
         line-spacing=0.2em, padding="10dp (0.2pw+20dp) 10dp 10dp"
 /cell/contents/meta: display=block, width="1pw-20dp", position=abs, gravity=bottom-left, x=10dp, y=-25dp
-/cell/contents/reblogged: display=block, width="1pw-40dp", text-align=right, \
-        position=abs, gravity=bottom-right, x=-10dp, y=-10dp
 
 if $SCREEN_WIDTH > "5"
     #img_cover: width=0.18pw, height=0.18pw

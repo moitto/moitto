@@ -258,10 +258,10 @@ SteemBroadcast.__send_transaction = function(operation, keys) {
         transaction["extensions"] = [];
 
         SteemBroadcast.__prepare_transaction(transaction).then(function(transaction) {
-            SteemBroadcast.__sign_transaction(transaction, keys, function(signatures) {
+            SteemBroadcast.__sign_transaction(transaction, keys).then(function(signatures) {
                 transaction["signatures"] = signatures;
 
-               Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
+                Steem.api.broadcast_transaction_synchronous(transaction).then(function(response) {
                     resolve(response);
                 }, function(reason) {
                     reject(reason);
@@ -299,11 +299,13 @@ SteemBroadcast.__prepare_transaction = function(transaction) {
     });
 }
 
-SteemBroadcast.__sign_transaction = function(transaction, keys, handler) {
-    var buffer = SteemBroadcast.serializer.serialize_transaction(transaction);
-    var signatures = SteemAuth.sign_transaction(buffer, keys);
+SteemBroadcast.__sign_transaction = function(transaction, keys) {
+    return new Promise(function(resolve, reject) {
+        var message = SteemBroadcast.serializer.serialize_transaction(transaction);
+        var signatures = SteemAuth.sign_transaction(message, keys);
 
-    handler(signatures);
+        resolve(signatures);
+    });
 }
 
 __MODULE__ = SteemBroadcast;

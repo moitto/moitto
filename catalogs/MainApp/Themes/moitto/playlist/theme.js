@@ -13,8 +13,8 @@ Theme.prototype.constructor = Theme;
 Theme.prototype.build_body = function(body, format, images) {
     var model = this.parse_markdown(body);
 
-    this.musics    = Theme.__get_musics(model);
-    this.image_url = Theme.__get_image_url(model);
+    this.musics    = Theme.__get_musics_in_elements(model.elements);
+    this.image_url = Theme.__get_image_url_in_elements(model.elements);
 
     return this.markdown_to_sbml(model, images);
 }
@@ -28,41 +28,54 @@ Theme.prototype.get_custom_text = function() {
 
 /* helper functions */
 
-Theme.__get_musics = function(model) {
+Theme.__get_musics_in_elements = function(elements) {
+    for (var i = 0; i < elements.length; ++i) {
+        var element = elements[i];
+
+        if (element.type === "list") {
+            return Theme.__get_musics_in_list(element);
+        }
+    }
+
+    return [];
+}
+
+Theme.__get_musics_in_list = function(list) {
     var musics = [];
 
-    model.elements.forEach(function(element) {
-        if (element.type === "list") {
-            element.data["items"].forEach(function(item) {
-                var text = "";
+    list.data["items"].forEach(function(item) {
+        var text = Theme.__get_text_in_elements(item[2]);
+        var matched = /(.+)\((.+)\)/.exec(text);
 
-                item[2].forEach(function(element) {
-                    [ "prior", "text", "trailing" ].forEach(function(property) {
-                        if (element.data.hasOwnProperty(property)) {
-                            text += element.data[property];
-                        }
-                    });
-                });
-
-                var matched = /(.+)\((.+)\)/.exec(text);
-
-                if (matched) {
-                    musics.push({
-                        "title":matched[1],
-                        "artists":matched[2]
-                    })
-                }
-            });
+        if (matched) {
+            musics.push({
+                "title":matched[1],
+                "artists":matched[2]
+            })
         }
     });
 
     return musics;
 }
 
-Theme.__get_image_url = function(model) {
+Theme.__get_text_in_elements = function(elements) {
+    var text = "";
+
+    elements.forEach(function(element) {
+        [ "prior", "text", "trailing"].forEach(function(property) {
+            if (element.data.hasOwnProperty(property)) {
+                text += element.data[property];
+            }
+        })
+    });
+
+    return text;
+}
+
+Theme.__get_image_url_in_elements = function(elements) {
     var image_urls = [];
 
-    model.elements.forEach(function(element) {
+    elements.forEach(function(element) {
         if (element.type === "image" || element.type === "image-tag") {
             image_urls.push(Theme.__encode_url(element.data["url"]));
         }

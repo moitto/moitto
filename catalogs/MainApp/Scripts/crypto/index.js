@@ -94,6 +94,10 @@ Crypto.number_from_bits = function(bits) {
     return sjcl.bn.fromBits(bits);
 };
 
+Crypto.number_from_hex = function(hex) {
+    return new sjcl.bn(hex);
+};
+
 Crypto.string_to_bits = function(string) {
     return sjcl.codec.utf8String.toBits(string);
 };

@@ -42,7 +42,7 @@ SteemAuth.sign_transaction = function(transcation, keys) {
 
         signatures.push(
             Steem.crypto.hex_from_bits(
-                SteemAuth.signature.sign_buffer(message, private_key)
+                SteemAuth.signature.sign_message(message, private_key)
             )
         );
     };

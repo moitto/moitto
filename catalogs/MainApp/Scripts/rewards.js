@@ -11,8 +11,8 @@ Rewards.get_reward_reply = function(post_author, post_permlink, type, create_if_
         "method":method 
     }).then(function(response) {
         if (response.ok) {
-            response.json().then(function(json) {
-                handler(json["author"], json["permlink"]);
+            response.json().then(function(data) {
+                handler(data["author"], data["permlink"]);
             });
         } else {
              handler();

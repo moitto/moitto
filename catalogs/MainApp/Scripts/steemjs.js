@@ -247,8 +247,8 @@ SteemJS.__request_rpc = function(method, params, handler) {
         fetch(url, {
             method:"POST", header:headers, body:JSON.stringify(request)
         }).then(function(response) {
-            response.json().then(function(json) {
-                resolve(json);
+            response.json().then(function(data) {
+                resolve(data);
             }, function(reason) {
                 reject(reason);
             });

@@ -8,7 +8,6 @@ function on_loaded() {
 
     __get_replies(value["tag"], value["author"], value["permlink"], function(response) {
         var theme = themes.create("default");
-        var replies_text = "";
         var replies_data = [];
 
         response.forEach(function(content) {
@@ -37,27 +36,24 @@ function on_loaded() {
             }
         });
 
+        controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"]);
+        controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"], replies_data);
+
         replies_data.sort(function(datum1, datum2) {
             return datum2["created-at"].localeCompare(datum1["created-at"]);
         });
 
-        replies_data.forEach(function(datum) {
-            replies_text += read("catalog@resource", "showcase_replies.tmpl_cell.sbml", datum) + "\n";
-            replies_text += "\n";
+        __get_replies_text(replies_data, function(replies_text) {
+            var data = {
+                "replies":replies_text,
+                "replies-count":replies_data.length.toString(),
+                "has-own-sbml":"no"
+            };
+
+            view.data("display-unit", data);
+            view.data("environment", { "alternate-name":"replies" });
+            view.action("reload");
         });
-
-        controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"]);
-        controller.catalog().update("showcase", "replies." + value["author"] + "." + value["permlink"], replies_data);
-
-        var data = {
-            "replies":replies_text,
-            "replies-count":replies_data.length.toString(),
-            "has-own-sbml":"no"
-        };
-
-        view.data("display-unit", data);
-        view.data("environment", { "alternate-name":"replies" });
-        view.action("reload"); 
     });
 }
 
@@ -81,6 +77,26 @@ function __get_replies(tag, author, permlink, handler) {
         }
     }, function(reason) {
         handler();
+    });
+}
+
+function __get_replies_text(data, handler) {
+    var replies_text = "";
+    var promises = [];
+
+    data.forEach(function(datum) {
+        promises.push(new Promise(function(resolve, reject) {
+            read("catalog@resource", "showcase_replies.tmpl_cell.sbml", datum).then(function(text) {
+                replies_text += text + "\n";
+                replies_text += "\n";
+
+                resolve();
+            });
+        }));
+    });
+
+    Promise.all(promises).then(function() {
+        handler(replies_text);
     });
 }
 

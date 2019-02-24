@@ -9,42 +9,6 @@ Wallet = (function() {
 Wallet.account = require("account"); 
 Wallet.upbit   = require("upbit");
 
-Wallet.register_pin = function(handler) {
-    Wallet.__transaction = {
-        "action":"register_pin",
-        "handler":handler
-    };
-
-    Wallet.__register_pin();
-}
-
-Wallet.reset_pin_force = function(handler) {
-    Wallet.__transaction = {
-        "action":"reset_pin_force",
-        "handler":handler
-    };
-
-    Wallet.__reset_pin_force();
-}
-
-Wallet.is_pin_registered = function() {
-    if (Wallet.account.active_key_enabled()) {
-        return true;
-    }
-
-    return false;
-}
-
-Wallet.verify_pin = function(message, handler) {
-    Wallet.__transaction = {
-        "action":"verify_pin",
-        "message":message,
-        "handler":handler
-    };
-
-    Wallet.__start_verify();
-}
-
 Wallet.transfer = function(to, amount, memo, handler) {
     Wallet.__transaction = {
         "action":"transfer",
@@ -146,6 +110,42 @@ Wallet.redeem_rewards = function(handler) {
     Wallet.__confirm_redeem();
 }
 
+Wallet.register_pin = function(handler) {
+    Wallet.__transaction = {
+        "action":"register_pin",
+        "handler":handler
+    };
+
+    Wallet.__register_pin();
+}
+
+Wallet.reset_pin_force = function(handler) {
+    Wallet.__transaction = {
+        "action":"reset_pin_force",
+        "handler":handler
+    };
+
+    Wallet.__reset_pin_force();
+}
+
+Wallet.is_pin_registered = function() {
+    if (Wallet.account.active_key_enabled()) {
+        return true;
+    }
+
+    return false;
+}
+
+Wallet.verify_pin = function(message, handler) {
+    Wallet.__transaction = {
+        "action":"verify_pin",
+        "message":message,
+        "handler":handler
+    };
+
+    Wallet.__start_verify();
+}
+
 Wallet.get_coin_price = function(currency, coin, handler) {
     Wallet.upbit.get_candles(currency, coin, 1, function(candles) {
         if (candles) {
@@ -154,42 +154,6 @@ Wallet.get_coin_price = function(currency, coin, handler) {
             handler();
         }
     });
-}
-
-Wallet.__register_pin = function() {
-    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
-        "title":"PIN번호 설정",
-        "message":"송금, 임대 등에 사용할 PIN번호를 설정하세요.",
-        "status":"normal",
-        "close-disabled":"yes",
-        "reset-disabled":"yes",
-        "skip-enabled":"yes",
-        "script":"Wallet.__on_receive_pin"
-    });
-
-    controller.action("popup", { "display-unit":"S_PIN" });
-}
-
-Wallet.__start_verify = function() {
-    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
-    
-    if (wrong_count < Wallet.__max_wrong_count) {
-        Wallet.__confirm_verify();
-    } else {
-        Wallet.__on_exceed_max_wrong_count();
-    }
-}
-
-Wallet.__confirm_verify = function() {
-    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
-        "title":"PIN번호 입력",
-        "message":Wallet.__transaction["message"],
-        "status":"normal",
-        "script":"Wallet.__on_receive_pin",
-        "reset":"Wallet.__on_confirm_reset_pin"
-    });
-
-    controller.action("popup", { "display-unit":"S_PIN" });
 }
 
 Wallet.__start_transfer = function(to, amount) {
@@ -377,6 +341,41 @@ Wallet.__confirm_escrow_transfer = function(amount) {
     controller.action("popup", { "display-unit":"S_PIN" });
 }
 
+Wallet.__register_pin = function() {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 설정",
+        "message":"송금, 임대 등에 사용할 PIN번호를 설정하세요.",
+        "status":"normal",
+        "close-disabled":"yes",
+        "reset-disabled":"yes",
+        "skip-enabled":"yes",
+        "script":"Wallet.__on_receive_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
+
+Wallet.__start_verify = function() {
+    var wrong_count = storage.value("WALLET.WRONG_PIN_COUNT") || 0;
+    
+    if (wrong_count < Wallet.__max_wrong_count) {
+        Wallet.__confirm_verify();
+    } else {
+        Wallet.__on_exceed_max_wrong_count();
+    }
+}
+
+Wallet.__confirm_verify = function() {
+    controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
+        "title":"PIN번호 입력",
+        "message":Wallet.__transaction["message"],
+        "status":"normal",
+        "script":"Wallet.__on_receive_pin",
+        "reset":"Wallet.__on_confirm_reset_pin"
+    });
+
+    controller.action("popup", { "display-unit":"S_PIN" });
+}
 
 Wallet.__confirm_pin = function() {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
@@ -403,7 +402,7 @@ Wallet.__on_receive_pin = function() {
             storage.value("WALLET.WRONG_PIN_COUNT", 0);
         } else {
             if (wrong_count + 1 < Wallet.__max_wrong_count) {
-                Wallet.__retry_confirm_transfer(wrong_count + 1);
+                Wallet.__retry_confirm_pin(wrong_count + 1);
             } else {
                 Wallet.__on_exceed_max_wrong_count();
             }
@@ -466,7 +465,7 @@ Wallet.__on_receive_pin_again = function() {
     }
 }
 
-Wallet.__retry_confirm_transfer = function(wrong_count) {
+Wallet.__retry_confirm_pin = function(wrong_count) {
     controller.catalog().submit("showcase", "auxiliary", "S_PIN", {
         "title":"PIN번호 입력",
         "message":"PIN번호를 잘못 입력했습니다.\\n다시 PIN번호를 입력하세요.\\n(현재 " + wrong_count + "회 틀림 / " + Wallet.__max_wrong_count  + "회 연속 틀리면 PIN번호를 재설정해야 합니다.)",

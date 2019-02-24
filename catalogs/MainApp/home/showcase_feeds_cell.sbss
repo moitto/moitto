@@ -61,7 +61,7 @@ else
     #blank_userpic.mask: width=30dp, height=30dp, \
                 position=abs, gravity=bottom-left, x=10dp, y=-10dp, \
                 content-border-radius=30dp/2
-    #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
+    #btn_userpic: width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28dp/2
     #btn_author: height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \
                 label-color=$THEME_COLOR_100, label-align=left, label-font-size=0.9
     #label_date: height=10dp, gravity=bottom-left, x=48dp, y=-12dp, \

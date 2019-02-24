@@ -2,4 +2,5 @@ import ~/themes.sbss
 
 #youtube: width=1pw-40dp, height=(1pw-40dp)*9/16, \
         position=abs, gravity=top, y=1sbh+10dp, \
-        autoplay=yes, control-hidden=yes, info-hidden=yes, subtitle-hidden=yes
+        autoplay=yes, control-hidden=yes, \
+        subtitle-hidden=yes, blocks-ads=yes

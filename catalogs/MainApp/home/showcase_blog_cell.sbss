@@ -12,7 +12,7 @@ import ~/themes.sbss
 #blank_userpic.mask: color=$THEME_COLOR_01, width=30dp, height=30dp, \
         position=abs, gravity=bottom-left, x=10dp, y=-10dp, content-border-radius=30dp/2
 #btn_userpic: scale-mode=fill, position=abs, \
-        width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28ddp/2
+        width=28dp, height=28dp, gravity=bottom-left, x=11dp, y=-11dp, content-border-radius=28dp/2
 #btn_author: width="1pw-66dp", position=abs, \
         label-font-family=$SANSSERIF_BOLD, line-break-mode=tail-truncation, \
         height=20dp, gravity=bottom-left, x=48dp, y=-23dp, \

@@ -7,6 +7,7 @@ var __disallowed_tags = safety.get_disallowed_tags();
 
 function on_loaded() {
     var discussion = controller.catalog().value("showcase", "auxiliary", "S_DISCUSSION");
+    console.log(JSON.stringify(discussion));
     
     //discussion["author"] = "radajin";
     //discussion["permlink"] = "2-condition-loop";
@@ -27,7 +28,7 @@ function on_loaded() {
             "userpic-url":content.get_userpic_url("small"),
             "userpic-large-url":content.get_userpic_url(),
             "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-            "votes-count":content.data["net_votes"].toString(),
+            "votes-count":content.get_vote_count().toString(),
             "vote-weight":(content.get_vote_weight(me) || content.get_vote_weight_after_payout(me)).toString(),
             "replies-count":content.data["children"].toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
@@ -68,7 +69,7 @@ function on_loaded() {
         });
 
         controller.update("content-" + content.data["author"] + "." + content.data["permlink"], {
-            "votes-count":content.data["net_votes"].toString(),
+            "votes-count":content.get_vote_count().toString(),
             "replies-count":content.data["children"].toString(),
             "vote-weight":content.get_vote_weight(me).toString(),
             "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),

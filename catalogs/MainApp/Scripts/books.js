@@ -33,28 +33,28 @@ Books.generate_book = function(author, permlink, handler) {
     });
 }
 
-Books.open_book = function(author, permlink) {
+Books.has_valid_book = function(author, permlink, handler) {
     var item = author + "-" + permlink;
-    var path = "Books" + "/" + item + "/" + "book.bon";
+    var path = item + "/" + "book.bon";
 
-    if (exist("library", path)) {
-        controller.action("open", { "item":item });
-    
-        return true;
-    }
-
-    return false;
+    exist("books", path).then(function(path) {
+        handler(true);
+    }, function() {
+        handler(false);
+    });
 }
 
-Books.has_valid_book = function(author, permlink) {
+Books.open_book = function(author, permlink, handler) {
     var item = author + "-" + permlink;
-    var path = "Books" + "/" + item + "/" + "book.bon";
+    var path = item + "/" + "book.bon";
 
-    if (exist("library", path)) {
-        return true;
-    }
+    exist("books", path).then(function(path) {
+        controller.action("open", { "item":item });
 
-    return false;
+        handler(true);        
+    }, function() {
+        handler(false);
+    });
 }
 
 Books.__generate_book = function(item, title, author, language, chapters, handler) {
@@ -69,85 +69,151 @@ Books.__generate_book = function(item, title, author, language, chapters, handle
             chapters[i]["content"] = Books.contents.create(response[i]);
         }
 
-        Books.__write_book_bon(item, title, author, language);
-        Books.__write_chapters_sbml(item, title, author, chapters);
-        Books.__copy_template_files(item);
-
-        handler(response);
+        Books.__write_chapters_sbml(item, title, author, chapters, function(path, images) {
+            if (path) {
+                Books.__download_images(item, images, function(paths) {
+                    Books.__copy_template_files(item, function(paths) {
+                        if (paths) {
+                            Books.__write_book_bon(item, title, author, language, function(path) {
+                                if (path) {
+                                    handler(response);
+                                } else {
+                                    handler();
+                                }
+                            });
+                        } else {
+                            handler();
+                        }
+                    })
+                });
+            } else {
+                handler();
+            }
+        });
     }, function(reason) {
         handler();
     });
 }
 
-Books.__write_book_bon = function(item, title, author, language) {
-    var path = "Books" + "/" + item + "/" + "book.bon";
-    var text = read("catalog@resource", "~/Templates/book/book.bon", {
+Books.__write_book_bon = function(item, title, author, language, handler) {
+    console.log("__write_book_bon");
+    var path = item + "/" + "book.bon";
+    
+    read("catalog@resource", "~/Templates/book/book.bon", {
         "TITLE":title,
         "AUTHOR":author,
         "LANGUAGE":language
+    }).then(function(text) {
+        write("books", path, text).then(function(path) {
+            handler(path);
+        }, function(reason) {
+            handler();
+        });
+    }, function(reason) {
+        handler();
     });
-
-    write("library", path, text);
 }
 
-Books.__write_chapters_sbml = function(item, title, author, chapters) {
-    var path = "Books" + "/" + item + "/" + "chapters.sbml";
+Books.__write_chapters_sbml = function(item, title, author, chapters, handler) {
+    console.log("__write_chapters_sbml");
+    var path = item + "/" + "chapters.sbml";
     var cover_color = Books.__get_cover_color();
-    var chapters_text = "";
+    var promises = [];
+    var images = [];
 
     chapters.forEach(function(chapter) {
         var content = chapter["content"];
         var title = (chapter["title"] || content.data["title"]).replace("\"", "\\\"");
         var model = Books.markdown.parse(content.data["body"], []);
-        var images = Books.__get_image_elements(model.elements);
+        
+        (Books.__get_image_elements(model.elements) || []).forEach(function(element) {
+            var url = Books.__encode_url(Books.__url_for_image(element.data["url"]));
+            var extension = Books.urls.get_path_extension(url) || "jpg";
+            var filename = encode("hex", hash("md5", url)) + "." + extension;
+        
+            element.data["download-url"] = url;
+            element.data["filename"] = filename;
 
-        if (images) {
-            Books.__download_images(item, images);
-        }
+            images.push(element);
+        });
 
-        chapters_text += read("catalog@resource", "~/Templates/book/chapter.tmpl.sbml", {
+        promises.push(read("catalog@resource", "~/Templates/book/chapter.tmpl.sbml", {
             "TITLE":title,
             "BODY":Books.sbml.generate_from_markdown(model, content.meta["image"])
+        }));
+    });
+
+    Promise.all(promises).then(function(texts) {
+        read("catalog@resource", "~/Templates/book/chapters.sbml", {
+            "TITLE":title,
+            "AUTHOR":author,
+            "COVER-COLOR":cover_color[0],
+            "COVER-TEXT-COLOR":cover_color[1],
+            "CHAPTERS":texts.join("")
+        }).then(function(text) {
+            write("books", path, text).then(function(path) {
+                handler(path, images);
+            }, function(reason) {
+                handler();
+            });
+        }, function(reason) {
+            handler();
         });
+    }, function(reason) {
+        handler();
     });
-
-    var text = read("catalog@resource", "~/Templates/book/chapters.sbml", {
-        "TITLE":title,
-        "AUTHOR":author,
-        "COVER-COLOR":cover_color[0],
-        "COVER-TEXT-COLOR":cover_color[1],
-        "CHAPTERS":chapters_text
-    });
-    
-    write("library", path, text);
 }
 
-Books.__copy_template_files = function(item) {
+Books.__copy_template_files = function(item, handler) {
+    console.log("__copy_template_files");
+    var promises = [];
+
     [ "chapters.sbss", "markdown.sbss", "themes.sbss" ].forEach(function(file) {
-        var path = "Books" + "/" + item + "/" + file;
-        var text = read("catalog@resource", "~/Templates/book/" + file);
+        promises.push(new Promise(function(resolve, reject) {
+            var path = item + "/" + file;
 
-        if (text) {
-            write("library", path, text);
-        }
+            read("catalog@resource", "~/Templates/book/" + file).then(function(text) {
+                write("books", path, text).then(function(path) {
+                    resolve(path);
+                }, function(reason) {
+                    reject(reason);
+                });
+            }, function(reason) {
+                reject(reason)
+            });
+        }));
+    });
+
+    Promise.all(promises).then(function(paths) {
+        handler(paths);
+    }, function(reason) {
+        handler();
     });
 }
 
-Books.__download_images = function(item, images) {
+Books.__download_images = function(item, images, handler) {
+    console.log("__download_images");
+    var promises = [];
+
     images.forEach(function(element) {
-        var url = Books.__encode_url(Books.__url_for_image(element.data["url"]));
-        var extension = Books.urls.get_path_extension(url) || "jpg";
-        var filename = encode("hex", hash("md5", url)) + "." + extension;
-        var path = "Books" + "/" + item + "/" + "Images" + "/" + filename;
-
-        download(url, "library", path);
-
-        if (Books.__is_block_image(image("library", path))) {
-            element.data["inline"] = false;
-        }
-
-        element.data["filename"] = filename;
+        var path = item + "/" + "Images" + "/" + element.data["filename"];
+        console.log(path);
+        promises.push(new Promise(function(resolve, reject) {
+            download(element.data["download-url"], null, "books", path).then(function(path) {
+                resolve(path);
+            }, function(reason) {
+                resolve(""); // go on even if partly failed.
+            });
+        }));
     });
+
+    if (promises.length > 0) {
+        Promise.all(promises).then(function(paths) {
+            handler(paths);
+        });
+    } else {
+        handler([]);
+    }
 }
 
 Books.__get_image_elements = function(elements) {
@@ -166,10 +232,6 @@ Books.__get_image_elements = function(elements) {
     });
 
     return images;
-}
-
-Books.__is_block_image = function(image) {
-    return false;
 }
 
 Books.__encode_url = function(url) {

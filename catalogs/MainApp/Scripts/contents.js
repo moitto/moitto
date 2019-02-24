@@ -11,8 +11,6 @@ function Content(data, replies) {
     this.replies = replies || [];
     this.meta = JSON.parse(data["json_metadata"] || "{}");
 
-    console.log(JSON.stringify(replies));
-    
     if (this.meta["image"]) {
         this.meta["image"] = this.__normalize_urls(this.meta["image"]);
     }
@@ -72,6 +70,16 @@ Content.prototype.get_userpic_url = function(size) {
     }
 
     return userpic_url;
+}
+
+Content.prototype.get_vote_count = function() {
+    var votes = this.data["active_votes"];
+
+    if (votes) {
+        return votes.length;
+    }
+
+    return 0;
 }
 
 Content.prototype.get_vote_weight = function(username) {
@@ -191,6 +199,10 @@ Content.prototype.__get_youtube_video_id = function(urls) {
 Content.prototype.__normalize_urls = function(urls) {
     var normalized_urls = [];
 
+    if (typeof(urls) === "string") {
+        urls = [ urls ];
+    }
+    
     urls.forEach(function(url) {
         normalized_urls.push(decode("html", url));
     });

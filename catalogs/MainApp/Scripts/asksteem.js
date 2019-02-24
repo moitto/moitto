@@ -8,8 +8,8 @@ AskSteem.search = function(keyword, page, options, handler) {
 
     fetch(url + "?" + query).then(function(response){
         if (response.ok) {
-            response.json().then(function(json) {
-                handler(json);
+            response.json().then(function(data) {
+                handler(data);
             });
         }
     }, function(reason) {

@@ -1,31 +1,37 @@
 var books = require("books");
 
 function open() {
-    if (!books.has_valid_book($data["author"], $data["permlink"])) {
-        books.generate_book($data["author"], $data["permlink"], function(response) {
-            if (response) {
-                books.open_book($data["author"], $data["permlink"]);
+    books.has_valid_book($data["author"], $data["permlink"], function(valid) {
+        if (!valid) {
+            books.generate_book($data["author"], $data["permlink"], function(response) {
+                if (response) {
+                    books.open_book($data["author"], $data["permlink"], function(success) {
+                        if (!success) {
+                            controller.action("toast", { "message":"전자책 변환에 실패했습니다."});
+                        }
+                        
+                        controller.catalog().remove("showcase", "auxiliary", "S_EBOOK");
+                        controller.action("popup-close");
+                    });
+                } else {
+                    controller.action("toast", { "message":"전자책 변환에 실패했습니다."});
 
-                controller.catalog().remove("showcase", "auxiliary", "S_EBOOK");
-                controller.action("popup-close");
-            } else {
-                controller.action("toast", { "message":"전자책 변환에 실패했습니다."});
+                    __show_ready_section();
+                    __hide_progress_section();
+                    __enable_open_button();
+                }
+            });
 
-                __show_ready_section();
-                __hide_progress_section();
-                __enable_open_button();
-            }
-        });
+            __hide_ready_section();
+            __show_progress_section();
+            __disable_open_button();
+        } else {
+            books.open_book($data["author"], $data["permlink"]);
 
-        __hide_ready_section();
-        __show_progress_section();
-        __disable_open_button();
-    } else {
-        books.open_book($data["author"], $data["permlink"]);
-
-        controller.catalog().remove("showcase", "auxiliary", "S_EBOOK");
-        controller.action("popup-close");
-    }
+            controller.catalog().remove("showcase", "auxiliary", "S_EBOOK");
+            controller.action("popup-close");
+        }
+    });
 }
 
 function close() {

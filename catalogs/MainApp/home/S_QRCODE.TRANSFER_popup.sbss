@@ -13,7 +13,7 @@ end
 
 
 #blank_bg: width=1pw, height=0.5ph, color=$THEME_COLOR_02
-#img_qrcode: width=140dp, height=140dp, position=abs, gravity=top, y="0.5ph/2-40dp"
+#img_qrcode: width=240dp, height=240dp, position=abs, gravity=top, y="0.5ph/2-40dp"
 
 #btn_close: width="1pw-40dp", height=50dp, position=absolute, gravity=bottom, \
         label-font-family=$SANSSERIF_MEDIUM, label-color=$THEME_COLOR_100, label-font-size=1.2, \

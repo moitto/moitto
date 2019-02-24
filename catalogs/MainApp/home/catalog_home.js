@@ -38,7 +38,8 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
 
             discussions.forEach(function(discussion) {
                 var content = contents.create(discussion);
-                var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
+                var reblogged_count = (content.data["reblogged_by"] || []).length;
+                var reblogged = (reblogged_count > 0) ? true : false;
                 var datum = {
                     "id":"S_FEEDS_" + content.data["author"] + "_" + content.data["permlink"],
                     "author":content.data["author"],
@@ -49,7 +50,7 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "userpic-url":content.get_userpic_url("small"),
                     "userpic-large-url":content.get_userpic_url(),
                     "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                    "votes-count":content.data["net_votes"].toString(),
+                    "votes-count":content.get_vote_count().toString(),
                     "vote-weight":content.get_vote_weight(me).toString(),
                     "replies-count":content.data["children"].toString(),
                     "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
@@ -57,8 +58,8 @@ function feed_feeds(keyword, location, length, sortkey, sortorder, handler) {
                     "payout-declined":content.is_payout_declined() ? "yes" : "no",
                     "reblogged":reblogged ? "yes" : "no",
                     "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-                    "reblogged-count":content.data["reblogged_by"].length.toString(),
-                    "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
+                    "reblogged-count":reblogged_count.toString(),
+                    "reblogged-count-1":(reblogged_count - 1).toString(),
                     "editable":content.is_editable(me) ? "yes" : "no",
                     "deletable":content.is_deletable(me) ? "yes" : "no",
                     "hidable":(content.is_hidable(me) && !content.is_owner(me)) ? "yes" : "no",
@@ -166,7 +167,7 @@ function __random_background_data(values) {
 }
 
 function __discussion_data_for_value(value) {
-    var data = [];
+    var data = {};
 
     [ "author", "permlink", "userpic-url", "main-tag" ].forEach(function(key) {
         data[key] = value[key];

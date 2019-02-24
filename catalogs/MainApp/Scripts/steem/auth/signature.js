@@ -19,12 +19,8 @@ SteemSignature.sign_message = function(message, key) {
         var r = R.x.mod(n),
             ss = sjcl.bn.fromBits(digest).add(r.mul(key._exponent)),
             s = ss.mul(k.inverseMod(n)).mod(n),
-            isOdd = R.y.limbs[0] & (0x1 == 1),
-            recoveryParam = 31;
-        
-        if (isOdd) {
-            recoveryParam++;
-        }
+            isOdd = (R.y.limbs[0] & 0x1) == 1,
+            recoveryParam = isOdd ? 32 : 31;
         
         var rBitArray = r.toBits(l);
         var sBitArray = s.toBits(l);

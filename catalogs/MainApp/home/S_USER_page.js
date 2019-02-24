@@ -66,12 +66,12 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
                 "id":"S_BLOG_" + content.data["author"] + "_" + content.data["permlink"],
                 "author":content.data["author"],
                 "permlink":content.data["permlink"],
-                "title":content.data["title"], 
+                "title":content.data["title"],
                 "image-url":content.get_title_image_url("256x512") || "",
                 "userpic-url":content.get_userpic_url("small"),
                 "userpic-large-url":content.get_userpic_url(),
                 "author-reputation":content.get_author_reputation().toFixed(0).toString(),
-                "votes-count":content.data["net_votes"].toString(),
+                "votes-count":content.get_vote_count().toString(),
                 "vote-weight":me ? content.get_vote_weight(me).toString() : "",
                 "replies-count":content.data["children"].toString(),
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
@@ -97,7 +97,7 @@ function feed_blog(keyword, location, length, sortkey, sortorder, handler) {
         }
 
         handler(data);
-    });        
+    });
 }
 
 function open_discussion(data) {
@@ -186,7 +186,7 @@ function __random_background_data(values) {
 }
 
 function __discussion_data_for_value(value) {
-    var data = [];
+    var data = {};
 
     [ "author", "permlink", "userpic-url" ].forEach(function(key) {
         data[key] = value[key];

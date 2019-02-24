@@ -431,10 +431,11 @@ Actions.__get_updated_data_for_content = function(author, permlink, handler) {
             });
 
             var content = Actions.contents.create(discussion, replies);
-            var reblogged = (content.data["reblogged_by"].length > 0) ? true : false;
+            var reblogged_count = (content.data["reblogged_by"] || []).length;
+            var reblogged = (reblogged_count > 0) ? true : false;
             var me = storage.value("ACTIVE_USER") || "";
             var data = {
-                "votes-count":content.data["net_votes"].toString(),
+                "votes-count":content.get_vote_count().toString(),
                 "vote-weight":(content.get_vote_weight(me) || content.get_vote_weight_after_payout(me)).toString(),
                 "replies-count":content.data["children"].toString(),
                 "payout-value":"$" + content.get_payout_value().toFixed(2).toString(),
@@ -442,8 +443,8 @@ Actions.__get_updated_data_for_content = function(author, permlink, handler) {
                 "payout-declined":content.is_payout_declined() ? "yes" : "no",
                 "reblogged":reblogged ? "yes" : "no",
                 "reblogged-by":reblogged ? content.data["reblogged_by"][0] : "",
-                "reblogged-count":content.data["reblogged_by"].length.toString(),
-                "reblogged-count-1":(content.data["reblogged_by"].length - 1).toString(),
+                "reblogged-count":reblogged_count.toString(),
+                "reblogged-count-1":(reblogged_count - 1).toString(),
                 "editable":content.is_editable(me) ? "yes" : "no",
                 "deletable":content.is_deletable(me) ? "yes" : "no",
                 "hidable":(content.is_hidable(me) && !content.is_owner(me)) ? "yes" : "no"

@@ -1,4 +1,4 @@
-=begin popup
+=begin popup: script-when-back=back
 
 =object blank: style=blank_bg
 
@@ -9,6 +9,6 @@
 =object image: type=qrcode, text="https://moitto.io/connect/transfer/?to=${username}&coin=SBD&amount_type=SBD", \
             style=img_qrcode
 
-=object button: action=popup, display-unit=S_QRCODE, label="돌아가기", style=btn_close
+=object button: script=back, label="돌아가기", style=btn_close
 
 =end popup

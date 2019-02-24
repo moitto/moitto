@@ -86,7 +86,6 @@ SteemApi.broadcast_transaction_synchronous = function(transaction) {
         var params = [ transaction ];
 
         SteemApi.__request_rpc(method, params).then(function(response) {
-            console.log(JSON.stringify(response));
             if (!response["result"]) {
                 reject(response["error"]);
 
@@ -109,8 +108,8 @@ SteemApi.__request_rpc = function(method, params) {
         fetch(url, {
             method:"POST", header:headers, body:JSON.stringify(request)
         }).then(function(response) {
-            response.json().then(function(json) {
-                resolve(json);
+            response.json().then(function(data) {
+                resolve(data);
             }, function(reason) {
                 reject(reason);
             });

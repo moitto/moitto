@@ -4,7 +4,7 @@ import themes.sbss
                 content-border-radius=70dp, content-background-color=$BLACK_COLOR_DEEP_DIM
 #animation_loading: filename="~/subview_img_loading.white.png", frame-count=26, duration=1.6, \
                 width=80dp, height=80dp*0.634, position=abs, gravity=top, y=27dp
-#label_message: width=80dp, height=15p, \
+#label_message: width=80dp, height=15dp, \
                 position=abs, gravity=top, y="27dp+(80dp*0.634)+8dp", \
                 font-family=$SANSSERIF_MEDIUM, text-color=$THEME_COLOR_102, text-align=center, font-size=0.9
 #progress_main: width=80dp, height=2dp, position=abs, gravity=top, y="27dp+(80dp*0.634)+8dp+15dp+6dp"
